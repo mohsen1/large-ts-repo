@@ -15,13 +15,18 @@
   },
   "dependencies": {
     "@service/recovery-incident-orchestrator": "workspace:*",
-    "@domain/recovery-incident-orchestration": "workspace:*",
     "@service/recovery-command-orchestrator": "workspace:*",
+    "@service/recovery-runner": "workspace:*",
+    "@domain/recovery-orchestration": "workspace:*",
     "@data/recovery-incident-store": "workspace:*",
-    "@domain/recovery-operations-models": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@data/incident-signal-store": "workspace:*",
+    "@domain/incident-signal-intelligence": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "@aws-sdk/client-eventbridge": "^3.900.0",
+    "zod": "^3.24.0"
   }
 }

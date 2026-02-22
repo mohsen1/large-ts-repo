@@ -1,6 +1,13 @@
-import type { OrchestrateResult } from './runtime';
-import type { IncidentCommandResult } from '@data/recovery-incident-store';
-import type { IncidentPlan, IncidentRecord } from '@domain/recovery-incident-orchestration';
+export interface ServiceConfig {
+  readonly repositoryId: string;
+  readonly correlationPrefix: string;
+  readonly enableAutoPrune: boolean;
+}
+
+export interface ServiceDependencies {
+  readonly repositoryId: string;
+  readonly correlationPrefix: string;
+}
 
 export interface ServiceAuditEntry {
   readonly eventId: string;
@@ -20,56 +27,29 @@ export interface ServiceMetrics {
 
 export interface ServiceSnapshot {
   readonly repositoryId: string;
-  readonly lastResult?: OrchestrateResult;
-  readonly lastImportResult?: IncidentCommandResult;
+  readonly lastResult?: unknown;
   readonly auditTrail: readonly ServiceAuditEntry[];
   readonly metrics: ServiceMetrics;
 }
 
-export interface ServiceDependencies {
-  readonly repositoryId: string;
-  readonly correlationPrefix: string;
-}
-
-export const toServiceAudit = (result: OrchestrateResult, repositoryId: string): ServiceAuditEntry => ({
-  eventId: `${repositoryId}:${result.plan.id}:run:${result.runs.length}`,
-  incidentId: result.plan.incidentId,
-  action: 'execute',
+export const mkServiceAudit = (incidentId: string, action: string): ServiceAuditEntry => ({
+  eventId: `${incidentId}:${action}:${Date.now()}`,
+  incidentId,
+  action,
   success: true,
-  details: `runs=${result.runs.length}, approved=${result.approved}`,
+  details: `auto-${action}`,
   occurredAt: new Date().toISOString(),
 });
 
-export const buildServiceMetrics = (plan: IncidentPlan, incidents: readonly IncidentRecord[]): ServiceMetrics => {
-  const incidentCount = incidents.length;
-  const planCount = plan.route.nodes.length;
-  const runCount = incidents.reduce((total, current) => {
-    return total + Math.max(0, current.snapshots.length);
-  }, 0);
-  const approvedCount = plan.approved ? 1 : 0;
-  const failedCount = plan.riskScore > 0.9 ? 1 : 0;
+export const mkServiceMetrics = (seed: number): ServiceMetrics => ({
+  planCount: seed,
+  runCount: seed * 2,
+  approvedCount: Math.floor(seed / 2),
+  failedCount: Math.floor(seed / 4),
+});
 
-  return {
-    planCount,
-    runCount,
-    approvedCount,
-    failedCount,
-  };
-}
-
-export const buildServiceSnapshot = (
-  repositoryId: string,
-  result: OrchestrateResult | undefined,
-  incidents: readonly IncidentRecord[],
-  history: readonly ServiceAuditEntry[],
-): ServiceSnapshot => ({
-  repositoryId,
-  lastResult: result,
-  auditTrail: history,
-  metrics: {
-    planCount: incidents.length,
-    runCount: incidents.reduce((acc) => acc + 1, 0),
-    approvedCount: incidents.filter((incident) => !!incident.resolvedAt).length,
-    failedCount: incidents.filter((incident) => incident.severity === 'extreme').length,
-  },
+export const mkServiceSnapshot = (dependencies: ServiceDependencies, incidentId: string): ServiceSnapshot => ({
+  repositoryId: dependencies.repositoryId,
+  auditTrail: [mkServiceAudit(incidentId, 'build')],
+  metrics: mkServiceMetrics(incidentId.length),
 });

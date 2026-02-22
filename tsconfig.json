@@ -158,6 +158,9 @@
       "path": "./packages/domain/recovery-operations-intelligence"
     },
     {
+      "path": "./packages/domain/incident-signal-intelligence"
+    },
+    {
       "path": "./packages/domain/recovery-plan"
     },
     {
@@ -435,6 +438,9 @@
     },
     {
       "path": "./packages/data/recovery-incident-insights-store"
+    },
+    {
+      "path": "./packages/data/incident-signal-store"
     },
     {
       "path": "./packages/data/recovery-playbook-store"

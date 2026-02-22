@@ -10,3 +10,5 @@ export * from './dashboard';
 export * from './readiness';
 export * from './playbook';
 export * from './operations-controller';
+export * from './signal-engine';
+export * from './signal-dashboard';

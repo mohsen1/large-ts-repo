@@ -131,6 +131,12 @@ importers:
       '@domain/recovery-incident-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-orchestration
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@service/recovery-command-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-command-orchestrator
       '@service/recovery-incident-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-orchestrator
@@ -441,6 +447,9 @@ importers:
       '@domain/recovery-incident-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-orchestration
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -866,6 +875,18 @@ importers:
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
+
+  packages/domain/incident-command-core:
+    dependencies:
+      '@domain/recovery-incident-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-incident-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/incident-forecasting:
     dependencies:
@@ -2079,6 +2100,24 @@ importers:
         specifier: workspace:*
         version: link:../../shared/type-level
 
+  packages/service/recovery-command-orchestrator:
+    dependencies:
+      '@data/recovery-incident-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-store
+      '@domain/incident-command-core':
+        specifier: workspace:*
+        version: link:../../domain/incident-command-core
+      '@domain/recovery-incident-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/service/recovery-continuity-orchestrator:
     dependencies:
       '@data/recovery-continuity-plan-store':
@@ -2204,6 +2243,9 @@ importers:
       '@domain/recovery-incident-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-orchestration
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
       '@infrastructure/incident-notifications':
         specifier: workspace:*
         version: link:../../infrastructure/incident-notifications

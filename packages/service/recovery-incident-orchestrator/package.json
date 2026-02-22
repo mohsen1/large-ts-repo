@@ -17,6 +17,8 @@
     "@data/recovery-incident-store": "workspace:*",
     "@domain/recovery-incident-orchestration": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
+    "@data/incident-signal-store": "workspace:*",
+    "@domain/incident-signal-intelligence": "workspace:*",
     "@infrastructure/incident-notifications": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/protocol": "workspace:*",

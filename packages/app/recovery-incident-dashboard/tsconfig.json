@@ -21,13 +21,22 @@
       "path": "./../../service/recovery-command-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-runner/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-models/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-incident-store/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-operations-models/tsconfig.json"
+      "path": "./../../data/incident-signal-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/incident-signal-intelligence/tsconfig.json"
     }
   ]
 }
