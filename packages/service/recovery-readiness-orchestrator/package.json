@@ -16,7 +16,9 @@
   "dependencies": {
     "@domain/recovery-readiness": "workspace:*",
     "@data/recovery-readiness-store": "workspace:*",
+    "@shared/result": "workspace:*",
     "@aws-sdk/client-eventbridge": "^3.900.0",
+    "@aws-sdk/client-sqs": "^3.900.0",
     "zod": "^3.24.0"
   }
 }

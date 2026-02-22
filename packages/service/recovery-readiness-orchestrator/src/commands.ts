@@ -1,9 +1,9 @@
 import type {
   RecoveryReadinessPlanDraft,
-  RecoveryReadinessPlan,
   ReadinessSignal,
+  RecoveryReadinessPlan,
   ReadinessTarget,
-  ReadinessDirective
+  RecoveryRunId
 } from '@domain/recovery-readiness';
 
 export interface ReadinessPlanCommand {
@@ -11,10 +11,12 @@ export interface ReadinessPlanCommand {
   draft: RecoveryReadinessPlanDraft;
   requestedBy: string;
   requestedAt: string;
+  priority: 'normal' | 'high' | 'critical';
 }
 
 export interface ReadinessSignalCommand {
   signal: ReadinessSignal;
+  receivedVia: 'api' | 'webhook' | 'cron';
 }
 
 export type OrchestratorCommand = ReadinessPlanCommand | ReadinessSignalCommand;
@@ -28,6 +30,13 @@ export interface ActivationWindow {
 export interface ActivationResult {
   activated: boolean;
   planId: RecoveryReadinessPlan['planId'];
-  acceptedDirectives: ReadinessDirective[];
+  acceptedDirectives: ReadinessTarget['id'][];
   blockedTargets: ReadinessTarget[];
+}
+
+export interface OrchestratorStatusResponse {
+  runId: RecoveryRunId;
+  state: 'idle' | 'running' | 'blocked' | 'error';
+  activeTargets: number;
+  notes: readonly string[];
 }

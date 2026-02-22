@@ -63,3 +63,37 @@ export function remainingCapacity(window: TimeWindow): number {
   const minutes = span / (1000 * 60);
   return Math.max(0, window.capacity - minutes);
 }
+
+export function calculateWindowDensity(windows: readonly TimeWindow[]): number {
+  if (windows.length === 0) {
+    return 0;
+  }
+
+  const totalCapacity = windows.reduce((sum, window) => sum + window.capacity, 0);
+  const projectedUsed = windows.reduce((sum, window) => {
+    const span = Math.max(0, parseUtc(window.endUtc) - parseUtc(window.startUtc));
+    const minutes = span / (1000 * 60);
+    return sum + Math.min(window.capacity, minutes);
+  }, 0);
+
+  if (totalCapacity === 0) {
+    return 0;
+  }
+
+  return Number((projectedUsed / totalCapacity).toFixed(3));
+}
+
+export function estimateRecoveryCapacity(windows: readonly TimeWindow[]): number {
+  if (windows.length === 0) {
+    return 0;
+  }
+
+  return windows.reduce((sum, window) => sum + Math.max(0, remainingCapacity(window)), 0);
+}
+
+export function isAlignedWindow(window: TimeWindow, cursor: Date): boolean {
+  const start = parseUtc(window.startUtc);
+  const end = parseUtc(window.endUtc);
+  const cursorTs = cursor.getTime();
+  return cursorTs >= start && cursorTs <= end;
+}

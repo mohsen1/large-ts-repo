@@ -14,6 +14,9 @@
     },
     {
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
     }
   ]
 }
