@@ -176,6 +176,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-situational-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-situational-store
       '@data/recovery-stability-store':
         specifier: workspace:*
         version: link:../../data/recovery-stability-store
@@ -200,6 +203,9 @@ importers:
       '@domain/recovery-simulation-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-core
+      '@domain/recovery-situational-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-situational-intelligence
       '@domain/recovery-stability-models':
         specifier: workspace:*
         version: link:../../domain/recovery-stability-models
@@ -224,6 +230,9 @@ importers:
       '@service/recovery-simulation-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-simulation-orchestrator
+      '@service/recovery-situational-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-situational-orchestrator
       '@service/recovery-stability-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stability-orchestrator
@@ -819,6 +828,18 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-situational-store:
+    dependencies:
+      '@domain/recovery-situational-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-situational-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-stability-store:
     dependencies:
@@ -1590,6 +1611,15 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-situational-intelligence:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -3044,6 +3074,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-situational-orchestrator:
+    dependencies:
+      '@data/recovery-situational-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-situational-store
+      '@domain/recovery-situational-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-situational-intelligence
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/recovery-stability-orchestrator:
     dependencies:

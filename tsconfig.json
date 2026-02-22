@@ -654,6 +654,15 @@
     },
     {
       "path": "./packages/app/recovery-incident-dashboard"
+    },
+    {
+      "path": "./packages/domain/recovery-situational-intelligence"
+    },
+    {
+      "path": "./packages/data/recovery-situational-store"
+    },
+    {
+      "path": "./packages/service/recovery-situational-orchestrator"
     }
   ]
 }

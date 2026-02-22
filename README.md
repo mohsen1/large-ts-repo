@@ -1,6 +1,10 @@
 # Large TypeScript Monorepo
 
-This is a large TypeScript monorepo that contains multiple packages. Each package is located in the `packages` directory and has its own `package.json` file. 
+This is a large AI-generated TypeScript monorepo that contains multiple packages and projects. 
+
+## Why?
+
+Most very large open source TypeScript monorepos have very custom build systems (e.g. VSCode, Next.js). This monorepo is designed to be a public resource for testing TypeScript compilers and tools on large codebases. Personally I am using this for [`tsz`](https://tsz.dev) which is a TypeScript compiler written in Rust.
 
 ## Purpose
 
@@ -20,10 +24,10 @@ See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generate
 
 | Metric | Value |
 | :-- | --: |
-| TypeScript files | **1,313** |
-| Code lines | **238,770** |
-| Blank lines | 27,613 |
+| TypeScript files | **1,358** |
+| Code lines | **241,912** |
+| Blank lines | 27,971 |
 | Comment lines | 3 |
-| Last updated | `2026-02-22 21:14:59` |
+| Last updated | `2026-02-22 21:24:02` |
 
 <!-- LOC:END -->

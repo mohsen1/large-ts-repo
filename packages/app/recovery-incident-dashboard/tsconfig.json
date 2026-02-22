@@ -44,6 +44,9 @@
       "path": "./../../service/recovery-workflow-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-situational-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
     },
     {
@@ -84,6 +87,12 @@
     },
     {
       "path": "./../../domain/recovery-incident-workflows/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-situational-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-situational-store/tsconfig.json"
     }
   ]
 }
