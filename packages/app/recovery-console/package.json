@@ -16,6 +16,7 @@
   "dependencies": {
     "@service/recovery-runner": "workspace:*",
     "@service/recovery-fusion-orchestrator": "workspace:*",
+    "@service/recovery-scenario-orchestrator": "workspace:*",
     "@domain/recovery-command-orchestration": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
     "@domain/recovery-simulation-planning": "workspace:*",
@@ -24,20 +25,22 @@
     "@shared/result": "workspace:*",
     "@service/recovery-operations-policy-engine": "workspace:*",
     "@service/recovery-readiness-orchestrator": "workspace:*",
+    "@service/recovery-operations-engine": "workspace:*",
+    "@service/recovery-continuity-lens": "workspace:*",
+    "@domain/recovery-operations-models": "workspace:*",
+    "@data/recovery-operations-store": "workspace:*",
+    "@domain/recovery-fabric-models": "workspace:*",
+    "@service/recovery-fabric-controller": "workspace:*",
+    "@domain/recovery-drill": "workspace:*",
+    "@data/recovery-drill-store": "workspace:*"
+
+    "@service/recovery-drill-orchestrator": "workspace:*",
+    "@domain/recovery-orchestration-planning": "workspace:*",
     "@aws-sdk/client-eventbridge": "^3.900.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "zod": "^3.24.0",
-    "@domain/recovery-operations-models": "workspace:*",
-    "@data/recovery-operations-store": "workspace:*",
-    "@service/recovery-operations-engine": "workspace:*",
-    "@service/recovery-continuity-lens": "workspace:*",
-    "@domain/recovery-fabric-models": "workspace:*",
-    "@service/recovery-fabric-controller": "workspace:*",
-    "@domain/recovery-drill": "workspace:*",
-    "@data/recovery-drill-store": "workspace:*",
-    "@service/recovery-drill-orchestrator": "workspace:*"
+    "zod": "^3.24.0"
   }
 }

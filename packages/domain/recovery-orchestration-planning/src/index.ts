@@ -4,3 +4,7 @@ export * from './policy';
 export * from './simulator';
 export * from './adapters';
 export * from './validators';
+export * from './incident-models';
+export * from './constraint-engine';
+export * from './scenario-planner';
+export * from './risk-calculator';

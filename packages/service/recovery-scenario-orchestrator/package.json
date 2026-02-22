@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@data/recovery-scenario-store": "workspace:*",
+    "@domain/recovery-orchestration-planning": "workspace:*",
     "@domain/recovery-scenario-engine": "workspace:*",
     "@infrastructure/recovery-scenario-orchestration-adapters": "workspace:*",
     "@shared/core": "workspace:*",

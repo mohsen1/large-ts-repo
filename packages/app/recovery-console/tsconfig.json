@@ -33,10 +33,16 @@
       "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-operations-engine/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-runner/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-scenario-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-operations-policy-engine/tsconfig.json"
@@ -54,19 +60,13 @@
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-readiness/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/result/tsconfig.json"
+      "path": "./../../data/recovery-readiness-store/tsconfig.json"
     },
     {
       "path": "../../domain/recovery-fabric-models/tsconfig.json"
     },
     {
       "path": "../../service/recovery-fabric-controller/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
     },
     {
       "path": "../../domain/recovery-drill/tsconfig.json"
@@ -76,6 +76,12 @@
     },
     {
       "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-drill-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
     }
   ]
 }

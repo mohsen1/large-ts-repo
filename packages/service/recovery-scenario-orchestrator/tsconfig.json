@@ -13,6 +13,9 @@
       "path": "./../../data/recovery-scenario-store/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-scenario-engine/tsconfig.json"
     },
     {

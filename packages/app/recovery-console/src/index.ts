@@ -99,3 +99,8 @@ export * from './hooks/useRecoveryDrillLifecycle';
 export * from './hooks/useRecoveryDrillForecast';
 export * from './pages/RecoveryDrillIntelligencePage';
 export * from './pages/RecoveryDrillOperationsControlPage';
+export * from './components/RecoveryScenarioCommandWorkbench';
+export * from './components/ScenarioPolicyPalette';
+export * from './components/RecoveryScenarioSignalCards';
+export * from './hooks/useRecoveryScenarioWorkbench';
+export * from './pages/RecoveryScenarioCommandCenterPage';
