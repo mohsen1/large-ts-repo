@@ -1,5 +1,5 @@
 {
-  "name": "@app/adaptive-ops-console",
+  "name": "@service/adaptive-ops-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -8,19 +8,18 @@
     ".": "./src/index.ts",
     "./src": "./src/index.ts",
     "./*": "./src/*.ts",
-    "./src/*": "./src/*.tsx"
+    "./src/*": "./src/*.ts"
   },
   "scripts": {
     "build": "tsc -b"
   },
   "dependencies": {
     "@service/adaptive-ops-runner": "workspace:*",
-    "@service/adaptive-ops-orchestrator": "workspace:*",
+    "@data/adaptive-ops-store": "workspace:*",
     "@domain/adaptive-ops": "workspace:*",
     "@domain/adaptive-ops-metrics": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "zod": "^3.24.0"
   }
 }

@@ -20,9 +20,30 @@ importers:
 
   packages/app/adaptive-ops-console:
     dependencies:
+      '@domain/adaptive-ops':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops
+      '@domain/adaptive-ops-metrics':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops-metrics
+      '@service/adaptive-ops-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/adaptive-ops-orchestrator
       '@service/adaptive-ops-runner':
         specifier: workspace:*
         version: link:../../service/adaptive-ops-runner
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
 
   packages/app/admin-portal:
     dependencies:
@@ -849,6 +870,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/adaptive-ops-metrics:
+    dependencies:
+      '@domain/adaptive-ops':
+        specifier: workspace:*
+        version: link:../adaptive-ops
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/analytics: {}
 
   packages/domain/billing:
@@ -1266,9 +1299,6 @@ importers:
       '@shared/zod-adapters':
         specifier: workspace:*
         version: link:../../shared/zod-adapters
-      zod:
-        specifier: ^3.24.0
-        version: 3.25.76
 
   packages/domain/recovery-incident-insights:
     dependencies:
@@ -1939,6 +1969,30 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+
+  packages/service/adaptive-ops-orchestrator:
+    dependencies:
+      '@data/adaptive-ops-store':
+        specifier: workspace:*
+        version: link:../../data/adaptive-ops-store
+      '@domain/adaptive-ops':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops
+      '@domain/adaptive-ops-metrics':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops-metrics
+      '@service/adaptive-ops-runner':
+        specifier: workspace:*
+        version: link:../adaptive-ops-runner
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/adaptive-ops-runner:
     dependencies:

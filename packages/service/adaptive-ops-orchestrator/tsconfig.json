@@ -3,12 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true,
-    "jsx": "react-jsx",
-    "lib": [
-      "DOM",
-      "ES2023"
-    ]
+    "declaration": true
   },
   "include": [
     "src/**/*"
@@ -18,13 +13,19 @@
       "path": "./../../service/adaptive-ops-runner/tsconfig.json"
     },
     {
-      "path": "./../../service/adaptive-ops-orchestrator/tsconfig.json"
+      "path": "./../../data/adaptive-ops-store/tsconfig.json"
     },
     {
-      "path": "./../../shared/util/tsconfig.json"
+      "path": "./../../domain/adaptive-ops/tsconfig.json"
     },
     {
       "path": "./../../domain/adaptive-ops-metrics/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

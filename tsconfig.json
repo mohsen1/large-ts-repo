@@ -89,6 +89,9 @@
       "path": "./packages/domain/adaptive-ops"
     },
     {
+      "path": "./packages/domain/adaptive-ops-metrics"
+    },
+    {
       "path": "./packages/domain/analytics"
     },
     {
@@ -303,6 +306,9 @@
     },
     {
       "path": "./packages/service/adaptive-ops-runner"
+    },
+    {
+      "path": "./packages/service/adaptive-ops-orchestrator"
     },
     {
       "path": "./packages/service/analytics"
