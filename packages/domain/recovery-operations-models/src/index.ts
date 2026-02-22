@@ -2,6 +2,8 @@ export * from './types';
 export * from './orchestration-topology';
 export * from './policy-gates';
 export * from './schema';
+export * from './incident-routing';
+export * from './incident-playbook';
 export * from './strategy';
 export * from './timeline';
 export * from './routing';

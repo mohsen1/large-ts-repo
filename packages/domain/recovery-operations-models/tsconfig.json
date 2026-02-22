@@ -15,6 +15,9 @@
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
     }
   ]

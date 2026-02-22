@@ -24,4 +24,6 @@ export * from './components/CommandReadinessTicker';
 export * from './components/DecisionPriorityMatrix';
 export * from './components/IncidentPlaybookCatalog';
 export * from './components/IncidentRunbookWorkspace';
+export * from './components/OperationsControllerPanel';
+export * from './components/OperationsPlaybookBoard';
 export * from './hooks/useIncidentCommandWorkspace';

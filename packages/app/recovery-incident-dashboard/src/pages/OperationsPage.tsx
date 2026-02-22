@@ -6,6 +6,8 @@ import { useIncidentDashboard, summarizeState } from '../hooks/useIncidentDashbo
 import { useRecoveryWorkflow } from '../hooks/useRecoveryWorkflow';
 import type { DashboardRunState } from '../types';
 import type { RecoveryIncidentRepository } from '@data/recovery-incident-store';
+import { OperationsControllerPanel } from '../components/OperationsControllerPanel';
+import { OperationsPlaybookBoard } from '../components/OperationsPlaybookBoard';
 
 export const OperationsPage = ({ repository, tenantId }: { repository: RecoveryIncidentRepository; tenantId: string }) => {
   const { state, actions } = useIncidentDashboard(repository);
@@ -57,6 +59,19 @@ export const OperationsPage = ({ repository, tenantId }: { repository: RecoveryI
       <section>
         <h2>Operational Heat</h2>
         <RecoveryRiskOverview title="Current risk matrix" runs={state.runs} />
+      </section>
+
+      <section>
+        <OperationsControllerPanel repository={repository} tenantId={tenantId} />
+      </section>
+
+      <section>
+        <OperationsPlaybookBoard
+          repository={repository}
+          tenantId={tenantId}
+          incidents={state.incidents}
+          runs={running}
+        />
       </section>
 
       <section>

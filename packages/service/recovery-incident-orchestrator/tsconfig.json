@@ -26,6 +26,9 @@
     },
     {
       "path": "./../../shared/protocol/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-models/tsconfig.json"
     }
   ]
 }

@@ -25,6 +25,9 @@
     },
     {
       "path": "./../../data/recovery-incident-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-models/tsconfig.json"
     }
   ]
 }

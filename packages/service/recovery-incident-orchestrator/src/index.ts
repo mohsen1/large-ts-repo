@@ -9,3 +9,4 @@ export * from './notifications';
 export * from './dashboard';
 export * from './readiness';
 export * from './playbook';
+export * from './operations-controller';

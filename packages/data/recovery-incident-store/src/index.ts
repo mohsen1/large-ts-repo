@@ -10,3 +10,4 @@ export * from './readiness-views';
 export * from './incident-analytics';
 export * from './playbook-catalog';
 export * from './playbook-view';
+export * from './incident-operations';

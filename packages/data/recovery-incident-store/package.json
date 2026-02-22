@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/recovery-incident-orchestration": "workspace:*",
     "@data/repositories": "workspace:*",
+    "@domain/recovery-operations-models": "workspace:*",
     "@shared/core": "workspace:*"
   }
 }

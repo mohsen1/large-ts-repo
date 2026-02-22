@@ -18,6 +18,7 @@
     "@domain/recovery-incident-orchestration": "workspace:*",
     "@service/recovery-command-orchestrator": "workspace:*",
     "@data/recovery-incident-store": "workspace:*",
+    "@domain/recovery-operations-models": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
