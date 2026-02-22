@@ -122,15 +122,33 @@ importers:
       '@aws-sdk/client-eventbridge':
         specifier: ^3.900.0
         version: 3.995.0
+      '@data/recovery-simulation-metrics':
+        specifier: workspace:*
+        version: link:../../data/recovery-simulation-metrics
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-simulation-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-planning
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -768,6 +786,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-simulation-metrics:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/recovery-simulation-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-planning
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-simulation-store:
     dependencies:
@@ -1545,6 +1578,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-simulation-planning:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2906,6 +2951,9 @@ importers:
       '@data/recovery-artifacts':
         specifier: workspace:*
         version: link:../../data/recovery-artifacts
+      '@data/recovery-incident-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-store
       '@data/recovery-observability':
         specifier: workspace:*
         version: link:../../data/recovery-observability
@@ -2918,9 +2966,21 @@ importers:
       '@data/recovery-risk-store':
         specifier: workspace:*
         version: link:../../data/recovery-risk-store
+      '@data/recovery-simulation-metrics':
+        specifier: workspace:*
+        version: link:../../data/recovery-simulation-metrics
+      '@domain/recovery-incident-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-orchestration
+      '@domain/recovery-incident-workflows':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-workflows
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-simulation-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-planning
       '@infrastructure/recovery-notifications':
         specifier: workspace:*
         version: link:../../infrastructure/recovery-notifications
@@ -2936,6 +2996,9 @@ importers:
       '@service/recovery-risk-engine':
         specifier: workspace:*
         version: link:../recovery-risk-engine
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result

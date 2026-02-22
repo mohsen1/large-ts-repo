@@ -36,6 +36,16 @@ import {
   RecoveryPlanOrchestrator,
 } from '@service/recovery-plan-orchestrator';
 import { RecoveryCoordinationOrchestrator } from '@service/recovery-coordination-orchestrator';
+import {
+  parseSimulationProfile,
+  runAndEmitSimulationEvents,
+  summarizeSimulation,
+} from '@domain/recovery-simulation-planning';
+import type {
+  SimulationInput,
+  SimulationSummary,
+  RecoverySimulationId,
+} from '@domain/recovery-simulation-planning';
 
 interface RecoveryCommandContext {
   command: string;
@@ -97,6 +107,12 @@ export class RecoveryOrchestrator {
       programId: program.id,
       incidentId: `${context.correlationId}:${context.requestedBy}`,
       estimatedRecoveryTimeMinutes: 15,
+    });
+    const simulatedSummary = this.runSimulation(program, context, runState);
+    void simulatedSummary.then((value) => {
+      if (value.ok) {
+        this.logSimulationHint(runState.runId, value.value);
+      }
     });
 
     const coordination = await this.coordinationOrchestrator.coordinate({
@@ -261,6 +277,74 @@ export class RecoveryOrchestrator {
 
   private getSignalDimensions(): readonly RiskDimension[] {
     return ['blastRadius', 'recoveryLatency', 'dataLoss', 'dependencyCoupling', 'compliance'];
+  }
+
+  private async runSimulation(
+    program: RecoveryProgram,
+    context: RecoveryCommandContext,
+    runState: RecoveryRunState,
+  ): Promise<Result<SimulationSummary, Error>> {
+    const simulationProfileId = `${runState.runId}:${program.id}` as RecoverySimulationId;
+    const simulationProfile = parseSimulationProfile({
+      id: simulationProfileId,
+      scenario: {
+        id: `${program.id}:scenario`,
+        tenant: `${program.tenant}`,
+        owner: context.requestedBy,
+        title: `${program.name} simulation`,
+        window: {
+          startAt: runState.startedAt ?? new Date().toISOString(),
+          endAt: new Date(Date.now() + 3 * 60 * 60 * 1000).toISOString(),
+          timezone: 'UTC',
+        },
+        steps: program.steps.map((step) => ({
+          id: step.id,
+          phase: 'recovery',
+          title: step.title,
+          command: step.command,
+          expectedMinutes: Math.max(1, Math.round(step.timeoutMs / 60000)),
+          dependencies: step.dependencies,
+          constraints: [],
+        })),
+        rules: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      },
+      runId: runState.runId as string,
+      region: 'global',
+      blastRadiusScore: 0.3,
+      targetRtoMinutes: 15,
+      targetRpoMinutes: 1,
+      concurrencyCap: Math.max(1, Math.min(4, program.steps.length)),
+    });
+
+    const input: SimulationInput = {
+      profile: simulationProfile,
+      now: new Date().toISOString(),
+      dryRun: context.correlationId.endsWith('-dry'),
+    };
+    const simulationRun = runAndEmitSimulationEvents(input);
+    if (!simulationRun.ok) {
+      return { ok: false, error: simulationRun.error };
+    }
+    return { ok: true, value: simulationRun.value.summary };
+  }
+
+  private logSimulationHint(runId: string, summary: SimulationSummary) {
+    void Promise.resolve(summary.score).then((score) => {
+      if (score < 40) {
+        const artifact: RecoveryArtifact = {
+          id: `${runId}` as RecoveryArtifact['id'],
+          runId: runId as RecoveryArtifact['runId'],
+          eventId: `${runId}:${summary.id}` as RecoveryArtifact['eventId'],
+          recordedAt: new Date().toISOString(),
+          run: undefined as unknown as RecoveryRunState,
+          program: undefined as unknown as RecoveryProgram,
+          checkpoint: undefined,
+        };
+        void artifact;
+      }
+    });
   }
 
   private createArtifact(runState: RecoveryRunState, program: RecoveryProgram): RecoveryArtifact {

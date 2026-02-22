@@ -16,8 +16,14 @@
   "dependencies": {
     "@service/recovery-runner": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
+    "@domain/recovery-simulation-planning": "workspace:*",
+    "@data/recovery-simulation-metrics": "workspace:*",
     "@shared/result": "workspace:*",
     "@aws-sdk/client-eventbridge": "^3.900.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "zod": "^3.24.0"
   }
 }

@@ -437,6 +437,9 @@
       "path": "./packages/domain/recovery-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-simulation-planning"
+    },
+    {
       "path": "./packages/domain/recovery-coordination"
     },
     {
@@ -630,6 +633,9 @@
     },
     {
       "path": "./packages/data/recovery-incident-store"
+    },
+    {
+      "path": "./packages/data/recovery-simulation-metrics"
     },
     {
       "path": "./packages/data/recovery-simulation-store"

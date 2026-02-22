@@ -47,3 +47,12 @@ export const runRecoveryWorkflow = async (
   const close = await orchestrator.closeRun(command.runId as any);
   return { presentation: presentResult(close, 'recovery-run-closed'), orchestrator: presentOrchestrator(orchestrator) };
 };
+
+export * from './hooks/useRecoverySimulationWorkspace';
+export * from './hooks/useRecoveryConsoleTelemetry';
+export * from './components/RecoveryOperationsControlPanel';
+export * from './components/SimulationScenarioBoard';
+export * from './components/ScenarioRiskHeatmap';
+export * from './pages/RecoverySimulationWorkspacePage';
+export * from './pages/RecoverySimulationHistoryPage';
+export * from './pages/RecoveryOperationsCenterPage';

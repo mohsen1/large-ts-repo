@@ -4,3 +4,6 @@ export * from './orchestrator';
 export * from './planning-intelligence';
 export * from './runbook-metrics';
 export * from './coordinator-utils';
+export * from './diagnostics';
+export * from './simulation-translation';
+export * from './simulation-coordinator';
