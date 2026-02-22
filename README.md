@@ -23,11 +23,11 @@ See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generate
 
 | Metric | Value |
 | :-- | --: |
-| TypeScript files | **1,413** |
-| Code lines | **246,188** |
-| Blank lines | 28,484 |
+| TypeScript files | **1,427** |
+| Code lines | **247,497** |
+| Blank lines | 28,611 |
 | Comment lines | 4 |
-| Last updated | `2026-02-22 21:36:15` |
+| Last updated | `2026-02-22 21:39:09` |
 
 <!-- LOC:END -->
 
