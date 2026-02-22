@@ -16,7 +16,13 @@
       "path": "./../../data/recovery-playbook-store/tsconfig.json"
     },
     {
+      "path": "./../../platform/messaging/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     },
     {
       "path": "./../../shared/util/tsconfig.json"

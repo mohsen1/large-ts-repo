@@ -16,7 +16,9 @@
   "dependencies": {
     "@domain/recovery-playbooks": "workspace:*",
     "@data/recovery-playbook-store": "workspace:*",
+    "@platform/messaging": "workspace:*",
     "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "@shared/util": "workspace:*",
     "zod": "^3.24.0"
   }
