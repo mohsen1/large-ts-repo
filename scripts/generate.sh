@@ -73,12 +73,15 @@ Hard constraints:
 5. Maintain/expand composite project references in root tsconfig.json and package-level tsconfig references.
 6. Add substantial new TypeScript source (.ts) with meaningful domain models, generic utility types, orchestration code, adapters, and realistic service layers.
 7. Keep imports/path aliases coherent; do not break existing workspace structure.
-8. Re-run scripts/count.sh and report TOTAL_TS_LINES and TOTAL_TS_FILES in your final response.
-9. Make a clean git commit for this iteration with a clear message.
-10. Do not use apply_patch via exec_command.
+8. Every changed or new TypeScript file must be syntactically valid and compatible with current tsconfig settings (no placeholders, no pseudocode, no TODO-only stubs).
+9. Before finishing, run `pnpm exec tsc -b tsconfig.json --pretty false` and ensure it passes; if it fails, fix errors and rerun until clean.
+10. Add at least 500 net-new lines of TypeScript per iteration across at least 5 new or expanded `.ts` files.
+11. Re-run scripts/count.sh and report TOTAL_TS_LINES and TOTAL_TS_FILES in your final response.
+12. Make a clean git commit for this iteration with a clear message.
+13. Do not use apply_patch via exec_command.
 
 Execution target:
-- Increase total TypeScript LOC significantly each iteration.
+- Increase total TypeScript LOC significantly each iteration (minimum 500 net-new TS LOC).
 - Preserve repository usability and consistency for tsz stress testing.
 EOF
 
@@ -116,6 +119,9 @@ for i in $(seq 0 "$COUNT"); do
     --dangerously-bypass-approvals-and-sandbox \
     --config model_reasoning_effort=low \
     "$PROMPT"
+  echo "Verifying full compile after iteration $i..."
+  ensure_typecheck_clean
+  echo "Iteration $i complete: full compile is clean."
 done
 
 echo ""
