@@ -10,3 +10,5 @@ export * from './ingestion-channel';
 export * from './command-hub-schema';
 export * from './command-hub-repository';
 export * from './command-hub-facade';
+export * from './operations-workspace';
+export * from './command-hub-metrics';

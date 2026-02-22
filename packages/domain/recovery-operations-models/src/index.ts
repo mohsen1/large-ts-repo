@@ -21,12 +21,29 @@ export * from './operation-timeline';
 export * from './command-intent';
 export * from './incident-command-artifacts';
 export * from './command-window-forecast';
+export * from './command-surface';
+export * from './orchestration-matrix';
+export * from './command-intent-gateway';
+export * from './portfolio-readiness';
 export * from './control-plane-cadence';
 export * from './recovery-execution-contract';
 export * from './portfolio-forecast';
 export * from './command-graph';
-export * from './operations-readiness';
 export * from './dependency-map';
 export * from './simulation-orchestration';
 export * from './sla-profile';
 export * from './incident-rhythm';
+
+export type {
+  ReadinessEnvelopeKey,
+  ReadinessProjection,
+  ReadinessSnapshot,
+  ReadinessMatrix,
+  ReadinessProfile,
+} from './operations-readiness';
+export {
+  buildReadinessSnapshot,
+  mergeReadinessMatrix,
+  buildReadinessProfile as buildOperationsReadinessProfile,
+  projectReadiness,
+} from './operations-readiness';

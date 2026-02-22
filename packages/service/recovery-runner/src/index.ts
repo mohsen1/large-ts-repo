@@ -7,3 +7,6 @@ export * from './coordinator-utils';
 export * from './diagnostics';
 export * from './simulation-translation';
 export * from './simulation-coordinator';
+export * from './operations-control';
+export * from './ops-portfolio-dashboard';
+export * from './simulation-readiness';

@@ -1,78 +1,84 @@
-import { IncidentCommandHubDashboard } from '../components/IncidentCommandHubDashboard';
-import { IncidentCommandCadenceBoard } from '../components/IncidentCommandCadenceBoard';
-import { useRecoveryCommandHub } from '../hooks/useRecoveryCommandHub';
-import { useRecoveryCommandHubPageState } from '../hooks/useRecoveryCommandHubPageState';
-import { useRecoveryCommandCadence } from '../hooks/useRecoveryCommandCadence';
-import { buildRecoveryCommandOrchestrator, isCommandClosable } from '@service/recovery-operations-engine/command-hub-orchestrator';
-import { buildCadencePlan } from '@domain/recovery-operations-models/control-plane-cadence';
-import { withBrand } from '@shared/core';
 import { useMemo } from 'react';
+import { useRecoveryOpsReadinessBoard } from '../hooks/useRecoveryOpsReadinessBoard';
+import { useRecoveryOpsCommandGateway } from '../hooks/useRecoveryOpsCommandGateway';
+import type { RunPlanSnapshot } from '@domain/recovery-operations-models';
+import { withBrand } from '@shared/core';
 
 export const RecoveryCommandHubPage = () => {
-  const hub = useRecoveryCommandHub();
-  const cadenceHook = useRecoveryCommandCadence();
-  const pageState = useRecoveryCommandHubPageState();
-  const orchestrator = useMemo(() => buildRecoveryCommandOrchestrator(), []);
+  const tenant = 'global';
+  const board = useRecoveryOpsReadinessBoard(tenant);
+  const plan = useMemo<RunPlanSnapshot>(() => ({
+    id: withBrand(`${tenant}:hub-plan`, 'RunPlanId'),
+    name: 'hub-plan',
+    program: {
+      id: withBrand(`${tenant}:program`, 'RecoveryProgramId'),
+      tenant: withBrand(tenant, 'TenantId'),
+      service: withBrand('svc', 'ServiceId'),
+      name: 'hub program',
+      description: 'hub command plan',
+      priority: 'gold',
+      mode: 'defensive',
+      window: {
+        startsAt: new Date().toISOString(),
+        endsAt: new Date(Date.now() + 3600_000).toISOString(),
+        timezone: 'UTC',
+      },
+      topology: {
+        rootServices: ['core'],
+        fallbackServices: ['core-backup'],
+        immutableDependencies: [['core', 'db']],
+      },
+      constraints: [],
+      steps: [],
+      owner: 'operator',
+      tags: ['command', 'hub'],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+    constraints: {
+      maxParallelism: 2,
+      maxRetries: 1,
+      timeoutMinutes: 20,
+      operatorApprovalRequired: false,
+    },
+    fingerprint: {
+      tenant: withBrand(tenant, 'TenantId'),
+      region: 'global',
+      serviceFamily: 'command-hub',
+      impactClass: 'application',
+      estimatedRecoveryMinutes: 15,
+    },
+    effectiveAt: new Date().toISOString(),
+  }), [tenant]);
 
-  const cadences = useMemo(() => {
-    return Object.values(pageState.state.artifactMap).map((artifact) => {
-      return buildCadencePlan(
-        withBrand(String(artifact.tenant), 'TenantId'),
-        withBrand(String(artifact.artifact.commandId), 'CommandArtifactId'),
-        4,
-      );
-    });
-  }, [pageState.state.artifactMap]);
-
-  const onClose = async () => {
-    if (!pageState.state.selectedArtifactId) {
-      return;
-    }
-    await isCommandClosable(orchestrator, pageState.state.selectedArtifactId);
-  };
-
-  const selectedIdLabel = pageState.state.selectedArtifactId ?? 'none';
+  const gateway = useRecoveryOpsCommandGateway({
+    tenant,
+    sessionId: `${tenant}:command-hub-session`,
+    plan,
+  });
 
   return (
-    <main className="recovery-command-hub-page">
-      <h1>Recovery Command Hub</h1>
-      <p>Selected command: {selectedIdLabel}</p>
-      <IncidentCommandHubDashboard initialTenant={hub.state.tenant} />
-      <IncidentCommandCadenceBoard
-        plans={cadences}
-        selectedCommandId={pageState.state.selectedArtifactId}
-        onSelect={pageState.setSelectedArtifactId}
-      />
-      {hub.state.summary ? (
-        <section>
-          <h2>Summary snapshot</h2>
-          <dl>
-            <dt>Artifacts</dt>
-            <dd>{hub.state.summary.totalArtifacts}</dd>
-            <dt>Near breach cadence</dt>
-            <dd>{hub.state.summary.nearBreachCadenceCount}</dd>
-            <dt>Critical windows</dt>
-            <dd>{hub.state.summary.criticalWindowCount}</dd>
-            <dt>Average score</dt>
-            <dd>{hub.state.summary.avgForecastScore.toFixed(3)}</dd>
-          </dl>
-          <button type="button" onClick={onClose}>
-            Verify closure state
-          </button>
-        </section>
-      ) : null}
+    <main>
+      <h2>Recovery command hub</h2>
+      <p>Generated at: {board.generatedAt}</p>
+      <ul>
+        {board.routes.map((route) => (
+          <li key={route.planId}>
+            {route.planId}: score={route.score.toFixed(2)} risk={route.risk}
+          </li>
+        ))}
+      </ul>
       <section>
-        <h2>Signals</h2>
-        <div className="signal-grid">
-          {pageState.state.artifactTitles.map((title) => (
-            <span key={title}>{title}</span>
+        <h3>Command routes</h3>
+        <ul>
+          {gateway.rows.map((row) => (
+            <li key={row.routeId}>
+              {row.commandId} · {row.status} · {row.score.toFixed(2)}
+            </li>
           ))}
-        </div>
-        <div>{pageState.state.isLoaded ? 'ready' : 'loading'}</div>
-      </section>
-      <section>
-        <button type="button" onClick={() => void cadenceHook.refresh()}>
-          Refresh cadence hooks
+        </ul>
+        <button type="button" onClick={gateway.issue} disabled={!gateway.canIssue}>
+          Issue command
         </button>
       </section>
     </main>

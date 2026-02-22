@@ -32,6 +32,7 @@
     "@service/recovery-plan-orchestrator": "workspace:*",
     "@service/recovery-coordination-orchestrator": "workspace:*",
     "@shared/result": "workspace:*",
+    "@data/recovery-operations-store": "workspace:*",
     "zod": "^3.24.0"
   }
 }

@@ -37,6 +37,9 @@
       "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-operations-store/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-incident-store/tsconfig.json"
     },
     {
