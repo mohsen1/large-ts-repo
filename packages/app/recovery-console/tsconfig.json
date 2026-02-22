@@ -45,6 +45,9 @@
       "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-continuity-lens/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
     }
   ]

@@ -149,6 +149,9 @@ importers:
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
+      '@service/recovery-continuity-lens':
+        specifier: workspace:*
+        version: link:../../service/recovery-continuity-lens
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
@@ -371,6 +374,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/data/continuity-lens-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/continuity-lens':
+        specifier: workspace:*
+        version: link:../../domain/continuity-lens
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -1026,6 +1041,21 @@ importers:
         version: link:../../shared/core
 
   packages/domain/compliance: {}
+
+  packages/domain/continuity-lens:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/continuity-orchestration:
     dependencies:
@@ -2588,6 +2618,24 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-continuity-lens:
+    dependencies:
+      '@data/continuity-lens-store':
+        specifier: workspace:*
+        version: link:../../data/continuity-lens-store
+      '@domain/continuity-lens':
+        specifier: workspace:*
+        version: link:../../domain/continuity-lens
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-continuity-orchestrator:
     dependencies:

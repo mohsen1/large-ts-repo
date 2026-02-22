@@ -47,6 +47,9 @@
       "path": "./packages/data/continuity-journal"
     },
     {
+      "path": "./packages/data/continuity-lens-store"
+    },
+    {
       "path": "./packages/data/recovery-continuity-plan-store"
     },
     {
@@ -129,6 +132,9 @@
     },
     {
       "path": "./packages/domain/feature-flags"
+    },
+    {
+      "path": "./packages/domain/continuity-lens"
     },
     {
       "path": "./packages/domain/failure-intelligence"
@@ -561,6 +567,9 @@
     },
     {
       "path": "./packages/service/recovery-continuity-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-continuity-lens"
     },
     {
       "path": "./packages/service/recovery-incident-insight-orchestrator"

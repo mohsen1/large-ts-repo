@@ -30,6 +30,7 @@
     "zod": "^3.24.0",
     "@domain/recovery-operations-models": "workspace:*",
     "@data/recovery-operations-store": "workspace:*",
-    "@service/recovery-operations-engine": "workspace:*"
+    "@service/recovery-operations-engine": "workspace:*",
+    "@service/recovery-continuity-lens": "workspace:*"
   }
 }
