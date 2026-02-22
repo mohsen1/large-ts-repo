@@ -38,6 +38,7 @@
     { "path": "./packages/domain/search-suite" },
     { "path": "./packages/domain/policy-engine" },
     { "path": "./packages/domain/observability-core" },
+    { "path": "./packages/domain/operations-orchestration" },
     { "path": "./packages/domain/enterprise-facts" },
     { "path": "./packages/domain/incident-management" },
     { "path": "./packages/domain/streaming-engine" },

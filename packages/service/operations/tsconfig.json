@@ -2,5 +2,15 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": { "outDir": "./dist", "composite": true, "declaration": true },
   "include": ["src/**/*"],
-  "references": []
+  "references": [
+    { "path": "../../data/incident-hub" },
+    { "path": "../../data/query-models" },
+    { "path": "../../domain/incident-management" },
+    { "path": "../../domain/operations-orchestration" },
+    { "path": "../../platform/messaging" },
+    { "path": "../../platform/observability" },
+    { "path": "../../service/quality" },
+    { "path": "../../shared/core" },
+    { "path": "../../shared/result" }
+  ]
 }

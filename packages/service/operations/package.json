@@ -5,5 +5,18 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": { ".": "./dist/index.js" },
-  "scripts": { "build": "tsc -b" }
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@domain/incident-management": "workspace:*",
+    "@domain/operations-orchestration": "workspace:*",
+    "@data/query-models": "workspace:*",
+    "@data/incident-hub": "workspace:*",
+    "@service/quality": "workspace:*",
+    "@platform/messaging": "workspace:*",
+    "@platform/observability": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@aws-sdk/client-eventbridge": "^3.900.0",
+    "zod": "^3.24.0"
+  }
 }
