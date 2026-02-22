@@ -1,0 +1,27 @@
+{
+  "name": "@service/recovery-operations-intelligence-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@data/recovery-operations-intelligence-store": "workspace:*",
+    "@data/recovery-operations-store": "workspace:*",
+    "@infrastructure/recovery-operations-intelligence-adapters": "workspace:*",
+    "@service/recovery-operations-policy-engine": "workspace:*",
+    "@domain/recovery-operations-intelligence": "workspace:*",
+    "@domain/recovery-operations-models": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/core": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

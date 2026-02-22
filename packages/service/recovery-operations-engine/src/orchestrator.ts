@@ -24,6 +24,8 @@ import type { RecoveryProgram } from '@domain/recovery-orchestration';
 import type { RecoveryReadinessPlan } from '@domain/recovery-readiness';
 import type { IncidentClass } from '@domain/recovery-operations-models';
 import { withBrand } from '@shared/core';
+import { createDecisionService, runIntelligencePipeline } from '@service/recovery-operations-intelligence-orchestrator';
+import { MemoryIntelligenceStore } from '@data/recovery-operations-intelligence-store';
 
 interface OrchestratorDeps {
   readonly repository: RecoveryOperationsRepository;
@@ -110,6 +112,51 @@ export class RecoveryOperationsOrchestrator {
     await this.deps.repository.upsertPlan(planned.snapshot);
     await this.deps.publisher.publishPayload(envelopeForPlan(planned));
     return planned.snapshot;
+  }
+
+  async runIntelligencePass(runId: string, readinessPlan: RecoveryReadinessPlan): Promise<number> {
+    const session = await this.deps.repository.loadSessionByRunId(runId);
+    if (!session) {
+      return 0;
+    }
+
+    const signals = session.signals.map((signal) => ({
+      runId: runIdToRunState.get(runId)?.session?.runId as typeof session.runId,
+      envelopeId: `${runId}-${signal.id}`,
+      source: 'policy' as const,
+      signal,
+      window: {
+        tenant: session.id,
+        from: session.createdAt,
+        to: new Date().toISOString(),
+        zone: 'UTC',
+      },
+      tags: ['orchestrator'],
+    }));
+
+    const store = new MemoryIntelligenceStore();
+    const pipeline = await runIntelligencePipeline(
+      {
+        tenant: String(session.id),
+        runId: `${session.runId}-${runId}` as any,
+        readinessPlan,
+        signals,
+      },
+      {
+        operations: this.deps.repository,
+        intelligence: store,
+      },
+    );
+
+    if (!pipeline.ok) {
+      return 0;
+    }
+
+    const decision = createDecisionService({
+      repositories: { operations: this.deps.repository, intelligence: store },
+    });
+    await decision.evaluatePlan(`plan-${runId}`, readinessPlan, pipeline.value.assessments ?? []);
+    return pipeline.value.assessments.length;
   }
 
   async handleDecisionEnvelope(raw: string): Promise<void> {

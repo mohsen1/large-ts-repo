@@ -138,6 +138,9 @@
     },
     {
       "path": "./packages/domain/recovery-readiness"
+    }
+    {
+      "path": "./packages/domain/recovery-operations-intelligence"
     },
     {
       "path": "./packages/domain/recovery-plan"
@@ -504,9 +507,15 @@
     },
     {
       "path": "./packages/data/recovery-operations-governance-store"
+    }
+    {
+      "path": "./packages/data/recovery-operations-intelligence-store"
     },
     {
       "path": "./packages/infrastructure/recovery-operations-queue"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-operations-intelligence-adapters"
     },
     {
       "path": "./packages/infrastructure/recovery-operations-compliance"
@@ -516,6 +525,9 @@
     },
     {
       "path": "./packages/service/recovery-operations-policy-engine"
+    },
+    {
+      "path": "./packages/service/recovery-operations-intelligence-orchestrator"
     }
   ]
 }
