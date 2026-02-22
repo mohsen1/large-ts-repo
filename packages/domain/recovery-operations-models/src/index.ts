@@ -3,3 +3,6 @@ export * from './schema';
 export * from './strategy';
 export * from './timeline';
 export * from './routing';
+export * from './execution-manifest';
+export * from './schedule-plans';
+export * from './quality-gates';

@@ -9,6 +9,7 @@
     "src/**/*"
   ],
   "references": [
+    { "path": "./../../domain/analytics/tsconfig.json" },
     { "path": "./../../data/recovery-operations-intelligence-store/tsconfig.json" },
     { "path": "./../../data/recovery-operations-store/tsconfig.json" },
     { "path": "./../../infrastructure/recovery-operations-intelligence-adapters/tsconfig.json" },
