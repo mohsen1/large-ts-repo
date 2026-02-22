@@ -383,6 +383,9 @@
       "path": "./packages/domain/recovery-policy"
     },
     {
+      "path": "./packages/domain/recovery-scenario-planner"
+    },
+    {
       "path": "./packages/domain/recovery-drill"
     },
     {
@@ -396,6 +399,9 @@
     },
     {
       "path": "./packages/data/recovery-policy-store"
+    },
+    {
+      "path": "./packages/data/recovery-scenario-store"
     },
     {
       "path": "./packages/data/recovery-observability"
@@ -422,6 +428,9 @@
       "path": "./packages/infrastructure/recovery-notifications"
     },
     {
+      "path": "./packages/infrastructure/recovery-scenario-notifier"
+    },
+    {
       "path": "./packages/service/recovery-runner"
     },
     {
@@ -438,6 +447,9 @@
     },
     {
       "path": "./packages/service/recovery-coordination-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-scenario-orchestrator"
     },
     {
       "path": "./packages/infrastructure/recovery-coordination-notifier"

@@ -1,0 +1,25 @@
+{
+  "name": "@service/recovery-scenario-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@data/recovery-scenario-store": "workspace:*",
+    "@domain/recovery-scenario-planner": "workspace:*",
+    "@infrastructure/recovery-scenario-notifier": "workspace:*",
+    "@domain/recovery-intelligence": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@platform/logging": "workspace:*"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../data/recovery-scenario-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-scenario-planner/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-scenario-notifier/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/logging/tsconfig.json"
+    }
+  ]
+}
