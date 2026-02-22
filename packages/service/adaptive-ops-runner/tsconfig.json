@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/adaptive-ops/tsconfig.json"
+    },
+    {
+      "path": "./../../data/adaptive-ops-store/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/incident-connectors/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    }
+  ]
+}

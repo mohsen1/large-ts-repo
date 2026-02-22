@@ -1,0 +1,22 @@
+{
+  "name": "@service/adaptive-ops-runner",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/adaptive-ops": "workspace:*",
+    "@data/adaptive-ops-store": "workspace:*",
+    "@infrastructure/incident-connectors": "workspace:*",
+    "@shared/result": "workspace:*"
+  }
+}
