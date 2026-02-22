@@ -28,7 +28,7 @@ export const ingestSignals = (raw: unknown): Result<IngestedSignalBatch, Error> 
     return fail(parsed.error);
   }
 
-  const normalized = parsed.data.map((rawSignal) => validateSignal(rawSignal));
+  const normalized = parsed.data.map((rawSignal: z.infer<typeof SignalBatch>[number]) => validateSignal(rawSignal));
   const firstTenant = normalized[0]?.tenantId;
   const hasSameTenant = normalized.every((signal) => signal.tenantId === firstTenant);
 

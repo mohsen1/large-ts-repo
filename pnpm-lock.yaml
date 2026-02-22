@@ -60,6 +60,15 @@ importers:
         specifier: workspace:*
         version: link:../../service/fuzzy-router
 
+  packages/app/incident-forecast-operator:
+    dependencies:
+      '@data/incident-forecast-store':
+        specifier: workspace:*
+        version: link:../../data/incident-forecast-store
+      '@service/incident-forecast-engine':
+        specifier: workspace:*
+        version: link:../../service/incident-forecast-engine
+
   packages/app/insights:
     dependencies:
       '@domain/knowledge-graph':
@@ -83,6 +92,51 @@ importers:
       '@platform/security':
         specifier: workspace:*
         version: link:../../platform/security
+
+  packages/app/recovery-console:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@service/recovery-runner':
+        specifier: workspace:*
+        version: link:../../service/recovery-runner
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/app/recovery-drill-observer:
+    dependencies:
+      '@service/recovery-drill-observability':
+        specifier: workspace:*
+        version: link:../../service/recovery-drill-observability
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/app/recovery-playbook-orchestrator:
+    dependencies:
+      '@data/recovery-playbook-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-store
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbooks
+      '@service/recovery-playbook-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-playbook-engine
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/app/reporter:
     dependencies:
@@ -171,6 +225,27 @@ importers:
         specifier: workspace:*
         version: link:../../shared/util
 
+  packages/data/failure-intelligence-store:
+    dependencies:
+      '@domain/failure-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/failure-intelligence
+      '@domain/incident-management':
+        specifier: workspace:*
+        version: link:../../domain/incident-management
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/fulfillment-hub:
     dependencies:
       '@domain/fulfillment-orchestration':
@@ -188,6 +263,21 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/incident-forecast-store:
+    dependencies:
+      '@domain/incident-forecasting':
+        specifier: workspace:*
+        version: link:../../domain/incident-forecasting
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/incident-hub:
     dependencies:
@@ -226,6 +316,303 @@ importers:
 
   packages/data/query-models: {}
 
+  packages/data/recovery-artifacts:
+    dependencies:
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-continuity-plan-store:
+    dependencies:
+      '@domain/recovery-continuity-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-continuity-planning
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-coordination-store:
+    dependencies:
+      '@domain/recovery-coordination':
+        specifier: workspace:*
+        version: link:../../domain/recovery-coordination
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-drill-metrics:
+    dependencies:
+      '@domain/recovery-drill-telemetry':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill-telemetry
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-drill-store:
+    dependencies:
+      '@domain/recovery-drill':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
+  packages/data/recovery-incident-insights-store:
+    dependencies:
+      '@domain/recovery-incident-insights':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-insights
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-intelligence-store:
+    dependencies:
+      '@domain/recovery-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-intelligence
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-observability:
+    dependencies:
+      '@data/recovery-artifacts':
+        specifier: workspace:*
+        version: link:../recovery-artifacts
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-operations-analytics:
+    dependencies:
+      '@data/recovery-operations-intelligence-store':
+        specifier: workspace:*
+        version: link:../recovery-operations-intelligence-store
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../recovery-operations-store
+      '@domain/recovery-operations-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-intelligence
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-operations-governance-store:
+    dependencies:
+      '@aws-sdk/client-dynamodb':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/util-dynamodb':
+        specifier: ^3.900.0
+        version: 3.995.0(@aws-sdk/client-dynamodb@3.995.0)
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../recovery-operations-store
+      '@domain/recovery-operations-governance':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-governance
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-operations-intelligence-store:
+    dependencies:
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../recovery-operations-store
+      '@domain/recovery-operations-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-operations-store:
+    dependencies:
+      '@aws-sdk/client-dynamodb':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/util-dynamodb':
+        specifier: ^3.900.0
+        version: 3.995.0(@aws-sdk/client-dynamodb@3.995.0)
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-plan-store:
+    dependencies:
+      '@domain/recovery-plan':
+        specifier: workspace:*
+        version: link:../../domain/recovery-plan
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/data/recovery-playbook-store:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbooks
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-policy-store:
+    dependencies:
+      '@domain/recovery-policy':
+        specifier: workspace:*
+        version: link:../../domain/recovery-policy
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/data/recovery-readiness-store:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-risk-store:
+    dependencies:
+      '@domain/recovery-policy':
+        specifier: workspace:*
+        version: link:../../domain/recovery-policy
+      '@domain/recovery-risk-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-models
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
+  packages/data/recovery-scenario-store:
+    dependencies:
+      '@domain/recovery-scenario-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-engine
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/repositories: {}
 
   packages/data/telemetry-store:
@@ -242,6 +629,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/warehouse:
     dependencies:
@@ -344,6 +734,24 @@ importers:
         specifier: workspace:*
         version: link:../../shared/type-level
 
+  packages/domain/failure-intelligence:
+    dependencies:
+      '@domain/incident-management':
+        specifier: workspace:*
+        version: link:../incident-management
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/feature-flags: {}
 
   packages/domain/fulfillment:
@@ -392,6 +800,9 @@ importers:
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/identity-verification:
     dependencies:
@@ -401,6 +812,18 @@ importers:
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
+
+  packages/domain/incident-forecasting:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/incident-management:
     dependencies:
@@ -553,6 +976,219 @@ importers:
         specifier: workspace:*
         version: link:../../shared/core
 
+  packages/domain/recovery-continuity-planning:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-coordination:
+    dependencies:
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@domain/recovery-policy':
+        specifier: workspace:*
+        version: link:../recovery-policy
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-drill:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-drill-telemetry:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-incident-insights:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-intelligence:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-operations-governance:
+    dependencies:
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../recovery-operations-models
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../recovery-readiness
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-operations-intelligence:
+    dependencies:
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../recovery-operations-models
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-operations-models:
+    dependencies:
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-plan:
+    dependencies:
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@domain/recovery-policy':
+        specifier: workspace:*
+        version: link:../recovery-policy
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-playbooks:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-policy:
+    dependencies:
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-readiness:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-risk-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-scenario-engine:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-scenario-planner:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/reporting: {}
 
   packages/domain/risk: {}
@@ -618,6 +1254,21 @@ importers:
         specifier: workspace:*
         version: link:../../shared/result
 
+  packages/infrastructure/incident-forecasting-connectors:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/incident-forecasting':
+        specifier: workspace:*
+        version: link:../../domain/incident-forecasting
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/infrastructure/incident-notifications:
     dependencies:
       '@aws-sdk/client-sns':
@@ -632,6 +1283,180 @@ importers:
       '@shared/protocol':
         specifier: workspace:*
         version: link:../../shared/protocol
+
+  packages/infrastructure/recovery-continuity-adapters:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/recovery-continuity-plan-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-continuity-plan-store
+      '@domain/recovery-continuity-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-continuity-planning
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/infrastructure/recovery-coordination-notifier:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-coordination':
+        specifier: workspace:*
+        version: link:../../domain/recovery-coordination
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/infrastructure/recovery-drill-archive:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-drill-telemetry':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill-telemetry
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/infrastructure/recovery-incident-notifier:
+    dependencies:
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sqs':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-incident-insights':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-insights
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/infrastructure/recovery-notifications:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/recovery-observability':
+        specifier: workspace:*
+        version: link:../../data/recovery-observability
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/infrastructure/recovery-operations-compliance:
+    dependencies:
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-operations-governance':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-governance
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/infrastructure/recovery-operations-intelligence-adapters:
+    dependencies:
+      '@aws-sdk/client-sqs':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/recovery-operations-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-intelligence-store
+      '@domain/recovery-operations-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/infrastructure/recovery-operations-queue:
+    dependencies:
+      '@aws-sdk/client-sqs':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/infrastructure/recovery-scenario-notifier:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
+  packages/infrastructure/recovery-scenario-orchestration-adapters:
+    dependencies:
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-scenario-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-engine
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/zod-adapters':
+        specifier: workspace:*
+        version: link:../../shared/zod-adapters
 
   packages/infrastructure/transformers: {}
 
@@ -786,6 +1611,9 @@ importers:
       '@aws-sdk/client-eventbridge':
         specifier: ^3.900.0
         version: 3.995.0
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
       '@data/decision-catalog':
         specifier: workspace:*
         version: link:../../data/decision-catalog
@@ -868,6 +1696,42 @@ importers:
         specifier: workspace:*
         version: link:../../shared/util
 
+  packages/service/failure-intelligence-runner:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/failure-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/failure-intelligence-store
+      '@domain/failure-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/failure-intelligence
+      '@platform/messaging':
+        specifier: workspace:*
+        version: link:../../platform/messaging
+      '@platform/observability':
+        specifier: workspace:*
+        version: link:../../platform/observability
+      '@platform/security':
+        specifier: workspace:*
+        version: link:../../platform/security
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/finance:
     dependencies:
       '@domain/billing':
@@ -912,6 +1776,21 @@ importers:
       '@domain/knowledge-graph':
         specifier: workspace:*
         version: link:../../domain/knowledge-graph
+
+  packages/service/incident-forecast-engine:
+    dependencies:
+      '@data/incident-forecast-store':
+        specifier: workspace:*
+        version: link:../../data/incident-forecast-store
+      '@domain/incident-forecasting':
+        specifier: workspace:*
+        version: link:../../domain/incident-forecasting
+      '@infrastructure/incident-forecasting-connectors':
+        specifier: workspace:*
+        version: link:../../infrastructure/incident-forecasting-connectors
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/incident-orchestration:
     dependencies:
@@ -1028,6 +1907,465 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-continuity-orchestrator:
+    dependencies:
+      '@data/recovery-continuity-plan-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-continuity-plan-store
+      '@domain/recovery-continuity-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-continuity-planning
+      '@infrastructure/recovery-continuity-adapters':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-continuity-adapters
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-coordination-orchestrator:
+    dependencies:
+      '@data/recovery-coordination-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-coordination-store
+      '@domain/recovery-coordination':
+        specifier: workspace:*
+        version: link:../../domain/recovery-coordination
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@domain/recovery-plan':
+        specifier: workspace:*
+        version: link:../../domain/recovery-plan
+      '@domain/recovery-risk-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-models
+      '@infrastructure/recovery-coordination-notifier':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-coordination-notifier
+      '@service/recovery-plan-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-plan-orchestrator
+      '@service/recovery-policy-engine':
+        specifier: workspace:*
+        version: link:../recovery-policy-engine
+      '@service/recovery-risk-engine':
+        specifier: workspace:*
+        version: link:../recovery-risk-engine
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/service/recovery-drill-observability:
+    dependencies:
+      '@data/recovery-drill-metrics':
+        specifier: workspace:*
+        version: link:../../data/recovery-drill-metrics
+      '@domain/recovery-drill-telemetry':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill-telemetry
+      '@infrastructure/recovery-drill-archive':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-drill-archive
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/service/recovery-drill-orchestrator:
+    dependencies:
+      '@data/recovery-drill-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-drill-store
+      '@domain/recovery-drill':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-incident-insight-orchestrator:
+    dependencies:
+      '@data/recovery-incident-insights-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-insights-store
+      '@domain/recovery-incident-insights':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-insights
+      '@infrastructure/recovery-incident-notifier':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-incident-notifier
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-intelligence-orchestrator:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/recovery-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-intelligence-store
+      '@domain/recovery-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-operations-engine:
+    dependencies:
+      '@data/recovery-operations-analytics':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-analytics
+      '@data/recovery-operations-governance-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-governance-store
+      '@data/recovery-operations-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-intelligence-store
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@infrastructure/recovery-operations-compliance':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-compliance
+      '@infrastructure/recovery-operations-queue':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-queue
+      '@service/recovery-operations-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-operations-intelligence-orchestrator
+      '@service/recovery-operations-policy-engine':
+        specifier: workspace:*
+        version: link:../recovery-operations-policy-engine
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-operations-intelligence-orchestrator:
+    dependencies:
+      '@data/recovery-operations-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-intelligence-store
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
+      '@domain/analytics':
+        specifier: workspace:*
+        version: link:../../domain/analytics
+      '@domain/recovery-operations-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-intelligence
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@infrastructure/recovery-operations-intelligence-adapters':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-intelligence-adapters
+      '@service/recovery-operations-policy-engine':
+        specifier: workspace:*
+        version: link:../recovery-operations-policy-engine
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-operations-observability:
+    dependencies:
+      '@data/recovery-operations-analytics':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-analytics
+      '@data/recovery-operations-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-intelligence-store
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
+      '@domain/recovery-operations-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-intelligence
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@infrastructure/recovery-operations-queue':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-queue
+      '@platform/messaging':
+        specifier: workspace:*
+        version: link:../../platform/messaging
+      '@service/recovery-operations-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-operations-intelligence-orchestrator
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-operations-policy-engine:
+    dependencies:
+      '@data/recovery-operations-analytics':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-analytics
+      '@data/recovery-operations-governance-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-governance-store
+      '@domain/analytics':
+        specifier: workspace:*
+        version: link:../../domain/analytics
+      '@domain/recovery-operations-governance':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-governance
+      '@domain/recovery-operations-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-intelligence
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@infrastructure/recovery-operations-compliance':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-compliance
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/service/recovery-plan-orchestrator:
+    dependencies:
+      '@data/recovery-plan-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-plan-store
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@domain/recovery-plan':
+        specifier: workspace:*
+        version: link:../../domain/recovery-plan
+      '@domain/recovery-policy':
+        specifier: workspace:*
+        version: link:../../domain/recovery-policy
+      '@service/recovery-policy-engine':
+        specifier: workspace:*
+        version: link:../recovery-policy-engine
+      '@service/recovery-risk-engine':
+        specifier: workspace:*
+        version: link:../recovery-risk-engine
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-playbook-engine:
+    dependencies:
+      '@data/recovery-playbook-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-store
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbooks
+      '@platform/messaging':
+        specifier: workspace:*
+        version: link:../../platform/messaging
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-policy-engine:
+    dependencies:
+      '@data/recovery-policy-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-policy-store
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@domain/recovery-policy':
+        specifier: workspace:*
+        version: link:../../domain/recovery-policy
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/service/recovery-readiness-orchestrator:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sqs':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/recovery-readiness-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-readiness-store
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-risk-engine:
+    dependencies:
+      '@data/recovery-policy-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-policy-store
+      '@data/recovery-risk-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-risk-store
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@domain/recovery-risk-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
+  packages/service/recovery-runner:
+    dependencies:
+      '@data/recovery-artifacts':
+        specifier: workspace:*
+        version: link:../../data/recovery-artifacts
+      '@data/recovery-observability':
+        specifier: workspace:*
+        version: link:../../data/recovery-observability
+      '@data/recovery-plan-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-plan-store
+      '@data/recovery-policy-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-policy-store
+      '@data/recovery-risk-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-risk-store
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@infrastructure/recovery-notifications':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-notifications
+      '@service/recovery-coordination-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-coordination-orchestrator
+      '@service/recovery-plan-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-plan-orchestrator
+      '@service/recovery-policy-engine':
+        specifier: workspace:*
+        version: link:../recovery-policy-engine
+      '@service/recovery-risk-engine':
+        specifier: workspace:*
+        version: link:../recovery-risk-engine
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-scenario-orchestrator:
+    dependencies:
+      '@data/recovery-scenario-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-scenario-store
+      '@domain/recovery-scenario-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-engine
+      '@infrastructure/recovery-scenario-orchestration-adapters':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-scenario-orchestration-adapters
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/reporting:
     dependencies:

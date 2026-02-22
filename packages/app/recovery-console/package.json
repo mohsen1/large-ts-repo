@@ -17,6 +17,7 @@
     "@service/recovery-runner": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
     "@shared/result": "workspace:*",
+    "@aws-sdk/client-eventbridge": "^3.900.0",
     "zod": "^3.24.0"
   }
 }

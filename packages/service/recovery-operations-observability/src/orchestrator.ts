@@ -15,6 +15,7 @@ import { InMemoryReportPublisher, signalId } from './adapters';
 import { defaultFleetPolicy, type FleetPolicy, type OperationsObservabilityOutput, type ObservabilityDeps, type ReportPublisher, type RecoveryOperationsObservabilityService, type OperationsObservabilityRunId } from './types';
 
 const pickPolicy = (policy?: FleetPolicy): FleetPolicy => policy ?? defaultFleetPolicy;
+type LoadedSnapshot = Awaited<ReturnType<RecoveryOperationsRepository['loadLatestSnapshot']>>;
 
 const normalizeWindowMs = (minutes: number): number => {
   if (!Number.isFinite(minutes) || minutes <= 0) {
@@ -152,7 +153,7 @@ export class RecoveryOperationsObservabilityServiceImpl implements RecoveryOpera
   private async publishIntelligence(
     tenant: string,
     output: OperationsObservabilityOutput,
-    snapshot: NonNullable<Awaited<ReturnType<RecoveryOperationsRepository['loadLatestSnapshot']>>,
+    snapshot: NonNullable<LoadedSnapshot>,
     windowMs: number,
   ): Promise<Result<void, string>> {
     const intelligenceStore = new MemoryIntelligenceStore();
@@ -228,12 +229,14 @@ export const routeSummaryBatch = async (
   input: readonly OperationsAnalyticsReport[],
 ): Promise<Result<void, string>> => {
   try {
-    await Promise.all(input.map((report) => routeSummaryReport(report, [
-      {
-        publishReport: async () => Promise.resolve(),
-        publishSnapshot: async () => Promise.resolve(),
-      },
-    ]));
+    await Promise.all(
+      input.map((report) => routeSummaryReport(report, [
+        {
+          publishReport: async () => Promise.resolve(),
+          publishSnapshot: async () => Promise.resolve(),
+        },
+      ])),
+    );
     return ok(undefined);
   } catch (error) {
     return fail((error as Error).message ?? 'SUMMARY_ROUTE_FAILED');

@@ -17,6 +17,7 @@
     "@domain/telemetry-models": "workspace:*",
     "@data/repositories": "workspace:*",
     "@shared/core": "workspace:*",
+    "zod": "^3.24.0",
     "@aws-sdk/client-s3": "^3.900.0"
   }
 }

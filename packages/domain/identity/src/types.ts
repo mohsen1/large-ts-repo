@@ -21,7 +21,7 @@ export interface UserProfile {
   metadata?: Record<string, unknown>;
 }
 
-const emailSchema = z.string().refine((value): value is string => isEmail(value));
+const emailSchema = z.string().refine((value: string): value is string => isEmail(value));
 const phoneSchema = z.string().transform((value: string) => normalizePhone(value));
 
 export const userSchema = createValidator(

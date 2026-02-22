@@ -26,6 +26,9 @@
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/logging/tsconfig.json"
     }
   ]
 }

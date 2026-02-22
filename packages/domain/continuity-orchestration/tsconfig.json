@@ -13,6 +13,9 @@
       "path": "./../../shared/core/tsconfig.json"
     },
     {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
       "path": "./../../shared/type-level/tsconfig.json"
     }
   ]

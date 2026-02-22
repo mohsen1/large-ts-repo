@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/recovery-scenario-engine": "workspace:*",
     "@shared/protocol": "workspace:*",
-    "@shared/result": "workspace:*"
+    "@shared/result": "workspace:*",
+    "zod": "^3.24.0"
   }
 }

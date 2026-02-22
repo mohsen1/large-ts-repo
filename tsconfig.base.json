@@ -51,13 +51,16 @@
         "packages/data/telemetry-store/src"
       ],
       "@shared/*": [
-        "packages/shared/*"
+        "packages/shared/*",
+        "packages/shared/*/src"
       ],
       "@platform/*": [
-        "packages/platform/*"
+        "packages/platform/*",
+        "packages/platform/*/src"
       ],
       "@domain/*": [
-        "packages/domain/*"
+        "packages/domain/*",
+        "packages/domain/*/src"
       ],
       "@domain/recovery-operations-intelligence": [
         "packages/domain/recovery-operations-intelligence/src/index.ts"
@@ -84,7 +87,8 @@
         "packages/domain/recovery-playbooks/src/index.ts"
       ],
       "@data/*": [
-        "packages/data/*"
+        "packages/data/*",
+        "packages/data/*/src"
       ],
       "@data/recovery-operations-intelligence-store": [
         "packages/data/recovery-operations-intelligence-store/src/index.ts"
@@ -102,7 +106,8 @@
         "packages/data/recovery-intelligence-store/dist/src/index.d.ts"
       ],
       "@service/*": [
-        "packages/service/*"
+        "packages/service/*",
+        "packages/service/*/src"
       ],
       "@service/recovery-operations-intelligence-orchestrator": [
         "packages/service/recovery-operations-intelligence-orchestrator/src/index.ts"
@@ -111,7 +116,8 @@
         "packages/service/recovery-playbook-engine/src/index.ts"
       ],
       "@app/*": [
-        "packages/app/*"
+        "packages/app/*",
+        "packages/app/*/src"
       ],
       "@app/recovery-playbook-orchestrator": [
         "packages/app/recovery-playbook-orchestrator/src/index.ts"

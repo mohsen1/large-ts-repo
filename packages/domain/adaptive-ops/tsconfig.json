@@ -10,6 +10,9 @@
   ],
   "references": [
     {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
       "path": "./../../shared/observability-contracts/tsconfig.json"
     },
     {

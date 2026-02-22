@@ -51,6 +51,11 @@ run_typecheck() {
   run_and_wait pnpm exec tsc -b tsconfig.json --pretty false
 }
 
+install_deps() {
+  echo "Installing dependencies with pnpm..."
+  run_and_wait pnpm install --prefer-frozen-lockfile
+}
+
 read -r -d '' FIX_PROMPT <<'EOF' || true
 The repository currently fails TypeScript build mode typechecking.
 
@@ -59,7 +64,9 @@ Your job:
 2. Fix TypeScript and project-reference issues until that command passes.
 3. Keep `.gitignore` safe: do not commit `dist/`, `node_modules/`, or generated JS outputs.
 4. Make only targeted fixes; keep architecture and package boundaries coherent.
-5. After fixes, rerun the same typecheck command and report success.
+5. If fixes add/change dependencies, update the correct package.json files and run `pnpm install --prefer-frozen-lockfile`.
+6. Do not leave unresolved imports: only use internal aliases that exist in tsconfig path mappings and project references.
+7. After fixes, rerun the same typecheck command and report success.
 EOF
 
 read -r -d '' PROMPT <<'EOF' || true
@@ -74,11 +81,13 @@ Hard constraints:
 6. Add substantial new TypeScript source (.ts) with meaningful domain models, generic utility types, orchestration code, adapters, and realistic service layers.
 7. Keep imports/path aliases coherent; do not break existing workspace structure.
 8. Every changed or new TypeScript file must be syntactically valid and compatible with current tsconfig settings (no placeholders, no pseudocode, no TODO-only stubs).
-9. Before finishing, run `pnpm exec tsc -b tsconfig.json --pretty false` and ensure it passes; if it fails, fix errors and rerun until clean.
-10. Add at least 500 net-new lines of TypeScript per iteration across at least 5 new or expanded `.ts` files.
-11. Re-run scripts/count.sh and report TOTAL_TS_LINES and TOTAL_TS_FILES in your final response.
-12. Make a clean git commit for this iteration with a clear message.
-13. Do not use apply_patch via exec_command.
+9. Do not introduce unresolved imports. Only import workspace aliases that already exist in tsconfig path mappings and are backed by referenced packages.
+10. When introducing external imports, add them to the correct package.json dependency section and ensure install succeeds with `pnpm install --prefer-frozen-lockfile`.
+11. Before finishing, run `pnpm exec tsc -b tsconfig.json --pretty false` and ensure it passes; if it fails, fix errors and rerun until clean.
+12. Add at least 500 net-new lines of TypeScript per iteration across at least 5 new or expanded `.ts` files.
+13. Re-run scripts/count.sh and report TOTAL_TS_LINES and TOTAL_TS_FILES in your final response.
+14. Make a clean git commit for this iteration with a clear message.
+15. Do not use apply_patch via exec_command.
 
 Execution target:
 - Increase total TypeScript LOC significantly each iteration (minimum 500 net-new TS LOC).
@@ -89,6 +98,7 @@ ensure_typecheck_clean() {
   local attempt=1
   while [ "$attempt" -le "$MAX_FIX_ATTEMPTS" ]; do
     echo "Typecheck attempt $attempt/$MAX_FIX_ATTEMPTS"
+    install_deps
     if run_typecheck; then
       echo "Typecheck is clean."
       return 0
@@ -109,6 +119,7 @@ ensure_typecheck_clean() {
 }
 
 echo "Running generation loop from 0 to $COUNT at: $ROOT"
+install_deps
 
 for i in $(seq 0 "$COUNT"); do
   echo ""
@@ -119,6 +130,7 @@ for i in $(seq 0 "$COUNT"); do
     --dangerously-bypass-approvals-and-sandbox \
     --config model_reasoning_effort=low \
     "$PROMPT"
+  install_deps
   echo "Verifying full compile after iteration $i..."
   ensure_typecheck_clean
   echo "Iteration $i complete: full compile is clean."

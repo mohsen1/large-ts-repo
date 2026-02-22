@@ -1,5 +1,6 @@
 import type { RunSession, RecoverySignal } from '@domain/recovery-operations-models';
 import type { RunAssessment } from '@domain/recovery-operations-intelligence';
+import type { Brand } from '@shared/core';
 import type { MetricWindowContext, OperationsAnalyticsReport, MetricEnvelope, AnalyticsAdapter } from './types';
 import { calculateSignalDensity, buildWindowKey } from './aggregation';
 import { withBrand } from '@shared/core';
@@ -146,7 +147,7 @@ export const buildSnapshotEnvelope = <T>(
 ): MetricEnvelope<T> => {
   const key = buildWindowKey(tenant, window);
   return {
-    key,
+    key: key as Brand<string, 'MetricEnvelopeKey'>,
     tenant: withBrand(tenant, 'TenantId'),
     metric: withBrand(metric, 'MetricName'),
     context: window,

@@ -1,4 +1,4 @@
-import { withBrand } from '@shared/core';
+import { type Brand, withBrand } from '@shared/core';
 import { z } from 'zod';
 import type {
   RunSession,
@@ -57,23 +57,24 @@ export const calculateSignalDensity = (
 };
 
 const groupSignalDensityByRun = (sessions: readonly RunSession[]): Map<string, SessionSignalDensity> => {
-  const byRun = new Map<string, SignalDensityAccumulator>();
+  const byRun = new Map<RunSession['runId'], SignalDensityAccumulator>();
 
   for (const session of sessions) {
-    const existing = byRun.get(String(session.runId)) ?? { ...emptySignalAccumulator() };
+    const runId = session.runId;
+    const existing = byRun.get(runId) ?? { ...emptySignalAccumulator() };
     const next = {
-      runId: String(session.runId),
+      runId,
       totalSeverity: existing.totalSeverity + session.signals.reduce((acc, signal) => acc + safeNumber(signal.severity, 0), 0),
       totalConfidence: existing.totalConfidence + session.signals.reduce((acc, signal) => acc + safeNumber(signal.confidence, 0), 0),
       count: existing.count + session.signals.length,
     };
-    byRun.set(String(session.runId), next);
+    byRun.set(runId, next);
   }
 
   return new Map(Array.from(byRun.entries()).map(([runId, value]) => [
     runId,
     {
-      runId,
+      runId: runId as SessionSignalDensity['runId'],
       tenant: 'recovery-tenant',
       signalCount: value.count,
       averageSeverity: value.count ? value.totalSeverity / value.count : 0,
@@ -213,7 +214,7 @@ export const enrichScoredSessions = (
   });
 };
 
-export const buildWindowKey = (tenant: string, window: MetricWindowContext): string => {
+export const buildWindowKey = (tenant: string, window: MetricWindowContext): Brand<string, 'MetricEnvelopeKey'> => {
   const { kind, from, to } = window;
   return withBrand(`${tenant}:${kind}:${from}:${to}`, 'MetricEnvelopeKey');
 };
