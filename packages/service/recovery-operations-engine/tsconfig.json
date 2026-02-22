@@ -19,6 +19,8 @@
     { "path": "./../../service/recovery-operations-policy-engine/tsconfig.json" },
     { "path": "./../../service/recovery-operations-intelligence-orchestrator/tsconfig.json" },
     { "path": "./../../data/recovery-operations-intelligence-store/tsconfig.json" },
-    { "path": "./../../data/recovery-operations-analytics/tsconfig.json" }
+    { "path": "./../../data/recovery-operations-analytics/tsconfig.json" },
+    { "path": "./../../domain/recovery-operations-cadence/tsconfig.json" },
+    { "path": "./../../infrastructure/recovery-operations-cadence-bridge/tsconfig.json" }
   ]
 }

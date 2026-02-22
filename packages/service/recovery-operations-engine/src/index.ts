@@ -6,3 +6,4 @@ export * from './quality';
 export * from './schedule';
 export * from './reporting';
 export * from './rehearsal-orchestrator';
+export * from './cadence-orchestrator';

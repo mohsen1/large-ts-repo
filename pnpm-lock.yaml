@@ -1048,6 +1048,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-operations-cadence:
+    dependencies:
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../recovery-operations-models
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-operations-governance:
     dependencies:
       '@domain/recovery-operations-models':
@@ -1373,6 +1391,30 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/infrastructure/recovery-operations-cadence-bridge:
+    dependencies:
+      '@aws-sdk/client-sns':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
+      '@domain/recovery-operations-cadence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-cadence
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/infrastructure/recovery-operations-compliance:
     dependencies:
@@ -2057,6 +2099,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@domain/recovery-operations-cadence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-cadence
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
@@ -2066,6 +2111,9 @@ importers:
       '@domain/recovery-readiness':
         specifier: workspace:*
         version: link:../../domain/recovery-readiness
+      '@infrastructure/recovery-operations-cadence-bridge':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-cadence-bridge
       '@infrastructure/recovery-operations-compliance':
         specifier: workspace:*
         version: link:../../infrastructure/recovery-operations-compliance
@@ -2084,6 +2132,9 @@ importers:
 
   packages/service/recovery-operations-intelligence-orchestrator:
     dependencies:
+      '@data/recovery-operations-analytics':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-analytics
       '@data/recovery-operations-intelligence-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-intelligence-store
@@ -2102,6 +2153,9 @@ importers:
       '@infrastructure/recovery-operations-intelligence-adapters':
         specifier: workspace:*
         version: link:../../infrastructure/recovery-operations-intelligence-adapters
+      '@infrastructure/recovery-operations-queue':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-queue
       '@service/recovery-operations-policy-engine':
         specifier: workspace:*
         version: link:../recovery-operations-policy-engine

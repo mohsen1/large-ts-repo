@@ -146,6 +146,9 @@
       "path": "./packages/domain/recovery-readiness"
     },
     {
+      "path": "./packages/domain/recovery-operations-cadence"
+    },
+    {
       "path": "./packages/domain/recovery-operations-intelligence"
     },
     {
@@ -459,6 +462,9 @@
     },
     {
       "path": "./packages/infrastructure/recovery-notifications"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-operations-cadence-bridge"
     },
     {
       "path": "./packages/infrastructure/recovery-scenario-orchestration-adapters"

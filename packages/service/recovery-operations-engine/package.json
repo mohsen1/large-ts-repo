@@ -25,6 +25,8 @@
     "@data/recovery-operations-analytics": "workspace:*",
     "@service/recovery-operations-intelligence-orchestrator": "workspace:*",
     "@data/recovery-operations-intelligence-store": "workspace:*",
+    "@domain/recovery-operations-cadence": "workspace:*",
+    "@infrastructure/recovery-operations-cadence-bridge": "workspace:*",
     "zod": "^3.24.0"
   }
 }
