@@ -134,12 +134,24 @@ importers:
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
+      '@data/recovery-stability-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-stability-store
+      '@data/recovery-workload-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-workload-store
       '@domain/incident-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/incident-signal-intelligence
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-stability-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stability-models
+      '@domain/recovery-workload-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-workload-intelligence
       '@service/recovery-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-orchestrator
@@ -149,6 +161,12 @@ importers:
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
+      '@service/recovery-stability-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-stability-orchestrator
+      '@service/recovery-workload-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-workload-orchestrator
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -696,6 +714,33 @@ importers:
       '@shared/protocol':
         specifier: workspace:*
         version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-stability-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/recovery-stability-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stability-models
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-workload-store:
+    dependencies:
+      '@domain/recovery-workload-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-workload-intelligence
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -1362,6 +1407,27 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-stability-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-workload-intelligence:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2705,6 +2771,39 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-stability-orchestrator:
+    dependencies:
+      '@data/recovery-stability-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-stability-store
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../../data/repositories
+      '@domain/recovery-stability-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stability-models
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-workload-orchestrator:
+    dependencies:
+      '@data/recovery-workload-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-workload-store
+      '@domain/recovery-workload-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-workload-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/reporting:
     dependencies:

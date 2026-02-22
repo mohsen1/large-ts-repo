@@ -46,6 +46,15 @@
     },
     {
       "path": "./../../domain/incident-signal-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-stability-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-stability-models/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-stability-store/tsconfig.json"
     }
   ]
 }

@@ -437,6 +437,9 @@
       "path": "./packages/domain/recovery-scenario-planner"
     },
     {
+      "path": "./packages/domain/recovery-stability-models"
+    },
+    {
       "path": "./packages/domain/recovery-drill"
     },
     {
@@ -474,6 +477,9 @@
     },
     {
       "path": "./packages/data/recovery-intelligence-store"
+    },
+    {
+      "path": "./packages/data/recovery-stability-store"
     },
     {
       "path": "./packages/data/recovery-readiness-store"
@@ -537,6 +543,9 @@
     },
     {
       "path": "./packages/service/recovery-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-stability-orchestrator"
     },
     {
       "path": "./packages/app/recovery-console"
