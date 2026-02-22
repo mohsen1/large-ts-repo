@@ -83,17 +83,19 @@ Hard constraints:
 3. Keep .gitignore safe: never commit dist/, node_modules/, generated JS outputs.
 4. Prefer real dependencies (e.g. zod, AWS SDK packages where appropriate), avoid fake local stubs pretending to be external libs.
 5. Maintain/expand composite project references in root tsconfig.json and package-level tsconfig references.
-6. Add substantial new TypeScript source (.ts) with meaningful domain models, generic utility types, orchestration code, adapters, and realistic service layers.
+6. Add substantial new TypeScript source (.ts/.tsx) with meaningful domain models, generic utility types, orchestration code, adapters, realistic service layers, and frontend UI modules.
 7. Keep imports/path aliases coherent; do not break existing workspace structure.
 8. Every changed or new TypeScript file must be syntactically valid and compatible with current tsconfig settings (no placeholders, no pseudocode, no TODO-only stubs).
 9. Do not introduce unresolved imports. Only import workspace aliases that already exist in tsconfig path mappings and are backed by referenced packages.
 10. When introducing external imports, add them to the correct package.json dependency section and ensure install succeeds with `pnpm install --prefer-frozen-lockfile`.
 11. Keep every changed package.json file valid JSON (no trailing commas/comments).
 12. Before finishing, run `pnpm exec tsc -b tsconfig.json --pretty false` and `pnpm build`; if either fails, fix errors and rerun until both are clean.
-13. Add at least 500 net-new lines of TypeScript per iteration across at least 5 new or expanded `.ts` files.
-14. Re-run scripts/count.sh and report TOTAL_TS_LINES and TOTAL_TS_FILES in your final response.
-15. Make a clean git commit for this iteration with a clear message.
-16. Do not use apply_patch via exec_command.
+13. In every iteration, add React code too: at least 150 net-new lines of `.tsx` across at least 2 files (components/hooks/pages), with typed props/state and valid imports.
+14. When introducing or expanding React code, ensure required dependencies/types are present in the correct package.json files (e.g. react, react-dom, @types/react, @types/react-dom when needed).
+15. Add at least 500 net-new lines of TypeScript total per iteration across at least 5 new or expanded `.ts`/`.tsx` files.
+16. Re-run scripts/count.sh and report TOTAL_TS_LINES and TOTAL_TS_FILES in your final response.
+17. Make a clean git commit for this iteration with a clear message.
+18. Do not use apply_patch via exec_command.
 
 Execution target:
 - Increase total TypeScript LOC significantly each iteration (minimum 500 net-new TS LOC).
