@@ -1,0 +1,40 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../data/failure-intelligence-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/failure-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/messaging/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/observability/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/security/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/protocol/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

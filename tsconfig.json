@@ -47,6 +47,9 @@
       "path": "./packages/data/failover-plans"
     },
     {
+      "path": "./packages/data/failure-intelligence-store"
+    },
+    {
       "path": "./packages/data/incident-hub"
     },
     {
@@ -102,6 +105,9 @@
     },
     {
       "path": "./packages/domain/feature-flags"
+    },
+    {
+      "path": "./packages/domain/failure-intelligence"
     },
     {
       "path": "./packages/domain/fulfillment"
@@ -251,6 +257,9 @@
       "path": "./packages/service/decision-runtime"
     },
     {
+      "path": "./packages/service/failure-intelligence-runner"
+    },
+    {
       "path": "./packages/service/execution-engine"
     },
     {
@@ -345,6 +354,9 @@
     },
     {
       "path": "./packages/data/recovery-artifacts"
+    },
+    {
+      "path": "./packages/data/recovery-policy-store"
     },
     {
       "path": "./packages/infrastructure/recovery-notifications"

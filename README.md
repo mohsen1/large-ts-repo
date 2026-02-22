@@ -16,10 +16,10 @@ See [`generate.ts`](./scripts/generate.ts) for the script that was used to gener
 
 | Metric | Value |
 | :-- | --: |
-| TypeScript files | **452** |
-| Code lines | **176,039** |
-| Blank lines | 21,016 |
+| TypeScript files | **469** |
+| Code lines | **176,825** |
+| Blank lines | 21,139 |
 | Comment lines | 1 |
-| Last updated | `2026-02-22 14:10:11` |
+| Last updated | `2026-02-22 14:12:59` |
 
 <!-- LOC:END -->
