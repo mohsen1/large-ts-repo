@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-runner",
+  "name": "@service/recovery-policy-engine",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -15,11 +15,8 @@
   },
   "dependencies": {
     "@domain/recovery-orchestration": "workspace:*",
-    "@data/recovery-artifacts": "workspace:*",
+    "@domain/recovery-policy": "workspace:*",
     "@data/recovery-policy-store": "workspace:*",
-    "@infrastructure/recovery-notifications": "workspace:*",
-    "@service/recovery-policy-engine": "workspace:*",
-    "@shared/result": "workspace:*",
-    "zod": "^3.24.0"
+    "@shared/result": "workspace:*"
   }
 }

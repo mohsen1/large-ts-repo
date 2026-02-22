@@ -341,6 +341,9 @@
       "path": "./packages/domain/recovery-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-policy"
+    },
+    {
       "path": "./packages/data/recovery-artifacts"
     },
     {
@@ -348,6 +351,9 @@
     },
     {
       "path": "./packages/service/recovery-runner"
+    },
+    {
+      "path": "./packages/service/recovery-policy-engine"
     },
     {
       "path": "./packages/app/recovery-console"
