@@ -16,10 +16,10 @@ See [`generate.sh`](./scripts/generate.sh) for the script that was used to gener
 
 | Metric | Value |
 | :-- | --: |
-| TypeScript files | **534** |
-| Code lines | **180,874** |
-| Blank lines | 21,668 |
+| TypeScript files | **550** |
+| Code lines | **181,779** |
+| Blank lines | 21,799 |
 | Comment lines | 2 |
-| Last updated | `2026-02-22 14:27:34` |
+| Last updated | `2026-02-22 14:30:31` |
 
 <!-- LOC:END -->

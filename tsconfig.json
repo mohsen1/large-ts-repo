@@ -371,6 +371,9 @@
       "path": "./packages/domain/recovery-policy"
     },
     {
+      "path": "./packages/domain/recovery-drill"
+    },
+    {
       "path": "./packages/data/recovery-artifacts"
     },
     {
@@ -392,6 +395,9 @@
       "path": "./packages/data/recovery-readiness-store"
     },
     {
+      "path": "./packages/data/recovery-drill-store"
+    },
+    {
       "path": "./packages/infrastructure/recovery-notifications"
     },
     {
@@ -405,6 +411,9 @@
     },
     {
       "path": "./packages/service/recovery-plan-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-drill-orchestrator"
     },
     {
       "path": "./packages/app/recovery-console"
