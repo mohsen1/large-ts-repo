@@ -17,6 +17,6 @@
     "@domain/recovery-orchestration": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
     "@shared/core": "workspace:*",
-    "@shared/type-level": "workspace:*",
+    "@shared/type-level": "workspace:*"
   }
 }

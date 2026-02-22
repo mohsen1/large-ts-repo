@@ -463,6 +463,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/data/recovery-operations-control-plane-store:
+    dependencies:
+      '@domain/recovery-operations-control-plane':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-control-plane
+      '@platform/observability':
+        specifier: workspace:*
+        version: link:../../platform/observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/data/recovery-operations-governance-store:
     dependencies:
       '@aws-sdk/client-dynamodb':
@@ -1065,6 +1080,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-operations-control-plane:
+    dependencies:
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../recovery-operations-models
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-operations-governance:
     dependencies:
@@ -2138,6 +2168,9 @@ importers:
       '@data/recovery-operations-analytics':
         specifier: workspace:*
         version: link:../../data/recovery-operations-analytics
+      '@data/recovery-operations-control-plane-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-control-plane-store
       '@data/recovery-operations-governance-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-governance-store
@@ -2150,6 +2183,9 @@ importers:
       '@domain/recovery-operations-cadence':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-cadence
+      '@domain/recovery-operations-control-plane':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-control-plane
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
@@ -2174,6 +2210,9 @@ importers:
       '@service/recovery-operations-policy-engine':
         specifier: workspace:*
         version: link:../recovery-operations-policy-engine
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76

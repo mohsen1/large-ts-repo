@@ -62,7 +62,7 @@ const validateCandidateEstimate = (candidate: PlanCandidate): FulfillmentEstimat
 };
 
 export interface FulfillmentCandidateSummary {
-  candidateId: FulfillmentId;
+  candidateId: PlanCandidate['id'];
   tenantId: string;
   orderId: string;
   estimate: FulfillmentEstimate;

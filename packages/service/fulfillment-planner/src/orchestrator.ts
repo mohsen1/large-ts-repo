@@ -1,5 +1,5 @@
 import { createEnvelope } from '@shared/protocol';
-import { Fail, Result, fail, ok } from '@shared/result';
+import { Result, fail, ok } from '@shared/result';
 import {
   FulfillmentCandidateSummary,
   FulfillmentExecution,
@@ -44,7 +44,7 @@ export class FulfillmentOrchestrator implements FulfillmentService {
     const command = input.command;
 
     if (!command.forceRun && !this.policy.allowSplitFulfillment && command.orderId.length > 3) {
-      return fail(new Error('split fulfillment disabled')) as Fail<FulfillmentExecution>;
+      return fail(new Error('split fulfillment disabled'));
     }
 
     const orderContext = {
@@ -69,7 +69,7 @@ export class FulfillmentOrchestrator implements FulfillmentService {
 
     const best = candidates.sort((a, b) => a.score - b.score)[0];
     if (!best) {
-      return fail(new Error('no candidate')) as Fail<FulfillmentExecution>;
+      return fail(new Error('no candidate'));
     }
 
     const plan: FulfillmentPlan = {
