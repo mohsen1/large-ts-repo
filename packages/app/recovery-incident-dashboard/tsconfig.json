@@ -1,0 +1,24 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2023"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../service/recovery-incident-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
+    }
+  ]
+}

@@ -573,6 +573,18 @@
     },
     {
       "path": "./packages/service/recovery-risk-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-orchestration"
+    },
+    {
+      "path": "./packages/data/recovery-incident-store"
+    },
+    {
+      "path": "./packages/service/recovery-incident-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-incident-dashboard"
     }
   ]
 }
