@@ -5,3 +5,4 @@ export * from './scheduler';
 export * from './quality';
 export * from './adapters';
 export * from './orchestrator';
+export * from './control-orchestrator';

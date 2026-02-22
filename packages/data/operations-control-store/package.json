@@ -1,5 +1,5 @@
 {
-  "name": "@service/operations",
+  "name": "@data/operations-control-store",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,18 +14,11 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/incident-management": "workspace:*",
-    "@domain/operations-orchestration": "workspace:*",
     "@domain/operations-control": "workspace:*",
     "@data/query-models": "workspace:*",
-    "@data/incident-hub": "workspace:*",
-    "@data/operations-control-store": "workspace:*",
-    "@service/quality": "workspace:*",
-    "@platform/messaging": "workspace:*",
-    "@platform/observability": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/core": "workspace:*",
-    "@aws-sdk/client-eventbridge": "^3.900.0",
+    "@aws-sdk/client-s3": "^3.900.0",
     "zod": "^3.24.0"
   }
 }
