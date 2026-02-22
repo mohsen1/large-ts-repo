@@ -33,6 +33,8 @@
     "@domain/recovery-operations-models": "workspace:*",
     "@data/recovery-operations-store": "workspace:*",
     "@service/recovery-operations-engine": "workspace:*",
-    "@service/recovery-continuity-lens": "workspace:*"
+    "@service/recovery-continuity-lens": "workspace:*",
+    "@domain/recovery-fabric-models": "workspace:*",
+    "@service/recovery-fabric-controller": "workspace:*"
   }
 }

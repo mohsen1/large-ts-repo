@@ -134,12 +134,18 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-readiness-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-readiness-store
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
       '@domain/recovery-command-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-command-orchestration
+      '@domain/recovery-fabric-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fabric-models
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
@@ -152,6 +158,9 @@ importers:
       '@service/recovery-continuity-lens':
         specifier: workspace:*
         version: link:../../service/recovery-continuity-lens
+      '@service/recovery-fabric-controller':
+        specifier: workspace:*
+        version: link:../../service/recovery-fabric-controller
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
@@ -161,6 +170,9 @@ importers:
       '@service/recovery-operations-policy-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-policy-engine
+      '@service/recovery-readiness-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-readiness-orchestrator
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
@@ -1480,6 +1492,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-fabric-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-fabric-orchestration:
     dependencies:
       '@domain/incident-management':
@@ -2771,12 +2795,12 @@ importers:
 
   packages/service/recovery-fabric-controller:
     dependencies:
-      '@data/recovery-operations-store':
-        specifier: workspace:*
-        version: link:../../data/recovery-operations-store
       '@domain/incident-management':
         specifier: workspace:*
         version: link:../../domain/incident-management
+      '@domain/recovery-fabric-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fabric-models
       '@domain/recovery-fabric-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-orchestration
@@ -2786,6 +2810,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76

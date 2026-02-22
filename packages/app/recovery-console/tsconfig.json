@@ -58,6 +58,12 @@
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-fabric-models/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-fabric-controller/tsconfig.json"
     }
   ]
 }

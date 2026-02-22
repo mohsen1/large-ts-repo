@@ -10,16 +10,19 @@
   ],
   "references": [
     {
-      "path": "./../../domain/recovery-fabric-orchestration/tsconfig.json"
+      "path": "./../../domain/recovery-fabric-models/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-fabric-orchestration/tsconfig.json"
+    },
+    {
       "path": "./../../domain/incident-management/tsconfig.json"
     },
     {
-      "path": "./../../data/recovery-operations-store/tsconfig.json"
+      "path": "./../../shared/result/tsconfig.json"
     },
     {
       "path": "./../../shared/core/tsconfig.json"

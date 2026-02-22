@@ -68,3 +68,8 @@ export * from './components/ReadinessCommandReadinessTimeline';
 export * from './components/ReadinessGovernancePanel';
 export * from './components/ReadinessReadinessWorkloadTable';
 export * from './pages/ReadinessDeepDivePage';
+export * from './hooks/useRecoveryFabricOrchestration';
+export * from './components/RecoveryFabricControlDeck';
+export * from './components/RecoveryFabricRiskRadar';
+export * from './components/RecoveryFabricTopologyLegend';
+export * from './pages/RecoveryFabricOperationsHubPage';

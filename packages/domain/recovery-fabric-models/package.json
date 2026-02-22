@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-fabric-controller",
+  "name": "@domain/recovery-fabric-models",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,12 +14,8 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-fabric-models": "workspace:*",
-    "@domain/recovery-orchestration": "workspace:*",
-    "@domain/recovery-fabric-orchestration": "workspace:*",
-    "@domain/incident-management": "workspace:*",
-    "@shared/result": "workspace:*",
     "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "zod": "^3.24.0"
   }
 }

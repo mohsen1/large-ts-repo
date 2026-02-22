@@ -700,8 +700,17 @@
     {
       "path": "./packages/service/recovery-fabric-controller"
     },
-    {"path": "./packages/domain/recovery-orchestration-planning"},
-    {"path": "./packages/data/recovery-strategy-store"},
-    {"path": "./packages/service/recovery-strategy-orchestrator"}
+    {
+      "path": "./packages/domain/recovery-orchestration-planning"
+    },
+    {
+      "path": "./packages/data/recovery-strategy-store"
+    },
+    {
+      "path": "./packages/service/recovery-strategy-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-fabric-models"
+    }
   ]
 }
