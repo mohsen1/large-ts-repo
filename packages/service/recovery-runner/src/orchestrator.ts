@@ -15,6 +15,8 @@ import {
   type RecoveryRunRepository,
 } from '@data/recovery-artifacts';
 import type { RecoveryArtifact } from '@data/recovery-artifacts';
+import type { RecoveryCheckpoint } from '@domain/recovery-orchestration';
+import type { RiskRunId } from '@domain/recovery-risk-models';
 import {
   InMemoryRecoveryPolicyRepository,
   type RecoveryPolicyRepository,
@@ -27,7 +29,10 @@ import { scheduleProgram, shouldThrottle } from './scheduler';
 import { RecoveryPolicyEngine } from '@service/recovery-policy-engine';
 import type { RecoveryPolicyEngine as PolicyEngine } from '@service/recovery-policy-engine';
 import { InMemoryRecoveryRiskRepository, type RecoveryRiskRepository } from '@data/recovery-risk-store';
-import { RecoveryRiskEngine, type RiskEngineDependencies, type RunRiskContext } from '@service/recovery-risk-engine';
+import { RecoveryRiskEngine, type RiskEngineDependencies } from '@service/recovery-risk-engine';
+import {
+  RecoveryPlanOrchestrator,
+} from '@service/recovery-plan-orchestrator';
 
 interface RecoveryCommandContext {
   command: string;
@@ -42,6 +47,7 @@ export interface RecoveryRunnerOptions {
   policyRepository?: RecoveryPolicyRepository;
   policyEngine?: PolicyEngine;
   riskRepository?: RecoveryRiskRepository;
+  planOrchestrator?: RecoveryPlanOrchestrator;
 }
 
 const defaultStepExecutor = async () => 0;
@@ -51,6 +57,7 @@ export class RecoveryOrchestrator {
   private readonly policyEngine: PolicyEngine;
   private readonly advisor: RecoveryAdvisor;
   private readonly riskEngine: RecoveryRiskEngine;
+  private readonly planOrchestrator: RecoveryPlanOrchestrator;
 
   constructor(private readonly options: RecoveryRunnerOptions) {
     this.executor = new RecoveryExecutor(
@@ -69,6 +76,8 @@ export class RecoveryOrchestrator {
       policyRepository: repository,
     };
     this.riskEngine = new RecoveryRiskEngine(dependencies);
+    this.planOrchestrator = this.options.planOrchestrator ??
+      new RecoveryPlanOrchestrator(this.policyEngine, this.riskEngine);
   }
 
   async initiateRecovery(program: RecoveryProgram, context: RecoveryCommandContext): Promise<Result<RecoveryRunState, Error>> {
@@ -78,6 +87,25 @@ export class RecoveryOrchestrator {
       incidentId: `${context.correlationId}:${context.requestedBy}`,
       estimatedRecoveryTimeMinutes: 15,
     });
+
+    const orchestration = await this.planOrchestrator.createPlan({
+      program,
+      runState,
+      requestedBy: context.requestedBy,
+      correlationId: context.correlationId,
+      candidateBudget: 3,
+    });
+    if (!orchestration.ok) {
+      return fail(orchestration.error);
+    }
+
+    if (orchestration.value.shouldAbort) {
+      runState.status = 'aborted';
+      runState.completedAt = new Date().toISOString();
+      await this.options.runRepository.setRun(runState);
+      await this.options.notifier.publishRunState(runState);
+      return fail(new Error('orchestration-blocked-by-policies-or-risk'));
+    }
 
     const assessment = await this.policyEngine.assessProgram(program, runState);
     if (!assessment.ok) {
@@ -93,7 +121,7 @@ export class RecoveryOrchestrator {
     }
 
     const policyRisk = await this.riskEngine.evaluate({
-      runId: runState.runId,
+      runId: runState.runId as unknown as RiskRunId,
       program,
       runState,
       tenant: program.tenant,
@@ -120,12 +148,18 @@ export class RecoveryOrchestrator {
     }
 
     const schedule = scheduleProgram(runState, program);
+    const candidateStepIds = new Set(orchestration.value.executionSequence.map((step) => step.id));
+    const orderedSteps = program.steps.filter((step) => candidateStepIds.has(step.id));
     const plan = buildExecutionPlan({
       runId: runState.runId,
       program,
       includeFallbacks: true,
     });
-    runState.estimatedRecoveryTimeMinutes = Math.max(schedule.predictedDurationMinutes, plan.estimatedMinutes);
+    runState.estimatedRecoveryTimeMinutes = Math.max(
+      schedule.predictedDurationMinutes,
+      orchestration.value.estimatedDurationMinutes,
+      plan.estimatedMinutes,
+    );
 
     const simulation = simulateRun(program, runState);
     const suggestions = await this.advisor.latestSuggestion();
@@ -148,7 +182,7 @@ export class RecoveryOrchestrator {
     await this.options.notifier.publishRunState(runState);
 
     const order = topologicalOrder(program);
-    const steps = program.steps.filter((step) => order.includes(step.id));
+    const steps = orderedSteps.length ? orderedSteps : program.steps.filter((step) => order.includes(step.id));
     return this.executor.run(program, runState, steps);
   }
 
@@ -157,7 +191,7 @@ export class RecoveryOrchestrator {
     if (!run) return fail(new Error('run-missing'));
     const checkpoints = (await this.options.artifactRepository.queryArtifacts({ runId }))
       .map((artifact) => artifact.checkpoint)
-      .filter(Boolean) as RecoveryArtifact[];
+      .filter((checkpoint): checkpoint is RecoveryCheckpoint => Boolean(checkpoint));
     return ok(isRunRecoverable(run, checkpoints));
   }
 

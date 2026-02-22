@@ -126,10 +126,12 @@
     },
     {
       "path": "./packages/domain/inventory"
+    },
     {
       "path": "./packages/domain/recovery-readiness"
     },
-
+    {
+      "path": "./packages/domain/recovery-plan"
     },
     {
       "path": "./packages/domain/knowledge-graph"
@@ -373,10 +375,12 @@
     },
     {
       "path": "./packages/data/recovery-observability"
+    },
+    {
+      "path": "./packages/data/recovery-plan-store"
+    },
     {
       "path": "./packages/data/recovery-readiness-store"
-    },
-
     },
     {
       "path": "./packages/infrastructure/recovery-notifications"
@@ -389,6 +393,9 @@
     },
     {
       "path": "./packages/service/recovery-policy-engine"
+    },
+    {
+      "path": "./packages/service/recovery-plan-orchestrator"
     },
     {
       "path": "./packages/app/recovery-console"

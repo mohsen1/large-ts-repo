@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-runner",
+  "name": "@service/recovery-plan-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -15,16 +15,13 @@
   },
   "dependencies": {
     "@domain/recovery-orchestration": "workspace:*",
-    "@data/recovery-observability": "workspace:*",
-    "@data/recovery-artifacts": "workspace:*",
-    "@data/recovery-policy-store": "workspace:*",
+    "@domain/recovery-plan": "workspace:*",
+    "@domain/recovery-policy": "workspace:*",
     "@data/recovery-plan-store": "workspace:*",
-    "@data/recovery-risk-store": "workspace:*",
-    "@infrastructure/recovery-notifications": "workspace:*",
     "@service/recovery-policy-engine": "workspace:*",
     "@service/recovery-risk-engine": "workspace:*",
-    "@service/recovery-plan-orchestrator": "workspace:*",
     "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "zod": "^3.24.0"
   }
 }
