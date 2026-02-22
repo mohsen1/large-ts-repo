@@ -1,0 +1,17 @@
+{
+  "name": "@service/decision-runtime",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": "./dist/index.js" },
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@data/decision-catalog": "workspace:*",
+    "@domain/decision-orchestration": "workspace:*",
+    "@shared/aws-adapters": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@aws-sdk/client-s3": "^3.900.0",
+    "zod": "^3.24.0"
+  }
+}
