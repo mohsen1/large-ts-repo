@@ -26,6 +26,9 @@
       "path": "./packages/app/reporter"
     },
     {
+      "path": "./packages/app/incident-forecast-operator"
+    },
+    {
       "path": "./packages/app/stream-dashboard"
     },
     {
@@ -51,6 +54,9 @@
     },
     {
       "path": "./packages/data/incident-hub"
+    },
+    {
+      "path": "./packages/data/incident-forecast-store"
     },
     {
       "path": "./packages/data/lineage"
@@ -120,6 +126,9 @@
     },
     {
       "path": "./packages/domain/identity-verification"
+    },
+    {
+      "path": "./packages/domain/incident-forecasting"
     },
     {
       "path": "./packages/domain/incident-management"
@@ -212,6 +221,9 @@
       "path": "./packages/infrastructure/incident-connectors"
     },
     {
+      "path": "./packages/infrastructure/incident-forecasting-connectors"
+    },
+    {
       "path": "./packages/infrastructure/recovery-drill-archive"
     },
     {
@@ -291,6 +303,9 @@
     },
     {
       "path": "./packages/service/incident-orchestration"
+    },
+    {
+      "path": "./packages/service/incident-forecast-engine"
     },
     {
       "path": "./packages/service/ingestion"

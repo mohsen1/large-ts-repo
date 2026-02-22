@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    { "path": "./../../domain/incident-forecasting/tsconfig.json" },
+    { "path": "./../../data/incident-forecast-store/tsconfig.json" },
+    { "path": "./../../infrastructure/incident-forecasting-connectors/tsconfig.json" },
+    { "path": "./../../shared/result/tsconfig.json" }
+  ]
+}
