@@ -1,0 +1,40 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../data/failover-plans/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/failover-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/http/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/messaging/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/aws-adapters/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/protocol/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    }
+  ]
+}
