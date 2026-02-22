@@ -374,6 +374,9 @@
       "path": "./packages/domain/recovery-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-coordination"
+    },
+    {
       "path": "./packages/domain/recovery-operations-governance"
     },
     {
@@ -399,6 +402,9 @@
     },
     {
       "path": "./packages/data/recovery-plan-store"
+    },
+    {
+      "path": "./packages/data/recovery-coordination-store"
     },
     {
       "path": "./packages/data/recovery-intelligence-store"
@@ -429,6 +435,12 @@
     },
     {
       "path": "./packages/service/recovery-plan-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-coordination-orchestrator"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-coordination-notifier"
     },
     {
       "path": "./packages/service/recovery-drill-orchestrator"

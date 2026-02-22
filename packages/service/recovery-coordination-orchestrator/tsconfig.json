@@ -1,0 +1,40 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-coordination/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-plan/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-coordination-store/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-coordination-notifier/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-policy-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-risk-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-plan-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    }
+  ]
+}

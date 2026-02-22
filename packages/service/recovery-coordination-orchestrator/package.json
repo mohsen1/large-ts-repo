@@ -1,0 +1,29 @@
+{
+  "name": "@service/recovery-coordination-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-coordination": "workspace:*",
+    "@domain/recovery-orchestration": "workspace:*",
+    "@domain/recovery-plan": "workspace:*",
+    "@domain/recovery-risk-models": "workspace:*",
+    "@data/recovery-coordination-store": "workspace:*",
+    "@infrastructure/recovery-coordination-notifier": "workspace:*",
+    "@service/recovery-policy-engine": "workspace:*",
+    "@service/recovery-risk-engine": "workspace:*",
+    "@service/recovery-plan-orchestrator": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/protocol": "workspace:*"
+  }
+}
