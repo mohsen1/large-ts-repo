@@ -16,6 +16,7 @@
   "dependencies": {
     "@service/recovery-incident-orchestrator": "workspace:*",
     "@domain/recovery-incident-orchestration": "workspace:*",
+    "@data/recovery-incident-store": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",

@@ -125,6 +125,9 @@ importers:
 
   packages/app/recovery-incident-dashboard:
     dependencies:
+      '@data/recovery-incident-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-store
       '@domain/recovery-incident-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-orchestration
@@ -2198,6 +2201,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-intelligence-orchestrator:
     dependencies:

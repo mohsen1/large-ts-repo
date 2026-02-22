@@ -19,6 +19,9 @@
     },
     {
       "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-incident-store/tsconfig.json"
     }
   ]
 }
