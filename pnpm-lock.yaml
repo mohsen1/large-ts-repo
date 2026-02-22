@@ -146,6 +146,9 @@ importers:
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
+      '@service/recovery-fusion-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-fusion-orchestrator
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
