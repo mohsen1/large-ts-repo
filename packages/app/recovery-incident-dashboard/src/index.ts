@@ -22,4 +22,6 @@ export * from './pages/CommandCenterPage';
 export * from './components/CommandRunbookWorkbench';
 export * from './components/CommandReadinessTicker';
 export * from './components/DecisionPriorityMatrix';
+export * from './components/IncidentPlaybookCatalog';
+export * from './components/IncidentRunbookWorkspace';
 export * from './hooks/useIncidentCommandWorkspace';
