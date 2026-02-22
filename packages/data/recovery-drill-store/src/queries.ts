@@ -1,4 +1,4 @@
-import type { DrillStoreQuery, DrillListResult, DrillTemplateRecord } from './models';
+import type { DrillRunRecord, DrillStoreQuery, DrillListResult, DrillTemplateRecord } from './models';
 
 const inRange = (value: string, from?: string, to?: string): boolean => {
   const at = new Date(value).getTime();
@@ -24,7 +24,11 @@ export const matchesRunQuery = <T extends { status: string; startedAt?: string }
   return true;
 };
 
-export const paginate = <T>(items: readonly T[], cursor: string | undefined, limit: number): DrillListResult & { items: readonly T[] } => {
+export const paginate = <T extends DrillRunRecord>(
+  items: readonly T[],
+  cursor: string | undefined,
+  limit: number,
+): DrillListResult & { items: readonly T[] } => {
   const start = cursor ? Number.parseInt(cursor, 10) : 0;
   const pageSize = Math.max(1, Math.min(500, Number.isFinite(limit) ? limit : 25));
   const end = Math.min(items.length, start + pageSize);

@@ -42,10 +42,11 @@ export type RecoveryTelemetryMetricInput = z.input<typeof recoveryTelemetryMetri
 export type RecoveryTelemetryEventInput = z.input<typeof recoveryTelemetryEventSchema>;
 export type RecoveryMetricSampleInput = z.input<typeof recoveryMetricSampleSchema>;
 
-export const validateEvent = (input: unknown) => recoveryTelemetryEventSchema.parse(input);
-export const validateMetricSample = (input: unknown) => recoveryMetricSampleSchema.parse(input);
-
 export const severityToRank = (value: z.infer<typeof severity>): number => severityRank[value];
 export const kindToPriority = (value: z.infer<typeof eventKind>): number => eventKindPriority[value];
 
 export const parseRunState = (value: unknown) => runState.parse(value);
+export const normalizeRunState = parseRunState;
+
+export const validateEvent = (input: unknown) => recoveryTelemetryEventSchema.parse(input);
+export const validateMetricSample = (input: unknown) => recoveryMetricSampleSchema.parse(input);

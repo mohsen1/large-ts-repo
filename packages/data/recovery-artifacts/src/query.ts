@@ -1,4 +1,5 @@
-import type { RecoveryArtifact, RecoveryRunState } from '@domain/recovery-orchestration';
+import type { RecoveryRunState } from '@domain/recovery-orchestration';
+import type { RecoveryArtifact } from './models';
 import type { RecoveryArtifactFilter } from './models';
 
 import type { RecoveryTimelineSegment, RecoveryTrace } from './models';

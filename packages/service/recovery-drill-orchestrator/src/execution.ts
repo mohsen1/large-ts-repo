@@ -1,9 +1,9 @@
 import type { Result } from '@shared/result';
 import { fail, ok } from '@shared/result';
-import type { DrillRunContext } from '@domain/recovery-drill';
+import type { DrillRunContext } from '@domain/recovery-drill/src';
 import { parseISODate } from '@domain/recovery-drill/src/utils';
 import type { DrillRunPlan } from './types';
-import type { DrillRunRecord } from '@data/recovery-drill-store';
+import type { DrillRunRecord } from '@data/recovery-drill-store/src';
 
 export interface StepExecutor {
   executeStep(stepId: string, context: Pick<DrillRunContext, 'runId'>): Promise<Result<string, Error>>;

@@ -22,21 +22,27 @@ const StageObjectiveSchema: z.ZodType<RecoveryStageObjective> = z.object({
   successCriteria: z.array(z.string().min(1)),
 });
 
-const RouteSchema: z.ZodType<RecoveryRoute> = z.object({
+const RouteSchema = z.object({
   id: z.string().min(1),
   stepIds: z.array(z.string().min(1)),
   description: z.string().min(1),
   resilienceScore: z.number().min(0).max(100),
   expectedSeconds: z.number().nonnegative(),
   objectives: z.array(StageObjectiveSchema).min(1),
-});
+}).transform((route) => ({
+  ...route,
+  id: route.id as RecoveryRoute['id'],
+}));
 
-const SignalSchema: z.ZodType<RecoveryPlanSignal> = z.object({
+const SignalSchema = z.object({
   id: z.string().min(1),
   source: z.enum(['policy', 'risk', 'ops']),
   value: z.number(),
   note: z.string().min(1),
-});
+}).transform((signal) => ({
+  ...signal,
+  id: signal.id as RecoveryPlanSignal['id'],
+}));
 
 const MetaSchema: z.ZodType<RecoveryPlanMetadata> = z.object({
   owner: z.string().min(1),
@@ -50,7 +56,7 @@ const MetaSchema: z.ZodType<RecoveryPlanMetadata> = z.object({
   tags: z.record(z.string(), z.string()),
 });
 
-const CandidateSchema: z.ZodType<RecoveryPlanCandidate> = z.object({
+const CandidateSchema = z.object({
   id: z.string().min(1),
   route: RouteSchema,
   estimatedMinutes: z.number().positive(),
@@ -59,17 +65,28 @@ const CandidateSchema: z.ZodType<RecoveryPlanCandidate> = z.object({
   policyEvaluations: z.array(z.unknown()),
   signals: z.array(SignalSchema),
   rationale: z.array(z.string()),
-});
+}).transform((candidate) => ({
+  ...candidate,
+  id: candidate.id as RecoveryPlanCandidate['id'],
+  policyEvaluations: candidate.policyEvaluations as RecoveryPlanCandidate['policyEvaluations'],
+}));
 
 const ExecutionPlanSchema = z.object({
   planId: z.string().min(1),
   runId: z.string().min(1),
-  version: z.string().regex(/^v\\d+$/),
+  version: z.string().regex(/^v\d+$/),
   candidates: z.array(CandidateSchema),
   selected: z.string().min(1),
   stagedSequence: z.array(RecoveryStageSchema),
   metadata: MetaSchema,
-}) as z.ZodType<RecoveryExecutionPlan>;
+}).transform((plan) => ({
+  ...plan,
+  planId: plan.planId as RecoveryExecutionPlan['planId'],
+  runId: plan.runId as RecoveryExecutionPlan['runId'],
+  version: plan.version as RecoveryExecutionPlan['version'],
+  candidates: plan.candidates as RecoveryExecutionPlan['candidates'],
+  selected: plan.selected as RecoveryPlanCandidate['id'],
+}));
 
 const TemplateSchema = z.object({
   id: z.string().min(1),
@@ -85,7 +102,14 @@ const TemplateSchema = z.object({
     timezone: z.string().min(1),
   }),
   policyReferences: z.array(z.string().min(1)),
-}) as z.ZodType<RecoveryPlanTemplate>;
+}).transform((template) => ({
+  ...template,
+  id: template.id as RecoveryPlanTemplate['id'],
+  tenant: template.tenant as RecoveryPlanTemplate['tenant'],
+  service: template.service as RecoveryPlanTemplate['service'],
+  routes: template.routes as RecoveryPlanTemplate['routes'],
+  policyReferences: template.policyReferences as unknown as RecoveryPlanTemplate['policyReferences'],
+}));
 
 const RecoveryExecutionContextSchema = z.object({
   program: z.object({
@@ -104,7 +128,8 @@ const RecoveryExecutionContextSchema = z.object({
     topology: z.object({
       rootServices: z.array(z.string().min(1)),
       fallbackServices: z.array(z.string().min(1)),
-      immutableDependencies: z.array(z.tuple([z.string().min(1), z.string().min(1)])),
+      immutableDependencies: z.array(z.tuple([z.string().min(1), z.string().min(1)]),
+      ),
     }),
     constraints: z.array(
       z.object({
@@ -140,12 +165,27 @@ const RecoveryExecutionContextSchema = z.object({
   requestedBy: z.string().min(1),
   correlationId: z.string().min(1),
   candidateBudget: z.number().int().min(1).max(9),
-}) as z.ZodType<RecoveryExecutionContext>;
+}).transform((context) => ({
+  ...context,
+  program: {
+    ...context.program,
+    id: context.program.id as unknown as RecoveryExecutionContext['program']['id'],
+    tenant: context.program.tenant as unknown as RecoveryExecutionContext['program']['tenant'],
+    service: context.program.service as unknown as RecoveryExecutionContext['program']['service'],
+    steps: context.program.steps,
+  },
+  runState: {
+    ...context.runState,
+    runId: context.runState.runId as unknown as RecoveryExecutionContext['runState']['runId'],
+    programId: context.runState.programId as unknown as RecoveryExecutionContext['runState']['programId'],
+    incidentId: context.runState.incidentId as unknown as RecoveryExecutionContext['runState']['incidentId'],
+  },
+}));
 
-export const parseRecoveryPlanExecutionContext = (value: unknown): RecoveryExecutionContext => RecoveryExecutionContextSchema.parse(value);
-export const parseRecoveryExecutionPlan = (value: unknown): RecoveryExecutionPlan => ExecutionPlanSchema.parse(value);
-export const parseRecoveryPlanCandidate = (value: unknown): RecoveryPlanCandidate => CandidateSchema.parse(value);
-export const parseRecoveryPlanTemplate = (value: unknown): RecoveryPlanTemplate => TemplateSchema.parse(value);
+export const parseRecoveryPlanExecutionContext = (value: unknown): RecoveryExecutionContext => RecoveryExecutionContextSchema.parse(value) as RecoveryExecutionContext;
+export const parseRecoveryExecutionPlan = (value: unknown): RecoveryExecutionPlan => ExecutionPlanSchema.parse(value) as RecoveryExecutionPlan;
+export const parseRecoveryPlanCandidate = (value: unknown): RecoveryPlanCandidate => CandidateSchema.parse(value) as RecoveryPlanCandidate;
+export const parseRecoveryPlanTemplate = (value: unknown): RecoveryPlanTemplate => TemplateSchema.parse(value) as RecoveryPlanTemplate;
 
 export const demoRouteFromTemplate = (template: RecoveryPlanTemplate): RecoveryRoute => (
   buildRoute(

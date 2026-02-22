@@ -1,7 +1,7 @@
-import { aggregateHealth, computeHealthScore } from '@domain/recovery-drill-telemetry/src/analysis';
+import { computeHealthScore } from '@domain/recovery-drill-telemetry';
 import { InMemoryDrillMetricsRepository, type DrillMetricsRepository } from '@data/recovery-drill-metrics/src/repository';
 import type { RecoveryDrillTenantId, RecoveryDrillRunSummary } from '@domain/recovery-drill-telemetry';
-import { normalizeRunState } from '@domain/recovery-drill-telemetry/src/schema';
+import { normalizeRunState } from '@domain/recovery-drill-telemetry';
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
 
@@ -28,7 +28,7 @@ export class DrillReportingService {
         continue;
       }
 
-      const status = normalizeRunState(record.status ?? 'running');
+      const status = normalizeRunState(record.status ?? 'running') as RecoveryDrillRunSummary['status'];
       scores.set(record.runId, {
         ...(existing as RecoveryDrillRunSummary),
         status: status as any,

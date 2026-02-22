@@ -1,5 +1,6 @@
-import type { RecoveryDrillTenantId, RecoveryDrillRunStepTag, RecoveryDrillTelemetryRunId } from './vocabulary';
+import type { RecoveryDrillTenantId, RecoveryDrillTelemetryRunId } from './ids';
 import type { Brand } from '@shared/core';
+import type { RecoveryDrillRunStepTag } from './vocabulary';
 
 export type RecoverySignalSeverity = 'info' | 'warn' | 'degrade' | 'error' | 'critical';
 export type RecoveryRunStatus = 'planned' | 'running' | 'paused' | 'succeeded' | 'degraded' | 'failed' | 'cancelled';

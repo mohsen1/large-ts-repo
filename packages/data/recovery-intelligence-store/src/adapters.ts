@@ -1,7 +1,7 @@
 import type { Result } from '@shared/result';
 import { fail, ok } from '@shared/result';
-import type { RecoveryActionCandidate, RecoverySignalBundle } from '@domain/recovery-intelligence';
-import { parseBundle } from '@domain/recovery-intelligence';
+import type { RecoveryActionCandidate, RecoverySignalBundle } from '@domain/recovery-intelligence/src';
+import { parseBundle } from '@domain/recovery-intelligence/src';
 import type { StoredActionPlan } from './models';
 
 export const buildRunbookFromActions = (actions: readonly RecoveryActionCandidate[]): readonly string[] =>

@@ -7,12 +7,12 @@ import type {
   DrillStatus,
   RecoveryDrillTemplateId,
   RecoveryDrillRunId,
-} from '@domain/recovery-drill';
+} from '@domain/recovery-drill/src';
 import type {
   DrillRunRecord,
   DrillTemplateRecord,
   DrillStoreQuery,
-} from '@data/recovery-drill-store';
+} from '@data/recovery-drill-store/src';
 
 export type DrillProgressStatus = DrillStatus;
 

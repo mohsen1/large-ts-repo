@@ -1,6 +1,6 @@
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
-import type { RecoveryForecast, RecoveryRecommendation } from '@domain/recovery-intelligence';
+import type { RecoveryForecast, RecoveryRecommendation } from '@domain/recovery-intelligence/src';
 
 export interface IntelligenceArtifacts {
   readonly recommendation: RecoveryRecommendation;

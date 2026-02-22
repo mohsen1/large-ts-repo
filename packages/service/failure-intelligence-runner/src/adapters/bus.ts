@@ -1,5 +1,5 @@
-import { createEnvelope, type FailureSignal, type FailureActionPlan } from '@domain/failure-intelligence';
-import { Envelope, type MessageId, type CorrelationId } from '@shared/protocol';
+import { type FailureSignal, type FailureActionPlan } from '@domain/failure-intelligence';
+import { createEnvelope, Envelope, type MessageId, type CorrelationId } from '@shared/protocol';
 import { type MessageBus } from '@platform/messaging';
 
 export interface ServiceBusAdapter {

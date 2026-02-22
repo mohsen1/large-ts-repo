@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import type { RiskDimension, RiskEnvelope, RiskSignal, RiskSeverity } from './types';
+import type { RiskDimension, RiskEnvelope, RiskFinding, RiskSignal, RiskSeverity, RiskAssessment } from './types';
 import type { Brand } from '@shared/core';
 
 const riskDimensionSchema = z.enum(['blastRadius', 'recoveryLatency', 'dataLoss', 'dependencyCoupling', 'compliance']) as z.ZodType<RiskDimension>;
@@ -32,7 +32,7 @@ const riskContextSchema = z.object({
   }),
 });
 
-const riskEnvelopeSchema: z.ZodType<RiskEnvelope, z.ZodTypeDef, unknown> = z.object({
+const riskEnvelopeSchema = z.object({
   assessment: z.object({
     assessmentId: z.string().min(1),
     profileId: z.string().min(1),
@@ -67,5 +67,14 @@ export const parseRiskSignal = (value: unknown): RiskSignal => {
 };
 
 export const parseRiskEnvelope = (value: unknown): RiskEnvelope => {
-  return riskEnvelopeSchema.parse(value);
+  const parsed = riskEnvelopeSchema.parse(value) as unknown as RiskEnvelope;
+
+  return {
+    ...parsed,
+    assessment: {
+      ...parsed.assessment,
+      assessmentId: parsed.assessment.assessmentId as RiskAssessment['assessmentId'],
+      profileId: parsed.assessment.profileId as RiskAssessment['profileId'],
+    },
+  };
 };

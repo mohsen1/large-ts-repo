@@ -1,4 +1,4 @@
-import type { RecoveryRecommendation, RecoveryForecast, RecoverySignalBundle } from '@domain/recovery-intelligence';
+import type { RecoveryRecommendation, RecoveryForecast, RecoverySignalBundle } from '@domain/recovery-intelligence/src';
 
 export interface IntelligenceRunRequest {
   readonly bundle: RecoverySignalBundle;

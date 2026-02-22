@@ -16,6 +16,9 @@
       "path": "./../../shared/protocol/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-observability/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
     }
   ]

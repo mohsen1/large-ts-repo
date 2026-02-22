@@ -9,7 +9,9 @@ import {
   type RecoveryProgram,
   type RecoveryRunId,
   type RecoveryRunState,
+  type RecoveryStep,
 } from '@domain/recovery-orchestration';
+import type { RiskDimension, RiskSignal } from '@domain/recovery-risk-models';
 import {
   type RecoveryArtifactRepository,
   type RecoveryRunRepository,
@@ -148,7 +150,7 @@ export class RecoveryOrchestrator {
     }
 
     const schedule = scheduleProgram(runState, program);
-    const candidateStepIds = new Set(orchestration.value.executionSequence.map((step) => step.id));
+    const candidateStepIds = new Set(orchestration.value.executionSequence.map((step: RecoveryStep) => step.id));
     const orderedSteps = program.steps.filter((step) => candidateStepIds.has(step.id));
     const plan = buildExecutionPlan({
       runId: runState.runId,
@@ -216,17 +218,21 @@ export class RecoveryOrchestrator {
 
   private buildSignals(program: RecoveryProgram, context: RecoveryCommandContext) {
     return program.steps.map((step, index) => ({
-      id: `${step.id}-signal` as never,
-      runId: `${program.id}:${context.correlationId}` as never,
+      id: `${step.id}-signal` as RiskSignal['id'],
+      runId: `${program.id}:${context.correlationId}` as RiskSignal['runId'],
       source: 'sre' as const,
       observedAt: new Date().toISOString(),
       metricName: step.command,
-      dimension: ['blastRadius', 'recoveryLatency', 'dataLoss', 'dependencyCoupling', 'compliance'][index % 5] as never,
+      dimension: this.getSignalDimensions()[index % 5],
       value: (step.requiredApprovals + index + 1) / (program.steps.length + 1),
       weight: 0.8,
       tags: ['derived', 'plan-step'],
       context: { stepId: step.id, requestedBy: context.requestedBy },
     }));
+  }
+
+  private getSignalDimensions(): readonly RiskDimension[] {
+    return ['blastRadius', 'recoveryLatency', 'dataLoss', 'dependencyCoupling', 'compliance'];
   }
 
   private createArtifact(runState: RecoveryRunState, program: RecoveryProgram): RecoveryArtifact {

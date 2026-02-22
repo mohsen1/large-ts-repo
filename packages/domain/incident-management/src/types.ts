@@ -79,10 +79,10 @@ export interface IncidentRecord<C = Record<string, unknown>> {
 }
 
 export interface FailureReport {
-  incidentId: IncidentId | Brand<string, 'FailureReportIncidentId'>;
+  incidentId: IncidentId | Brand<string, 'FailureReportIncidentId'> | string;
   tenantId: TenantId;
   title: string;
-  severity: IncidentSeverity;
+  severity: IncidentSeverity | 'low' | 'moderate' | 'high' | 'critical';
   source: string;
   status: 'active' | 'inactive' | IncidentState;
   createdAt: string;

@@ -50,10 +50,10 @@ export class S3RecoveryPlaybookArchive implements RecoveryPlaybookRepository {
 
   async save(playbook: RecoveryPlaybook): Promise<Result<PlaybookEnvelope, string>> {
     try {
-      const parseResult = RecoveryPlaybookSchema.parse(playbook);
-      const key = objectKey(this.keyPrefix, parseResult.id as RecoveryPlaybookId);
+      const parsedPlaybook = RecoveryPlaybookSchema.parse(playbook) as unknown as RecoveryPlaybook;
+      const key = objectKey(this.keyPrefix, parsedPlaybook.id);
       const envelope: PlaybookEnvelope = {
-        playbook: parseResult,
+        playbook: parsedPlaybook,
         checksum: `s3-${Date.now()}`,
         publishedAt: new Date().toISOString(),
       };
@@ -78,7 +78,7 @@ export class S3RecoveryPlaybookArchive implements RecoveryPlaybookRepository {
       if (!data.Body) return ok(undefined);
       const raw = await readToString(data.Body as Readable | ReadableStream | Uint8Array);
       const parsed = JSON.parse(raw) as { playbook?: unknown };
-      const playbook = RecoveryPlaybookSchema.parse(parsed.playbook ?? parsed);
+      const playbook = RecoveryPlaybookSchema.parse(parsed.playbook ?? parsed) as unknown as RecoveryPlaybook;
       return ok({
         playbook: playbook,
         checksum: `s3-${id}`,

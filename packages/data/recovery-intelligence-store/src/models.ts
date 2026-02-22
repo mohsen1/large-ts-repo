@@ -1,4 +1,4 @@
-import type { RecoveryActionCandidate, RecoveryForecast, RecoveryRecommendation, RecoverySignalBundle } from '@domain/recovery-intelligence';
+import type { RecoveryActionCandidate, RecoveryForecast, RecoveryRecommendation, RecoverySignalBundle } from '@domain/recovery-intelligence/src';
 
 export interface StoredRecommendation {
   readonly recommendationId: RecoveryRecommendation['recommendationId'];

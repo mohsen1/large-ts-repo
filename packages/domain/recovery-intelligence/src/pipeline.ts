@@ -1,5 +1,5 @@
 import { weightedPercentile } from './utils';
-import { parseBundle, parseForecast } from './schemas';
+import { parseBundle, parseForecast, parseRecommendation } from './schemas';
 import type {
   RecoveryActionCandidate,
   RecoveryForecast,

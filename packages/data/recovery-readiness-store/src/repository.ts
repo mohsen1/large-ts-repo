@@ -1,7 +1,8 @@
 import type { RecoveryReadinessPlan, ReadinessSignal } from '@domain/recovery-readiness';
 import type { ReadinessReadModel, SignalFilter } from './models';
 import { filterBySignalCriteria } from './queries';
-import { artifactStats, type PersistedArtifact } from './models';
+import { artifactStats } from './adapters';
+import type { PersistedArtifact } from './models';
 
 export interface ReadinessRepository {
   save(model: ReadinessReadModel): Promise<void>;

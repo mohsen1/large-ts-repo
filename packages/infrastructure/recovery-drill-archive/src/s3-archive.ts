@@ -6,7 +6,7 @@ import type { RecoveryDrillRunSummary } from '@domain/recovery-drill-telemetry';
 
 export class DrillS3Archive {
   private readonly client: S3Client;
-  private readonly options: Required<ArchiveWriteOptions>;
+  private readonly options: ArchiveWriteOptions & { region: string };
 
   constructor(options: ArchiveWriteOptions) {
     const region = options.region ?? process.env.AWS_REGION ?? 'us-east-1';

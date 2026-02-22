@@ -1,5 +1,5 @@
 import type { RecoveryArtifact, RecoveryArtifactFilter } from '@data/recovery-artifacts';
-import type { HealthSignal, RecoveryObservabilitySnapshot, RecoveryRunDigest, RecoveryFleetDigest } from './types';
+import type { HealthSignal, RecoveryObservabilitySnapshot, RecoveryRunDigest, RecoveryFleetDigest, RecoverySuggestion } from './types';
 import { digestFromArtifact, inferHealthSignal } from './types';
 
 const pickSignalWeight = (signal: HealthSignal): number => {
@@ -43,7 +43,7 @@ export const buildDigestForFilter = (
   }
 
   const fleets: RecoveryFleetDigest[] = [];
-  const suggestions = [];
+  const suggestions: RecoverySuggestion[] = [];
   for (const [key, values] of grouped.entries()) {
     const [tenant, service] = key.split(':');
     const avgScore = values.length ? scoreForArtifacts(values) / values.length : 0;

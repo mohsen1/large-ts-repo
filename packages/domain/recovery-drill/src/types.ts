@@ -1,4 +1,5 @@
-import type { Brand, Optionalize } from '@shared/core';
+import type { Brand } from '@shared/core';
+import type { Optionalize } from '@shared/type-level';
 import type { DeepReadonly } from '@shared/type-level';
 
 export type RecoveryDrillTemplateId = Brand<string, 'RecoveryDrillTemplateId'>;
@@ -88,6 +89,12 @@ export interface DrillCheckpoint {
   durationMs: number;
 }
 
+export interface DrillPolicyGate {
+  code: string;
+  passed: boolean;
+  details: string;
+}
+
 export interface RecoveryDrillRun {
   id: RecoveryDrillRunId;
   template: DrillTemplate;
@@ -108,12 +115,6 @@ export interface DrillExecutionProfile {
   estimatedMs: number;
   queueDepth: number;
   successRate: number;
-}
-
-export interface DrillPolicyGate {
-  code: string;
-  passed: boolean;
-  details: string;
 }
 
 export interface DrillPlanEnvelope<T extends string = string> {

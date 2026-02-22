@@ -10,7 +10,8 @@ import type {
   RecoveryDrillRunId,
   RecoveryDrillTemplateId,
   RecoveryDrillTenantId,
-} from '@domain/recovery-drill';
+  DrillStatus,
+} from '@domain/recovery-drill/src';
 import { matchesTemplateQuery, matchesRunQuery, paginate, flattenTemplateKeys } from './queries';
 
 export interface RecoveryDrillTemplateRepository {

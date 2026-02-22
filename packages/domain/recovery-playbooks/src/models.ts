@@ -102,6 +102,8 @@ export interface PlaybookPlanExecution {
   };
 }
 
+export type RecoveryPlanExecution = PlaybookPlanExecution;
+
 export interface PlaybookSelectionPolicy {
   maxStepsPerRun: number;
   allowedStatuses: readonly RecoveryPlaybookStatus[];

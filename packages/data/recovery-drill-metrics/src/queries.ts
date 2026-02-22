@@ -1,5 +1,5 @@
 import type { RecoveryDrillTenantId, RecoveryDrillTelemetryRunId } from '@domain/recovery-drill-telemetry';
-import type { RecoverySignalSeverity } from '@domain/recovery-drill-telemetry/src/types';
+import type { RecoverySignalSeverity } from '@domain/recovery-drill-telemetry';
 
 export interface DrillMetricQuery {
   readonly tenant?: RecoveryDrillTenantId;

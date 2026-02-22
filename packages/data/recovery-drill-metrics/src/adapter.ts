@@ -1,4 +1,4 @@
-import { parseRunState, validateEvent, validateMetricSample } from '@domain/recovery-drill-telemetry/src/schema';
+import { parseRunState, validateEvent, validateMetricSample } from '@domain/recovery-drill-telemetry';
 import type {
   RecoveryDrillEvent,
   RecoveryDrillHealthMetric,

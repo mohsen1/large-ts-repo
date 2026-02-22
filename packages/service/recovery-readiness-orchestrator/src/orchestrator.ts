@@ -3,8 +3,9 @@ import { aggregateSignals, MemoryReadinessRepository } from '@data/recovery-read
 import { buildPlanBlueprint, evaluateReadinessReadiness } from './planner';
 import { EventBridgeReadinessPublisher } from './adapters';
 import {
-  type ReadinessRunId,
   type RecoveryReadinessPlanDraft,
+  type RecoveryReadinessPlan,
+  type ReadinessTarget,
   type ReadinessSignal,
   ReadinessPolicy
 } from '@domain/recovery-readiness';
@@ -53,29 +54,31 @@ export class RecoveryReadinessOrchestrator {
       return `rejected:${decision.reasons.join('|')}`;
     }
 
+    const targets = this.lookupTargets(draft.targetIds);
     const plan = {
-      ...buildPlanBlueprint(draft, this.lookupTargets(draft.targetIds)),
+      ...buildPlanBlueprint(draft, targets),
       draft
     };
+    const planId = `plan:${draft.runId}` as RecoveryReadinessPlan['planId'];
+    const eventPayload = {
+      planId,
+      runId: draft.runId,
+      title: draft.title,
+      objective: draft.objective,
+      state: 'draft' as RecoveryReadinessPlan['state'],
+      createdAt: new Date().toISOString(),
+      targets,
+      windows: plan.windows,
+      signals,
+      riskBand: decision.plan.riskBand,
+      metadata: { owner: draft.owner, tags: ['bootstrap'] }
+    };
+    const aggregateSignalWeight = await aggregateSignals(eventPayload, signals);
 
-    const aggregateSignalWeight = await aggregateSignals(plan.blueprint,
-      signals);
     const event = {
       action: 'created' as const,
       runId: draft.runId,
-      payload: {
-        planId: `plan:${draft.runId}`,
-        runId: draft.runId as ReadinessRunId,
-        title: draft.title,
-        objective: draft.objective,
-        state: 'draft',
-        createdAt: new Date().toISOString(),
-        targets: this.lookupTargets(draft.targetIds),
-        windows: plan.windows,
-        signals,
-        riskBand: decision.plan.riskBand,
-        metadata: { owner: draft.owner, tags: ['bootstrap'] },
-      }
+      payload: eventPayload
     };
 
     await this.repo.save({
@@ -97,8 +100,8 @@ export class RecoveryReadinessOrchestrator {
   }
 
   private lookupTargets(targetIds: string[]) {
-    return targetIds.map((targetId) => ({
-      id: targetId as never,
+    return targetIds.map((targetId): ReadinessTarget => ({
+      id: targetId as ReadinessTarget['id'],
       name: `Target ${targetId}`,
       ownerTeam: 'operations',
       region: 'us-east-1',

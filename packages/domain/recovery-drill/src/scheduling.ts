@@ -3,6 +3,7 @@ import type {
   DrillConstraint,
   DrillPlanEnvelope,
   DrillScenario,
+  DrillPolicyGate,
   DrillStatus,
   DrillTemplate,
   DrillRunContext,
@@ -28,12 +29,6 @@ export interface DrillAgenda {
   totalDurationSeconds: number;
   expectedConcurrency: number;
   checks: readonly DrillPolicyGate[];
-}
-
-export interface DrillPolicyGate {
-  code: string;
-  passed: boolean;
-  details: string;
 }
 
 const safeDuration = (value: number): number => (Number.isFinite(value) && value > 0 ? Math.ceil(value) : 1);

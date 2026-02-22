@@ -1,6 +1,6 @@
 import { normalizeWindow } from '@domain/recovery-drill/src/schema';
-import type { DrillRunContext, DrillTemplate } from '@domain/recovery-drill';
-import type { DrillStatus, DrillTemplateRecord, DrillRunRecord } from './models';
+import type { DrillRunContext, DrillStatus, DrillTemplate } from '@domain/recovery-drill/src';
+import type { DrillTemplateRecord, DrillRunRecord } from './models';
 import { buildAgenda, toEnvelope, resolveWindow } from '@domain/recovery-drill/src/scheduling';
 
 export const fromTemplate = (template: DrillTemplate): DrillTemplateRecord => ({

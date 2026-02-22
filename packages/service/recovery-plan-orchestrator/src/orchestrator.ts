@@ -1,4 +1,4 @@
-import type { RiskSignal, RiskWindow } from '@domain/recovery-risk-models';
+import type { RiskDimension, RiskRunId, RiskSignal, RiskWindow } from '@domain/recovery-risk-models';
 import {
   calculateWindow,
   sliceSignalsByWindow,
@@ -66,7 +66,7 @@ export class RecoveryPlanOrchestrator {
     }
 
     const signals = this.createStepSignals(input);
-    const riskWindow = calculateWindow(input.runState.runId, 0);
+    const riskWindow = calculateWindow(input.runState.runId as unknown as RiskRunId, 0);
     const riskSignals = sliceSignalsByWindow(signals, {
       from: riskWindow.validFrom,
       to: riskWindow.validTo,
@@ -80,7 +80,7 @@ export class RecoveryPlanOrchestrator {
     }
 
     const orderedSteps = composeExecutionSequence(input.program, 'least-risk');
-    const executionSequence = orderedSteps.map((step) => step.id);
+    const executionSequence = orderedSteps.map((step: RecoveryStep) => step.id);
     const routes = [
       buildRoute(
         `route:${input.runState.runId}:default`,
@@ -157,24 +157,6 @@ export class RecoveryPlanOrchestrator {
     return Math.max(0, Math.floor((Date.now() - start) / 60_000));
   }
 
-  private createStepSignals(input: RecoveryRunOrchestrationInput): readonly RiskSignal[] {
-    return input.program.steps.map((step, index) => ({
-      id: `${input.runState.runId}:${step.id}` as never,
-      runId: input.runState.runId,
-      source: 'incidentFeed',
-      observedAt: new Date().toISOString(),
-      metricName: step.command,
-      dimension: ['blastRadius', 'dependencyCoupling', 'recoveryLatency', 'dataLoss', 'compliance'][index % 5],
-      value: 0.8 + index * 0.1,
-      weight: 0.4,
-      tags: ['generated', 'orchestration'],
-      context: {
-        tenant: input.program.tenant,
-        command: step.command,
-      },
-    }));
-  }
-
   private makeRiskContext(
     input: RecoveryRunOrchestrationInput,
     signals: readonly RiskSignal[],
@@ -182,14 +164,14 @@ export class RecoveryPlanOrchestrator {
   ): RunRiskContext {
     const context: RiskContext = {
       programId: input.program.id,
-      runId: input.runState.runId,
+      runId: input.runState.runId as unknown as RiskRunId,
       tenant: input.program.tenant,
       currentStatus: input.runState.status,
       allowedWindow: riskWindow,
     };
 
     return {
-      runId: input.runState.runId,
+      runId: input.runState.runId as unknown as RiskRunId,
       program: input.program,
       runState: input.runState,
       tenant: input.program.tenant,
@@ -200,11 +182,33 @@ export class RecoveryPlanOrchestrator {
 
   private planSignals(input: RecoveryRunOrchestrationInput, source: RecoveryPlanSignal['source']): readonly RecoveryPlanSignal[] {
     return input.program.steps.map((step, index) => ({
-      id: `${input.runState.runId}:${step.id}` as never,
+      id: `${input.runState.runId}:${step.id}` as RecoveryPlanSignal['id'],
       source,
       value: step.requiredApprovals + 1 + index,
       note: step.title,
     }));
+  }
+
+  private createStepSignals(input: RecoveryRunOrchestrationInput): readonly RiskSignal[] {
+    return input.program.steps.map((step, index) => ({
+      id: `${input.runState.runId}:${step.id}` as RiskSignal['id'],
+      runId: input.runState.runId as unknown as RiskRunId,
+      source: 'incidentFeed',
+      observedAt: new Date().toISOString(),
+      metricName: step.command,
+      dimension: this.riskDimensions()[index % 5],
+      value: 0.8 + index * 0.1,
+      weight: 0.4,
+      tags: ['generated', 'orchestration'],
+      context: {
+        tenant: input.program.tenant,
+        command: step.command,
+      },
+    }));
+  }
+
+  private riskDimensions(): readonly RiskDimension[] {
+    return ['blastRadius', 'dependencyCoupling', 'recoveryLatency', 'dataLoss', 'compliance'];
   }
 
   private toContext(input: RecoveryRunOrchestrationInput): RecoveryExecutionContext {

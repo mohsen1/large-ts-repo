@@ -1,16 +1,14 @@
-import {
-  foldSignals,
-  targetCriticalityScoreFallback
-} from '@domain/recovery-readiness/src/signals';
-import { validatePlanTargets, validateRiskBand, canRunParallel, pickPolicyBand } from '@domain/recovery-readiness/src/policy';
-import { detectOverlaps, remainingCapacity } from '@domain/recovery-readiness/src/schedules';
+import { foldSignals } from '@domain/recovery-readiness/src/signals';
+import { validatePlanTargets, validateRiskBand, canRunParallel, pickPolicyBand, targetCriticalityScoreFallback } from '@domain/recovery-readiness/src/policy';
+import { detectOverlaps, remainingCapacity, type TimeWindow } from '@domain/recovery-readiness/src/schedules';
 import type {
   RecoveryReadinessPlan,
   RecoveryReadinessPlanDraft,
   ReadinessSignal,
   ReadinessTarget,
   ReadinessDirective,
-  ReadinessRunId
+  ReadinessRunId,
+  ReadinessWindow
 } from '@domain/recovery-readiness';
 
 export interface DependencyGraph {
@@ -46,7 +44,7 @@ export function buildPlanBlueprint(draft: RecoveryReadinessPlanDraft, policyTarg
   }));
 
   const windows: RecoveryReadinessPlan['windows'] = policyTargets.map((target) => ({
-    windowId: `wnd:${target.id}`,
+    windowId: `wnd:${target.id}` as ReadinessWindow['windowId'],
     label: `${target.name} readiness window`,
     fromUtc: new Date().toISOString(),
     toUtc: new Date(Date.now() + 45 * 60 * 1000).toISOString(),
@@ -96,7 +94,7 @@ export function evaluateReadinessReadiness(
     targetMap: Object.fromEntries(targets.map((target) => [target.id, target])),
     directives: [],
     windows: targets.map((target) => ({
-      windowId: `derived:${target.id}`,
+      windowId: `derived:${target.id}` as ReadinessWindow['windowId'],
       label: `${target.name}-run-window`,
       fromUtc: new Date().toISOString(),
       toUtc: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
@@ -116,36 +114,40 @@ export function evaluateReadinessReadiness(
     reasons.push(...riskValidation.failures.map((failure) => `risk-${failure.rule}: ${failure.message}`));
   }
 
-  const overlaps = detectOverlaps(planTemplate.windows);
+  const overlaps = detectOverlaps(asTimeWindows(planTemplate.windows));
   if (overlaps.length > 0) {
     reasons.push(`overlap:${overlaps.length}`);
   }
 
-  const canRun = reasons.length === 0 && canRunParallel(({
+  const canRun = reasons.length === 0 && canRunParallel({
     planId: 'temp-plan',
     runId: summary.runId,
     title: 'temp',
     objective: 'temp',
     state: 'approved',
     createdAt: new Date().toISOString(),
+    signals,
     targets,
     windows: planTemplate.windows,
-    signals,
     riskBand: planTemplate.riskBand,
     metadata: { owner: policy.name, tags: [] }
-  } as RecoveryReadinessPlan), policy as any);
+  } as unknown as RecoveryReadinessPlan, policy as any);
 
   const sla: ReadinessSlaEnvelope[] = targets.map((target) => ({
     targetId: target.id,
     requiredWindowMinutes: 30,
-    residualCapacity: remainingCapacity(planTemplate.windows[0] ?? {
-      windowId: `derived:${target.id}`,
-      label: `${target.name}-run-window`,
-      fromUtc: new Date().toISOString(),
-      toUtc: new Date().toISOString(),
-      timezone: 'UTC'
-    }),
-    overlaps: detectOverlaps(planTemplate.windows).length
+      residualCapacity: remainingCapacity(
+        asTimeWindow(
+          planTemplate.windows[0] ?? {
+          windowId: `derived:${target.id}` as ReadinessWindow['windowId'],
+          label: `${target.name}-run-window`,
+          fromUtc: new Date().toISOString(),
+          toUtc: new Date().toISOString(),
+          timezone: 'UTC'
+        }
+      )
+    ),
+    overlaps: detectOverlaps(asTimeWindows(planTemplate.windows)).length
   }));
 
   if (sla.some((entry) => entry.residualCapacity < 0)) {
@@ -169,4 +171,20 @@ export function evaluateReadinessReadiness(
 
 function targetMap(targets: Record<ReadinessRunId, ReadinessTarget>): ReadinessTarget[] {
   return Object.values(targets);
+}
+
+function asTimeWindow(window: ReadinessWindow): TimeWindow {
+  const start = new Date(window.fromUtc).getTime();
+  const end = new Date(window.toUtc).getTime();
+  const capacityMinutes = Math.max(1, (end - start) / (1000 * 60));
+  return {
+    startUtc: window.fromUtc,
+    endUtc: window.toUtc,
+    owner: window.label,
+    capacity: capacityMinutes
+  };
+}
+
+function asTimeWindows(windows: ReadinessWindow[]): TimeWindow[] {
+  return windows.map(asTimeWindow);
 }

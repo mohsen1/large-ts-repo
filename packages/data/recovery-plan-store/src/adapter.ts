@@ -1,4 +1,4 @@
-import type { Envelope } from '@shared/protocol';
+import type { CorrelationId, Envelope, MessageId } from '@shared/protocol';
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
 
@@ -7,8 +7,8 @@ import type { RecoveryPlanArtifact, RecoveryPlanEnvelope, RecoveryPlanRecord, Re
 export const encodePlanRecord = (
   record: RecoveryPlanRecord,
 ): RecoveryPlanEnvelope => ({
-  id: record.id,
-  correlationId: `${record.runId}:${record.createdAt}` as never,
+  id: record.id as MessageId,
+  correlationId: `${record.runId}:${record.createdAt}` as CorrelationId,
   timestamp: new Date().toISOString(),
   eventType: 'recovery.plan.record',
   payload: record,
@@ -23,8 +23,8 @@ export const decodePlanRecord = (envelope: Envelope<unknown>): Result<RecoveryPl
 };
 
 export const buildEnvelopeFromArtifact = (artifact: RecoveryPlanArtifact): Envelope<RecoveryPlanArtifact> => ({
-  id: `${artifact.plan.runId}:${artifact.createdAt}`,
-  correlationId: `${artifact.plan.planId}:artifact`,
+  id: `${artifact.plan.runId}:${artifact.createdAt}` as MessageId,
+  correlationId: `${artifact.plan.planId}:artifact` as CorrelationId,
   timestamp: new Date().toISOString(),
   eventType: 'recovery.plan.artifact',
   payload: artifact,

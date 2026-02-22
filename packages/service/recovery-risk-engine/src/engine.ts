@@ -67,8 +67,15 @@ export class RecoveryRiskEngine {
 
     const factors = context.policies.map((policy) => ({
       name: `policy:${policy.name}`,
-      dimension: 'compliance',
-      impact: policy.severity === 'critical' ? 1 : policy.severity === 'high' ? 0.75 : 0.4,
+      dimension: 'compliance' as const,
+      impact:
+        policy.severity === 'critical'
+          ? 1
+          : policy.severity === 'error'
+            ? 0.75
+            : policy.severity === 'warn'
+              ? 0.5
+              : 0.4,
       confidence: policy.enabled ? 0.9 : 0.3,
       evidence: policy.description,
     }));
@@ -117,29 +124,29 @@ export class RecoveryRiskEngine {
     assessment: RiskAssessment,
     signals: readonly RiskSignal[],
   ): Promise<void> {
-    const snapshot: RecoveryRiskProfileSnapshot = {
-      profileId: `${context.runId}:snapshot` as never,
-      runId: context.runId,
-      policy: context.policies.at(0),
-      assessment,
-      window: calculateWindow(context.runId, 0),
-      factors: [],
-      createdAt: new Date().toISOString(),
-    };
-
     const evidence = bundleEvidence(context.runId, signals, assessment.findings);
-    for (const signal of signals.slice(0, 4)) {
-      const encoded = asRiskSignalEnvelope(signal).envelope;
-      await this.deps.riskRepository.appendSignal(encoded);
-    }
-
-    snapshot.factors = evidence.topFindings.map((finding) => ({
+    const factors = evidence.topFindings.map((finding) => ({
       name: finding.factorName,
       dimension: finding.dimension,
       impact: finding.score / 100,
       confidence: 0.85,
       evidence: finding.recommendation,
     }));
+
+    const snapshot: RecoveryRiskProfileSnapshot = {
+      profileId: `${context.runId}:snapshot` as never,
+      runId: context.runId,
+      policy: context.policies.at(0),
+      assessment,
+      window: calculateWindow(context.runId, 0),
+      factors,
+      createdAt: new Date().toISOString(),
+    };
+
+    for (const signal of signals.slice(0, 4)) {
+      const encoded = asRiskSignalEnvelope(signal).envelope;
+      await this.deps.riskRepository.appendSignal(encoded);
+    }
 
     await this.deps.riskRepository.saveSnapshot(snapshot);
   }

@@ -1,9 +1,9 @@
-import { aggregateHealth, computeHealthScore, normalizeToTimeline } from '@domain/recovery-drill-telemetry';
+import { computeHealthScore, normalizeToTimeline } from '@domain/recovery-drill-telemetry';
 import { parseIncomingEvent, parseIncomingMetric, buildEnvelope, aggregateHealth as aggregateHealthFromSamples } from '@data/recovery-drill-metrics/src/adapter';
 import { normalizeRunState, scoreBySeverity } from '@data/recovery-drill-metrics/src/adapter';
 import { computeHealthScore as scoreHealth, normalizeToTimeline as buildTimeline } from '@domain/recovery-drill-telemetry';
 import { InMemoryDrillMetricsRepository } from '@data/recovery-drill-metrics/src/repository';
-import { parseRunState } from '@domain/recovery-drill-telemetry/src/schema';
+import { parseRunState } from '@domain/recovery-drill-telemetry';
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
 import type {
@@ -11,13 +11,15 @@ import type {
   RecoveryDrillMetricSample,
   RecoveryDrillRunSummary,
   RecoveryDrillTelemetryRunId,
+  RecoveryDrillTenantId,
+  RecoveryDrillScenarioId,
   RecoveryDrillTimelinePoint,
   RecoverySignalSeverity,
 } from '@domain/recovery-drill-telemetry';
 import type { DrillMetricQuery } from '@data/recovery-drill-metrics/src/queries';
-import { DrillS3Archive, DrillSnsNotifier, NullDrillNotifier } from '@infrastructure/recovery-drill-archive/src';
+import { DrillS3Archive, DrillSnsNotifier, NullDrillNotifier } from '@infrastructure/recovery-drill-archive';
 import type { DrillObservabilityConfig } from './types';
-import { computeHealthScore as computeSummaryHealth } from '@domain/recovery-drill-telemetry/src/analysis';
+import { computeHealthScore as computeSummaryHealth } from '@domain/recovery-drill-telemetry';
 
 export class RecoveryDrillIngestionService {
   private readonly archive?: DrillS3Archive;
@@ -42,7 +44,7 @@ export class RecoveryDrillIngestionService {
     const { envelopeId, parsed } = parseIncomingEvent(input.raw);
     await this.repository.ingestEvent(input.runId, parsed);
 
-    const events = await this.repository.queryEvents({ runId: input.runId, pageSize: 1000, pageSize: 1000 });
+    const events = await this.repository.queryEvents({ runId: input.runId, pageSize: 1000 });
     const severity: RecoverySignalSeverity = (parsed as RecoveryDrillEvent).severity ?? 'info';
 
     if (severity === 'critical' || severity === 'error') {
@@ -62,7 +64,7 @@ export class RecoveryDrillIngestionService {
   }
 
   async ingestMetric(input: { runId: RecoveryDrillTelemetryRunId; raw: unknown }): Promise<Result<RecoveryDrillRunSummary, Error>> {
-    const metric = parseIncomingMetric(input.raw) as RecoveryDrillMetricSample;
+    const metric = parseIncomingMetric(input.raw);
     await this.repository.ingestMetric(input.runId, metric);
     const summary = await this.rebuildSummary(input.runId);
     return ok(summary);
@@ -86,7 +88,7 @@ export class RecoveryDrillIngestionService {
       });
     }
     const timelineDigest = buildTimeline(timeline);
-    const metricsHealth = aggregateHealth(metrics.items).map((metric) => ({
+    const metricsHealth = aggregateHealthFromSamples(metrics.items).map((metric) => ({
       ...metric,
       unit: metric.unit,
       baseline: metric.baseline,
@@ -99,8 +101,8 @@ export class RecoveryDrillIngestionService {
     const firstEvent = events.items.at(0);
     const envelope = buildEnvelope('recovery-drill-summary', {
       runId,
-      tenant: firstEvent?.tenant ?? 'unknown',
-      scenarioId: firstEvent?.scenarioId ?? '',
+      tenant: (firstEvent?.tenant ?? 'unknown') as RecoveryDrillTenantId,
+      scenarioId: (firstEvent?.scenarioId ?? '') as RecoveryDrillScenarioId,
       status: (firstEvent?.kind === 'transition' ? parseRunState('running') : 'running') as any,
       events: events.total,
       metrics: metrics.total,

@@ -1,5 +1,5 @@
 import { buildAgenda } from '@domain/recovery-drill/src/scheduling';
-import type { DrillRunContext, DrillTemplate } from '@domain/recovery-drill';
+import type { DrillRunContext, DrillTemplate } from '@domain/recovery-drill/src';
 import type { DrillRunPlan } from './types';
 
 export interface PlannerInput {

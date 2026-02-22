@@ -1,8 +1,15 @@
 import { z } from 'zod';
-import { signalSchema, planSchema } from '@domain/recovery-readiness/src/schema';
+import { signalSchema, planSchema as domainPlanSchema } from '@domain/recovery-readiness/src/schema';
 
-export const readModelSchema = z.object({
-  plan: planSchema,
+const readinessWindowSchema = z.object({
+  windowId: z.string(),
+  label: z.string(),
+  fromUtc: z.string(),
+  toUtc: z.string(),
+  timezone: z.string()
+});
+
+const recoveryPlanSchema = domainPlanSchema.extend({
   targets: z.array(
     z.object({
       id: z.string(),
@@ -13,7 +20,13 @@ export const readModelSchema = z.object({
       owners: z.array(z.string())
     })
   ),
+  windows: z.array(readinessWindowSchema),
   signals: z.array(signalSchema),
+  riskBand: z.enum(['green', 'amber', 'red'])
+});
+
+export const readModelSchema = z.object({
+  plan: recoveryPlanSchema,
   revision: z.number().nonnegative().int(),
   updatedAt: z.string()
 });

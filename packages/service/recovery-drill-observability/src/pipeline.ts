@@ -34,7 +34,7 @@ export class DrillObservabilityPipeline {
     return ok({ total: result.total, sample: result.items });
   }
 
-  async tenantSnapshot(tenant: string): Promise<Result<unknown[], Error>> {
+  async tenantSnapshot(tenant: string): Promise<Result<readonly unknown[], Error>> {
     const snapshot = await this.reportingService.tenantSnapshot(tenant as never);
     if (!snapshot.ok) return fail(snapshot.error);
     return ok(snapshot.value);

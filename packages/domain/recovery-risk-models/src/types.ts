@@ -83,5 +83,5 @@ export type RiskVector = ReadonlyArray<RiskSignal>;
 export interface RiskEnvelope {
   readonly assessment: RiskAssessment;
   readonly context: RiskContext;
-  readonly signals: DeepMerge<RiskContext, { readonly reviewedBy?: string }>;
+  readonly signals: RiskVector;
 }

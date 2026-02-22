@@ -23,15 +23,15 @@ export class RecoveryDrillObserverConsole {
       return this.pipeline.ingestMetric(command.runId, command.payload);
     }
 
-    if (command.command === 'query') {
-      const tenant = command.tenant;
+  if (command.command === 'query') {
+      const tenant = command.tenant as unknown as never;
       if (!tenant) return fail(new Error('tenant-required'));
       return this.pipeline.queryMetrics({ tenant, pageSize: 100 });
     }
 
     if (command.command === 'snapshot') {
       if (!command.tenant) return fail(new Error('tenant-required'));
-      return this.pipeline.tenantSnapshot(command.tenant);
+      return this.pipeline.tenantSnapshot(command.tenant as unknown as never);
     }
 
     return fail(new Error('unsupported-command'));

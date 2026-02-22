@@ -26,7 +26,7 @@ export class S3ReadinessAdapter implements ReadinessPersistenceAdapter {
 
     return {
       namespace: 'drift-currents',
-      runId: model.plan.runId,
+      runId: model.plan.runId as PersistedArtifact['runId'],
       sha256: `sha256:${path}`,
       payloadPath: path,
       schemaVersion: 1
@@ -43,7 +43,7 @@ export class S3ReadinessAdapter implements ReadinessPersistenceAdapter {
 
     const bytes = await response.Body.transformToString();
     const parsed = readModelSchema.parse(JSON.parse(bytes));
-    return parsed;
+    return parsed as unknown as ReadinessReadModel;
   }
 
   async loadSnapshot(key: string): Promise<PersistedArtifact | undefined> {
@@ -54,7 +54,7 @@ export class S3ReadinessAdapter implements ReadinessPersistenceAdapter {
 
     const bytes = await response.Body.transformToString();
     const parsed = snapshotSchema.parse(JSON.parse(bytes));
-    return parsed;
+    return parsed as unknown as PersistedArtifact;
   }
 }
 

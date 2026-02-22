@@ -6,8 +6,8 @@ const isoDate = z
   .datetime({ offset: true })
   .brand<'iso-date'>();
 
-const brand = <T extends z.ZodTypeAny>(schema: T, name: string) =>
-  schema.brand<T>(`brand:${name}` as never);
+const brand = <TName extends string>(schema: z.ZodString, name: TName) =>
+  schema.brand<TName>();
 
 export const SignalCategorySchema = z.enum(['availability', 'latency', 'dataQuality', 'compliance']);
 
@@ -67,6 +67,9 @@ export const ForecastSchema = z.object({
   confidenceBySignal: z.record(z.number().min(0).max(1)),
 });
 
-export const parseBundle = (value: unknown): RecoverySignalBundle => RecoverySignalBundleSchema.parse(value);
-export const parseRecommendation = (value: unknown): RecoveryRecommendation => RecommendationSchema.parse(value);
-export const parseForecast = (value: unknown): RecoveryForecast => ForecastSchema.parse(value);
+export const parseBundle = (value: unknown): RecoverySignalBundle =>
+  RecoverySignalBundleSchema.parse(value) as unknown as RecoverySignalBundle;
+export const parseRecommendation = (value: unknown): RecoveryRecommendation =>
+  RecommendationSchema.parse(value) as unknown as RecoveryRecommendation;
+export const parseForecast = (value: unknown): RecoveryForecast =>
+  ForecastSchema.parse(value) as unknown as RecoveryForecast;

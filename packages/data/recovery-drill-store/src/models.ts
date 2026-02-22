@@ -6,7 +6,7 @@ import type {
   RecoveryDrillRunId,
   RecoveryDrillTemplateId,
   RecoveryDrillTenantId,
-} from '@domain/recovery-drill';
+} from '@domain/recovery-drill/src';
 
 export interface DrillTemplateRecord {
   tenantId: RecoveryDrillTenantId;

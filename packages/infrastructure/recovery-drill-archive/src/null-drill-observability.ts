@@ -1,5 +1,5 @@
 import type { RecoveryDrillRunSummary } from '@domain/recovery-drill-telemetry';
-import { Drift, fail, ok } from '@shared/result';
+import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
 
 export interface NullDrillRepository {

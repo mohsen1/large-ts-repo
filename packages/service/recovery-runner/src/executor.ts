@@ -12,7 +12,7 @@ import type {
   RecoveryArtifactRepository,
   RecoveryRunRepository,
 } from '@data/recovery-artifacts';
-import { InMemoryTimelineRecorder } from '@data/recovery-artifacts/telemetry';
+import { InMemoryTimelineRecorder } from '@data/recovery-artifacts/src/telemetry';
 import type { RecoveryNotifier } from '@infrastructure/recovery-notifications';
 
 import { encodeArtifact } from '@data/recovery-artifacts';

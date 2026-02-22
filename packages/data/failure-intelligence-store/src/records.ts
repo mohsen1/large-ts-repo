@@ -40,7 +40,8 @@ export const normalizeIncomingPlan = (input: unknown): FailureActionPlan | undef
 };
 
 export const toSignalEnvelope = (input: NewFailureSignal | FailureSignal): SignalEnvelope => {
-  const signal: FailureSignal = normalizeSignal(input) ?? input;
+  const normalized = normalizeSignal(input);
+  const signal: FailureSignal = normalized ?? (input as FailureSignal);
   return { signal, capturedAt: new Date().toISOString() };
 };
 
@@ -56,8 +57,8 @@ export const makeRecordFromPlan = (plan: FailureActionPlan): FailureKnowledgeRec
     fingerprint: plan.fingerprint,
     state: 'detected',
     report: {
-      incidentId: `${plan.id}:incident`,
-      tenantId: String(plan.tenantId),
+      incidentId: `${plan.id}:incident` as FailureReport['incidentId'],
+      tenantId: plan.tenantId as unknown as FailureReport['tenantId'],
       title: `Failure action plan ${plan.id}`,
       severity: IncidentSeveritySchema.parse(plan.fingerprint.severity),
       source: 'failure-intelligence-runner',

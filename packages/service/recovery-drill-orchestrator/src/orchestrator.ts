@@ -6,9 +6,10 @@ import { RecoveryDrillExecutor } from './execution';
 import { fromTemplate, buildRunRecord, isActive } from '@data/recovery-drill-store/src/adapter';
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
-import type { DrillStoreQuery } from '@data/recovery-drill-store';
+import type { DrillStoreQuery } from '@data/recovery-drill-store/src';
 import type { DrillDependencies, DrillProgressEvent, DrillStartInput } from './types';
 import type { DrillRunPlan } from './types';
+import type { RecoveryDrillTenantId } from '@domain/recovery-drill/src';
 
 const runIdSchema = z.string().min(1);
 
@@ -114,7 +115,7 @@ export class RecoveryDrillOrchestrator {
     return ok(false);
   }
 
-  async listByTenant(tenant: string): Promise<Pick<DrillProgressEvent, 'runId' | 'status' | 'at'>[]> {
+  async listByTenant(tenant: RecoveryDrillTenantId): Promise<Pick<DrillProgressEvent, 'runId' | 'status' | 'at'>[]> {
     const result = await this.dependencies.runs.listRuns({
       tenant,
       status: ['planned', 'queued', 'running', 'paused', 'succeeded', 'degraded', 'failed', 'cancelled'],

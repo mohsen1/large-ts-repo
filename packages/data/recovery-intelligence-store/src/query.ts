@@ -1,4 +1,4 @@
-import type { RecoverySignalBundle } from '@domain/recovery-intelligence';
+import type { RecoverySignalBundle } from '@domain/recovery-intelligence/src';
 
 export interface SignalQuery {
   readonly tenantId?: RecoverySignalBundle['context']['tenantId'];

@@ -6,7 +6,7 @@ import {
   type IntelligenceRunRequest,
   type IntelligenceRunResult,
 } from './commands';
-import type { RecoverySignalBundle, RecoveryForecast, RecoveryRecommendation } from '@domain/recovery-intelligence';
+import type { RecoverySignalBundle, RecoveryForecast, RecoveryRecommendation } from '@domain/recovery-intelligence/src';
 import type { RecoveryIntelligenceRepository } from '@data/recovery-intelligence-store/src/repository';
 import type { StoredActionPlan } from '@data/recovery-intelligence-store/src/models';
 import { compilePlan } from './planner';

@@ -1,4 +1,6 @@
-import type { RecoveryArtifactRepository, RecoveryTimelineSegment, RecoveryRunState } from './repository';
+import type { RecoveryTimelineSegment } from './models';
+import type { RecoveryArtifactRepository } from './repository';
+import type { RecoveryRunState } from '@domain/recovery-orchestration';
 import type { RecoveryArtifact } from './models';
 
 export interface RecoveryTimelineRecorder {

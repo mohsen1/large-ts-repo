@@ -1,7 +1,7 @@
-import { buildTriage, TriageDecision } from '@domain/recovery-intelligence';
-import type { RecoveryForecast, RecoverySignalBundle } from '@domain/recovery-intelligence';
-import { clamp, roundTo } from '@domain/recovery-intelligence/src/utils';
-import { buildForecast, suggestActionsFromSignals } from '@domain/recovery-intelligence';
+import { buildTriage, TriageDecision } from '@domain/recovery-intelligence/src';
+import type { RecoveryForecast, RecoverySignalBundle } from '@domain/recovery-intelligence/src';
+import { clamp, roundTo } from '@domain/recovery-intelligence/src';
+import { buildForecast, suggestActionsFromSignals } from '@domain/recovery-intelligence/src';
 
 export interface EvaluationWindow {
   readonly startedAt: string;
@@ -35,4 +35,4 @@ export const evaluateReadiness = (
 };
 
 export const normalizeDecision = (decision: RunEvaluation['decision']): number =>
-  roundTo(clamp(decision.urgencyScore + (decision.status === 'abort' ? 0.15 : 0), 4);
+  roundTo(clamp(decision.urgencyScore + (decision.status === 'abort' ? 0.15 : 0), 0, 1), 4);

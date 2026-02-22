@@ -16,7 +16,6 @@ import {
   evaluatePlaybookContext,
 } from '@domain/recovery-playbooks';
 import type {
-  PlaybookEnvelope,
   RecoveryPlaybookRepository,
 } from '@data/recovery-playbook-store';
 
@@ -35,6 +34,7 @@ export interface ExecutionPlan {
   candidateCount: number;
   selectedSteps: readonly RecoveryStepId[];
   reasons: readonly string[];
+  rationale: readonly string[];
   riskWarnings: readonly string[];
   estimatedMinutes: number;
 }
@@ -60,8 +60,8 @@ export class RecoveryPlaybookCatalog {
     const result = await this.repository.query(query);
     if (!result.ok) return fail(result.error, result.code);
 
-    const payload = result.value.items.map((item: PlaybookEnvelope) => item.playbook);
-    return ok(payload.filter((playbook) => matchesQuery(playbook, query)));
+  const payload = result.value.items.map((item) => item.playbook);
+  return ok(payload.filter((playbook) => matchesQuery(playbook, query)));
   }
 
   async get(id: RecoveryPlaybookId): Promise<RecoveryPlaybook | undefined> {
@@ -126,6 +126,7 @@ export class PlaybookSelectionEngine {
       candidateCount: candidateResult.value.length,
       selectedSteps,
       reasons: best.rationale,
+      rationale: best.rationale,
       riskWarnings: warnings,
       estimatedMinutes,
     });

@@ -105,14 +105,7 @@ export const parseDrillTemplate = (value: unknown): DrillTemplate =>
   };
 
 export const parseDrillContext = (value: unknown): DrillRunContext =>
-  RunContextSchema.parse(value) as unknown as {
-    runId: RecoveryDrillRunId;
-    templateId: RecoveryDrillTemplateId;
-    initiatedBy: string;
-    mode: DrillMode;
-    runAt: string;
-    approvals: number;
-  };
+  RunContextSchema.parse(value) as unknown as DrillRunContext;
 
 export const parseDrillQuery = (value: unknown): DrillQuery => QuerySchema.parse(value) as DrillQuery;
 

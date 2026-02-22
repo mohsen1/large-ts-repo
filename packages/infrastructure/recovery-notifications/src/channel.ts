@@ -2,7 +2,7 @@ import { SNSClient, PublishCommand } from '@aws-sdk/client-sns';
 import type { Result } from '@shared/result';
 import { fail, ok } from '@shared/result';
 import type { RecoveryRunState } from '@domain/recovery-orchestration';
-import type { RecoverySuggestion } from '@data/recovery-observability';
+import type { RecoverySuggestion } from '@data/recovery-observability/src';
 
 export interface NotifierContext {
   readonly runState: RecoveryRunState;

@@ -1,11 +1,11 @@
-import { parseForecast, parseRecommendation, parseBundle } from '@domain/recovery-intelligence';
-import { buildForecast, createRecommendation, proposeRecommendation, rankActions, suggestActionsFromSignals } from '@domain/recovery-intelligence';
+import { parseForecast, parseRecommendation, parseBundle } from '@domain/recovery-intelligence/src';
+import { buildForecast, createRecommendation, proposeRecommendation, rankActions, suggestActionsFromSignals } from '@domain/recovery-intelligence/src';
 import type {
   RecoveryActionCandidate,
   RecoveryForecast,
   RecoveryRecommendation,
   RecoverySignalBundle,
-} from '@domain/recovery-intelligence';
+} from '@domain/recovery-intelligence/src';
 import { buildPlanPayload } from '@data/recovery-intelligence-store/src/adapters';
 
 export interface RecoveryPlanDraft {
@@ -31,7 +31,7 @@ export const compilePlan = ({
   const candidateActions = suggestActionsFromSignals(parsed);
   const recommendation = expectedMinutes > 3
     ? parseRecommendation(createRecommendation({ bundle: parsed, forecast, availableActions: rankActions(candidateActions) }))
-    : proposeRecommendation({ bundle: parsed, forecast, availableActions: candidateActions });
+    : proposeRecommendation(parsed, expectedMinutes);
 
   const topActions = rankActions(candidateActions);
   if (!includeComplianceActions) {
