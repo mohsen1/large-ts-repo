@@ -66,6 +66,7 @@
     { "path": "./packages/data/incident-hub" },
     { "path": "./packages/service/checkout" },
     { "path": "./packages/service/analytics" },
+    { "path": "./packages/service/decision-mesh" },
     { "path": "./packages/service/finance" },
     { "path": "./packages/service/orchestrators" },
     { "path": "./packages/service/operations" },

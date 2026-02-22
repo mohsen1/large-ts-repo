@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "./dist", "composite": true, "declaration": true },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../data/decision-catalog" },
+    { "path": "../../service/decision-runtime" },
+    { "path": "../../platform/messaging" },
+    { "path": "../../platform/observability" },
+    { "path": "../../platform/security" },
+    { "path": "../../shared/result" },
+    { "path": "../../shared/type-level" }
+  ]
+}

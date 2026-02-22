@@ -1,0 +1,20 @@
+{
+  "name": "@service/decision-mesh",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": "./dist/index.js" },
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@data/decision-catalog": "workspace:*",
+    "@service/decision-runtime": "workspace:*",
+    "@platform/messaging": "workspace:*",
+    "@platform/observability": "workspace:*",
+    "@platform/security": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@aws-sdk/client-eventbridge": "^3.900.0",
+    "zod": "^3.24.0"
+  }
+}
