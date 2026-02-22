@@ -9,7 +9,10 @@ import type { Result } from '@shared/result';
 import type { DrillStoreQuery } from '@data/recovery-drill-store/src';
 import type { DrillDependencies, DrillProgressEvent, DrillStartInput } from './types';
 import type { DrillRunPlan } from './types';
-import type { RecoveryDrillTenantId } from '@domain/recovery-drill/src';
+import type { RecoveryDrillTenantId, DrillMode } from '@domain/recovery-drill/src';
+import { buildPolicyDecisions, buildRunTemplateHints } from './governance';
+import { safeParseTenant } from './adapters';
+import { buildServiceOverview } from './metrics';
 
 const runIdSchema = z.string().min(1);
 
@@ -57,7 +60,7 @@ export class RecoveryDrillOrchestrator {
       templateId: input.templateId,
       runAt: input.runAt ?? new Date().toISOString(),
       initiatedBy: input.initiatedBy,
-      mode: input.mode ?? templateRecord.template.mode,
+      mode: (input.mode ?? templateRecord.template.mode) as DrillMode,
       approvals: input.approvals ?? templateRecord.template.defaultApprovals,
     });
 
@@ -68,18 +71,41 @@ export class RecoveryDrillOrchestrator {
       tenant: templateRecord.tenantId,
       status: ['running', 'queued', 'paused'],
     };
+
     const activeRuns = await this.dependencies.runs.listRuns(activeQuery);
-
     const plan = buildPlan({ context, template: templateRecord.template, activeRuns: activeRuns.items.length });
-    const seedRun = buildRunRecord(templateRecord.template, context, 'queued');
 
+    const seedRun = buildRunRecord(templateRecord.template, context, 'queued');
     await this.dependencies.runs.upsertRun(seedRun);
+
     await this.dependencies.notifier.publish({
       runId: context.runId,
       status: 'queued',
       at: new Date().toISOString(),
-      details: `queued-with-${plan.scenarioOrder.length}-scenarios`,
+      details: `queued:${plan.scenarioOrder.length}`,
     });
+
+    const governance = await buildPolicyDecisions(
+      {
+        templates: this.dependencies.templates,
+        runs: this.dependencies.runs,
+      },
+      {
+        tenant: templateRecord.tenantId,
+        mode: context.mode,
+        status: ['queued', 'running', 'paused'],
+      },
+    );
+
+    if (governance.metrics.rejected > 0) {
+      await this.dependencies.notifier.publish({
+        runId: context.runId,
+        status: 'paused',
+        at: new Date().toISOString(),
+        details: `policy-rejected:${governance.metrics.rejected}`,
+      });
+      return fail(new Error('governance-rejected'));
+    }
 
     const executor = new RecoveryDrillExecutor();
     const execution = await executor.execute(context, plan);
@@ -87,7 +113,7 @@ export class RecoveryDrillOrchestrator {
       return fail(execution.error);
     }
 
-    await this.dependencies.runs.upsertRun({ ...execution.value, context } as any);
+    await this.dependencies.runs.upsertRun({ ...execution.value, context } as never);
     await this.dependencies.notifier.publish({
       runId: context.runId,
       status: execution.value.status,
@@ -104,9 +130,9 @@ export class RecoveryDrillOrchestrator {
     if (!run) return fail(new Error('run-not-found'));
 
     if (isActive(run)) {
-      await this.dependencies.runs.upsertRun({ ...run, status: 'cancelled', endedAt: new Date().toISOString() } as any);
+      await this.dependencies.runs.upsertRun({ ...run, status: 'cancelled', endedAt: new Date().toISOString() } as never);
       await this.dependencies.notifier.publish({
-        runId: parsed as any,
+        runId: parsed as never,
         status: 'cancelled',
         at: new Date().toISOString(),
       });
@@ -116,14 +142,47 @@ export class RecoveryDrillOrchestrator {
   }
 
   async listByTenant(tenant: RecoveryDrillTenantId): Promise<Pick<DrillProgressEvent, 'runId' | 'status' | 'at'>[]> {
+    const resolvedTenant = safeParseTenant(tenant);
+    if (!resolvedTenant.ok) return [];
+
     const result = await this.dependencies.runs.listRuns({
-      tenant,
+      tenant: resolvedTenant.value,
       status: ['planned', 'queued', 'running', 'paused', 'succeeded', 'degraded', 'failed', 'cancelled'],
     } as DrillStoreQuery);
+
     return result.items.map((run) => ({
       runId: run.id,
       status: run.status,
       at: run.startedAt ?? run.endedAt ?? new Date().toISOString(),
     }));
+  }
+
+  async listOverview(tenant: string) {
+    const templatesResult = await this.dependencies.templates.listTemplates(tenant);
+    const runsResult = await this.dependencies.runs.listRuns({ tenant: tenant as any, status: undefined } as DrillStoreQuery);
+    const overview = buildServiceOverview(templatesResult, runsResult.items);
+    const hints = buildRunTemplateHints(runsResult.items, templatesResult);
+    const byTenant = overview.byTenant.get(tenant) ?? {
+      tenant,
+      totalTemplates: 0,
+      activeRuns: 0,
+      queuedRuns: 0,
+      successRate: 0,
+      riskIndex: 0,
+      topHeatpointTemplate: undefined,
+    };
+
+    return {
+      overview,
+      selectedByTemplate: Object.fromEntries(hints.entries()),
+      metric: byTenant,
+    };
+  }
+
+  async onboardPayload(raw: unknown): Promise<string> {
+    const template = parseDrillTemplate(raw);
+    const record = fromTemplate(template);
+    await this.dependencies.templates.upsertTemplate(record);
+    return record.templateId;
   }
 }

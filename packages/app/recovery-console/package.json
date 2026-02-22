@@ -35,6 +35,9 @@
     "@service/recovery-operations-engine": "workspace:*",
     "@service/recovery-continuity-lens": "workspace:*",
     "@domain/recovery-fabric-models": "workspace:*",
-    "@service/recovery-fabric-controller": "workspace:*"
+    "@service/recovery-fabric-controller": "workspace:*",
+    "@domain/recovery-drill": "workspace:*",
+    "@data/recovery-drill-store": "workspace:*",
+    "@service/recovery-drill-orchestrator": "workspace:*"
   }
 }

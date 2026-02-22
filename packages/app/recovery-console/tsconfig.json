@@ -64,6 +64,15 @@
     },
     {
       "path": "../../service/recovery-fabric-controller/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-drill/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-drill-store/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
     }
   ]
 }

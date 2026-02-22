@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-readiness-orchestrator",
+  "name": "@domain/recovery-readiness-simulation",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -15,11 +15,8 @@
   },
   "dependencies": {
     "@domain/recovery-readiness": "workspace:*",
-    "@data/recovery-readiness-store": "workspace:*",
+    "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
-    "@aws-sdk/client-eventbridge": "^3.900.0",
-    "@aws-sdk/client-sqs": "^3.900.0",
-    "zod": "^3.24.0",
-    "@domain/recovery-readiness-simulation": "workspace:*"
+    "zod": "^3.24.0"
   }
 }

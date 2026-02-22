@@ -111,6 +111,18 @@
     },
     {
       "path": "./../../data/recovery-strategy-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-readiness-simulation/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-readiness/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-readiness-store/tsconfig.json"
     }
   ]
 }

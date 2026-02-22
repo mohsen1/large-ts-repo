@@ -131,6 +131,9 @@ importers:
       '@aws-sdk/client-eventbridge':
         specifier: ^3.900.0
         version: 3.995.0
+      '@data/recovery-drill-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-drill-store
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
@@ -143,6 +146,9 @@ importers:
       '@domain/recovery-command-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-command-orchestration
+      '@domain/recovery-drill':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill
       '@domain/recovery-fabric-models':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-models
@@ -158,6 +164,9 @@ importers:
       '@service/recovery-continuity-lens':
         specifier: workspace:*
         version: link:../../service/recovery-continuity-lens
+      '@service/recovery-drill-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-drill-orchestrator
       '@service/recovery-fabric-controller':
         specifier: workspace:*
         version: link:../../service/recovery-fabric-controller
@@ -218,6 +227,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-readiness-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-readiness-store
       '@data/recovery-situational-store':
         specifier: workspace:*
         version: link:../../data/recovery-situational-store
@@ -251,6 +263,12 @@ importers:
       '@domain/recovery-orchestration-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-planning
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@domain/recovery-readiness-simulation':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness-simulation
       '@domain/recovery-simulation-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-core
@@ -281,6 +299,9 @@ importers:
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
+      '@service/recovery-readiness-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-readiness-orchestrator
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
@@ -1771,6 +1792,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-readiness-simulation:
+    dependencies:
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../recovery-readiness
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-risk-models:
     dependencies:
       '@shared/core':
@@ -3227,6 +3263,9 @@ importers:
       '@domain/recovery-readiness':
         specifier: workspace:*
         version: link:../../domain/recovery-readiness
+      '@domain/recovery-readiness-simulation':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness-simulation
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -3296,6 +3335,9 @@ importers:
       '@data/recovery-observability':
         specifier: workspace:*
         version: link:../../data/recovery-observability
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
       '@data/recovery-plan-store':
         specifier: workspace:*
         version: link:../../data/recovery-plan-store
