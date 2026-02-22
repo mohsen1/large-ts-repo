@@ -126,6 +126,10 @@
     },
     {
       "path": "./packages/domain/inventory"
+    {
+      "path": "./packages/domain/recovery-readiness"
+    },
+
     },
     {
       "path": "./packages/domain/knowledge-graph"
@@ -296,6 +300,9 @@
       "path": "./packages/service/quality"
     },
     {
+      "path": "./packages/service/recovery-readiness-orchestrator"
+    },
+    {
       "path": "./packages/service/recommendation"
     },
     {
@@ -366,6 +373,10 @@
     },
     {
       "path": "./packages/data/recovery-observability"
+    {
+      "path": "./packages/data/recovery-readiness-store"
+    },
+
     },
     {
       "path": "./packages/infrastructure/recovery-notifications"
