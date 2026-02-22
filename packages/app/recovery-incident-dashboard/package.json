@@ -33,6 +33,9 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@aws-sdk/client-eventbridge": "^3.900.0",
+    "@service/recovery-workflow-orchestrator": "workspace:*",
+    "@data/recovery-workflow-store": "workspace:*",
+    "@domain/recovery-incident-workflows": "workspace:*",
     "zod": "^3.24.0"
   }
 }

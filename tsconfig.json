@@ -164,6 +164,9 @@
       "path": "./packages/domain/recovery-workload-intelligence"
     },
     {
+      "path": "./packages/domain/recovery-incident-workflows"
+    },
+    {
       "path": "./packages/domain/incident-signal-intelligence"
     },
     {
@@ -362,6 +365,9 @@
       "path": "./packages/service/recovery-workload-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-workflow-orchestrator"
+    },
+    {
       "path": "./packages/service/recommendation"
     },
     {
@@ -453,6 +459,9 @@
     },
     {
       "path": "./packages/data/incident-signal-store"
+    },
+    {
+      "path": "./packages/data/recovery-workflow-store"
     },
     {
       "path": "./packages/data/recovery-playbook-store"

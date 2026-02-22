@@ -1,0 +1,24 @@
+{
+  "name": "@data/recovery-workflow-store",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-incident-workflows": "workspace:*",
+    "@data/repositories": "workspace:*",
+    "@data/recovery-incident-store": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@domain/recovery-incident-orchestration": "workspace:*"
+  }
+}
