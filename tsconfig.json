@@ -617,10 +617,19 @@
       "path": "./packages/domain/recovery-incident-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-simulation-core"
+    },
+    {
       "path": "./packages/data/recovery-incident-store"
     },
     {
+      "path": "./packages/data/recovery-simulation-store"
+    },
+    {
       "path": "./packages/service/recovery-incident-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-simulation-orchestrator"
     },
     {
       "path": "./packages/service/recovery-command-orchestrator"

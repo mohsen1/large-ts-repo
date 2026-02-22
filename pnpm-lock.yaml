@@ -137,12 +137,18 @@ importers:
       '@data/recovery-stability-store':
         specifier: workspace:*
         version: link:../../data/recovery-stability-store
+      '@data/recovery-workflow-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-workflow-store
       '@data/recovery-workload-store':
         specifier: workspace:*
         version: link:../../data/recovery-workload-store
       '@domain/incident-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/incident-signal-intelligence
+      '@domain/recovery-incident-workflows':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-workflows
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
@@ -164,6 +170,9 @@ importers:
       '@service/recovery-stability-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stability-orchestrator
+      '@service/recovery-workflow-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-workflow-orchestrator
       '@service/recovery-workload-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-workload-orchestrator
@@ -736,6 +745,27 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/data/recovery-workflow-store:
+    dependencies:
+      '@data/recovery-incident-store':
+        specifier: workspace:*
+        version: link:../recovery-incident-store
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/recovery-incident-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-orchestration
+      '@domain/recovery-incident-workflows':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-workflows
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/data/recovery-workload-store:
     dependencies:
       '@domain/recovery-workload-intelligence':
@@ -1209,6 +1239,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-incident-workflows:
+    dependencies:
+      '@domain/recovery-incident-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-incident-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-intelligence:
     dependencies:
@@ -2789,6 +2831,33 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-workflow-orchestrator:
+    dependencies:
+      '@data/recovery-incident-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-store
+      '@data/recovery-workflow-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-workflow-store
+      '@domain/recovery-incident-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-orchestration
+      '@domain/recovery-incident-workflows':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-workflows
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@service/recovery-incident-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-incident-orchestrator
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       zod:
         specifier: ^3.24.0
         version: 3.25.76

@@ -14,8 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/recovery-simulation-store": "workspace:*",
     "@service/recovery-incident-orchestrator": "workspace:*",
     "@service/recovery-command-orchestrator": "workspace:*",
+    "@service/recovery-simulation-orchestrator": "workspace:*",
     "@service/recovery-workload-orchestrator": "workspace:*",
     "@service/recovery-runner": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
@@ -26,6 +28,7 @@
     "@data/incident-signal-store": "workspace:*",
     "@domain/incident-signal-intelligence": "workspace:*",
     "@domain/recovery-stability-models": "workspace:*",
+    "@domain/recovery-simulation-core": "workspace:*",
     "@data/recovery-stability-store": "workspace:*",
     "@service/recovery-stability-orchestrator": "workspace:*",
     "react": "^19.0.0",

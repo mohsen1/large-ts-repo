@@ -1,0 +1,23 @@
+{
+  "name": "@data/recovery-simulation-store",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-simulation-core": "workspace:*",
+    "@data/repositories": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/protocol": "workspace:*",
+    "@shared/result": "workspace:*"
+  }
+}

@@ -27,6 +27,9 @@
       "path": "./../../service/recovery-workload-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-simulation-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-workflow-orchestrator/tsconfig.json"
     },
     {
@@ -37,6 +40,9 @@
     },
     {
       "path": "./../../data/recovery-incident-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-simulation-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-workload-store/tsconfig.json"
@@ -52,6 +58,9 @@
     },
     {
       "path": "./../../service/recovery-stability-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-simulation-core/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-stability-models/tsconfig.json"
