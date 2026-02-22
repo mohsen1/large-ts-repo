@@ -16,9 +16,12 @@
   "dependencies": {
     "@service/recovery-incident-orchestrator": "workspace:*",
     "@service/recovery-command-orchestrator": "workspace:*",
+    "@service/recovery-workload-orchestrator": "workspace:*",
     "@service/recovery-runner": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
+    "@domain/recovery-workload-intelligence": "workspace:*",
     "@data/recovery-incident-store": "workspace:*",
+    "@data/recovery-workload-store": "workspace:*",
     "@shared/result": "workspace:*",
     "@data/incident-signal-store": "workspace:*",
     "@domain/incident-signal-intelligence": "workspace:*",

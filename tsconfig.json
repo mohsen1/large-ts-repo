@@ -80,6 +80,9 @@
       "path": "./packages/data/telemetry-store"
     },
     {
+      "path": "./packages/data/recovery-workload-store"
+    },
+    {
       "path": "./packages/data/warehouse"
     },
     {
@@ -156,6 +159,9 @@
     },
     {
       "path": "./packages/domain/recovery-operations-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-workload-intelligence"
     },
     {
       "path": "./packages/domain/incident-signal-intelligence"
@@ -351,6 +357,9 @@
     },
     {
       "path": "./packages/service/recovery-readiness-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-workload-orchestrator"
     },
     {
       "path": "./packages/service/recommendation"

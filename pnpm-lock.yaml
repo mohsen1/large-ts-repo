@@ -125,21 +125,33 @@ importers:
 
   packages/app/recovery-incident-dashboard:
     dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/incident-signal-store':
+        specifier: workspace:*
+        version: link:../../data/incident-signal-store
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
-      '@domain/recovery-incident-orchestration':
+      '@domain/incident-signal-intelligence':
         specifier: workspace:*
-        version: link:../../domain/recovery-incident-orchestration
-      '@domain/recovery-operations-models':
+        version: link:../../domain/incident-signal-intelligence
+      '@domain/recovery-orchestration':
         specifier: workspace:*
-        version: link:../../domain/recovery-operations-models
+        version: link:../../domain/recovery-orchestration
       '@service/recovery-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-orchestrator
       '@service/recovery-incident-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-orchestrator
+      '@service/recovery-runner':
+        specifier: workspace:*
+        version: link:../../service/recovery-runner
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -152,6 +164,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/app/recovery-playbook-orchestrator:
     dependencies:
@@ -323,6 +338,18 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/incident-signal-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/incident-signal-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/incident-signal-intelligence
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
 
   packages/data/lineage: {}
 
@@ -901,6 +928,18 @@ importers:
         version: 3.25.76
 
   packages/domain/incident-management:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/incident-signal-intelligence:
     dependencies:
       '@shared/core':
         specifier: workspace:*
@@ -2234,12 +2273,18 @@ importers:
 
   packages/service/recovery-incident-orchestrator:
     dependencies:
+      '@data/incident-signal-store':
+        specifier: workspace:*
+        version: link:../../data/incident-signal-store
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
       '@data/repositories':
         specifier: workspace:*
         version: link:../../data/repositories
+      '@domain/incident-signal-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/incident-signal-intelligence
       '@domain/recovery-incident-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-orchestration

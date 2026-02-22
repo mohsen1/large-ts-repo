@@ -31,3 +31,7 @@ export * from './components/IncidentPlaybookCatalog';
 export * from './components/IncidentRunbookWorkspace';
 export * from './components/OperationsControllerPanel';
 export * from './components/OperationsPlaybookBoard';
+export * from './hooks/useWorkloadForecast';
+export * from './components/WorkloadForecastBoard';
+export * from './components/DependencyRiskMatrix';
+export * from './pages/WorkloadForecastPage';

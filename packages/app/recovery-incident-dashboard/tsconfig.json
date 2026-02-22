@@ -24,6 +24,9 @@
       "path": "./../../service/recovery-runner/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-workload-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
     },
     {
@@ -31,6 +34,12 @@
     },
     {
       "path": "./../../data/recovery-incident-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-workload-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-workload-intelligence/tsconfig.json"
     },
     {
       "path": "./../../data/incident-signal-store/tsconfig.json"
