@@ -1,8 +1,7 @@
 import type { ReadinessReadModel } from './models';
 import { sortByRiskBand } from './queries';
-import { calculateWindowDensity, estimateRecoveryCapacity } from '@domain/recovery-readiness/src/schedules';
-import type { TimeWindow } from '@domain/recovery-readiness/src/schedules';
-
+import { calculateWindowDensity, estimateRecoveryCapacity } from '@domain/recovery-readiness';
+import type { TimeWindow } from '@domain/recovery-readiness'
 export interface RepositoryHealth {
   runId: ReadinessReadModel['plan']['runId'];
   signalCount: number;
@@ -31,7 +30,7 @@ export function scoreReadinessModel(model: ReadinessReadModel): number {
   return Number(((windowContribution * 0.5 + directiveSignalBalance + recoveryCapacity) * riskFactor).toFixed(2));
 }
 
-export function inventory(models: ReadinessReadModel[]): ReadinessInventory {
+export function inventory(models: readonly ReadinessReadModel[]): ReadinessInventory {
   const red = models.filter((model) => model.plan.riskBand === 'red').length;
   const amber = models.filter((model) => model.plan.riskBand === 'amber').length;
   const green = models.filter((model) => model.plan.riskBand === 'green').length;
@@ -46,7 +45,7 @@ export function inventory(models: ReadinessReadModel[]): ReadinessInventory {
   };
 }
 
-export function readModelHealths(models: ReadinessReadModel[]): RepositoryHealth[] {
+export function readModelHealths(models: readonly ReadinessReadModel[]): RepositoryHealth[] {
   return models
     .map((model) => ({
       runId: model.plan.runId,

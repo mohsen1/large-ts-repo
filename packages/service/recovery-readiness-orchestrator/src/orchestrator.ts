@@ -1,16 +1,16 @@
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
-import { topologicalExecutionOrder, canExecuteInParallel } from '@domain/recovery-readiness/src/dependencies';
+import { topologicalExecutionOrder, canExecuteInParallel } from '@domain/recovery-readiness';
 import { buildPlanBlueprint, evaluateReadinessReadiness } from './planner';
-import { MemoryReadinessRepository, type ReadinessRepository, createRunSummary } from '@data/recovery-readiness-store/src/repository';
+import { MemoryReadinessRepository, type ReadinessRepository, createRunSummary } from '@data/recovery-readiness-store';
 import { ReadinessPipeline, buildSignalsStep, buildDraftStep, type StageContext } from './pipeline';
-import { foldSignals } from '@domain/recovery-readiness/src/signals';
-import { buildSignalMatrix, criticalityScoreByTarget } from '@domain/recovery-readiness/src/signal-matrix';
+import { foldSignals } from '@domain/recovery-readiness';
+import { buildSignalMatrix, criticalityScoreByTarget } from '@domain/recovery-readiness';
 import {
   canRunParallel,
   validatePlanTargets,
   validateRiskBand,
-} from '@domain/recovery-readiness/src/policy';
+} from '@domain/recovery-readiness';
 import {
   type RecoveryReadinessPlan,
   type RecoveryReadinessPlanDraft,
@@ -19,16 +19,15 @@ import {
   type ReadinessTarget,
   type ReadinessRunId,
 } from '@domain/recovery-readiness';
-import type { ReadinessReadModel } from '@data/recovery-readiness-store/src/models';
-import type { SignalFilter } from '@data/recovery-readiness-store/src/models';
+import type { ReadinessReadModel } from '@data/recovery-readiness-store';
+import type { SignalFilter } from '@data/recovery-readiness-store';
 import type { ReadinessNotifier, ReadinessQueue } from './adapters';
 import { EventBridgeReadinessPublisher, SqsReadinessQueue } from './adapters';
 import { EventBridgeClient } from '@aws-sdk/client-eventbridge';
 import { SQSClient } from '@aws-sdk/client-sqs';
-import { projectSignals } from '@domain/recovery-readiness/src/forecast';
-import { readModelHealths, inventory } from '@data/recovery-readiness-store/src/analytics';
-import { filterBySignalCriteria, rankBySignalVolume, sortByRiskBand, summarizeByOwner } from '@data/recovery-readiness-store/src/queries';
-
+import { projectSignals } from '@domain/recovery-readiness';
+import { readModelHealths, inventory } from '@data/recovery-readiness-store';
+import { filterBySignalCriteria, rankBySignalVolume, sortByRiskBand, summarizeByOwner } from '@data/recovery-readiness-store'
 interface RecoveryCommandContext {
   command: string;
   requestedBy: string;

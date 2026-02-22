@@ -212,6 +212,9 @@ importers:
       '@data/recovery-stability-store':
         specifier: workspace:*
         version: link:../../data/recovery-stability-store
+      '@data/recovery-strategy-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-strategy-store
       '@data/recovery-workflow-store':
         specifier: workspace:*
         version: link:../../data/recovery-workflow-store
@@ -233,6 +236,9 @@ importers:
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-orchestration-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-planning
       '@domain/recovery-simulation-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-core
@@ -275,6 +281,9 @@ importers:
       '@service/recovery-stability-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stability-orchestrator
+      '@service/recovery-strategy-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-strategy-orchestrator
       '@service/recovery-workflow-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-workflow-orchestrator
@@ -927,6 +936,21 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-strategy-store:
+    dependencies:
+      '@domain/recovery-orchestration-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-planning
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -1647,6 +1671,21 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-orchestration-planning:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -3350,6 +3389,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-strategy-orchestrator:
+    dependencies:
+      '@data/recovery-strategy-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-strategy-store
+      '@domain/recovery-orchestration-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-planning
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76

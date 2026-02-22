@@ -48,11 +48,14 @@ function matchesFilter(model: ReadinessReadModel, filter: SignalFilter): boolean
   return true;
 }
 
-export function filterBySignalCriteria(models: ReadonlyArray<ReadinessReadModel>, filter: SignalFilter): ReadinessReadModel[] {
+export function filterBySignalCriteria(
+  models: ReadonlyArray<ReadinessReadModel>,
+  filter: SignalFilter,
+): ReadinessReadModel[] {
   return models.filter((model) => matchesFilter(model, filter));
 }
 
-export function sortByRiskBand(models: ReadinessReadModel[]): ReadinessReadModel[] {
+export function sortByRiskBand(models: ReadonlyArray<ReadinessReadModel>): ReadinessReadModel[] {
   return [...models].sort((left, right) => {
     const delta = severityPriority[right.plan.riskBand] - severityPriority[left.plan.riskBand];
     if (delta !== 0) {
@@ -62,7 +65,7 @@ export function sortByRiskBand(models: ReadinessReadModel[]): ReadinessReadModel
   });
 }
 
-export function summarizeByOwner(models: ReadinessReadModel[]): Map<string, number> {
+export function summarizeByOwner(models: ReadonlyArray<ReadinessReadModel>): Map<string, number> {
   const map = new Map<string, number>();
   for (const model of models) {
     const owner = model.plan.metadata.owner;
@@ -71,7 +74,7 @@ export function summarizeByOwner(models: ReadinessReadModel[]): Map<string, numb
   return map;
 }
 
-export function rankBySignalVolume(models: ReadinessReadModel[]): ReadinessReadModel[] {
+export function rankBySignalVolume(models: ReadonlyArray<ReadinessReadModel>): ReadinessReadModel[] {
   return [...models].sort((left, right) => right.signals.length - left.signals.length);
 }
 

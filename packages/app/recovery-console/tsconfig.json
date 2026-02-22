@@ -48,6 +48,15 @@
       "path": "./../../service/recovery-continuity-lens/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-readiness/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
     }
   ]

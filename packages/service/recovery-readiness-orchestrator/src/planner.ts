@@ -1,6 +1,6 @@
-import { foldSignals } from '@domain/recovery-readiness/src/signals';
-import { validatePlanTargets, validateRiskBand, canRunParallel, pickPolicyBand, targetCriticalityScoreFallback } from '@domain/recovery-readiness/src/policy';
-import { detectOverlaps, remainingCapacity, type TimeWindow } from '@domain/recovery-readiness/src/schedules';
+import { foldSignals } from '@domain/recovery-readiness';
+import { validatePlanTargets, validateRiskBand, canRunParallel, pickPolicyBand, targetCriticalityScoreFallback } from '@domain/recovery-readiness';
+import { detectOverlaps, remainingCapacity, type TimeWindow } from '@domain/recovery-readiness';
 import type {
   RecoveryReadinessPlan,
   RecoveryReadinessPlanDraft,

@@ -1,8 +1,7 @@
 import { EventBridgeClient, PutEventsCommand } from '@aws-sdk/client-eventbridge';
 import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs';
-import type { ReadinessReadModel } from '@data/recovery-readiness-store/src/models';
-import { targetCriticalityScoreFallback } from '@domain/recovery-readiness/src/policy';
-
+import type { ReadinessReadModel } from '@data/recovery-readiness-store';
+import { targetCriticalityScoreFallback } from '@domain/recovery-readiness'
 export interface OrchestratorEvent {
   action: 'created' | 'updated' | 'activated';
   runId: string;

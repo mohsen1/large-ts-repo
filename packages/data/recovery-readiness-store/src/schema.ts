@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { signalSchema, planSchema as domainPlanSchema } from '@domain/recovery-readiness/src/schema';
-
+import { signalSchema, planSchema as domainPlanSchema } from '@domain/recovery-readiness'
 const readinessWindowSchema = z.object({
   windowId: z.string(),
   label: z.string(),

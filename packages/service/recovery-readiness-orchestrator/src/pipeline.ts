@@ -1,4 +1,4 @@
-import type { ReadinessReadModel } from '@data/recovery-readiness-store/src/models';
+import type { ReadinessReadModel } from '@data/recovery-readiness-store';
 import type { ReadinessSignal, RecoveryReadinessPlanDraft, RecoveryReadinessPlan } from '@domain/recovery-readiness';
 import type { ReadinessRunId } from '@domain/recovery-readiness';
 
@@ -53,8 +53,8 @@ export class ReadinessPipeline<I, O> {
 export function buildSignalsStep() : PipelineStep<RecoveryReadinessPlanDraft, ReadinessSignal[]> {
   return {
     name: 'seedSignals',
-    async execute(context, input) {
-      const signals = input.targetIds.map((targetId, index) => ({
+    async execute(context: StageContext, input: RecoveryReadinessPlanDraft) {
+      const signals = input.targetIds.map((targetId, index: number) => ({
         signalId: `signal:${context.runId}:${targetId}` as never,
         runId: context.runId as never,
         targetId,
@@ -73,7 +73,7 @@ export function buildSignalsStep() : PipelineStep<RecoveryReadinessPlanDraft, Re
 export function buildDraftStep(): PipelineStep<{ draft: RecoveryReadinessPlanDraft; signals: ReadinessSignal[] }, ReadinessReadModel> {
   return {
     name: 'materializeDraft',
-    async execute(context, input) {
+    async execute(context: StageContext, input: { draft: RecoveryReadinessPlanDraft; signals: ReadinessSignal[] }) {
       const model: ReadinessReadModel = {
         plan: {
           planId: `${context.runId}:plan:${input.draft.title.toLowerCase().replace(/\s+/g, '-')}` as RecoveryReadinessPlan['planId'],

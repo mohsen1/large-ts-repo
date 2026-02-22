@@ -30,7 +30,7 @@ function severityWeight(severity: ReadinessSignal['severity']): number {
   }
 }
 
-export function foldSignals(signals: ReadinessSignal[]): SignalSummary {
+export function foldSignals(signals: readonly ReadinessSignal[]): SignalSummary {
   const totalsBySource = signals.reduce(
     (acc, signal) => {
       acc[signal.source] = (acc[signal.source] ?? 0) + 1;
