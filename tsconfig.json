@@ -200,6 +200,9 @@
       "path": "./packages/domain/telemetry-models"
     },
     {
+      "path": "./packages/domain/recovery-drill-telemetry"
+    },
+    {
       "path": "./packages/domain/temporal"
     },
     {
@@ -210,6 +213,9 @@
     },
     {
       "path": "./packages/infrastructure/incident-connectors"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-drill-archive"
     },
     {
       "path": "./packages/infrastructure/incident-notifications"
@@ -404,6 +410,9 @@
       "path": "./packages/data/recovery-drill-store"
     },
     {
+      "path": "./packages/data/recovery-drill-metrics"
+    },
+    {
       "path": "./packages/infrastructure/recovery-notifications"
     },
     {
@@ -416,6 +425,9 @@
       "path": "./packages/service/recovery-policy-engine"
     },
     {
+      "path": "./packages/service/recovery-drill-observability"
+    },
+    {
       "path": "./packages/service/recovery-plan-orchestrator"
     },
     {
@@ -426,6 +438,9 @@
     },
     {
       "path": "./packages/app/recovery-console"
+    },
+    {
+      "path": "./packages/app/recovery-drill-observer"
     },
     {
       "path": "./packages/app/recovery-playbook-orchestrator"

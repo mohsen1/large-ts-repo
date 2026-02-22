@@ -1,0 +1,24 @@
+{
+  "name": "@infrastructure/recovery-drill-archive",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.900.0",
+    "@aws-sdk/client-sns": "^3.900.0",
+    "@domain/recovery-drill-telemetry": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/protocol": "workspace:*",
+    "@shared/result": "workspace:*"
+  }
+}
