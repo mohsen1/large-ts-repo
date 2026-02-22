@@ -1,0 +1,19 @@
+{
+  "name": "@service/fulfillment-planner",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": "./dist/index.js" },
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@domain/fulfillment-orchestration": "workspace:*",
+    "@domain/orders": "workspace:*",
+    "@domain/billing": "workspace:*",
+    "@data/fulfillment-hub": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/protocol": "workspace:*",
+    "@platform/messaging": "workspace:*",
+    "@platform/http": "workspace:*"
+  }
+}

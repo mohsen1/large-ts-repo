@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "./dist", "composite": true, "declaration": true },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../domain/fulfillment-orchestration" },
+    { "path": "../../domain/orders" },
+    { "path": "../../domain/billing" },
+    { "path": "../../data/fulfillment-hub" },
+    { "path": "../../shared/result" },
+    { "path": "../../shared/protocol" },
+    { "path": "../../platform/messaging" },
+    { "path": "../../platform/http" }
+  ]
+}
