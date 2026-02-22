@@ -9,21 +9,53 @@
     "src/**/*"
   ],
   "references": [
-    { "path": "./../../domain/recovery-operations-models/tsconfig.json" },
-    { "path": "./../../domain/recovery-orchestration/tsconfig.json" },
-    { "path": "./../../domain/recovery-readiness/tsconfig.json" },
-    { "path": "./../../data/recovery-operations-store/tsconfig.json" },
-    { "path": "./../../infrastructure/recovery-operations-queue/tsconfig.json" },
-    { "path": "./../../data/recovery-operations-governance-store/tsconfig.json" },
-    { "path": "./../../infrastructure/recovery-operations-compliance/tsconfig.json" },
-    { "path": "./../../service/recovery-operations-policy-engine/tsconfig.json" },
-    { "path": "./../../service/recovery-operations-intelligence-orchestrator/tsconfig.json" },
-    { "path": "./../../data/recovery-operations-intelligence-store/tsconfig.json" },
-    { "path": "./../../data/recovery-operations-analytics/tsconfig.json" },
-    { "path": "./../../domain/recovery-operations-cadence/tsconfig.json" },
-    { "path": "./../../infrastructure/recovery-operations-cadence-bridge/tsconfig.json" },
-    { "path": "./../../domain/recovery-operations-control-plane/tsconfig.json" },
-    { "path": "./../../data/recovery-operations-control-plane-store/tsconfig.json" },
-    { "path": "./../../shared/result/tsconfig.json" }
+    {
+      "path": "./../../domain/recovery-operations-models/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-readiness/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-operations-store/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-operations-queue/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-operations-governance-store/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-operations-compliance/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-operations-policy-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-operations-intelligence-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-operations-intelligence-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-operations-analytics/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-cadence/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-operations-cadence-bridge/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-control-plane/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-operations-control-plane-store/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    }
   ]
 }

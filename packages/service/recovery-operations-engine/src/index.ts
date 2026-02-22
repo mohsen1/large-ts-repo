@@ -16,3 +16,4 @@ export * from './control-plane-scheduler';
 export * from './control-plane-adapters';
 export * from './strategy-insights';
 export * from './operations-dependency-orchestrator';
+export * from './recovery-policy-orchestrator';

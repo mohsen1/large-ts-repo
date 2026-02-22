@@ -20,18 +20,27 @@ importers:
 
   packages/app/adaptive-ops-console:
     dependencies:
+      '@data/incident-command-store':
+        specifier: workspace:*
+        version: link:../../data/incident-command-store
       '@domain/adaptive-ops':
         specifier: workspace:*
         version: link:../../domain/adaptive-ops
       '@domain/adaptive-ops-metrics':
         specifier: workspace:*
         version: link:../../domain/adaptive-ops-metrics
+      '@domain/incident-command-models':
+        specifier: workspace:*
+        version: link:../../domain/incident-command-models
       '@service/adaptive-ops-orchestrator':
         specifier: workspace:*
         version: link:../../service/adaptive-ops-orchestrator
       '@service/adaptive-ops-runner':
         specifier: workspace:*
         version: link:../../service/adaptive-ops-runner
+      '@service/recovery-incident-command-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-command-orchestrator
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -401,6 +410,15 @@ importers:
       '@shared/protocol':
         specifier: workspace:*
         version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/data/incident-command-store:
+    dependencies:
+      '@domain/incident-command-models':
+        specifier: workspace:*
+        version: link:../../domain/incident-command-models
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -1112,6 +1130,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/domain/incident-command-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/incident-forecasting:
     dependencies:
@@ -2585,6 +2615,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-incident-command-orchestrator:
+    dependencies:
+      '@data/incident-command-store':
+        specifier: workspace:*
+        version: link:../../data/incident-command-store
+      '@domain/incident-command-models':
+        specifier: workspace:*
+        version: link:../../domain/incident-command-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/recovery-incident-insight-orchestrator:
     dependencies:

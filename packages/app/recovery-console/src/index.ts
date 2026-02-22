@@ -50,9 +50,14 @@ export const runRecoveryWorkflow = async (
 
 export * from './hooks/useRecoverySimulationWorkspace';
 export * from './hooks/useRecoveryConsoleTelemetry';
+export * from './hooks/useRecoveryOperationsIntelligence';
 export * from './components/RecoveryOperationsControlPanel';
 export * from './components/SimulationScenarioBoard';
 export * from './components/ScenarioRiskHeatmap';
+export * from './components/RecoveryOperationsPolicyDashboard';
+export * from './components/RecoveryOperationsRiskPanel';
+export * from './components/RecoveryOperationsTimeline';
 export * from './pages/RecoverySimulationWorkspacePage';
 export * from './pages/RecoverySimulationHistoryPage';
 export * from './pages/RecoveryOperationsCenterPage';
+export * from './pages/RecoveryOperationsIntelligencePage';

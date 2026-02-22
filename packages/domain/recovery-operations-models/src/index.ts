@@ -14,3 +14,7 @@ export * from './rehearsal-plan';
 export * from './rehearsal-metrics';
 export * from './coordination-metrics';
 export * from './incident-priority-matrix';
+export * from './signal-portfolio';
+export * from './recovery-policy-rules';
+export * from './route-intelligence';
+export * from './operation-timeline';

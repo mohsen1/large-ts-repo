@@ -15,19 +15,28 @@
   ],
   "references": [
     {
+      "path": "./../../data/recovery-operations-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-models/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-operations-engine/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-runner/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
     }
   ]
 }

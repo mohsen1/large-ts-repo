@@ -24,6 +24,9 @@
     "@types/react-dom": "^19.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "zod": "^3.24.0"
+    "zod": "^3.24.0",
+    "@domain/recovery-operations-models": "workspace:*",
+    "@data/recovery-operations-store": "workspace:*",
+    "@service/recovery-operations-engine": "workspace:*"
   }
 }
