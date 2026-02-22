@@ -3,7 +3,6 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true,
     "jsx": "react-jsx",
     "lib": [
       "DOM",
@@ -22,6 +21,12 @@
     },
     {
       "path": "./../../service/recovery-runner/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-operations-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-operations-store/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-incident-analytics/tsconfig.json"

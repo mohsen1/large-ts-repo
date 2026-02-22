@@ -56,3 +56,7 @@ export * from './components/simulation/SimulationCommandPanel';
 export * from './pages/RecoverySimulationPage';
 export * from './pages/RecoverySimulationHistoryPage';
 export * from './pages/AnalyticsConsolePage';
+export * from './hooks/useRecoveryOperationsOrchestration';
+export * from './components/orchestration/OperationsDependencyPanel';
+export * from './components/orchestration/StrategyReadinessPanel';
+export * from './pages/RecoveryOperationsOrchestrationPage';

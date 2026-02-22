@@ -12,3 +12,5 @@ export * from './schedule-plans';
 export * from './quality-gates';
 export * from './rehearsal-plan';
 export * from './rehearsal-metrics';
+export * from './coordination-metrics';
+export * from './incident-priority-matrix';

@@ -5,3 +5,5 @@ export * from './planner';
 export * from './selection';
 export * from './validation';
 export * from './simulation';
+export * from './strategy-lanes';
+export * from './deployment-impact';
