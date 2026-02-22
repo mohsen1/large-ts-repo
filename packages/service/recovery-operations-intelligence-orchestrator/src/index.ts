@@ -10,3 +10,5 @@ export * from './analytics-router';
 export * from './recovery-queue-service';
 export * from './intelligence-orchestration-service';
 export * from './service-exec';
+export * from './policy-runtime';
+export * from './incident-watchdog';

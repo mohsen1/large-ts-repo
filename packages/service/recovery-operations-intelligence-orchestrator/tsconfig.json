@@ -14,6 +14,8 @@
     { "path": "./../../data/recovery-operations-store/tsconfig.json" },
     { "path": "./../../infrastructure/recovery-operations-intelligence-adapters/tsconfig.json" },
     { "path": "./../../service/recovery-operations-policy-engine/tsconfig.json" },
+    { "path": "./../../domain/recovery-playbooks/tsconfig.json" },
+    { "path": "./../../data/recovery-playbook-store/tsconfig.json" },
     { "path": "./../../domain/recovery-operations-intelligence/tsconfig.json" },
     { "path": "./../../domain/recovery-operations-models/tsconfig.json" },
     { "path": "./../../data/recovery-operations-analytics/tsconfig.json" },

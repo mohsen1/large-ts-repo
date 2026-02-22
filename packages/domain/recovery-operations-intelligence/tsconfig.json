@@ -23,6 +23,9 @@
     },
     {
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-governance/tsconfig.json"
     }
   ]
 }

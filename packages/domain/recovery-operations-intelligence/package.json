@@ -16,6 +16,7 @@
   "dependencies": {
     "@shared/type-level": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
+    "@domain/recovery-operations-governance": "workspace:*",
     "@shared/core": "workspace:*",
     "zod": "^3.24.0"
   }

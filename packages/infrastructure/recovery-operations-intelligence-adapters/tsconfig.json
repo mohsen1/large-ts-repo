@@ -11,6 +11,8 @@
   "references": [
     { "path": "./../../data/recovery-operations-intelligence-store/tsconfig.json" },
     { "path": "./../../domain/recovery-operations-intelligence/tsconfig.json" },
+    { "path": "./../../data/recovery-playbook-store/tsconfig.json" },
+    { "path": "./../../domain/recovery-playbooks/tsconfig.json" },
     { "path": "./../../shared/result/tsconfig.json" }
   ]
 }
