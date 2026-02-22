@@ -1,0 +1,19 @@
+{
+  "name": "@service/incident-orchestration",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": "./dist/index.js" },
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@domain/incident-management": "workspace:*",
+    "@data/incident-hub": "workspace:*",
+    "@infrastructure/incident-notifications": "workspace:*",
+    "@platform/messaging": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/protocol": "workspace:*",
+    "@shared/core": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

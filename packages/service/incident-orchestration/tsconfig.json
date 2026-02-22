@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "./dist", "composite": true, "declaration": true },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../domain/incident-management" },
+    { "path": "../../data/incident-hub" },
+    { "path": "../../infrastructure/incident-notifications" },
+    { "path": "../../platform/messaging" },
+    { "path": "../../shared/result" },
+    { "path": "../../shared/protocol" },
+    { "path": "../../shared/core" }
+  ]
+}
