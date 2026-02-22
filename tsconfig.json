@@ -395,6 +395,9 @@
       "path": "./packages/domain/recovery-operations-governance"
     },
     {
+      "path": "./packages/domain/recovery-incident-insights"
+    },
+    {
       "path": "./packages/domain/recovery-policy"
     },
     {
@@ -405,6 +408,9 @@
     },
     {
       "path": "./packages/data/recovery-artifacts"
+    },
+    {
+      "path": "./packages/data/recovery-incident-insights-store"
     },
     {
       "path": "./packages/data/recovery-playbook-store"
@@ -470,10 +476,16 @@
       "path": "./packages/infrastructure/recovery-coordination-notifier"
     },
     {
+      "path": "./packages/infrastructure/recovery-incident-notifier"
+    },
+    {
       "path": "./packages/service/recovery-drill-orchestrator"
     },
     {
       "path": "./packages/service/recovery-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-insight-orchestrator"
     },
     {
       "path": "./packages/app/recovery-console"

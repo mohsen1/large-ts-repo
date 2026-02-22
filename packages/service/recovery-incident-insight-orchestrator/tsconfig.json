@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "declaration": true,
+    "composite": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-incident-insights/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-incident-insights-store/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-incident-notifier/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    }
+  ]
+}
