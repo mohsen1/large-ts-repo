@@ -8,7 +8,7 @@ This is entirely AI generated using `Codex-5.3-Spark` for testing purposes. The 
 
 ## How it was generated
 
-See [`generate.ts`](./scripts/generate.ts) for the script that was used to generate this monorepo. 
+See [`generate.sh`](./scripts/generate.sh) for the script that was used to generate this monorepo. 
 
 ## Lines of Code
 
