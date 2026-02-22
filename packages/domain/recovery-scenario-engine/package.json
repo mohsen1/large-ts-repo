@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-scenario-orchestrator",
+  "name": "@domain/recovery-scenario-engine",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,11 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@data/recovery-scenario-store": "workspace:*",
-    "@domain/recovery-scenario-engine": "workspace:*",
-    "@infrastructure/recovery-scenario-orchestration-adapters": "workspace:*",
     "@shared/core": "workspace:*",
-    "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*",
     "zod": "^3.24.0"
   }

@@ -14,9 +14,8 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-scenario-planner": "workspace:*",
-    "@shared/result": "workspace:*",
+    "@domain/recovery-scenario-engine": "workspace:*",
     "@shared/protocol": "workspace:*",
-    "@shared/type-level": "workspace:*"
+    "@shared/result": "workspace:*"
   }
 }

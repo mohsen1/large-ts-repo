@@ -138,12 +138,15 @@
     },
     {
       "path": "./packages/domain/recovery-readiness"
-    }
+    },
     {
       "path": "./packages/domain/recovery-operations-intelligence"
     },
     {
       "path": "./packages/domain/recovery-plan"
+    },
+    {
+      "path": "./packages/domain/recovery-scenario-engine"
     },
     {
       "path": "./packages/domain/knowledge-graph"
@@ -452,6 +455,9 @@
       "path": "./packages/infrastructure/recovery-notifications"
     },
     {
+      "path": "./packages/infrastructure/recovery-scenario-orchestration-adapters"
+    },
+    {
       "path": "./packages/infrastructure/recovery-scenario-notifier"
     },
     {
@@ -507,7 +513,7 @@
     },
     {
       "path": "./packages/data/recovery-operations-governance-store"
-    }
+    },
     {
       "path": "./packages/data/recovery-operations-intelligence-store"
     },

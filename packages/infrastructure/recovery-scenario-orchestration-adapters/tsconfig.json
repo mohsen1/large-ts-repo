@@ -10,13 +10,7 @@
   ],
   "references": [
     {
-      "path": "./../../data/recovery-scenario-store/tsconfig.json"
-    },
-    {
       "path": "./../../domain/recovery-scenario-engine/tsconfig.json"
-    },
-    {
-      "path": "./../../infrastructure/recovery-scenario-orchestration-adapters/tsconfig.json"
     },
     {
       "path": "./../../shared/core/tsconfig.json"
@@ -25,7 +19,7 @@
       "path": "./../../shared/result/tsconfig.json"
     },
     {
-      "path": "./../../shared/type-level/tsconfig.json"
+      "path": "./../../shared/zod-adapters/tsconfig.json"
     }
   ]
 }

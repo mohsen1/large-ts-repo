@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-scenario-orchestrator",
+  "name": "@infrastructure/recovery-scenario-orchestration-adapters",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,12 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@data/recovery-scenario-store": "workspace:*",
+    "@aws-sdk/client-sns": "^3.900.0",
     "@domain/recovery-scenario-engine": "workspace:*",
-    "@infrastructure/recovery-scenario-orchestration-adapters": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
-    "@shared/type-level": "workspace:*",
-    "zod": "^3.24.0"
+    "@shared/zod-adapters": "workspace:*"
   }
 }
