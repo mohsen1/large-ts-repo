@@ -24,6 +24,12 @@
       "path": "./../../service/recovery-runner/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-incident-analytics/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-incident-analytics-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-workload-orchestrator/tsconfig.json"
     },
     {

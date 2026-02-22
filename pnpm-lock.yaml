@@ -134,6 +134,9 @@ importers:
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
+      '@data/recovery-simulation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-simulation-store
       '@data/recovery-stability-store':
         specifier: workspace:*
         version: link:../../data/recovery-stability-store
@@ -146,12 +149,18 @@ importers:
       '@domain/incident-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/incident-signal-intelligence
+      '@domain/recovery-incident-analytics':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-analytics
       '@domain/recovery-incident-workflows':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-workflows
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-simulation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-core
       '@domain/recovery-stability-models':
         specifier: workspace:*
         version: link:../../domain/recovery-stability-models
@@ -161,12 +170,18 @@ importers:
       '@service/recovery-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-orchestrator
+      '@service/recovery-incident-analytics-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-analytics-orchestrator
       '@service/recovery-incident-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-orchestrator
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
+      '@service/recovery-simulation-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-simulation-orchestrator
       '@service/recovery-stability-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stability-orchestrator
@@ -730,6 +745,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/data/recovery-simulation-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/recovery-simulation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/data/recovery-stability-store:
     dependencies:
       '@data/repositories':
@@ -1216,6 +1249,27 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-incident-analytics:
+    dependencies:
+      '@domain/incident-signal-intelligence':
+        specifier: workspace:*
+        version: link:../incident-signal-intelligence
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/zod-adapters':
+        specifier: workspace:*
+        version: link:../../shared/zod-adapters
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-incident-insights:
     dependencies:
       '@shared/type-level':
@@ -1449,6 +1503,15 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-simulation-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2358,6 +2421,39 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-incident-analytics-orchestrator:
+    dependencies:
+      '@data/incident-signal-store':
+        specifier: workspace:*
+        version: link:../../data/incident-signal-store
+      '@data/recovery-incident-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-store
+      '@domain/incident-signal-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/incident-signal-intelligence
+      '@domain/recovery-incident-analytics':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-analytics
+      '@domain/recovery-incident-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-orchestration
+      '@service/recovery-command-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-command-orchestrator
+      '@service/recovery-incident-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-incident-orchestrator
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-incident-insight-orchestrator:
     dependencies:
       '@data/recovery-incident-insights-store':
@@ -2813,6 +2909,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-simulation-orchestrator:
+    dependencies:
+      '@data/recovery-simulation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-simulation-store
+      '@domain/recovery-simulation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-stability-orchestrator:
     dependencies:

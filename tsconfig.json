@@ -170,6 +170,9 @@
       "path": "./packages/domain/incident-signal-intelligence"
     },
     {
+      "path": "./packages/domain/recovery-incident-analytics"
+    },
+    {
       "path": "./packages/domain/recovery-plan"
     },
     {
@@ -633,6 +636,9 @@
     },
     {
       "path": "./packages/service/recovery-command-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-analytics-orchestrator"
     },
     {
       "path": "./packages/app/recovery-incident-dashboard"

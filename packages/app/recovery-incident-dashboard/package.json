@@ -27,6 +27,7 @@
     "@shared/result": "workspace:*",
     "@data/incident-signal-store": "workspace:*",
     "@domain/incident-signal-intelligence": "workspace:*",
+    "@domain/recovery-incident-analytics": "workspace:*",
     "@domain/recovery-stability-models": "workspace:*",
     "@domain/recovery-simulation-core": "workspace:*",
     "@data/recovery-stability-store": "workspace:*",
@@ -39,6 +40,7 @@
     "@service/recovery-workflow-orchestrator": "workspace:*",
     "@data/recovery-workflow-store": "workspace:*",
     "@domain/recovery-incident-workflows": "workspace:*",
+    "@service/recovery-incident-analytics-orchestrator": "workspace:*",
     "zod": "^3.24.0"
   }
 }

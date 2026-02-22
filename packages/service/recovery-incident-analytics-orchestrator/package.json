@@ -1,0 +1,28 @@
+{
+  "name": "@service/recovery-incident-analytics-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-incident-analytics": "workspace:*",
+    "@domain/incident-signal-intelligence": "workspace:*",
+    "@domain/recovery-incident-orchestration": "workspace:*",
+    "@data/incident-signal-store": "workspace:*",
+    "@data/recovery-incident-store": "workspace:*",
+    "@service/recovery-command-orchestrator": "workspace:*",
+    "@service/recovery-incident-orchestrator": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/util": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}
