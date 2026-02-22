@@ -15,6 +15,7 @@ export interface RecoveryArtifactRepository {
   findByRunId(runId: RecoveryRunId): Promise<RecoveryArtifact | undefined>;
   queryArtifacts(filter: RecoveryArtifactFilter): Promise<readonly RecoveryArtifact[]>;
   appendTimeline(runId: RecoveryRunId, segment: RecoveryTimelineSegment): Promise<boolean>;
+  getActiveRuns(): Promise<readonly RecoveryRunState[]>;
 }
 
 export interface RecoveryRunRepository {
@@ -30,11 +31,18 @@ export class InMemoryRecoveryArtifactRepository implements RecoveryArtifactRepos
 
   async save(artifact: RecoveryArtifact): Promise<boolean> {
     this.artifacts.set(artifact.id, artifact);
+    this.runs.set(artifact.runId, artifact.run);
     return true;
   }
 
   async findByRunId(runId: RecoveryRunId): Promise<RecoveryArtifact | undefined> {
-    return this.artifacts.get(`${runId}`);
+    let latest: RecoveryArtifact | undefined;
+    for (const artifact of this.artifacts.values()) {
+      if (artifact.runId === runId && (!latest || latest.recordedAt < artifact.recordedAt)) {
+        latest = artifact;
+      }
+    }
+    return latest;
   }
 
   async queryArtifacts(filter: RecoveryArtifactFilter): Promise<readonly RecoveryArtifact[]> {

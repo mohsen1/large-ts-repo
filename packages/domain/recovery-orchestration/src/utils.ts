@@ -89,7 +89,7 @@ export const calculateRecoveryWindowMinutes = (program: RecoveryProgram): number
 
 export const normalizeProgram = (program: Optionalize<RecoveryProgram, 'updatedAt'>): RecoveryProgram => ({
   ...program,
-  steps: program.steps.map((step) => ({
+  steps: program.steps.map((step: RecoveryStep) => ({
     ...step,
     timeoutMs: Math.max(100, Math.floor(step.timeoutMs)),
     tags: [...new Set(step.tags)],

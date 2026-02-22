@@ -78,6 +78,18 @@ export interface IncidentRecord<C = Record<string, unknown>> {
   metadata?: C;
 }
 
+export interface FailureReport {
+  incidentId: IncidentId | Brand<string, 'FailureReportIncidentId'>;
+  tenantId: TenantId;
+  title: string;
+  severity: IncidentSeverity;
+  source: string;
+  status: 'active' | 'inactive' | IncidentState;
+  createdAt: string;
+  updatedAt: string;
+  summary: Record<string, unknown>;
+}
+
 export interface EscalationPolicy {
   id: Brand<string, 'EscalationPolicyId'>;
   name: string;

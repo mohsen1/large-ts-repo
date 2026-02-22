@@ -1,5 +1,7 @@
 import { normalizeSeverity, type PlanRisk, type FailureSignal, type PolicyDecision, type IncidentFingerprint } from './models';
 
+export { type PolicyDecision } from './models';
+
 export interface DecisionRule {
   id: string;
   shape: string;
@@ -22,7 +24,10 @@ const resolveRisk = (value: number): PlanRisk =>
 export const evaluateWindowSignals = (signals: readonly FailureSignal[], rule: DecisionRule): FailureSignal[] => {
   const now = Date.now();
   const minTs = now - rule.windowMs;
-  return signals.filter((signal) => signal.shape === rule.shape && signal.severity !== 'p3' ? true : true && new Date(signal.createdAt).getTime() >= minTs);
+  return signals.filter(
+    (signal) => signal.shape === rule.shape && (normalizeSeverity(signal.severity) >= rule.minimumSeverity) &&
+      new Date(signal.createdAt).getTime() >= minTs,
+  );
 };
 
 export const evaluateRuleDecision = (signals: readonly FailureSignal[], rule: DecisionRule): PolicyDecision | undefined => {

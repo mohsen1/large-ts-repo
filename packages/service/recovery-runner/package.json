@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@domain/recovery-orchestration": "workspace:*",
+    "@data/recovery-observability": "workspace:*",
     "@data/recovery-artifacts": "workspace:*",
     "@data/recovery-policy-store": "workspace:*",
     "@infrastructure/recovery-notifications": "workspace:*",

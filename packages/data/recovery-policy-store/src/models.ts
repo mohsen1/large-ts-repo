@@ -48,5 +48,6 @@ export interface PolicyDecisionContext {
 export interface PolicyArtifact {
   readonly decision: RecoveryPolicyEvaluation;
   readonly tags: PolicyContextTags;
+  readonly runId: string;
   readonly tenant: string;
 }

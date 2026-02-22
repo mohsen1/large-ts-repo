@@ -6,6 +6,7 @@ import type {
   Operator,
   PolicyDecision,
   PolicyEvaluationContext,
+  PolicyEffect,
   PolicyValue,
   RecoveryPolicy,
   RecoveryPolicyEvaluation,
@@ -126,7 +127,7 @@ export const normalizePolicyDecision = (
   context: PolicyEvaluationContext
 ): RecoveryPolicyEvaluation['blocking'][number] => {
   let score = 0;
-  const triggered = [] as RecoveryPolicyEvaluation['blocking'][number]['effects'];
+  const triggered: PolicyEffect[] = [];
   const reasons = [] as string[];
 
   for (const rule of policy.rules) {
@@ -181,6 +182,7 @@ export const buildEvaluationContext = (
 });
 
 export const aggregateDecisions = (
+  runId: string,
   policyCount: number,
   decisions: readonly PolicyDecision[]
 ): RecoveryPolicyEvaluation => {
@@ -189,7 +191,7 @@ export const aggregateDecisions = (
   const mitigations = decisions.filter((decision) => decision.effects.length > 0);
   const totalScore = decisions.reduce((total, decision) => total + decision.scoreDelta, 0);
   return {
-    runId: decisions[0]?.policyId as unknown as string as Brand<string, 'RecoveryRunId'>,
+    runId: runId as Brand<string, 'RecoveryRunId'>,
     policyCount,
     blocking,
     advisory,

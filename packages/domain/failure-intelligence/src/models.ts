@@ -56,6 +56,9 @@ export interface FailurePlanAction {
 }
 
 export type PlanRisk = 'low' | 'moderate' | 'high' | 'critical';
+export type NewFailureSignal = Omit<FailureSignalInput, 'tenantId'> & {
+  tenantId: Brand<string, 'TenantId'>;
+};
 
 export interface IncidentFingerprint {
   tenantId: Brand<string, 'TenantId'>;
@@ -75,6 +78,9 @@ export interface FailureActionPlan {
   createdAt: string;
   expiresAt: string;
 }
+
+export const normalizeSeverity = (value: Severity): number =>
+  value === 'p0' ? 4 : value === 'p1' ? 3 : value === 'p2' ? 2 : 1;
 
 export interface PolicyDecision {
   ruleId: string;
@@ -97,6 +103,9 @@ export const createFailureSignalIdentity = (input: FailureSignalInput): FailureS
   const raw = `${input.tenantId}:${input.component}:${input.shape}:${Date.now()}`;
   return withBrand(raw, 'FailureSignalId');
 };
+
+export const createSignalIdentity = (input: NewFailureSignal): FailureSignalId =>
+  createFailureSignalIdentity(input as unknown as FailureSignalInput);
 
 export const createSignalTags = (severity: Severity, shape: SignalShape, component: string): SignalTag[] => {
   const score = severityWeight(severity);

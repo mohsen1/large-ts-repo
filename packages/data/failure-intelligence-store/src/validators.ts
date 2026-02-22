@@ -10,7 +10,14 @@ const QuerySchema = z.object({
   limit: z.number().int().min(1).max(500).optional(),
 });
 
-export type StoreQuery = z.infer<typeof QuerySchema> & { tenantId: Brand<string, 'TenantId'> };
+type RawStoreQuery = z.infer<typeof QuerySchema>;
+
+export interface StoreQuery extends Omit<RawStoreQuery, 'from' | 'to' | 'limit'> {
+  tenantId: Brand<string, 'TenantId'>;
+  from: number;
+  to: number;
+  limit: number;
+}
 
 export const parseQuery = (raw: unknown): StoreQuery | undefined => {
   const parsed = QuerySchema.safeParse(raw);

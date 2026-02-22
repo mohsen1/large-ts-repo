@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { brandFrom } from '@shared/validation';
 import { type FailureSignal, type FailureActionPlan, createFailureSignalIdentity, createSignalTags, type SignalShape, type Severity } from './models';
+import type { Primitive } from '@shared/type-level';
 
 const tenantBrand = brandFrom(z.string().min(3), 'TenantId');
 const shapeSchema = z.enum(['latency', 'error-rate', 'availability', 'capacity', 'security']);
@@ -20,7 +21,7 @@ export const FailureSignalInputSchema = z.object({
     host: z.string().optional(),
     owner: z.string().optional(),
   }),
-  payload: z.record(z.unknown()),
+  payload: z.record(z.union([z.string(), z.number(), z.boolean(), z.bigint(), z.symbol(), z.null()])),
   occurredAt: z.string().datetime({ offset: true }).optional(),
 });
 
@@ -53,7 +54,9 @@ export const normalizeSignal = (raw: unknown): FailureSignal | undefined => {
   const parsed = FailureSignalInputSchema.safeParse(raw);
   if (!parsed.success) return;
 
-  const tenantId = tenantBrand.parse(parsed.data.tenantId).value;
+  const tenantIdResult = tenantBrand.parse(parsed.data.tenantId);
+  if (!tenantIdResult.ok) return;
+  const tenantId = tenantIdResult.value;
   const occurredAt = parsed.data.occurredAt ?? new Date().toISOString();
   const signalInput = { ...parsed.data, tenantId, occurredAt };
 
@@ -66,7 +69,7 @@ export const normalizeSignal = (raw: unknown): FailureSignal | undefined => {
     severity: parsed.data.severity as Severity,
     message: parsed.data.message,
     context: signalInput.context,
-    payload: signalInput.payload as Record<string, never>,
+    payload: signalInput.payload as Record<string, Primitive>,
     createdAt: new Date().toISOString(),
     occurredAt,
     history: [Date.parse(occurredAt)],
@@ -78,13 +81,19 @@ export const normalizePlan = (raw: unknown): FailureActionPlan | undefined => {
   const parsed = FailureActionPlanSchema.safeParse(raw);
   if (!parsed.success) return;
 
+  const tenantIdResult = tenantBrand.parse(parsed.data.tenantId);
+  if (!tenantIdResult.ok) return;
+  const tenantId = tenantIdResult.value;
+  const fingerprintTenantIdResult = tenantBrand.parse(parsed.data.fingerprint.tenantId);
+  if (!fingerprintTenantIdResult.ok) return;
+
   return {
     id: `plan-${Date.now()}` as any,
-    tenantId: tenantBrand.parse(parsed.data.tenantId).value,
+    tenantId,
     signalIds: parsed.data.signalIds as Array<any>,
     fingerprint: {
       ...parsed.data.fingerprint,
-      tenantId: tenantBrand.parse(parsed.data.fingerprint.tenantId).value,
+      tenantId: fingerprintTenantIdResult.value,
     },
     actions: parsed.data.actions as any,
     owner: parsed.data.owner,

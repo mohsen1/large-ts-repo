@@ -1,10 +1,11 @@
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
-
 import {
+  buildExecutionPlan,
   createRecoveryRunState,
   isRunRecoverable,
   topologicalOrder,
+  simulateRun,
   type RecoveryCheckpoint,
   type RecoveryProgram,
   type RecoveryRunId,
@@ -14,10 +15,15 @@ import {
   type RecoveryArtifactRepository,
   type RecoveryRunRepository,
 } from '@data/recovery-artifacts';
-import { type RecoveryArtifact } from '@data/recovery-artifacts';
-import { type InMemoryRecoveryPolicyRepository, type RecoveryPolicyRepository } from '@data/recovery-policy-store';
+import type { RecoveryArtifact } from '@data/recovery-artifacts';
+import {
+  InMemoryRecoveryPolicyRepository,
+  type RecoveryPolicyRepository,
+} from '@data/recovery-policy-store';
 import { RecoveryPolicyEngine } from '@service/recovery-policy-engine';
 import type { RecoveryPolicyEngine as PolicyEngine } from '@service/recovery-policy-engine';
+import { RecoveryAdvisor, RecoveryObservabilityCoordinatorImpl } from '@data/recovery-observability';
+import type { RecoverySuggestion } from '@data/recovery-observability';
 import type { RecoveryNotifier } from '@infrastructure/recovery-notifications';
 import { RecoveryExecutor } from './executor';
 import { scheduleProgram, shouldThrottle } from './scheduler';
@@ -41,6 +47,7 @@ const defaultStepExecutor = async () => 0;
 export class RecoveryOrchestrator {
   private readonly executor: RecoveryExecutor;
   private readonly policyEngine: PolicyEngine;
+  private readonly advisor: RecoveryAdvisor;
 
   constructor(private readonly options: RecoveryRunnerOptions) {
     this.executor = new RecoveryExecutor(
@@ -52,6 +59,7 @@ export class RecoveryOrchestrator {
 
     const repository = this.options.policyRepository ?? new InMemoryRecoveryPolicyRepository();
     this.policyEngine = this.options.policyEngine ?? new RecoveryPolicyEngine(repository);
+    this.advisor = new RecoveryAdvisor(this.options.artifactRepository);
   }
 
   async initiateRecovery(program: RecoveryProgram, context: RecoveryCommandContext): Promise<Result<RecoveryRunState, Error>> {
@@ -81,11 +89,25 @@ export class RecoveryOrchestrator {
       });
     }
 
-    const schedule = scheduleProgram(
-      runState,
+    const schedule = scheduleProgram(runState, program);
+    const plan = buildExecutionPlan({
+      runId: runState.runId,
       program,
-    );
-    runState.estimatedRecoveryTimeMinutes = schedule.predictedDurationMinutes;
+      includeFallbacks: true,
+    });
+    runState.estimatedRecoveryTimeMinutes = Math.max(schedule.predictedDurationMinutes, plan.estimatedMinutes);
+
+    const simulation = simulateRun(program, runState);
+    const suggestions = await this.advisor.latestSuggestion();
+    if (this.shouldAbortBySimulation(simulation, suggestions)) {
+      runState.status = 'aborted';
+      runState.completedAt = new Date().toISOString();
+      await this.options.runRepository.setRun(runState);
+      const artifact = this.createArtifact(runState, program);
+      await this.options.artifactRepository.save(artifact);
+      await this.options.notifier.publishRunState(runState);
+      return fail(new Error('simulation-risk-too-high'));
+    }
 
     if (shouldThrottle(runState)) {
       return fail(new Error('run-throttled'));
@@ -116,6 +138,16 @@ export class RecoveryOrchestrator {
     run.completedAt = new Date().toISOString();
     await this.options.runRepository.setRun(run);
     return ok(`run ${runId} closed`);
+  }
+
+  private shouldAbortBySimulation(
+    simulation: ReturnType<typeof simulateRun>,
+    suggestions: readonly RecoverySuggestion[],
+  ): boolean {
+    if (simulation.successProbability < 0.15) return true;
+    if (simulation.orderedSteps.length === 0) return true;
+    if (suggestions.length > 0 && simulation.expectedDurationMinutes > 120) return true;
+    return false;
   }
 
   private createArtifact(runState: RecoveryRunState, program: RecoveryProgram): RecoveryArtifact {

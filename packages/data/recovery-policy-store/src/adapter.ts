@@ -29,7 +29,7 @@ export const decodePolicyEnvelope = async (
 export const encodePolicyDecision = (bundle: PolicyComplianceBundle): PolicyDecisionEnvelope => ({
   kind: 'policy-decision',
   evaluatedAt: new Date().toISOString(),
-  tenant: bundle.decision.trace.runId,
+  tenant: bundle.decision.runId as string,
   context: {
     runId: bundle.decision.runId as string,
     incidentId: 'policy-engine',
@@ -53,6 +53,6 @@ export const policyAdapterResult = (payload: unknown) => {
 
 export const policyAdapter: RecoveryPolicyAdapter = {
   decodePolicy: decodePolicyEnvelope,
-  encodeDecision,
-  emitArtifact,
+  encodeDecision: encodePolicyDecision,
+  emitArtifact: emitPolicyArtifact,
 };

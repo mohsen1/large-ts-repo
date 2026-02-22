@@ -5,12 +5,14 @@ import type {
   RecoveryProgram,
   RecoveryRunState,
   RecoveryStep,
+  RecoveryCheckpoint,
 } from '@domain/recovery-orchestration';
 import type {
   RecoveryArtifact,
   RecoveryArtifactRepository,
   RecoveryRunRepository,
 } from '@data/recovery-artifacts';
+import { InMemoryTimelineRecorder } from '@data/recovery-artifacts/telemetry';
 import type { RecoveryNotifier } from '@infrastructure/recovery-notifications';
 
 import { encodeArtifact } from '@data/recovery-artifacts';
@@ -18,15 +20,14 @@ import { pickWindow } from './scheduler';
 
 type StepExecution = (step: RecoveryStep) => Promise<number>;
 
-const wait = (ms: number): Promise<void> =>
-  new Promise((resolve) => setTimeout(resolve, Math.min(ms, 2)));
-
 export class RecoveryExecutor {
+  private readonly timelineRecorder = new InMemoryTimelineRecorder();
+
   constructor(
     private readonly runRepository: RecoveryRunRepository,
     private readonly artifactRepository: RecoveryArtifactRepository,
     private readonly notifier: RecoveryNotifier,
-    private readonly executeStep: StepExecution
+    private readonly executeStep: StepExecution,
   ) {}
 
   async run(
@@ -51,7 +52,7 @@ export class RecoveryExecutor {
           id: checkpointId,
           runId: run.runId,
           stepId: step.id,
-          status: code === 0 ? 'completed' : 'failed',
+          status: (code === 0 ? 'completed' : 'failed') as RecoveryCheckpoint['status'],
           exitCode: code,
           createdAt: completedAt,
           message: code === 0 ? 'success' : 'non-zero exit',
@@ -60,7 +61,10 @@ export class RecoveryExecutor {
 
         run.currentStepId = undefined;
         run.nextStepId = undefined;
-        run.estimatedRecoveryTimeMinutes = Math.max(0, run.estimatedRecoveryTimeMinutes - Math.ceil((Date.now() - start) / 60000));
+        run.estimatedRecoveryTimeMinutes = Math.max(
+          0,
+          run.estimatedRecoveryTimeMinutes - Math.ceil((Date.now() - start) / 60000),
+        );
         await this.artifactRepository.save({
           id: `${run.runId}:${step.id}` as any,
           runId: run.runId,
@@ -74,11 +78,20 @@ export class RecoveryExecutor {
         if (artifact) {
           await this.notifier.publishCheckpointUpdate(encodeArtifact(artifact));
         }
+
+        await this.timelineRecorder.recordSegment(run.runId, {
+          name: step.id,
+          startedAt: new Date(start).toISOString(),
+          completedAt,
+          durationMs: Date.now() - start,
+          healthy: code === 0,
+          details: { command: step.command, stepId: step.id },
+        });
+
         if (code !== 0) {
           run.status = 'failed';
           break;
         }
-        await wait(1);
       }
 
       if (run.status !== 'failed') {

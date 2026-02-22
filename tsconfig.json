@@ -359,6 +359,9 @@
       "path": "./packages/data/recovery-policy-store"
     },
     {
+      "path": "./packages/data/recovery-observability"
+    },
+    {
       "path": "./packages/infrastructure/recovery-notifications"
     },
     {

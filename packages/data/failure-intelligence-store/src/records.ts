@@ -54,7 +54,7 @@ export const makeRecordFromPlan = (plan: FailureActionPlan): FailureKnowledgeRec
     id: `${plan.id}:record` as Brand<string, 'FailureKnowledgeId'>,
     tenantId: plan.tenantId,
     fingerprint: plan.fingerprint,
-    state: 'open',
+    state: 'detected',
     report: {
       incidentId: `${plan.id}:incident`,
       tenantId: String(plan.tenantId),

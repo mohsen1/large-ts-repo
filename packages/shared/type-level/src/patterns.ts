@@ -112,6 +112,8 @@ export interface Cursor<T> {
 
 export type NonEmptyArray<T> = [T, ...T[]];
 
+export type Optionalize<T, K extends keyof T> = Omit<T, K> & { [P in K]?: T[P] };
+
 export type Result<T, E = Error> =
   | { ok: true; value: T }
   | { ok: false; error: E };

@@ -10,6 +10,12 @@ import {
   RecoveryWindow,
 } from './types';
 
+type RecoveryProgramInput = Omit<RecoveryProgram, 'id' | 'tenant' | 'service'> & {
+  id: string;
+  tenant: string;
+  service: string;
+};
+
 export const BrandIdSchema = z.string().min(1);
 
 export const RecoveryWindowSchema: z.ZodType<RecoveryWindow> = z.object({
@@ -41,7 +47,7 @@ export const RecoveryStepSchema: z.ZodType<RecoveryStep> = z.object({
   tags: z.array(z.string()),
 });
 
-export const RecoveryProgramSchema: z.ZodType<RecoveryProgram> = z.object({
+export const RecoveryProgramSchema: z.ZodType<RecoveryProgram, z.ZodTypeDef, RecoveryProgramInput> = z.object({
   id: BrandIdSchema.transform((value) => value as RecoveryProgram['id']),
   tenant: BrandIdSchema.transform((value) => value as RecoveryProgram['tenant']),
   service: BrandIdSchema.transform((value) => value as RecoveryProgram['service']),

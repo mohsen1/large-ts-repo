@@ -68,11 +68,20 @@
       "@domain/recovery-orchestration": [
         "packages/domain/recovery-orchestration/src/index.ts"
       ],
+      "@domain/recovery-policy": [
+        "packages/domain/recovery-policy/src/index.ts"
+      ],
       "@data/recovery-artifacts": [
         "packages/data/recovery-artifacts/src/index.ts"
       ],
+      "@data/recovery-policy-store": [
+        "packages/data/recovery-policy-store/src/index.ts"
+      ],
       "@infrastructure/recovery-notifications": [
         "packages/infrastructure/recovery-notifications/src/index.ts"
+      ],
+      "@service/recovery-policy-engine": [
+        "packages/service/recovery-policy-engine/src/index.ts"
       ],
       "@service/recovery-runner": [
         "packages/service/recovery-runner/src/index.ts"

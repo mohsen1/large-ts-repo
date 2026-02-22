@@ -1,9 +1,11 @@
 import { z } from 'zod';
 
 import type {
+  ComparisonCondition,
   ConditionExpression,
   JsonFieldPath,
   RecoveryAction,
+  PolicyValue,
   RecoveryPolicy,
   RecoveryPolicyMode,
   RecoveryPolicyRule,
@@ -13,9 +15,9 @@ import type {
 const PolicyModeSchema = z.enum(['advisory', 'mandatory', 'blocking']) as z.ZodType<RecoveryPolicyMode>;
 const PolicySeveritySchema = z.enum(['info', 'warn', 'error', 'critical']) as z.ZodType<RecoveryPolicySeverity>;
 const PolicyActionSchema = z.enum(['pause', 'throttle', 'retry', 'escalate', 'abort', 'force-progress']) as z.ZodType<RecoveryAction>;
-const PrimitiveSchema = z.union([z.string(), z.number(), z.boolean(), z.null(), z.unknown()]);
+const PrimitiveSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]);
 
-const PolicyValueSchema = z.union([
+const PolicyValueSchema: z.ZodType<PolicyValue> = z.union([
   PrimitiveSchema,
   z.array(PrimitiveSchema),
   z.record(z.string(), PrimitiveSchema),
@@ -23,7 +25,7 @@ const PolicyValueSchema = z.union([
 
 const PathSchema = z.string() as z.ZodType<JsonFieldPath>;
 
-const ComparisonSchema = z.object({
+const ComparisonSchema: z.ZodType<ComparisonCondition> = z.object({
   operator: z.enum(['eq', 'ne', 'gt', 'gte', 'lt', 'lte', 'contains', 'in', 'notIn', 'exists']),
   path: PathSchema,
   value: PolicyValueSchema,
@@ -38,7 +40,7 @@ const ConditionSchema: z.ZodType<ConditionExpression> = z.lazy(() =>
     z.object({ all: z.array(ConditionSchema).min(1) }),
     z.object({ any: z.array(ConditionSchema).min(1) }),
     TruthySchema,
-  ])
+  ]) as z.ZodType<ConditionExpression>
 );
 
 const PolicyEffectSchema = z.object({

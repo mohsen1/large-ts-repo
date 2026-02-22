@@ -10,13 +10,10 @@
   ],
   "references": [
     {
-      "path": "./../../domain/recovery-orchestration/tsconfig.json"
+      "path": "./../../data/recovery-artifacts/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/protocol/tsconfig.json"
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"

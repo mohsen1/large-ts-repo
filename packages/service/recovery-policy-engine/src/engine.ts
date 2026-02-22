@@ -16,9 +16,9 @@ import {
   policyIsBlocking,
   pickTopEscalationRoutes,
 } from '@domain/recovery-policy';
-import type {
+import {
   PolicyReadService,
-  RecoveryPolicyRepository,
+  type RecoveryPolicyRepository,
 } from '@data/recovery-policy-store';
 
 export interface PolicyEngineDecision {
@@ -55,7 +55,7 @@ export class RecoveryPolicyEngine {
       decisions.push(decision);
     }
 
-    const evaluation = aggregateDecisions(snapshot.length, decisions);
+    const evaluation = aggregateDecisions(run.runId, snapshot.length, decisions);
     const bundle: PolicyComplianceBundle = {
       decision: evaluation,
       blocked: decisions.some((decision) => policyIsBlocking([decision])),

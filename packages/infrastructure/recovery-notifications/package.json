@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-eventbridge": "^3.900.0",
+    "@aws-sdk/client-sns": "^3.900.0",
     "@domain/recovery-orchestration": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/protocol": "workspace:*"
