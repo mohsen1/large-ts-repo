@@ -1,0 +1,23 @@
+{
+  "name": "@infrastructure/recovery-continuity-adapters",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@aws-sdk/client-eventbridge": "^3.900.0",
+    "@aws-sdk/client-s3": "^3.900.0",
+    "@data/recovery-continuity-plan-store": "workspace:*",
+    "@domain/recovery-continuity-planning": "workspace:*",
+    "@shared/result": "workspace:*"
+  }
+}

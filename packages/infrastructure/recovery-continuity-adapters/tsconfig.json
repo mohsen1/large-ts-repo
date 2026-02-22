@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    { "path": "./../../shared/result/tsconfig.json" },
+    { "path": "./../../shared/core/tsconfig.json" },
+    { "path": "./../../domain/recovery-continuity-planning/tsconfig.json" },
+    { "path": "./../../data/recovery-continuity-plan-store/tsconfig.json" }
+  ]
+}

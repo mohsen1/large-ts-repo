@@ -32,12 +32,15 @@
       "@data/adaptive-ops-store": [
         "packages/data/adaptive-ops-store/src/index.ts"
       ],
-      "@infrastructure/incident-connectors": [
-        "packages/infrastructure/incident-connectors/src/index.ts"
-      ],
-      "@service/adaptive-ops-runner": [
-        "packages/service/adaptive-ops-runner/src/index.ts"
-      ],
+    "@infrastructure/incident-connectors": [
+      "packages/infrastructure/incident-connectors/src/index.ts"
+    ],
+    "@infrastructure/incident-forecasting-connectors": [
+      "packages/infrastructure/incident-forecasting-connectors/src/index.ts"
+    ],
+    "@service/adaptive-ops-runner": [
+      "packages/service/adaptive-ops-runner/src/index.ts"
+    ],
       "@app/adaptive-ops-console": [
         "packages/app/adaptive-ops-console/src/index.ts"
       ],
@@ -56,6 +59,21 @@
       "@domain/*": [
         "packages/domain/*"
       ],
+      "@domain/recovery-operations-intelligence": [
+        "packages/domain/recovery-operations-intelligence/src/index.ts"
+      ],
+      "@domain/recovery-scenario-planner": [
+        "packages/domain/recovery-scenario-planner/dist/src/index.d.ts"
+      ],
+      "@domain/recovery-scenario-engine": [
+        "packages/domain/recovery-scenario-engine/src/index.ts"
+      ],
+      "@infrastructure/recovery-scenario-orchestration-adapters": [
+        "packages/infrastructure/recovery-scenario-orchestration-adapters/src/index.ts"
+      ],
+      "@domain/recovery-intelligence": [
+        "packages/domain/recovery-intelligence/dist/src/index.d.ts"
+      ],
       "@domain/recovery-drill-telemetry": [
         "packages/domain/recovery-drill-telemetry/src"
       ],
@@ -68,11 +86,26 @@
       "@data/*": [
         "packages/data/*"
       ],
+      "@data/recovery-operations-intelligence-store": [
+        "packages/data/recovery-operations-intelligence-store/src/index.ts"
+      ],
       "@data/recovery-playbook-store": [
         "packages/data/recovery-playbook-store/src/index.ts"
       ],
+      "@data/recovery-scenario-store": [
+        "packages/data/recovery-scenario-store/src/index.ts"
+      ],
+      "@data/recovery-continuity-plan-store": [
+        "packages/data/recovery-continuity-plan-store/src/index.ts"
+      ],
+      "@data/recovery-intelligence-store": [
+        "packages/data/recovery-intelligence-store/dist/src/index.d.ts"
+      ],
       "@service/*": [
         "packages/service/*"
+      ],
+      "@service/recovery-operations-intelligence-orchestrator": [
+        "packages/service/recovery-operations-intelligence-orchestrator/src/index.ts"
       ],
       "@service/recovery-playbook-engine": [
         "packages/service/recovery-playbook-engine/src/index.ts"
@@ -92,11 +125,23 @@
       "@domain/recovery-risk-models": [
         "packages/domain/recovery-risk-models/src/index.ts"
       ],
+      "@domain/recovery-coordination": [
+        "packages/domain/recovery-coordination/src/index.ts"
+      ],
+      "@domain/recovery-continuity-planning": [
+        "packages/domain/recovery-continuity-planning/src/index.ts"
+      ],
       "@domain/recovery-policy": [
         "packages/domain/recovery-policy/src/index.ts"
       ],
       "@domain/recovery-readiness": [
         "packages/domain/recovery-readiness/src/index.ts"
+      ],
+      "@domain/recovery-operations-governance": [
+        "packages/domain/recovery-operations-governance/src/index.ts"
+      ],
+      "@domain/incident-forecasting": [
+        "packages/domain/incident-forecasting/src/index.ts"
       ],
       "@service/recovery-risk-engine": [
         "packages/service/recovery-risk-engine/src/index.ts"
@@ -119,11 +164,35 @@
       "@data/recovery-plan-store": [
         "packages/data/recovery-plan-store/src/index.ts"
       ],
+      "@data/recovery-coordination-store": [
+        "packages/data/recovery-coordination-store/src/index.ts"
+      ],
+      "@data/incident-forecast-store": [
+        "packages/data/incident-forecast-store/src/index.ts"
+      ],
       "@infrastructure/recovery-drill-archive": [
         "packages/infrastructure/recovery-drill-archive/src/index.ts"
       ],
+      "@infrastructure/recovery-operations-intelligence-adapters": [
+        "packages/infrastructure/recovery-operations-intelligence-adapters/src/index.ts"
+      ],
+      "@infrastructure/recovery-scenario-notifier": [
+        "packages/infrastructure/recovery-scenario-notifier/dist/src/index.d.ts"
+      ],
+      "@infrastructure/recovery-continuity-adapters": [
+        "packages/infrastructure/recovery-continuity-adapters/src/index.ts"
+      ],
       "@infrastructure/recovery-drill-archive/*": [
         "packages/infrastructure/recovery-drill-archive/src/*"
+      ],
+      "@infrastructure/recovery-incident-notifier": [
+        "packages/infrastructure/recovery-incident-notifier/src/index.ts"
+      ],
+      "@infrastructure/recovery-incident-notifier/*": [
+        "packages/infrastructure/recovery-incident-notifier/src/*"
+      ],
+      "@infrastructure/recovery-coordination-notifier": [
+        "packages/infrastructure/recovery-coordination-notifier/src/index.ts"
       ],
       "@infrastructure/recovery-notifications": [
         "packages/infrastructure/recovery-notifications/src/index.ts"
@@ -133,6 +202,15 @@
       ],
       "@service/recovery-plan-orchestrator": [
         "packages/service/recovery-plan-orchestrator/src/index.ts"
+      ],
+      "@service/recovery-coordination-orchestrator": [
+        "packages/service/recovery-coordination-orchestrator/src/index.ts"
+      ],
+      "@service/recovery-continuity-orchestrator": [
+        "packages/service/recovery-continuity-orchestrator/src/index.ts"
+      ],
+      "@service/incident-forecast-engine": [
+        "packages/service/incident-forecast-engine/src/index.ts"
       ],
       "@service/recovery-runner": [
         "packages/service/recovery-runner/src/index.ts"
@@ -152,17 +230,35 @@
       "@data/recovery-operations-store/*": [
         "packages/data/recovery-operations-store/src/*"
       ],
+      "@data/recovery-operations-governance-store": [
+        "packages/data/recovery-operations-governance-store/src"
+      ],
+      "@data/recovery-operations-governance-store/*": [
+        "packages/data/recovery-operations-governance-store/src/*"
+      ],
       "@infrastructure/recovery-operations-queue": [
         "packages/infrastructure/recovery-operations-queue/src"
       ],
       "@infrastructure/recovery-operations-queue/*": [
         "packages/infrastructure/recovery-operations-queue/src/*"
       ],
+      "@infrastructure/recovery-operations-compliance": [
+        "packages/infrastructure/recovery-operations-compliance/src"
+      ],
+      "@infrastructure/recovery-operations-compliance/*": [
+        "packages/infrastructure/recovery-operations-compliance/src/*"
+      ],
       "@service/recovery-operations-engine": [
         "packages/service/recovery-operations-engine/src"
       ],
       "@service/recovery-operations-engine/*": [
         "packages/service/recovery-operations-engine/src/*"
+      ],
+      "@service/recovery-operations-policy-engine": [
+        "packages/service/recovery-operations-policy-engine/src"
+      ],
+      "@service/recovery-operations-policy-engine/*": [
+        "packages/service/recovery-operations-policy-engine/src/*"
       ]
     }
   }
