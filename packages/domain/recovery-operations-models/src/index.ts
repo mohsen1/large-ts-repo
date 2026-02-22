@@ -1,4 +1,6 @@
 export * from './types';
+export * from './orchestration-topology';
+export * from './policy-gates';
 export * from './schema';
 export * from './strategy';
 export * from './timeline';

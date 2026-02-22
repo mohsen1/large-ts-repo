@@ -10,6 +10,7 @@
   ],
   "references": [
     { "path": "./../../domain/recovery-readiness/tsconfig.json" },
+    { "path": "./../../shared/core/tsconfig.json" },
     {
       "path": "./../../shared/type-level/tsconfig.json"
     },
