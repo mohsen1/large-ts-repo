@@ -1,11 +1,12 @@
 import { S3Client } from '@aws-sdk/client-s3';
 import { runDecision } from '@domain/decision-orchestration';
-import { buildRuntimeCatalog, type DecisionStoreAdapter } from './store';
+import { buildRuntimeCatalog } from './store';
 import { loadPolicyFromS3 } from './adapter';
 import { InMemoryDecisionStore } from './store';
+import type { PolicyRepository } from '@data/decision-catalog';
 
 interface RuntimeDeps {
-  repository: DecisionStoreAdapter;
+  repository: PolicyRepository;
   s3Client: S3Client;
 }
 
@@ -18,7 +19,7 @@ export interface RuntimeRunRequest {
 
 export async function executeRuntimeRun(request: RuntimeRunRequest, deps: RuntimeDeps): Promise<string> {
   const orchestratorDeps = {
-    repository: deps.repository.repository,
+    repository: deps.repository,
     clock: { now: () => new Date().toISOString() },
   };
 

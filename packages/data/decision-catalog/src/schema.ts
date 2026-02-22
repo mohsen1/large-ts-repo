@@ -5,6 +5,11 @@ import { ok, fail, type Result, type Fail, type Ok } from '@shared/result';
 export type PolicyTemplateId = Brand<string, 'PolicyTemplateId'>;
 export type PolicyNodeId = Brand<string, 'PolicyNodeId'>;
 export type PolicyActionName = 'allow' | 'notify' | 'quarantine' | 'throttle' | 'block';
+export interface CandidateDecision<T = unknown> {
+  id: string;
+  score: number;
+  output: T;
+}
 
 const decisionSeverity = z.enum(['low', 'medium', 'high', 'critical']);
 const conditionOperator = z.enum(['eq', 'neq', 'gt', 'gte', 'lt', 'lte', 'in', 'exists']);
@@ -45,7 +50,7 @@ export const DecisionPolicyTemplateSchema = z.object({
   title: z.string().min(1),
   version: z.string().min(1),
   active: z.boolean(),
-  createdAt: z.iso.datetime(),
+  createdAt: z.string().datetime(),
   tags: z.record(z.string(), z.string()).default({}),
   nodes: z.array(RawNodeSchema).min(1),
   edges: z.array(RawEdgeSchema).default([]),

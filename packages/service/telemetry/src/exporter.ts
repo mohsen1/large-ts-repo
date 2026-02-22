@@ -49,7 +49,7 @@ export class SlidingWindowExporter {
   constructor(private readonly bucketMs: number = 60_000) {}
 
   push(snapshot: MetricSnapshot): string {
-    const id = (snapshot.metrics[0]?.at ?? Date.now()) as Brand<number, 'bucket'>;
+    const id = (snapshot.metrics[0]?.at ?? Date.now()) as unknown as Brand<number, 'bucket'>;
     const key = String(Math.floor(id / this.bucketMs) * this.bucketMs);
     const bucket = this.window.get(key) ?? [];
     bucket.push(...snapshot.metrics);

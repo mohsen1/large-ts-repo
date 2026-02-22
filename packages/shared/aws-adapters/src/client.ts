@@ -1,6 +1,8 @@
 import { Credentials, Provider } from '@aws-sdk/types';
-import { fromEnv, fromIni } from '@aws-sdk/credential-provider-node';
-import type { Region } from '@aws-sdk/types';
+import { fromEnv } from '@aws-sdk/credential-provider-env';
+import { fromIni } from '@aws-sdk/credential-provider-ini';
+
+export type Region = string;
 import { createHash } from 'crypto';
 
 export interface AwsClientOptions {

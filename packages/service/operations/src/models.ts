@@ -39,7 +39,7 @@ export interface OperationsDecision {
   score: number;
 }
 
-export interface OperationsRun<T = Record<string, unknown>> {
+export interface OperationsRun<T extends Record<string, unknown> = Record<string, unknown>> {
   id: OperationId;
   requestId: OperationsRequestId;
   command: OperationsCommand;
@@ -57,7 +57,7 @@ export interface OperationsRepository {
   append(event: DeploymentTrace): Promise<Result<void, Error>>;
 }
 
-export interface ExecutionEnvelopeBuilder<T = Record<string, unknown>> {
+export interface ExecutionEnvelopeBuilder<T extends Record<string, unknown> = Record<string, unknown>> {
   toEnvelope(run: OperationsRun<T>): ExecutionEnvelope<T>;
 }
 

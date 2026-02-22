@@ -7,7 +7,7 @@ export interface PolicyMatchResult {
 }
 
 export const evaluateCondition = (condition: PolicyCondition, value: unknown, sample: PolicyContext): PolicyMatchResult => {
-  const normalized = resolvePath(sample.sample, condition.path);
+  const normalized = resolvePath(sample.sample.payload, condition.path);
   const expected = condition.threshold;
   const actual = numeric(normalized);
 
@@ -39,15 +39,15 @@ export const evaluatePolicy = (rule: PolicyRule, sample: PolicyContext): AlertMa
   const reasons: string[] = [];
   for (const condition of rule.conditions) {
     const matched = evaluateCondition(condition, sample.sample.payload, sample);
-    if (!matched.match) {
-      return null;
-    }
+      if (!matched.match) {
+        return null;
+      }
     score += matched.score / rule.conditions.length;
     reasons.push(matched.reason);
   }
 
   return {
-    id: `${rule.id}:${sample.sample.id}:match` as AlertMatch['id'],
+    id: `${rule.id}:${sample.sample.timestamp}:match` as AlertMatch['id'],
     ruleId: rule.id,
     policyName: rule.name,
     tenantId: sample.sample.tenantId,

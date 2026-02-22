@@ -1,9 +1,19 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": { "outDir": "./dist", "composite": true, "declaration": true },
-  "include": ["src/**/*"],
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
   "references": [
-    { "path": "../../shared/result" },
-    { "path": "../../shared/validation" }
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/validation/tsconfig.json"
+    }
   ]
 }

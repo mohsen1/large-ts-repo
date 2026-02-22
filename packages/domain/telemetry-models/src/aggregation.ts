@@ -62,11 +62,11 @@ export const summarizeBuckets = (events: ReadonlyArray<NormalizedTelemetrySample
 
   for (const [tenantId, tenantEvents] of Object.entries(byTenant)) {
     const valuesByName = tenantEvents.reduce<Record<string, number[]>>((acc, event) => {
-      const key = event.sample.signal === 'metric' && typeof event.sample.payload === 'object' && event.sample.payload && 'name' in event.sample.payload
-        ? String((event.sample.payload as { name: string }).name)
+      const key = event.signal === 'metric' && typeof event.payload === 'object' && event.payload && 'name' in event.payload
+        ? String((event.payload as { name: string }).name)
         : 'generic';
-      const numeric = typeof (event.sample.payload as { value?: number }).value === 'number'
-        ? (event.sample.payload as { value?: number }).value as number
+      const numeric = typeof (event.payload as { value?: number }).value === 'number'
+        ? (event.payload as { value?: number }).value as number
         : 0;
       acc[key] = acc[key] ?? [];
       acc[key].push(numeric);

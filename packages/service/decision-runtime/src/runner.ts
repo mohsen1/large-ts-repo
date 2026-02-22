@@ -9,5 +9,8 @@ export interface LegacyRunnerDeps {
 }
 
 export async function runLegacyRuntime(request: RuntimeRunRequest, deps: LegacyRunnerDeps): Promise<string> {
-  return executeRuntimeRun(request, deps);
+  return executeRuntimeRun(request, {
+    repository: deps.store,
+    s3Client: deps.s3Client,
+  });
 }

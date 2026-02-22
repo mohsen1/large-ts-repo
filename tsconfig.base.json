@@ -1,28 +1,32 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "types": ["node"],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    "exactOptionalPropertyTypes": true,
+    "exactOptionalPropertyTypes": false,
     "useUnknownInCatchVariables": false,
     "declaration": true,
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["packages/shared/*/src"],
-      "@platform/*": ["packages/platform/*/src"],
-      "@domain/*": ["packages/domain/*/src"],
-      "@data/*": ["packages/data/*/src"],
-      "@service/*": ["packages/service/*/src"],
-      "@app/*": ["packages/app/*/src"]
+      "@domain/telemetry-models": ["packages/domain/telemetry-models/src"],
+      "@data/telemetry-store": ["packages/data/telemetry-store/src"],
+      "@shared/*": ["packages/shared/*"],
+      "@platform/*": ["packages/platform/*"],
+      "@domain/*": ["packages/domain/*"],
+      "@data/*": ["packages/data/*"],
+      "@service/*": ["packages/service/*"],
+      "@app/*": ["packages/app/*"]
     }
   }
 }

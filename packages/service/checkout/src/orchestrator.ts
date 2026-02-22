@@ -1,6 +1,7 @@
 import { Order } from '@domain/orders';
 import { settleInvoice } from '@domain/billing';
-import { MessageBus, createEnvelope } from '@platform/messaging';
+import { MessageBus } from '@platform/messaging';
+import { createEnvelope } from '@shared/protocol';
 import { Invoice, BillingPolicy } from '@domain/billing';
 import { EventEnvelope } from '@shared/protocol';
 
@@ -22,10 +23,11 @@ export const checkout = async (input: CheckoutInput): Promise<CheckoutResult | E
 
   const settled = await settleInvoice(input.invoice, input.policy);
   if (!settled.ok) return settled.error;
+  const settledInvoice: Invoice = { ...settled.value, settled: true };
 
   const envelope: EventEnvelope<{ order: Order; invoice: Invoice }> = createEnvelope('checkout.completed', {
     order: input.order,
-    invoice: settled.value,
+    invoice: settledInvoice,
   }) as EventEnvelope<{ order: Order; invoice: Invoice }>;
 
   await input.bus.publish('checkout.events' as any, envelope as any);
@@ -33,7 +35,7 @@ export const checkout = async (input: CheckoutInput): Promise<CheckoutResult | E
   return {
     order: input.order,
     billed: true,
-    invoice: settled.value,
+    invoice: settledInvoice,
   };
 };
 

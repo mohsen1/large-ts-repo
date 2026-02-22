@@ -118,8 +118,8 @@ export interface CacheNode<TInput = unknown> extends GridNodeBase {
   readonly ttlMs: number;
   readonly maxItems: number;
   readonly evictOnError: boolean;
-  readonly store(value: TInput): Promise<void>;
-  readonly lookup(id: string): Promise<TInput | null>;
+  store(value: TInput): Promise<void>;
+  lookup(id: string): Promise<TInput | null>;
 }
 
 export interface BridgeNode extends GridNodeBase {

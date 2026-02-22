@@ -1,4 +1,4 @@
-import { DocumentVector, VectorStore } from './vector';
+import { DocumentVector, Vector, VectorStore } from './vector';
 
 export interface IndexRecord {
   documentId: string;

@@ -45,7 +45,7 @@ export interface OperationStep<C extends Record<string, unknown> = Record<string
   metadata?: C;
 }
 
-export interface OperationPlan<TMetadata = Record<string, unknown>> {
+export interface OperationPlan<TMetadata extends Record<string, unknown> = Record<string, unknown>> {
   id: OperationId;
   environmentId: EnvironmentId;
   deploymentId: DeploymentId;
@@ -192,14 +192,14 @@ export const mergeSignals = <T extends Record<string, unknown>>(
     .sort((a, b) => b.weight - a.weight)
     .slice(0, 25);
 
-export type PlanEnvelope<TConfig = Record<string, unknown>> = Readonly<
+export type PlanEnvelope<TConfig extends Record<string, unknown> = Record<string, unknown>> = Readonly<
   DeepMerge<
     OperationPlan<TConfig>,
     {
       metadata: {
         source: 'planner';
         version: 1;
-        dependencies: ServiceDependency[];
+        dependencies: readonly ServiceDependency[];
       };
     }
   >

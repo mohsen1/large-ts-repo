@@ -280,7 +280,7 @@ export function estimateResilience(nodes: ReadonlyArray<GraphNodeSummary>): numb
 }
 
 export interface GraphNodeSummary {
-  readonly kind: GraphNodeSummary['kind'];
+  readonly kind: import('./primitives').GridNodeBase['kind'];
   readonly regionCount: number;
   readonly edgeCount: number;
   readonly hasControl: boolean;

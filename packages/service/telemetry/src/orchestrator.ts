@@ -2,7 +2,7 @@ import { MemoryEventBus, summarizeBySignal } from './events';
 import { EnvelopeExporter, TextExporter } from './exporter';
 import { runPipeline } from './pipeline';
 import { Metric, MetricBuffer, counter } from './telemetry';
-import { AlertMatch, PolicyRule, TelemetryEnvelope, TelemetrySample } from '@domain/telemetry-models';
+import { NormalizedTelemetrySample, PolicyRule, TelemetryEnvelope } from '@domain/telemetry-models';
 import { InMemoryEnvelopeStore, InMemoryIncidentStore, PolicyStore } from '@data/telemetry-store';
 import { S3ArchiveAdapter } from '@data/telemetry-store';
 
@@ -49,14 +49,16 @@ export class TelemetryOrchestrator {
     }
   }
 
-  async ingest(samples: readonly TelemetrySample[]): Promise<void> {
+  async ingest(samples: readonly NormalizedTelemetrySample[]): Promise<void> {
     for (const sample of samples) {
       this.counters.processed.increment();
       if (sample.signal === 'metric') {
+        const metric = sample.payload as { name?: string; value?: number };
         this.metricBuffer.add({
-          ...sample.payload,
+          name: metric.name ?? 'metric',
+          value: metric.value ?? 0,
           tags: sample.tags,
-          value: (sample.payload as { value?: number }).value ?? 0,
+          at: sample.timestamp,
           unit: 'count',
         });
       }
@@ -93,19 +95,17 @@ export class TelemetryOrchestrator {
       await this.bus.publishEnvelope(envelope);
     }
     await this.envelopes.saveMany(envelopes);
-    this.metricsExport.toNdjson(this.metricBuffer.flush().map((metric) => ({
-      name: metric.name,
-      value: metric.value,
-      tags: metric.tags,
-      at: Date.now(),
-    })));
+    this.metricsExport.toNdjson(this.metricBuffer.flush());
     this.envelopeExport.toJson(envelopes);
   }
 
   async snapshot(): Promise<string> {
-    const tenantBuckets = summarizeBySignal(await this.envelopes.listByTenant('' as any, { limit: 100 }));
+    const tenantBuckets = summarizeBySignal(
+      (await this.envelopes.listByTenant('' as any, { limit: 100 })).items,
+    );
     const counts = Object.entries(tenantBuckets).map(([tenant, count]) => `${tenant}:${count}`).join('\n');
-    const archive = await this.archive.put(await this.envelopes.listByTenant('' as any, { limit: 100 }).then((result) => result.items));
+    const page = await this.envelopes.listByTenant('' as any, { limit: 100 });
+    const archive = await this.archive.put(page.items as readonly TelemetryEnvelope[]);
     return `${counts}\n${archive.bucket}/${archive.key}`;
   }
 

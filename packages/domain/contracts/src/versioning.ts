@@ -31,6 +31,7 @@ export const bumpPatch = (value: ContractVersion): ContractVersion => ({
 export const fromString = (raw: string): ContractVersion => {
   const [major, minor, patch] = raw.split('.').map((item) => Number(item));
   return {
+    id: raw,
     major: Number.isFinite(major) ? major : 0,
     minor: Number.isFinite(minor) ? minor : 0,
     patch: Number.isFinite(patch) ? patch : 0,

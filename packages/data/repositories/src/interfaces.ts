@@ -11,7 +11,7 @@ export interface Repository<TId, TEntity> {
 }
 
 export interface Query<TEntity, TFilter = unknown> {
-  filter: TFilter;
+  filter?: TFilter;
   limit?: number;
   cursor?: string;
 }

@@ -55,6 +55,7 @@ export interface Ledger {
   startDate: Date;
   currency: 'USD' | 'EUR' | 'JPY';
   entries: readonly LedgerEntry[];
+  accountId: AccountId;
 }
 
 export function sumAmount(entries: readonly LedgerEntry[]): Money {
@@ -106,13 +107,15 @@ export function buildProjection(entries: readonly LedgerEntry[]): { byKind: Reco
   );
 
   return {
-    byKind: { charge: 0, refund: 0, credit: 0, debit: 0, adjustment: 0, writeoff: 0, ...byKind },
+    byKind: { ...byKind, charge: 0, refund: 0, credit: 0, debit: 0, adjustment: 0, writeoff: 0 },
     total: sumAmount(entries).amount,
   };
 }
 
-export function mergeIntersections<A, B>(a: A, b: B): UnionToIntersection<{ [K in keyof A & keyof B]: A[K] & B[K] }[keyof A & keyof B]> {
-  const keys = [...new Set([...Object.keys(a as any), ...Object.keys(b as any])];
+export function mergeIntersections<A, B>(a: A, b: B): UnionToIntersection<A & B> {
+  const aKeys = Object.keys(a as Record<string, unknown>);
+  const bKeys = Object.keys(b as Record<string, unknown>);
+  const keys = [...aKeys, ...bKeys];
   const out: Record<string, unknown> = {};
   for (const key of keys) {
     out[key] = Object.assign({}, (a as any)[key], (b as any)[key]);

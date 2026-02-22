@@ -26,7 +26,7 @@ export class JsonCodec<T> implements Codec<T> {
   }
 
   unpack(raw: Packed): Message<T> {
-    const text = new TextDecoder().decode(Uint8Array.from(raw.bytes as number[]));
+    const text = new TextDecoder().decode(Uint8Array.from(raw.bytes as readonly number[]));
     return JSON.parse(text) as Message<T>;
   }
 }

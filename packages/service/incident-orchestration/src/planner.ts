@@ -27,27 +27,33 @@ const fallbackTemplates = (): PlaybookTemplate[] => [
 ];
 
 export const templateToRunbook = (tenantId: IncidentRecord['tenantId'], template: PlaybookTemplate): Runbook => {
+  const triage = { severity: template.severity } as IncidentRecord['triage'];
+  const isCriticalIncident = isCritical({ triage });
+  const steps = [...Array(template.defaultSteps)].map((_, index) => {
+    return {
+      key: `step-${index + 1}`,
+      title: `${template.name} step ${index + 1}`,
+      automation: 'investigate' as const,
+      state: 'pending' as const,
+      estimateSeconds: 120,
+      action: {
+        key: `action-${index + 1}`,
+        description: `Default remediation action ${index + 1}`,
+        requiresManualApproval: isCriticalIncident,
+        timeoutSeconds: 300,
+      },
+      prerequisites: index === 0 ? [] : [`step-${index}`],
+    };
+  });
+
   return createRunbook({
     id: template.id,
     tenantId,
     name: template.name,
     owner: template.owner,
     severity: [template.severity],
-    steps: [...Array(template.defaultSteps)].map((_, index) => ({
-      key: `step-${index + 1}`,
-      title: `${template.name} step ${index + 1}`,
-      automation: 'investigate',
-      state: 'pending',
-      estimateSeconds: 120,
-      action: {
-        key: `action-${index + 1}`,
-        description: `Default remediation action ${index + 1}`,
-        requiresManualApproval: isCritical({ triage: { severity: template.severity } as IncidentRecord['triage'] }),
-        timeoutSeconds: 300,
-      },
-      prerequisites: index === 0 ? [] : [`step-${index}`],
-    })),
-    tags: [template.severity, isCritical({ triage: { severity: template.severity } as IncidentRecord['triage'] } ? 'critical' : 'routine'],
+    steps,
+    tags: [template.severity, isCriticalIncident ? 'critical' : 'routine'],
   });
 };
 
@@ -58,7 +64,7 @@ export const selectTemplatesFor = (incident: IncidentRecord): PlaybookTemplate[]
   return fallbackTemplates().filter((template) => template.severity === severity);
 };
 
-export const planForIncident = (incident: IncidentRecord): ReturnType<typeof buildExecutionPlan> => {
+export const planForIncident = (incident: IncidentRecord): ReturnType<typeof buildExecutionPlan> | null => {
   const templates = selectTemplatesFor(incident);
   const runbooks = templates.map((template) => templateToRunbook(incident.tenantId, template));
   const plan = buildExecutionPlan(runbooks, incident);

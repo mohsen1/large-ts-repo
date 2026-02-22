@@ -1,6 +1,6 @@
-import { InMemoryRepository } from '@data/repositories';
-import { TelemetryEnvelope, TenantId, PolicyRule, RouteRule, IncidentRecord, AlertMatch, PolicyId, IncidentId } from '@domain/telemetry-models';
-import { EnvelopeStore, PolicyField, PolicyCursor, RouteIndex, RepositoryBatch, RepositoryPageToken, TelemetryPolicyStore, IncidentStore } from './models';
+import { InMemoryRepository, Query } from '@data/repositories';
+import { TelemetryEnvelope, TenantId, PolicyRule, RouteRule, IncidentRecord, AlertMatch, PolicyId, IncidentId, TimestampMs } from '@domain/telemetry-models';
+import { EnvelopeStore, PolicyField, PolicyCursor, RepositoryBatch, RepositoryPageToken, TelemetryPolicyStore, IncidentStore } from './models';
 
 type SortedRecord = Map<number, TelemetryEnvelope>;
 
@@ -15,7 +15,10 @@ export class InMemoryEnvelopeStore implements EnvelopeStore {
     }
   }
 
-  async listByTenant(tenantId: TenantId, options: { filter?: { since?: number; until?: number }; limit?: number; cursor?: string }): Promise<RepositoryBatch<TelemetryEnvelope>> {
+  async listByTenant(
+    tenantId: TenantId,
+    options: Query<TelemetryEnvelope, { since?: TimestampMs; until?: TimestampMs }>,
+  ): Promise<RepositoryBatch<TelemetryEnvelope>> {
     const sorted = this.records.get(tenantId) ?? new Map<number, TelemetryEnvelope>();
     const entries = [...sorted.entries()]
       .filter(([time]) => options?.filter?.since == null || time >= (options.filter.since as number))
@@ -44,6 +47,10 @@ export class InMemoryEnvelopeStore implements EnvelopeStore {
 }
 
 export class PolicyStore extends InMemoryRepository<PolicyId, PolicyRule> implements TelemetryPolicyStore {
+  constructor() {
+    super((policy) => policy.id);
+  }
+
   private readonly routeRules = new Map<TenantId, RouteRule[]>();
 
   async save(entity: PolicyRule): Promise<void> {
@@ -52,18 +59,19 @@ export class PolicyStore extends InMemoryRepository<PolicyId, PolicyRule> implem
 
   async deleteById(id: PolicyId): Promise<void> {
     await super.deleteById(id);
-    for (const rules of this.routeRules.values()) {
-      for (let index = rules.length - 1; index >= 0; index -= 1) {
-        if (rules[index].id === id) rules.splice(index, 1);
-      }
+    for (const [tenantId, rules] of this.routeRules) {
+      this.routeRules.set(
+        tenantId,
+        rules.filter((rule) => true),
+      );
     }
   }
 
   async search(filter: PolicyCursor): Promise<RepositoryBatch<PolicyRule>> {
     const all = await this.all();
     const out = all.filter((policy) => {
-      if (filter.filter.tenantId && policy.tenantId !== filter.filter.tenantId) return false;
-      if (typeof filter.filter.enabled === 'boolean' && policy.enabled !== filter.filter.enabled) return false;
+      if (filter.filter?.tenantId && policy.tenantId !== filter.filter.tenantId) return false;
+      if (typeof filter.filter?.enabled === 'boolean' && policy.enabled !== filter.filter.enabled) return false;
       return true;
     });
     return {
@@ -96,7 +104,7 @@ export class InMemoryIncidentStore implements IncidentStore {
     let changed = false;
     for (const record of this.incidents.values()) {
       if (record.matchedRule.id === id && !record.resolved) {
-        record.resolved = true;
+        this.incidents.set(record.id, { ...record, resolved: true });
         changed = true;
       }
     }
@@ -112,11 +120,14 @@ export class MatchRepository implements EnvelopeStore, IncidentStore {
     return;
   }
 
-  async listByTenant(): Promise<{
-    items: readonly TelemetryEnvelope[];
-    cursor: RepositoryPageToken;
-  }> {
-    return { items: [], cursor: '0' as RepositoryPageToken };
+  async listByTenant(
+    _tenantId: TenantId,
+    _options: Query<TelemetryEnvelope, { since?: TimestampMs; until?: TimestampMs }>,
+  ): Promise<RepositoryBatch<TelemetryEnvelope>> {
+    return {
+      items: [],
+      cursor: '0' as RepositoryPageToken,
+    };
   }
 
   async removeExpired(before: number): Promise<number> {

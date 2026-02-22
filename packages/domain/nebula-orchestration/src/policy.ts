@@ -28,8 +28,6 @@ export class PolicyEngine {
     maxHopCount: 100,
   }, {
     id: 0 as never,
-    tenantId: 'tenant',
-    accountId: 'acct',
     region: 'us-east',
     owner: { tenantId: 'tenant', accountId: 'acct' },
     stamp: 0 as never,

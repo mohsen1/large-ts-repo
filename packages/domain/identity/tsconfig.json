@@ -1,14 +1,22 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
     "declaration": true
   },
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*"
+  ],
   "references": [
-    { "path": "../../shared/core" },
-    { "path": "../../shared/validation" },
-    { "path": "../../shared/protocol" }
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/protocol/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/validation/tsconfig.json"
+    }
   ]
 }

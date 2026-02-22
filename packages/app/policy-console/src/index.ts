@@ -1,5 +1,5 @@
 import { parsePolicy, applyRules, PolicyExpr, PolicyEvaluationContext } from '@domain/policy-engine';
-import { MemoryAudit, guard } from '@platform/security';
+import { InMemoryAudit, guard } from '@platform/security';
 
 export interface ConsoleInput {
   policy: string;
@@ -19,7 +19,7 @@ export async function simulate(input: ConsoleInput): Promise<string> {
     now: new Date(),
   };
   const report = applyRules([expression], context);
-  const audit = new MemoryAudit();
+  const audit = new InMemoryAudit();
   await guard(audit, input.principal, input.action, input.resource);
   return JSON.stringify(report, null, 2);
 }

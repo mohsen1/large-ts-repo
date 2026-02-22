@@ -11,7 +11,7 @@ export interface ErrorContext {
 
 export class AppError extends Error {
   readonly code: ErrorCode;
-  readonly details?: Record<string, unknown>;
+  details?: Record<string, unknown>;
   constructor(code: ErrorCode, message: string, details?: Record<string, unknown>, cause?: unknown) {
     super(message);
     this.code = code;
@@ -59,10 +59,10 @@ export const isAppError = (error: unknown): error is AppError => {
   return error instanceof Error && (error as AppError).code !== undefined;
 };
 
-export const withCode = <T>(error: AppError, code: ErrorCode): T & { code: ErrorCode } => ({
+export const withCode = <T extends object>(error: T, code: ErrorCode): T & { code: ErrorCode } => ({
   ...(error as object),
   code,
-});
+} as T & { code: ErrorCode });
 
 export const knownCodes = {
   validation: 'validation' as ErrorCode,

@@ -9,6 +9,7 @@
     "count": "bash scripts/count.sh"
   },
   "devDependencies": {
+    "@types/node": "^25.3.0",
     "typescript": "^5.6.0"
   },
   "packageManager": "pnpm@10.0.0"

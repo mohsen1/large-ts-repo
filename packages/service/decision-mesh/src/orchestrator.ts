@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { S3Client } from '@aws-sdk/client-s3';
 import { executeRuntimeRun, buildRuntimeFromSeed } from '@service/decision-runtime';
 import { fail, ok, type Result } from '@shared/result';
+import { type MessageId, type CorrelationId } from '@shared/protocol';
 import { InMemoryBus, type MessageBus } from '@platform/messaging';
 import {
   nextRequestId,
@@ -49,7 +50,7 @@ export class DecisionMeshOrchestrator {
     this.busAdapter = new MessageBusAdapter(bus);
     this.publisher = options.publisher;
 
-    Object.values(seed).forEach(async (policy) => {
+    Object.values(seed as Record<string, unknown>).forEach(async (policy) => {
       const upserted = await this.registry.upsert(policy);
       if (!upserted.ok) {
         await this.busAdapter.publishFailed(`seed-${Date.now()}`, upserted.error.message);
@@ -135,14 +136,13 @@ export class DecisionMeshOrchestrator {
 
     const start = Date.now();
     const runtimeResult = await this.telemetry.observe('mesh.execute-runtime', async () => {
-      const runtime = buildRuntimeFromSeed({ [selected.meta.policyId]: selected.template } as Record<string, unknown>);
+    const runtime = buildRuntimeFromSeed({ [selected.meta.policyId]: selected.template } as Record<string, Record<string, unknown>>);
       return executeRuntimeRun(
         {
           tenantId: request.tenantId,
           subjectId: request.subjectId,
           policyId: selected.meta.policyId,
           context: request.context,
-          priority: request.priority,
         },
         { repository: runtime.store, s3Client: new S3Client({}) },
       );
@@ -150,6 +150,8 @@ export class DecisionMeshOrchestrator {
 
     const runtimeMs = Date.now() - start;
     if (typeof runtimeResult === 'string') {
+      const messageId = requestId as unknown as MessageId;
+      const correlationId = requestId as unknown as CorrelationId;
       const result: DecisionMeshResult = {
         requestId,
         tenantId,
@@ -165,8 +167,8 @@ export class DecisionMeshOrchestrator {
       if (this.publisher) {
         void this.publisher.publish(
           {
-            id: requestId,
-            correlationId: envelope.traceId as any,
+            id: messageId,
+            correlationId,
             timestamp: new Date().toISOString(),
             eventType: 'mesh.decision.completed',
             payload: result,

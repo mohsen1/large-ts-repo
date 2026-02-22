@@ -27,7 +27,10 @@ export function plan(topology: Topology, target: Throughput): StreamPlan {
 
 export function scale(plan: StreamPlan, factor: number): StreamPlan {
   return {
-    steps: plan.steps.map((step) => ({ ...step, parallelism: Math.max(1, Math.round(step.parallelism * factor) ) }),
+    steps: plan.steps.map((step) => ({
+      ...step,
+      parallelism: Math.max(1, Math.round(step.parallelism * factor)),
+    })),
     throughputEstimate: {
       eventsPerSecond: plan.throughputEstimate.eventsPerSecond * factor,
       bytesPerSecond: plan.throughputEstimate.bytesPerSecond * factor,

@@ -1,4 +1,11 @@
-import { toRiskBucket, parseDecisionIntent, type DecisionOutcome, type DecisionIntent, type TInputTemplate } from './models';
+import {
+  toRiskBucket,
+  parseDecisionIntent,
+  type DecisionOutcome,
+  type DecisionIntent,
+  type DecisionPlan,
+  type TInputTemplate,
+} from './models';
 import { buildExecutionGraph } from './graph';
 import { executeDecision } from './executor';
 import { ok, fail, type Result } from '@shared/result';
@@ -44,7 +51,7 @@ export async function runDecision<TOutput>(
   const candidateFactory = overrides?.candidates?.candidates ?? defaultPolicyCandidateFactory;
   const policy = overrides?.candidates?.byPolicy ? overrides.candidates.byPolicy(intent) : { minScore: 10, maxKeep: 16 };
   const candidateRecords = candidateFactory(template, intent);
-
+  const candidates = loadPolicyCandidates(candidateRecords);
   const input: TInputTemplate = {
     tenantId: intent.tenantId,
     subjectId: intent.subjectId,
@@ -52,12 +59,13 @@ export async function runDecision<TOutput>(
     priority: intent.priority,
   };
 
-  const plan = createPlan(template, input, loadPolicyCandidates(candidateRecords), policy);
-  executeDecision(template, plan);
+  const plan = createPlan(template, input, candidates, policy);
+  const typedPlan = plan as DecisionPlan<TInputTemplate, TOutput>;
+  executeDecision(template, typedPlan);
   buildExecutionGraph(template);
 
   return ok({
-    plan,
+    plan: typedPlan,
     riskBucket: risk,
     selectedActors: summarizeActors(
       plan.candidates.map((candidate, index) => ({

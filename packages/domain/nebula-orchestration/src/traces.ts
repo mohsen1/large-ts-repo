@@ -83,8 +83,13 @@ export class TraceCollector {
 }
 
 export const EventSamples = Array.from({ length: 500 }, (_, idx) => ({
-  eventId: `ev-${idx}`,
-  created: Date.now() + idx,
-  node: `node-${idx}`,
-  status: idx % 2 === 0 ? 'start' : 'stop',
+  stamp: (Date.now() + idx) as never,
+  source: `graph-${idx}` as const,
+  type: idx % 2 === 0 ? 'added' : 'removed',
+  payload: {
+    eventId: `ev-${idx}`,
+    created: Date.now() + idx,
+    node: `node-${idx}`,
+    status: idx % 2 === 0 ? 'start' : 'stop',
+  },
 } as GraphEvent));

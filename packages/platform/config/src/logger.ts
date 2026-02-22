@@ -19,7 +19,7 @@ export function readEnvInt(key: string, defaultValue = 0): number {
 export function pick<T extends object, K extends keyof T>(value: T, keys: readonly K[]): Pick<T, K> {
   const out = {} as Pick<T, K>;
   for (const key of keys) {
-    (out as Record<string, unknown>)[String(key)] = (value as Record<string, unknown>)[String(key) as K];
+    out[key] = value[key];
   }
   return out;
 }

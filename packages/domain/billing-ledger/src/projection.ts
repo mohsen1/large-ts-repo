@@ -53,7 +53,7 @@ export class InMemoryProjection implements ProjectionEngine {
   }
 
   async refresh(accountId: string): Promise<LedgerSnapshot | undefined> {
-    let page = await this.repo.scan({}, { includeMetadata: false });
+    let page = await this.repo.scan({ cursor: undefined, limit: 1_000 }, { includeMetadata: false });
     let cursor = page.cursor;
     const snapshot = await this.repo.snapshot(accountId);
     if (!page.entries) {
@@ -81,5 +81,10 @@ export function projectPage(page: LedgerPage, query?: LedgerQuery): LedgerPage {
 
 export function appendEntries(base: Ledger, extra: readonly any[]): Ledger {
   const nextEntries = [...base.entries, ...extra.map((item) => item as LedgerEntry)];
-  return { startDate: base.startDate, currency: base.currency, entries: nextEntries };
+  return {
+    accountId: base.accountId,
+    startDate: base.startDate,
+    currency: base.currency,
+    entries: nextEntries,
+  };
 }

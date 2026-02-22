@@ -3,7 +3,6 @@ import {
   type GraphEdge,
   type GraphId,
   type NodeId,
-  type TopologyResolver,
   type GraphDefinition,
   type NodeEvent,
   type GridContext,
@@ -11,7 +10,7 @@ import {
   type ThroughputWindow,
   type RetryPolicy,
 } from './primitives';
-import { diffTopology, TopologyResolver as InternalResolver } from './topology';
+import { diffTopology, TopologyResolver as InternalResolver, type TopologyResolver } from './topology';
 
 export type RouteId = `route-${string}`;
 export type RouteWeight = number & { readonly __brand: unique symbol };
@@ -206,8 +205,8 @@ export function selectEdgeType(input: string): EdgeKind {
   return 'data';
 }
 
-export function buildMultiHop<T>(graph: GraphDefinition, planner: RoutePlanner, inputs: ReadonlyArray<T>): readonly RouteRun<T, T[]>[] {
-  const output: RouteRun<T, T[]>[] = [];
+export function buildMultiHop<T>(graph: GraphDefinition, planner: RoutePlanner, inputs: ReadonlyArray<T>): readonly RouteRun<T, readonly string[]>[] {
+  const output: RouteRun<T, readonly string[]>[] = [];
   let cursor = graph.nodes[0]?.id ?? `graph-${graph.id}-fallback` as NodeId;
   for (let i = 0; i < inputs.length; i += 1) {
     const input = inputs[i]!;
@@ -252,5 +251,5 @@ export const prewiredRoutes = Array.from({ length: 120 }, (_, idx) => {
       },
     ],
     fallback: matchNode,
-  };
+    };
 });

@@ -1,4 +1,17 @@
-import { calculateSignalStrength, isWindowOverlapping, mergeSignals, normalizeConstraint, normalizeWindow, OperationConstraint, OperationPlan, OperationSignal, OperationWindow, PlanDraft, PlanDecision, Severity, StepSelector, StepState } from './types';
+import {
+  calculateSignalStrength,
+  isWindowOverlapping,
+  mergeSignals,
+  normalizeConstraint,
+  normalizeWindow,
+  OperationConstraint,
+  OperationSignal,
+  OperationWindow,
+  PlanDraft,
+  Severity,
+  StepSelector,
+  StepState,
+} from './types';
 
 export interface PolicyInput {
   tenantId: string;
@@ -20,6 +33,13 @@ export interface PlanTemplate {
   defaultWindow: OperationWindow;
   constraintOverrides: Partial<OperationConstraint>;
   stepSelector: StepSelector<any>;
+}
+
+export interface PolicyCollection {
+  name: string;
+  owner: string;
+  constraints: OperationConstraint[];
+  labels: string[];
 }
 
 export const severityPriority: Record<Severity, number> = {
@@ -69,9 +89,9 @@ export const evaluatePolicy = (
 };
 
 export const evaluateDecision = (
-  decision: Pick<PlanDecision, 'allowed' | 'reasons'>,
+  decision: PolicyEvaluation,
   stepStates: readonly StepState[],
-): PlanDecision => {
+): PolicyEvaluation => {
   const blockedStates = stepStates.filter((state) => state === 'blocked' || state === 'failed');
   if (blockedStates.length > 0) {
     return {

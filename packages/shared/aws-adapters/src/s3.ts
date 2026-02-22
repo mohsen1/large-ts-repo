@@ -1,4 +1,12 @@
-import { S3Client, HeadObjectCommand, GetObjectCommand, PutObjectCommand, DeleteObjectCommand, ObjectIdentifier } from '@aws-sdk/client-s3';
+import {
+  ListBucketsCommand,
+  S3Client,
+  HeadObjectCommand,
+  GetObjectCommand,
+  PutObjectCommand,
+  DeleteObjectCommand,
+  ObjectIdentifier,
+} from '@aws-sdk/client-s3';
 import { AwsClientOptions, defaultCredentials, normalizeRegion, resolveMetadata } from './client';
 
 export interface S3ObjectMeta {
@@ -15,12 +23,7 @@ export interface S3ReadResult {
 }
 
 export async function listBuckets(client: S3Client): Promise<string[]> {
-  const { Buckets } = await client.send({
-    input: {},
-    middlewareStack: undefined,
-    $response: undefined,
-    $type: 'ListBucketsCommand',
-  } as any);
+  const { Buckets } = await client.send(new ListBucketsCommand({}));
   return (Buckets ?? []).map((bucket: any) => String(bucket.Name ?? '')).filter(Boolean);
 }
 
@@ -32,7 +35,11 @@ export async function putJsonObject(args: {
   options?: AwsClientOptions;
 }): Promise<string> {
   const region = normalizeRegion(args.region);
-  const client = new S3Client({ region, credentials: args.options?.credentials ?? defaultCredentials(args.options?.profile), endpoint: args.options?.endpoint });
+  const options = {
+    region,
+    credentials: args.options?.credentials ?? defaultCredentials(args.options?.profile),
+  } as const;
+  const client = new S3Client(args.options?.endpoint ? { ...options, endpoint: args.options.endpoint } : options);
   await client.send(new PutObjectCommand({
     Bucket: args.bucket,
     Key: args.key,
@@ -48,7 +55,11 @@ export async function putJsonObject(args: {
 
 export async function readJsonObject(bucket: string, key: string, options?: AwsClientOptions): Promise<S3ReadResult> {
   const region = normalizeRegion(options?.region);
-  const client = new S3Client({ region, credentials: options?.credentials ?? defaultCredentials(options?.profile), endpoint: options?.endpoint });
+  const clientOptions = {
+    region,
+    credentials: options?.credentials ?? defaultCredentials(options?.profile),
+  } as const;
+  const client = new S3Client(options?.endpoint ? { ...clientOptions, endpoint: options.endpoint } : clientOptions);
   const out = await client.send(
     new GetObjectCommand({ Bucket: bucket, Key: key }),
   );
@@ -66,7 +77,12 @@ export async function readJsonObject(bucket: string, key: string, options?: AwsC
 }
 
 export async function headObject(bucket: string, key: string, options?: AwsClientOptions): Promise<S3ObjectMeta> {
-  const client = new S3Client({ region: normalizeRegion(options?.region), credentials: options?.credentials ?? defaultCredentials(options?.profile), endpoint: options?.endpoint });
+  const region = normalizeRegion(options?.region);
+  const clientOptions = {
+    region,
+    credentials: options?.credentials ?? defaultCredentials(options?.profile),
+  } as const;
+  const client = new S3Client(options?.endpoint ? { ...clientOptions, endpoint: options.endpoint } : clientOptions);
   const out = await client.send(new HeadObjectCommand({ Bucket: bucket, Key: key }));
   return {
     key,
@@ -78,7 +94,11 @@ export async function headObject(bucket: string, key: string, options?: AwsClien
 
 export async function deleteMany(bucket: string, keys: readonly string[], options?: AwsClientOptions): Promise<number> {
   const region = normalizeRegion(options?.region);
-  const client = new S3Client({ region, credentials: options?.credentials ?? defaultCredentials(options?.profile), endpoint: options?.endpoint });
+  const clientOptions = {
+    region,
+    credentials: options?.credentials ?? defaultCredentials(options?.profile),
+  } as const;
+  const client = new S3Client(options?.endpoint ? { ...clientOptions, endpoint: options.endpoint } : clientOptions);
   const objects: ObjectIdentifier[] = keys.map((key) => ({ Key: key }));
   let deleted = 0;
   for (const obj of objects) {

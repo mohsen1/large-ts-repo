@@ -1,4 +1,4 @@
-import { Brand, OptionalKeys, PageResult, RequiredKeys, RecursivePath } from '@shared/core';
+import { Brand, MaybePromise, OptionalKeys, PageResult, RecursivePath, RequiredKeys } from '@shared/core';
 
 export type TimestampMs = Brand<number, 'TimestampMs'>;
 export type TenantId = Brand<string, 'TenantId'>;
@@ -51,7 +51,7 @@ export type NormalizedTelemetrySample = TelemetrySample<AnyPayload>;
 export interface EventWindow<TPayload = unknown> {
   readonly start: TimestampMs;
   readonly end: TimestampMs;
-  readonly samples: ReadonlyArray<TelemetrySample<TPayload>>;
+  readonly samples: ReadonlyArray<TPayload>;
 }
 
 export interface RollingWindow {
@@ -62,7 +62,7 @@ export interface RollingWindow {
 
 export interface PolicyCondition {
   readonly expression: string;
-  readonly path: NormalizePath<NormalizedTelemetrySample>;
+  readonly path: RecursivePath<NormalizedTelemetrySample>;
   readonly operator: 'eq' | 'lt' | 'lte' | 'gt' | 'gte' | 'contains';
   readonly threshold: number | string;
 }

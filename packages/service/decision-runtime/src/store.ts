@@ -6,13 +6,17 @@ export function buildRuntimeCatalog(seed?: Record<string, unknown>): DecisionCat
   return buildInMemoryCatalog(seed as Record<string, any>);
 }
 
-export interface DecisionStoreAdapter {
+export interface DecisionStoreAdapter extends PolicyRepository {
   repository: PolicyRepository;
   upsert(templateId: string, payload: Record<string, unknown>): void;
 }
 
 export class InMemoryDecisionStore implements DecisionStoreAdapter {
   constructor(public readonly repository: DecisionCatalogStore = buildInMemoryCatalog() as DecisionCatalogStore) {}
+
+  getPolicy(templateId: string) {
+    return this.repository.getPolicy(templateId);
+  }
 
   upsert(templateId: string, payload: Record<string, unknown>): void {
     const catalog = this.repository as Record<string, any>;

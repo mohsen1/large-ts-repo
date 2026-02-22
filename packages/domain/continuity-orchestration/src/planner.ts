@@ -1,5 +1,16 @@
 import { Brand, Edge, NodeId } from '@shared/core';
-import { ContinuityPhase, ContinuityPlanTemplate, ContinuityRuntimePlan, ContinuityRuntimeStep, ContinuityRunState, DependencyMap, NonEmptyArray, isAllowedStepSequence, phaseCompare } from './types';
+import {
+  ContinuityPhase,
+  ContinuityPlanTemplate,
+  ContinuityRuntimePlan,
+  ContinuityRuntimeStep,
+  ContinuityRunState,
+  ContinuityStepId,
+  DependencyMap,
+  NonEmptyArray,
+  isAllowedStepSequence,
+  phaseCompare,
+} from './types';
 
 export interface PlanDraftOptions {
   runId: Brand<string, 'ContinuityRunId'>;
@@ -40,20 +51,22 @@ export interface PlanValidationResult {
   errors: readonly PlanValidationError[];
 }
 
-export const buildDependencyGraph = (template: ContinuityPlanTemplate): DependencyMap<string> =>
-  template.steps.reduce<DependencyMap<string>>((acc, step) => {
-    acc[step.id] = [...step.dependsOn];
-    return acc;
-  }, {});
+export const buildDependencyGraph = <C extends Record<string, unknown> = Record<string, unknown>>(template: ContinuityPlanTemplate<C>): DependencyMap<string> => {
+  const dependencyMap = {} as Record<string, string[]>;
+  for (const step of template.steps) {
+    dependencyMap[step.id] = [...step.dependsOn];
+  }
+  return dependencyMap;
+};
 
-const toPhaseOrder = (template: ContinuityPlanTemplate): ContinuityPhase[] =>
+const toPhaseOrder = <C extends Record<string, unknown> = Record<string, unknown>>(template: ContinuityPlanTemplate<C>): ContinuityPhase[] =>
   template.steps
     .map((step) => step.phase)
     .sort(phaseCompare)
     .filter((phase, index, all) => index === all.indexOf(phase));
 
-const estimateMinutesByPhase = (
-  template: ContinuityPlanTemplate,
+const estimateMinutesByPhase = <C extends Record<string, unknown> = Record<string, unknown>>(
+  template: ContinuityPlanTemplate<C>,
 ): Record<string, number> =>
   template.steps.reduce((acc, step) => {
     const baseline = Math.max(1, Math.ceil(step.action.timeoutSeconds / 60));
@@ -88,16 +101,18 @@ const topologicalSort = (dependencies: DependencyMap<string>): string[] => {
     ordered.push(current);
 
     for (const next of outgoing.get(current) ?? []) {
-      const remaining = (inDegree.get(next) ?? 0) - 1;
-      inDegree.set(next, remaining);
-      if (remaining === 0) queue.push(next);
+    const remaining = (inDegree.get(next) ?? 0) - 1;
+    inDegree.set(next, remaining);
+    if (remaining === 0) queue.push(next);
     }
   }
 
   return ordered;
 };
 
-export const validatePlanTemplate = (template: ContinuityPlanTemplate): PlanValidationResult => {
+export const validatePlanTemplate = <C extends Record<string, unknown> = Record<string, unknown>>(
+  template: ContinuityPlanTemplate<C>,
+): PlanValidationResult => {
   if (!template.steps.length) return { ok: false, errors: [{ code: 'no-steps', message: 'Plan must include at least one step' }] };
 
   const phaseFlow = toPhaseOrder(template);
@@ -113,7 +128,7 @@ export const validatePlanTemplate = (template: ContinuityPlanTemplate): PlanVali
     return { ok: false, errors: [{ code: 'cyclic-dependency', message: 'Plan has dependency cycle or unresolved dependency' }] };
   }
 
-  const unknownDependency = template.steps.find((step) => step.dependsOn.some((dependency) => !ids.has(dependency));
+  const unknownDependency = template.steps.find((step) => step.dependsOn.some((dependency) => !ids.has(dependency)));
   if (unknownDependency) {
     return {
       ok: false,
@@ -144,7 +159,7 @@ export const buildPlanDraft = <C extends Record<string, unknown>>(
   const now = options.now || new Date().toISOString();
   const indexById = new Map(template.steps.map((step) => [step.id, step] as const));
   const runtimeSteps: ContinuityRuntimeStep<C>[] = ordered.map((stepId, order) => {
-    const step = indexById.get(stepId);
+    const step = indexById.get(stepId as ContinuityStepId);
     if (!step) throw new Error(`Missing step ${stepId}`);
     return {
       id: step.id,
@@ -182,7 +197,7 @@ export const buildPlanDraft = <C extends Record<string, unknown>>(
 };
 
 export const phaseBuckets = (plan: Pick<ContinuityRuntimePlan, 'steps'>): Record<ContinuityPhase, string[]> => {
-  const buckets = {
+  const buckets: Record<ContinuityPhase, string[]> = {
     assess: [],
     lockdown: [],
     drain: [],
@@ -203,7 +218,7 @@ export const dependencyPaths = (dependencies: DependencyMap<string>): Edge<NodeI
   const edges: Edge<NodeId, number>[] = [];
   for (const [node, parents] of Object.entries(dependencies)) {
     for (const parent of parents) {
-      edges.push({ from: parent as NodeId, to: node as NodeId, weight: 1 });
+      edges.push({ from: parent as unknown as NodeId, to: node as unknown as NodeId, weight: 1 });
     }
   }
   return edges;

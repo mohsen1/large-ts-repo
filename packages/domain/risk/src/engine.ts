@@ -4,7 +4,7 @@ import { RiskProfile, updateScore } from './scores';
 export interface Evaluation {
   profile: RiskProfile;
   blocked: boolean;
-  decisions: Array<{ ruleId: RuleId; value: number };
+  decisions: Array<{ ruleId: RuleId; value: number }>;
 }
 
 export class RiskEngine {

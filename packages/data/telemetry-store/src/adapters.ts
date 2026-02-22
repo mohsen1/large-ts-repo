@@ -1,20 +1,30 @@
 import { createHash } from 'node:crypto';
-import { MetricSample, SpanSample, AlertMatch, TelemetryEnvelope, TelemetryEventPayload, TelemetrySample } from '@domain/telemetry-models';
+import {
+  MetricSample,
+  SpanSample,
+  AlertMatch,
+  TelemetryEnvelope,
+  TelemetryEventPayload,
+  TelemetrySample,
+  TimestampMs,
+  TenantId,
+  StreamId,
+} from '@domain/telemetry-models';
 import { createValidator } from '@shared/validation';
 import { z } from 'zod';
 
 export interface AdapterContext {
-  tenantId: string;
-  streamId: string;
+  tenantId: TenantId;
+  streamId: StreamId;
 }
 
 export interface IngestRecord {
-  tenantId: string;
-  streamId: string;
+  tenantId: TenantId;
+  streamId: StreamId;
   signal: 'metric' | 'span' | 'event' | 'log';
   payload: TelemetryEventPayload;
   tags: Record<string, string>;
-  at: number;
+  at: TimestampMs;
 }
 
 export interface IngestResult {
@@ -48,12 +58,25 @@ export const buildFingerprint = (record: IngestRecord): string => {
   return hash.digest('hex').slice(0, 32);
 };
 
-export const parsePayload = (record: IngestRecord): TelemetrySample => {
-  const normalized = record.signal === 'metric'
-    ? ({ ...record, payload: record.payload as MetricSample, id: buildFingerprint(record) } as TelemetrySample<MetricSample>)
-    : ({ ...record, payload: record.payload as SpanSample, id: buildFingerprint(record) } as TelemetrySample<SpanSample>);
-
-  return normalized;
+export const parsePayload = (record: IngestRecord): TelemetrySample<MetricSample | SpanSample | TelemetryEventPayload> => {
+  if (record.signal === 'metric') {
+    return {
+      tenantId: record.tenantId as TenantId,
+      streamId: record.streamId as StreamId,
+      signal: record.signal,
+      timestamp: record.at,
+      payload: record.payload as MetricSample,
+      tags: record.tags,
+    };
+  }
+  return {
+      tenantId: record.tenantId as TenantId,
+      streamId: record.streamId as StreamId,
+    signal: record.signal,
+    timestamp: record.at,
+    payload: record.payload as SpanSample,
+    tags: record.tags,
+  };
 };
 
 export const toEnvelope = (record: IngestRecord): TelemetryEnvelope => {
@@ -61,7 +84,7 @@ export const toEnvelope = (record: IngestRecord): TelemetryEnvelope => {
   return {
     id: buildFingerprint(record) as TelemetryEnvelope['id'],
     sample: sample as TelemetryEnvelope['sample'],
-    fingerprint: buildFingerprint({ ...record, at: record.at - (record.at % 1000) }),
+    fingerprint: buildFingerprint({ ...record, at: (record.at - (record.at % 1000)) as TimestampMs }),
     createdAt: record.at as TelemetryEnvelope['createdAt'],
   };
 };

@@ -2,7 +2,7 @@ import { PlannerService } from '@service/graph-intelligence';
 import { TelemetryOrchestrator } from '@service/telemetry';
 import { DomainGraph } from '@domain/knowledge-graph/builder';
 import { GraphType } from '@domain/knowledge-graph/schema';
-import { TelemetryEnvelope, AlertMatch, TelemetrySample } from '@domain/telemetry-models';
+import { TelemetryEnvelope, AlertMatch, NormalizedTelemetrySample } from '@domain/telemetry-models';
 
 export interface DashboardConfig {
   tenant: string;
@@ -16,7 +16,7 @@ export async function renderDashboard(config: DashboardConfig, graph: DomainGrap
 
 export async function renderTelemetrySummary(
   tenantId: string,
-  samples: readonly TelemetrySample[],
+  samples: readonly NormalizedTelemetrySample[],
   alerts: readonly AlertMatch[],
 ): Promise<{ tenantId: string; signalCount: number; criticalAlerts: number }> {
   const orchestrator = new TelemetryOrchestrator({ tenantId, bucket: 'unused', windowMs: 60_000 });

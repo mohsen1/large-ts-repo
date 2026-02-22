@@ -87,9 +87,7 @@ export class BlueprintEngine {
   private readonly completed = new Set<OrchestrationId>();
 
   constructor(private readonly resolver = new TopologyResolver({ enforceAcyclic: true, forbidCrossRegionEdges: false, maxOutDegree: 999, maxHopCount: 999 }, {
-    id: 'ctx',
-    tenantId: 'tenant',
-    accountId: 'acct',
+    id: 0 as never,
     region: 'us-east',
     owner: { tenantId: 'tenant', accountId: 'acct' },
     stamp: 0 as never,
@@ -110,11 +108,11 @@ export class BlueprintEngine {
     }
     const ordered = this.sortNodes();
     return {
-      id: `plan-${blueprint.id}`,
+      id: blueprint.id,
       compiledAt: Date.now(),
       graph: {
         id: blueprint.graph,
-        ctx: { id: 0 as never, tenantId: 'tenant', accountId: 'acct', region: 'us-east', owner: { tenantId: 'tenant', accountId: 'acct' }, stamp: 0 as never, revision: 1, window: { sampleWindowMs: 1000, targetRps: 10, maxBurst: 10 } },
+        ctx: { id: 0 as never, region: 'us-east', owner: { tenantId: 'tenant', accountId: 'acct' }, stamp: 0 as never, revision: 1, window: { sampleWindowMs: 1000, targetRps: 10, maxBurst: 10 } },
         nodes: [],
         edges: [],
         created: Date.now(),
@@ -160,28 +158,28 @@ export function buildBlueprint(
   const nodes: OrchestrationNode[] = [];
   const edges: OrchestrationEdge[] = [];
   for (let i = 0; i < 120; i += 1) {
-    const id = `${prefix}-node-${i}` as OrchestrationId;
-    const next = `${prefix}-node-${i + 1}` as OrchestrationId;
+    const id = `orch-${prefix}-node-${i}` as OrchestrationId;
+    const previous = `orch-${prefix}-node-${i - 1}` as OrchestrationId;
     nodes.push({
       id,
       kind: ['validate', 'compile', 'deploy', 'observe', 'rollback', 'audit'][i % 6] as StepKind,
       nodeId: `node-${i}` as NodeId,
-      dependsOn: i === 0 ? [] : [`${prefix}-node-${i - 1}` as OrchestrationId],
+      dependsOn: i === 0 ? [] : [previous],
       enabled: true,
       weight: 1 + (i % 7),
       script: `step-${i}`,
     });
     if (i > 0) {
       edges.push({
-        id: `${prefix}-edge-${i}` as EdgeId,
-        from: `${prefix}-node-${i - 1}` as OrchestrationId,
+        id: `edge-${prefix}-${i}` as EdgeId,
+        from: `orch-${prefix}-node-${i - 1}` as OrchestrationId,
         to: id,
         condition: `if-weight-${i}`,
       });
     }
   }
   return {
-    id: `blueprint-${graphId}-${prefix}` as OrchestrationId,
+    id: `orch-${graphId}-${prefix}` as OrchestrationId,
     name: `${prefix}:${graphId}`,
     graph: graphId,
     nodes,
@@ -196,7 +194,7 @@ export function buildBlueprint(
 export function createManifest(graphId: GraphId, owner: string): OrchestrationManifest {
   const blueprint = buildBlueprint(graphId);
   return {
-    id: `${graphId}-manifest-${owner}` as OrchestrationId,
+    id: `orch-${graphId}-${owner}-manifest` as OrchestrationId,
     project: owner,
     revision: 1,
     blueprint,

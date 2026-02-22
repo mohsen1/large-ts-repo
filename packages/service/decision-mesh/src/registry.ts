@@ -1,6 +1,6 @@
 import { fail, ok, type Result } from '@shared/result';
 import { parseDecisionPolicy } from '@data/decision-catalog';
-import { createPolicyMeta, type MeshErrorContext, type PolicyBundle, type PolicyMeta } from './types';
+import { createPolicyMeta, type MeshErrorContext, type PolicyBundle, type PolicyMeta, type MeshRequestId } from './types';
 
 export interface RegistrySnapshot {
   totalActive: number;
@@ -24,7 +24,7 @@ class MemoryPolicyRegistry implements PolicyRegistry {
     const parsed = parseDecisionPolicy(raw);
     if (!parsed.ok) {
       return fail({
-        requestId: `mesh-${Date.now()}-policy` as never,
+        requestId: `mesh-${Date.now()}-policy` as unknown as MeshRequestId,
         at: new Date().toISOString(),
         message: parsed.error,
       });
@@ -33,7 +33,6 @@ class MemoryPolicyRegistry implements PolicyRegistry {
     const template = parsed.value;
     const meta: PolicyMeta = {
       ...createPolicyMeta(template, Math.max(1, template.nodes.length + template.edges.length)),
-      tenantId: template.tenantId.toLowerCase(),
       active: template.active,
       version: template.version,
     };

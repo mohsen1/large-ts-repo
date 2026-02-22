@@ -6,7 +6,9 @@ export interface Item {
   createdAt: Date;
 }
 
-export type Similarity = (a: Item, b: Item) => number;
+export interface Similarity {
+  score(a: Item, b: Item): number;
+}
 
 export interface CandidateSource<T extends Item = Item> {
   load(profileId: string): Promise<readonly T[]>;

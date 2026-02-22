@@ -9,12 +9,11 @@ import {
   OperationSignal,
   OperationStep,
   OperationWindow,
-  PlanTemplate,
   StepSelector,
 } from './types';
 import { isWindowOverlapping, mergeDependencies, mergeSignals, normalizeConstraint, normalizeWindow } from './types';
 import { asDeploymentId, asEnvironmentId, asOperationId, asRunbookId } from './types';
-import { PolicyBundle, selectSignalsForWindow, evaluatePolicy } from './policies';
+import { PlanTemplate, PolicyCollection, selectSignalsForWindow, evaluatePolicy } from './policies';
 import { estimatePlanMinutes } from './types';
 
 export type BuildPlanInput = Pick<
@@ -32,7 +31,7 @@ export interface PlanningContext {
 }
 
 export interface PlanningResult {
-  plan: PlanEnvelope<unknown>;
+  plan: PlanEnvelope<Record<string, unknown>>;
   decision: PlanDecision;
   template: PlanTemplate;
   query: QueryResult<OperationPlan>;
@@ -50,7 +49,7 @@ export const buildDraft = (input: BuildPlanInput): PlanDraft => ({
   environmentId: asEnvironmentId(input.tenantId),
   deploymentId: asDeploymentId(input.deploymentId),
   runbookId: asRunbookId(input.runbookId),
-  window: normalizeWindowRange(input),
+  window: normalizeWindowRange(input.window),
   baseSteps: input.baseSteps,
   dependencies: input.dependencies,
   constraints: normalizeConstraint(input.constraints),
@@ -96,7 +95,7 @@ export const shapePlan = (
     direction: 'desc',
   };
 
-  const plan: OperationPlan = {
+  const plan: OperationPlan<Record<string, unknown>> = {
     id,
     environmentId: draft.environmentId,
     deploymentId: draft.deploymentId,
@@ -110,7 +109,7 @@ export const shapePlan = (
     labels: ['service-planned'],
   };
 
-  const decision: PlanDecision = {
+  const decision: PlanDecision<Record<string, unknown>> = {
     planId: id,
     allowed: policy.allowed && reasons.length === 0,
     reasons,
@@ -121,7 +120,7 @@ export const shapePlan = (
     } as any,
   };
 
-  const query: QueryResult<OperationPlan> = {
+  const query: QueryResult<OperationPlan<Record<string, unknown>>> = {
     cursor: queryRequest.cursor ? queryWindow.pageSize.toString() : undefined,
     items: [plan],
     hasMore: false,
@@ -144,7 +143,7 @@ export const shapePlan = (
 
 export const estimatePlanDuration = (plan: Pick<OperationPlan, 'steps'>): number => estimatePlanMinutes(plan.steps);
 
-export const compilePolicyBundle = (tenantId: string, templates: readonly PlanTemplate[]): PolicyBundle => ({
+export const compilePolicyBundle = (tenantId: string, templates: readonly PlanTemplate[]): PolicyCollection => ({
   name: `${tenantId}-bundle`,
   owner: 'ops-runtime',
   constraints: templates.map((template) => normalizeConstraint(template.constraintOverrides)),

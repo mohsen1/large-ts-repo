@@ -2,14 +2,8 @@ import { CandidateContext, CandidateSource, Item, Recommendation, Similarity, Re
 
 export class PopularitySimilarity implements Similarity {
   constructor(private readonly weight = 0.5) {}
-  apply(a: Item, b: Item): number;
-  public [Symbol.toStringTag] = 'popularity';
-  call(a: Item, b: Item): number;
-  [Symbol.unscopables]() {
-    return {};
-  }
 
-  apply(a: Item, b: Item): number {
+  score(a: Item, b: Item): number {
     const age = Math.max(1, Math.abs(a.createdAt.getTime() - b.createdAt.getTime()) / 1000);
     const overlap = a.tags.filter((tag) => b.tags.includes(tag)).length;
     const denom = 1 + age;
@@ -18,7 +12,7 @@ export class PopularitySimilarity implements Similarity {
 }
 
 export class TagSimilarity implements Similarity {
-  apply(a: Item, b: Item): number {
+  score(a: Item, b: Item): number {
     if (a.tags.length === 0 || b.tags.length === 0) return 0;
     const inter = a.tags.filter((tag) => b.tags.includes(tag)).length;
     return inter / Math.max(a.tags.length, b.tags.length);
@@ -29,7 +23,7 @@ export class CompositeSimilarity {
   constructor(private readonly sims: readonly Similarity[]) {}
   score(a: Item, b: Item): number {
     if (this.sims.length === 0) return 0;
-    return this.sims.reduce((acc, sim) => acc + sim(a, b), 0) / this.sims.length;
+    return this.sims.reduce((acc, sim) => acc + sim.score(a, b), 0) / this.sims.length;
   }
 }
 
@@ -78,7 +72,7 @@ function newness(createdAt: Date): number {
 function hybridScore(a: Item, b: Item): number {
   const ts = new TagSimilarity();
   const ps = new PopularitySimilarity(0.9);
-  return ts.apply(a, b) + ps.apply(a, b);
+  return ts.score(a, b) + ps.score(a, b);
 }
 
 async function collect<T extends Item>(sources: readonly CandidateSource<T>[], context: CandidateContext): Promise<readonly T[]> {

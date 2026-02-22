@@ -3,7 +3,15 @@ import { Brand, Merge } from '@shared/core';
 
 export type MetricName = Brand<string, 'MetricName'>;
 
-export interface MetricValue {
+export interface Metric extends Record<string, unknown> {
+  readonly name: string;
+  readonly value: number;
+  readonly tags: TelemetryDimension;
+  readonly at: TimestampMs;
+  readonly unit?: MetricSample['unit'];
+}
+
+export interface MetricValue extends Metric {
   readonly name: MetricName;
   readonly value: number;
   readonly tags: TelemetryDimension;
@@ -76,11 +84,11 @@ export class Span implements Timer {
 }
 
 export class MetricBuffer {
-  private readonly rows: MetricSample[] = [];
-  add(sample: MetricSample): void {
+  private readonly rows: Metric[] = [];
+  add(sample: Metric): void {
     this.rows.push(sample);
   }
-  flush(): MetricSample[] {
+  flush(): Metric[] {
     const next = [...this.rows];
     this.rows.length = 0;
     return next;
@@ -102,17 +110,21 @@ export const buildAlertDelta = (left: AlertMatch, right: AlertMatch): TelemetryC
   };
 };
 
-export const toMetric = (name: string, value: number, tags: TelemetryDimension = {}): NormalizedTelemetrySample['sample'] => ({
-  tenantId: '' as NormalizedTelemetrySample['sample']['tenantId'],
-  streamId: '' as NormalizedTelemetrySample['sample']['streamId'],
-  signal: 'metric',
-  timestamp: Date.now() as TimestampMs,
-  payload: { name, value, unit: 'count' },
+export const toMetric = (name: string, value: number, tags: TelemetryDimension = {}): Metric => ({
+  name,
+  value,
   tags,
+  at: Date.now() as TimestampMs,
 });
 
 export const snapshotFrom = (samples: ReadonlyArray<MetricSample>): MetricSnapshot => {
-  const metrics = samples.map((sample) => ({ ...sample, at: Date.now() as TimestampMs, name: sample.name as MetricName }));
+  const metrics = samples.map((sample) => ({
+    ...sample,
+    at: Date.now() as TimestampMs,
+    name: sample.name as MetricName,
+    tags: {} as TelemetryDimension,
+    unit: 'count' as const,
+  }));
   const summary: Record<SignalKind, number> = {
     metric: metrics.length,
     span: 0,

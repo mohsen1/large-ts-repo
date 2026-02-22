@@ -8,7 +8,7 @@ export interface Step<TIn, TOut> {
 }
 
 export class Pipeline<T> {
-  private readonly steps: Array<(value: any) => any> = [];
+  private readonly steps: Array<(value: any) => any | Promise<any>> = [];
 
   constructor(private readonly name: string) {}
 
@@ -30,21 +30,27 @@ export class Pipeline<T> {
     return current;
   }
 
-  async runTask(input: T): Promise<any> {
-    return Promise.resolve(this.run(input));
+  async runTask(input: T): Promise<Awaited<T>> {
+    let current = input as any;
+    for (const step of this.steps) {
+      current = await Promise.resolve(step(current));
+    }
+    return current as Awaited<T>;
   }
 
-  static fromIO<T>(name: string, io: IO<T>): Pipeline<Awaited<T>> {
-    return new Pipeline(name).addMap<IO<T>, Awaited<T>>('io', async () => io.run() as Promise<Awaited<T>>);
+  static fromIO<T>(name: string, io: IO<T>): Pipeline<T> {
+    return new Pipeline<T>(name).addMap<IO<T>, T>('io', () => io.run());
   }
 
-  static fromTask<T>(name: string, task: Task<T>): Pipeline<T> {
-    return new Pipeline(name).addMap<Task<T>, T>('task', () => task.run()).addMap(async (t) => await t);
+  static fromTask<T>(name: string, task: Task<T>): Pipeline<Awaited<T>> {
+    return new Pipeline<Awaited<T>>(name).addMap<Task<T>, Awaited<T>>('task', () => task.run() as Awaited<T>);
   }
 
   static fromEither<E, A>(name: string, either: Either<E, A>): Pipeline<A> {
     return isLeft(either)
-      ? new Pipeline(name).addMap(() => { throw new Error(String(either.error)); })
-      : new Pipeline(name).addMap(() => either.value);
+      ? new Pipeline<A>(name).addMap('either-left', () => {
+          throw new Error(String(either.error));
+        })
+      : new Pipeline<A>(name).addMap('either-right', () => either.value);
   }
 }

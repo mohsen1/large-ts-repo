@@ -21,7 +21,7 @@ export interface MeshTelemetry {
   markCompleted(event: MeshEvent, runtimeMs: number): void;
   markFailed(event: MeshEvent, error: string): void;
   report(): MeshStats;
-  spans(): Span[];
+  spans(): readonly Span[];
 }
 
 export class InMemoryMeshTelemetry implements MeshTelemetry {
@@ -66,8 +66,7 @@ export class InMemoryMeshTelemetry implements MeshTelemetry {
     };
   }
 
-  spans(): Span[] {
+  spans(): readonly Span[] {
     return this.tracer.snapshot();
   }
 }
-

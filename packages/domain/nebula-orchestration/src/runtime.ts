@@ -9,7 +9,7 @@ import type {
   OrchestratorService,
 } from './blueprint';
 import { TopologyResolver, validatePlan } from '@domain/nebula-grid/src/topology';
-import type { GraphDefinition, NodeMetrics, GraphEvent } from '@domain/nebula-grid/src/primitives';
+import type { GraphDefinition, GraphEdge, NodeId, NodeMetrics, GraphEvent } from '@domain/nebula-grid/src/primitives';
 
 export interface RuntimeConfig {
   readonly allowRollback: boolean;
@@ -49,8 +49,6 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
     },
     {
       id: 0 as never,
-      tenantId: 'tenant',
-      accountId: 'acct',
       region: 'us-east',
       owner: { tenantId: 'tenant', accountId: 'acct' },
       stamp: 0 as never,
@@ -66,10 +64,10 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
   async compile(input: OrchestratorBlueprint): Promise<OrchestrationPlan> {
     const graph = await this.toGraph(input);
     return {
-      id: `plan-${input.id}`,
+      id: `orch-${input.id}-plan` as OrchestrationId,
       compiledAt: Date.now(),
       graph,
-      order: input.nodes.map((node) => node.id),
+      order: input.nodes.map((node) => node.id as OrchestrationId),
       edges: input.edges,
       metadata: { nodes: input.nodes.length, edges: input.edges.length },
     };
@@ -77,8 +75,8 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
 
   async deploy(plan: OrchestrationPlan): Promise<OrchestrationRun> {
     const run: OrchestrationRun = {
-      id: `run-${plan.id}`,
-      manifestId: `manifest-${plan.id}` as OrchestrationId,
+      id: plan.id,
+      manifestId: `orch-${plan.id}-manifest` as OrchestrationId,
       startedAt: Date.now(),
       status: 'running',
       attempts: 1,
@@ -149,7 +147,7 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
   async validate(blueprint: OrchestratorBlueprint): Promise<ReturnType<typeof validatePlan>> {
     const plan = await this.compile(blueprint);
     const graph = await this.toGraph(blueprint);
-    const report = validatePlan({ id: plan.id, policy: { enforceAcyclic: true, forbidCrossRegionEdges: false, maxOutDegree: 100, maxHopCount: 100 }, desiredNodeCount: graph.nodes.length, desiredEdgeCount: graph.edges.length, createdAt: Date.now() }, {
+    const report = validatePlan({ id: blueprint.graph, requestedBy: 'runtime', policy: { enforceAcyclic: true, forbidCrossRegionEdges: false, maxOutDegree: 100, maxHopCount: 100 }, desiredNodeCount: graph.nodes.length, desiredEdgeCount: graph.edges.length, createdAt: Date.now() }, {
       nodes: graph.nodes,
       edges: graph.edges,
       ctx: graph.ctx,
@@ -197,7 +195,7 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
       outputType: 'json',
       endpoint: `endpoint-${idx}`,
       schema: {},
-      transform: (value) => value,
+      transform: (value: never) => value,
       compiledShader: `shader-${idx}`,
       accepted: 'ok',
       output: {} as never,
@@ -214,10 +212,10 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
       exports: ['json'],
       compression: 'none',
     } as never));
-    const edges = blueprint.edges.map((edge, index) => ({
+    const edges: GraphEdge[] = blueprint.edges.map((edge, index) => ({
       id: edge.id,
-      from: edge.from,
-      to: edge.to,
+      from: edge.from as NodeId,
+      to: edge.to as NodeId,
       kind: 'data',
       capacityPerSecond: (index + 1) * 10,
       policy: {
@@ -231,6 +229,7 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
         saturation: Math.min(1, index / 10),
         droppedPackets: 0,
         blockedRetries: 0,
+        retryPenalty: 0,
       },
     }));
 
@@ -238,8 +237,6 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
       id: blueprint.graph,
       ctx: {
         id: 0 as never,
-        tenantId: 'tenant',
-        accountId: 'acct',
         region: 'us-east',
         owner: { tenantId: 'tenant', accountId: 'acct' },
         stamp: 0 as never,
@@ -247,7 +244,7 @@ export class OrchestrationRuntime implements OrchestratorService, RuntimeEngine 
         window: { sampleWindowMs: 1000, targetRps: 100, maxBurst: 50 },
       },
       nodes,
-      edges: edges as OrchestrationEdge[],
+      edges,
       created: Date.now(),
     };
   }
@@ -265,8 +262,8 @@ export function cloneGraph(graph: GraphDefinition): GraphDefinition {
 
 export function simulateRuntime(plan: OrchestrationPlan): OrchestrationRun {
   return {
-    id: `sim-${plan.id}`,
-    manifestId: `manifest-${plan.id}` as OrchestrationId,
+    id: `orch-${plan.id}` as OrchestrationId,
+    manifestId: `orch-${plan.id}-manifest` as OrchestrationId,
     startedAt: Date.now(),
     status: 'running',
     attempts: 0,

@@ -29,7 +29,7 @@ export function safeStringify<T>(value: T): string {
 }
 
 export function fromPacked<T>(packed: Packed, reviver?: (key: string, value: unknown) => unknown): T {
-  const text = new TextDecoder().decode(new Uint8Array(packed.bytes as number[]));
+  const text = new TextDecoder().decode(new Uint8Array(packed.bytes as readonly number[]));
   return JSON.parse(text, reviver) as T;
 }
 

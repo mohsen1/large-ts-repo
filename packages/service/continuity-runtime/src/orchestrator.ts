@@ -1,23 +1,27 @@
 import { ok, fail } from '@shared/result';
-import { MessageBus } from '@platform/messaging';
+import { createEnvelope, Envelope } from '@shared/protocol';
+import { MessageBus, TopicName } from '@platform/messaging';
 import {
-  buildPlanDraft,
-  validatePlanTemplate,
-  normalizePolicy,
-  ContinuityPlanTemplate,
-  OrchestrationProgress,
-  applyProgressTransition,
   buildInitialProgress,
+  buildPlanDraft,
+  ContinuityCorrelationId,
+  ContinuityEventEnvelope,
+  ContinuityPlanTemplate,
+  ContinuityRuntimePlan,
+  ContinuityRunId,
+  ContinuityTenantId,
   markStepCompleted,
   markStepStarted,
   nextStepCandidates,
+  OrchestrationProgress,
   OrchestrationStepResult,
-  ContinuityRuntimePlan,
-  ContinuityEventEnvelope,
+  normalizePolicy,
+  validatePlanTemplate,
+  applyProgressTransition,
 } from '@domain/continuity-orchestration';
 import { InMemoryContinuityJournal } from '@data/continuity-journal';
 import { EventBridgePublisher } from './adapter';
-import { launchRequestSchema, stepCommandSchema, StepCommand, LaunchRequest } from './schemas';
+import { LaunchRequest, launchRequestSchema, StepCommand, stepCommandSchema } from './schemas';
 
 export interface ServiceDependencies {
   journal?: InMemoryContinuityJournal;
@@ -56,9 +60,11 @@ export class ContinuityRuntimeService {
     if (request.tenantId !== template.tenantId) return fail('tenant-mismatch');
 
     const policyCheck = validatePlanTemplate(template);
-    if (!policyCheck.ok) return fail(policyCheck.errors.map((e) => e.code).join(','));
+    if (!policyCheck.ok) {
+      return fail(policyCheck.errors.map((error: { code: string }) => error.code).join(','));
+    }
 
-    const runId = request.planId as any;
+    const runId = request.planId as ContinuityRunId;
     const draft = buildPlanDraft(
       {
         ...template,
@@ -68,20 +74,23 @@ export class ContinuityRuntimeService {
     );
     if (!draft) return fail('invalid-draft');
 
-    await this.journal.save(draft as never);
-    this.plans.set(draft.id, draft as ContinuityRuntimePlan);
-    const progress = buildInitialProgress(draft as never);
+    const plan: ContinuityRuntimePlan = { ...draft, id: draft.runId };
+    await this.journal.save(plan);
+    this.plans.set(plan.id, plan);
+    const progress = buildInitialProgress(plan);
     const started = applyProgressTransition(progress, 'running');
-    this.progress.set(draft.id, started);
+    this.progress.set(plan.id, started);
+
     await this.publish({
-      runId: draft.id,
-      tenantId: draft.tenantId,
+      runId: plan.id,
+      tenantId: plan.tenantId,
       eventType: 'plan.started',
       when: new Date().toISOString(),
-      correlationId: request.planId as any,
+      correlationId: plan.correlationId,
       payload: { requestedBy: request.requestedBy, dryRun: request.dryRun },
     });
-    return ok({ runId: draft.id, state: started.runState, draftSteps: draft.steps.length });
+
+    return ok({ runId: plan.id, state: started.runState, draftSteps: draft.steps.length });
   }
 
   async commandStep(input: unknown): Promise<boolean> {
@@ -90,20 +99,22 @@ export class ContinuityRuntimeService {
     const command = parsed.data as StepCommand;
     const state = this.progress.get(command.runId);
     if (!state) return false;
-    const plan = this.plans.get(command.runId) as ContinuityRuntimePlan | undefined;
+    const plan = this.plans.get(command.runId);
     if (!plan) return false;
+
     if (command.command === 'cancel') {
       this.progress.set(command.runId, applyProgressTransition(state, 'cancelled'));
       await this.publish({
-        runId: command.runId as any,
-        tenantId: state.tenantId,
+        runId: command.runId as ContinuityRunId,
+        tenantId: plan.tenantId,
         eventType: 'plan.finished',
         when: new Date().toISOString(),
-        correlationId: state.runId as any,
+        correlationId: plan.correlationId,
         payload: { command: command.command },
       });
       return true;
     }
+
     if (command.command === 'skip') {
       const result: OrchestrationStepResult = {
         stepId: command.stepId,
@@ -111,18 +122,18 @@ export class ContinuityRuntimeService {
         message: 'manual skip',
         retriable: false,
       };
-      const next = markStepCompleted(state, result);
-      this.progress.set(command.runId, next);
+      this.progress.set(command.runId, markStepCompleted(state, result));
       return true;
     }
+
     if (command.command === 'start' || command.command === 'retry') {
       const candidates = nextStepCandidates(state, plan.steps);
-      void command.command;
       if (candidates.includes(command.stepId)) {
         this.progress.set(command.runId, markStepStarted(state, command.stepId));
         return true;
       }
     }
+
     return false;
   }
 
@@ -131,7 +142,14 @@ export class ContinuityRuntimeService {
     return run;
   }
 
-  private async publish(envelope: { runId: string; tenantId: string; eventType: 'plan.started' | 'plan.finished'; when: string; correlationId: string; payload: Record<string, unknown> }) {
+  private async publish(envelope: {
+    runId: ContinuityRunId;
+    tenantId: ContinuityTenantId;
+    eventType: 'plan.started' | 'plan.finished';
+    when: string;
+    correlationId: ContinuityCorrelationId;
+    payload: Record<string, unknown>;
+  }) {
     const event: ContinuityEventEnvelope<Record<string, unknown>> = {
       runId: envelope.runId,
       tenantId: envelope.tenantId,
@@ -141,7 +159,7 @@ export class ContinuityRuntimeService {
       payload: envelope.payload,
     };
 
-    const plan = this.plans.get(envelope.runId) as ContinuityRuntimePlan | undefined;
+    const plan = this.plans.get(envelope.runId);
     if (plan) {
       await this.journal.save(plan, event);
     }
@@ -150,8 +168,8 @@ export class ContinuityRuntimeService {
       await this.publisher.publish(event);
     }
     if (this.bus) {
-      const topic = `continuity.${envelope.eventType}`;
-      await this.bus.publish(topic, event);
+      const topic: TopicName = `${envelope.eventType}` as TopicName;
+      await this.bus.publish(topic, createEnvelope(topic, event));
     }
   }
 }

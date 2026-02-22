@@ -132,7 +132,7 @@ export class EnvelopeBuilder implements PlanEnvelopeBuilder {
     return {
       ...run.plan!,
       metadata: {
-        source: 'runner',
+        source: 'planner',
         version: 1,
         dependencies: [],
       },

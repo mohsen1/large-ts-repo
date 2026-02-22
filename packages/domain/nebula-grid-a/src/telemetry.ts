@@ -81,7 +81,7 @@ export class InMemoryTelemetryController implements TelemetryController {
       name,
       unit: 'gauge',
       samples: [value],
-      set: (next) => this.setGauge(name, next),
+      set: (next: number) => this.setGauge(name, next),
       reset: () => this.gauges.set(name, 0),
     }));
     const histograms = [...this.hist.entries()].map(([name, samples]) => ({

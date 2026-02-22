@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
-import type { DecisionAction, DecisionPlan, DecisionTraceStep, TInputTemplate } from './models';
-import type { CandidateDecision, DecisionPolicyTemplate, PolicyTemplateId } from '@data/decision-catalog';
+import type { CandidateDecision, DecisionAction, DecisionPlan, DecisionTraceStep, TInputTemplate } from './models';
+import type { DecisionPolicyTemplate, PolicyTemplateId } from '@data/decision-catalog';
 
 export interface SelectionPolicy {
   minScore: number;
@@ -22,10 +22,10 @@ export const rankCandidates = <TOutput>(
 export function createPlan<TInput extends TInputTemplate, TOutput>(
   template: DecisionPolicyTemplate,
   input: TInput,
-  candidates: ReadonlyArray<CandidateDecision<TOutput>> | ReadonlyArray<{ id: string; score: number; output: TOutput }>,
+  candidates: ReadonlyArray<CandidateDecision<TOutput>>,
   policy: SelectionPolicy,
 ): DecisionPlan<TInput, TOutput> {
-  const ranked = rankCandidates(candidates as CandidateDecision<TOutput>[], policy);
+  const ranked = rankCandidates(candidates, policy);
   const trace = ranked.map((candidate, index): DecisionTraceStep => ({
     nodeId: `candidate-${index}`,
     actor: template.nodes[index % template.nodes.length]?.actor ?? 'system',

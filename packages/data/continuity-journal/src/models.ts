@@ -1,7 +1,8 @@
 import { Brand, PageResult, normalizeLimit } from '@shared/core';
 import { ContinuityRuntimePlan, ContinuityEventEnvelope, ContinuityRunState, ContinuityTenantId } from '@domain/continuity-orchestration';
+import { ContinuityRunId } from '@domain/continuity-orchestration';
 
-export type ContinuityRunRecordId = Brand<string, 'ContinuityRunRecordId'>;
+export type ContinuityRunRecordId = ContinuityRunId;
 
 export interface RunRecordEnvelope {
   runId: ContinuityRuntimePlan['id'];

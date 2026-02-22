@@ -12,7 +12,7 @@ export const DecisionIntentSchema = z.object({
   tenantId: z.string().min(1),
   policyId: z.string().min(1),
   subjectId: z.string().min(1),
-  requestedAt: z.iso.datetime(),
+  requestedAt: z.string().datetime(),
   context: z.record(z.unknown()).default({}),
   priority: z.number().int().min(0).max(10).default(5),
 });

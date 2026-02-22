@@ -1,5 +1,5 @@
 import { QuoteInput, quote } from '@domain/pricing';
-import { calculateInvoice } from '@domain/billing';
+import { calculateInvoice, Money, type Invoice, type InvoiceId } from '@domain/billing';
 import { Order } from '@domain/orders';
 
 export interface BillingPlan {
@@ -14,15 +14,14 @@ export const planForOrder = (order: Order): QuoteInput => ({
 
 export const settle = async (order: Order, rule: any): Promise<number> => {
   const q = quote(rule, 1, []);
-  return calculateInvoice({
-    ...order,
-    subtotal: { currency: q.currency, amount: q.net },
-    total: { currency: q.currency, amount: q.net },
-    lines: [],
-    id: order.id,
-    purchaserId: order.purchaserId,
-    tenantId: order.tenantId,
-    createdAt: order.createdAt,
-    state: order.state,
-  }, { vatRate: 0.1, applyVat: true, rounding: 'round' }).then((result) => result.ok ? result.value.total.amount : order.total.amount);
+  const currency = (['USD', 'EUR', 'GBP'] as const).includes(q.currency as Money['currency']) ? (q.currency as Money['currency']) : 'USD';
+    const invoice = calculateInvoice({
+      id: order.id as unknown as InvoiceId,
+      accountId: order.tenantId as unknown as Invoice['accountId'],
+      lines: [],
+      subtotal: { currency, amount: q.net },
+      total: { currency, amount: q.net },
+      settled: false,
+    }, { vatRate: 0.1, applyVat: true, roundingDigits: 2 });
+  return invoice.total.amount;
 };

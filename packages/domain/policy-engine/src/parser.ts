@@ -63,8 +63,8 @@ function lex(expr: string): Token[] {
       continue;
     }
 
-    if ('()!&|=<>,'.includes(ch)) {
-      tokens.push({ kind: 'punct', value: ch as Token['value'] });
+    if (ch === '(' || ch === ')' || ch === '!' || ch === '&' || ch === '|' || ch === '=' || ch === '<' || ch === '>' || ch === ',') {
+      tokens.push({ kind: 'punct', value: ch });
       state.offset += 1;
       continue;
     }
@@ -170,4 +170,3 @@ export function parsePolicy(expression: string): PolicyExpr {
   }
   return tree.value;
 }
-

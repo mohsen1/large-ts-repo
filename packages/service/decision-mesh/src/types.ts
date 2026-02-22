@@ -108,7 +108,7 @@ export const createPolicyMeta = (template: DecisionPolicyTemplate, weight: numbe
   active: template.active,
   version: template.version,
   weight,
-  expiresAt: template.tags?.expiry ?? undefined,
+  expiresAt: (template.tags as Record<string, unknown> | undefined)?.expiry as string | undefined,
 });
 
 export const clampPage = (args: MeshPageArgs): MeshPageArgs => ({

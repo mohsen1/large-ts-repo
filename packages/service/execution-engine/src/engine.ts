@@ -1,5 +1,5 @@
 import { DomainGraph } from '@domain/knowledge-graph/builder';
-import { analyze, explain } from '@domain/knowledge-graph/query';
+import { runQuery, explain } from '@domain/knowledge-graph/query';
 
 export interface ExecutionStep {
   id: string;
@@ -44,12 +44,12 @@ export class ExecutionEngine {
 }
 
 export async function executeGraph(graph: DomainGraph, root: string): Promise<ExecutionPlan> {
-  const result = analyze(graph, { root, maxDepth: 9, includeMetadata: false });
+  const result = runQuery(graph, { root: root as never, maxDepth: 9, includeMetadata: false });
   const steps = result.nodes.map((node, index) => ({
     id: `${index}-${node}`,
     name: `process-${node}`,
     run: async () => {
-      await Promise.resolve(explain(graph, { root: node, maxDepth: 2, includeMetadata: true }));
+      await Promise.resolve(explain(graph, { root: node as never, maxDepth: 2, includeMetadata: true }));
     },
     retries: 2,
   }));

@@ -58,26 +58,23 @@ export const createOperationsOrchestrator = (input: OrchestratorInput) => {
     const now = new Date().toISOString();
     await input.incidentRepo.appendSnapshot({
       id: `${run.id}:snapshot:${now}` as any,
-      incident: {
-        id: run.requestId as any,
+      tenantId: run.command.tenantId as any,
+      serviceId: 'operations' as any,
+      title: `operations:${event}`,
+      details: `plan=${run.plan?.id ?? 'n/a'}`,
+      state: 'monitoring',
+      triage: {
         tenantId: run.command.tenantId as any,
         serviceId: 'operations' as any,
-        title: `operations:${event}`,
-        details: `plan=${run.plan?.id ?? 'n/a'}`,
-        state: 'monitoring',
-        triage: {
-          tenantId: run.command.tenantId as any,
-          serviceId: 'operations' as any,
-          observedAt: now,
-          source: 'ops-auto',
-          severity: 'sev3',
-          labels: [],
-          confidence: 1,
-          signals: [],
-        },
-        createdAt: now,
-        updatedAt: now,
+        observedAt: now,
+        source: 'ops-auto',
+        severity: 'sev3',
+        labels: [],
+        confidence: 1,
+        signals: [],
       },
+      createdAt: now,
+      updatedAt: now,
     });
   };
 
@@ -129,7 +126,7 @@ export const createOperationsOrchestrator = (input: OrchestratorInput) => {
       return { id: context.requestId, ok: false, audit: ['planner-rejected'], score: decision.score };
     }
 
-    const run: OperationsRun = {
+    const run: OperationsRun<Record<string, unknown>> = {
       id: planResult.value.plan.id,
       requestId: context.requestId,
       command: command,
@@ -137,7 +134,7 @@ export const createOperationsOrchestrator = (input: OrchestratorInput) => {
       signals,
       createdAt: context.requestedAt,
       window: command.window,
-      plan: planResult.value.plan,
+      plan: planResult.value.plan as OperationPlan<Record<string, unknown>>,
     };
 
     const saved = await input.repository.upsert(run);
