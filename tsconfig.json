@@ -374,6 +374,9 @@
       "path": "./packages/domain/recovery-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-operations-governance"
+    },
+    {
       "path": "./packages/domain/recovery-policy"
     },
     {
@@ -449,10 +452,19 @@
       "path": "./packages/data/recovery-operations-store"
     },
     {
+      "path": "./packages/data/recovery-operations-governance-store"
+    },
+    {
       "path": "./packages/infrastructure/recovery-operations-queue"
     },
     {
+      "path": "./packages/infrastructure/recovery-operations-compliance"
+    },
+    {
       "path": "./packages/service/recovery-operations-engine"
+    },
+    {
+      "path": "./packages/service/recovery-operations-policy-engine"
     }
   ]
 }

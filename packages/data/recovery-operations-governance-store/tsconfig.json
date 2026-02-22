@@ -1,0 +1,22 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-operations-governance/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-operations-store/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    }
+  ]
+}

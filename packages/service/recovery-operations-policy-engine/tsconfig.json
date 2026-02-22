@@ -9,13 +9,11 @@
     "src/**/*"
   ],
   "references": [
+    { "path": "./../../domain/recovery-operations-governance/tsconfig.json" },
     { "path": "./../../domain/recovery-operations-models/tsconfig.json" },
-    { "path": "./../../domain/recovery-orchestration/tsconfig.json" },
-    { "path": "./../../domain/recovery-readiness/tsconfig.json" },
-    { "path": "./../../data/recovery-operations-store/tsconfig.json" },
-    { "path": "./../../infrastructure/recovery-operations-queue/tsconfig.json" },
     { "path": "./../../data/recovery-operations-governance-store/tsconfig.json" },
     { "path": "./../../infrastructure/recovery-operations-compliance/tsconfig.json" },
-    { "path": "./../../service/recovery-operations-policy-engine/tsconfig.json" }
+    { "path": "./../../shared/result/tsconfig.json" },
+    { "path": "./../../shared/core/tsconfig.json" }
   ]
 }

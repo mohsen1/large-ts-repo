@@ -8,6 +8,12 @@ import {
   initializeTimeline,
   type RunSession,
 } from '@domain/recovery-operations-models';
+import { RecoveryOperationsPolicyEngine, type PolicyEngine } from '@service/recovery-operations-policy-engine';
+import {
+  InMemoryRecoveryGovernanceRepository,
+  type RecoveryGovernanceRepository,
+} from '@data/recovery-operations-governance-store';
+import { NoopCompliancePublisher, type CompliancePublisher } from '@infrastructure/recovery-operations-compliance';
 import type {
   RecoverySignal,
   RunPlanSnapshot,
@@ -16,10 +22,15 @@ import type {
 import { buildPlan, envelopeForPlan, shouldRejectPlan } from './plan';
 import type { RecoveryProgram } from '@domain/recovery-orchestration';
 import type { RecoveryReadinessPlan } from '@domain/recovery-readiness';
+import type { IncidentClass } from '@domain/recovery-operations-models';
+import { withBrand } from '@shared/core';
 
 interface OrchestratorDeps {
   readonly repository: RecoveryOperationsRepository;
   readonly publisher: RecoveryOperationsQueuePublisher;
+  readonly policyEngine?: PolicyEngine;
+  readonly governanceStore?: RecoveryGovernanceRepository;
+  readonly policyPublisher?: CompliancePublisher;
 }
 
 type RunState = ReturnType<typeof initializeTimeline>;
@@ -27,7 +38,15 @@ type RunState = ReturnType<typeof initializeTimeline>;
 const runIdToRunState = new Map<string, RunState>();
 
 export class RecoveryOperationsOrchestrator {
-  constructor(private readonly deps: OrchestratorDeps) {}
+  private readonly policyEngine: PolicyEngine;
+  private readonly governanceStore: RecoveryGovernanceRepository;
+  private readonly policyPublisher: CompliancePublisher;
+
+  constructor(private readonly deps: OrchestratorDeps) {
+    this.policyEngine = deps.policyEngine ?? new RecoveryOperationsPolicyEngine();
+    this.governanceStore = deps.governanceStore ?? new InMemoryRecoveryGovernanceRepository();
+    this.policyPublisher = deps.policyPublisher ?? new NoopCompliancePublisher();
+  }
 
   async ingestSignal(runId: string, signal: RecoverySignal): Promise<RunState | undefined> {
     const run = await this.deps.repository.loadSessionByRunId(runId);
@@ -44,16 +63,23 @@ export class RecoveryOperationsOrchestrator {
     readinessPlan: RecoveryReadinessPlan,
     signals: readonly RecoverySignal[],
   ): Promise<RunPlanSnapshot> {
+    const region = readinessPlan.targets[0]?.region ?? 'us-east-1';
+    const serviceFamily = readinessPlan.targets[0]?.ownerTeam ?? readinessPlan.metadata.owner;
+    const fallbackMinutes = Math.max(10, (new Date(readinessPlan.windows[0]?.toUtc).getTime() - new Date(readinessPlan.windows[0]?.fromUtc).getTime()) / (1000 * 60));
+    const impactClass: IncidentClass = readinessPlan.riskBand === 'red' ? 'infrastructure' : readinessPlan.riskBand === 'amber' ? 'database' : 'application';
+
     const candidate = {
       program,
       readinessPlan,
       signals,
       fingerprint: {
-        tenant: readinessPlan.tenant,
-        region: readinessPlan.region ?? 'us-east-1',
-        serviceFamily: readinessPlan.service,
-        impactClass: 'application',
-        estimatedRecoveryMinutes: Math.max(10, readinessPlan.impactEstimateMinutes),
+        tenant: withBrand(readinessPlan.metadata.owner, 'TenantId'),
+        region,
+        serviceFamily,
+        impactClass,
+        estimatedRecoveryMinutes: Number.isFinite(fallbackMinutes)
+          ? fallbackMinutes
+          : Math.max(10, readinessPlan.targets.length * 5),
       },
     };
 
@@ -62,6 +88,25 @@ export class RecoveryOperationsOrchestrator {
     }
 
     const planned = buildPlan(candidate);
+    const policyDecision = await this.policyEngine.runChecksFromContext({
+      runId: planned.runId,
+      tenant: candidate.fingerprint.tenant,
+      runStatus: 'running',
+      program: candidate.program,
+      fingerprint: candidate.fingerprint,
+      readinessPlan,
+      signals,
+      policyRepository: this.governanceStore,
+      publisher: this.policyPublisher,
+    });
+
+    if (!policyDecision.ok && policyDecision.error === 'POLICY_BLOCKED') {
+      throw new Error('Plan creation blocked by policy engine');
+    }
+    if (policyDecision.ok && policyDecision.value.decision === 'block') {
+      throw new Error('Plan creation blocked by governance policy');
+    }
+
     await this.deps.repository.upsertPlan(planned.snapshot);
     await this.deps.publisher.publishPayload(envelopeForPlan(planned));
     return planned.snapshot;

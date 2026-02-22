@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-operations-engine",
+  "name": "@domain/recovery-operations-governance",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,14 +14,9 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@shared/type-level": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
-    "@domain/recovery-orchestration": "workspace:*",
     "@domain/recovery-readiness": "workspace:*",
-    "@data/recovery-operations-store": "workspace:*",
-    "@infrastructure/recovery-operations-queue": "workspace:*",
-    "@service/recovery-operations-policy-engine": "workspace:*",
-    "@data/recovery-operations-governance-store": "workspace:*",
-    "@infrastructure/recovery-operations-compliance": "workspace:*",
     "zod": "^3.24.0"
   }
 }
