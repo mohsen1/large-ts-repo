@@ -530,6 +530,9 @@
       "path": "./packages/data/recovery-operations-intelligence-store"
     },
     {
+      "path": "./packages/data/recovery-operations-analytics"
+    },
+    {
       "path": "./packages/infrastructure/recovery-operations-queue"
     },
     {
@@ -546,6 +549,9 @@
     },
     {
       "path": "./packages/service/recovery-operations-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-operations-observability"
     }
   ]
 }
