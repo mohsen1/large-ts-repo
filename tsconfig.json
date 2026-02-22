@@ -113,6 +113,9 @@
       "path": "./packages/domain/recovery-continuity-planning"
     },
     {
+      "path": "./packages/domain/recovery-command-orchestration"
+    },
+    {
       "path": "./packages/domain/contracts"
     },
     {
@@ -498,6 +501,9 @@
     },
     {
       "path": "./packages/data/recovery-plan-store"
+    },
+    {
+      "path": "./packages/data/recovery-command-graph-store"
     },
     {
       "path": "./packages/data/recovery-coordination-store"

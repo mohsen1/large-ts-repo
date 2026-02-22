@@ -137,6 +137,9 @@ importers:
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
+      '@domain/recovery-command-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-orchestration
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
@@ -525,6 +528,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-command-graph-store:
+    dependencies:
+      '@domain/recovery-command-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -1341,6 +1359,21 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+
+  packages/domain/recovery-command-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-continuity-planning:
     dependencies:
@@ -2672,6 +2705,12 @@ importers:
 
   packages/service/recovery-fusion-orchestrator:
     dependencies:
+      '@data/recovery-command-graph-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-command-graph-store
+      '@domain/recovery-command-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-orchestration
       '@domain/recovery-fusion-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-fusion-intelligence

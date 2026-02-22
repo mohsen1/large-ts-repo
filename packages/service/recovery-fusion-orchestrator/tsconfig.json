@@ -12,6 +12,8 @@
     { "path": "./../../domain/recovery-fusion-intelligence/tsconfig.json" },
     { "path": "./../../domain/recovery-operations-models/tsconfig.json" },
     { "path": "./../../domain/recovery-orchestration/tsconfig.json" },
+    { "path": "./../../domain/recovery-command-orchestration/tsconfig.json" },
+    { "path": "./../../data/recovery-command-graph-store/tsconfig.json" },
     { "path": "./../../infrastructure/recovery-operations-queue/tsconfig.json" },
     { "path": "./../../infrastructure/recovery-operations-intelligence-adapters/tsconfig.json" },
     { "path": "./../../shared/result/tsconfig.json" },

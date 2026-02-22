@@ -27,6 +27,9 @@
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-command-orchestration/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
     },
     {

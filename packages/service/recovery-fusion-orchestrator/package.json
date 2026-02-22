@@ -17,6 +17,8 @@
     "@domain/recovery-fusion-intelligence": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
+    "@domain/recovery-command-orchestration": "workspace:*",
+    "@data/recovery-command-graph-store": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@infrastructure/recovery-operations-queue": "workspace:*",
