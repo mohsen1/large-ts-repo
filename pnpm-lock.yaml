@@ -155,9 +155,9 @@ importers:
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
-      '@data/recovery-simulation-store':
+      '@data/recovery-operations-store':
         specifier: workspace:*
-        version: link:../../data/recovery-simulation-store
+        version: link:../../data/recovery-operations-store
       '@data/recovery-stability-store':
         specifier: workspace:*
         version: link:../../data/recovery-stability-store
@@ -197,6 +197,9 @@ importers:
       '@service/recovery-incident-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-orchestrator
+      '@service/recovery-operations-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-operations-engine
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner

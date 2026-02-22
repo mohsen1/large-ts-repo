@@ -24,6 +24,6 @@ See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generate
 | Code lines | **236,760** |
 | Blank lines | 27,439 |
 | Comment lines | 3 |
-| Last updated | `2026-02-22 20:04:47` |
+| Last updated | `2026-02-22 21:00:34` |
 
 <!-- LOC:END -->
