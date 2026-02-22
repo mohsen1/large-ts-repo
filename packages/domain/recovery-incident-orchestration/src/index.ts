@@ -5,3 +5,5 @@ export * from './runtime';
 export * from './adapters';
 export * from './policy-engine';
 export * from './routing-analytics';
+export * from './command-profile';
+export * from './incident-history';

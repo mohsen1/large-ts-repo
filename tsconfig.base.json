@@ -38,6 +38,9 @@
     "@infrastructure/incident-forecasting-connectors": [
       "packages/infrastructure/incident-forecasting-connectors/src/index.ts"
     ],
+    "@infrastructure/incident-notifications": [
+      "packages/infrastructure/incident-notifications/src/index.ts"
+    ],
     "@service/adaptive-ops-runner": [
       "packages/service/adaptive-ops-runner/src/index.ts"
     ],

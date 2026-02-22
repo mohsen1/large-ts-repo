@@ -6,5 +6,7 @@ export * from './components/IncidentBoard';
 export * from './components/RecoveryTimeline';
 export * from './components/RecoveryCommandCenter';
 export * from './components/RecoveryRiskOverview';
+export * from './components/advanced/IncidentHeatmap';
+export * from './components/advanced/WorkflowInspector';
 export * from './pages/DashboardPage';
 export * from './pages/OperationsPage';

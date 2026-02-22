@@ -4,3 +4,5 @@ export * from './events';
 export * from './adapters';
 export * from './queries';
 export * from './audit';
+export * from './query-cache';
+export * from './incident-metrics';
