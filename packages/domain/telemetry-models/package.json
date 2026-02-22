@@ -1,5 +1,5 @@
 {
-  "name": "@app/insights",
+  "name": "@domain/telemetry-models",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,9 +14,9 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@service/graph-intelligence": "workspace:*",
-    "@service/telemetry": "workspace:*",
-    "@domain/telemetry-models": "workspace:*",
-    "@domain/knowledge-graph": "workspace:*"
+    "@shared/core": "workspace:*",
+    "@shared/validation": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "zod": "^3.24.0"
   }
 }

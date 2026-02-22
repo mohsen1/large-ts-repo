@@ -10,22 +10,13 @@
   ],
   "references": [
     {
-      "path": "./../../data/telemetry-store/tsconfig.json"
-    },
-    {
       "path": "./../../domain/telemetry-models/tsconfig.json"
     },
     {
-      "path": "./../../platform/messaging/tsconfig.json"
+      "path": "./../../data/repositories/tsconfig.json"
     },
     {
       "path": "./../../shared/core/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/type-level/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/validation/tsconfig.json"
     }
   ]
 }

@@ -10,13 +10,13 @@
   ],
   "references": [
     {
-      "path": "./../../domain/knowledge-graph/tsconfig.json"
+      "path": "./../../shared/core/tsconfig.json"
     },
     {
-      "path": "./../../service/graph-intelligence/tsconfig.json"
+      "path": "./../../shared/validation/tsconfig.json"
     },
     {
-      "path": "./../../service/telemetry/tsconfig.json"
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

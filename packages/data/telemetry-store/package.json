@@ -1,5 +1,5 @@
 {
-  "name": "@app/insights",
+  "name": "@data/telemetry-store",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,9 +14,9 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@service/graph-intelligence": "workspace:*",
-    "@service/telemetry": "workspace:*",
     "@domain/telemetry-models": "workspace:*",
-    "@domain/knowledge-graph": "workspace:*"
+    "@data/repositories": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@aws-sdk/client-s3": "^3.900.0"
   }
 }
