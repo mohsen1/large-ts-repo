@@ -236,6 +236,9 @@ importers:
       '@service/recovery-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-orchestrator
+      '@service/recovery-fusion-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-fusion-orchestrator
       '@service/recovery-incident-analytics-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-analytics-orchestrator
@@ -1377,6 +1380,27 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-fusion-intelligence:
+    dependencies:
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../recovery-operations-models
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../recovery-readiness
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2591,6 +2615,33 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-fusion-orchestrator:
+    dependencies:
+      '@domain/recovery-fusion-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fusion-intelligence
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@infrastructure/recovery-operations-intelligence-adapters':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-intelligence-adapters
+      '@infrastructure/recovery-operations-queue':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-operations-queue
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76

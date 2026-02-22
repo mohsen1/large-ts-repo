@@ -93,6 +93,9 @@
     },
     {
       "path": "./../../data/recovery-situational-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
     }
   ]
 }

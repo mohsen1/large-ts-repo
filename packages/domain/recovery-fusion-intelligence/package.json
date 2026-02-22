@@ -1,0 +1,25 @@
+{
+  "name": "@domain/recovery-fusion-intelligence",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-orchestration": "workspace:*",
+    "@domain/recovery-operations-models": "workspace:*",
+    "@domain/recovery-readiness": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "zod": "^3.24.0",
+    "@shared/result": "workspace:*"
+  }
+}

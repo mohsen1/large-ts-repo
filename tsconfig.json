@@ -672,6 +672,12 @@
     },
     {
       "path": "./packages/service/recovery-situational-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-fusion-intelligence"
+    },
+    {
+      "path": "./packages/service/recovery-fusion-orchestrator"
     }
   ]
 }

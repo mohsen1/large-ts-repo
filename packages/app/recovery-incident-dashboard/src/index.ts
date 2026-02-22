@@ -75,3 +75,9 @@ export * from './components/SituationalReadinessPanel';
 export * from './components/RecoveryReadinessHeatmap';
 export * from './components/SituationalTimeline';
 export * from './components/IncidentSimulationWorkspace';
+
+export * from './hooks/useRecoveryFusion';
+export * from './components/fusion/FusionWaveMatrix';
+export * from './components/fusion/FusionCommandRail';
+export * from './components/fusion/FusionSignalFeed';
+export * from './pages/RecoveryFusionOrchestrationPage';
