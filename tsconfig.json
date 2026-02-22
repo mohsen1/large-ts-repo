@@ -179,9 +179,6 @@
       "path": "./packages/domain/pricing"
     },
     {
-      "path": "./packages/domain/pricing"
-    },
-    {
       "path": "./packages/domain/reporting"
     },
     {
@@ -444,6 +441,18 @@
     },
     {
       "path": "./packages/app/recovery-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-operations-models"
+    },
+    {
+      "path": "./packages/data/recovery-operations-store"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-operations-queue"
+    },
+    {
+      "path": "./packages/service/recovery-operations-engine"
     }
   ]
 }

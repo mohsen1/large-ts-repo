@@ -1,0 +1,23 @@
+{
+  "name": "@infrastructure/recovery-operations-queue",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.900.0",
+    "@shared/protocol": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@domain/recovery-operations-models": "workspace:*",
+    "@data/recovery-operations-store": "workspace:*"
+  }
+}

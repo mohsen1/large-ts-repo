@@ -56,56 +56,113 @@
       "@domain/*": [
         "packages/domain/*"
       ],
+      "@domain/recovery-drill-telemetry": [
+        "packages/domain/recovery-drill-telemetry/src"
+      ],
+      "@domain/recovery-drill-telemetry/*": [
+        "packages/domain/recovery-drill-telemetry/src/*"
+      ],
+      "@domain/recovery-playbooks": [
+        "packages/domain/recovery-playbooks/src/index.ts"
+      ],
       "@data/*": [
         "packages/data/*"
+      ],
+      "@data/recovery-playbook-store": [
+        "packages/data/recovery-playbook-store/src/index.ts"
       ],
       "@service/*": [
         "packages/service/*"
       ],
+      "@service/recovery-playbook-engine": [
+        "packages/service/recovery-playbook-engine/src/index.ts"
+      ],
       "@app/*": [
         "packages/app/*"
       ],
-    "@domain/recovery-orchestration": [
-      "packages/domain/recovery-orchestration/src/index.ts"
-    ],
-    "@domain/recovery-risk-models": [
-      "packages/domain/recovery-risk-models/src/index.ts"
-    ],
-    "@domain/recovery-policy": [
-      "packages/domain/recovery-policy/src/index.ts"
-    ],
-    "@domain/recovery-readiness": [
-      "packages/domain/recovery-readiness/src/index.ts"
-    ],
-    "@service/recovery-risk-engine": [
-      "packages/service/recovery-risk-engine/src/index.ts"
-    ],
-    "@service/recovery-readiness-orchestrator": [
-      "packages/service/recovery-readiness-orchestrator/src/index.ts"
-    ],
-    "@data/recovery-artifacts": [
-      "packages/data/recovery-artifacts/src/index.ts"
-    ],
-    "@data/recovery-risk-store": [
-      "packages/data/recovery-risk-store/src/index.ts"
-    ],
-    "@data/recovery-policy-store": [
-      "packages/data/recovery-policy-store/src/index.ts"
-    ],
-    "@data/recovery-readiness-store": [
-      "packages/data/recovery-readiness-store/src/index.ts"
-    ],
+      "@app/recovery-playbook-orchestrator": [
+        "packages/app/recovery-playbook-orchestrator/src/index.ts"
+      ],
+      "@domain/recovery-orchestration": [
+        "packages/domain/recovery-orchestration/src/index.ts"
+      ],
+      "@domain/recovery-plan": [
+        "packages/domain/recovery-plan/src/index.ts"
+      ],
+      "@domain/recovery-risk-models": [
+        "packages/domain/recovery-risk-models/src/index.ts"
+      ],
+      "@domain/recovery-policy": [
+        "packages/domain/recovery-policy/src/index.ts"
+      ],
+      "@domain/recovery-readiness": [
+        "packages/domain/recovery-readiness/src/index.ts"
+      ],
+      "@service/recovery-risk-engine": [
+        "packages/service/recovery-risk-engine/src/index.ts"
+      ],
+      "@service/recovery-readiness-orchestrator": [
+        "packages/service/recovery-readiness-orchestrator/src/index.ts"
+      ],
+      "@data/recovery-artifacts": [
+        "packages/data/recovery-artifacts/src/index.ts"
+      ],
+      "@data/recovery-risk-store": [
+        "packages/data/recovery-risk-store/src/index.ts"
+      ],
+      "@data/recovery-policy-store": [
+        "packages/data/recovery-policy-store/src/index.ts"
+      ],
+      "@data/recovery-readiness-store": [
+        "packages/data/recovery-readiness-store/src/index.ts"
+      ],
+      "@data/recovery-plan-store": [
+        "packages/data/recovery-plan-store/src/index.ts"
+      ],
+      "@infrastructure/recovery-drill-archive": [
+        "packages/infrastructure/recovery-drill-archive/src/index.ts"
+      ],
+      "@infrastructure/recovery-drill-archive/*": [
+        "packages/infrastructure/recovery-drill-archive/src/*"
+      ],
       "@infrastructure/recovery-notifications": [
         "packages/infrastructure/recovery-notifications/src/index.ts"
       ],
       "@service/recovery-policy-engine": [
         "packages/service/recovery-policy-engine/src/index.ts"
       ],
+      "@service/recovery-plan-orchestrator": [
+        "packages/service/recovery-plan-orchestrator/src/index.ts"
+      ],
       "@service/recovery-runner": [
         "packages/service/recovery-runner/src/index.ts"
       ],
       "@app/recovery-console": [
         "packages/app/recovery-console/src/index.ts"
+      ],
+      "@domain/recovery-operations-models": [
+        "packages/domain/recovery-operations-models/src"
+      ],
+      "@domain/recovery-operations-models/*": [
+        "packages/domain/recovery-operations-models/src/*"
+      ],
+      "@data/recovery-operations-store": [
+        "packages/data/recovery-operations-store/src"
+      ],
+      "@data/recovery-operations-store/*": [
+        "packages/data/recovery-operations-store/src/*"
+      ],
+      "@infrastructure/recovery-operations-queue": [
+        "packages/infrastructure/recovery-operations-queue/src"
+      ],
+      "@infrastructure/recovery-operations-queue/*": [
+        "packages/infrastructure/recovery-operations-queue/src/*"
+      ],
+      "@service/recovery-operations-engine": [
+        "packages/service/recovery-operations-engine/src"
+      ],
+      "@service/recovery-operations-engine/*": [
+        "packages/service/recovery-operations-engine/src/*"
       ]
     }
   }
