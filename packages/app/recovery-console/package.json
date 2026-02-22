@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@service/recovery-runner": "workspace:*",
+    "@service/recovery-fusion-orchestrator": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
     "@domain/recovery-simulation-planning": "workspace:*",
     "@data/recovery-simulation-metrics": "workspace:*",

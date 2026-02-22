@@ -3,3 +3,8 @@ export * from './adapters';
 export * from './pipeline';
 export * from './orchestrator';
 export * from './diagnostics';
+export * from './command-router';
+export * from './batch-controller';
+export * from './health-checks';
+export * from './workflow-reports';
+export * from './runtime-telemetry';

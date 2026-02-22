@@ -212,6 +212,9 @@ importers:
       '@domain/incident-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/incident-signal-intelligence
+      '@domain/recovery-fabric-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fabric-orchestration
       '@domain/recovery-incident-analytics':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-analytics
@@ -236,6 +239,9 @@ importers:
       '@service/recovery-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-orchestrator
+      '@service/recovery-fabric-controller':
+        specifier: workspace:*
+        version: link:../../service/recovery-fabric-controller
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
@@ -1380,6 +1386,24 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-fabric-orchestration:
+    dependencies:
+      '@domain/incident-management':
+        specifier: workspace:*
+        version: link:../incident-management
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2618,6 +2642,27 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-fabric-controller:
+    dependencies:
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
+      '@domain/incident-management':
+        specifier: workspace:*
+        version: link:../../domain/incident-management
+      '@domain/recovery-fabric-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fabric-orchestration
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       zod:
         specifier: ^3.24.0
         version: 3.25.76

@@ -39,6 +39,9 @@
       "path": "./../../service/recovery-operations-policy-engine/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
     }
   ]
