@@ -1,0 +1,14 @@
+{
+  "name": "@infrastructure/aws-ops",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": "./dist/index.js" },
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@aws-sdk/client-eventbridge": "^3.900.0",
+    "@aws-sdk/client-cloudwatch-logs": "^3.900.0",
+    "@shared/aws-adapters": "workspace:*"
+  }
+}

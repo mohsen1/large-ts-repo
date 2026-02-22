@@ -1,0 +1,15 @@
+{
+  "name": "large-ts-repo",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r --parallel run build",
+    "count-ts-lines": "bash scripts/count.sh",
+    "count": "bash scripts/count.sh"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  },
+  "packageManager": "pnpm@10.0.0"
+}

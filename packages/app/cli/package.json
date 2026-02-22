@@ -1,0 +1,16 @@
+{
+  "name": "@app/cli",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": { "large-ts": "dist/index.js" },
+  "exports": { ".": "./dist/index.js" },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@platform/messaging": "workspace:*",
+    "@shared/protocol": "workspace:*"
+  }
+}

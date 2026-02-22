@@ -1,0 +1,15 @@
+{
+  "name": "@shared/aws-adapters",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": "./dist/index.js" },
+  "scripts": { "build": "tsc -b" },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.900.0",
+    "@aws-sdk/credential-provider-node": "^3.900.0",
+    "@aws-sdk/types": "^3.900.0",
+    "@shared/type-level": "workspace:*"
+  }
+}

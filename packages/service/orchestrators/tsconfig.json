@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "./dist", "composite": true, "declaration": true },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../../domain/orders" },
+    { "path": "../../domain/inventory" },
+    { "path": "../../domain/pricing" },
+    { "path": "../../domain/billing" }
+  ]
+}
