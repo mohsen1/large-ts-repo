@@ -678,6 +678,12 @@
     },
     {
       "path": "./packages/service/recovery-fusion-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-fabric-orchestration"
+    },
+    {
+      "path": "./packages/service/recovery-fabric-controller"
     }
   ]
 }

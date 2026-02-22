@@ -96,6 +96,12 @@
     },
     {
       "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-fabric-controller/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-fabric-orchestration/tsconfig.json"
     }
   ]
 }

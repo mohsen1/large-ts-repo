@@ -46,6 +46,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zod": "^3.24.0",
-    "@service/recovery-fusion-orchestrator": "workspace:*"
+    "@service/recovery-fusion-orchestrator": "workspace:*",
+    "@domain/recovery-fabric-orchestration": "workspace:*",
+    "@service/recovery-fabric-controller": "workspace:*"
   }
 }
