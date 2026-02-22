@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile=false
@@ -88,6 +87,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: compiler-bench-${{ github.run_id }}
+          if-no-files-found: ignore
           path: |
             .bench/summary.table.md
             .bench/results.csv
