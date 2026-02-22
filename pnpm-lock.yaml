@@ -131,15 +131,24 @@ importers:
       '@aws-sdk/client-eventbridge':
         specifier: ^3.900.0
         version: 3.995.0
+      '@data/recovery-operations-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-operations-store
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
+      '@domain/recovery-operations-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-models
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
+      '@service/recovery-operations-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-operations-engine
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
