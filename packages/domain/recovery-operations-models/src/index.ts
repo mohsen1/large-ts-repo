@@ -22,3 +22,7 @@ export * from './command-intent';
 export * from './portfolio-forecast';
 export * from './command-graph';
 export * from './operations-readiness';
+export * from './dependency-map';
+export * from './simulation-orchestration';
+export * from './sla-profile';
+export * from './incident-rhythm';

@@ -5,3 +5,5 @@ export * from './adapters';
 export * from './rehearsal-repository';
 export * from './signal-workflow';
 export * from './realtime-routing';
+export * from './telemetry-index';
+export * from './ingestion-channel';

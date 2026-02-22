@@ -21,3 +21,6 @@ export * from './command-center';
 export * from './command-observer';
 export * from './command-analytics';
 export * from './command-bridge';
+export * from './horizon-planner';
+export * from './cascade-evaluator';
+export * from './feedback-loop';
