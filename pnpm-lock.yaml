@@ -1083,6 +1083,9 @@ importers:
 
   packages/domain/recovery-operations-intelligence:
     dependencies:
+      '@domain/recovery-operations-governance':
+        specifier: workspace:*
+        version: link:../recovery-operations-governance
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../recovery-operations-models
@@ -1175,6 +1178,18 @@ importers:
         version: 3.25.76
 
   packages/domain/recovery-risk-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-risk-strategy:
     dependencies:
       '@shared/core':
         specifier: workspace:*
@@ -1439,9 +1454,15 @@ importers:
       '@data/recovery-operations-intelligence-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-intelligence-store
+      '@data/recovery-playbook-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-store
       '@domain/recovery-operations-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-intelligence
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbooks
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -1466,6 +1487,30 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/infrastructure/recovery-risk-connectors:
+    dependencies:
+      '@aws-sdk/client-sns':
+        specifier: ^3.995.0
+        version: 3.995.0
+      '@aws-sdk/client-sqs':
+        specifier: ^3.995.0
+        version: 3.995.0
+      '@data/recovery-risk-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-risk-store
+      '@domain/recovery-risk-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-models
+      '@domain/recovery-risk-strategy':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-strategy
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.25.76
+        version: 3.25.76
 
   packages/infrastructure/recovery-scenario-notifier:
     dependencies:
@@ -2141,6 +2186,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-playbook-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-store
       '@domain/analytics':
         specifier: workspace:*
         version: link:../../domain/analytics
@@ -2150,6 +2198,9 @@ importers:
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbooks
       '@infrastructure/recovery-operations-intelligence-adapters':
         specifier: workspace:*
         version: link:../../infrastructure/recovery-operations-intelligence-adapters
@@ -2348,12 +2399,42 @@ importers:
       '@domain/recovery-risk-models':
         specifier: workspace:*
         version: link:../../domain/recovery-risk-models
+      '@domain/recovery-risk-strategy':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-strategy
+      '@service/recovery-risk-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-risk-orchestrator
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-risk-orchestrator:
+    dependencies:
+      '@aws-sdk/client-sns':
+        specifier: ^3.995.0
+        version: 3.995.0
+      '@data/recovery-risk-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-risk-store
+      '@domain/recovery-risk-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-models
+      '@domain/recovery-risk-strategy':
+        specifier: workspace:*
+        version: link:../../domain/recovery-risk-strategy
+      '@infrastructure/recovery-risk-connectors':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-risk-connectors
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/recovery-runner:
     dependencies:

@@ -10,13 +10,7 @@
   ],
   "references": [
     {
-      "path": "./../../data/recovery-policy-store/tsconfig.json"
-    },
-    {
       "path": "./../../data/recovery-risk-store/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-orchestration/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-risk-models/tsconfig.json"
@@ -25,16 +19,7 @@
       "path": "./../../domain/recovery-risk-strategy/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-risk-orchestrator/tsconfig.json"
-    },
-    {
       "path": "./../../shared/result/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/type-level/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/core/tsconfig.json"
     }
   ]
 }

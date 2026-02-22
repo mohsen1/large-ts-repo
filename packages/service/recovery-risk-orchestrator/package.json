@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-risk-engine",
+  "name": "@service/recovery-risk-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,14 +14,11 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@data/recovery-policy-store": "workspace:*",
     "@data/recovery-risk-store": "workspace:*",
-    "@domain/recovery-orchestration": "workspace:*",
     "@domain/recovery-risk-models": "workspace:*",
     "@domain/recovery-risk-strategy": "workspace:*",
-    "@service/recovery-risk-orchestrator": "workspace:*",
+    "@infrastructure/recovery-risk-connectors": "workspace:*",
     "@shared/result": "workspace:*",
-    "@shared/type-level": "workspace:*",
-    "@shared/core": "workspace:*"
+    "@aws-sdk/client-sns": "^3.995.0"
   }
 }

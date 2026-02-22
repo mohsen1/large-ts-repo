@@ -558,6 +558,15 @@
     },
     {
       "path": "./packages/service/recovery-operations-observability"
+    },
+    {
+      "path": "./packages/domain/recovery-risk-strategy"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-risk-connectors"
+    },
+    {
+      "path": "./packages/service/recovery-risk-orchestrator"
     }
   ]
 }
