@@ -7,6 +7,12 @@ import { AdaptiveOpsCoveragePanel } from './components/AdaptiveOpsCoveragePanel'
 import { AdaptiveOpsForecastPanel } from './components/AdaptiveOpsForecastPanel';
 import { useAdaptiveOpsForecast } from './hooks/useAdaptiveOpsForecast';
 import { useAdaptiveOpsDashboard, type AdaptiveOpsDashboardState, type AdaptiveOpsRunFilter } from './hooks/useAdaptiveOpsDashboard';
+import { RecoveryCommandCenterPage } from './pages/RecoveryCommandCenterPage';
+import { useRecoveryCommandCenter, type CommandWorkspaceFilter } from './hooks/useRecoveryCommandCenter';
+import { CommandDependencyPanel } from './components/command-plan/CommandDependencyPanel';
+import { CommandTimeline } from './components/command-center/CommandTimeline';
+import { CommandControlStrip } from './components/command-center/CommandControlStrip';
+import { CommandPlanMatrix } from './components/command-plan/CommandPlanMatrix';
 
 export {
   AdaptiveOpsStudioPage,
@@ -20,4 +26,11 @@ export {
   useAdaptiveOpsDashboard,
   type AdaptiveOpsDashboardState,
   type AdaptiveOpsRunFilter,
+  RecoveryCommandCenterPage,
+  useRecoveryCommandCenter,
+  type CommandWorkspaceFilter,
+  CommandDependencyPanel,
+  CommandTimeline,
+  CommandControlStrip,
+  CommandPlanMatrix,
 };

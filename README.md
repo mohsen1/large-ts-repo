@@ -6,11 +6,10 @@ This is a large AI-generated TypeScript monorepo that contains multiple packages
 
 Most very large open source TypeScript monorepos have very custom build systems (e.g. VSCode, Next.js). This monorepo is designed to be a public resource for testing TypeScript compilers and tools on large codebases. Personally I am using this for [`tsz`](https://tsz.dev) which is a TypeScript compiler written in Rust.
 
-## Purpose
-
-This is entirely AI generated using `Codex-5.3-Spark` for testing purposes. The monorepo is designed to stress test TypeScript compilers
 
 ## How it was generated
+
+This is entirely AI generated using `Codex-5.3-Spark` on a loop.
 
 See [`generate.sh`](./scripts/generate.sh) for the script that was used to generate this monorepo. 
 
@@ -24,10 +23,14 @@ See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generate
 
 | Metric | Value |
 | :-- | --: |
-| TypeScript files | **1,358** |
-| Code lines | **241,912** |
-| Blank lines | 27,971 |
+| TypeScript files | **1,381** |
+| Code lines | **243,601** |
+| Blank lines | 28,183 |
 | Comment lines | 3 |
-| Last updated | `2026-02-22 21:24:02` |
+| Last updated | `2026-02-22 21:28:46` |
 
 <!-- LOC:END -->
+
+
+## License
+This monorepo is licensed under the MIT License. 

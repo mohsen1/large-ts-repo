@@ -464,6 +464,9 @@
       "path": "./packages/domain/incident-command-core"
     },
     {
+      "path": "./packages/domain/incident-command-models"
+    },
+    {
       "path": "./packages/data/recovery-artifacts"
     },
     {
@@ -471,6 +474,9 @@
     },
     {
       "path": "./packages/data/incident-signal-store"
+    },
+    {
+      "path": "./packages/data/incident-command-store"
     },
     {
       "path": "./packages/data/recovery-workflow-store"
@@ -648,6 +654,9 @@
     },
     {
       "path": "./packages/service/recovery-command-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-command-orchestrator"
     },
     {
       "path": "./packages/service/recovery-incident-analytics-orchestrator"
