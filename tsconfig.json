@@ -164,6 +164,9 @@
       "path": "./packages/domain/operations-control"
     },
     {
+      "path": "./packages/domain/recovery-playbooks"
+    },
+    {
       "path": "./packages/domain/operations-orchestration"
     },
     {
@@ -302,6 +305,9 @@
       "path": "./packages/service/quality"
     },
     {
+      "path": "./packages/service/recovery-playbook-engine"
+    },
+    {
       "path": "./packages/service/recovery-readiness-orchestrator"
     },
     {
@@ -368,6 +374,9 @@
       "path": "./packages/data/recovery-artifacts"
     },
     {
+      "path": "./packages/data/recovery-playbook-store"
+    },
+    {
       "path": "./packages/data/recovery-risk-store"
     },
     {
@@ -399,6 +408,9 @@
     },
     {
       "path": "./packages/app/recovery-console"
+    },
+    {
+      "path": "./packages/app/recovery-playbook-orchestrator"
     }
   ]
 }
