@@ -24,6 +24,7 @@
     "@service/recovery-policy-engine": "workspace:*",
     "@service/recovery-risk-engine": "workspace:*",
     "@service/recovery-plan-orchestrator": "workspace:*",
+    "@service/recovery-coordination-orchestrator": "workspace:*",
     "@shared/result": "workspace:*",
     "zod": "^3.24.0"
   }

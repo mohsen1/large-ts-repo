@@ -35,6 +35,7 @@ import { RecoveryRiskEngine, type RiskEngineDependencies } from '@service/recove
 import {
   RecoveryPlanOrchestrator,
 } from '@service/recovery-plan-orchestrator';
+import { RecoveryCoordinationOrchestrator } from '@service/recovery-coordination-orchestrator';
 
 interface RecoveryCommandContext {
   command: string;
@@ -50,6 +51,7 @@ export interface RecoveryRunnerOptions {
   policyEngine?: PolicyEngine;
   riskRepository?: RecoveryRiskRepository;
   planOrchestrator?: RecoveryPlanOrchestrator;
+  coordinationOrchestrator?: RecoveryCoordinationOrchestrator;
 }
 
 const defaultStepExecutor = async () => 0;
@@ -60,6 +62,7 @@ export class RecoveryOrchestrator {
   private readonly advisor: RecoveryAdvisor;
   private readonly riskEngine: RecoveryRiskEngine;
   private readonly planOrchestrator: RecoveryPlanOrchestrator;
+  private readonly coordinationOrchestrator: RecoveryCoordinationOrchestrator;
 
   constructor(private readonly options: RecoveryRunnerOptions) {
     this.executor = new RecoveryExecutor(
@@ -80,6 +83,12 @@ export class RecoveryOrchestrator {
     this.riskEngine = new RecoveryRiskEngine(dependencies);
     this.planOrchestrator = this.options.planOrchestrator ??
       new RecoveryPlanOrchestrator(this.policyEngine, this.riskEngine);
+    this.coordinationOrchestrator = this.options.coordinationOrchestrator ??
+      new RecoveryCoordinationOrchestrator({
+        policyEngine: this.policyEngine,
+        riskEngine: this.riskEngine,
+        planOrchestrator: this.planOrchestrator,
+      });
   }
 
   async initiateRecovery(program: RecoveryProgram, context: RecoveryCommandContext): Promise<Result<RecoveryRunState, Error>> {
@@ -89,6 +98,25 @@ export class RecoveryOrchestrator {
       incidentId: `${context.correlationId}:${context.requestedBy}`,
       estimatedRecoveryTimeMinutes: 15,
     });
+
+    const coordination = await this.coordinationOrchestrator.coordinate({
+      commandId: `${runState.runId}:coordination` ,
+      tenant: `${program.tenant}`,
+      program,
+      runId: runState.runId,
+      runState,
+      context: {
+        requestedBy: context.requestedBy,
+        tenant: `${program.tenant}`,
+        correlationId: context.correlationId,
+      },
+    });
+    if (!coordination.ok) {
+      return fail(coordination.error);
+    }
+    if (!coordination.value.accepted) {
+      return fail(new Error('coordination-rejected')); 
+    }
 
     const orchestration = await this.planOrchestrator.createPlan({
       program,

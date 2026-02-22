@@ -1,7 +1,9 @@
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
 import { resolve } from 'node:path';
+import type { RecoveryRunState } from '@domain/recovery-orchestration';
 import { asCoordinationRecord, validateQuery, defaultRecordCodec } from './adapter';
+import { applyQuery, summarizeProgramProjection } from './query';
 import type {
   CoordinationRecord,
   CoordinationRecordEnvelope,
@@ -41,17 +43,9 @@ export class InMemoryRecoveryCoordinationStore implements RecoveryCoordinationSt
       snapshot: {
         runId: record.runId,
         tenant: record.tenant,
-        state: record.selection.selectedCandidate
-          ? this.selectionState(record.selection)
-          : {
-              runId: record.runId,
-              tenant: record.tenant,
-              state: record.selection.selectedCandidate ? (record.selection.selectedCandidate as never) : null,
-              coordinationPolicyResult: record.selection.decision,
-              latestPlan: undefined,
-              signalCount: 0,
-              updatedAt: record.createdAt,
-            },
+        state: this.selectionRunState(record.selection, record.createdAt),
+        coordinationPolicyResult: record.selection.decision,
+        signalCount: record.selection.alternatives.length,
         updatedAt: record.createdAt,
       },
       createdAt: record.createdAt,
@@ -73,26 +67,9 @@ export class InMemoryRecoveryCoordinationStore implements RecoveryCoordinationSt
   }
 
   async query(query: RecoveryCoordinationQuery): Promise<readonly CoordinationRecord[]> {
-    const normalized = validateQuery(query);
-    if (!normalized.ok) return [];
-    const source = Array.from(this.records.values());
-    const limit = normalized.value.take ?? 200;
-    return source
-      .filter((record) => (query.tenant ? record.tenant === query.tenant : true))
-      .filter((record) => (query.runId ? record.runId === query.runId : true))
-      .filter((record) => {
-        if (query.includeArchived) return true;
-        return !record.archived;
-      })
-      .filter((record) => {
-        if (!query.from && !query.to) return true;
-        const createdAt = Date.parse(record.createdAt);
-        const from = query.from ? Date.parse(query.from) : Number.NEGATIVE_INFINITY;
-        const to = query.to ? Date.parse(query.to) : Number.POSITIVE_INFINITY;
-        return createdAt >= from && createdAt <= to;
-      })
-      .sort((left, right) => right.createdAt.localeCompare(left.createdAt))
-      .slice(0, limit);
+    const normalized = applyQuery(Array.from(this.records.values()), query);
+    if (!normalized.records.length) return [];
+    return normalized.records;
   }
 
   async append(envelope: CoordinationRecordEnvelope): Promise<Result<void, Error>> {
@@ -119,20 +96,10 @@ export class InMemoryRecoveryCoordinationStore implements RecoveryCoordinationSt
     const latestRecord = await this.getByRunId(runId);
     if (!latestRecord) return undefined;
 
-    const program = latestRecord.program;
-    const candidates = [...latestRecord.selection.alternatives, latestRecord.selection.selectedCandidate];
-    const resilience = candidates.length
-      ? candidates.reduce((sum, candidate) => sum + candidate.metadata.resilienceScore, 0) / candidates.length
-      : 0;
-
-    return {
-      programId: program.id,
-      tenant: snapshot.tenant,
-      scope: program.scope,
-      stepCount: program.steps.length,
-      candidateCount: candidates.length,
-      averageResilience: resilience,
-    };
+    return summarizeProgramProjection({
+      program: latestRecord.program,
+      selection: latestRecord.selection,
+    });
   }
 
   async archive(runId: CoordinationRecord['runId']): Promise<Result<boolean, Error>> {
@@ -186,8 +153,10 @@ export class InMemoryRecoveryCoordinationStore implements RecoveryCoordinationSt
       const projection = {
         candidateId: candidate.id,
         tenant: record.tenant,
-        score: candidate.metadata.riskAdjusted,
-        phaseReadiness: candidate.metadata.expectedCompletionMinutes,
+        score: candidate.metadata.expectedCompletionMinutes > 0
+          ? candidate.metadata.riskIndex / candidate.metadata.expectedCompletionMinutes
+          : 0,
+        phaseReadiness: candidate.metadata.resilienceScore,
         riskAdjusted: candidate.metadata.riskIndex,
       };
       return {
@@ -204,12 +173,24 @@ export class InMemoryRecoveryCoordinationStore implements RecoveryCoordinationSt
       candidateId: selection.selectedCandidate.id,
       snapshot: {
         candidateId: selection.selectedCandidate.id,
+        tenant: selection.selectedCandidate.tenant,
         score: selection.selectedCandidate.metadata.riskIndex,
         phaseReadiness: selection.selectedCandidate.metadata.resilienceScore,
         riskAdjusted: selection.selectedCandidate.metadata.riskIndex,
       },
       approved: selection.decision === 'approved',
       confidence: selection.selectedCandidate.metadata.expectedCompletionMinutes,
+    };
+  }
+
+  private selectionRunState(selection: CoordinationRecord['selection'], createdAt: string): RecoveryRunState {
+    return {
+      runId: `${selection.selectedCandidate.runId}` as RecoveryRunState['runId'],
+      programId: `${selection.selectedCandidate.programId}` as RecoveryRunState['programId'],
+      incidentId: `${selection.selectedCandidate.tenant}` as RecoveryRunState['incidentId'],
+      status: selection.decision === 'approved' ? 'completed' : 'staging',
+      estimatedRecoveryTimeMinutes: 0,
+      startedAt: createdAt,
     };
   }
 }

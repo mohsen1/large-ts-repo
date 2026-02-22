@@ -40,6 +40,9 @@
       "path": "./../../service/recovery-plan-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-coordination-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
     }
   ]

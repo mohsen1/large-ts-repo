@@ -19,7 +19,7 @@
       "path": "./../../shared/result/tsconfig.json"
     },
     {
-      "path": "./../../shared/protocol/tsconfig.json"
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }
