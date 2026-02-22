@@ -9,7 +9,7 @@ const Step = z.object({
 });
 
 const PlanMetadata = z.object({
-  planId: z.string().min(1),
+  planId: z.string().min(1).transform((value): IncidentForecastPlan['planId'] => value as IncidentForecastPlan['planId']),
   tenantId: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(1),
@@ -74,7 +74,7 @@ export const buildForecastPlan = (
   });
 
   return {
-    planId: schema.planId as `${string}-${number}`,
+    planId: schema.planId,
     tenantId: schema.tenantId,
     title: schema.title,
     description: schema.description,

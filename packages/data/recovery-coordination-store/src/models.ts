@@ -2,6 +2,7 @@ import type {
   CandidateProjection,
   CoordinationPlanCandidate,
   CoordinationProgram,
+  CoordinationCorrelationId,
   CoordinationRunId,
   CoordinationSelectionResult,
   CoordinationWindow,
@@ -39,7 +40,7 @@ export interface RecoveryCoordinationQuery {
 export interface CoordinationHistoryItem {
   readonly runId: CoordinationRunId;
   readonly tenant: CoordinationTenant;
-  readonly correlationId: string;
+  readonly correlationId: CoordinationCorrelationId;
   readonly createdAt: string;
 }
 

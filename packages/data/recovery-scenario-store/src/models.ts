@@ -3,7 +3,7 @@ import type {
   PlanId,
   ScenarioId,
   TenantId,
-} from '@domain/recovery-scenario-planner/src';
+} from '@domain/recovery-scenario-planner';
 
 export interface StoredScenarioSummary {
   readonly scenarioId: ScenarioId;

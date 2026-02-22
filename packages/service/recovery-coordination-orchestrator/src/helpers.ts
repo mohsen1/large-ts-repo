@@ -3,10 +3,12 @@ import type {
   CoordinationProgram,
   CoordinationStep,
   CoordinationTenant,
+  CoordinationRunId,
+  CoordinationCorrelationId,
   CoordinationWindow,
 } from '@domain/recovery-coordination';
 import type { RecoveryProgram, RecoveryRunState } from '@domain/recovery-orchestration';
-import { buildPlanBlueprint, type RecoveryPlanCandidate } from '@domain/recovery-plan';
+import type { RecoveryPlanCandidate } from '@domain/recovery-plan';
 import type { CoordinationCommandContext } from './types';
 
 export interface CreateCoordinationInput {
@@ -16,9 +18,9 @@ export interface CreateCoordinationInput {
 
 export interface CandidateBuildInput {
   readonly programId: CoordinationProgram['id'];
-  readonly runId: string;
+  readonly runId: CoordinationRunId;
   readonly tenant: CoordinationTenant;
-  readonly correlationId: string;
+  readonly correlationId: CoordinationCorrelationId;
   readonly candidateId: string;
   readonly sequence: readonly string[];
   readonly budget: {
@@ -31,7 +33,7 @@ export interface CandidateBuildInput {
   readonly riskSignals: readonly string[];
   readonly policySignals: readonly string[];
   readonly steps: readonly CoordinationStep[];
-  readonly plan: ReturnType<typeof buildPlanBlueprint>;
+  readonly plan?: unknown;
 }
 
 export const createCoordinationProgram = (
@@ -53,7 +55,7 @@ export const createCoordinationProgram = (
     title: step.title,
     priority: ['bronze', 'silver', 'gold', 'platinum'][index % 4] as never,
     durationSeconds: (step.requiredApprovals + 1) * 90,
-    requires: step.dependsOn,
+    requires: step.dependencies,
     optionalFallbackIds: [],
     criticality: step.command.length % 100,
     tags: ['recovery', rawProgram.mode],
@@ -62,7 +64,7 @@ export const createCoordinationProgram = (
     id: `${context.correlationId}:constraint:${index}` as never,
     kind: index % 2 === 0 ? 'dependency' : 'parallelism',
     weight: Math.min(1, 0.25 + index * 0.08),
-    scope: index % 3 === 0 ? 'incident' : index % 3 === 1 ? 'tenant' : 'capacity',
+    scope: index % 3 === 0 ? 'incident' : index % 3 === 1 ? 'maintenance' : 'capacity',
     affectedStepIds: rawProgram.steps.map((step) => step.id),
     details: constraint.description,
     tags: ['rule', 'coordination'],

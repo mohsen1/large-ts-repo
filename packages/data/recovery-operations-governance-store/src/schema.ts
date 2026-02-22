@@ -58,7 +58,6 @@ export const parsePolicyHistory = (input: unknown): PolicyHistoryRecord => {
     evaluatedAt: parsed.evaluatedAt,
     score: parsed.score,
     findings: parsedOutcome.findings,
-    metadata: parsedOutcome.metadata,
   };
 };
 

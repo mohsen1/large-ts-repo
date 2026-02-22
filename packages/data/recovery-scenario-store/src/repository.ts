@@ -1,6 +1,6 @@
 import type { Result } from '@shared/result';
 import { fail, ok } from '@shared/result';
-import type { RecoverySimulationResult, PlanId, ScenarioId, TenantId } from '@domain/recovery-scenario-planner/src';
+import type { RecoverySimulationResult, PlanId, ScenarioId, TenantId } from '@domain/recovery-scenario-planner';
 import type { StoredScenarioRecord, StoredScenarioSummary, ScenarioStoreSnapshot } from './models';
 
 export interface RecoveryScenarioRepository {
@@ -77,7 +77,18 @@ export interface ScenarioIndex {
 }
 
 export const summarizeTenants = (records: readonly StoredScenarioRecord[]): readonly ScenarioStoreSnapshot[] => {
-  const groups = new Map<string, ScenarioStoreSnapshot & { activeCount: number; canceledCount: number }>();
+  const groups = new Map<
+    string,
+    {
+      readonly tenantId: TenantId;
+      count: number;
+      active: number;
+      canceled: number;
+      newestScenarioId: ScenarioId | undefined;
+      activeCount: number;
+      canceledCount: number;
+    }
+  >();
 
   for (const record of records) {
     const existing = groups.get(record.tenantId);

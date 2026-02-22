@@ -1,5 +1,7 @@
 import type { SessionLifecycle, SessionQueryFilter, StoreSnapshot } from './models';
 import type { RunSession, RunPlanSnapshot } from '@domain/recovery-operations-models';
+import type { RunSessionRecord } from './models';
+import { withBrand } from '@shared/core';
 
 export interface RecoveryOperationsRepository {
   upsertSession(session: RunSession): Promise<void>;
@@ -55,11 +57,15 @@ export class InMemoryRecoveryOperationsRepository implements RecoveryOperationsR
 
     const latestPlan = Array.from(this.plans.values())[0];
     const latestDecision = this.decisions.get(tenantSession.ticketId);
+    const tenantSessionWithTenant: RunSessionRecord = {
+      ...tenantSession,
+      tenant: withBrand(tenant, 'TenantId'),
+    };
 
     return {
       tenant,
       planId: latestPlan?.id ?? 'none',
-      sessions: [tenantSession],
+      sessions: [tenantSessionWithTenant],
       latestDecision,
     };
   }

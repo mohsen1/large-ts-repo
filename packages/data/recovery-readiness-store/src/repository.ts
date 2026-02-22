@@ -12,14 +12,14 @@ import { artifactStats } from './adapters';
 
 export interface ReadinessRepository {
   save(model: ReadinessReadModel): Promise<void>;
-  byRun(runId: string): Promise<ReadinessReadModel | undefined>;
+  byRun(runId: ReadinessReadModel['plan']['runId']): Promise<ReadinessReadModel | undefined>;
   search(filter: SignalFilter): Promise<ReadinessReadModel[]>;
   listActive(): Promise<ReadinessReadModel[]>;
   byRiskBand(...bands: ReadonlyArray<ReadinessReadModel['plan']['riskBand']>): Promise<ReadinessReadModel[]>;
   byOwner(owner: string): Promise<ReadinessReadModel[]>;
-  runIndexFor(runId: string): Promise<RunIndex | undefined>;
+  runIndexFor(runId: ReadinessReadModel['plan']['runId']): Promise<RunIndex | undefined>;
   listIndices(): Promise<RunIndex[]>;
-  listWindowDigest(runId: string): Promise<ReadinessWindowDigest[]>;
+  listWindowDigest(runId: ReadinessReadModel['plan']['runId']): Promise<ReadinessWindowDigest[]>;
   metrics(): Promise<ReadinessRepositoryMetrics>;
 }
 
@@ -44,8 +44,8 @@ export class MemoryReadinessRepository implements ReadinessRepository {
     }
   }
 
-  async byRun(runId: string): Promise<ReadinessReadModel | undefined> {
-    return this.models.get(runId);
+  async byRun(runId: ReadinessReadModel['plan']['runId']): Promise<ReadinessReadModel | undefined> {
+    return this.models.get(runId as string);
   }
 
   async search(filter: SignalFilter): Promise<ReadinessReadModel[]> {
@@ -65,7 +65,7 @@ export class MemoryReadinessRepository implements ReadinessRepository {
     return Array.from(this.models.values()).filter((item) => item.plan.metadata.owner === owner);
   }
 
-  async runIndexFor(runId: string): Promise<RunIndex | undefined> {
+  async runIndexFor(runId: ReadinessReadModel['plan']['runId']): Promise<RunIndex | undefined> {
     const model = await this.byRun(runId);
     if (!model) return undefined;
 
@@ -80,17 +80,21 @@ export class MemoryReadinessRepository implements ReadinessRepository {
   }
 
   async listIndices(): Promise<RunIndex[]> {
-    return Promise.all(Array.from(this.models.keys()).map((runId) => this.runIndexFor(runId) as Promise<RunIndex>));
+    const indices = await Promise.all(
+      Array.from(this.models.keys()).map((runId) => this.runIndexFor(runId as ReadinessReadModel['plan']['runId'])),
+    );
+
+    return indices.filter((entry): entry is RunIndex => Boolean(entry));
   }
 
-  async listWindowDigest(runId: string): Promise<ReadinessWindowDigest[]> {
+  async listWindowDigest(runId: ReadinessReadModel['plan']['runId']): Promise<ReadinessWindowDigest[]> {
     const model = await this.byRun(runId);
     if (!model) {
       return [];
     }
 
     return model.plan.windows.map((window, index) => ({
-      runId,
+      runId: model.plan.runId,
       windowIndex: index,
       activeDirectives: model.directives.length,
       criticality: model.signals.length,

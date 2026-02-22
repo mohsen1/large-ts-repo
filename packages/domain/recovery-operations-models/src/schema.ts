@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { withBrand } from '@shared/core';
 import { parseRecoveryProgram } from '@domain/recovery-orchestration';
 
 const RecoveryClassSchema = z.enum(['infrastructure', 'database', 'network', 'application', 'third-party']);
@@ -13,7 +14,7 @@ const ConstraintSchema = z.object({
 });
 
 const FingerprintSchema = z.object({
-  tenant: z.string().min(1),
+  tenant: z.string().min(1).transform((value) => withBrand(value, 'TenantId')),
   region: z.string().min(1),
   serviceFamily: z.string().min(1),
   impactClass: z.string().transform((value) => RecoveryClassSchema.parse(value)),
@@ -30,10 +31,10 @@ const SignalSchema = z.object({
 });
 
 const SessionSchema = z.object({
-  id: z.string().min(1),
-  runId: z.string().min(1),
-  ticketId: z.string().min(1),
-  planId: z.string().min(1),
+  id: z.string().min(1).transform((value) => withBrand(value, 'RunSessionId')),
+  runId: z.string().min(1).transform((value) => withBrand(value, 'RecoveryRunId')),
+  ticketId: z.string().min(1).transform((value) => withBrand(value, 'RunTicketId')),
+  planId: z.string().min(1).transform((value) => withBrand(value, 'RunPlanId')),
   status: SessionStatusSchema,
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
@@ -42,25 +43,25 @@ const SessionSchema = z.object({
 });
 
 const PlanSnapshotSchema = z.object({
-  id: z.string().min(1),
+  id: z.string().min(1).transform((value) => withBrand(value, 'RunPlanId')),
   name: z.string().min(1),
   constraints: ConstraintSchema,
   fingerprint: FingerprintSchema,
-  sourceSessionId: z.string().optional(),
+  sourceSessionId: z.string().optional().transform((value) => (value ? withBrand(value, 'RunSessionId') : undefined)),
   effectiveAt: z.string().datetime(),
   program: z.unknown(),
 });
 
 const EnvelopeSchema = z.object({
   eventId: z.string().min(1),
-  tenant: z.string().min(1),
+  tenant: z.string().min(1).transform((value) => withBrand(value, 'TenantId')),
   payload: z.unknown(),
   createdAt: z.string().datetime(),
 });
 
 const SessionDecisionSchema = z.object({
-  runId: z.string().min(1),
-  ticketId: z.string().min(1),
+  runId: z.string().min(1).transform((value) => withBrand(value, 'RecoveryRunId')),
+  ticketId: z.string().min(1).transform((value) => withBrand(value, 'RunTicketId')),
   accepted: z.boolean(),
   reasonCodes: z.array(z.string()),
   score: z.number().finite(),

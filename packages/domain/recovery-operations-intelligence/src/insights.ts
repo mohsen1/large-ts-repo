@@ -1,4 +1,4 @@
-import type { AssessmentPath, RunAssessmentSummary, RunAssessment, CohortSignalAggregate, BatchReadinessAssessment, PolicyDecisionHint } from './types';
+import type { RunAssessmentSummary, RunAssessment, CohortSignalAggregate, BatchReadinessAssessment, PolicyDecisionHint } from './types';
 import type { RecoveryRiskSignal } from './types';
 import { aggregateByTenantAndRun, buildBatchAssessment, assessSignals } from './evaluator';
 
@@ -10,7 +10,7 @@ export interface InsightConfig {
 }
 
 export interface ScenarioInsight {
-  readonly path: AssessmentPath<RunAssessment>;
+  readonly path: string;
   readonly values: readonly string[];
   readonly confidence: number;
   readonly hints: readonly PolicyDecisionHint[];

@@ -87,4 +87,8 @@ export const allWarningsAsErrors = (input: readonly ConstraintViolation[]): read
   input.map((entry) => ({ ...entry, severity: 'error' as const }));
 
 export const dependencyGraph = (actions: readonly ActionCandidate[]): readonly [ActionCandidate['actionId'], ActionCandidate['actionId']][] =>
-  actions.flatMap((action) => action.dependency.dependsOn.map((dependency) => [action.actionId, dependency]));
+  actions.flatMap((action) =>
+    action.dependency.dependsOn.map(
+      (dependency): [ActionCandidate['actionId'], ActionCandidate['actionId']] => [action.actionId, dependency],
+    ),
+  );

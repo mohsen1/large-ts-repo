@@ -1,4 +1,27 @@
-import type { Brand, DeepReadonly, DeepMerge, PathValue, UnionToIntersection } from '@shared/type-level';
+type Brand<T, B extends string> = T & { readonly __brand: B };
+
+type DeepReadonly<T> = T extends (...args: any[]) => any
+  ? T
+  : T extends Array<infer U>
+    ? ReadonlyArray<DeepReadonly<U>>
+    : T extends object
+      ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+      : T;
+
+type DeepMerge<A, B> = Omit<A, keyof B> & B;
+
+type PathValue<T, TPath extends string> = TPath extends `${infer Head}.${infer Tail}`
+  ? Head extends keyof T
+    ? T[Head] extends Record<string, unknown>
+      ? PathValue<T[Head], Tail>
+      : never
+    : never
+  : TPath extends keyof T
+    ? T[TPath]
+    : never;
+
+export type UnionToIntersection<T> =
+  (T extends unknown ? (k: T) => void : never) extends (k: infer I) => void ? I : never;
 
 export type SignalDimension = 'infrastructure' | 'security' | 'traffic' | 'data-plane' | 'control-plane';
 export type SignalSeverity = 'low' | 'medium' | 'high' | 'critical';

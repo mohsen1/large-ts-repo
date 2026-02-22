@@ -92,7 +92,7 @@ export const createPlannedRun = (
   };
 };
 
-export const buildExecutionEnvelope = (scenario: RecoveryScenario, context: IncidentContext) => {
+export const buildPlannerExecutionEnvelope = (scenario: RecoveryScenario, context: IncidentContext) => {
   const decision = evaluateScenario(scenario, context);
   const run = createPlannedRun(scenario, context, decision);
   const metrics = computeMetrics(context);

@@ -1,4 +1,5 @@
-import type { RecoveryConstraintBudget, IncidentFingerprint, RecoverySignal, RecoveryProgram } from './types';
+import type { RecoveryConstraintBudget, IncidentFingerprint, RecoverySignal } from './types';
+import type { RecoveryProgram } from '@domain/recovery-orchestration';
 
 const classScores: Record<string, number> = {
   infrastructure: 1.8,

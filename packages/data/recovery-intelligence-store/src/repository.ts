@@ -1,12 +1,12 @@
 import { ok, fail } from '@shared/result';
 import type { Result } from '@shared/result';
-import { parseBundle } from '@domain/recovery-intelligence/src';
+import { parseBundle } from '@domain/recovery-intelligence';
 import type {
   StoredActionPlan,
   StoredForecast,
   StoredRecommendation,
 } from './models';
-import type { RecoverySignalBundle } from '@domain/recovery-intelligence/src';
+import type { RecoverySignalBundle } from '@domain/recovery-intelligence';
 
 type UpsertPayload<T> = Promise<T> | T;
 

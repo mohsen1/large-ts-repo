@@ -42,7 +42,7 @@ export class InMemoryScenarioStore {
       if (filter.tenantId && scenario.tenantId !== filter.tenantId) return false;
       if (filter.state && scenario.state !== filter.state) return false;
       if (filter.severities && !filter.severities.includes(scenario.severity)) return false;
-      if (filter.tags && !filter.tags.every((tag) => scenario.tags.includes(tag))) return false;
+      if (filter.tags && !filter.tags.every((tag: string) => scenario.tags.includes(tag))) return false;
       if (filter.changedSince && new Date(scenario.updatedAt) < new Date(filter.changedSince)) return false;
       return true;
     });

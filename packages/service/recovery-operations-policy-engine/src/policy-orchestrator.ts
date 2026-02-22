@@ -1,7 +1,13 @@
 import { withBrand } from '@shared/core';
 import { fail, ok, type Result } from '@shared/result';
 import { evaluateRecoveryPolicy, type PolicyEvaluationOutcome, type PolicyContext } from '@domain/recovery-operations-governance';
-import type { RecoveryOperationsEnvelope, RecoverySignal, RunSession, RecoveryProgram, IncidentFingerprint } from '@domain/recovery-operations-models';
+import type {
+  IncidentFingerprint,
+  RecoverySignal,
+  RecoveryOperationsEnvelope,
+  RunSession,
+} from '@domain/recovery-operations-models';
+import type { RecoveryProgram } from '@domain/recovery-orchestration';
 import type { RecoveryReadinessPlan } from '@domain/recovery-readiness';
 import type { RecoveryGovernanceRepository } from '@data/recovery-operations-governance-store';
 import type { CompliancePublisher } from '@infrastructure/recovery-operations-compliance';

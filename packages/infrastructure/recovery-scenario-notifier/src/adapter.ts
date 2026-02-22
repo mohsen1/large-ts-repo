@@ -6,8 +6,8 @@ import type { Result } from '@shared/result';
 import { fail, ok } from '@shared/result';
 import { publishScenarioEvent } from './eventbridge';
 import { publishScenarioNotification } from './sns';
-import type { RecoverySimulationResult } from '@domain/recovery-scenario-planner/src';
-import { type ScenarioId } from '@domain/recovery-scenario-planner/src';
+import type { RecoverySimulationResult } from '@domain/recovery-scenario-planner';
+import { type ScenarioId } from '@domain/recovery-scenario-planner';
 
 export interface RecoveryNotificationPayload {
   readonly scenarioId: ScenarioId;

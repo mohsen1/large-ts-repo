@@ -46,7 +46,7 @@ export class RecoveryContinuityOrchestrator implements ContinuityOrchestrationSe
     const parsed = planInputSchema.safeParse(input);
     if (!parsed.success) return fail(new Error(formatError(parsed.error)));
 
-    const allPlans = await this.repository.listByTenant(input.tenantId as unknown as ContinuityTenantId);
+    const allPlans = await this.repository.listPlansByTenant(input.tenantId as unknown as ContinuityTenantId);
     if (!allPlans.ok) return fail(allPlans.error);
 
     const candidateWindow = await assembleWindow(
@@ -98,7 +98,7 @@ export class RecoveryContinuityOrchestrator implements ContinuityOrchestrationSe
   }
 
   async evaluateCandidates(input: PlanPlanInput): Promise<Result<number, Error>> {
-    const allPlans = await this.repository.listByTenant(input.tenantId);
+    const allPlans = await this.repository.listPlansByTenant(input.tenantId);
     if (!allPlans.ok) return fail(allPlans.error);
     const selected = allPlans.value
       .map((record) => (input.requestedPriority ? record.plan.priority === input.requestedPriority : true))

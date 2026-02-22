@@ -47,12 +47,12 @@ export const distinctBrands = <T extends Brand<string, string>>(input: readonly 
   return output;
 };
 
-export const sortByDependencyDepth = <T extends { dependsOn: readonly { dependsOn: string }[] }>(
+export const sortByDependencyDepth = <T extends { dependencies: readonly { dependsOn: string }[] }>(
   artifacts: readonly T[],
 ): readonly T[] => {
   const sorted = [...artifacts];
 
-  sorted.sort((left, right) => left.dependsOn.length - right.dependsOn.length);
+  sorted.sort((left, right) => left.dependencies.length - right.dependencies.length);
   return sorted;
 };
 

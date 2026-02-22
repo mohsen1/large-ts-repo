@@ -1,7 +1,7 @@
 import type { IncidentForecast, SignalBundle, IncidentSignal } from '@domain/recovery-incident-insights/src';
 import { fail, ok, type Result } from '@shared/result';
 
-const stableStringify = (value: unknown): string => JSON.stringify(value, Object.keys(value).sort ? (key, val) => val : undefined);
+const stableStringify = (value: unknown): string => JSON.stringify(value);
 
 export const encodeSignal = (signal: IncidentSignal): Result<string, Error> => {
   try {

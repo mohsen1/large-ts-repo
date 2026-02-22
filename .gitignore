@@ -5,3 +5,6 @@ coverage/
 .pnpm-store/
 *.tsbuildinfo
 *.log
+
+**/*.js
+**/*.d.ts

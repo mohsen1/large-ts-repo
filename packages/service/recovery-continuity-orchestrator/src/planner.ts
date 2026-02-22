@@ -53,7 +53,7 @@ export const assembleWindow = async (
   if (!snapshot.ok) return fail(snapshot.error);
 
   const ranked = prioritizePlans(plans);
-  const sorted = ranked
+  const sorted = [...ranked]
     .sort((left, right) => {
       if (left.priority !== right.priority) return right.priority.localeCompare(left.priority);
       return right.score - left.score;

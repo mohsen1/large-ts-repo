@@ -1,4 +1,4 @@
-import { normalizePriorityWeight, partitionByPriority, sortByDependencyDepth, toReadOnly } from './utility';
+import { normalizePriorityWeight, partitionByPriority, sortByDependencyDepth } from './utility';
 import type { ContinuityPlanTemplate, ContinuityPlanId, ContinuityPriority, ContinuityTaskTemplate } from './types';
 
 export interface PlanCatalogIndex {
@@ -86,7 +86,7 @@ export const detectCycles = (plan: ContinuityPlanTemplate): readonly string[] =>
 
 export const orderTasks = (plan: ContinuityPlanTemplate): readonly ContinuityTaskTemplate[] => {
   const base = sortByDependencyDepth(plan.tasks);
-  return toReadOnly(base);
+  return base;
 };
 
 export const rankTaskCriticality = (plans: readonly ContinuityPlanTemplate[]): readonly PlanCatalogIndex[] => {

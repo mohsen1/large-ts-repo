@@ -5,9 +5,9 @@ export type Brand<T, BrandName extends string> = T & {
   readonly __brand: BrandName;
 };
 
-export type CoordinationId = Brand<string, 'CoordinationId'>;
-export type CoordinationRunId = Brand<string, 'CoordinationRunId'>;
-export type CoordinationTenant = Brand<string, 'CoordinationTenant'>;
+export type CoordinationId = RecoveryProgram['id'];
+export type CoordinationRunId = RecoveryRunId;
+export type CoordinationTenant = RecoveryProgram['tenant'];
 export type CoordinationCorrelationId = Brand<string, 'CoordinationCorrelationId'>;
 
 export type CoordinationScope = 'incident' | 'maintenance' | 'security' | 'capacity';
@@ -189,4 +189,3 @@ export type PolicyEvaluator = (
   runId: CoordinationRunId,
   runState: RecoveryRunState,
 ) => Promise<CoordinationPolicyDecision>;
-

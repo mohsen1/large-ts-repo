@@ -209,9 +209,9 @@ export const tenantBuckets = (
   return counts;
 };
 
-export const asCandidateEnvelope = <T extends CoordinationProgram>(
-  program: T,
-  candidate: CoordinationPlanCandidate,
+export const asCandidateEnvelope = <T extends CoordinationPlanCandidate>(
+  _program: CoordinationProgram,
+  candidate: T,
 ): CandidateMeta<T> => ({
   candidate,
   phase: 'plan',

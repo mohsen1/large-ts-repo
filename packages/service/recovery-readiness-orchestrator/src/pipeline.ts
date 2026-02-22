@@ -1,5 +1,6 @@
 import type { ReadinessReadModel } from '@data/recovery-readiness-store/src/models';
 import type { ReadinessSignal, RecoveryReadinessPlanDraft, RecoveryReadinessPlan } from '@domain/recovery-readiness';
+import type { ReadinessRunId } from '@domain/recovery-readiness';
 
 export type StageResult<T> = {
   ok: boolean;
@@ -8,7 +9,7 @@ export type StageResult<T> = {
 };
 
 export interface StageContext {
-  runId: string;
+  runId: ReadinessRunId;
   requestedBy: string;
   traceId: string;
 }
@@ -21,7 +22,7 @@ export interface PipelineStep<I, O> {
 export class ReadinessPipeline<I, O> {
   private readonly steps: PipelineStep<any, any>[];
 
-  constructor(steps: PipelineStep<I, O>[]) {
+  constructor(steps: PipelineStep<any, any>[]) {
     this.steps = steps;
   }
 

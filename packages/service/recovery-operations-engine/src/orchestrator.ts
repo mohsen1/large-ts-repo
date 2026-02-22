@@ -121,12 +121,12 @@ export class RecoveryOperationsOrchestrator {
     }
 
     const signals = session.signals.map((signal) => ({
-      runId: runIdToRunState.get(runId)?.session?.runId as typeof session.runId,
+      runId: withBrand(String(session.runId), 'IntelligenceRunId'),
       envelopeId: `${runId}-${signal.id}`,
       source: 'policy' as const,
       signal,
       window: {
-        tenant: session.id,
+        tenant: withBrand(String(session.id), 'TenantId'),
         from: session.createdAt,
         to: new Date().toISOString(),
         zone: 'UTC',
@@ -138,7 +138,7 @@ export class RecoveryOperationsOrchestrator {
     const pipeline = await runIntelligencePipeline(
       {
         tenant: String(session.id),
-        runId: `${session.runId}-${runId}` as any,
+        runId: withBrand(`${session.runId}-${runId}`, 'IntelligenceRunId'),
         readinessPlan,
         signals,
       },

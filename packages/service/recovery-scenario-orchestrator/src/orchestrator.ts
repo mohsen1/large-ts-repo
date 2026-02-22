@@ -4,6 +4,9 @@ import {
   evaluateScenario,
   type IncidentContext,
   type RecoveryScenario,
+  type IncidentId,
+  type ScenarioId,
+  type TenantId,
   ScenarioFilter,
 } from '@domain/recovery-scenario-engine';
 import { InMemoryScenarioStore, findBestTimelineMatch } from '@data/recovery-scenario-store';
@@ -64,8 +67,9 @@ export class RecoveryScenarioOrchestrator {
       return err('invalid-context');
     }
 
-    const scenarios = this.#store.queryScenarios({ tenantId: parsed.data.tenantId as any, state: 'triage' });
-    const context = this.#toIncidentContext(parsed.data);
+    const tenantId = toTenantId(parsed.data.tenantId);
+    const scenarios = this.#store.queryScenarios({ tenantId, state: 'triage' });
+    const context = this.#toIncidentContext(parsed.data, tenantId);
 
     const envelopes = scenarios
       .map((scenario) => buildExecutionEnvelope(scenario, context))
@@ -95,9 +99,9 @@ export class RecoveryScenarioOrchestrator {
     const published = await this.#adapter.publishBatch(
       scenarios.map((scenario) =>
         buildExecutionEnvelope(scenario, {
-          incidentId: `incident-${Date.now()}`,
-          scenarioId: scenario.id,
-          tenantId: scenario.tenantId,
+          incidentId: `incident-${Date.now()}` as IncidentId,
+          scenarioId: scenario.id as ScenarioId,
+          tenantId: scenario.tenantId as TenantId,
           service: 'default',
           region: 'us-east-1',
           detectedAt: new Date().toISOString(),
@@ -117,11 +121,14 @@ export class RecoveryScenarioOrchestrator {
     return `${scenario.tenantId}:${scenario.id}:${Date.now()}`;
   }
 
-  #toIncidentContext(parsed: z.infer<typeof SignalPayload>): IncidentContext {
+  #toIncidentContext(
+    parsed: z.infer<typeof SignalPayload>,
+    tenantId: TenantId,
+  ): IncidentContext {
     return {
-      incidentId: parsed.incidentId,
-      scenarioId: parsed.scenarioId,
-      tenantId: parsed.tenantId,
+      incidentId: toIncidentId(parsed.incidentId),
+      scenarioId: parsed.scenarioId as ScenarioId,
+      tenantId,
       service: parsed.service,
       region: parsed.region,
       detectedAt: parsed.detectedAt,
@@ -138,3 +145,6 @@ export class RecoveryScenarioOrchestrator {
     return this._toRunId(scenario);
   }
 }
+
+const toTenantId = (value: string): TenantId => value as TenantId;
+const toIncidentId = (value: string): IncidentId => value as IncidentId;

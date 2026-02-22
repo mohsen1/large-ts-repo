@@ -1,3 +1,4 @@
+import type { Brand } from '@shared/core';
 import type {
   RunPlanSnapshot,
   RecoverySignal,
@@ -7,7 +8,7 @@ import type {
 } from '@domain/recovery-operations-models';
 
 export interface RunSessionRecord extends RunSession {
-  readonly tenant: string;
+  readonly tenant: Brand<string, 'TenantId'>;
   readonly updatedAt: string;
 }
 

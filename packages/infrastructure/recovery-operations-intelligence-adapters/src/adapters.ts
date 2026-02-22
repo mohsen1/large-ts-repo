@@ -22,7 +22,7 @@ export const buildAssessmentArtifacts = (
   }
 
   const snapshots = Array.from(byRun.entries()).map(([runId, entries]) => ({
-    runId,
+    runId: withBrand(runId, 'RecoveryRunId'),
     snapshotId: `snapshot-${runId}-${entries.length}`,
   }));
 

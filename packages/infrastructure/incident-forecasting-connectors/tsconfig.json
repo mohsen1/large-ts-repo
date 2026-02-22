@@ -10,6 +10,7 @@
   ],
   "references": [
     { "path": "./../../domain/incident-forecasting/tsconfig.json" },
+    { "path": "./../../data/incident-forecast-store/tsconfig.json" },
     { "path": "./../../shared/result/tsconfig.json" }
   ]
 }

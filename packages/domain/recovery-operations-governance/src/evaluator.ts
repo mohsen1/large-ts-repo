@@ -59,16 +59,31 @@ const buildMetadata = (tenant: string): PolicyMetadata => ({
   version: 'r2026-01',
 });
 
+const priorityScore = (priority: PolicyContext['program']['priority']): number => {
+  switch (priority) {
+    case 'bronze':
+      return 1;
+    case 'silver':
+      return 2;
+    case 'gold':
+      return 3;
+    case 'platinum':
+      return 4;
+    default:
+      return 2;
+  }
+};
+
 export const evaluateRecoveryPolicy = (context: PolicyContext): PolicyEvaluationOutcome => {
   const standardRules = buildStandardRules(context.fingerprint.tenant);
   const targetTags = context.readinessPlan.targets.flatMap((target) => [target.ownerTeam, target.name, target.criticality]);
   const signalDensity = Math.max(0, Math.min(1, context.signals.length / 20));
 
   const findings: PolicyFinding[] = standardRules.map((rule) => {
-    const constraintResult = evaluateConstraintMatch(rule.constraint, {
+    const { ruleId: _sourceRuleId, ...constraintResult } = evaluateConstraintMatch(rule.constraint, {
       tenant: context.fingerprint.tenant,
       targetTags,
-      severityHint: signalDensity + context.program.priority / 10,
+      severityHint: signalDensity + priorityScore(context.program.priority) / 10,
     });
 
     return {

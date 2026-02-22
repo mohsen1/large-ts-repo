@@ -1,10 +1,13 @@
 import { z } from 'zod';
 import type {
+  ProgramId,
   IncidentSeverity,
   RecoveryScenario,
   SignalFingerprint,
   ScenarioConstraint,
   RecoveryState,
+  TenantId,
+  ScenarioId,
 } from './types';
 
 const SignalSchema = z.object({
@@ -49,10 +52,15 @@ export const RecoveryScenarioInputSchema = z.object({
 });
 
 export const parseScenarioInput = (input: unknown): RecoveryScenario => {
-  const parsed = RecoveryScenarioInputSchema.parse(input) as Omit<RecoveryScenario, 'id'> & { createdAt?: string; updatedAt?: string };
+  const parsed = RecoveryScenarioInputSchema.parse(input) as unknown as Omit<RecoveryScenario, 'id'> & {
+    createdAt?: string;
+    updatedAt?: string;
+  };
   const id = `${parsed.tenantId}:${parsed.programId}` as ScenarioIdFromRuntime;
   return {
     ...parsed,
+    tenantId: parsed.tenantId as TenantId,
+    programId: parsed.programId as ProgramId,
     id,
     createdAt: parsed.createdAt ?? new Date().toISOString(),
     updatedAt: parsed.updatedAt ?? new Date().toISOString(),

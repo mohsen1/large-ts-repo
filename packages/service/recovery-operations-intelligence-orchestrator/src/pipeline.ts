@@ -60,7 +60,8 @@ export const runIntelligencePipeline = async (
   const batch = buildBatchAssessment(aggregate);
   const readinessPlanScore = Math.max(0, Math.min(1, input.readinessPlan.targets.length / maxSignalWeight));
 
-  const assessments: RunAssessment[] = parsedSignals.map((entry, index) => {
+  const assessments: RunAssessment[] = [];
+  for (const [index, entry] of parsedSignals.entries()) {
     const assessment = assessSignals(
       entry.runId,
       input.tenant,
@@ -77,7 +78,7 @@ export const runIntelligencePipeline = async (
 
     await repositories.intelligence.saveSnapshot({
       tenant: withBrand(input.tenant, 'TenantId'),
-      runId: entry.runId,
+      runId: withBrand(String(entry.runId), 'RecoveryRunId'),
       sourceRunId: entry.runId,
       assessment,
       points: [],
@@ -85,8 +86,8 @@ export const runIntelligencePipeline = async (
     });
 
     const normalized = parseAndNormalizeAssessment(assessment);
-    return normalized;
-  });
+    assessments.push(normalized);
+  }
 
   for (const signal of parsedSignals) {
     await repositories.intelligence.logSignal({

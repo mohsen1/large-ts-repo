@@ -9,6 +9,7 @@ import type {
 } from '@domain/recovery-operations-models';
 import type { RecoveryProgram } from '@domain/recovery-orchestration';
 import type { RecoveryReadinessPlan } from '@domain/recovery-readiness';
+import { withBrand } from '@shared/core';
 
 export interface PlanCandidate {
   readonly program: RecoveryProgram;
@@ -29,7 +30,7 @@ export const buildPlan = (candidate: PlanCandidate): RunSessionPlan => {
   const score = computeSessionScore(candidate.program, candidate.signals);
   const snapshot: RunPlanSnapshot = {
     id: `plan-${candidate.program.id}` as RunPlanSnapshot['id'],
-    name: `${candidate.readinessPlan.name} / ${candidate.program.name}`,
+    name: `${candidate.readinessPlan.title} / ${candidate.program.name}`,
     program: candidate.program,
     constraints: budget,
     fingerprint: candidate.fingerprint,
@@ -38,8 +39,8 @@ export const buildPlan = (candidate: PlanCandidate): RunSessionPlan => {
   };
 
   return {
-    runId: candidate.readinessPlan.runId as RunSession['runId'],
-    ticketId: `ticket-${candidate.program.id}` as RunTicketId,
+    runId: withBrand(`${candidate.readinessPlan.runId}`, 'RecoveryRunId'),
+    ticketId: withBrand(`ticket-${candidate.program.id}`, 'RunTicketId'),
     snapshot,
     score,
   };
@@ -51,7 +52,7 @@ export const shouldRejectPlan = (candidate: PlanCandidate): boolean => {
 
 export const envelopeForPlan = (plan: RunSessionPlan): RecoveryOperationsEnvelope<RunSessionPlan> => ({
   eventId: `${Date.now()}`,
-  tenant: 'recovery-tenant',
+  tenant: withBrand('recovery-tenant', 'TenantId'),
   payload: plan,
   createdAt: new Date().toISOString(),
 });

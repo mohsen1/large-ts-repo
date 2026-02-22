@@ -7,7 +7,7 @@ export interface ScoreBreakdown {
   readonly raw: number;
   readonly weighted: number;
   readonly weightedComponents: ReadonlyArray<{
-    readonly id: string;
+    readonly id: IncidentSignal['signalId'];
     readonly severityWeight: number;
     readonly confidenceWeight: number;
     readonly contribution: number;

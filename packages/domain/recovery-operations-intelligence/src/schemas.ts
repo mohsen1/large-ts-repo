@@ -10,18 +10,30 @@ import type {
   CohortSignalAggregate,
 } from './types';
 
-const BucketSchema = z.enum(['low', 'medium', 'high', 'critical']) as z.ZodType<SignalDensityBucket>;
-const RunIdSchema = z.string().transform((value) => withBrand(value, 'IntelligenceRunId')) as z.ZodType<IntelligenceRunId>;
-const DecisionSetIdSchema = z.string().transform((value) => withBrand(value, 'DecisionSetId')) as z.ZodType<DecisionSetId>;
+const BucketSchema: z.ZodType<SignalDensityBucket, z.ZodTypeDef, string> =
+  z.enum(['low', 'medium', 'high', 'critical']);
+const RunIdSchema: z.ZodType<IntelligenceRunId, z.ZodTypeDef, string> =
+  z.string().transform((value): IntelligenceRunId => withBrand(value, 'IntelligenceRunId'));
+const DecisionSetIdSchema: z.ZodType<DecisionSetId, z.ZodTypeDef, string> =
+  z.string().transform((value): DecisionSetId => withBrand(value, 'DecisionSetId'));
 
 const SourceSchema = z.enum(['telemetry', 'queue', 'manual', 'policy']);
 
-const WindowSchema = z.object({
-  tenant: z.string().transform((value) => withBrand(value, 'TenantId')),
+const WindowSchema: z.ZodType<
+  SignalWindow,
+  z.ZodTypeDef,
+  {
+    tenant: string;
+    from: string;
+    to: string;
+    zone: string;
+  }
+> = z.object({
+  tenant: z.string().transform((value): SignalWindow['tenant'] => withBrand(value, 'TenantId')),
   from: z.string().datetime(),
   to: z.string().datetime(),
   zone: z.string().min(1),
-}) as z.ZodType<SignalWindow>;
+});
 
 const SignalSchema = z.object({
   runId: RunIdSchema,
@@ -37,7 +49,13 @@ const SignalSchema = z.object({
   }),
   window: WindowSchema,
   tags: z.array(z.string()),
-}) as z.ZodType<RecoveryRiskSignal>;
+});
+
+const PlanSchema: z.ZodType<
+  RunAssessment['plan'],
+  z.ZodTypeDef,
+  unknown
+> = z.unknown().transform((value): RunAssessment['plan'] => value as RunAssessment['plan']);
 
 const AssessmentSchema = z.object({
   runId: RunIdSchema,
@@ -57,8 +75,8 @@ const AssessmentSchema = z.object({
     operatorApprovalRequired: z.boolean(),
   }),
   recommendedActions: z.array(z.string()),
-  plan: z.unknown(),
-}) as z.ZodType<RunAssessment>;
+  plan: PlanSchema,
+});
 
 const CohortSchema = z.object({
   tenant: z.string().min(1).transform((value) => withBrand(value, 'TenantId')),
@@ -66,7 +84,7 @@ const CohortSchema = z.object({
   count: z.number().int().min(0),
   maxConfidence: z.number().min(0).max(1),
   distinctSources: z.array(SourceSchema),
-}) as z.ZodType<CohortSignalAggregate>;
+});
 
 const DecisionSetSchema = z.object({
   id: DecisionSetIdSchema,

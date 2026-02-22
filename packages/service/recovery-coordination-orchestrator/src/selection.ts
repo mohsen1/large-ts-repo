@@ -1,5 +1,5 @@
 import type { CoordinationSelectionResult } from '@domain/recovery-coordination';
-import type { RecoveryPlanCandidate } from '@domain/recovery-plan';
+import type { CoordinationPlanCandidate } from '@domain/recovery-coordination';
 
 export interface CandidateDecisionLog {
   readonly selected: string;
@@ -9,30 +9,32 @@ export interface CandidateDecisionLog {
 }
 
 export interface SelectionInput {
-  readonly selected: RecoveryPlanCandidate;
-  readonly alternatives: readonly RecoveryPlanCandidate[];
+  readonly selected: CoordinationPlanCandidate;
+  readonly alternatives: readonly CoordinationPlanCandidate[];
   readonly policyDecision: string[];
   readonly riskSignals: readonly string[];
 }
 
 export interface SelectionOutput {
-  readonly selectedId: string;
+  readonly selectedId: CoordinationPlanCandidate['id'];
   readonly decision: CoordinationSelectionResult['decision'];
   readonly blockers: readonly string[];
   readonly confidence: number;
 }
 
-export const selectCandidateByPolicy = (candidates: readonly RecoveryPlanCandidate[]): RecoveryPlanCandidate => {
+export const selectCandidateByPolicy = (
+  candidates: readonly CoordinationPlanCandidate[],
+): CoordinationPlanCandidate => {
   return candidates
     .slice()
-    .sort((left, right) => right.metadata.confidence - left.metadata.confidence)
-    .at(0) as RecoveryPlanCandidate;
+    .sort((left, right) => right.metadata.resilienceScore - left.metadata.resilienceScore)
+    .at(0) as CoordinationPlanCandidate;
 };
 
 export const buildSelectionDecision = (input: SelectionInput): SelectionOutput => {
   const blockedByPolicy = input.policyDecision.filter((entry) => entry.includes('block'));
   const riskPenalty = input.riskSignals.length;
-  const confidence = Math.max(0, input.selected.metadata.confidence - riskPenalty);
+  const confidence = Math.max(0, input.selected.metadata.resilienceScore * 100 - riskPenalty);
 
   return {
     selectedId: input.selected.id,
@@ -54,27 +56,21 @@ export const toDecisionLog = (input: SelectionOutput, result: CoordinationSelect
 });
 
 export const compareCandidates = (
-  left: RecoveryPlanCandidate,
-  right: RecoveryPlanCandidate,
-): number => right.metadata.confidence - left.metadata.confidence;
+  left: CoordinationPlanCandidate,
+  right: CoordinationPlanCandidate,
+): number => right.metadata.resilienceScore - left.metadata.resilienceScore;
 
 export const normalizeAlternatives = (
-  candidate: RecoveryPlanCandidate,
-): readonly RecoveryPlanCandidate[] => [
+  candidate: CoordinationPlanCandidate,
+): readonly CoordinationPlanCandidate[] => [
   candidate,
   {
     ...candidate,
     id: `${candidate.id}:fallback`,
-    route: {
-      ...candidate.route,
-      id: `${candidate.route.id}:fallback`,
-    },
     metadata: {
       ...candidate.metadata,
-      estimatedMinutes: candidate.estimatedMinutes + 2,
-      confidence: Math.max(1, candidate.metadata.confidence - 3),
-      blockingPolicyCount: candidate.blockingPolicyCount + 0,
-      rationale: [...candidate.rationale, 'normalized-fallback'],
+      resilienceScore: Math.max(0, candidate.metadata.resilienceScore - 0.1),
+      riskIndex: Math.max(0, candidate.metadata.riskIndex - 0.1),
     },
   },
  ];

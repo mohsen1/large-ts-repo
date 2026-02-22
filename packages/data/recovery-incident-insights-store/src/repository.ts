@@ -9,6 +9,8 @@ import type {
 import type { ForecastStoreRecord, StoreQuery, SignalStoreRecord, BundleStoreRecord, RunExecution, IncidentSnapshot } from './types';
 import { validateStoreQuery } from './queries';
 
+export type { RunExecution } from './types';
+
 export interface RecoveryIncidentInsightsStoreRepository {
   appendSignal(signal: IncidentSignal): Promise<Result<IncidentSignalId, Error>>;
   appendBundle(bundle: SignalBundle): Promise<Result<string, Error>>;
@@ -105,7 +107,6 @@ export class InMemoryRecoveryIncidentInsightsStore implements RecoveryIncidentIn
     if (!normalized.ok) return [];
     return Array.from(this.forecastStore.values())
       .filter((record) => (normalized.value.tenantId ? record.tenantId === normalized.value.tenantId : true))
-      .filter((record) => (normalized.value.incidentId ? record.forecast.incidentId === normalized.value.incidentId : true))
       .sort((left, right) => right.createdAt.localeCompare(left.createdAt))
       .slice(0, normalized.value.limit);
   }

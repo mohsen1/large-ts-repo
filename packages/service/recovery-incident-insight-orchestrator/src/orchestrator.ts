@@ -7,8 +7,9 @@ import {
   InMemoryRecoveryIncidentInsightsStore,
 } from '@data/recovery-incident-insights-store/src/repository';
 import { generateForecast, type IncidentForecast, buildPolicyDecision, deriveReadiness } from '@domain/recovery-incident-insights/src';
+import type { IncidentId } from '@domain/recovery-incident-insights/src';
 import type { RunIncidentInsightsWithBundleInput, RunResult } from './commands';
-import type { IncidentNotifier } from '@infrastructure/recovery-incident-notifier/src/types';
+import type { IncidentNotifier } from '@infrastructure/recovery-incident-notifier';
 import { runForecastWorkflow } from './workflow';
 import { validateBundle } from './validation';
 
@@ -84,7 +85,7 @@ export class RecoveryIncidentInsightOrchestrator {
       : ok('forecast-disabled');
 
     const finishedAt = new Date().toISOString();
-    if (!notifyReadiness.ok || !forecastNotify.ok) {
+    if (!notifyReadiness.ok) {
       await this.repository.saveRunExecution({
         runId,
         tenantId: parsed.value.tenantId as RunExecution['tenantId'],
@@ -94,7 +95,19 @@ export class RecoveryIncidentInsightOrchestrator {
         finishedAt,
         steps: ['bundle-ingest', 'policy-check', 'forecast', 'notify'],
       });
-      return fail(new Error(notifyReadiness.ok ? forecastNotify.error.message : notifyReadiness.error.message));
+      return fail(notifyReadiness.error);
+    }
+    if (!forecastNotify.ok) {
+      await this.repository.saveRunExecution({
+        runId,
+        tenantId: parsed.value.tenantId as RunExecution['tenantId'],
+        incidentId: parsed.value.incidentId as RunExecution['incidentId'],
+        status: 'failed',
+        startedAt,
+        finishedAt,
+        steps: ['bundle-ingest', 'policy-check', 'forecast', 'notify'],
+      });
+      return fail(forecastNotify.error);
     }
 
     await this.repository.saveRunExecution({
@@ -140,7 +153,7 @@ export class RecoveryIncidentInsightOrchestrator {
     return ok(forecast);
   }
 
-  async policyCheck(incidentId: string): Promise<Result<ReturnType<typeof buildPolicyDecision>, Error>> {
+  async policyCheck(incidentId: IncidentId): Promise<Result<ReturnType<typeof buildPolicyDecision>, Error>> {
     const runs = await this.repository.findBundles({ incidentId, limit: 1 });
     const [latest] = runs;
     if (!latest) return fail(new Error('no-bundle'));

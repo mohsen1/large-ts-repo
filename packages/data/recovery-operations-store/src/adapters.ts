@@ -1,6 +1,7 @@
 import { DynamoDBClient, ScanCommand, GetItemCommand, PutItemCommand } from '@aws-sdk/client-dynamodb';
 import type { NativeAttributeValue } from '@aws-sdk/util-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+import { withBrand } from '@shared/core';
 
 import type { RecoveryOperationsRepository } from './repository';
 import type { RunSession, RunPlanSnapshot } from '@domain/recovery-operations-models';
@@ -77,13 +78,14 @@ export class RecoveryOperationsDynamoRepository implements RecoveryOperationsRep
 
   async loadLatestSnapshot(tenant: string): Promise<any> {
     const response = await this.client.send(new ScanCommand({ TableName: this.config.tableName }));
-    const firstSession = (response.Items ?? [])[0]
-      ? (unmarshall(response.Items[0] as Record<string, NativeAttributeValue>) as any)
+    const items = response.Items ?? [];
+    const firstSession = items[0]
+      ? (unmarshall(items[0] as Record<string, NativeAttributeValue>) as any)
       : undefined;
 
     if (!firstSession) return undefined;
     return {
-      tenant,
+      tenant: withBrand(tenant, 'TenantId'),
       planId: `${tenant}:plan`,
       sessions: [firstSession],
     };

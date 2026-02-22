@@ -38,7 +38,7 @@ export const summarizeSignals = (signals: readonly RecoverySignalInput[]): DeepR
     uniqueEntities: new Set(signals.map((signal) => signal.entity)).size,
     averageConfidence: signals.reduce((sum, signal) => sum + signal.confidence, 0) / Math.max(signals.length, 1),
     peakSeverity: pickPeakSeverity(signals),
-    density: buildDensity(signals),
+    density: buildDensity(signals[0]?.tenantId ?? '' as RecoverySignalInput['tenantId'], signals),
   };
 
   return summary;
@@ -86,7 +86,7 @@ export const estimateRecoveryHorizon = (result: RecoverySimulationResult): numbe
   return Math.max(1, Math.round(result.actionPlan.estimatedCompletionMinutes / 60));
 };
 
-const buildDensity = (signals: readonly RecoverySignalInput[]): SignalDensity => {
+const buildDensity = (tenantId: RecoverySignalInput['tenantId'], signals: readonly RecoverySignalInput[]): SignalDensity => {
   const byEntity: Record<string, number> = {};
   const bySource: Record<string, number> = {};
   const bySeverity: Record<ScenarioSeverity, number> = {
@@ -102,7 +102,12 @@ const buildDensity = (signals: readonly RecoverySignalInput[]): SignalDensity =>
     bySeverity[signal.severity] += 1;
   }
 
-  return { perEntity: byEntity, perSource: bySource, bySeverity };
+  return {
+    tenantId,
+    perEntity: byEntity,
+    perSource: bySource,
+    bySeverity,
+  };
 };
 
 const severityWeight: Record<ScenarioSeverity, number> = {

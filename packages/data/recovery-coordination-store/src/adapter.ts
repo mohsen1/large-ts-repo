@@ -1,10 +1,13 @@
 import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
-import type { CoordinationPlanCandidate, CoordinationProgram, CoordinationSelectionResult } from '@domain/recovery-coordination';
+import {
+  type CoordinationPlanCandidate,
+  type CoordinationProgram,
+  type CoordinationSelectionResult,
+  type CandidateProjection,
+} from '@domain/recovery-coordination';
 import type { Envelope, MessageId, CorrelationId } from '@shared/protocol';
 import type {
-  CoordinationEnvelope,
-  CandidateProjection,
   RecoveryCoordinationQuery,
   CoordinationRecord,
   CoordinationRecordEnvelope,
@@ -65,7 +68,7 @@ export const validateQuery = (query: RecoveryCoordinationQuery): Result<Recovery
   return ok(query);
 };
 
-export const asCoordinationRecord = (envelope: CoordinationEnvelope<CoordinationRecord>): CoordinationRecord | null => {
+export const asCoordinationRecord = (envelope: Envelope<CoordinationRecord>): CoordinationRecord | null => {
   const payload = envelope.payload;
   if (!payload || typeof payload !== 'object') return null;
   return payload as CoordinationRecord;
@@ -86,7 +89,7 @@ export const makeRecordEnvelope = (
   tenant: CoordinationRecord['tenant'],
   runId: CoordinationRecord['runId'],
   payload: CoordinationRecord['program'],
-): CoordinationEnvelope<CoordinationProgram> => ({
+): Envelope<CoordinationProgram> => ({
   id: `${runId}:program` as MessageId,
   correlationId: `${tenant}:run` as CorrelationId,
   timestamp: new Date().toISOString(),
@@ -105,7 +108,7 @@ export const defaultRecordCodec: CoordinationRecordCodec = {
     if (!envelope || typeof envelope !== 'object') {
       return fail(new Error('coordination-envelope-missing'));
     }
-    const typed = envelope as CoordinationEnvelope<unknown>;
+    const typed = envelope as Envelope<CoordinationRecord>;
     const payload = typed.payload;
     if (!payload || typeof payload !== 'object') return fail(new Error('coordination-envelope-invalid-payload'));
     return ok(payload as CoordinationRecord);

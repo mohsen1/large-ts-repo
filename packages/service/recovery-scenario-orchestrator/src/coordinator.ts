@@ -1,6 +1,7 @@
 import type { Result } from '@shared/result';
 import { fail, ok } from '@shared/result';
-import { type TenantId } from '@shared/type-level';
+import type { TenantId } from '@domain/recovery-scenario-planner';
+import type { StoredScenarioSummary } from '@data/recovery-scenario-store';
 import type { ScenarioOrchestrationCommand, OrchestrationResult } from './commands';
 import { compileSimulationArtifacts, persistSimulationArtifacts, notifyScenario, defaultClients, type ServiceDependencies } from './planner';
 
@@ -33,7 +34,7 @@ export class RecoveryScenarioOrchestrator {
     const list = await this.deps.repository.listByTenant(tenantId);
     if (!list.ok) return fail(list.error);
 
-    const exists = list.value.some((entry) => entry.scenarioId === (scenarioId as any));
+    const exists = list.value.some((entry: StoredScenarioSummary) => entry.scenarioId === (scenarioId as any));
     if (!exists) return fail(new Error(`scenario-not-found:${scenarioId}`));
 
     const scenario = await this.deps.repository.get(scenarioId as any);

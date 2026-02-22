@@ -1,4 +1,9 @@
-import type { RunAssessment, CohortSignalAggregate, BatchReadinessAssessment } from '@domain/recovery-operations-intelligence';
+import type {
+  RunAssessment,
+  CohortSignalAggregate,
+  BatchReadinessAssessment,
+  RecoveryRiskSignal,
+} from '@domain/recovery-operations-intelligence';
 import type { IntelligenceRepository } from '@data/recovery-operations-intelligence-store';
 import type { RecoveryOperationsRepository } from '@data/recovery-operations-store';
 import { runIntelligencePipeline, type PipelineOutput } from './pipeline';
@@ -43,7 +48,7 @@ export class IntelligenceDecisionService {
 
     const tenant = candidateSignals[0]?.tenant ?? 'default';
     const runId = `${tenant}-${planId}` as const;
-    const signalLike = candidateSignals.map((assessment) => ({
+    const signalLike: readonly RecoveryRiskSignal[] = candidateSignals.map((assessment) => ({
       runId: withBrand(runId, 'IntelligenceRunId'),
       envelopeId: `${planId}-${Math.random()}`,
       source: 'queue',

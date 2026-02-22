@@ -1,6 +1,6 @@
 import type { RecoverySimulationResult, ScenarioId, TenantId, ScenarioWindowState } from '@domain/recovery-scenario-planner';
-import type { RecoveryIntelligenceRepository } from '@data/recovery-intelligence-store/src/repository';
-import type { StoredRecommendation, StoredForecast } from '@data/recovery-intelligence-store/src/models';
+import type { RecoveryIntelligenceRepository } from '@data/recovery-intelligence-store';
+import type { StoredRecommendation, StoredForecast } from '@data/recovery-intelligence-store';
 import type { Result } from '@shared/result';
 import { ok, fail } from '@shared/result';
 import type { StoredScenarioRecord } from './models';
@@ -35,7 +35,7 @@ export const emitLegacyIntelligence = async (
   const recommendation = {
     recommendationId: `${simulation.scenarioId}-legacy` as StoredRecommendation['recommendationId'],
     tenantId: simulation.tenantId,
-    bundleId: simulation.actionPlan.planId,
+    bundleId: simulation.actionPlan.scenarioId as unknown as StoredRecommendation['bundleId'],
     recommendation: {
       recommendationId: `${simulation.scenarioId}-legacy` as unknown as string,
       score: simulation.finalRiskScore,
@@ -53,9 +53,9 @@ export const emitLegacyIntelligence = async (
 
   const forecast = {
     forecastId: `${simulation.scenarioId}-forecast` as StoredForecast['forecastId'],
-    bundleId: simulation.actionPlan.planId,
+    bundleId: simulation.scenarioId as unknown as StoredForecast['bundleId'],
     forecast: {
-      forecastId: `${simulation.scenarioId}-forecast` as unknown as string,
+      forecastId: `${simulation.scenarioId}-forecast` as StoredForecast['forecast']['forecastId'],
       context: {
         tenantId: simulation.tenantId,
         runId: simulation.actionPlan.planId as unknown as string,

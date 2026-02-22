@@ -2,7 +2,6 @@ import { fail, ok } from '@shared/result';
 import type { Result } from '@shared/result';
 import type { RecoveryRunId, RecoveryRunState, RecoveryProgram } from '@domain/recovery-orchestration';
 import type { RiskDimension } from '@domain/recovery-risk-models';
-import { buildExecutionPlan } from '@domain/recovery-plan';
 import { createCoordinationProgram, createCandidate } from './helpers';
 import type {
   CoordinationAttemptInput,
@@ -19,16 +18,14 @@ import {
   topologicalOrder,
   defaultScorer,
   CoordinationBudget,
-  type CandidateProjection,
   type CoordinationConstraint,
   type CoordinationProgram,
   type CoordinationPlanCandidate,
   type CoordinationSelectionResult,
-  type CoordinationServiceError,
   type CoordinationStep,
   type CoordinationWindow,
 } from '@domain/recovery-coordination';
-import type { CandidateState } from '@data/recovery-coordination-store';
+import type { CoordinationRecord } from '@data/recovery-coordination-store';
 import {
   createDefaultStore,
   type RecoveryCoordinationStore,
@@ -40,7 +37,7 @@ import { RecoveryPlanOrchestrator, type RecoveryPlanOrchestrationResult } from '
 import { InMemoryCoordinationDelivery } from '@infrastructure/recovery-coordination-notifier';
 import type {
   CoordinationDeliveryChannel,
-  type CoordinationDeliveryEvent,
+  CoordinationDeliveryEvent,
 } from '@infrastructure/recovery-coordination-notifier';
 
 export interface RecoveryCoordinationOrchestratorOptions {
@@ -81,7 +78,7 @@ export class RecoveryCoordinationOrchestrator {
     const program = createCoordinationProgram(input.program, input.context);
     const topology = summarizeTopology(program.steps);
     if (topology.criticalPath.length === 0 && program.steps.length > 0) {
-      return fail(new Error('coordination-cycle-detected') as CoordinationServiceError);
+      return fail(new Error('coordination-cycle-detected'));
     }
 
     const constraintStats = constraintSummary(program.constraints);
@@ -102,7 +99,7 @@ export class RecoveryCoordinationOrchestrator {
       progressPercent: 5,
     };
     if (blockedConstraints.length > 0) {
-      const aborted = {
+      const aborted: CoordinationCommandState = {
         ...state,
         phase: 'abort',
         progressPercent: 100,
@@ -117,21 +114,19 @@ export class RecoveryCoordinationOrchestrator {
     const policies = await this.policyEngine.assessProgram(input.program, input.runState);
     const risks = await this.riskEngine.evaluate({
       runId: input.runId as never,
-      tenant: input.tenant,
+      tenant: input.tenant as never,
       policies: [],
       signals: [],
       program: input.program,
       runState: input.runState,
     });
-    if (!policies.ok || !risks.ok) {
-      return fail(policies.error ?? risks.error ?? new Error('coordination-policy-or-risk-error'));
+    if (!policies.ok) {
+      return fail(policies.error);
+    }
+    if (!risks.ok) {
+      return fail(risks.error);
     }
 
-    const plan = buildExecutionPlan({
-      runId: `${input.runId}:candidate`,
-      program: input.program,
-      includeFallbacks: true,
-    });
     const candidates = this.buildCandidates(
       program,
       input.runState,
@@ -145,7 +140,7 @@ export class RecoveryCoordinationOrchestrator {
     const selected = this.selectCandidate(candidates, program.constraints);
     const selection = this.toSelectionResult(selected, policies.value, risks.value);
 
-    const finalState = {
+    const finalState: CoordinationCommandState = {
       ...state,
       phase: 'delivery',
       progressPercent: 90,
@@ -188,8 +183,8 @@ export class RecoveryCoordinationOrchestrator {
   async recent(runId: RecoveryRunId): Promise<readonly CoordinationAttemptReport[]> {
     const query: RecoveryCoordinationQuery = { runId };
     const records = await this.store.query(query);
-    return records.map((record) => ({
-      runId,
+    return records.map((record: CoordinationRecord) => ({
+      runId: record.runId as RecoveryRunId,
       correlationId: record.selection.selectedCandidate.id,
       tenant: `${record.tenant}`,
       accepted: record.selection.decision === 'approved',
@@ -209,12 +204,6 @@ export class RecoveryCoordinationOrchestrator {
     riskSignals: readonly string[],
   ): readonly CoordinationPlanCandidate[] {
     const sequence = topologicalOrder(program.steps);
-    const plan = buildExecutionPlan({
-      runId: `${context.correlationId}:selection`,
-      program: runStateToProgram(program, runState, sequence),
-      includeFallbacks: true,
-    });
-
     const defaultCandidate = createCandidate({
       programId: program.id,
       runId: `${runState.runId}` as never,
@@ -227,7 +216,6 @@ export class RecoveryCoordinationOrchestrator {
       riskSignals,
       policySignals,
       steps: program.steps,
-      plan,
     });
 
     const reverseSequence = [...sequence].reverse();
@@ -243,7 +231,6 @@ export class RecoveryCoordinationOrchestrator {
       riskSignals,
       policySignals,
       steps: program.steps,
-      plan,
     });
 
     const parallelism = Math.max(1, budget.maxParallelism);
@@ -266,7 +253,7 @@ export class RecoveryCoordinationOrchestrator {
     constraints: readonly CoordinationConstraint[],
   ): CoordinationPlanCandidate {
     const penalized = candidates.map((candidate) => {
-      const hasHeavyConstraint = candidate.sequence.filter((stepId) => {
+      const hasHeavyConstraint = candidate.sequence.filter((stepId: CoordinationPlanCandidate['steps'][number]['id']) => {
         const constrained = constraints.some((constraint) =>
           constraint.affectedStepIds.includes(stepId) && constraint.weight > 0.6,
         );
@@ -285,18 +272,24 @@ export class RecoveryCoordinationOrchestrator {
     policyDecision: PolicyEngineDecision,
     riskDecision: RiskEngineDecision,
   ): CoordinationSelectionResult {
+    const policyReasons = [
+      ...policyDecision.compliance.decision.blocking,
+      ...policyDecision.compliance.decision.mitigations,
+    ].map((decision) => `${decision.policyId}:${decision.reason}`);
     const candidates = [selected, {
       ...selected,
       id: `${selected.id}:alternate`,
       createdAt: new Date().toISOString(),
     }];
     return {
-      runId: `${selected.runId}` as never,
+      runId: selected.runId as RecoveryRunId,
       selectedCandidate: selected,
       alternatives: candidates,
-      decision: policyDecision.compliance.blocked ? 'blocked' : riskDecision.shouldDefer ? 'deferred' : 'approved',
+      decision: (policyDecision.compliance.blocked
+        ? 'blocked'
+        : riskDecision.shouldDefer ? 'deferred' : 'approved') as CoordinationSelectionResult['decision'],
       blockedConstraints: policyDecision.compliance.requiredEscalations,
-      reasons: [...policyDecision.compliance.reasons, ...riskDecision.recommendations],
+      reasons: [...policyReasons, ...riskDecision.recommendations],
       selectedAt: new Date().toISOString(),
     };
   }
@@ -323,17 +316,12 @@ export class RecoveryCoordinationOrchestrator {
         riskSignals: [],
         policySignals: [],
         steps: program.steps,
-        plan: buildExecutionPlan({
-          runId: `${input.runId}:pending`,
-          program: input.program,
-          includeFallbacks: false,
-        }),
       });
       const stubSelection = {
         runId: `${input.runId}` as never,
         selectedCandidate: candidate,
         alternatives: [candidate],
-        decision: blockedConstraints.length ? 'blocked' : 'deferred',
+        decision: blockedConstraints.length ? 'blocked' as CoordinationSelectionResult['decision'] : 'deferred',
         blockedConstraints,
         reasons: blockedConstraints,
         selectedAt: new Date().toISOString(),
@@ -346,6 +334,7 @@ export class RecoveryCoordinationOrchestrator {
         selection: stubSelection,
         window: program.runWindow,
         candidate,
+        archived: false,
         createdAt: new Date().toISOString(),
         tags: [state.state],
       });
@@ -360,6 +349,7 @@ export class RecoveryCoordinationOrchestrator {
       selection,
       window: program.runWindow,
       candidate: selected,
+      archived: false,
       createdAt: new Date().toISOString(),
       tags: [state.phase],
     };
@@ -436,7 +426,7 @@ const runStateToProgram = (
 const policyToSignals = (decision: PolicyEngineDecision): readonly string[] => {
   return [
     ...decision.compliance.requiredEscalations,
-    ...decision.violations.map((violation) => `policy:${violation}`),
+    ...decision.compliance.decision.blocking.map((violation) => `policy:${violation.policyId}:${violation.reason}`),
   ];
 };
 
@@ -455,4 +445,3 @@ const createWindow = (): CoordinationWindow => ({
   to: new Date(Date.now() + 86_400_000).toISOString(),
   timezone: 'UTC',
 });
-

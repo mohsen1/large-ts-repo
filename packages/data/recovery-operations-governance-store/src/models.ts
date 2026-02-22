@@ -10,7 +10,7 @@ export interface PolicyHistoryRecord {
   readonly evaluatedAt: string;
   readonly blocked: boolean;
   readonly score: number;
-  readonly findings: readonly PolicyEvaluationOutcome['findings'];
+  readonly findings: PolicyEvaluationOutcome['findings'];
 }
 
 export interface PolicyStoreFilter {

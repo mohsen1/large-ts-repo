@@ -128,15 +128,15 @@ export const selectionResultSchema = z.object({
 });
 
 export const parseProgram = (value: unknown): CoordinationProgram => {
-  return coordinationProgramSchema.parse(value);
+  return coordinationProgramSchema.parse(value) as unknown as CoordinationProgram;
 };
 
 export const parseCandidate = (value: unknown): CoordinationPlanCandidate => {
-  return coordinationPlanCandidateSchema.parse(value);
+  return coordinationPlanCandidateSchema.parse(value) as unknown as CoordinationPlanCandidate;
 };
 
 export const parseSelection = (value: unknown): CoordinationSelectionResult => {
-  return selectionResultSchema.parse(value);
+  return selectionResultSchema.parse(value) as unknown as CoordinationSelectionResult;
 };
 
 export const parseWindow = (value: unknown): CoordinationWindow => {

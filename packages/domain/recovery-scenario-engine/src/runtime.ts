@@ -1,5 +1,5 @@
 import type { IncidentContext, RecoveryScenario, ScenarioDecision, ScenarioEnvelope, RuntimeMetrics } from './types';
-import { createPlannedRun, evaluateScenario, buildExecutionEnvelope as planEnvelope } from './planner';
+import { createPlannedRun, evaluateScenario, buildPlannerExecutionEnvelope as planEnvelope } from './planner';
 
 export interface ScenarioRunbookState {
   stepIndex: number;

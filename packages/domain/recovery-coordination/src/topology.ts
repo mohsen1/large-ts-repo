@@ -3,15 +3,15 @@ import type { CoordinationStep } from './types';
 export interface StepNode<T = CoordinationStep> {
   readonly id: string;
   readonly step: T;
-  readonly dependencies: readonly string[];
-  readonly dependents: readonly string[];
+  readonly dependencies: ReadonlyArray<string>;
+  readonly dependents: ReadonlyArray<string>;
 }
 
 export interface TopologySummary {
   readonly totalNodes: number;
   readonly ordered: readonly string[];
   readonly criticalPath: readonly string[];
-  readonly layers: readonly readonly string[][];
+  readonly layers: readonly ReadonlyArray<string>[];
   readonly maxDepth: number;
 }
 
@@ -120,7 +120,7 @@ export const topologicalOrder = (steps: readonly CoordinationStep[]): readonly s
   return ordered;
 };
 
-export const executionLayers = (steps: readonly CoordinationStep[]): readonly readonly string[][] => {
+export const executionLayers = (steps: readonly CoordinationStep[]): readonly ReadonlyArray<string>[] => {
   const graph = buildGraph(steps);
   const ordered = Array.from(graph.layers.entries())
     .sort((a, b) => a[1] - b[1])

@@ -1,4 +1,4 @@
-import type { PublishInput } from '@shared/protocol';
+import type { PublishCommandInput } from '@aws-sdk/client-sns';
 import { PublishCommand, SNSClient } from '@aws-sdk/client-sns';
 import { ok, fail, type Result } from '@shared/result';
 import { withBrand } from '@shared/core';
@@ -22,7 +22,7 @@ export class SnsCompliancePublisher implements CompliancePublisher {
 
   async publishPolicyOutcome(tenant: string, outcome: PolicyEvaluationOutcome): Promise<Result<void, string>> {
     const subject = `[Recovery Compliance] ${tenant} run ${outcome.runId}`;
-    const payload: PublishInput = {
+    const payload: PublishCommandInput = {
       TopicArn: this.config.topicArn,
       Subject: subject,
       Message: JSON.stringify(outcome),

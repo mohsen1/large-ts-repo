@@ -7,12 +7,15 @@ import type {
   PlanInput,
   ScenarioId,
   ScenarioPolicy,
+  TenantId,
 } from '@domain/recovery-scenario-planner';
-import { planSimulation, type PlanOutput } from '@domain/recovery-scenario-planner/src/planner';
+import { planSimulation, type PlanOutput } from '@domain/recovery-scenario-planner';
 import { type ScenarioOrchestrationCommand } from './commands';
-import type { RecoveryScenarioRepository } from '@data/recovery-scenario-store/src/repository';
-import { toScenarioRecord } from '@data/recovery-scenario-store/src/adapters';
+import type { RecoveryScenarioRepository } from '@data/recovery-scenario-store';
+import { toScenarioRecord } from '@data/recovery-scenario-store';
 import { defaultClients, notifyRecoveryScenario } from '@infrastructure/recovery-scenario-notifier';
+
+export { defaultClients };
 
 type OrchestrationPolicy = ScenarioPolicy;
 
@@ -30,8 +33,8 @@ export interface ResolvedPolicy {
 export const buildPolicyForTenant = (tenantId: string): ResolvedPolicy => ({
   tenantId,
   policy: {
-    policyId: `${tenantId}-scenario-policy`,
-    tenantId: tenantId as ResolvedPolicy['tenantId'],
+    policyId: `${tenantId}-scenario-policy` as ScenarioPolicy['policyId'],
+    tenantId: tenantId as TenantId,
     priorityBuckets: ['low', 'medium', 'high', 'critical'],
     mustMaintainReadiness: true,
     preferredClockSkewSeconds: 30,
@@ -108,7 +111,7 @@ export const persistSimulationArtifacts = async (
   artifacts: SimulationPayload,
   repository: RecoveryScenarioRepository,
 ): Promise<Result<void, Error>> => {
-  return repository.save(toScenarioRecord(artifacts.scenarioId, artifacts.policy.tenantId as string, artifacts.output.simulation));
+  return repository.save(toScenarioRecord(artifacts.scenarioId, artifacts.policy.tenantId, artifacts.output.simulation));
 };
 
 export const notifyScenario = async (

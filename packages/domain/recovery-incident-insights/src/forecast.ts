@@ -7,6 +7,7 @@ import type {
   SignalBundle,
   SignalSeverity,
 } from './types';
+import { parseActionId, parsePrereq } from './schema';
 import { aggregateSignals, topContributingSignals } from './pipeline';
 
 const playCatalog: RecoveryPlay[] = [
@@ -18,18 +19,18 @@ const playCatalog: RecoveryPlay[] = [
     blastRadius: 'medium',
     candidates: [
       {
-        actionId: 'action:traffic-shape',
+        actionId: parseActionId('action:traffic-shape'),
         label: 'Enable ingress shaping',
         weight: 0.73,
         rationale: 'Reduce load on impacted control surfaces',
-        prerequisites: ['prereq:network-safety'],
+        prerequisites: [parsePrereq('prereq:network-safety')],
       },
       {
-        actionId: 'action:edge-drain',
+        actionId: parseActionId('action:edge-drain'),
         label: 'Drain unhealthy regions',
         weight: 0.58,
         rationale: 'Move sessions away from unstable nodes',
-        prerequisites: ['prereq:region-aware-route'],
+        prerequisites: [parsePrereq('prereq:region-aware-route')],
       },
     ],
   },
@@ -41,11 +42,11 @@ const playCatalog: RecoveryPlay[] = [
     blastRadius: 'high',
     candidates: [
       {
-        actionId: 'action:rollback',
+        actionId: parseActionId('action:rollback'),
         label: 'Rollback most recent commit',
         weight: 0.9,
         rationale: 'Mitigate unbounded blast from bad deployment',
-        prerequisites: ['prereq:rollback-window', 'prereq:change-auth'],
+        prerequisites: [parsePrereq('prereq:rollback-window'), parsePrereq('prereq:change-auth')],
       },
     ],
   },
@@ -57,11 +58,11 @@ const playCatalog: RecoveryPlay[] = [
     blastRadius: 'low',
     candidates: [
       {
-        actionId: 'action:rotate-secrets',
+        actionId: parseActionId('action:rotate-secrets'),
         label: 'Rotate exposed secrets',
         weight: 0.67,
         rationale: 'Reduce lateral movement risk',
-        prerequisites: ['prereq:kms-ready'],
+        prerequisites: [parsePrereq('prereq:kms-ready')],
       },
     ],
   },
@@ -105,9 +106,10 @@ const forecastFromSignals = (
 }
 
 export const deriveReadiness = (bundle: SignalBundle): IncidentReadiness => {
-  const aggregation = aggregateSignals(bundle.signals);
+  const signals = bundle.window.signals;
+  const aggregation = aggregateSignals(signals);
   const score = Number((1 - aggregation.overall).toFixed(3));
-  const top = topContributingSignals(bundle.signals).map((signal) => signal.signalId);
+  const top = topContributingSignals(signals).map((signal) => signal.signalId);
   const state: IncidentReadiness['state'] =
     aggregation.overall >= 0.8 ? 'critical' : aggregation.overall >= 0.6 ? 'degraded' : aggregation.overall >= 0.35 ? 'unstable' : 'healthy';
 
@@ -146,7 +148,7 @@ export const generateForecast = (
   windowMinutes: number,
   planId: string,
 ): IncidentForecast => {
-  const risk = forecastFromSignals(bundle.signals);
+  const risk = forecastFromSignals(bundle.window.signals);
   const forecastWindow: ForecastWindow = {
     startAt: new Date().toISOString(),
     endAt: new Date(Date.now() + windowMinutes * 60_000).toISOString(),
@@ -161,7 +163,7 @@ export const generateForecast = (
     bundleId: bundle.bundleId,
     forecastWindow,
     readiness: deriveReadiness(bundle),
-    recommendations: recommend(bundle.signals),
+    recommendations: recommend(bundle.window.signals),
     riskProfile: {
       volatility: risk.volatility,
       concentration: risk.concentration,

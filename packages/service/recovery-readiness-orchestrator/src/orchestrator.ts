@@ -4,7 +4,7 @@ import { topologicalExecutionOrder, canExecuteInParallel } from '@domain/recover
 import { buildPlanBlueprint, evaluateReadinessReadiness } from './planner';
 import { MemoryReadinessRepository, type ReadinessRepository, createRunSummary } from '@data/recovery-readiness-store/src/repository';
 import { ReadinessPipeline, buildSignalsStep, buildDraftStep, type StageContext } from './pipeline';
-import { aggregateSignals } from '@domain/recovery-readiness/src/signals';
+import { foldSignals } from '@domain/recovery-readiness/src/signals';
 import { buildSignalMatrix, criticalityScoreByTarget } from '@domain/recovery-readiness/src/signal-matrix';
 import {
   canRunParallel,
@@ -16,9 +16,11 @@ import {
   type RecoveryReadinessPlanDraft,
   type ReadinessPolicy,
   type ReadinessSignal,
+  type ReadinessTarget,
   type ReadinessRunId,
 } from '@domain/recovery-readiness';
 import type { ReadinessReadModel } from '@data/recovery-readiness-store/src/models';
+import type { SignalFilter } from '@data/recovery-readiness-store/src/models';
 import type { ReadinessNotifier, ReadinessQueue } from './adapters';
 import { EventBridgeReadinessPublisher, SqsReadinessQueue } from './adapters';
 import { EventBridgeClient } from '@aws-sdk/client-eventbridge';
@@ -79,12 +81,13 @@ export class RecoveryReadinessOrchestrator {
         async execute(context, input) {
           const generated = await buildSignalsStep().execute(context, input.draft);
           if (!generated.ok) return { ok: false, errors: generated.errors };
+          const generatedSignals = generated.value ?? [];
 
           return {
             ok: true,
             value: {
               draft: input.draft,
-              signals: [...input.signals, ...generated.value],
+              signals: [...input.signals, ...generatedSignals],
             },
             errors: [],
           };
@@ -92,7 +95,7 @@ export class RecoveryReadinessOrchestrator {
       },
       {
         name: 'materialize',
-        execute(context, input) {
+        execute(context: StageContext, input: { draft: RecoveryReadinessPlanDraft; signals: ReadinessSignal[] }) {
           return buildDraftStep().execute(context, input);
         },
       },
@@ -138,7 +141,7 @@ export class RecoveryReadinessOrchestrator {
     }
 
     const matrix = buildSignalMatrix(model.signals);
-    const summary = aggregateSignals(model.signals);
+    const summary = foldSignals(model.signals);
     const density = matrix.totalSignals > 0 ? summary.weightedScore / matrix.totalSignals : 0;
     const shouldSuppress = density > 8;
 
@@ -165,7 +168,7 @@ export class RecoveryReadinessOrchestrator {
     summary: ReturnType<typeof inventory>;
     trace: string;
   }> {
-    const filter = command.command === 'list' ? undefined : ({ runId: command.correlationId } as const);
+    const filter = command.command === 'list' ? undefined : ({ runId: command.correlationId } as SignalFilter);
     const runs = filter ? await this.repo.search(filter) : await this.repo.listActive();
 
     const ranked = sortByRiskBand([...runs]);
@@ -228,7 +231,7 @@ export class RecoveryReadinessOrchestrator {
 
   private async applyPolicy(
     model: ReadinessReadModel,
-    context: RecoveryCommandContext | StageContext,
+    context: StageContext,
   ): Promise<Result<string, Error>> {
     const targetRules = validatePlanTargets(this.policy as never, { targets: model.plan.targets });
     const riskRules = validateRiskBand(this.policy as never, model.signals);
@@ -304,13 +307,13 @@ export class RecoveryReadinessOrchestrator {
     };
   }
 
-  private lookupTargets(targetIds: ReadonlyArray<string>) {
+  private lookupTargets(targetIds: ReadonlyArray<RecoveryReadinessPlanDraft['targetIds'][number]>) {
     return targetIds.map((targetId) => ({
       id: targetId as RecoveryReadinessPlanDraft['targetIds'][number],
       name: `Target ${targetId}`,
       ownerTeam: 'operations',
       region: 'us-east-1',
-      criticality: 'medium',
+      criticality: 'medium' as ReadinessTarget['criticality'],
       owners: ['sre'],
     }));
   }

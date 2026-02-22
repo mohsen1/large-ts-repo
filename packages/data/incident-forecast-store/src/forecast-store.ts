@@ -1,6 +1,6 @@
-import type { ForecastDocument, IngestedSignalBatch } from './models';
-import { makeForecastDocument } from './models';
-import { buildForecastPlan, evaluateRisk, forecastedDowntime } from '@domain/incident-forecasting';
+import { makeForecastDocument, type ForecastDocument } from './models';
+import type { IngestedSignalBatch } from './signal-ingester';
+import { buildForecastPlan, evaluateRisk, forecastedDowntime, type ServiceDependencyNode } from '@domain/incident-forecasting';
 import { fail, ok, type Result } from '@shared/result';
 import type { SignalObservation } from '@domain/incident-forecasting';
 
@@ -32,12 +32,12 @@ export const buildAndPersistForecast = async (
   const risk = evaluateRisk(
     batch.signals,
     batch.signals.slice(0, 4).map((signal, index) => ({
-      id: `dep-${index}` as `${string}-${number}`,
+      id: `dep-${index}` as ServiceDependencyNode['id'],
       component: signal.eventType,
       ownerTeam: signal.sourceSystem,
       criticality: index % 4 === 0 ? 'critical' : 'high',
       blastRadiusMultiplier: 1 + index / 4,
-    }),
+    })),
   );
 
   const forecast = makeForecastDocument(

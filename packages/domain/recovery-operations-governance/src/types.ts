@@ -5,7 +5,7 @@ import type { DeepReadonly, Merge } from '@shared/type-level';
 
 export type PolicySeverity = 'allow' | 'warn' | 'block';
 export type PolicyPriority = 'low' | 'medium' | 'high' | 'critical';
-export type PolicyScope = 'session' | 'plan' | 'fleet';
+export type PolicyScope = 'session' | 'plan' | 'fleet' | 'target';
 
 export interface PolicyMetadata {
   readonly policyId: string;

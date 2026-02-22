@@ -3,7 +3,7 @@ import type {
   ReadinessSignal,
   RecoveryReadinessPlan,
   ReadinessTarget,
-  RecoveryRunId
+  ReadinessRunId
 } from '@domain/recovery-readiness';
 
 export interface ReadinessPlanCommand {
@@ -35,7 +35,7 @@ export interface ActivationResult {
 }
 
 export interface OrchestratorStatusResponse {
-  runId: RecoveryRunId;
+  runId: ReadinessRunId;
   state: 'idle' | 'running' | 'blocked' | 'error';
   activeTargets: number;
   notes: readonly string[];

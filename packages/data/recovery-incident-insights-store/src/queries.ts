@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { Result } from '@shared/result';
 import { fail, ok } from '@shared/result';
 import type { StoreQuery } from './types';
+import type { IncidentId, RunId, TenantId } from '@domain/recovery-incident-insights/src';
 
 const querySchema = z.object({
   tenantId: z.string().min(1).optional(),
@@ -13,9 +14,9 @@ const querySchema = z.object({
 });
 
 export interface NormalizedQuery {
-  tenantId?: string;
-  incidentId?: string;
-  runId?: string;
+  tenantId?: TenantId;
+  incidentId?: IncidentId;
+  runId?: RunId;
   from?: string;
   to?: string;
   limit: number;
@@ -25,9 +26,9 @@ export const validateStoreQuery = (input: StoreQuery): Result<NormalizedQuery, E
   const parsed = querySchema.safeParse(input);
   if (!parsed.success) return fail(new Error('query-invalid'));
   return ok({
-    tenantId: parsed.data.tenantId,
-    incidentId: parsed.data.incidentId,
-    runId: parsed.data.runId,
+    tenantId: parsed.data.tenantId ? (parsed.data.tenantId as TenantId) : undefined,
+    incidentId: parsed.data.incidentId ? (parsed.data.incidentId as IncidentId) : undefined,
+    runId: parsed.data.runId ? (parsed.data.runId as RunId) : undefined,
     from: parsed.data.from,
     to: parsed.data.to,
     limit: parsed.data.limit ?? 100,

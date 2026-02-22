@@ -1,5 +1,13 @@
 import { z } from 'zod';
-import type { IncidentContext, RecoveryScenario, ScenarioEnvelope } from '@domain/recovery-scenario-engine';
+import type {
+  IncidentContext,
+  IncidentId,
+  RecoveryScenario,
+  ScenarioEnvelope,
+  ScenarioId,
+  ProgramId,
+  TenantId,
+} from '@domain/recovery-scenario-engine';
 
 const IncidentContextSchema = z.object({
   incidentId: z.string(),
@@ -92,17 +100,39 @@ export const encodeScenarioEnvelope = (envelope: ScenarioEnvelope): string =>
 
 export const decodeScenarioEnvelope = (payload: string): ScenarioEnvelope => {
   const parsed = ScenarioEnvelopeSchema.parse(JSON.parse(payload));
+  const toTenantId = (value: string): TenantId => value as TenantId;
+  const toScenarioId = (value: string): ScenarioId => value as ScenarioId;
+  const toIncidentId = (value: string): IncidentId => value as IncidentId;
+
   return {
-    scenario: parsed.scenario as RecoveryScenario,
-    context: parsed.context as IncidentContext,
+    scenario: {
+      ...parsed.scenario,
+      id: toScenarioId(parsed.scenario.id),
+      tenantId: toTenantId(parsed.scenario.tenantId),
+      programId: parsed.scenario.programId as ProgramId,
+    } as RecoveryScenario,
+    context: {
+      ...parsed.context,
+      incidentId: toIncidentId(parsed.context.incidentId),
+      scenarioId: toScenarioId(parsed.context.scenarioId),
+      tenantId: toTenantId(parsed.context.tenantId),
+    } as IncidentContext,
     decision: {
       ...parsed.decision,
-      incidentContext: parsed.decision.incidentContext as IncidentContext,
+      scenarioId: toScenarioId(parsed.decision.scenarioId),
+      incidentContext: {
+        ...parsed.decision.incidentContext,
+        incidentId: toIncidentId(parsed.decision.incidentContext.incidentId),
+        scenarioId: toScenarioId(parsed.decision.incidentContext.scenarioId),
+        tenantId: toTenantId(parsed.decision.incidentContext.tenantId),
+      } as IncidentContext,
     },
     metrics: parsed.metrics,
     run: {
       ...parsed.run,
-      runId: parsed.run.runId,
+      runId: parsed.run.runId as string & { readonly __brand: 'RecoveryRunId' },
+      incidentId: toIncidentId(parsed.run.incidentId),
+      scenarioId: toScenarioId(parsed.run.scenarioId),
       actionCodes: parsed.run.actionCodes,
       estimatedMinutes: parsed.run.estimatedMinutes,
       requiresManualApproval: parsed.run.requiresManualApproval,

@@ -20,7 +20,7 @@ export const forecastMetricsSchema = z.object({
 });
 
 export const planSchema = z.object({
-  planId: z.string().min(1),
+  planId: z.string().min(1).transform((value): IncidentForecastPlan['planId'] => value as IncidentForecastPlan['planId']),
   tenantId: z.string().min(1),
   title: z.string().min(1),
   description: z.string().min(1),

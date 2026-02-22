@@ -14,10 +14,12 @@ export interface PolicyOutcome {
 }
 
 const criticalSignalGuard: PolicyRule<PolicyContext, PolicyOutcome> = {
-  code: 'policy:critical-signal-guard',
+  code: 'policy:critical-signal-guard' as PolicyOutcome['policy'] & {
+    readonly __brand: 'PolicyCode';
+  },
   description: 'Require manual confirmation when critical security or infrastructure signals dominate',
   match: (context) => {
-    const criticals = context.bundle.signals.filter(
+    const criticals = context.bundle.window.signals.filter(
       (signal) => signal.severity === 'critical',
     ).length;
     return criticals > 2;
@@ -35,10 +37,10 @@ const criticalSignalGuard: PolicyRule<PolicyContext, PolicyOutcome> = {
 };
 
 const unstableStatePolicy: PolicyRule<PolicyContext, PolicyOutcome> = {
-  code: 'policy:unstable-state-cap',
+  code: 'policy:unstable-state-cap' as PolicyOutcome['policy'] & { readonly __brand: 'PolicyCode' },
   description: 'Block runbooks with too many high blast radius actions when stability is low',
   match: (context) => {
-    const readiness = context.bundle.signals.filter((signal) =>
+    const readiness = context.bundle.window.signals.filter((signal) =>
       signal.dimension === 'control-plane' && signal.severity === 'high',
     ).length;
     return readiness >= 2;
@@ -56,9 +58,9 @@ const unstableStatePolicy: PolicyRule<PolicyContext, PolicyOutcome> = {
 };
 
 const confidenceGate: PolicyRule<PolicyContext, PolicyOutcome> = {
-  code: 'policy:low-confidence-gate',
+  code: 'policy:low-confidence-gate' as PolicyOutcome['policy'] & { readonly __brand: 'PolicyCode' },
   description: 'Reject recommendations when model confidence falls below threshold',
-  match: (context) => context.bundle.signals.some((signal) => signal.confidence < 0.4),
+  match: (context) => context.bundle.window.signals.some((signal) => signal.confidence < 0.4),
   apply: (context) => {
     return {
       accepted: false,

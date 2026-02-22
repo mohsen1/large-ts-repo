@@ -11,6 +11,7 @@
   "references": [
     { "path": "./../../domain/recovery-operations-governance/tsconfig.json" },
     { "path": "./../../domain/recovery-operations-models/tsconfig.json" },
+    { "path": "./../../domain/recovery-orchestration/tsconfig.json" },
     { "path": "./../../data/recovery-operations-governance-store/tsconfig.json" },
     { "path": "./../../infrastructure/recovery-operations-compliance/tsconfig.json" },
     { "path": "./../../shared/result/tsconfig.json" },

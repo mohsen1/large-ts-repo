@@ -1,5 +1,4 @@
 import type { Brand } from '@shared/core';
-import type { BrandMap } from '@shared/type-level';
 
 export type ScenarioId = Brand<string, 'ScenarioId'>;
 export type ProgramId = Brand<string, 'ProgramId'>;
@@ -48,7 +47,7 @@ export interface RecoveryScenario {
   updatedAt: string;
 }
 
-export type BrandedRecord<K extends string, T extends string> = BrandMap<K, T>;
+export type BrandedRecord<K extends string, T extends string> = Brand<K, T>;
 
 export interface IncidentContext {
   incidentId: IncidentId;
@@ -92,6 +91,7 @@ export type ScenarioEnvelope<TContext extends IncidentContext = IncidentContext>
   context: TContext;
   decision: ScenarioDecision<TContext>;
   metrics: RuntimeMetrics;
+  run: PlannedRun;
 };
 
 export interface ScenarioFilter {

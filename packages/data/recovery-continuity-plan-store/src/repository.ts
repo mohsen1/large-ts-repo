@@ -12,7 +12,7 @@ import { cloneRecord } from './encoding';
 export interface ContinuityPlanRepository {
   savePlan(plan: ContinuityPlanRecord): Promise<Result<void, Error>>;
   loadPlan(planId: ContinuityPlanId): Promise<Result<ContinuityPlanRecord | undefined, Error>>;
-  listByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly ContinuityPlanRecord[], Error>>;
+  listPlansByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly ContinuityPlanRecord[], Error>>;
   archivePlan(planId: ContinuityPlanId): Promise<Result<void, Error>>;
   getArchiveSummary(): Promise<Result<PlanArchiveSummary, Error>>;
 }
@@ -20,7 +20,7 @@ export interface ContinuityPlanRepository {
 export interface ContinuityRunRepository {
   upsertRun(run: PlanRunRecord): Promise<Result<void, Error>>;
   loadRun(tenantId: ContinuityTenantId, runId: ContinuityRunId): Promise<Result<PlanRunRecord | undefined, Error>>;
-  listByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly PlanRunRecord[], Error>>;
+  listRunsByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly PlanRunRecord[], Error>>;
 }
 
 export interface PlanStoreSnapshotBuilder {
@@ -65,7 +65,7 @@ export class InMemoryContinuityPlanStore implements ContinuityPlanStore {
     return ok(this.plans.get(planId) ? cloneRecord(this.plans.get(planId)!) : undefined);
   }
 
-  async listByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly ContinuityPlanRecord[], Error>> {
+  async listPlansByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly ContinuityPlanRecord[], Error>> {
     const ids = this.tenantPlanIds.get(tenantId) ?? new Set<ContinuityPlanId>();
     const plans = Array.from(ids).map((id) => this.plans.get(id)).filter(Boolean) as ContinuityPlanRecord[];
     return ok(plans.map(cloneRecord));
@@ -94,7 +94,7 @@ export class InMemoryContinuityPlanStore implements ContinuityPlanStore {
       const key = String(plan.tenantId);
       tenantBuckets.set(key, (tenantBuckets.get(key) ?? 0) + 1);
       totalArchived += 1;
-      planIds.push(planId);
+      planIds.push(planId as ContinuityPlanId);
     }
 
     const tenantCounts = Object.fromEntries(Array.from(tenantBuckets.entries())) as Record<
@@ -129,7 +129,7 @@ export class InMemoryContinuityPlanStore implements ContinuityPlanStore {
     return ok(run ? cloneRecord(run) : undefined);
   }
 
-  async listByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly PlanRunRecord[], Error>> {
+  async listRunsByTenant(tenantId: ContinuityTenantId): Promise<Result<readonly PlanRunRecord[], Error>> {
     const ids = this.tenantRunIds.get(tenantId) ?? new Set<ContinuityRunId>();
     const runs = Array.from(ids)
       .map((id) => this.runs.get(`${tenantId}:${id}`))
@@ -141,10 +141,10 @@ export class InMemoryContinuityPlanStore implements ContinuityPlanStore {
   }
 
   async materializeSnapshot(tenantId: ContinuityTenantId): Promise<Result<PlanStoreSnapshot, Error>> {
-    const planList = await this.listByTenant(tenantId);
+    const planList = await this.listPlansByTenant(tenantId);
     if (!planList.ok) return fail(planList.error);
 
-    const runList = await this.listByTenant(tenantId);
+    const runList = await this.listRunsByTenant(tenantId);
     if (!runList.ok) return fail(runList.error as Error);
 
     const activeRuns = runList.value.filter((run) => run.context.state !== 'completed' && run.context.state !== 'canceled');
