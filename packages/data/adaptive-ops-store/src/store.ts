@@ -55,7 +55,7 @@ export class InMemoryAdaptiveRunStore implements AdaptiveRunStore {
 
   private toRow(run: AdaptiveRun): RunRow {
     return {
-      id: run.incidentId as AdaptiveRunId,
+      id: run.incidentId as unknown as AdaptiveRunId,
       tenantId: run.policyId as never,
       run,
       decisions: [],
@@ -102,7 +102,7 @@ export class RepositoryBackedAdaptiveRunStore implements AdaptiveRunStore {
 
   private toRow(run: AdaptiveRun): RunRow {
     return {
-      id: run.incidentId as AdaptiveRunId,
+      id: run.incidentId as unknown as AdaptiveRunId,
       tenantId: run.policyId as never,
       run,
       decisions: [],

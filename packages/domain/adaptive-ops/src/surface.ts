@@ -53,7 +53,7 @@ export const pickTopByConfidence = (decisions: readonly AdaptiveDecision[]): Ada
   }, null);
 };
 
-export const mergeActions = (...actionGroups: readonly ReadonlyArray<readonly AdaptiveAction>[]): readonly AdaptiveAction[] => {
+export const mergeActions = (...actionGroups: readonly (AdaptiveAction[])[]): readonly AdaptiveAction[] => {
   const merged = new Map<string, AdaptiveAction>();
   for (const action of actionGroups.flat()) {
     const key = `${action.type}:${action.targets[0]}`;

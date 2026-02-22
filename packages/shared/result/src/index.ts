@@ -26,6 +26,8 @@ export const fail = <E>(error: E, code?: string): Fail<E> => ({
   code: code ? (code as Brand<string, "ResultCode">) : undefined,
 });
 
+export const err = <E>(error: E, code?: string): Fail<E> => fail(error, code);
+
 export const isOk = <T, E>(result: Result<T, E>): result is Ok<T> => result.ok;
 
 export const mapResult = <A, B, E>(result: Result<A, E>, mapper: (value: A) => B): Result<B, E> =>

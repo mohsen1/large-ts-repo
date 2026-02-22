@@ -1,4 +1,4 @@
-import { EventBridgeClient, PutEventsCommand, PutEventsCommandInput } from '@aws-sdk/client-eventbridge';
+import { EventBridgeClient, PutEventsCommand } from '@aws-sdk/client-eventbridge';
 import { Result, ok, err } from '@shared/result';
 import { AdaptiveDecision, AdaptiveRun, AdaptiveAction } from '@domain/adaptive-ops';
 
@@ -63,8 +63,8 @@ export class EventBridgeConnector implements IncidentConnector {
               Detail: JSON.stringify(payload),
               EventBusName: this.input.busName,
             },
-          ],
-        } as PutEventsCommandInput,
+          ]
+        })
       );
       return ok(undefined);
     } catch (error) {

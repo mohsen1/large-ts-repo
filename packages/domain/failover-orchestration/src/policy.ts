@@ -1,7 +1,7 @@
 import { Brand } from '@shared/type-level';
 import { constraintUnion } from './models';
-import { StageConstraint, PlanSnapshot, ValidationResult, RunContext } from './models';
-import { validateSnapshot, validateApprovals, validateWindows, ConstraintContext } from './constraints';
+import { StageConstraint, PlanSnapshot, RunContext } from './models';
+import { validateSnapshot, validateApprovals, validateWindows, ConstraintContext, ValidationResult } from './constraints';
 
 export interface EnforcementPolicy {
   id: Brand<string, 'PolicyId'>;
@@ -60,11 +60,11 @@ export const evaluateWithPolicy = (
       message: warning.message,
     }));
 
-  const stageConstraint = constraintUnion(snapshot.plan.windows.map(() => ({
+  const stageConstraint: StageConstraint = constraintUnion(snapshot.plan.windows.map(() => ({
     canaryPercent: policy.requiredCanaryPercent,
     maxRetries: 3,
     rollbackOnErrorRate: 0.25,
-  })) as StageConstraint;
+  })));
 
   const accepted = overlapCount <= policy.maxWindowOverlaps && stageConstraint.canaryPercent >= policy.requiredCanaryPercent;
 

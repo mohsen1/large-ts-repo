@@ -2,9 +2,11 @@ import { AdaptivePolicy, SignalContext, createAdaptationPlan, pickTopByConfidenc
 import { AdaptiveDecision, SignalSample, AdaptiveRun } from '@domain/adaptive-ops';
 import { RunnerContext, RunnerInput, RunnerResult } from './types';
 
+type PolicyDependency = AdaptivePolicy['dependencies'][number];
+
 const toSignalContext = (context: RunnerContext): SignalContext => ({
   tenantId: context.tenantId as never,
-  services: context.policies.flatMap((policy) => policy.dependencies.map((dependency) => dependency.serviceId)),
+  services: context.policies.flatMap((policy) => policy.dependencies.map((dependency: PolicyDependency) => dependency.serviceId)),
   window: {
     startsAt: new Date(Date.now() - context.signalWindowSec * 1000).toISOString(),
     endsAt: new Date().toISOString(),

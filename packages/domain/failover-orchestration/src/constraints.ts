@@ -128,7 +128,12 @@ export const formatMetaEvent = (meta: DeepReadonly<FailoverEventMeta>): string =
   return [meta.requestId, meta.sourceRegion, meta.stage, meta.severity].join('::');
 };
 
-export const collectPrerequisites = (graph: NonEmptyArray<Readonly<{ stageId: string; prerequisites?: string[] }> ): string[] => {
+interface PrerequisiteNode {
+  stageId: string;
+  prerequisites?: string[];
+}
+
+export const collectPrerequisites = (graph: NonEmptyArray<PrerequisiteNode>): string[] => {
   const order: string[] = [];
   const visited = new Set<string>();
 

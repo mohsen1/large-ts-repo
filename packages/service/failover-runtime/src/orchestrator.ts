@@ -3,7 +3,7 @@ import { MessageBus } from '@platform/messaging';
 import {
   RunResult,
   PlanSnapshot,
-  evaluatePolicy,
+  evaluateWithPolicy,
   validateSnapshot,
   buildSchedule,
   StageGraph,
@@ -12,6 +12,7 @@ import {
 import { InMemoryFailoverPlanStore, SnapshotStorePort, SnapshotStoreError, decodeSnapshotPayload } from '@data/failover-plans';
 import { ok, fail, Result } from '@shared/result';
 import { withRetry } from '@shared/util';
+import { TopicName } from '@platform/messaging';
 import { FailoverCommand, ExecutePlanPayload, UpsertPlanPayload, StageControlPayload } from './commands';
 import { SnapshotArchivePort } from './adapters/snapshot-adapter';
 
@@ -77,17 +78,22 @@ export const createRuntime = ({ bus, store, archive }: RuntimeDependencies): Fai
     }
 
     const snapshot = deserialize(stored.value.snapshot);
-    const policy = evaluatePolicy(snapshot);
+    const policy = evaluateWithPolicy(snapshot);
     if (!policy.accepted) {
       throw new Error(`plan rejected by policy ${payload.planId}: ${policy.violations.map((it) => it.code).join(',')}`);
     }
 
-    const constraintResult = validateSnapshot(snapshot);
+    const constraintResult = validateSnapshot(snapshot, {
+      activeApprovals: [],
+      maxRegionCapacity: 100,
+      minimumApprovals: 2,
+      slaBufferMinutes: 20,
+    });
     if (!constraintResult.valid) {
       throw new Error(`plan constraint check failed: ${constraintResult.errors.map((it) => it.code).join(',')}`);
     }
 
-    const schedule = buildSchedule(snapshot, snapshot.graph as NonNullable<StageGraph[]>, { jitterMinutes: 1 });
+    const schedule = buildSchedule(snapshot, snapshot.graph as [StageGraph, ...StageGraph[]], { jitterMinutes: 1 });
     state.running.add(payload.planId);
 
     for (const stage of schedule.stages) {
@@ -98,17 +104,19 @@ export const createRuntime = ({ bus, store, archive }: RuntimeDependencies): Fai
       });
 
       await bus.publish(
+        'failover-runtime.stage.completed' as TopicName,
         createEnvelope('failover-runtime.stage.completed', {
           planId: payload.planId,
           stageId: stage.stageId,
           startedAt: stage.startsAt,
-          planState: snapshot.state,
+          planState: snapshot.plan.state,
         }),
       );
     }
 
-    await bus.publish(
-      createEnvelope('failover-runtime.plan.executed', {
+      await bus.publish(
+        'failover-runtime.plan.executed' as TopicName,
+        createEnvelope('failover-runtime.plan.executed', {
         planId: payload.planId,
         executedAt: new Date().toISOString(),
         stages: schedule.stages.length,

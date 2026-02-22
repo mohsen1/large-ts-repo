@@ -107,8 +107,8 @@ export interface ArchiveManifest {
 }
 
 export interface ArchiveService {
-  archive(run: ControlRunPlan): Promise<Result<ArchiveManifest, Error>>;
-  restore(runId: string): Promise<Result<ControlRunPlan | undefined, Error>>;
+  archive(run: ControlRunRecord): Promise<Result<ArchiveManifest, Error>>;
+  restore(runId: string): Promise<Result<ControlRunRecord | undefined, Error>>;
 }
 
 export const hydrateRun = <T extends Record<string, unknown>>(run: ControlRunPlan<T>): ControlRunPlan<T> => ({

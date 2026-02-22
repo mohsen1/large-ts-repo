@@ -15,6 +15,12 @@ importers:
         specifier: ^5.6.0
         version: 5.9.3
 
+  packages/app/adaptive-ops-console:
+    dependencies:
+      '@service/adaptive-ops-runner':
+        specifier: workspace:*
+        version: link:../../service/adaptive-ops-runner
+
   packages/app/admin-portal:
     dependencies:
       '@shared/protocol':
@@ -59,9 +65,15 @@ importers:
       '@domain/knowledge-graph':
         specifier: workspace:*
         version: link:../../domain/knowledge-graph
+      '@domain/telemetry-models':
+        specifier: workspace:*
+        version: link:../../domain/telemetry-models
       '@service/graph-intelligence':
         specifier: workspace:*
         version: link:../../service/graph-intelligence
+      '@service/telemetry':
+        specifier: workspace:*
+        version: link:../../service/telemetry
 
   packages/app/policy-console:
     dependencies:
@@ -108,6 +120,30 @@ importers:
         specifier: workspace:*
         version: link:../../shared/protocol
 
+  packages/data/adaptive-ops-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/adaptive-ops':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops
+
+  packages/data/continuity-journal:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/continuity-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/continuity-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/data/decision-catalog:
     dependencies:
       '@shared/core':
@@ -119,6 +155,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/failover-plans:
+    dependencies:
+      '@domain/failover-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/failover-orchestration
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/data/fulfillment-hub:
     dependencies:
@@ -152,15 +203,63 @@ importers:
 
   packages/data/lineage: {}
 
+  packages/data/operations-control-store:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/query-models':
+        specifier: workspace:*
+        version: link:../query-models
+      '@domain/operations-control':
+        specifier: workspace:*
+        version: link:../../domain/operations-control
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/query-models: {}
 
   packages/data/repositories: {}
+
+  packages/data/telemetry-store:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/telemetry-models':
+        specifier: workspace:*
+        version: link:../../domain/telemetry-models
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
 
   packages/data/warehouse:
     dependencies:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/domain/adaptive-ops:
+    dependencies:
+      '@shared/observability-contracts':
+        specifier: workspace:*
+        version: link:../../shared/observability-contracts
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/analytics: {}
 
@@ -189,6 +288,18 @@ importers:
         version: link:../../shared/core
 
   packages/domain/compliance: {}
+
+  packages/domain/continuity-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/contracts: {}
 
@@ -220,6 +331,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/failover-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/feature-flags: {}
 
@@ -385,6 +508,18 @@ importers:
 
   packages/domain/observability-core: {}
 
+  packages/domain/operations-control:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/operations-orchestration:
     dependencies:
       '@shared/core':
@@ -426,6 +561,21 @@ importers:
 
   packages/domain/streaming-engine: {}
 
+  packages/domain/telemetry-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/temporal:
     dependencies:
       '@shared/type-level':
@@ -449,6 +599,24 @@ importers:
       '@shared/aws-adapters':
         specifier: workspace:*
         version: link:../../shared/aws-adapters
+
+  packages/infrastructure/incident-connectors:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@aws-sdk/client-sqs':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/adaptive-ops':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops
+      '@shared/observability-contracts':
+        specifier: workspace:*
+        version: link:../../shared/observability-contracts
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/infrastructure/incident-notifications:
     dependencies:
@@ -545,6 +713,21 @@ importers:
         specifier: workspace:*
         version: link:../../shared/core
 
+  packages/service/adaptive-ops-runner:
+    dependencies:
+      '@data/adaptive-ops-store':
+        specifier: workspace:*
+        version: link:../../data/adaptive-ops-store
+      '@domain/adaptive-ops':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops
+      '@infrastructure/incident-connectors':
+        specifier: workspace:*
+        version: link:../../infrastructure/incident-connectors
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/service/analytics:
     dependencies:
       '@domain/billing':
@@ -571,6 +754,30 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/service/continuity-runtime:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@data/continuity-journal':
+        specifier: workspace:*
+        version: link:../../data/continuity-journal
+      '@domain/continuity-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/continuity-orchestration
+      '@platform/messaging':
+        specifier: workspace:*
+        version: link:../../platform/messaging
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/cost-model: {}
 
@@ -630,6 +837,36 @@ importers:
       '@domain/knowledge-graph':
         specifier: workspace:*
         version: link:../../domain/knowledge-graph
+
+  packages/service/failover-runtime:
+    dependencies:
+      '@data/failover-plans':
+        specifier: workspace:*
+        version: link:../../data/failover-plans
+      '@domain/failover-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/failover-orchestration
+      '@platform/http':
+        specifier: workspace:*
+        version: link:../../platform/http
+      '@platform/messaging':
+        specifier: workspace:*
+        version: link:../../platform/messaging
+      '@shared/aws-adapters':
+        specifier: workspace:*
+        version: link:../../shared/aws-adapters
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/service/finance:
     dependencies:
@@ -726,12 +963,18 @@ importers:
       '@data/incident-hub':
         specifier: workspace:*
         version: link:../../data/incident-hub
+      '@data/operations-control-store':
+        specifier: workspace:*
+        version: link:../../data/operations-control-store
       '@data/query-models':
         specifier: workspace:*
         version: link:../../data/query-models
       '@domain/incident-management':
         specifier: workspace:*
         version: link:../../domain/incident-management
+      '@domain/operations-control':
+        specifier: workspace:*
+        version: link:../../domain/operations-control
       '@domain/operations-orchestration':
         specifier: workspace:*
         version: link:../../domain/operations-orchestration
@@ -804,7 +1047,29 @@ importers:
         specifier: workspace:*
         version: link:../../domain/streaming-engine
 
-  packages/service/telemetry: {}
+  packages/service/telemetry:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../../data/repositories
+      '@data/telemetry-store':
+        specifier: workspace:*
+        version: link:../../data/telemetry-store
+      '@domain/telemetry-models':
+        specifier: workspace:*
+        version: link:../../domain/telemetry-models
+      '@platform/messaging':
+        specifier: workspace:*
+        version: link:../../platform/messaging
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
 
   packages/service/workflow:
     dependencies:
@@ -817,6 +1082,12 @@ importers:
       '@aws-sdk/client-s3':
         specifier: ^3.900.0
         version: 3.995.0
+      '@aws-sdk/credential-provider-env':
+        specifier: ^3.900.0
+        version: 3.972.9
+      '@aws-sdk/credential-provider-ini':
+        specifier: ^3.900.0
+        version: 3.972.9
       '@aws-sdk/credential-provider-node':
         specifier: ^3.900.0
         version: 3.972.10
@@ -842,6 +1113,18 @@ importers:
         version: link:../core
 
   packages/shared/monads: {}
+
+  packages/shared/observability-contracts:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/protocol:
     dependencies:

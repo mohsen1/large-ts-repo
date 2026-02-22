@@ -1,4 +1,5 @@
 import { createEngine } from '@service/adaptive-ops-runner';
+import { AdaptiveAction, AdaptiveDecision, AdaptivePolicy, SignalKind, SignalSample } from '@domain/adaptive-ops';
 
 export interface SignalRow {
   tenantId: string;
@@ -11,7 +12,7 @@ export interface SignalRow {
 interface RunUiInput {
   tenantId: string;
   windowMs: number;
-  policies: any[];
+  policies: readonly AdaptivePolicy[];
   signals: SignalRow[];
 }
 
@@ -24,8 +25,8 @@ const groupByType = <T>(rows: readonly T[], selector: (value: T) => string): Rec
   }, {});
 };
 
-const toSignal = (row: SignalRow) => ({
-  kind: row.kind,
+const toSignal = (row: SignalRow): SignalSample => ({
+  kind: row.kind as SignalKind,
   value: row.value,
   unit: row.unit,
   at: row.at,
@@ -50,8 +51,8 @@ export const createRunSummary = async ({ tenantId, windowMs, policies, signals }
     };
   }
 
-  const groupedActions = groupByType(
-    result.value.decisions.flatMap((entry) => entry.selectedActions),
+  const groupedActions = groupByType<AdaptiveAction>(
+    result.value.decisions.flatMap((entry: AdaptiveDecision): readonly AdaptiveAction[] => entry.selectedActions),
     (action) => action.type,
   );
 

@@ -96,20 +96,20 @@ export const createEnvelope = <TPayload extends JsonObject, TMeta extends TraceM
   };
 };
 
-export const decodeEnvelope = <T>(value: unknown): Result<TimedEnvelope & { payload: T }, string> => {
+export const decodeEnvelope = <T>(value: unknown): Result<TraceEnvelope & { payload: T }, string> => {
   const parsed = TraceEnvelopeSchema.safeParse(value);
   if (!parsed.success) {
     return err(parsed.error.issues.map((issue) => issue.message).join(', '));
   }
 
-  return ok(parsed.data as TimedEnvelope & { payload: T });
+  return ok(parsed.data as TraceEnvelope & { payload: T });
 };
 
 export const toEnvelope = <TPayload extends JsonObject>(input: TimedEnvelope<TPayload>): TraceEnvelope<TPayload, TraceMeta> => ({
   tenantId: input.context.tenantId,
   serviceId: input.context.serviceId,
   eventId: input.eventId,
-  traceId: input.context.correlationId ?? input.eventId,
+  traceId: (input.context.correlationId ?? (input.eventId as unknown as TraceId)) as TraceId,
   kind: input.kind,
   payload: input.payload,
   meta: {

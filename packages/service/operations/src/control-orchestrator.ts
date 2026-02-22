@@ -1,5 +1,6 @@
 import {
   asControlSignalId,
+  asPolicyId,
   buildEnvelope,
   evaluatePolicy,
   hasAllowedWindow,
@@ -55,10 +56,33 @@ interface ControlOrchestrationOutput {
   diagnostics: readonly string[];
 }
 
+type PlanStepKey = PlannerInput['steps'][number]['key'];
+type PlanSignal = PlannerInput['signals'][number];
+
+const toStepKey = (value: string): PlanStepKey => value as unknown as PlanStepKey;
+
+const toPlanSignal = (requestId: string, signal: OperationSignal): PlanSignal => ({
+  id: asControlSignalId(`${requestId}:${signal.name}`),
+  name: signal.name,
+  source: signal.name,
+  weight: signal.weight,
+  severity: Number(signal.weight || 0) * 10,
+  observedAt: signal.emittedAt,
+  payload: signal.context ?? {},
+});
+
+const toOperationSignal = (signal: PlanSignal): Omit<OperationSignal<Record<string, unknown>>, 'emittedAt'> & { emittedAt: string } => ({
+  name: signal.name,
+  weight: signal.weight,
+  emittedAt: signal.observedAt,
+  context: typeof signal.payload === 'object' && signal.payload ? signal.payload : {},
+});
+
 const buildPolicyInput = (input: ControlOrchestratorInput): PolicyInput => ({
   policyId: input.policy.id,
   windowState: input.settings?.allowedModes?.includes('active') ? 'active' : 'draft',
   retries: input.settings?.maxRetries ?? 2,
+  signals: [...input.signals, ...input.signals].map((signal) => toPlanSignal(input.requestId, signal)),
   settings: {
     maxRetries: input.settings?.maxRetries ?? 2,
     timeoutSeconds: input.settings?.timeoutSeconds ?? 30,
@@ -69,13 +93,6 @@ const buildPolicyInput = (input: ControlOrchestratorInput): PolicyInput => ({
   requestedBy: input.tenantId,
 });
 
-const toSignal = (input: OperationSignal): { name: string; weight: number; severity: number; emittedAt: string } => ({
-  name: input.name,
-  weight: input.weight,
-  severity: Number((input.weight || 0) * 10),
-  emittedAt: input.emittedAt,
-});
-
 const planTemplateToInput = (input: ControlOrchestratorInput): PlannerInput => {
   const templateWindow = normalizeControlWindow({
     from: input.window.startsAt,
@@ -84,32 +101,36 @@ const planTemplateToInput = (input: ControlOrchestratorInput): PlannerInput => {
     region: input.window.region,
   });
 
+  const resolveStepKey = toStepKey(`${input.requestId}:resolve`);
+  const notifyStepKey = toStepKey(`${input.requestId}:notify`);
   const steps = [
     {
-      key: `${input.requestId}:resolve`,
+      key: resolveStepKey,
       name: 'resolve',
       action: 'resolve-runtime',
       timeoutMs: 3_000,
-      dependencies: [],
+      dependencies: [] as readonly PlanStepKey[],
       tags: ['control', 'runtime'],
       context: { template: input.policy.id },
     },
     {
-      key: `${input.requestId}:notify`,
+      key: notifyStepKey,
       name: 'notify',
       action: 'dispatch-ops-event',
       timeoutMs: 1_000,
-      dependencies: [`${input.requestId}:resolve`],
+      dependencies: [resolveStepKey] as const,
       tags: ['control', 'event'],
       context: { trace: input.stepContext.join('>') },
     },
   ] as const;
 
+  const makeRunKey = (key: PlanStepKey) => toStepKey(`${String(key)}-${input.requestId}`);
+
   return {
     tenantId: input.tenantId,
     requestId: input.requestId,
     template: {
-      id: input.policy.id,
+      id: asPolicyId(input.policy.id),
       name: input.policy.policyName,
       owner: 'operations',
       description: `${input.policy.id} control plan`,
@@ -128,17 +149,10 @@ const planTemplateToInput = (input: ControlOrchestratorInput): PlannerInput => {
     },
     steps: [...steps].map((step) => ({
       ...step,
-      key: `${step.key}-${input.requestId}`,
+      key: makeRunKey(step.key),
+      dependencies: step.dependencies.map((dependency) => makeRunKey(dependency)),
     })),
-    signals: [...input.signals, ...input.signals].map((signal) => ({
-      id: asControlSignalId(`${input.requestId}:${signal.name}`),
-      name: signal.name,
-      source: signal.name,
-      weight: signal.weight,
-      severity: Number(signal.weight || 0) * 10,
-      observedAt: signal.emittedAt,
-      payload: signal,
-    })),
+    signals: [...input.signals, ...input.signals].map((signal) => toPlanSignal(input.requestId, signal)),
     settings: {
       maxRetries: input.settings?.maxRetries ?? 3,
       timeoutSeconds: input.settings?.timeoutSeconds ?? 60,
@@ -175,7 +189,7 @@ export const createControlOrchestrator = (repository?: ControlOperationsReposito
     const plannerInput = planTemplateToInput(input);
     const prepared: PreparedPlan = buildEnvelope(plannerInput);
 
-    const signalStrength = calculateSignalStrength(selectSignalsForWindow(plannerInput.signals, 'critical'));
+    const signalStrength = calculateSignalStrength(selectSignalsForWindow(plannerInput.signals.map(toOperationSignal), 'critical'));
     const score = Math.round(signalStrength + estimatePlanMinutes(plannerInput.template.steps as any));
 
     const runRecord = makeRunRecord(input.tenantId, input.requestId, prepared.plan);

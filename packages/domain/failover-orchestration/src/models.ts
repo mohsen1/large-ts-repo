@@ -61,7 +61,7 @@ export interface FailoverEventMeta {
 
 export type RtoPlanState = 'draft' | 'validating' | 'ready' | 'running' | 'rolled-back' | 'retired';
 
-export type MetricName = Brand<string, 'MetricName'>;
+export type MetricName = 'error-rate' | 'lag-ms';
 
 export interface StageConstraint {
   canaryPercent: number;

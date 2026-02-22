@@ -1,6 +1,6 @@
 import { ok, err, Result } from '@shared/result';
 import { EventBridgeConnector, SqsRunAdapter } from '@infrastructure/incident-connectors';
-import { AdaptiveRunStore, InMemoryAdaptiveRunStore, AdaptiveRunStoreAdapterImpl, toPolicyFallback } from '@data/adaptive-ops-store';
+import { AdaptiveRunStore, AdaptiveRunId, InMemoryAdaptiveRunStore, AdaptiveRunStoreAdapterImpl, toPolicyFallback } from '@data/adaptive-ops-store';
 import { RunnerInput, RunnerResult } from './types';
 import { runAdaptation } from './pipeline';
 
@@ -34,7 +34,11 @@ export class DefaultAdaptiveOpsEngine implements AdaptiveOpsEngine {
         return err(`action publish failed: ${publishedActions.error}`);
       }
 
-      await this.store.appendDecision(result.run.incidentId, toPolicyFallback(result.run.incidentId), decision);
+      await this.store.appendDecision(
+        result.run.incidentId as unknown as AdaptiveRunId,
+        toPolicyFallback(result.run.incidentId as unknown as AdaptiveRunId),
+        decision,
+      );
     }
 
     const queued = await this.sqs.publishRun(result.run);

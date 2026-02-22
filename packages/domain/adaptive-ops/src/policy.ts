@@ -41,6 +41,12 @@ export type PolicyInput = z.infer<typeof policySchema>;
 export const asPolicy = (input: PolicyInput): AdaptivePolicy => ({
   ...input,
   id: asPolicyId(input.id),
+  tenantId: input.tenantId as AdaptivePolicy['tenantId'],
+  dependencies: input.dependencies.map((dependency) => ({
+    serviceId: dependency.serviceId as AdaptivePolicy['dependencies'][number]['serviceId'],
+    required: dependency.required,
+    resilienceBudget: dependency.resilienceBudget,
+  })),
 });
 
 const classifyRisk = (score: number): AdaptiveDecision['risk'] => {

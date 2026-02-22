@@ -1,7 +1,7 @@
 import { fail, ok, Result } from '@shared/result';
 import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { ArchiveBucketName, ArchiveObjectKey, PlanArchiveEntry } from './models';
-import { ControlRunRecord } from '@domain/operations-control';
+import { ControlRunRecord } from './models';
 import { ArchiveService } from './repository';
 
 interface S3AdapterConfig {
