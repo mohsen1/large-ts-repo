@@ -10,6 +10,10 @@ This is entirely AI generated using `Codex-5.3-Spark` for testing purposes. The 
 
 See [`generate.sh`](./scripts/generate.sh) for the script that was used to generate this monorepo. 
 
+## Project Graph
+
+See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generated from `tsconfig.json` by [`scripts/graph.sh`](./scripts/graph.sh).
+
 ## Lines of Code
 
 <!-- LOC:START -->

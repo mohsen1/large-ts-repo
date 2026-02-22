@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.3.0",
+    "archy": "^1.0.0",
     "typescript": "^5.6.0"
   },
   "packageManager": "pnpm@10.0.0"
