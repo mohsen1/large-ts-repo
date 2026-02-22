@@ -48,6 +48,9 @@
     "zod": "^3.24.0",
     "@service/recovery-fusion-orchestrator": "workspace:*",
     "@domain/recovery-fabric-orchestration": "workspace:*",
-    "@service/recovery-fabric-controller": "workspace:*"
+    "@service/recovery-fabric-controller": "workspace:*",
+    "@domain/recovery-orchestration-planning": "workspace:*",
+    "@service/recovery-strategy-orchestrator": "workspace:*",
+    "@data/recovery-strategy-store": "workspace:*"
   }
 }

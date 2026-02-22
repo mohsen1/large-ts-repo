@@ -102,6 +102,15 @@
     },
     {
       "path": "./../../domain/recovery-fabric-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-strategy-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-strategy-store/tsconfig.json"
     }
   ]
 }
