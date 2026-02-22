@@ -1104,6 +1104,9 @@ importers:
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../recovery-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level

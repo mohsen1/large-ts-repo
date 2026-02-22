@@ -149,6 +149,9 @@
       "path": "./packages/domain/recovery-operations-cadence"
     },
     {
+      "path": "./packages/domain/recovery-operations-control-plane"
+    },
+    {
       "path": "./packages/domain/recovery-operations-intelligence"
     },
     {
@@ -531,6 +534,9 @@
     },
     {
       "path": "./packages/data/recovery-operations-governance-store"
+    },
+    {
+      "path": "./packages/data/recovery-operations-control-plane-store"
     },
     {
       "path": "./packages/data/recovery-operations-intelligence-store"

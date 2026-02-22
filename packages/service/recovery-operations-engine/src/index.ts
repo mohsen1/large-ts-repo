@@ -11,3 +11,6 @@ export * from './signal-gateway';
 export * from './incident-playbook-bridge';
 export * from './rehearsal-orchestrator';
 export * from './cadence-orchestrator';
+export * from './control-plane-orchestrator';
+export * from './control-plane-scheduler';
+export * from './control-plane-adapters';

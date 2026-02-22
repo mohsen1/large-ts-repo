@@ -26,7 +26,10 @@
     "@service/recovery-operations-intelligence-orchestrator": "workspace:*",
     "@data/recovery-operations-intelligence-store": "workspace:*",
     "@domain/recovery-operations-cadence": "workspace:*",
+    "@domain/recovery-operations-control-plane": "workspace:*",
+    "@data/recovery-operations-control-plane-store": "workspace:*",
     "@infrastructure/recovery-operations-cadence-bridge": "workspace:*",
+    "@shared/result": "workspace:*",
     "zod": "^3.24.0"
   }
 }
