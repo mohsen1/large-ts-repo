@@ -1,0 +1,99 @@
+name: Compiler Bench
+
+on:
+  push:
+    branches: ["master", "main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  compile-and-bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Compile and benchmark
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mkdir -p .bench
+
+          clean_outputs() {
+            find . -type d -name dist -prune -exec rm -rf {} +
+            find . -type f -name '*.tsbuildinfo' -delete
+          }
+
+          run_bench() {
+            local name="$1"
+            local cmd="$2"
+            local log_file=".bench/${name// /_}.log"
+            local start_ms end_ms duration_ms duration_s
+
+            clean_outputs
+            start_ms="$(date +%s%3N)"
+            set +e
+            bash -lc "$cmd" >"$log_file" 2>&1
+            local rc=$?
+            set -e
+            end_ms="$(date +%s%3N)"
+            duration_ms="$((end_ms - start_ms))"
+            duration_s="$(awk -v ms="$duration_ms" 'BEGIN { printf "%.3f", ms/1000 }')"
+
+            if [ "$rc" -eq 0 ]; then
+              status="PASS"
+            else
+              status="FAIL($rc)"
+            fi
+
+            printf "| %s | %s | %s |\n" "$name" "$status" "$duration_s" >> .bench/summary.table.md
+            printf "%s|%s|%s|%s\n" "$name" "$status" "$duration_ms" "$cmd" >> .bench/results.csv
+          }
+
+          echo "| Compiler | Status | Duration (s) |" > .bench/summary.table.md
+          echo "| --- | --- | ---: |" >> .bench/summary.table.md
+          echo "compiler,status,duration_ms,command" > .bench/results.csv
+
+          run_bench "tsc v5" "npx -y -p typescript@5 tsc -b tsconfig.json --pretty false"
+          run_bench "tsc v6 beta" "npx -y -p typescript@beta tsc -b tsconfig.json --pretty false"
+          run_bench "tsgo" "npx -y -p @typescript/native-preview tsgo -b tsconfig.json --pretty false"
+
+          {
+            echo "## Compiler Benchmark"
+            echo
+            cat .bench/summary.table.md
+            echo
+            echo "Raw results: \`.bench/results.csv\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if grep -q "FAIL(" .bench/summary.table.md; then
+            echo "At least one compiler run failed. See logs in artifacts."
+            exit 1
+          fi
+
+      - name: Upload benchmark artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiler-bench-${{ github.run_id }}
+          path: |
+            .bench/summary.table.md
+            .bench/results.csv
+            .bench/*.log
