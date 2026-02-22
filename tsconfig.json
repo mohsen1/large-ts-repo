@@ -428,6 +428,9 @@
       "path": "./packages/domain/recovery-drill"
     },
     {
+      "path": "./packages/domain/incident-command-core"
+    },
+    {
       "path": "./packages/data/recovery-artifacts"
     },
     {
@@ -585,6 +588,9 @@
     },
     {
       "path": "./packages/service/recovery-incident-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-command-orchestrator"
     },
     {
       "path": "./packages/app/recovery-incident-dashboard"

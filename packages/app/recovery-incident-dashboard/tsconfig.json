@@ -18,6 +18,9 @@
       "path": "./../../service/recovery-incident-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-command-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
     },
     {

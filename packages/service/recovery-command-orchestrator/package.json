@@ -1,5 +1,5 @@
 {
-  "name": "@app/recovery-incident-dashboard",
+  "name": "@service/recovery-command-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,13 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@service/recovery-incident-orchestrator": "workspace:*",
     "@domain/recovery-incident-orchestration": "workspace:*",
-    "@service/recovery-command-orchestrator": "workspace:*",
+    "@domain/incident-command-core": "workspace:*",
     "@data/recovery-incident-store": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*"
   }
 }

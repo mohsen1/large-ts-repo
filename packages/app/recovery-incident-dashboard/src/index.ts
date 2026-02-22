@@ -18,3 +18,8 @@ export * from './pages/DashboardPage';
 export * from './pages/OperationsPage';
 export * from './pages/ControlCenterPage';
 export * from './pages/ReadinessPage';
+export * from './pages/CommandCenterPage';
+export * from './components/CommandRunbookWorkbench';
+export * from './components/CommandReadinessTicker';
+export * from './components/DecisionPriorityMatrix';
+export * from './hooks/useIncidentCommandWorkspace';
