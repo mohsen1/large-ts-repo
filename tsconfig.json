@@ -336,6 +336,21 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
+    },
+    {
+      "path": "./packages/domain/recovery-orchestration"
+    },
+    {
+      "path": "./packages/data/recovery-artifacts"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-notifications"
+    },
+    {
+      "path": "./packages/service/recovery-runner"
+    },
+    {
+      "path": "./packages/app/recovery-console"
     }
   ]
 }

@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
     "target": "ES2023",
-    "lib": ["ES2023"],
+    "lib": [
+      "ES2023"
+    ],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noUnusedLocals": false,
@@ -19,14 +23,63 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@domain/telemetry-models": ["packages/domain/telemetry-models/src"],
-      "@data/telemetry-store": ["packages/data/telemetry-store/src"],
-      "@shared/*": ["packages/shared/*"],
-      "@platform/*": ["packages/platform/*"],
-      "@domain/*": ["packages/domain/*"],
-      "@data/*": ["packages/data/*"],
-      "@service/*": ["packages/service/*"],
-      "@app/*": ["packages/app/*"]
+      "@shared/observability-contracts": [
+        "packages/shared/observability-contracts/src/index.ts"
+      ],
+      "@domain/adaptive-ops": [
+        "packages/domain/adaptive-ops/src/index.ts"
+      ],
+      "@data/adaptive-ops-store": [
+        "packages/data/adaptive-ops-store/src/index.ts"
+      ],
+      "@infrastructure/incident-connectors": [
+        "packages/infrastructure/incident-connectors/src/index.ts"
+      ],
+      "@service/adaptive-ops-runner": [
+        "packages/service/adaptive-ops-runner/src/index.ts"
+      ],
+      "@app/adaptive-ops-console": [
+        "packages/app/adaptive-ops-console/src/index.ts"
+      ],
+      "@domain/telemetry-models": [
+        "packages/domain/telemetry-models/src"
+      ],
+      "@data/telemetry-store": [
+        "packages/data/telemetry-store/src"
+      ],
+      "@shared/*": [
+        "packages/shared/*"
+      ],
+      "@platform/*": [
+        "packages/platform/*"
+      ],
+      "@domain/*": [
+        "packages/domain/*"
+      ],
+      "@data/*": [
+        "packages/data/*"
+      ],
+      "@service/*": [
+        "packages/service/*"
+      ],
+      "@app/*": [
+        "packages/app/*"
+      ],
+      "@domain/recovery-orchestration": [
+        "packages/domain/recovery-orchestration/src/index.ts"
+      ],
+      "@data/recovery-artifacts": [
+        "packages/data/recovery-artifacts/src/index.ts"
+      ],
+      "@infrastructure/recovery-notifications": [
+        "packages/infrastructure/recovery-notifications/src/index.ts"
+      ],
+      "@service/recovery-runner": [
+        "packages/service/recovery-runner/src/index.ts"
+      ],
+      "@app/recovery-console": [
+        "packages/app/recovery-console/src/index.ts"
+      ]
     }
   }
 }

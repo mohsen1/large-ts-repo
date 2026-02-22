@@ -6,16 +6,20 @@ This is a large TypeScript monorepo that contains multiple packages. Each packag
 
 This is entirely AI generated using `Codex-5.3-Spark` for testing purposes. The monorepo is designed to stress test TypeScript compilers
 
+## How it was generated
+
+See [`generate.ts`](./scripts/generate.ts) for the script that was used to generate this monorepo. 
+
 ## Lines of Code
 
 <!-- LOC:START -->
 
 | Metric | Value |
 | :-- | --: |
-| TypeScript files | **426** |
-| Code lines | **174,477** |
-| Blank lines | 20,769 |
+| TypeScript files | **443** |
+| Code lines | **175,304** |
+| Blank lines | 20,887 |
 | Comment lines | 1 |
-| Last updated | `2026-02-22 13:58:46` |
+| Last updated | `2026-02-22 14:02:44` |
 
 <!-- LOC:END -->
