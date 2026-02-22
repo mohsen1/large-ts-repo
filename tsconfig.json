@@ -365,6 +365,9 @@
       "path": "./packages/shared/zod-adapters"
     },
     {
+      "path": "./packages/domain/recovery-intelligence"
+    },
+    {
       "path": "./packages/domain/recovery-orchestration"
     },
     {
@@ -392,6 +395,9 @@
       "path": "./packages/data/recovery-plan-store"
     },
     {
+      "path": "./packages/data/recovery-intelligence-store"
+    },
+    {
       "path": "./packages/data/recovery-readiness-store"
     },
     {
@@ -414,6 +420,9 @@
     },
     {
       "path": "./packages/service/recovery-drill-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-intelligence-orchestrator"
     },
     {
       "path": "./packages/app/recovery-console"
