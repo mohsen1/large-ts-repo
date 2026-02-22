@@ -11,6 +11,8 @@ import type { RecoveryProgram } from '@domain/recovery-orchestration';
 import type { RecoveryReadinessPlan } from '@domain/recovery-readiness';
 import type { RecoveryGovernanceRepository } from '@data/recovery-operations-governance-store';
 import type { CompliancePublisher } from '@infrastructure/recovery-operations-compliance';
+import { evaluatePolicyRules, buildPolicyMetrics, summarizePolicyRules } from './policy-rules';
+import { createAuditEntry, toAuditEnvelope } from './policy-audit';
 
 export interface PolicyDecision {
   readonly outcome: PolicyEvaluationOutcome;
@@ -89,8 +91,43 @@ export class RecoveryOperationsPolicyEngine implements PolicyEngine {
 
     if (outcome.blocked && signalDensity > 0.55) {
       await input.publisher?.publishPolicyOutcome(input.tenant, outcome);
+      const audit = createAuditEntry(input.tenant, String(input.runId), {
+        outcome,
+        decision: 'block',
+        reason: 'policy_blocked_by_density',
+      }, input.signals);
+      const envelope = toAuditEnvelope(audit);
+      void envelope;
       return fail('POLICY_BLOCKED');
     }
+
+    const signalDiagnostics = evaluatePolicyRules({
+      tenant: input.tenant,
+      runId: String(input.runId),
+      plan: {
+        score: input.signals.length ? outcome.score : 0,
+        constraints: {
+          maxRetries: 0,
+          timeoutMinutes: 0,
+        },
+      },
+      signals: [],
+      assessments: [],
+    });
+    buildPolicyMetrics(input.tenant, String(input.runId), {
+      tenant: input.tenant,
+      runId: String(input.runId),
+      plan: {
+        score: input.signals.length ? outcome.score : 0,
+        constraints: {
+          maxRetries: 0,
+          timeoutMinutes: 0,
+        },
+      },
+      signals: [],
+      assessments: [],
+    });
+    void summarizePolicyRules(signalDiagnostics);
 
     return ok({
       outcome,

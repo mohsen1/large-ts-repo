@@ -13,6 +13,10 @@
     { "path": "./../../domain/recovery-operations-models/tsconfig.json" },
     { "path": "./../../domain/recovery-orchestration/tsconfig.json" },
     { "path": "./../../data/recovery-operations-governance-store/tsconfig.json" },
+    { "path": "./../../data/recovery-operations-analytics/tsconfig.json" },
+    { "path": "./../../domain/recovery-operations-intelligence/tsconfig.json" },
+    { "path": "./../../domain/analytics/tsconfig.json" },
+    { "path": "./../../domain/recovery-readiness/tsconfig.json" },
     { "path": "./../../infrastructure/recovery-operations-compliance/tsconfig.json" },
     { "path": "./../../shared/result/tsconfig.json" },
     { "path": "./../../shared/core/tsconfig.json" }

@@ -19,7 +19,14 @@ import type {
   RunPlanSnapshot,
   SessionDecision,
 } from '@domain/recovery-operations-models';
-import { buildPlan, envelopeForPlan, shouldRejectPlan } from './plan';
+import {
+  buildPlan,
+  buildPlanReadiness,
+  describePlanReadiness,
+  envelopeForPlan,
+  shouldRejectPlan,
+} from './plan';
+import { createJournal } from './journal';
 import type { RecoveryProgram } from '@domain/recovery-orchestration';
 import type { RecoveryReadinessPlan } from '@domain/recovery-readiness';
 import type { IncidentClass } from '@domain/recovery-operations-models';
@@ -38,6 +45,7 @@ interface OrchestratorDeps {
 type RunState = ReturnType<typeof initializeTimeline>;
 
 const runIdToRunState = new Map<string, RunState>();
+const operationJournal = createJournal();
 
 export class RecoveryOperationsOrchestrator {
   private readonly policyEngine: PolicyEngine;
@@ -56,6 +64,7 @@ export class RecoveryOperationsOrchestrator {
 
     const timeline = runIdToRunState.get(run.runId) ?? initializeTimeline(run as RunSession);
     const updated = appendSignal(timeline, signal);
+    operationJournal.appendSignal(run.runId, String(run.id), [signal]);
     runIdToRunState.set(run.runId, updated);
     return updated;
   }
@@ -90,6 +99,12 @@ export class RecoveryOperationsOrchestrator {
     }
 
     const planned = buildPlan(candidate);
+    const readiness = buildPlanReadiness(planned, signals.length);
+    const readinessSummary = describePlanReadiness(readiness);
+    operationJournal.appendPlan(planned.runId, candidate.fingerprint.tenant, planned.snapshot, planned.score, candidate.program);
+    operationJournal.appendDecision(planned.runId, candidate.fingerprint.tenant, readinessSummary ? 'allow' : 'block', [
+      ...readinessSummary.split(' '),
+    ]);
     const policyDecision = await this.policyEngine.runChecksFromContext({
       runId: planned.runId,
       tenant: candidate.fingerprint.tenant,
@@ -108,6 +123,25 @@ export class RecoveryOperationsOrchestrator {
     if (policyDecision.ok && policyDecision.value.decision === 'block') {
       throw new Error('Plan creation blocked by governance policy');
     }
+    operationJournal.appendDecision(planned.runId, candidate.fingerprint.tenant, policyDecision.ok ? 'allow' : 'block', [
+      policyDecision.ok ? 'ok' : policyDecision.error,
+    ]);
+    operationJournal.appendCheckpoint(planned.runId, candidate.fingerprint.tenant, 'plan_created', {
+      id: withBrand(String(planned.runId), 'RunSessionId'),
+      runId: planned.runId,
+      ticketId: planned.ticketId,
+      planId: planned.snapshot.id,
+      status: 'queued',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      constraints: {
+        maxParallelism: 1,
+        maxRetries: 1,
+        timeoutMinutes: 60,
+        operatorApprovalRequired: false,
+      },
+      signals: [],
+    });
 
     await this.deps.repository.upsertPlan(planned.snapshot);
     await this.deps.publisher.publishPayload(envelopeForPlan(planned));
@@ -171,6 +205,10 @@ export class RecoveryOperationsOrchestrator {
     const timeline = runIdToRunState.get(decisionRecord.runId) ??
       initializeTimeline((await this.deps.repository.loadSessionByRunId(decisionRecord.runId)) as RunSession);
     const updated = appendDecision(timeline, decisionRecord);
+    operationJournal.appendDecision(decisionRecord.runId, String(decisionRecord.ticketId), decisionRecord.accepted ? 'allow' : 'block', decisionRecord.reasonCodes);
+    if (timeline?.session) {
+      operationJournal.appendCheckpoint(decisionRecord.runId, String(timeline.session.ticketId), 'decision-persisted', timeline.session);
+    }
     runIdToRunState.set(decisionRecord.runId, updated);
 
     const consumer = new RecoveryOperationsConsumer({ repository: this.deps.repository });
@@ -192,7 +230,8 @@ export class RecoveryOperationsOrchestrator {
 
   async getAuditTrail(runId: string): Promise<string[]> {
     const timeline = runIdToRunState.get(runId);
-    return timeline ? formatTimeline(timeline) : [];
+    const report = timeline ? formatTimeline(timeline) : [];
+    return [...report, ...operationJournal.summarize(runId)];
   }
 }
 

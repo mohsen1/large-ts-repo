@@ -16,7 +16,11 @@
   "dependencies": {
     "@domain/recovery-operations-governance": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
+    "@domain/analytics": "workspace:*",
+    "@domain/recovery-readiness": "workspace:*",
     "@data/recovery-operations-governance-store": "workspace:*",
+    "@data/recovery-operations-analytics": "workspace:*",
+    "@domain/recovery-operations-intelligence": "workspace:*",
     "@infrastructure/recovery-operations-compliance": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/core": "workspace:*"
