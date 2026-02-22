@@ -18,6 +18,8 @@
     "@data/recovery-operations-intelligence-store": "workspace:*",
     "@data/recovery-operations-store": "workspace:*",
     "@infrastructure/recovery-operations-intelligence-adapters": "workspace:*",
+    "@data/recovery-operations-analytics": "workspace:*",
+    "@infrastructure/recovery-operations-queue": "workspace:*",
     "@service/recovery-operations-policy-engine": "workspace:*",
     "@domain/recovery-operations-intelligence": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
