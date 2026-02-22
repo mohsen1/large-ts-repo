@@ -185,6 +185,9 @@
       "path": "./packages/domain/streaming-engine"
     },
     {
+      "path": "./packages/domain/recovery-risk-models"
+    },
+    {
       "path": "./packages/domain/telemetry-models"
     },
     {
@@ -356,6 +359,9 @@
       "path": "./packages/data/recovery-artifacts"
     },
     {
+      "path": "./packages/data/recovery-risk-store"
+    },
+    {
       "path": "./packages/data/recovery-policy-store"
     },
     {
@@ -366,6 +372,9 @@
     },
     {
       "path": "./packages/service/recovery-runner"
+    },
+    {
+      "path": "./packages/service/recovery-risk-engine"
     },
     {
       "path": "./packages/service/recovery-policy-engine"

@@ -6,7 +6,6 @@ import {
   isRunRecoverable,
   topologicalOrder,
   simulateRun,
-  type RecoveryCheckpoint,
   type RecoveryProgram,
   type RecoveryRunId,
   type RecoveryRunState,
@@ -20,13 +19,15 @@ import {
   InMemoryRecoveryPolicyRepository,
   type RecoveryPolicyRepository,
 } from '@data/recovery-policy-store';
-import { RecoveryPolicyEngine } from '@service/recovery-policy-engine';
-import type { RecoveryPolicyEngine as PolicyEngine } from '@service/recovery-policy-engine';
-import { RecoveryAdvisor, RecoveryObservabilityCoordinatorImpl } from '@data/recovery-observability';
-import type { RecoverySuggestion } from '@data/recovery-observability';
+import { RecoveryAdvisor, RecoveryObservabilityCoordinatorImpl } from '@data/recovery-observability/src';
+import type { RecoverySuggestion } from '@data/recovery-observability/src';
 import type { RecoveryNotifier } from '@infrastructure/recovery-notifications';
 import { RecoveryExecutor } from './executor';
 import { scheduleProgram, shouldThrottle } from './scheduler';
+import { RecoveryPolicyEngine } from '@service/recovery-policy-engine';
+import type { RecoveryPolicyEngine as PolicyEngine } from '@service/recovery-policy-engine';
+import { InMemoryRecoveryRiskRepository, type RecoveryRiskRepository } from '@data/recovery-risk-store';
+import { RecoveryRiskEngine, type RiskEngineDependencies, type RunRiskContext } from '@service/recovery-risk-engine';
 
 interface RecoveryCommandContext {
   command: string;
@@ -40,6 +41,7 @@ export interface RecoveryRunnerOptions {
   notifier: RecoveryNotifier;
   policyRepository?: RecoveryPolicyRepository;
   policyEngine?: PolicyEngine;
+  riskRepository?: RecoveryRiskRepository;
 }
 
 const defaultStepExecutor = async () => 0;
@@ -48,6 +50,7 @@ export class RecoveryOrchestrator {
   private readonly executor: RecoveryExecutor;
   private readonly policyEngine: PolicyEngine;
   private readonly advisor: RecoveryAdvisor;
+  private readonly riskEngine: RecoveryRiskEngine;
 
   constructor(private readonly options: RecoveryRunnerOptions) {
     this.executor = new RecoveryExecutor(
@@ -60,6 +63,12 @@ export class RecoveryOrchestrator {
     const repository = this.options.policyRepository ?? new InMemoryRecoveryPolicyRepository();
     this.policyEngine = this.options.policyEngine ?? new RecoveryPolicyEngine(repository);
     this.advisor = new RecoveryAdvisor(this.options.artifactRepository);
+    const riskRepository = this.options.riskRepository ?? new InMemoryRecoveryRiskRepository();
+    const dependencies: RiskEngineDependencies = {
+      riskRepository,
+      policyRepository: repository,
+    };
+    this.riskEngine = new RecoveryRiskEngine(dependencies);
   }
 
   async initiateRecovery(program: RecoveryProgram, context: RecoveryCommandContext): Promise<Result<RecoveryRunState, Error>> {
@@ -83,6 +92,27 @@ export class RecoveryOrchestrator {
       return fail(new Error('recovery-blocked-by-policy'));
     }
 
+    const policyRisk = await this.riskEngine.evaluate({
+      runId: runState.runId,
+      program,
+      runState,
+      tenant: program.tenant,
+      policies: await this.options.policyRepository?.activePolicies(program.tenant) ?? [],
+      signals: this.buildSignals(program, context),
+    });
+
+    if (!policyRisk.ok) {
+      return fail(policyRisk.error);
+    }
+
+    if (policyRisk.value.shouldAbort) {
+      runState.status = 'aborted';
+      runState.completedAt = new Date().toISOString();
+      await this.options.runRepository.setRun(runState);
+      await this.options.notifier.publishRunState(runState);
+      return fail(new Error('risk-blocked-run'));
+    }
+
     if (assessment.value.compliance.throttleMs > 0) {
       await new Promise((resolve) => {
         setTimeout(resolve, Math.min(assessment.value.compliance.throttleMs, 5));
@@ -99,7 +129,7 @@ export class RecoveryOrchestrator {
 
     const simulation = simulateRun(program, runState);
     const suggestions = await this.advisor.latestSuggestion();
-    if (this.shouldAbortBySimulation(simulation, suggestions)) {
+    if (this.shouldAbortBySimulation(simulation, suggestions) || policyRisk.value.shouldDefer) {
       runState.status = 'aborted';
       runState.completedAt = new Date().toISOString();
       await this.options.runRepository.setRun(runState);
@@ -127,7 +157,7 @@ export class RecoveryOrchestrator {
     if (!run) return fail(new Error('run-missing'));
     const checkpoints = (await this.options.artifactRepository.queryArtifacts({ runId }))
       .map((artifact) => artifact.checkpoint)
-      .filter(Boolean) as RecoveryCheckpoint[];
+      .filter(Boolean) as RecoveryArtifact[];
     return ok(isRunRecoverable(run, checkpoints));
   }
 
@@ -148,6 +178,21 @@ export class RecoveryOrchestrator {
     if (simulation.orderedSteps.length === 0) return true;
     if (suggestions.length > 0 && simulation.expectedDurationMinutes > 120) return true;
     return false;
+  }
+
+  private buildSignals(program: RecoveryProgram, context: RecoveryCommandContext) {
+    return program.steps.map((step, index) => ({
+      id: `${step.id}-signal` as never,
+      runId: `${program.id}:${context.correlationId}` as never,
+      source: 'sre' as const,
+      observedAt: new Date().toISOString(),
+      metricName: step.command,
+      dimension: ['blastRadius', 'recoveryLatency', 'dataLoss', 'dependencyCoupling', 'compliance'][index % 5] as never,
+      value: (step.requiredApprovals + index + 1) / (program.steps.length + 1),
+      weight: 0.8,
+      tags: ['derived', 'plan-step'],
+      context: { stepId: step.id, requestedBy: context.requestedBy },
+    }));
   }
 
   private createArtifact(runState: RecoveryRunState, program: RecoveryProgram): RecoveryArtifact {

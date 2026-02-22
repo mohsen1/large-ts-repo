@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-runner",
+  "name": "@service/recovery-risk-engine",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,15 +14,11 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-orchestration": "workspace:*",
-    "@data/recovery-observability": "workspace:*",
-    "@data/recovery-artifacts": "workspace:*",
     "@data/recovery-policy-store": "workspace:*",
     "@data/recovery-risk-store": "workspace:*",
-    "@infrastructure/recovery-notifications": "workspace:*",
-    "@service/recovery-policy-engine": "workspace:*",
-    "@service/recovery-risk-engine": "workspace:*",
+    "@domain/recovery-orchestration": "workspace:*",
+    "@domain/recovery-risk-models": "workspace:*",
     "@shared/result": "workspace:*",
-    "zod": "^3.24.0"
+    "@shared/type-level": "workspace:*"
   }
 }

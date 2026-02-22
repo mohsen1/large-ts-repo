@@ -16,13 +16,22 @@
       "path": "./../../data/recovery-artifacts/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-observability/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-policy-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-risk-store/tsconfig.json"
     },
     {
       "path": "./../../infrastructure/recovery-notifications/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-policy-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-risk-engine/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
