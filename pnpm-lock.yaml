@@ -149,6 +149,9 @@ importers:
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
+      '@service/recovery-operations-policy-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-operations-policy-engine
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
