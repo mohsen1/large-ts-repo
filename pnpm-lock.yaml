@@ -435,6 +435,9 @@ importers:
 
   packages/data/recovery-incident-store:
     dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
       '@domain/recovery-incident-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-orchestration
@@ -2195,12 +2198,21 @@ importers:
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../../data/repositories
       '@domain/recovery-incident-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-orchestration
+      '@infrastructure/incident-notifications':
+        specifier: workspace:*
+        version: link:../../infrastructure/incident-notifications
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
       zod:
         specifier: ^3.24.0
         version: 3.25.76

@@ -6,3 +6,4 @@ export * from './queries';
 export * from './audit';
 export * from './query-cache';
 export * from './incident-metrics';
+export * from './incident-analytics';

@@ -2,6 +2,7 @@ export * from './types';
 export * from './planner';
 export * from './validators';
 export * from './runtime';
+export * from './priority';
 export * from './adapters';
 export * from './policy-engine';
 export * from './routing-analytics';

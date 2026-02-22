@@ -26,6 +26,9 @@
       "path": "./packages/app/reporter"
     },
     {
+      "path": "./packages/app/recovery-incident-dashboard"
+    },
+    {
       "path": "./packages/app/incident-forecast-operator"
     },
     {
