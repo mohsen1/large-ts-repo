@@ -13,6 +13,12 @@
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-workflows/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-artifacts/tsconfig.json"
     },
     {
@@ -26,6 +32,9 @@
     },
     {
       "path": "./../../data/recovery-risk-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-incident-store/tsconfig.json"
     },
     {
       "path": "./../../infrastructure/recovery-notifications/tsconfig.json"

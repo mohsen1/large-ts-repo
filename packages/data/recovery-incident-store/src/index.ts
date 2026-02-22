@@ -11,3 +11,6 @@ export * from './incident-analytics';
 export * from './playbook-catalog';
 export * from './playbook-view';
 export * from './incident-operations';
+export * from './portfolio-analytics';
+export * from './workload-index';
+export * from './simulation-metrics';

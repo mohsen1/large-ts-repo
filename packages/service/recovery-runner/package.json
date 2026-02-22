@@ -14,9 +14,13 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/recovery-incident-store": "workspace:*",
+    "@domain/recovery-incident-orchestration": "workspace:*",
+    "@domain/recovery-incident-workflows": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
     "@data/recovery-observability": "workspace:*",
     "@data/recovery-artifacts": "workspace:*",
+    "@shared/core": "workspace:*",
     "@data/recovery-policy-store": "workspace:*",
     "@data/recovery-plan-store": "workspace:*",
     "@data/recovery-risk-store": "workspace:*",

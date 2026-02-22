@@ -7,3 +7,6 @@ export * from './validation';
 export * from './simulation';
 export * from './strategy-lanes';
 export * from './deployment-impact';
+export * from './chain-planner';
+export * from './run-velocity';
+export * from './sla-assessment';
