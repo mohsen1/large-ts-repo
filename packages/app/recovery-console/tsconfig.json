@@ -49,6 +49,15 @@
       "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-playbook-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-playbook-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-playbooks/tsconfig.json"
+    },
+    {
       "path": "./../../domain/incident-fusion-models/tsconfig.json"
     },
     {

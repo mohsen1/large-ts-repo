@@ -2,6 +2,8 @@ import type { Brand } from '@shared/type-level';
 import type { Result } from '@shared/result';
 import type { RecoveryPlaybook, RecoveryPlaybookId, RecoveryPlaybookQuery, PlaybookEnvelope } from '@domain/recovery-playbooks';
 
+export type { PlaybookEnvelope } from '@domain/recovery-playbooks';
+
 export type PlaybookRepositoryStatus = 'idle' | 'warming-up' | 'ready';
 export type PlaybookQueryCursor = Brand<string, 'PlaybookQueryCursor'>;
 

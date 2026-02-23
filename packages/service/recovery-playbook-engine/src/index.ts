@@ -5,3 +5,6 @@ export * from './scheduler';
 export * from './adapter';
 export * from './reporting';
 export * from './orchestrator';
+export * from './portfolio';
+export * from './telemetry';
+export * from './facade';

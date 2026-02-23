@@ -146,3 +146,9 @@ export { RecoveryOpsPlaybookDashboard } from './components/RecoveryOpsPlaybookDa
 export { RecoveryPlaybookTimeline } from './components/RecoveryPlaybookTimeline';
 export { RecoveryOpsPlaybookRiskGauge } from './components/RecoveryOpsPlaybookRiskGauge';
 export { RecoveryPlaybookOperationsRoomPage } from './pages/RecoveryPlaybookOperationsRoomPage';
+export { RecoveryPlaybookLabPage } from './features/recovery-playbook-lab/pages/RecoveryPlaybookLabPage';
+export { PlaybookLabDashboard } from './features/recovery-playbook-lab/components/PlaybookLabDashboard';
+export { PlaybookPortfolioTable } from './features/recovery-playbook-lab/components/PlaybookPortfolioTable';
+export { PlaybookLabSelectionRow } from './features/recovery-playbook-lab/components/PlaybookLabSelectionRow';
+export { PlaybookLabTimeline } from './features/recovery-playbook-lab/components/PlaybookLabTimeline';
+export { usePlaybookLab } from './features/recovery-playbook-lab/hooks/usePlaybookLab';
