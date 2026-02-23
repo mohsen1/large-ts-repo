@@ -392,12 +392,33 @@ importers:
 
   packages/app/recovery-drill-observer:
     dependencies:
+      '@service/recovery-drill-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-drill-lab-orchestrator
       '@service/recovery-drill-observability':
         specifier: workspace:*
         version: link:../../service/recovery-drill-observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/app/recovery-incident-dashboard:
     dependencies:
@@ -885,6 +906,9 @@ importers:
 
   packages/data/recovery-cockpit-insights:
     dependencies:
+      '@data/recovery-cockpit-analytics':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-analytics
       '@data/recovery-cockpit-store':
         specifier: workspace:*
         version: link:../recovery-cockpit-store
@@ -981,6 +1005,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-drill-lab-store:
+    dependencies:
+      '@domain/recovery-drill-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill-lab
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-drill-metrics:
     dependencies:
@@ -1929,6 +1965,9 @@ importers:
       '@domain/recovery-cockpit-models':
         specifier: workspace:*
         version: link:../recovery-cockpit-models
+      '@domain/recovery-cockpit-workloads':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-workloads
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -2079,6 +2118,15 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-drill-lab:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -3646,6 +3694,18 @@ importers:
       '@shared/protocol':
         specifier: workspace:*
         version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/service/recovery-drill-lab-orchestrator:
+    dependencies:
+      '@data/recovery-drill-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-drill-lab-store
+      '@domain/recovery-drill-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill-lab
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result

@@ -1,0 +1,22 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-drill-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-drill-lab-store/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    }
+  ]
+}

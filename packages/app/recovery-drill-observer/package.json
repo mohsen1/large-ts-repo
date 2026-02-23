@@ -15,6 +15,13 @@
   },
   "dependencies": {
     "@service/recovery-drill-observability": "workspace:*",
-    "@shared/result": "workspace:*"
+    "@service/recovery-drill-lab-orchestrator": "workspace:*",
+    "@shared/result": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "zod": "^3.24.0",
+    "@shared/core": "workspace:*"
   }
 }

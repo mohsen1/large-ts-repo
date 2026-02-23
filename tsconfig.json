@@ -26,7 +26,7 @@
       "path": "./packages/app/policy-console"
     },
     {
-      "path": "./packages/service/policy-orchestration-engine"
+      "path": "./packages/app/recovery-cockpit-ui"
     },
     {
       "path": "./packages/app/recovery-console"
@@ -48,9 +48,6 @@
     },
     {
       "path": "./packages/app/stream-dashboard"
-    },
-    {
-      "path": "./packages/data/streaming-dashboard-store"
     },
     {
       "path": "./packages/app/worker"
@@ -92,13 +89,13 @@
       "path": "./packages/data/incident-signal-store"
     },
     {
-      "path": "./packages/data/policy-orchestration-store"
-    },
-    {
       "path": "./packages/data/lineage"
     },
     {
       "path": "./packages/data/operations-control-store"
+    },
+    {
+      "path": "./packages/data/policy-orchestration-store"
     },
     {
       "path": "./packages/data/query-models"
@@ -107,16 +104,34 @@
       "path": "./packages/data/recovery-artifacts"
     },
     {
+      "path": "./packages/data/recovery-atlas-store"
+    },
+    {
+      "path": "./packages/data/recovery-cockpit-analytics"
+    },
+    {
+      "path": "./packages/data/recovery-cockpit-insights"
+    },
+    {
+      "path": "./packages/data/recovery-cockpit-store"
+    },
+    {
       "path": "./packages/data/recovery-command-control-plane"
     },
     {
       "path": "./packages/data/recovery-command-graph-store"
     },
     {
+      "path": "./packages/data/recovery-command-surface-store"
+    },
+    {
       "path": "./packages/data/recovery-continuity-plan-store"
     },
     {
       "path": "./packages/data/recovery-coordination-store"
+    },
+    {
+      "path": "./packages/data/recovery-drill-lab-store"
     },
     {
       "path": "./packages/data/recovery-drill-metrics"
@@ -126,9 +141,6 @@
     },
     {
       "path": "./packages/data/recovery-incident-insights-store"
-    },
-    {
-      "path": "./packages/data/recovery-command-surface-store"
     },
     {
       "path": "./packages/data/recovery-incident-store"
@@ -155,7 +167,19 @@
       "path": "./packages/data/recovery-operations-store"
     },
     {
+      "path": "./packages/data/recovery-ops-fabric-store"
+    },
+    {
+      "path": "./packages/data/recovery-ops-orchestration-lab-store"
+    },
+    {
+      "path": "./packages/data/recovery-ops-orchestration-store"
+    },
+    {
       "path": "./packages/data/recovery-plan-store"
+    },
+    {
+      "path": "./packages/data/recovery-playbook-orchestration-store"
     },
     {
       "path": "./packages/data/recovery-playbook-store"
@@ -176,7 +200,7 @@
       "path": "./packages/data/recovery-signal-intelligence-store"
     },
     {
-      "path": "./packages/data/recovery-ops-fabric-store"
+      "path": "./packages/data/recovery-signal-orchestration-store"
     },
     {
       "path": "./packages/data/recovery-simulation-metrics"
@@ -197,13 +221,13 @@
       "path": "./packages/data/recovery-workflow-store"
     },
     {
-      "path": "./packages/data/recovery-ops-orchestration-lab-store"
-    },
-    {
       "path": "./packages/data/recovery-workload-store"
     },
     {
       "path": "./packages/data/repositories"
+    },
+    {
+      "path": "./packages/data/streaming-dashboard-store"
     },
     {
       "path": "./packages/data/telemetry-store"
@@ -275,13 +299,7 @@
       "path": "./packages/domain/incident-command-models"
     },
     {
-      "path": "./packages/domain/recovery-command-surface-models"
-    },
-    {
       "path": "./packages/domain/incident-forecasting"
-    },
-    {
-      "path": "./packages/domain/recovery-playbook-lab"
     },
     {
       "path": "./packages/domain/incident-fusion-models"
@@ -323,9 +341,6 @@
       "path": "./packages/domain/observability-core"
     },
     {
-      "path": "./packages/domain/policy-orchestration"
-    },
-    {
       "path": "./packages/domain/operations-control"
     },
     {
@@ -338,7 +353,22 @@
       "path": "./packages/domain/policy-engine"
     },
     {
+      "path": "./packages/domain/policy-orchestration"
+    },
+    {
       "path": "./packages/domain/pricing"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-models"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-workloads"
+    },
+    {
+      "path": "./packages/domain/recovery-command-control-hub"
     },
     {
       "path": "./packages/domain/recovery-command-forge"
@@ -353,6 +383,9 @@
       "path": "./packages/domain/recovery-command-studio"
     },
     {
+      "path": "./packages/domain/recovery-command-surface-models"
+    },
+    {
       "path": "./packages/domain/recovery-continuity-planning"
     },
     {
@@ -360,6 +393,9 @@
     },
     {
       "path": "./packages/domain/recovery-drill"
+    },
+    {
+      "path": "./packages/domain/recovery-drill-lab"
     },
     {
       "path": "./packages/domain/recovery-drill-telemetry"
@@ -392,6 +428,9 @@
       "path": "./packages/domain/recovery-intelligence"
     },
     {
+      "path": "./packages/domain/recovery-operations-atlas"
+    },
+    {
       "path": "./packages/domain/recovery-operations-cadence"
     },
     {
@@ -404,10 +443,19 @@
       "path": "./packages/domain/recovery-operations-intelligence"
     },
     {
+      "path": "./packages/domain/recovery-operations-models"
+    },
+    {
+      "path": "./packages/domain/recovery-ops-fabric"
+    },
+    {
       "path": "./packages/domain/recovery-ops-orchestration-lab"
     },
     {
-      "path": "./packages/domain/recovery-operations-models"
+      "path": "./packages/domain/recovery-ops-orchestration-surface"
+    },
+    {
+      "path": "./packages/domain/recovery-ops-playbook"
     },
     {
       "path": "./packages/domain/recovery-orchestration"
@@ -417,6 +465,12 @@
     },
     {
       "path": "./packages/domain/recovery-plan"
+    },
+    {
+      "path": "./packages/domain/recovery-playbook-lab"
+    },
+    {
+      "path": "./packages/domain/recovery-playbook-orchestration"
     },
     {
       "path": "./packages/domain/recovery-playbooks"
@@ -429,9 +483,6 @@
     },
     {
       "path": "./packages/domain/recovery-readiness-simulation"
-    },
-    {
-      "path": "./packages/domain/recovery-ops-fabric"
     },
     {
       "path": "./packages/domain/recovery-risk-models"
@@ -452,7 +503,13 @@
       "path": "./packages/domain/recovery-signal-intelligence"
     },
     {
+      "path": "./packages/domain/recovery-signal-orchestration-models"
+    },
+    {
       "path": "./packages/domain/recovery-simulation-core"
+    },
+    {
+      "path": "./packages/domain/recovery-simulation-lab-models"
     },
     {
       "path": "./packages/domain/recovery-simulation-planning"
@@ -620,9 +677,6 @@
       "path": "./packages/service/incident-fusion-orchestrator"
     },
     {
-      "path": "./packages/service/recovery-playbook-lab-orchestrator"
-    },
-    {
       "path": "./packages/service/incident-orchestration"
     },
     {
@@ -638,10 +692,19 @@
       "path": "./packages/service/orchestrators"
     },
     {
+      "path": "./packages/service/policy-orchestration-engine"
+    },
+    {
       "path": "./packages/service/quality"
     },
     {
       "path": "./packages/service/recommendation"
+    },
+    {
+      "path": "./packages/service/recovery-cockpit-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-command-control-hub"
     },
     {
       "path": "./packages/service/recovery-command-forge-orchestrator"
@@ -653,6 +716,9 @@
       "path": "./packages/service/recovery-command-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-command-surface-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-continuity-lens"
     },
     {
@@ -660,6 +726,9 @@
     },
     {
       "path": "./packages/service/recovery-coordination-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-drill-lab-orchestrator"
     },
     {
       "path": "./packages/service/recovery-drill-observability"
@@ -692,9 +761,6 @@
       "path": "./packages/service/recovery-incident-orchestrator"
     },
     {
-      "path": "./packages/service/recovery-command-surface-orchestrator"
-    },
-    {
       "path": "./packages/service/recovery-intelligence-orchestrator"
     },
     {
@@ -710,10 +776,25 @@
       "path": "./packages/service/recovery-operations-policy-engine"
     },
     {
+      "path": "./packages/service/recovery-ops-orchestration-engine"
+    },
+    {
+      "path": "./packages/service/recovery-ops-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-orchestration-atlas"
+    },
+    {
       "path": "./packages/service/recovery-plan-orchestrator"
     },
     {
       "path": "./packages/service/recovery-playbook-engine"
+    },
+    {
+      "path": "./packages/service/recovery-playbook-lab-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-playbook-orchestrator"
     },
     {
       "path": "./packages/service/recovery-policy-engine"
@@ -756,21 +837,6 @@
     },
     {
       "path": "./packages/service/recovery-workload-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-ops-orchestration-engine"
-    },
-    {
-      "path": "./packages/data/recovery-ops-orchestration-store"
-    },
-    {
-      "path": "./packages/data/recovery-atlas-store"
-    },
-    {
-      "path": "./packages/domain/recovery-ops-orchestration-surface"
-    },
-    {
-      "path": "./packages/service/recovery-orchestration-atlas"
     },
     {
       "path": "./packages/service/reporting"
@@ -825,63 +891,6 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
-    },
-    {
-      "path": "./packages/domain/recovery-ops-playbook"
-    },
-    {
-      "path": "./packages/domain/recovery-operations-atlas"
-    },
-    {
-      "path": "./packages/service/recovery-ops-playbook-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-playbook-orchestration"
-    },
-    {
-      "path": "./packages/domain/recovery-signal-orchestration-models"
-    },
-    {
-      "path": "./packages/data/recovery-playbook-orchestration-store"
-    },
-    {
-      "path": "./packages/data/recovery-signal-orchestration-store"
-    },
-    {
-      "path": "./packages/service/recovery-playbook-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-cockpit-models"
-    },
-    {
-      "path": "./packages/domain/recovery-cockpit-intelligence"
-    },
-    {
-      "path": "./packages/domain/recovery-cockpit-workloads"
-    },
-    {
-      "path": "./packages/data/recovery-cockpit-insights"
-    },
-    {
-      "path": "./packages/data/recovery-cockpit-analytics"
-    },
-    {
-      "path": "./packages/data/recovery-cockpit-store"
-    },
-    {
-      "path": "./packages/service/recovery-cockpit-orchestrator"
-    },
-    {
-      "path": "./packages/app/recovery-cockpit-ui"
-    },
-    {
-      "path": "./packages/domain/recovery-simulation-lab-models"
-    },
-    {
-      "path": "./packages/domain/recovery-command-control-hub"
-    },
-    {
-      "path": "./packages/service/recovery-command-control-hub"
     }
   ]
 }

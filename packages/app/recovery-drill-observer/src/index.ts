@@ -1,2 +1,11 @@
 export * from './commands';
 export * from './orchestrator';
+export { RecoveryDrillLabPage } from './pages/RecoveryDrillLabPage';
+export { RecoveryDrillLabDetailsPage } from './pages/RecoveryDrillLabDetailsPage';
+export { useDrillLabWorkspace } from './hooks/useDrillLabWorkspace';
+export { useDrillLabPolling } from './hooks/useDrillLabPolling';
+export { DrillLabCommandCard } from './components/DrillLabCommandCard';
+export { RunProgressTimeline } from './components/RunProgressTimeline';
+export { RunHealthMatrix } from './components/RunHealthMatrix';
+export { RunWorkspaceToolbar } from './components/RunWorkspaceToolbar';
+export * from './services/drillLabActions';
