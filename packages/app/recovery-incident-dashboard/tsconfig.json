@@ -123,6 +123,12 @@
     },
     {
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-synthesis-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-scenario-lens/tsconfig.json"
     }
   ]
 }

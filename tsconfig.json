@@ -464,6 +464,9 @@
       "path": "./packages/domain/recovery-scenario-planner"
     },
     {
+      "path": "./packages/domain/recovery-scenario-lens"
+    },
+    {
       "path": "./packages/domain/recovery-stability-models"
     },
     {
@@ -666,6 +669,9 @@
     },
     {
       "path": "./packages/service/recovery-simulation-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-synthesis-orchestrator"
     },
     {
       "path": "./packages/service/recovery-command-orchestrator"
