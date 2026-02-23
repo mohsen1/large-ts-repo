@@ -194,6 +194,9 @@
       "path": "./packages/data/recovery-workflow-store"
     },
     {
+      "path": "./packages/data/recovery-ops-orchestration-lab-store"
+    },
+    {
       "path": "./packages/data/recovery-workload-store"
     },
     {
@@ -393,6 +396,9 @@
     },
     {
       "path": "./packages/domain/recovery-operations-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-ops-orchestration-lab"
     },
     {
       "path": "./packages/domain/recovery-operations-models"

@@ -28,13 +28,19 @@
       "path": "./../../shared/core/tsconfig.json"
     },
     {
+      "path": "./../../shared/protocol/tsconfig.json"
+    },
+    {
       "path": "./../../data/repositories/tsconfig.json"
     },
     {
       "path": "./../../infrastructure/incident-notifications/tsconfig.json"
     },
     {
-      "path": "./../../shared/protocol/tsconfig.json"
+      "path": "./../../domain/recovery-ops-orchestration-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-ops-orchestration-lab-store/tsconfig.json"
     }
   ]
 }

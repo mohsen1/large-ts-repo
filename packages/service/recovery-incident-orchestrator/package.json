@@ -23,6 +23,8 @@
     "@shared/core": "workspace:*",
     "@shared/protocol": "workspace:*",
     "@data/repositories": "workspace:*",
+    "@domain/recovery-ops-orchestration-lab": "workspace:*",
+    "@data/recovery-ops-orchestration-lab-store": "workspace:*",
     "zod": "^3.24.0"
   }
 }

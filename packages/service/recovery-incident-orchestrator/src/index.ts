@@ -12,3 +12,6 @@ export * from './playbook';
 export * from './operations-controller';
 export * from './signal-engine';
 export * from './signal-dashboard';
+export * from './lab-types';
+export * from './lab-engine';
+export * from './lab-dashboard';
