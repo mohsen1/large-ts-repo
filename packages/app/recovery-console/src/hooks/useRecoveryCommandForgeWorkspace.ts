@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState, type ReactElement } from 'react';
 import { withBrand } from '@shared/core';
 import type { ForgeExecutionReport, ForgeScenario, ForgeRuntimeConfig } from '@domain/recovery-command-forge';
-import { buildExecutionReport, simulateBatch, buildForgeService } from '@domain/recovery-command-forge';
+import { buildExecutionReport } from '@domain/recovery-command-forge';
 import type { RunSession, RunPlanSnapshot, RecoverySignal } from '@domain/recovery-operations-models';
 import type { RecoveryReadinessPlan, ReadinessSloProfile } from '@domain/recovery-readiness';
 import type { ForgeNode } from '@domain/recovery-command-forge';
@@ -57,22 +57,6 @@ const defaultNodes = (): ForgeNode[] => [
     ],
     resourceTags: ['validation'],
   },
-  {
-    id: 'default-execute',
-    label: 'Execute command choreography',
-    commandType: 'coordinator',
-    expectedDurationMinutes: 30,
-    ownerTeam: 'recovery-runner',
-    dependencies: [
-      {
-        dependencyId: withBrand('dep-default-execute', 'RecoveryForgeDependencyId'),
-        dependencyName: 'validation-complete',
-        criticality: 5,
-        coupling: 0.9,
-      },
-    ],
-    resourceTags: ['execution'],
-  },
 ];
 
 const buildScenario = ({ tenant, readinessPlan, session, planSnapshot, signals, slaProfile }: UseRecoveryCommandForgeWorkspaceParams): ForgeScenario => ({
@@ -109,13 +93,8 @@ export const useRecoveryCommandForgeWorkspace = ({ tenant, readinessPlan, sessio
         minConfidence: 60,
         policyGateEnabled: true,
       } as Partial<ForgeRuntimeConfig>);
-
-      const batch = simulateBatch(tenant, [scenario]);
-      const service = buildForgeService({ tenant, scenarios: [scenario] });
-      const summaryByService = service.run();
-      const normalized = `${forgeReport.policy.summary} | ${batch.runCount}x batch | ${summaryByService.simulationSummary}`;
       setReport(forgeReport);
-      setSummary(normalized);
+      setSummary(`${forgeReport.policy.summary} | score=${forgeReport.policy.riskScore}`);
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'Unable to run recovery command forge');
     } finally {

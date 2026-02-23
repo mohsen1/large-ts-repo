@@ -53,6 +53,7 @@
     "@data/recovery-signal-intelligence-store": "workspace:*",
     "@domain/recovery-signal-intelligence": "workspace:*",
     "@service/recovery-incident-graph-engine": "workspace:*",
-    "@domain/recovery-incident-graph": "workspace:*"
+    "@domain/recovery-incident-graph": "workspace:*",
+    "@service/recovery-command-forge-orchestrator": "workspace:*"
   }
 }

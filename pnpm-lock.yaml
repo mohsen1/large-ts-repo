@@ -173,6 +173,9 @@ importers:
       '@domain/recovery-fabric-models':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-models
+      '@domain/recovery-incident-graph':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-graph
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
@@ -206,6 +209,9 @@ importers:
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
+      '@service/recovery-incident-graph-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-graph-engine
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
@@ -1753,6 +1759,21 @@ importers:
         specifier: workspace:*
         version: link:../../shared/zod-adapters
 
+  packages/domain/recovery-incident-graph:
+    dependencies:
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
+      '@domain/risk':
+        specifier: workspace:*
+        version: link:../risk
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/domain/recovery-incident-insights:
     dependencies:
       '@shared/type-level':
@@ -3151,6 +3172,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/service/recovery-incident-graph-engine:
+    dependencies:
+      '@domain/recovery-incident-graph':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-graph
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration
+      '@domain/risk':
+        specifier: workspace:*
+        version: link:../../domain/risk
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-incident-insight-orchestrator:
     dependencies:

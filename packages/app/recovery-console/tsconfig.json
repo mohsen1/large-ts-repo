@@ -22,43 +22,88 @@
   ],
   "references": [
     {
-      "path": "./../../domain/recovery-command-forge/tsconfig.json"
-    },
-      {
-      "path": "./../../data/recovery-operations-store/tsconfig.json"
+      "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
+      "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../data/incident-fusion-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-command-control-plane/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-operations-models/tsconfig.json"
+      "path": "./../../data/recovery-operations-store/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-orchestration/tsconfig.json"
+      "path": "./../../data/recovery-readiness-store/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-command-orchestration/tsconfig.json"
+      "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
+      "path": "./../../domain/incident-fusion-models/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
+      "path": "./../../domain/recovery-command-forge/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-command-language/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-fabric-models/tsconfig.json"
+      "path": "./../../domain/recovery-command-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-command-studio/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-drill/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-fabric-models/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-graph/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-models/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-command-forge-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-command-intelligence-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-continuity-lens/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-incident-graph-engine/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-operations-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-operations-policy-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-runner/tsconfig.json"
@@ -67,49 +112,7 @@
       "path": "./../../service/recovery-scenario-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-operations-policy-engine/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-command-intelligence-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-continuity-lens/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-readiness-store/tsconfig.json"
-    },
-    {
-      "path": "./../../data/incident-fusion-store/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/incident-fusion-models/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "../../shared/result/tsconfig.json"
-    },
-    {
       "path": "./../../service/recovery-signal-intelligence-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-command-studio/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-incident-graph/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-incident-graph-engine/tsconfig.json"
     }
   ]
 }

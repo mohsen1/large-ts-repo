@@ -5,4 +5,7 @@ export * from './planner';
 export * from './adapters';
 export * from './simulation';
 export * from './insights';
-export * from './service';
+export * from './command-taxonomy';
+export * from './constraints';
+export * from './orchestration';
+export * from './risk-model';

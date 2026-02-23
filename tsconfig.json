@@ -17,19 +17,31 @@
       "path": "./packages/app/fuzzy-console"
     },
     {
+      "path": "./packages/app/incident-forecast-operator"
+    },
+    {
       "path": "./packages/app/insights"
     },
     {
       "path": "./packages/app/policy-console"
     },
     {
-      "path": "./packages/app/reporter"
+      "path": "./packages/app/recovery-console"
+    },
+    {
+      "path": "./packages/app/recovery-drill-observer"
     },
     {
       "path": "./packages/app/recovery-incident-dashboard"
     },
     {
-      "path": "./packages/app/incident-forecast-operator"
+      "path": "./packages/app/recovery-incident-dashboard"
+    },
+    {
+      "path": "./packages/app/recovery-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/app/reporter"
     },
     {
       "path": "./packages/app/stream-dashboard"
@@ -50,9 +62,6 @@
       "path": "./packages/data/continuity-lens-store"
     },
     {
-      "path": "./packages/data/recovery-continuity-plan-store"
-    },
-    {
       "path": "./packages/data/decision-catalog"
     },
     {
@@ -62,10 +71,19 @@
       "path": "./packages/data/failure-intelligence-store"
     },
     {
-      "path": "./packages/data/incident-hub"
+      "path": "./packages/data/incident-command-store"
     },
     {
       "path": "./packages/data/incident-forecast-store"
+    },
+    {
+      "path": "./packages/data/incident-fusion-store"
+    },
+    {
+      "path": "./packages/data/incident-hub"
+    },
+    {
+      "path": "./packages/data/incident-signal-store"
     },
     {
       "path": "./packages/data/lineage"
@@ -77,13 +95,100 @@
       "path": "./packages/data/query-models"
     },
     {
+      "path": "./packages/data/recovery-artifacts"
+    },
+    {
+      "path": "./packages/data/recovery-command-control-plane"
+    },
+    {
+      "path": "./packages/data/recovery-command-graph-store"
+    },
+    {
+      "path": "./packages/data/recovery-continuity-plan-store"
+    },
+    {
+      "path": "./packages/data/recovery-coordination-store"
+    },
+    {
+      "path": "./packages/data/recovery-drill-metrics"
+    },
+    {
+      "path": "./packages/data/recovery-drill-store"
+    },
+    {
+      "path": "./packages/data/recovery-incident-insights-store"
+    },
+    {
+      "path": "./packages/data/recovery-incident-store"
+    },
+    {
+      "path": "./packages/data/recovery-intelligence-store"
+    },
+    {
+      "path": "./packages/data/recovery-observability"
+    },
+    {
+      "path": "./packages/data/recovery-operations-analytics"
+    },
+    {
+      "path": "./packages/data/recovery-operations-control-plane-store"
+    },
+    {
+      "path": "./packages/data/recovery-operations-governance-store"
+    },
+    {
+      "path": "./packages/data/recovery-operations-intelligence-store"
+    },
+    {
+      "path": "./packages/data/recovery-operations-store"
+    },
+    {
+      "path": "./packages/data/recovery-plan-store"
+    },
+    {
+      "path": "./packages/data/recovery-playbook-store"
+    },
+    {
+      "path": "./packages/data/recovery-policy-store"
+    },
+    {
+      "path": "./packages/data/recovery-readiness-store"
+    },
+    {
+      "path": "./packages/data/recovery-risk-store"
+    },
+    {
+      "path": "./packages/data/recovery-scenario-store"
+    },
+    {
+      "path": "./packages/data/recovery-signal-intelligence-store"
+    },
+    {
+      "path": "./packages/data/recovery-simulation-metrics"
+    },
+    {
+      "path": "./packages/data/recovery-simulation-store"
+    },
+    {
+      "path": "./packages/data/recovery-situational-store"
+    },
+    {
+      "path": "./packages/data/recovery-stability-store"
+    },
+    {
+      "path": "./packages/data/recovery-strategy-store"
+    },
+    {
+      "path": "./packages/data/recovery-workflow-store"
+    },
+    {
+      "path": "./packages/data/recovery-workload-store"
+    },
+    {
       "path": "./packages/data/repositories"
     },
     {
       "path": "./packages/data/telemetry-store"
-    },
-    {
-      "path": "./packages/data/recovery-workload-store"
     },
     {
       "path": "./packages/data/warehouse"
@@ -110,13 +215,10 @@
       "path": "./packages/domain/compliance"
     },
     {
+      "path": "./packages/domain/continuity-lens"
+    },
+    {
       "path": "./packages/domain/continuity-orchestration"
-    },
-    {
-      "path": "./packages/domain/recovery-continuity-planning"
-    },
-    {
-      "path": "./packages/domain/recovery-command-orchestration"
     },
     {
       "path": "./packages/domain/contracts"
@@ -131,13 +233,10 @@
       "path": "./packages/domain/failover-orchestration"
     },
     {
-      "path": "./packages/domain/feature-flags"
-    },
-    {
-      "path": "./packages/domain/continuity-lens"
-    },
-    {
       "path": "./packages/domain/failure-intelligence"
+    },
+    {
+      "path": "./packages/domain/feature-flags"
     },
     {
       "path": "./packages/domain/fulfillment"
@@ -152,46 +251,25 @@
       "path": "./packages/domain/identity-verification"
     },
     {
+      "path": "./packages/domain/incident-command-core"
+    },
+    {
+      "path": "./packages/domain/incident-command-models"
+    },
+    {
       "path": "./packages/domain/incident-forecasting"
+    },
+    {
+      "path": "./packages/domain/incident-fusion-models"
     },
     {
       "path": "./packages/domain/incident-management"
     },
     {
-      "path": "./packages/domain/inventory"
-    },
-    {
-      "path": "./packages/domain/recovery-readiness"
-    },
-    {
-      "path": "./packages/domain/recovery-command-studio"
-    },
-    {
-      "path": "./packages/domain/recovery-operations-cadence"
-    },
-    {
-      "path": "./packages/domain/recovery-operations-control-plane"
-    },
-    {
-      "path": "./packages/domain/recovery-operations-intelligence"
-    },
-    {
-      "path": "./packages/domain/recovery-workload-intelligence"
-    },
-    {
-      "path": "./packages/domain/recovery-incident-workflows"
-    },
-    {
       "path": "./packages/domain/incident-signal-intelligence"
     },
     {
-      "path": "./packages/domain/recovery-incident-analytics"
-    },
-    {
-      "path": "./packages/domain/recovery-plan"
-    },
-    {
-      "path": "./packages/domain/recovery-scenario-engine"
+      "path": "./packages/domain/inventory"
     },
     {
       "path": "./packages/domain/knowledge-graph"
@@ -224,9 +302,6 @@
       "path": "./packages/domain/operations-control"
     },
     {
-      "path": "./packages/domain/recovery-playbooks"
-    },
-    {
       "path": "./packages/domain/operations-orchestration"
     },
     {
@@ -237,6 +312,126 @@
     },
     {
       "path": "./packages/domain/pricing"
+    },
+    {
+      "path": "./packages/domain/recovery-command-forge"
+    },
+    {
+      "path": "./packages/domain/recovery-command-language"
+    },
+    {
+      "path": "./packages/domain/recovery-command-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-command-studio"
+    },
+    {
+      "path": "./packages/domain/recovery-continuity-planning"
+    },
+    {
+      "path": "./packages/domain/recovery-coordination"
+    },
+    {
+      "path": "./packages/domain/recovery-drill"
+    },
+    {
+      "path": "./packages/domain/recovery-drill-telemetry"
+    },
+    {
+      "path": "./packages/domain/recovery-fabric-models"
+    },
+    {
+      "path": "./packages/domain/recovery-fabric-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-fusion-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-analytics"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-graph"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-insights"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-workflows"
+    },
+    {
+      "path": "./packages/domain/recovery-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-operations-cadence"
+    },
+    {
+      "path": "./packages/domain/recovery-operations-control-plane"
+    },
+    {
+      "path": "./packages/domain/recovery-operations-governance"
+    },
+    {
+      "path": "./packages/domain/recovery-operations-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-operations-models"
+    },
+    {
+      "path": "./packages/domain/recovery-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-orchestration-planning"
+    },
+    {
+      "path": "./packages/domain/recovery-plan"
+    },
+    {
+      "path": "./packages/domain/recovery-playbooks"
+    },
+    {
+      "path": "./packages/domain/recovery-policy"
+    },
+    {
+      "path": "./packages/domain/recovery-readiness"
+    },
+    {
+      "path": "./packages/domain/recovery-readiness-simulation"
+    },
+    {
+      "path": "./packages/domain/recovery-risk-models"
+    },
+    {
+      "path": "./packages/domain/recovery-risk-strategy"
+    },
+    {
+      "path": "./packages/domain/recovery-scenario-engine"
+    },
+    {
+      "path": "./packages/domain/recovery-scenario-lens"
+    },
+    {
+      "path": "./packages/domain/recovery-scenario-planner"
+    },
+    {
+      "path": "./packages/domain/recovery-signal-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-simulation-core"
+    },
+    {
+      "path": "./packages/domain/recovery-simulation-planning"
+    },
+    {
+      "path": "./packages/domain/recovery-situational-intelligence"
+    },
+    {
+      "path": "./packages/domain/recovery-stability-models"
+    },
+    {
+      "path": "./packages/domain/recovery-workload-intelligence"
     },
     {
       "path": "./packages/domain/reporting"
@@ -251,13 +446,7 @@
       "path": "./packages/domain/streaming-engine"
     },
     {
-      "path": "./packages/domain/recovery-risk-models"
-    },
-    {
       "path": "./packages/domain/telemetry-models"
-    },
-    {
-      "path": "./packages/domain/recovery-drill-telemetry"
     },
     {
       "path": "./packages/domain/temporal"
@@ -275,10 +464,43 @@
       "path": "./packages/infrastructure/incident-forecasting-connectors"
     },
     {
+      "path": "./packages/infrastructure/incident-notifications"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-continuity-adapters"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-coordination-notifier"
+    },
+    {
       "path": "./packages/infrastructure/recovery-drill-archive"
     },
     {
-      "path": "./packages/infrastructure/incident-notifications"
+      "path": "./packages/infrastructure/recovery-incident-notifier"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-notifications"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-operations-cadence-bridge"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-operations-compliance"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-operations-intelligence-adapters"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-operations-queue"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-risk-connectors"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-scenario-notifier"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-scenario-orchestration-adapters"
     },
     {
       "path": "./packages/infrastructure/transformers"
@@ -317,10 +539,10 @@
       "path": "./packages/platform/storage"
     },
     {
-      "path": "./packages/service/adaptive-ops-runner"
+      "path": "./packages/service/adaptive-ops-orchestrator"
     },
     {
-      "path": "./packages/service/adaptive-ops-orchestrator"
+      "path": "./packages/service/adaptive-ops-runner"
     },
     {
       "path": "./packages/service/analytics"
@@ -338,13 +560,13 @@
       "path": "./packages/service/decision-runtime"
     },
     {
-      "path": "./packages/service/failure-intelligence-runner"
-    },
-    {
       "path": "./packages/service/execution-engine"
     },
     {
       "path": "./packages/service/failover-runtime"
+    },
+    {
+      "path": "./packages/service/failure-intelligence-runner"
     },
     {
       "path": "./packages/service/finance"
@@ -356,10 +578,13 @@
       "path": "./packages/service/graph-intelligence"
     },
     {
-      "path": "./packages/service/incident-orchestration"
+      "path": "./packages/service/incident-forecast-engine"
     },
     {
-      "path": "./packages/service/incident-forecast-engine"
+      "path": "./packages/service/incident-fusion-orchestrator"
+    },
+    {
+      "path": "./packages/service/incident-orchestration"
     },
     {
       "path": "./packages/service/ingestion"
@@ -377,19 +602,115 @@
       "path": "./packages/service/quality"
     },
     {
+      "path": "./packages/service/recommendation"
+    },
+    {
+      "path": "./packages/service/recovery-command-forge-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-command-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-command-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-continuity-lens"
+    },
+    {
+      "path": "./packages/service/recovery-continuity-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-coordination-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-drill-observability"
+    },
+    {
+      "path": "./packages/service/recovery-drill-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-fabric-controller"
+    },
+    {
+      "path": "./packages/service/recovery-fusion-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-analytics-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-command-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-graph-engine"
+    },
+    {
+      "path": "./packages/service/recovery-incident-insight-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-operations-engine"
+    },
+    {
+      "path": "./packages/service/recovery-operations-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-operations-observability"
+    },
+    {
+      "path": "./packages/service/recovery-operations-policy-engine"
+    },
+    {
+      "path": "./packages/service/recovery-plan-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-playbook-engine"
+    },
+    {
+      "path": "./packages/service/recovery-policy-engine"
     },
     {
       "path": "./packages/service/recovery-readiness-orchestrator"
     },
     {
-      "path": "./packages/service/recovery-workload-orchestrator"
+      "path": "./packages/service/recovery-risk-engine"
+    },
+    {
+      "path": "./packages/service/recovery-risk-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-runner"
+    },
+    {
+      "path": "./packages/service/recovery-scenario-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-signal-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-simulation-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-situational-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-stability-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-strategy-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-synthesis-orchestrator"
     },
     {
       "path": "./packages/service/recovery-workflow-orchestrator"
     },
     {
-      "path": "./packages/service/recommendation"
+      "path": "./packages/service/recovery-workload-orchestrator"
     },
     {
       "path": "./packages/service/reporting"
@@ -441,322 +762,6 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
-    },
-    {
-      "path": "./packages/domain/recovery-intelligence"
-    },
-    {
-      "path": "./packages/domain/recovery-orchestration"
-    },
-    {
-      "path": "./packages/domain/recovery-simulation-planning"
-    },
-    {
-      "path": "./packages/domain/recovery-coordination"
-    },
-    {
-      "path": "./packages/domain/recovery-operations-governance"
-    },
-    {
-      "path": "./packages/domain/recovery-incident-insights"
-    },
-    {
-      "path": "./packages/domain/recovery-incident-graph"
-    },
-    {
-      "path": "./packages/domain/recovery-policy"
-    },
-    {
-      "path": "./packages/domain/recovery-scenario-planner"
-    },
-    {
-      "path": "./packages/domain/recovery-scenario-lens"
-    },
-    {
-      "path": "./packages/domain/recovery-stability-models"
-    },
-    {
-      "path": "./packages/domain/recovery-drill"
-    },
-    {
-      "path": "./packages/domain/incident-command-core"
-    },
-    {
-      "path": "./packages/domain/incident-command-models"
-    },
-    {
-      "path": "./packages/data/recovery-artifacts"
-    },
-    {
-      "path": "./packages/data/recovery-incident-insights-store"
-    },
-    {
-      "path": "./packages/data/incident-signal-store"
-    },
-    {
-      "path": "./packages/data/incident-command-store"
-    },
-    {
-      "path": "./packages/data/recovery-workflow-store"
-    },
-    {
-      "path": "./packages/data/recovery-playbook-store"
-    },
-    {
-      "path": "./packages/data/recovery-risk-store"
-    },
-    {
-      "path": "./packages/data/recovery-policy-store"
-    },
-    {
-      "path": "./packages/data/recovery-scenario-store"
-    },
-    {
-      "path": "./packages/data/recovery-observability"
-    },
-    {
-      "path": "./packages/data/recovery-plan-store"
-    },
-    {
-      "path": "./packages/data/recovery-command-graph-store"
-    },
-    {
-      "path": "./packages/data/recovery-coordination-store"
-    },
-    {
-      "path": "./packages/data/recovery-intelligence-store"
-    },
-    {
-      "path": "./packages/data/recovery-stability-store"
-    },
-    {
-      "path": "./packages/data/recovery-readiness-store"
-    },
-    {
-      "path": "./packages/data/recovery-drill-store"
-    },
-    {
-      "path": "./packages/data/recovery-drill-metrics"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-notifications"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-operations-cadence-bridge"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-scenario-orchestration-adapters"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-continuity-adapters"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-scenario-notifier"
-    },
-    {
-      "path": "./packages/service/recovery-runner"
-    },
-    {
-      "path": "./packages/service/recovery-risk-engine"
-    },
-    {
-      "path": "./packages/service/recovery-policy-engine"
-    },
-    {
-      "path": "./packages/service/recovery-drill-observability"
-    },
-    {
-      "path": "./packages/service/recovery-plan-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-coordination-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-scenario-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-continuity-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-continuity-lens"
-    },
-    {
-      "path": "./packages/service/recovery-incident-insight-orchestrator"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-coordination-notifier"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-incident-notifier"
-    },
-    {
-      "path": "./packages/service/recovery-drill-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-intelligence-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-stability-orchestrator"
-    },
-    {
-      "path": "./packages/app/recovery-console"
-    },
-    {
-      "path": "./packages/app/recovery-drill-observer"
-    },
-    {
-      "path": "./packages/app/recovery-playbook-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-operations-models"
-    },
-    {
-      "path": "./packages/data/recovery-operations-store"
-    },
-    {
-      "path": "./packages/data/recovery-operations-governance-store"
-    },
-    {
-      "path": "./packages/data/recovery-operations-control-plane-store"
-    },
-    {
-      "path": "./packages/data/recovery-operations-intelligence-store"
-    },
-    {
-      "path": "./packages/data/recovery-operations-analytics"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-operations-queue"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-operations-intelligence-adapters"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-operations-compliance"
-    },
-    {
-      "path": "./packages/service/recovery-operations-engine"
-    },
-    {
-      "path": "./packages/service/recovery-operations-policy-engine"
-    },
-    {
-      "path": "./packages/service/recovery-operations-intelligence-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-operations-observability"
-    },
-    {
-      "path": "./packages/domain/recovery-risk-strategy"
-    },
-    {
-      "path": "./packages/infrastructure/recovery-risk-connectors"
-    },
-    {
-      "path": "./packages/service/recovery-risk-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-incident-orchestration"
-    },
-    {
-      "path": "./packages/domain/recovery-simulation-core"
-    },
-    {
-      "path": "./packages/data/recovery-incident-store"
-    },
-    {
-      "path": "./packages/data/recovery-simulation-metrics"
-    },
-    {
-      "path": "./packages/data/recovery-simulation-store"
-    },
-    {
-      "path": "./packages/service/recovery-incident-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-simulation-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-synthesis-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-command-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-incident-graph-engine"
-    },
-    {
-      "path": "./packages/service/recovery-incident-command-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-incident-analytics-orchestrator"
-    },
-    {
-      "path": "./packages/app/recovery-incident-dashboard"
-    },
-    {
-      "path": "./packages/domain/recovery-situational-intelligence"
-    },
-    {
-      "path": "./packages/data/recovery-situational-store"
-    },
-    {
-      "path": "./packages/service/recovery-situational-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-fusion-intelligence"
-    },
-    {
-      "path": "./packages/service/recovery-fusion-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-fabric-orchestration"
-    },
-    {
-      "path": "./packages/service/recovery-fabric-controller"
-    },
-    {
-      "path": "./packages/domain/recovery-orchestration-planning"
-    },
-    {
-      "path": "./packages/data/recovery-strategy-store"
-    },
-    {
-      "path": "./packages/service/recovery-strategy-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-fabric-models"
-    },
-    {
-      "path": "./packages/domain/recovery-readiness-simulation"
-    },
-    {
-      "path": "./packages/domain/recovery-command-language"
-    },
-    {
-      "path": "./packages/data/recovery-command-control-plane"
-    },
-    {
-      "path": "./packages/service/recovery-command-intelligence-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-signal-intelligence"
-    },
-    {
-      "path": "./packages/data/recovery-signal-intelligence-store"
-    },
-    {
-      "path": "./packages/service/recovery-signal-intelligence-orchestrator"
-    },
-    {
-      "path": "./packages/domain/incident-fusion-models"
-    },
-    {
-      "path": "./packages/data/incident-fusion-store"
-    },
-    {
-      "path": "./packages/service/incident-fusion-orchestrator"
-    },
-    { "path": "./packages/domain/recovery-command-forge" }
+    }
   ]
 }
