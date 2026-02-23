@@ -51,6 +51,8 @@
     "zod": "^3.24.0",
     "@service/recovery-signal-intelligence-orchestrator": "workspace:*",
     "@data/recovery-signal-intelligence-store": "workspace:*",
-    "@domain/recovery-signal-intelligence": "workspace:*"
+    "@domain/recovery-signal-intelligence": "workspace:*",
+    "@service/recovery-incident-graph-engine": "workspace:*",
+    "@domain/recovery-incident-graph": "workspace:*"
   }
 }

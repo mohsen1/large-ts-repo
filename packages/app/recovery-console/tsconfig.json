@@ -104,6 +104,12 @@
     },
     {
       "path": "./../../domain/recovery-command-studio/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-graph/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-incident-graph-engine/tsconfig.json"
     }
   ]
 }

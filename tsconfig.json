@@ -461,6 +461,9 @@
       "path": "./packages/domain/recovery-incident-insights"
     },
     {
+      "path": "./packages/domain/recovery-incident-graph"
+    },
+    {
       "path": "./packages/domain/recovery-policy"
     },
     {
@@ -678,6 +681,9 @@
     },
     {
       "path": "./packages/service/recovery-command-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-graph-engine"
     },
     {
       "path": "./packages/service/recovery-incident-command-orchestrator"

@@ -128,3 +128,6 @@ export { RecoveryCommandForgePage } from './pages/RecoveryCommandForgePage';
 export { CommandForgeDashboard } from './components/recovery-command-forge/CommandForgeDashboard';
 export { CommandForgePlanGraph } from './components/recovery-command-forge/CommandForgePlanGraph';
 export { CommandForgeSignals } from './components/recovery-command-forge/CommandForgeSignals';
+export { RecoveryIncidentGraphDashboard } from './components/RecoveryIncidentGraphDashboard';
+export { RecoveryIncidentGraphCriticalPath } from './components/RecoveryIncidentGraphCriticalPath';
+export { RecoveryIncidentGraphConsolePage } from './pages/RecoveryIncidentGraphConsolePage';
