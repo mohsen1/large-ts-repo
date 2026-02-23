@@ -936,6 +936,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/data/recovery-command-control-plane:
     dependencies:

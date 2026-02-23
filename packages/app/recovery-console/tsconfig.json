@@ -160,6 +160,15 @@
       "path": "../../service/recovery-orchestration-atlas/tsconfig.json"
     },
     {
+      "path": "../../service/incident-orchestration/tsconfig.json"
+    },
+    {
+      "path": "../../data/repositories/tsconfig.json"
+    },
+    {
+      "path": "../../domain/incident-management/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
     },
     {

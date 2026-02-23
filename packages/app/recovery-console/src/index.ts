@@ -176,3 +176,9 @@ export { usePlaybookPolicyMatrix } from './features/recovery-playbook-orchestrat
 export { useRecoveryAtlasWorkspace } from './features/recovery-atlas/hooks/useRecoveryAtlasWorkspace';
 export { RecoveryAtlasPanel } from './features/recovery-atlas/components/RecoveryAtlasPanel';
 export { RecoveryAtlasOrchestrationPage } from './features/recovery-atlas/pages/RecoveryAtlasOrchestrationPage';
+export { IncidentRecoveryLabPage } from './features/incident-recovery-lab/pages/IncidentRecoveryLabPage';
+export { IncidentRecoveryPulsePanel } from './features/incident-recovery-lab/components/IncidentRecoveryPulsePanel';
+export { IncidentRecoveryTimeline } from './features/incident-recovery-lab/components/IncidentRecoveryTimeline';
+export { IncidentRecoveryScoreBoard } from './features/incident-recovery-lab/components/IncidentRecoveryScoreBoard';
+export { useIncidentRecoveryPulse } from './features/incident-recovery-lab/hooks/useIncidentRecoveryPulse';
+export { useIncidentRecoveryCadence } from './features/incident-recovery-lab/hooks/useIncidentRecoveryCadence';

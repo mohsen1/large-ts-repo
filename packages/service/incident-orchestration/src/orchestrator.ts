@@ -15,6 +15,9 @@ import { collectMetrics, IncidentMetricsSink, NoopIncidentMetricsSink } from '@d
 import { IncidentPublisher, createPublisher } from '@infrastructure/incident-notifications';
 import { publishDecision } from './adapters';
 import { selectTemplatesFor, templateToRunbook } from './planner';
+import { createOrchestrationPipeline } from './pipeline';
+import { InMemoryEventStore } from '@data/repositories';
+import { evaluateIncidentRisk, summarizeBatchRisk } from './insights';
 
 export interface IncidentOrchestratorInput {
   bus: MessageBus;
@@ -40,6 +43,12 @@ const toAudit = (incident: IncidentRecord, decision: TriageDecision): IncidentAu
 export const createOrchestrator = (input: IncidentOrchestratorInput) => {
   const metricsSink = input.metrics ?? new NoopIncidentMetricsSink();
   const publisher = input.publisher ?? createPublisher();
+  const eventStore = new InMemoryEventStore<string>();
+  const pipeline = createOrchestrationPipeline({
+    repository: input.repo,
+    maxParallel: 2,
+    tenant: 'global',
+  });
 
   return async (incident: IncidentRecord): Promise<Result<OrchestratedIncident>> => {
     try {
@@ -73,6 +82,15 @@ export const createOrchestrator = (input: IncidentOrchestratorInput) => {
       await input.bus.subscribe({ topic: 'incident.audit'.replace('.', '-') as any, group: 'incident.service' as any }, async () => Promise.resolve());
 
       await metricsSink.emit(collectMetrics([saved.value]));
+
+      const risk = evaluateIncidentRisk(saved.value);
+      const summary = summarizeBatchRisk([saved.value]);
+      await eventStore.append({
+        tenantId: saved.value.tenantId,
+        kind: 'orchestrator.risk',
+        payload: JSON.stringify({ incidentId: saved.value.id, riskScore: risk.riskScore, tenantAverage: summary.avgRisk }),
+      });
+      await pipeline.run(saved.value);
 
       const audited = createEnvelope('incident.orchestration.audit', toAudit(saved.value, decision)) as any;
       await input.bus.publish('incident.orchestration.audit-events' as any, audited);

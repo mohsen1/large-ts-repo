@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/incident-management": "workspace:*",
     "@data/incident-hub": "workspace:*",
+    "@data/repositories": "workspace:*",
     "@infrastructure/incident-notifications": "workspace:*",
     "@platform/messaging": "workspace:*",
     "@shared/result": "workspace:*",

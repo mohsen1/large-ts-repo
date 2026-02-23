@@ -13,5 +13,8 @@
   "scripts": {
     "build": "tsc -b"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@shared/result": "workspace:*",
+    "@shared/core": "workspace:*"
+  }
 }
