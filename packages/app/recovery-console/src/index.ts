@@ -161,6 +161,11 @@ export { RecoveryPlaybookLabDashboard } from './features/recovery-playbook-lab/c
 export { RecoveryPlaybookLabTimeline } from './features/recovery-playbook-lab/components/RecoveryPlaybookLabTimeline';
 export { RecoveryPlaybookLabSignals } from './features/recovery-playbook-lab/components/RecoveryPlaybookLabSignals';
 export { useRecoveryPlaybookLabWorkspace } from './features/recovery-playbook-lab/hooks/useRecoveryPlaybookLabWorkspace';
+export { ContinuityLabOrchestrationPage } from './features/continuity-lab/pages/ContinuityLabOrchestrationPage';
+export { useContinuityLabCoordinator, ContinuityLabCoordinatorBadge } from './features/continuity-lab/hooks/useContinuityLabCoordinator';
+export { ContinuityLabCommandCard } from './features/continuity-lab/components/ContinuityLabCommandCard';
+export { ContinuityLabMatrix } from './features/continuity-lab/components/ContinuityLabMatrix';
+export { ContinuityReadinessPulse } from './features/continuity-lab/components/ContinuityReadinessPulse';
 export { RecoveryOpsFabricObservatoryPage } from './features/recovery-fabric-observatory/pages/RecoveryOpsFabricObservatoryPage';
 export { useRecoveryFabricOps } from './features/recovery-fabric-observatory/hooks/useRecoveryFabricOps';
 export { FabricTopologyPanel } from './features/recovery-fabric-observatory/components/FabricTopologyPanel';

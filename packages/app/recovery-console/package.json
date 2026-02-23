@@ -67,6 +67,7 @@
     "@service/recovery-incident-graph-engine": "workspace:*",
     "@domain/recovery-incident-graph": "workspace:*",
     "@domain/recovery-scenario-orchestration": "workspace:*",
+    "@domain/recovery-continuity-lab-core": "workspace:*",
     "@service/recovery-command-forge-orchestrator": "workspace:*",
     "@service/recovery-ops-orchestration-engine": "workspace:*",
     "@service/recovery-playbook-lab-orchestrator": "workspace:*",

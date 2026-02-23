@@ -920,6 +920,9 @@
       "path": "./packages/domain/recovery-scenario-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-continuity-lab-core"
+    },
+    {
       "path": "./packages/infrastructure/recovery-scenario-gateway"
     },
     {

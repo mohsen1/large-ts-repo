@@ -314,6 +314,9 @@ importers:
       '@domain/recovery-playbooks':
         specifier: workspace:*
         version: link:../../domain/recovery-playbooks
+      '@domain/recovery-scenario-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-orchestration
       '@domain/recovery-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-signal-intelligence
@@ -2707,6 +2710,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
