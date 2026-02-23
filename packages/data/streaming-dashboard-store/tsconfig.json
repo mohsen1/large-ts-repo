@@ -1,0 +1,25 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/streaming-observability/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/streaming-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../data/repositories/tsconfig.json"
+    }
+  ]
+}

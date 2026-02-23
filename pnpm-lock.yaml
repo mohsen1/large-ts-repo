@@ -494,9 +494,36 @@ importers:
 
   packages/app/stream-dashboard:
     dependencies:
+      '@data/streaming-dashboard-store':
+        specifier: workspace:*
+        version: link:../../data/streaming-dashboard-store
       '@domain/streaming-engine':
         specifier: workspace:*
         version: link:../../domain/streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@service/streaming-dashboard-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/streaming-dashboard-orchestrator
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
 
   packages/app/worker:
     dependencies:
@@ -1232,6 +1259,24 @@ importers:
         version: 3.25.76
 
   packages/data/repositories: {}
+
+  packages/data/streaming-dashboard-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/streaming-engine':
+        specifier: workspace:*
+        version: link:../../domain/streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/telemetry-store:
     dependencies:
@@ -2290,6 +2335,24 @@ importers:
   packages/domain/search-suite: {}
 
   packages/domain/streaming-engine: {}
+
+  packages/domain/streaming-observability:
+    dependencies:
+      '@domain/streaming-engine':
+        specifier: workspace:*
+        version: link:../streaming-engine
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/telemetry-models:
     dependencies:
@@ -4126,6 +4189,30 @@ importers:
       '@domain/streaming-engine':
         specifier: workspace:*
         version: link:../../domain/streaming-engine
+
+  packages/service/streaming-dashboard-orchestrator:
+    dependencies:
+      '@data/streaming-dashboard-store':
+        specifier: workspace:*
+        version: link:../../data/streaming-dashboard-store
+      '@domain/streaming-engine':
+        specifier: workspace:*
+        version: link:../../domain/streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/telemetry:
     dependencies:

@@ -1,5 +1,5 @@
 {
-  "name": "@app/stream-dashboard",
+  "name": "@service/streaming-dashboard-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,15 +14,12 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@data/streaming-dashboard-store": "workspace:*",
-    "@service/streaming-dashboard-orchestrator": "workspace:*",
     "@domain/streaming-observability": "workspace:*",
     "@domain/streaming-engine": "workspace:*",
-    "@shared/type-level": "workspace:*",
+    "@data/streaming-dashboard-store": "workspace:*",
+    "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@shared/type-level": "workspace:*",
+    "zod": "^3.24.0"
   }
 }

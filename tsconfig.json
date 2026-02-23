@@ -50,6 +50,9 @@
       "path": "./packages/app/stream-dashboard"
     },
     {
+      "path": "./packages/data/streaming-dashboard-store"
+    },
+    {
       "path": "./packages/app/worker"
     },
     {
@@ -464,6 +467,9 @@
       "path": "./packages/domain/streaming-engine"
     },
     {
+      "path": "./packages/domain/streaming-observability"
+    },
+    {
       "path": "./packages/domain/telemetry-models"
     },
     {
@@ -753,6 +759,9 @@
     },
     {
       "path": "./packages/service/streaming-control"
+    },
+    {
+      "path": "./packages/service/streaming-dashboard-orchestrator"
     },
     {
       "path": "./packages/service/telemetry"
