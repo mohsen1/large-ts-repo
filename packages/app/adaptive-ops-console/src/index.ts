@@ -62,3 +62,7 @@ export {
   WorkloadForecastSummary,
   WorkloadSignalPanel,
 };
+export { ReadinessPlaybookOperationsPage } from './pages/ReadinessPlaybookOperationsPage';
+export { ReadinessPlaybookTimeline } from './components/readiness-lab/ReadinessPlaybookTimeline';
+export { ReadinessRiskRadar } from './components/readiness-lab/ReadinessRiskRadar';
+export { useReadinessPlaybook } from './hooks/useReadinessPlaybook';

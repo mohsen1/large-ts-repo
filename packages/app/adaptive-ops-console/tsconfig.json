@@ -49,6 +49,9 @@
     },
     {
       "path": "./../../data/recovery-workload-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-readiness-store/tsconfig.json"
     }
   ]
 }

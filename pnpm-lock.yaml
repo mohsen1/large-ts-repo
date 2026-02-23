@@ -179,6 +179,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-playbook-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-store
       '@data/recovery-readiness-store':
         specifier: workspace:*
         version: link:../../data/recovery-readiness-store
@@ -224,6 +227,9 @@ importers:
       '@domain/recovery-orchestration-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-planning
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbooks
       '@domain/recovery-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-signal-intelligence
@@ -266,6 +272,9 @@ importers:
       '@service/recovery-ops-playbook-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-ops-playbook-orchestrator
+      '@service/recovery-playbook-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-playbook-engine
       '@service/recovery-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-readiness-orchestrator

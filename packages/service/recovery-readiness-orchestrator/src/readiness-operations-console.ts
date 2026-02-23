@@ -7,9 +7,9 @@ import {
 import { ReadinessWorkbench, createReadinessPolicy } from './readiness-workbench';
 import type { ReadinessPolicy, ReadinessRunId, ReadinessSignal, RecoveryTargetId } from '@domain/recovery-readiness';
 import { InMemoryReadinessEventStore } from '@data/recovery-readiness-store';
-import { MemoryReadinessRepository } from '@data/recovery-readiness-store';
 import { ReadinessQueryService } from '@data/recovery-readiness-store';
 import type { ReadinessReadModel } from '@data/recovery-readiness-store';
+import { buildReadinessEventHealth } from '@domain/recovery-readiness';
 
 export interface ReadinessOperationsConsoleStatus {
   policy: string;
@@ -49,7 +49,7 @@ const buildSyntheticSignals = (runId: ReadinessRunId, count = 6): ReadinessSigna
 export class ReadinessOperationsConsole {
   private readonly orchestrator: RecoveryReadinessOrchestrator;
   private readonly queryService = new ReadinessQueryService();
-  private readonly eventStore = new InMemoryReadinessEventStore(new MemoryReadinessRepository());
+  private readonly eventStore = new InMemoryReadinessEventStore();
   private readonly workbench: ReadinessWorkbench;
   private readonly commandRouter: ReadinessCommandRouter;
   private bootstrapCount = 0;
@@ -120,7 +120,8 @@ export class ReadinessOperationsConsole {
   }
 
   async emitEventHealth(runId: ReadinessRunId) {
-    return this.eventStore.health(runId);
+    const events = await this.eventStore.consume(runId, 0);
+    return buildReadinessEventHealth(runId, events);
   }
 
   async snapshot(): Promise<ReadinessOperationsConsoleStatus> {

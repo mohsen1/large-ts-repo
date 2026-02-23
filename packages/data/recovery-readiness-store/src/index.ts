@@ -13,3 +13,7 @@ export * from './readiness-search';
 export * from './readiness-event-store';
 export * from './readiness-metrics';
 export * from './readiness-query-service';
+export * from './playbook-repository';
+export * from './playbook-search';
+export * from './playbook-metrics';
+export * from './readiness-event-store';

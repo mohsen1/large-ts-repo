@@ -22,6 +22,7 @@
     "@domain/incident-command-models": "workspace:*",
     "@data/incident-command-store": "workspace:*",
     "@service/recovery-readiness-orchestrator": "workspace:*",
+    "@data/recovery-readiness-store": "workspace:*",
     "@domain/recovery-readiness": "workspace:*",
     "@service/recovery-workload-orchestrator": "workspace:*",
     "@domain/recovery-workload-intelligence": "workspace:*",
