@@ -4,3 +4,4 @@ export * from './projections';
 export * from './telemetry';
 export * from './facade';
 export * from './impactAnalysis';
+export * from './queryEngine';

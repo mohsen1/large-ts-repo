@@ -13,6 +13,9 @@
       "path": "./../../domain/recovery-cockpit-models/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-cockpit-workloads/tsconfig.json"
+    },
+    {
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {

@@ -13,3 +13,5 @@ export * from './simulationEngine';
 export * from './adapterFacade';
 export * from './incidentResponse';
 export * from './planQualityRouter';
+export * from './decisionService';
+export * from './workloadDirector';

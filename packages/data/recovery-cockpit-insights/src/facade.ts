@@ -1,41 +1,63 @@
-import { PlanId, RecoveryPlan, RuntimeRun, CockpitSignal } from '@domain/recovery-cockpit-models';
-import { PlanInsight, PlanHealth, InsightsFilter } from './insightModels';
+import { InMemoryCockpitStore } from '@data/recovery-cockpit-store';
 import { InMemoryCockpitInsightsStore } from './inMemoryInsightsStore';
-import { buildCockpitInsight, projectInsight } from './projections';
+import { CockpitInsight } from './insightModels';
+import { buildRiskForecast } from '@domain/recovery-cockpit-intelligence';
+import { buildReadinessProfile } from '@domain/recovery-cockpit-workloads';
+import { RecoveryPlan } from '@domain/recovery-cockpit-models';
+import { listInsights, InsightQuery } from './queryEngine';
 
-export type CockpitInsightsFacade = {
-  seed(plan: RecoveryPlan): Promise<void>;
-  storeSignal(planId: PlanId, signal: CockpitSignal): Promise<void>;
-  list(filter?: InsightsFilter): Promise<readonly PlanInsight[]>;
-  snapshot(planId: PlanId): Promise<PlanInsight | undefined>;
+export type InsightFacade = {
+  readonly insightsStore: InMemoryCockpitInsightsStore;
+  readonly planStore: InMemoryCockpitStore;
+  refreshInsights(): Promise<readonly CockpitInsight[]>;
+  reportSnapshot(): Promise<{ lines: number; risks: number }>;
+  describePlan(plan: RecoveryPlan): Promise<string>;
 };
 
-export const createCockpitInsightsFacade = (store: InMemoryCockpitInsightsStore): CockpitInsightsFacade => ({
-  async seed(plan) {
-    const insight = buildCockpitInsight(plan, [], [], 0).insight;
-    await store.upsertInsight(insight);
-  },
-  async storeSignal(planId, signal) {
-    await store.appendSignals(planId, [signal]);
-  },
-  async list(filter) {
-    return store.listInsights(filter);
-  },
-  async snapshot(planId) {
-    return store.getInsight(planId);
-  },
-});
+export const createInsightFacade = (planStore: InMemoryCockpitStore, insightsStore: InMemoryCockpitInsightsStore): InsightFacade => {
+  const refreshInsights = async (query: InsightQuery = {}): Promise<readonly CockpitInsight[]> => {
+    const list = await listInsights(planStore, query);
+    for (const entry of list) {
+      await insightsStore.upsertInsight(entry.insight);
+    }
+    return list;
+  };
 
-export const filterHealth = (insights: readonly PlanInsight[], health: PlanHealth): readonly PlanInsight[] =>
-  insights.filter((insight) => insight.score.health === health);
+  const reportSnapshot = async (): Promise<{ lines: number; risks: number }> => {
+    const list = await refreshInsights();
+    const summaries = list.map((entry) => {
+      const readiness = buildReadinessProfile(entry.plan);
+      const forecast = buildRiskForecast(entry.plan, 'advisory', entry.signals);
+      return {
+        planId: entry.plan.planId,
+        readiness: readiness.mean,
+        forecast: forecast.summary.overallRisk,
+      };
+    });
 
-export const hydrateInsight = (store: InMemoryCockpitInsightsStore, plan: RecoveryPlan, runs: readonly RuntimeRun[]): void => {
-  const signals: readonly CockpitSignal[] = [];
-  void projectInsight({
-    plan,
-    runs,
-    signals,
-    forecastSummary: 100 - runs.length,
-  });
-  void store.getInsight(plan.planId);
+    const riskCount = summaries.filter((entry) => entry.forecast > 70 || entry.readiness < 60).length;
+    return {
+      lines: summaries.length,
+      risks: riskCount,
+    };
+  };
+
+  const describePlan = async (plan: RecoveryPlan): Promise<string> => {
+    const forecast = buildRiskForecast(plan, 'advisory');
+    const profile = buildReadinessProfile(plan);
+    return [
+      `${plan.labels.short} readiness=${profile.mean.toFixed(2)}`,
+      `forecast=${forecast.summary.overallRisk.toFixed(2)}`,
+      `criticalWindows=${forecast.peakRisk.toFixed(2)}`,
+      `riskCells=${forecast.windows.length}`,
+    ].join(' | ');
+  };
+
+  return {
+    insightsStore,
+    planStore,
+    refreshInsights: () => refreshInsights(),
+    reportSnapshot,
+    describePlan,
+  };
 };

@@ -17,6 +17,7 @@
     "@data/recovery-cockpit-store": "workspace:*",
     "@domain/recovery-cockpit-models": "workspace:*",
     "@domain/recovery-cockpit-intelligence": "workspace:*",
+    "@data/recovery-cockpit-analytics": "workspace:*",
     "@shared/result": "workspace:*"
   }
 }

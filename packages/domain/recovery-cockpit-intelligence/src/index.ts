@@ -5,3 +5,6 @@ export * from './policies';
 export * from './signals';
 export * from './dependencyInsights';
 export * from './policyRisk';
+export * from './riskForecast';
+export * from './planHealthMatrix';
+export * from './policyNarrative';

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@domain/recovery-cockpit-models": "workspace:*",
+    "@domain/recovery-cockpit-workloads": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/result": "workspace:*"
   }

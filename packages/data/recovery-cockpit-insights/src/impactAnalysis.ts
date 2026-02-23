@@ -1,112 +1,84 @@
-import { RecoveryPlan, UtcIsoTimestamp, PlanId, RuntimeRun, CockpitSignal, RecoveryAction } from '@domain/recovery-cockpit-models';
+import { RecoveryPlan, CockpitSignal } from '@domain/recovery-cockpit-models';
+import { buildHealthMatrix } from '@domain/recovery-cockpit-intelligence';
 import { InMemoryCockpitInsightsStore } from './inMemoryInsightsStore';
-import { PlanInsight } from './insightModels';
+import { PlanInsight, PlanHealth } from './insightModels';
 
-type PlanPolicySignature = {
-  readonly overallScore: number;
-};
-
-export type ImpactVector = {
-  readonly planId: PlanId;
+export type ImpactSlice = {
+  readonly planId: string;
+  readonly health: PlanHealth;
+  readonly riskScore: number;
   readonly signalCount: number;
-  readonly failedActionCount: number;
-  readonly estimatedRecoveryMinutes: number;
-  readonly policyDelta: number;
-  readonly trend: 'improving' | 'regressing' | 'flat';
-  readonly reviewedAt: UtcIsoTimestamp;
+  readonly matrixScore: number;
+  readonly riskBand: 'low' | 'medium' | 'high' | 'critical';
 };
 
-export type ImpactSnapshot = {
-  readonly impactByPlan: ReadonlyArray<ImpactVector>;
-  readonly reviewedAt: UtcIsoTimestamp;
-  readonly summary: string;
+const riskBand = (readiness: number, policy: number): 'low' | 'medium' | 'high' | 'critical' => {
+  const score = (readiness + policy) / 2;
+  if (score >= 80) return 'low';
+  if (score >= 60) return 'medium';
+  if (score >= 35) return 'high';
+  return 'critical';
 };
 
-const estimateRecovery = (actions: readonly RecoveryAction[]): number =>
-  actions.reduce((acc, action) => acc + action.expectedDurationMinutes, 0);
-
-const trendFromSignals = (signals: readonly CockpitSignal[], baseline: number): ImpactVector['trend'] => {
-  if (signals.length === 0) return 'flat';
-  const latest = signals.at(-1);
-  if (!latest) return 'flat';
-  const severity = (latest as { score?: number })?.score ?? 0;
-  return severity > baseline ? 'regressing' : severity < baseline ? 'improving' : 'flat';
+const asHealth = (band: 'low' | 'medium' | 'high' | 'critical'): PlanHealth => {
+  if (band === 'low') return 'green';
+  if (band === 'medium') return 'yellow';
+  return 'red';
 };
 
-export const buildImpactVector = (
-  plan: RecoveryPlan,
-  runs: readonly RuntimeRun[],
-  signals: readonly CockpitSignal[],
-): ImpactVector => {
-  const failed = runs.reduce((acc, run) => acc + run.failedActions.length, 0);
-  const baselineSignals = signals.length;
-  const policy = runs.length === 0 ? 0 : Number((failed / (runs.length + 1)).toFixed(2));
-  const trend = trendFromSignals(signals, baselineSignals);
+export const classifyImpact = (plan: RecoveryPlan, signals: readonly CockpitSignal[]): ImpactSlice => {
+  const matrix = buildHealthMatrix(plan, signals, {
+    policyMode: 'advisory',
+    includeSignals: true,
+    signalCap: 25,
+  });
+
+  const health = matrix.severityBand;
+  const signalCount = signals.length;
   return {
     planId: plan.planId,
-    signalCount: baselineSignals,
-    failedActionCount: failed,
-    estimatedRecoveryMinutes: estimateRecovery(plan.actions),
-    policyDelta: policy,
-    trend,
-    reviewedAt: new Date().toISOString() as UtcIsoTimestamp,
+    health: asHealth(health),
+    riskScore: matrix.score,
+    signalCount,
+    matrixScore: matrix.cells.reduce((acc, cell) => acc + cell.score, 0),
+    riskBand: riskBand(matrix.cells[0]?.score ?? 0, matrix.cells[1]?.score ?? 0),
   };
 };
 
-export const hydrateImpactSnapshot = async (
+export const rankImpacts = (values: readonly ImpactSlice[]): readonly ImpactSlice[] =>
+  [...values].sort((left, right) => right.riskScore - left.riskScore);
+
+export const impactDigest = (values: readonly ImpactSlice[]): string =>
+  values.map((value) => `${value.planId}:${value.health}:${value.riskScore}`).join(' ; ');
+
+export const hydrateImpactMap = async (
   store: InMemoryCockpitInsightsStore,
   plans: readonly RecoveryPlan[],
-  policyByPlan: ReadonlyMap<PlanId, PlanPolicySignature>,
-  signalsByPlan: ReadonlyMap<PlanId, readonly CockpitSignal[]>,
-  runsByPlan: ReadonlyMap<PlanId, readonly RuntimeRun[]>,
-): Promise<ImpactSnapshot> => {
-  const impacts = plans.map((plan) =>
-    buildImpactVector(
-      plan,
-      runsByPlan.get(plan.planId) ?? [],
-      signalsByPlan.get(plan.planId) ?? [],
-    ),
-  );
-  let highRiskCount = 0;
-  let stableCount = 0;
+  signalsByPlan: ReadonlyMap<string, readonly CockpitSignal[]>,
+): Promise<ReadonlyMap<string, ImpactSlice>> => {
+  const entries: Array<[string, ImpactSlice]> = [];
 
-  for (const impact of impacts) {
-    if (impact.policyDelta > 5 || impact.failedActionCount > 2) {
-      highRiskCount += 1;
-    } else {
-      stableCount += 1;
+  for (const plan of plans) {
+    const signals = signalsByPlan.get(plan.planId) ?? [];
+    const impact = classifyImpact(plan, signals);
+    const insight = await store.getInsight(plan.planId);
+    if (!insight) {
+      entries.push([plan.planId, impact]);
+      continue;
     }
+    entries.push([
+      plan.planId,
+      {
+        ...impact,
+        matrixScore: Number((impact.matrixScore + normalizeInsightScore(insight)).toFixed(2)),
+      },
+    ]);
   }
 
-  await Promise.all(
-    impacts.map(async (impact) => {
-      const policy = policyByPlan.get(impact.planId);
-      const summary = `impact=${impact.signalCount},failed=${impact.failedActionCount},recovery=${impact.estimatedRecoveryMinutes}`;
-      const insight: PlanInsight = {
-        planId: impact.planId,
-        summary,
-        createdAt: new Date().toISOString(),
-        runCount: runsByPlan.get(impact.planId)?.length ?? 0,
-        forecastSummary: impact.estimatedRecoveryMinutes,
-        score: {
-          planId: impact.planId,
-          risk: impact.policyDelta * 11,
-          readiness: Math.max(0, 100 - impact.estimatedRecoveryMinutes / 2),
-          policy: policy?.overallScore ?? 0,
-          health: stableCount > highRiskCount ? 'green' : 'red',
-          reasons: [summary, `trend:${impact.trend}`],
-        },
-      };
-      await store.upsertInsight(insight);
-    }),
-  );
-
-  return {
-    impactByPlan: impacts,
-    reviewedAt: new Date().toISOString() as UtcIsoTimestamp,
-    summary: `${impacts.length} plans, highRisk=${highRiskCount}, stable=${stableCount}`,
-  };
+  return new Map(entries);
 };
 
-export const summarizeImpact = (snapshot: ImpactSnapshot): string =>
-  `${snapshot.summary} @${snapshot.reviewedAt}`;
+const normalizeInsightScore = (insight: PlanInsight): number => {
+  const value = insight.score.readiness + insight.score.policy - insight.score.risk;
+  return Number(Math.max(0, Math.min(100, value)).toFixed(2));
+};
