@@ -729,6 +729,15 @@
     },
     {
       "path": "./packages/service/recovery-command-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-signal-intelligence"
+    },
+    {
+      "path": "./packages/data/recovery-signal-intelligence-store"
+    },
+    {
+      "path": "./packages/service/recovery-signal-intelligence-orchestrator"
     }
   ]
 }

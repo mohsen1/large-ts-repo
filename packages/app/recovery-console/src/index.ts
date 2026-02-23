@@ -99,3 +99,8 @@ export * from './components/ScenarioPolicyPalette';
 export * from './components/RecoveryScenarioSignalCards';
 export * from './hooks/useRecoveryScenarioWorkbench';
 export * from './pages/RecoveryScenarioCommandCenterPage';
+export * from "./features/signal-intelligence/hooks/useRecoverySignalIntelligence";
+export * from "./features/signal-intelligence/components/SignalPulseGrid";
+export * from "./features/signal-intelligence/components/SignalPrioritiesPanel";
+export * from "./features/signal-intelligence/components/SignalTimeline";
+export * from "./features/signal-intelligence/pages/RecoverySignalIntelligenceCenterPage";

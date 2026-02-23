@@ -86,6 +86,9 @@
     },
     {
       "path": "../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-signal-intelligence-orchestrator/tsconfig.json"
     }
   ]
 }

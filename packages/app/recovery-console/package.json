@@ -35,7 +35,6 @@
     "@service/recovery-fabric-controller": "workspace:*",
     "@domain/recovery-drill": "workspace:*",
     "@data/recovery-drill-store": "workspace:*",
-
     "@service/recovery-drill-orchestrator": "workspace:*",
     "@domain/recovery-command-language": "workspace:*",
     "@domain/recovery-orchestration-planning": "workspace:*",
@@ -44,6 +43,9 @@
     "@types/react-dom": "^19.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "zod": "^3.24.0"
+    "zod": "^3.24.0",
+    "@service/recovery-signal-intelligence-orchestrator": "workspace:*",
+    "@data/recovery-signal-intelligence-store": "workspace:*",
+    "@domain/recovery-signal-intelligence": "workspace:*"
   }
 }
