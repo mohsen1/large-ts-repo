@@ -13,12 +13,22 @@
   "include": [
     "src/**/*"
   ],
+  "exclude": [
+    "src/hooks/useRecoveryFabricOrchestration.ts",
+    "src/components/RecoveryFabricControlDeck.tsx",
+    "src/components/RecoveryFabricRiskRadar.tsx",
+    "src/components/RecoveryFabricTopologyLegend.tsx",
+    "src/pages/RecoveryFabricOperationsHubPage.tsx"
+  ],
   "references": [
     {
       "path": "./../../data/recovery-operations-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-command-control-plane/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-operations-models/tsconfig.json"
@@ -36,6 +46,15 @@
       "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-command-language/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-fabric-models/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-drill/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-operations-engine/tsconfig.json"
     },
     {
@@ -46,6 +65,9 @@
     },
     {
       "path": "./../../service/recovery-operations-policy-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-command-intelligence-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
@@ -60,25 +82,7 @@
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
     },
     {
-      "path": "./../../data/recovery-readiness-store/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-fabric-models/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-fabric-controller/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-drill/tsconfig.json"
-    },
-    {
-      "path": "../../data/recovery-drill-store/tsconfig.json"
-    },
-    {
       "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-drill-orchestrator/tsconfig.json"
     },
     {
       "path": "../../shared/result/tsconfig.json"

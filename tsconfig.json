@@ -714,6 +714,15 @@
     },
     {
       "path": "./packages/domain/recovery-readiness-simulation"
+    },
+    {
+      "path": "./packages/domain/recovery-command-language"
+    },
+    {
+      "path": "./packages/data/recovery-command-control-plane"
+    },
+    {
+      "path": "./packages/service/recovery-command-intelligence-orchestrator"
     }
   ]
 }

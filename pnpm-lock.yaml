@@ -131,6 +131,9 @@ importers:
       '@aws-sdk/client-eventbridge':
         specifier: ^3.900.0
         version: 3.995.0
+      '@data/recovery-command-control-plane':
+        specifier: workspace:*
+        version: link:../../data/recovery-command-control-plane
       '@data/recovery-drill-store':
         specifier: workspace:*
         version: link:../../data/recovery-drill-store
@@ -143,6 +146,9 @@ importers:
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
+      '@domain/recovery-command-language':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-language
       '@domain/recovery-command-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-command-orchestration
@@ -164,6 +170,9 @@ importers:
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
+      '@service/recovery-command-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-command-intelligence-orchestrator
       '@service/recovery-continuity-lens':
         specifier: workspace:*
         version: link:../../service/recovery-continuity-lens
@@ -591,6 +600,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-command-control-plane:
+    dependencies:
+      '@domain/recovery-command-language':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-language
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -1452,6 +1476,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+
+  packages/domain/recovery-command-language:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-command-orchestration:
     dependencies:
@@ -2705,6 +2741,24 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-command-intelligence-orchestrator:
+    dependencies:
+      '@data/recovery-command-control-plane':
+        specifier: workspace:*
+        version: link:../../data/recovery-command-control-plane
+      '@domain/recovery-command-language':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-language
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-command-orchestrator:
     dependencies:
