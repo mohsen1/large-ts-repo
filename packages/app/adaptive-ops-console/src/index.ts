@@ -18,6 +18,13 @@ import { useReadinessConsole } from './hooks/useReadinessConsole';
 import { ReadinessCommandStrip } from './components/readiness/ReadinessCommandStrip';
 import { ReadinessSignalBoard } from './components/readiness/ReadinessSignalBoard';
 import { ReadinessHeatMap } from './components/readiness/ReadinessHeatMap';
+import { WorkloadOperationsCenterPage } from './pages/WorkloadOperationsCenterPage';
+import { WorkloadReadinessPlaybookPage } from './pages/WorkloadReadinessPlaybookPage';
+import { useWorkloadOrchestration, type WorkloadOrchestrationFilter, type WorkloadOrchestrationState } from './hooks/useWorkloadOrchestration';
+import { useWorkloadForecast, type ForecastWorkspace, type ForecastWorkspaceSnapshot } from './hooks/useWorkloadForecast';
+import { WorkloadTopologyPanel } from './components/workload/WorkloadTopologyPanel';
+import { WorkloadForecastSummary } from './components/workload/WorkloadForecastSummary';
+import { WorkloadSignalPanel } from './components/workload/WorkloadSignalPanel';
 
 export {
   AdaptiveOpsStudioPage,
@@ -43,4 +50,15 @@ export {
   ReadinessCommandStrip,
   ReadinessSignalBoard,
   ReadinessHeatMap,
+  WorkloadOperationsCenterPage,
+  WorkloadReadinessPlaybookPage,
+  useWorkloadOrchestration,
+  type WorkloadOrchestrationFilter,
+  type WorkloadOrchestrationState,
+  useWorkloadForecast,
+  type ForecastWorkspace,
+  type ForecastWorkspaceSnapshot,
+  WorkloadTopologyPanel,
+  WorkloadForecastSummary,
+  WorkloadSignalPanel,
 };
