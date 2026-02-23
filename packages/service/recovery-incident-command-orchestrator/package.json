@@ -16,6 +16,7 @@
   "dependencies": {
     "@data/incident-command-store": "workspace:*",
     "@domain/incident-command-models": "workspace:*",
+    "@domain/incident-command-core": "workspace:*",
     "@shared/result": "workspace:*"
   }
 }

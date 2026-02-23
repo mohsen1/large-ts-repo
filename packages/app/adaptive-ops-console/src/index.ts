@@ -25,6 +25,11 @@ import { useWorkloadForecast, type ForecastWorkspace, type ForecastWorkspaceSnap
 import { WorkloadTopologyPanel } from './components/workload/WorkloadTopologyPanel';
 import { WorkloadForecastSummary } from './components/workload/WorkloadForecastSummary';
 import { WorkloadSignalPanel } from './components/workload/WorkloadSignalPanel';
+import { IncidentCommandLabPage } from './pages/IncidentCommandLabPage';
+import { useCommandLab } from './hooks/useCommandLab';
+import { CommandLabControls } from './components/incident-lab/CommandLabControls';
+import { CommandLabReadinessPanel } from './components/incident-lab/CommandLabReadinessPanel';
+import { CommandLabTimeline } from './components/incident-lab/CommandLabTimeline';
 
 export {
   AdaptiveOpsStudioPage,
@@ -61,6 +66,11 @@ export {
   WorkloadTopologyPanel,
   WorkloadForecastSummary,
   WorkloadSignalPanel,
+  IncidentCommandLabPage,
+  useCommandLab,
+  CommandLabControls,
+  CommandLabReadinessPanel,
+  CommandLabTimeline,
 };
 export { ReadinessPlaybookOperationsPage } from './pages/ReadinessPlaybookOperationsPage';
 export { ReadinessPlaybookTimeline } from './components/readiness-lab/ReadinessPlaybookTimeline';

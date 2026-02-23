@@ -16,6 +16,9 @@
       "path": "./../../domain/incident-command-models/tsconfig.json"
     },
     {
+      "path": "./../../domain/incident-command-core/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
     }
   ]

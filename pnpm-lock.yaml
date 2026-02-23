@@ -437,6 +437,9 @@ importers:
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
+      '@service/recovery-signal-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-signal-intelligence-orchestrator
       '@service/recovery-simulation-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-simulation-orchestrator
@@ -1188,6 +1191,15 @@ importers:
       '@domain/recovery-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-signal-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/data/recovery-signal-orchestration-store:
+    dependencies:
+      '@domain/recovery-signal-orchestration-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-signal-orchestration-models
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -2333,6 +2345,12 @@ importers:
         version: 3.25.76
 
   packages/domain/recovery-signal-intelligence: {}
+
+  packages/domain/recovery-signal-orchestration-models:
+    dependencies:
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/domain/recovery-simulation-core:
     dependencies:
@@ -4123,9 +4141,15 @@ importers:
       '@data/recovery-signal-intelligence-store':
         specifier: workspace:*
         version: link:../../data/recovery-signal-intelligence-store
+      '@data/recovery-signal-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-signal-orchestration-store
       '@domain/recovery-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-signal-intelligence
+      '@domain/recovery-signal-orchestration-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-signal-orchestration-models
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result

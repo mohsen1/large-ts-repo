@@ -18,5 +18,9 @@
     {
       "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
     }
+    ,
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    }
   ]
 }

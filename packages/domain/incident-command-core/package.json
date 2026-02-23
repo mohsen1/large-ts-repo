@@ -16,6 +16,7 @@
   "dependencies": {
     "@shared/core": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/result": "workspace:*",
     "@domain/recovery-incident-orchestration": "workspace:*"
   }
 }
