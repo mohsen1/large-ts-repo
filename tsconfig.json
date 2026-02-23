@@ -170,6 +170,9 @@
       "path": "./packages/data/recovery-signal-intelligence-store"
     },
     {
+      "path": "./packages/data/recovery-ops-fabric-store"
+    },
+    {
       "path": "./packages/data/recovery-simulation-metrics"
     },
     {
@@ -410,6 +413,9 @@
       "path": "./packages/domain/recovery-readiness-simulation"
     },
     {
+      "path": "./packages/domain/recovery-ops-fabric"
+    },
+    {
       "path": "./packages/domain/recovery-risk-models"
     },
     {
@@ -639,6 +645,9 @@
     },
     {
       "path": "./packages/service/recovery-fabric-controller"
+    },
+    {
+      "path": "./packages/service/recovery-fabric-orchestrator"
     },
     {
       "path": "./packages/service/recovery-fusion-orchestrator"

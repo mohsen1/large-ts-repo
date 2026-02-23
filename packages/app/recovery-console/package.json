@@ -57,6 +57,7 @@
     "@domain/recovery-playbooks": "workspace:*",
     "@service/recovery-playbook-engine": "workspace:*",
     "@data/recovery-playbook-store": "workspace:*",
+    "@service/recovery-fabric-orchestrator": "workspace:*",
     "@service/recovery-incident-graph-engine": "workspace:*",
     "@domain/recovery-incident-graph": "workspace:*",
     "@service/recovery-command-forge-orchestrator": "workspace:*",

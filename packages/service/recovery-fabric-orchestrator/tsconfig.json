@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "./../../domain/recovery-ops-fabric/tsconfig.json" },
+    { "path": "./../../data/recovery-ops-fabric-store/tsconfig.json" },
+    { "path": "./../../shared/result/tsconfig.json" },
+    { "path": "./../../shared/type-level/tsconfig.json" }
+  ]
+}

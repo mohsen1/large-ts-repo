@@ -152,3 +152,8 @@ export { PlaybookPortfolioTable } from './features/recovery-playbook-lab/compone
 export { PlaybookLabSelectionRow } from './features/recovery-playbook-lab/components/PlaybookLabSelectionRow';
 export { PlaybookLabTimeline } from './features/recovery-playbook-lab/components/PlaybookLabTimeline';
 export { usePlaybookLab } from './features/recovery-playbook-lab/hooks/usePlaybookLab';
+export { RecoveryOpsFabricObservatoryPage } from './features/recovery-fabric-observatory/pages/RecoveryOpsFabricObservatoryPage';
+export { useRecoveryFabricOps } from './features/recovery-fabric-observatory/hooks/useRecoveryFabricOps';
+export { FabricTopologyPanel } from './features/recovery-fabric-observatory/components/FabricTopologyPanel';
+export { FabricSimulationChart } from './features/recovery-fabric-observatory/components/FabricSimulationChart';
+export { FabricCheckSummary } from './features/recovery-fabric-observatory/components/FabricCheckSummary';

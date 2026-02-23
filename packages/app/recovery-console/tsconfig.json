@@ -127,6 +127,9 @@
       "path": "./../../service/recovery-signal-intelligence-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-fabric-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
     },
     {

@@ -23,6 +23,9 @@ importers:
       '@data/incident-command-store':
         specifier: workspace:*
         version: link:../../data/incident-command-store
+      '@data/recovery-readiness-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-readiness-store
       '@data/recovery-workload-store':
         specifier: workspace:*
         version: link:../../data/recovery-workload-store
