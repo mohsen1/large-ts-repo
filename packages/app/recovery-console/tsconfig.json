@@ -116,6 +116,12 @@
     },
     {
       "path": "./../../service/recovery-signal-intelligence-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-ops-playbook-orchestrator/tsconfig.json"
     }
   ]
 }

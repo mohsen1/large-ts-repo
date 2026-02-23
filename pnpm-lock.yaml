@@ -32,6 +32,9 @@ importers:
       '@domain/incident-command-models':
         specifier: workspace:*
         version: link:../../domain/incident-command-models
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
       '@service/adaptive-ops-orchestrator':
         specifier: workspace:*
         version: link:../../service/adaptive-ops-orchestrator
@@ -41,6 +44,9 @@ importers:
       '@service/recovery-incident-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-command-orchestrator
+      '@service/recovery-readiness-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-readiness-orchestrator
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -179,6 +185,9 @@ importers:
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
+      '@domain/recovery-ops-playbook':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-playbook
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
@@ -224,6 +233,9 @@ importers:
       '@service/recovery-ops-orchestration-engine':
         specifier: workspace:*
         version: link:../../service/recovery-ops-orchestration-engine
+      '@service/recovery-ops-playbook-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-playbook-orchestrator
       '@service/recovery-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-readiness-orchestrator
@@ -1939,6 +1951,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-ops-playbook:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-orchestration:
     dependencies:
       '@shared/core':
@@ -3511,6 +3535,21 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-ops-playbook-orchestrator:
+    dependencies:
+      '@domain/recovery-ops-playbook':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-playbook
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result

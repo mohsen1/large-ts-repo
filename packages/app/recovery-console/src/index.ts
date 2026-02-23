@@ -141,3 +141,8 @@ export * from './features/recovery-orchestration-lab/hooks/useRecoveryOpsOrchest
 export { RecoveryOpsSurfaceCard } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceCard';
 export { RecoveryOpsSurfaceTimeline } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceTimeline';
 export { RecoveryOpsSurfaceRiskTable } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceRiskTable';
+export { useRecoveryOpsPlaybook } from './hooks/useRecoveryOpsPlaybook';
+export { RecoveryOpsPlaybookDashboard } from './components/RecoveryOpsPlaybookDashboard';
+export { RecoveryPlaybookTimeline } from './components/RecoveryPlaybookTimeline';
+export { RecoveryOpsPlaybookRiskGauge } from './components/RecoveryOpsPlaybookRiskGauge';
+export { RecoveryPlaybookOperationsRoomPage } from './pages/RecoveryPlaybookOperationsRoomPage';

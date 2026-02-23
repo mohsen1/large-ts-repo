@@ -772,5 +772,11 @@
     {
       "path": "./packages/shared/zod-adapters"
     }
+    {
+      "path": "./packages/domain/recovery-ops-playbook"
+    },
+    {
+      "path": "./packages/service/recovery-ops-playbook-orchestrator"
+    }
   ]
 }
