@@ -2,8 +2,8 @@
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "composite": true,
-    "declaration": true
+    "declaration": true,
+    "composite": true
   },
   "include": [
     "src/**/*"
@@ -56,6 +56,9 @@
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/observability-contracts/tsconfig.json"
     }
   ]
 }

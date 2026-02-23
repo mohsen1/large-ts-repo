@@ -12,3 +12,6 @@ export * from './command-hub-repository';
 export * from './command-hub-facade';
 export * from './operations-workspace';
 export * from './command-hub-metrics';
+export * from './signal-router';
+export * from './orchestration-telemetry';
+export * from './workspace-metrics';

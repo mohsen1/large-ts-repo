@@ -30,6 +30,7 @@
     "@data/recovery-operations-control-plane-store": "workspace:*",
     "@infrastructure/recovery-operations-cadence-bridge": "workspace:*",
     "@shared/result": "workspace:*",
+    "@shared/observability-contracts": "workspace:*",
     "zod": "^3.24.0"
   }
 }

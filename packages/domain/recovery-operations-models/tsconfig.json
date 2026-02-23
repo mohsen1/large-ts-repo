@@ -19,6 +19,9 @@
     },
     {
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
     }
   ]
 }

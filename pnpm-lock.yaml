@@ -161,6 +161,9 @@ importers:
       '@domain/recovery-command-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-command-orchestration
+      '@domain/recovery-command-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-studio
       '@domain/recovery-drill':
         specifier: workspace:*
         version: link:../../domain/recovery-drill
@@ -1563,6 +1566,24 @@ importers:
 
   packages/domain/recovery-command-orchestration:
     dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-command-studio:
+    dependencies:
+      '@domain/recovery-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-orchestration
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core

@@ -47,3 +47,8 @@ export {
   buildReadinessProfile as buildOperationsReadinessProfile,
   projectReadiness,
 } from './operations-readiness';
+export * from './command-orchestration-graph';
+export * from './readiness-horizon';
+export * from './forecast-matrix';
+export { buildIntentBand, buildIntentEnvelope, scoreIntentEnvelope, groupSignalsByVector } from './command-intent-band';
+export type { IntentEnvelope, IntentPhase, IntentMatrix, IntentVector } from './command-intent-band';

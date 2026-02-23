@@ -10,6 +10,7 @@
   ],
   "references": [
     { "path": "./../../domain/recovery-operations-models/tsconfig.json" },
-    { "path": "./../../shared/result/tsconfig.json" }
+    { "path": "./../../shared/result/tsconfig.json" },
+    { "path": "./../../shared/observability-contracts/tsconfig.json" }
   ]
 }

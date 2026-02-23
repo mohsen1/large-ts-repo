@@ -26,3 +26,5 @@ export * from './cascade-evaluator';
 export * from './feedback-loop';
 export * from './incident-command-hub';
 export * from './command-hub-orchestrator';
+export * from './command-horizon-orchestrator';
+export * from './workspace-operator';

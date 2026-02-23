@@ -117,3 +117,9 @@ export { CommandStudioPlanTable } from './components/command-studio/CommandStudi
 export { CommandStudioReadinessPanel } from './components/command-studio/CommandStudioReadinessPanel';
 export { CommandStudioTimeline } from './components/command-studio/CommandStudioTimeline';
 export { RecoveryCommandStudioPage } from './pages/RecoveryCommandStudioPage';
+export * from './hooks/useRecoveryOperationsOrchestrationWorkspace';
+export * from './hooks/useRecoveryCommandForecast';
+export * from './components/RecoveryOperationsOrchestrationDashboard';
+export * from './components/ReadinessHorizonChart';
+export * from './components/ForecastPulseTimeline';
+export * from './pages/RecoveryOperationsOrchestrationWorkspacePage';
