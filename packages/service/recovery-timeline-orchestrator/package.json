@@ -1,0 +1,23 @@
+{
+  "name": "@service/recovery-timeline-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@data/recovery-timeline-store": "workspace:*",
+    "@domain/recovery-timeline": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/core": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@data/recovery-timeline-store",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-timeline": "workspace:*",
+    "@shared/result": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

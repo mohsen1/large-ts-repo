@@ -645,6 +645,36 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/app/recovery-timeline-studio:
+    dependencies:
+      '@app/recovery-console':
+        specifier: workspace:*
+        version: link:../recovery-console
+      '@data/recovery-timeline-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-timeline-store
+      '@domain/recovery-timeline':
+        specifier: workspace:*
+        version: link:../../domain/recovery-timeline
+      '@service/recovery-timeline-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-timeline-orchestrator
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
   packages/app/reporter:
     dependencies:
       '@domain/reporting':
@@ -1542,6 +1572,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-timeline-store:
+    dependencies:
+      '@domain/recovery-timeline':
+        specifier: workspace:*
+        version: link:../../domain/recovery-timeline
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -2803,6 +2845,18 @@ importers:
         version: 3.25.76
 
   packages/domain/recovery-stability-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-timeline:
     dependencies:
       '@shared/core':
         specifier: workspace:*
@@ -4870,6 +4924,24 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-timeline-orchestrator:
+    dependencies:
+      '@data/recovery-timeline-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-timeline-store
+      '@domain/recovery-timeline':
+        specifier: workspace:*
+        version: link:../../domain/recovery-timeline
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76

@@ -1,0 +1,26 @@
+{
+  "name": "@app/recovery-timeline-studio",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@service/recovery-timeline-orchestrator": "workspace:*",
+    "@domain/recovery-timeline": "workspace:*",
+    "@data/recovery-timeline-store": "workspace:*",
+    "@shared/result": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

@@ -53,6 +53,9 @@
       "path": "./packages/app/recovery-playbook-orchestrator"
     },
     {
+      "path": "./packages/app/recovery-timeline-studio"
+    },
+    {
       "path": "./packages/app/reporter"
     },
     {
@@ -234,6 +237,9 @@
     },
     {
       "path": "./packages/data/recovery-workload-store"
+    },
+    {
+      "path": "./packages/data/recovery-timeline-store"
     },
     {
       "path": "./packages/data/repositories"
@@ -510,6 +516,9 @@
     },
     {
       "path": "./packages/domain/recovery-risk-strategy"
+    },
+    {
+      "path": "./packages/domain/recovery-timeline"
     },
     {
       "path": "./packages/domain/recovery-scenario-engine"
@@ -867,6 +876,9 @@
     },
     {
       "path": "./packages/service/recovery-workload-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-timeline-orchestrator"
     },
     {
       "path": "./packages/service/reporting"
