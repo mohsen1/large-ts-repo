@@ -4,3 +4,6 @@ export * from './schema';
 export * from './history';
 export * from './pipeline';
 export * from './trendline';
+export * from './orchestratedInsights';
+export * from './coverageScoring';
+export * from './signalCorrelation';

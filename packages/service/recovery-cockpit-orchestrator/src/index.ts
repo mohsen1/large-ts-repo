@@ -15,3 +15,6 @@ export * from './incidentResponse';
 export * from './planQualityRouter';
 export * from './decisionService';
 export * from './workloadDirector';
+export * from './directiveEngine';
+export * from './runbookOrchestrator';
+export * from './controlPlane';

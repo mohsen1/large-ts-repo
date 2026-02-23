@@ -458,6 +458,9 @@ importers:
       '@domain/incident-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/incident-signal-intelligence
+      '@domain/recovery-command-network':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-network
       '@domain/recovery-fabric-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-orchestration
@@ -554,6 +557,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -2025,6 +2031,24 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-command-network:
+    dependencies:
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../recovery-readiness
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
