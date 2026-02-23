@@ -187,3 +187,8 @@ export { ContinuityReadinessRadar } from './features/continuity-readiness/compon
 export { ContinuityReadinessSignalPanel } from './features/continuity-readiness/components/ContinuityReadinessSignalPanel';
 export { ContinuityReadinessRunbook } from './features/continuity-readiness/components/ContinuityReadinessRunbook';
 export { useContinuityReadinessWorkspace } from './features/continuity-readiness/hooks/useContinuityReadinessWorkspace';
+export { RecoveryScenarioLabPage } from './features/recovery-scenario-lab/pages/RecoveryScenarioLabPage';
+export { ScenarioExecutionRail } from './features/recovery-scenario-lab/components/ScenarioExecutionRail';
+export { ScenarioRiskBoard } from './features/recovery-scenario-lab/components/ScenarioRiskBoard';
+export { ScenarioWorkspaceHeader } from './features/recovery-scenario-lab/components/ScenarioWorkspaceHeader';
+export { useRecoveryScenarioLabWorkspace } from './features/recovery-scenario-lab/hooks/useRecoveryScenarioLabWorkspace';

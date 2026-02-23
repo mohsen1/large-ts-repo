@@ -218,6 +218,9 @@ importers:
       '@aws-sdk/client-eventbridge':
         specifier: ^3.900.0
         version: 3.995.0
+      '@data/continuity-readiness-store':
+        specifier: workspace:*
+        version: link:../../data/continuity-readiness-store
       '@data/incident-fusion-store':
         specifier: workspace:*
         version: link:../../data/incident-fusion-store
@@ -275,6 +278,9 @@ importers:
       '@domain/recovery-command-surface-models':
         specifier: workspace:*
         version: link:../../domain/recovery-command-surface-models
+      '@domain/recovery-continuity-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-continuity-readiness
       '@domain/recovery-drill':
         specifier: workspace:*
         version: link:../../domain/recovery-drill
@@ -317,6 +323,9 @@ importers:
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
+      '@service/continuity-readiness-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/continuity-readiness-orchestrator
       '@service/incident-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/incident-fusion-orchestrator
@@ -725,6 +734,21 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/continuity-readiness-store:
+    dependencies:
+      '@domain/recovery-continuity-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-continuity-readiness
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/data/decision-catalog:
     dependencies:
@@ -2177,6 +2201,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-continuity-readiness:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/domain/recovery-coordination:
     dependencies:
       '@domain/recovery-orchestration':
@@ -3250,6 +3286,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/service/continuity-readiness-orchestrator:
+    dependencies:
+      '@data/continuity-readiness-store':
+        specifier: workspace:*
+        version: link:../../data/continuity-readiness-store
+      '@domain/recovery-continuity-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-continuity-readiness
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/continuity-runtime:
     dependencies:

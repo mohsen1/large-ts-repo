@@ -178,6 +178,9 @@
       "path": "../../domain/incident-management/tsconfig.json"
     },
     {
+      "path": "../../domain/recovery-scenario-orchestration/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
     },
     {
