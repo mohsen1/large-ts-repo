@@ -31,6 +31,7 @@
     "@service/recovery-continuity-lens": "workspace:*",
     "@service/incident-fusion-orchestrator": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
+    "@domain/recovery-command-studio": "workspace:*",
     "@domain/incident-fusion-models": "workspace:*",
     "@data/incident-fusion-store": "workspace:*",
     "@data/recovery-operations-store": "workspace:*",

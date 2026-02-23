@@ -111,3 +111,9 @@ export { IncidentFusionSignalPanel } from './components/incident-fusion/Incident
 export { IncidentFusionScenarioMatrix } from './components/incident-fusion/IncidentFusionScenarioMatrix';
 export { IncidentFusionPulseChart } from './components/incident-fusion/IncidentFusionPulseChart';
 export * from './pages/incident-fusion/IncidentFusionWorkspacePage';
+
+export { useRecoveryCommandStudio } from './hooks/useRecoveryCommandStudio';
+export { CommandStudioPlanTable } from './components/command-studio/CommandStudioPlanTable';
+export { CommandStudioReadinessPanel } from './components/command-studio/CommandStudioReadinessPanel';
+export { CommandStudioTimeline } from './components/command-studio/CommandStudioTimeline';
+export { RecoveryCommandStudioPage } from './pages/RecoveryCommandStudioPage';

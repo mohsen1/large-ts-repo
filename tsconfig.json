@@ -164,6 +164,9 @@
       "path": "./packages/domain/recovery-readiness"
     },
     {
+      "path": "./packages/domain/recovery-command-studio"
+    },
+    {
       "path": "./packages/domain/recovery-operations-cadence"
     },
     {
