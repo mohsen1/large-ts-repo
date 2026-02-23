@@ -6,3 +6,7 @@ export * from './metrics';
 export * from './adapters';
 export * from './workspace';
 export * from './engine';
+export * from './constraints-engine';
+export * from './plan-analytics';
+export * from './pipeline';
+export * from './stability-matrix';

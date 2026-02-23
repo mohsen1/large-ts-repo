@@ -10,3 +10,4 @@ export * from './simulation-coordinator';
 export * from './operations-control';
 export * from './ops-portfolio-dashboard';
 export * from './simulation-readiness';
+export * from './recovery-fusion-console';

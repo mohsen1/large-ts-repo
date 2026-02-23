@@ -31,6 +31,8 @@
     "@service/recovery-risk-engine": "workspace:*",
     "@service/recovery-plan-orchestrator": "workspace:*",
     "@service/recovery-coordination-orchestrator": "workspace:*",
+    "@domain/recovery-fusion-intelligence": "workspace:*",
+    "@domain/recovery-readiness-simulation": "workspace:*",
     "@shared/result": "workspace:*",
     "@data/recovery-operations-store": "workspace:*",
     "zod": "^3.24.0"

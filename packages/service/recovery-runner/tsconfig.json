@@ -62,6 +62,12 @@
     },
     {
       "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-readiness-simulation/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-fusion-intelligence/tsconfig.json"
     }
   ]
 }

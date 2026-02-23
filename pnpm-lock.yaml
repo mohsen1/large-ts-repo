@@ -320,6 +320,9 @@ importers:
       '@service/recovery-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-orchestrator
+      '@service/recovery-coordination-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-coordination-orchestrator
       '@service/recovery-fabric-controller':
         specifier: workspace:*
         version: link:../../service/recovery-fabric-controller
