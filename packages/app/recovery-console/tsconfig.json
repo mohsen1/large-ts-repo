@@ -133,6 +133,9 @@
       "path": "./../../service/recovery-playbook-lab-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-playbook-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
     },
     {

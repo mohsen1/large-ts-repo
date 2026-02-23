@@ -161,3 +161,10 @@ export { useRecoveryFabricOps } from './features/recovery-fabric-observatory/hoo
 export { FabricTopologyPanel } from './features/recovery-fabric-observatory/components/FabricTopologyPanel';
 export { FabricSimulationChart } from './features/recovery-fabric-observatory/components/FabricSimulationChart';
 export { FabricCheckSummary } from './features/recovery-fabric-observatory/components/FabricCheckSummary';
+export { RecoveryPlaybookOrchestrationLabPage } from './features/recovery-playbook-orchestration-lab/pages/RecoveryPlaybookOrchestrationLabPage';
+export { PlaybookControlBoard } from './features/recovery-playbook-orchestration-lab/components/PlaybookControlBoard';
+export { PlaybookPolicyImpactPanel } from './features/recovery-playbook-orchestration-lab/components/PlaybookPolicyImpactPanel';
+export { PlaybookSynthesisTimeline } from './features/recovery-playbook-orchestration-lab/components/PlaybookSynthesisTimeline';
+export { useRecoveryPlaybookOrchestrationLab } from './features/recovery-playbook-orchestration-lab/hooks/useRecoveryPlaybookOrchestrationLab';
+export { usePlaybookHealthProjection } from './features/recovery-playbook-orchestration-lab/hooks/usePlaybookHealthProjection';
+export { usePlaybookPolicyMatrix } from './features/recovery-playbook-orchestration-lab/hooks/usePlaybookPolicyMatrix';

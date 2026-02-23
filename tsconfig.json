@@ -810,6 +810,15 @@
     },
     {
       "path": "./packages/service/recovery-ops-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-playbook-orchestration"
+    },
+    {
+      "path": "./packages/data/recovery-playbook-orchestration-store"
+    },
+    {
+      "path": "./packages/service/recovery-playbook-orchestrator"
     }
   ]
 }

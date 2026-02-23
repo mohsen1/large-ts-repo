@@ -63,6 +63,8 @@
     "@service/recovery-command-forge-orchestrator": "workspace:*",
     "@service/recovery-ops-orchestration-engine": "workspace:*",
     "@service/recovery-playbook-lab-orchestrator": "workspace:*",
-    "@domain/recovery-playbook-lab": "workspace:*"
+    "@domain/recovery-playbook-lab": "workspace:*",
+    "@service/recovery-playbook-orchestrator": "workspace:*",
+    "@domain/recovery-playbook-orchestration": "workspace:*"
   }
 }
