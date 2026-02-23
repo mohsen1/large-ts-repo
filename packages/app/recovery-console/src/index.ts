@@ -197,3 +197,8 @@ export { ScenarioExecutionRail } from './features/recovery-scenario-lab/componen
 export { ScenarioRiskBoard } from './features/recovery-scenario-lab/components/ScenarioRiskBoard';
 export { ScenarioWorkspaceHeader } from './features/recovery-scenario-lab/components/ScenarioWorkspaceHeader';
 export { useRecoveryScenarioLabWorkspace } from './features/recovery-scenario-lab/hooks/useRecoveryScenarioLabWorkspace';
+export { RecoveryCadenceLabPage } from './features/recovery-cadence-lab/pages/RecoveryCadenceLabPage';
+export { CadenceLabOverview } from './features/recovery-cadence-lab/components/CadenceLabOverview';
+export { CadenceTimeline } from './features/recovery-cadence-lab/components/CadenceTimeline';
+export { CadenceRunboard } from './features/recovery-cadence-lab/components/CadenceRunboard';
+export { useRecoveryCadenceLab } from './features/recovery-cadence-lab/hooks/useRecoveryCadenceLab';

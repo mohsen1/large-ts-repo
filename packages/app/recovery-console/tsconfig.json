@@ -190,6 +190,9 @@
       "path": "../../service/recovery-command-control-hub/tsconfig.json"
     },
     {
+      "path": "../../service/recovery-cadence-coordinator/tsconfig.json"
+    },
+    {
       "path": "../../domain/recovery-continuity-lab-core/tsconfig.json"
     }
   ]

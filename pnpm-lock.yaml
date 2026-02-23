@@ -278,6 +278,9 @@ importers:
       '@domain/recovery-command-surface-models':
         specifier: workspace:*
         version: link:../../domain/recovery-command-surface-models
+      '@domain/recovery-continuity-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-continuity-lab-core
       '@domain/recovery-continuity-readiness':
         specifier: workspace:*
         version: link:../../domain/recovery-continuity-readiness
@@ -335,6 +338,9 @@ importers:
       '@service/incident-orchestration':
         specifier: workspace:*
         version: link:../../service/incident-orchestration
+      '@service/recovery-cadence-coordinator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cadence-coordinator
       '@service/recovery-command-control-hub':
         specifier: workspace:*
         version: link:../../service/recovery-command-control-hub
@@ -951,6 +957,18 @@ importers:
       '@domain/recovery-operations-atlas':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-atlas
+
+  packages/data/recovery-cadence-event-store:
+    dependencies:
+      '@domain/recovery-cadence-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cadence-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-cockpit-analytics:
     dependencies:
@@ -2048,6 +2066,18 @@ importers:
         specifier: workspace:*
         version: link:../../shared/core
 
+  packages/domain/recovery-cadence-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-cockpit-intelligence:
     dependencies:
       '@domain/recovery-cockpit-models':
@@ -2191,6 +2221,8 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-continuity-lab-core: {}
 
   packages/domain/recovery-continuity-planning:
     dependencies:
@@ -3680,6 +3712,27 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-cadence-coordinator:
+    dependencies:
+      '@data/recovery-cadence-event-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cadence-event-store
+      '@domain/recovery-cadence-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cadence-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-cockpit-intent-orchestrator:
     dependencies:

@@ -242,6 +242,9 @@
       "path": "./packages/data/streaming-dashboard-store"
     },
     {
+      "path": "./packages/data/recovery-cadence-event-store"
+    },
+    {
       "path": "./packages/data/telemetry-store"
     },
     {
@@ -842,6 +845,9 @@
       "path": "./packages/service/recovery-signal-intelligence-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-cadence-coordinator"
+    },
+    {
       "path": "./packages/service/recovery-simulation-orchestrator"
     },
     {
@@ -921,6 +927,9 @@
     },
     {
       "path": "./packages/domain/recovery-continuity-lab-core"
+    },
+    {
+      "path": "./packages/domain/recovery-cadence-orchestration"
     },
     {
       "path": "./packages/infrastructure/recovery-scenario-gateway"
