@@ -99,15 +99,16 @@ read -r -d '' FIX_PROMPT <<'EOF' || true
 The repository currently fails the monorepo build.
 
 Your job:
-1. Run `pnpm build` in the repo root.
-2. Fix TypeScript/build/project-reference issues until that command passes.
+1. Run `pnpm exec tsc -b tsconfig.json --pretty false` and `pnpm build` in the repo root.
+2. Fix TypeScript/build/project-reference issues until both commands pass.
 3. Keep `.gitignore` safe: do not commit `dist/`, `node_modules/`, or generated JS outputs.
 4. Make only targeted fixes; keep architecture and package boundaries coherent.
 5. If fixes add/change dependencies, update the correct package.json files and run `pnpm install --prefer-frozen-lockfile`.
 6. Keep all edited package.json files valid JSON.
-7. Do not leave unresolved imports: only use internal aliases that exist in tsconfig path mappings and project references.
-8. Do not add scripts or generators; only edit normal source/config files needed for build stability.
-9. After fixes, rerun `pnpm build` and report success only if it passes.
+7. Keep tsconfig files valid and parseable (fix JSON syntax/config syntax errors like missing commas immediately).
+8. Do not leave unresolved imports: only use internal aliases that exist in tsconfig path mappings and project references.
+9. Do not add scripts or generators; only edit normal source/config files needed for build stability.
+10. After fixes, rerun both commands and report success only if both pass.
 EOF
 
 read -r -d '' PROMPT <<'EOF' || true
@@ -168,9 +169,32 @@ ensure_build_clean() {
   return 1
 }
 
+ensure_typecheck_clean() {
+  local attempt=1
+  while [ "$attempt" -le "$MAX_FIX_ATTEMPTS" ]; do
+    echo "Typecheck attempt $attempt/$MAX_FIX_ATTEMPTS"
+    install_deps_if_needed
+    if run_typecheck; then
+      echo "Typecheck is clean."
+      return 0
+    fi
+
+    echo "Typecheck failed. Running Codex fix pass..."
+    run_and_wait codex exec \
+      --model=gpt-5.3-codex-spark \
+      --dangerously-bypass-approvals-and-sandbox \
+      --config model_reasoning_effort=low \
+      "$FIX_PROMPT"
+
+    attempt=$((attempt + 1))
+  done
+
+  echo "error: typecheck still failing after $MAX_FIX_ATTEMPTS fix attempt(s)." >&2
+  return 1
+}
+
 ensure_repo_clean() {
-  install_deps_if_needed
-  run_typecheck
+  ensure_typecheck_clean
   ensure_build_clean
 }
 
