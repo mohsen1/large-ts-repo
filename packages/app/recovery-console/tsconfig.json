@@ -25,6 +25,9 @@
       "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
     },
     {
+      "path": "../../service/recovery-ops-orchestration-engine/tsconfig.json"
+    },
+    {
       "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
     },
     {

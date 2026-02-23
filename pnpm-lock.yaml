@@ -194,6 +194,9 @@ importers:
       '@service/incident-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/incident-fusion-orchestrator
+      '@service/recovery-command-forge-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-command-forge-orchestrator
       '@service/recovery-command-intelligence-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-intelligence-orchestrator
@@ -218,6 +221,9 @@ importers:
       '@service/recovery-operations-policy-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-policy-engine
+      '@service/recovery-ops-orchestration-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-orchestration-engine
       '@service/recovery-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-readiness-orchestrator
@@ -909,6 +915,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-ops-orchestration-store:
+    dependencies:
+      '@domain/recovery-ops-orchestration-surface':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-surface
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -1896,6 +1920,18 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-ops-orchestration-surface:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -2924,6 +2960,27 @@ importers:
         specifier: workspace:*
         version: link:../../shared/type-level
 
+  packages/service/recovery-command-forge-orchestrator:
+    dependencies:
+      '@domain/recovery-command-forge':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-forge
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-command-intelligence-orchestrator:
     dependencies:
       '@data/recovery-command-control-plane':
@@ -3442,6 +3499,27 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/service/recovery-ops-orchestration-engine:
+    dependencies:
+      '@data/recovery-ops-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-orchestration-store
+      '@domain/recovery-ops-orchestration-surface':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-surface
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-plan-orchestrator:
     dependencies:

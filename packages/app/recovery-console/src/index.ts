@@ -135,3 +135,9 @@ export { useRecoveryCommandForgeOrchestrator } from './hooks/useRecoveryCommandF
 export { CommandForgePolicyPanel } from './components/recovery-command-forge/CommandForgePolicyPanel';
 export { CommandForgeSimulationBoard } from './components/recovery-command-forge/CommandForgeSimulationBoard';
 export { CommandForgeTopologyTimeline } from './components/recovery-command-forge/CommandForgeTopologyTimeline';
+export { RecoveryOpsOrchestrationLabPage } from './features/recovery-orchestration-lab/pages/RecoveryOpsOrchestrationLabPage';
+export * from './features/recovery-orchestration-lab/hooks/useRecoveryOpsOrchestrationLab';
+export * from './features/recovery-orchestration-lab/hooks/useRecoveryOpsOrchestrationLabState';
+export { RecoveryOpsSurfaceCard } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceCard';
+export { RecoveryOpsSurfaceTimeline } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceTimeline';
+export { RecoveryOpsSurfaceRiskTable } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceRiskTable';

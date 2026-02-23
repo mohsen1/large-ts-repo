@@ -713,6 +713,15 @@
       "path": "./packages/service/recovery-workload-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-ops-orchestration-engine"
+    },
+    {
+      "path": "./packages/data/recovery-ops-orchestration-store"
+    },
+    {
+      "path": "./packages/domain/recovery-ops-orchestration-surface"
+    },
+    {
       "path": "./packages/service/reporting"
     },
     {
