@@ -16,6 +16,8 @@
   "dependencies": {
     "@data/streaming-dashboard-store": "workspace:*",
     "@service/streaming-dashboard-orchestrator": "workspace:*",
+    "@domain/recovery-stress-lab": "workspace:*",
+    "@service/recovery-stress-lab-orchestrator": "workspace:*",
     "@domain/streaming-observability": "workspace:*",
     "@domain/streaming-engine": "workspace:*",
     "@shared/type-level": "workspace:*",

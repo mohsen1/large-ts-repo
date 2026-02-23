@@ -22,10 +22,16 @@
       "path": "./../../domain/streaming-observability/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-stress-lab/tsconfig.json"
+    },
+    {
       "path": "./../../data/streaming-dashboard-store/tsconfig.json"
     },
     {
       "path": "./../../service/streaming-dashboard-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-stress-lab-orchestrator/tsconfig.json"
     }
   ]
 }

@@ -11,6 +11,9 @@
   "references": [
     {
       "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/analytics/tsconfig.json"
     }
   ]
 }
