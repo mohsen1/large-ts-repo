@@ -11,6 +11,9 @@ export * from './readiness-command-analytics';
 export * from './readiness-workload-engine';
 export * from './readiness-command-matrix';
 export * from './readiness-portfolio-router';
+export * from './readiness-command-router';
+export * from './readiness-workbench';
+export * from './readiness-operations-console';
 
 export * from './readiness-simulation';
 export * from './readiness-simulation-dashboard';

@@ -34,6 +34,12 @@
     },
     {
       "path": "./../../data/incident-command-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-readiness/tsconfig.json"
     }
   ]
 }

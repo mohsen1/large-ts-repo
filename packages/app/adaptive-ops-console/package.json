@@ -21,6 +21,8 @@
     "@service/recovery-incident-command-orchestrator": "workspace:*",
     "@domain/incident-command-models": "workspace:*",
     "@data/incident-command-store": "workspace:*",
+    "@service/recovery-readiness-orchestrator": "workspace:*",
+    "@domain/recovery-readiness": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",

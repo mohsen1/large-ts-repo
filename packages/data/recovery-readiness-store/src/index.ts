@@ -10,3 +10,6 @@ export * from './query-extensions';
 export * from './risk-snapshot';
 export * from './read-model-extensions';
 export * from './readiness-search';
+export * from './readiness-event-store';
+export * from './readiness-metrics';
+export * from './readiness-query-service';
