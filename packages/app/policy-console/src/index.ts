@@ -23,3 +23,9 @@ export async function simulate(input: ConsoleInput): Promise<string> {
   await guard(audit, input.principal, input.action, input.resource);
   return JSON.stringify(report, null, 2);
 }
+
+export { usePolicyConsoleWorkspace } from './hooks/usePolicyConsoleWorkspace';
+export { PolicyOrchestrationWorkspace } from './components/PolicyOrchestrationWorkspace';
+export { PolicyExecutionTimeline } from './components/PolicyExecutionTimeline';
+export { PolicyMetricCards } from './components/PolicyMetricCards';
+export { PolicyOrchestrationWorkbenchPage } from './pages/PolicyOrchestrationWorkbenchPage';

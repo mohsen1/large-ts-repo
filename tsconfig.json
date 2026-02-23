@@ -26,6 +26,9 @@
       "path": "./packages/app/policy-console"
     },
     {
+      "path": "./packages/service/policy-orchestration-engine"
+    },
+    {
       "path": "./packages/app/recovery-console"
     },
     {
@@ -84,6 +87,9 @@
     },
     {
       "path": "./packages/data/incident-signal-store"
+    },
+    {
+      "path": "./packages/data/policy-orchestration-store"
     },
     {
       "path": "./packages/data/lineage"
@@ -297,6 +303,9 @@
     },
     {
       "path": "./packages/domain/observability-core"
+    },
+    {
+      "path": "./packages/domain/policy-orchestration"
     },
     {
       "path": "./packages/domain/operations-control"

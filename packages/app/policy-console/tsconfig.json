@@ -3,7 +3,12 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true
+    "declaration": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2023"
+    ]
   },
   "include": [
     "src/**/*"
@@ -14,6 +19,15 @@
     },
     {
       "path": "./../../platform/security/tsconfig.json"
+    },
+    {
+      "path": "./../../data/policy-orchestration-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/policy-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../service/policy-orchestration-engine/tsconfig.json"
     }
   ]
 }

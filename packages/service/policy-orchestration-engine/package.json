@@ -1,5 +1,5 @@
 {
-  "name": "@app/policy-console",
+  "name": "@service/policy-orchestration-engine",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,14 +14,11 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/policy-engine": "workspace:*",
-    "@platform/security": "workspace:*",
     "@data/policy-orchestration-store": "workspace:*",
+    "@domain/contracts": "workspace:*",
+    "@domain/policy-engine": "workspace:*",
     "@domain/policy-orchestration": "workspace:*",
-    "@service/policy-orchestration-engine": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@shared/core": "workspace:*",
+    "@shared/result": "workspace:*"
   }
 }
