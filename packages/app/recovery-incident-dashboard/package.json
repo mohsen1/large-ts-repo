@@ -42,6 +42,7 @@
     "@service/recovery-workflow-orchestrator": "workspace:*",
     "@service/recovery-workload-orchestrator": "workspace:*",
     "@service/recovery-readiness-orchestrator": "workspace:*",
+    "@service/recovery-coordination-orchestrator": "workspace:*",
     "@shared/result": "workspace:*",
     "@domain/recovery-readiness": "workspace:*",
     "@domain/recovery-readiness-simulation": "workspace:*",

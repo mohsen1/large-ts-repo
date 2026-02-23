@@ -26,6 +26,15 @@
       "path": "./../../service/recovery-operations-engine/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-coordination-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-stability-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-operations-store/tsconfig.json"
     },
     {
@@ -47,10 +56,16 @@
       "path": "./../../service/recovery-situational-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
+      "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-operations-models/tsconfig.json"
+      "path": "./../../service/recovery-fabric-controller/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-strategy-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-synthesis-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-incident-store/tsconfig.json"
@@ -62,16 +77,22 @@
       "path": "./../../data/recovery-workload-store/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-workload-intelligence/tsconfig.json"
+      "path": "./../../data/recovery-strategy-store/tsconfig.json"
     },
     {
-      "path": "./../../data/incident-signal-store/tsconfig.json"
+      "path": "./../../domain/recovery-incident-orchestration/tsconfig.json"
     },
     {
-      "path": "./../../domain/incident-signal-intelligence/tsconfig.json"
+      "path": "./../../domain/recovery-operations-models/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-stability-orchestrator/tsconfig.json"
+      "path": "./../../domain/recovery-readiness/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-readiness-simulation/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-scenario-lens/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-simulation-core/tsconfig.json"
@@ -80,55 +101,34 @@
       "path": "./../../domain/recovery-stability-models/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-workload-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-situational-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/incident-signal-store/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-stability-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-workflow-store/tsconfig.json"
     },
     {
+      "path": "./../../domain/incident-signal-intelligence/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-incident-workflows/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-situational-intelligence/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-situational-store/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-fabric-controller/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-fabric-orchestration/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-strategy-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-strategy-store/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-readiness-simulation/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-readiness/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-readiness-store/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-synthesis-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-scenario-lens/tsconfig.json"
     }
   ]
 }

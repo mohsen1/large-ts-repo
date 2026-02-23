@@ -3,3 +3,8 @@ export * from './constraints';
 export * from './schema';
 export * from './topology';
 export * from './analytics';
+export * from './workflow';
+export * from './policy';
+export * from './quality';
+export * from './simulation';
+export * from './telemetry';

@@ -92,7 +92,7 @@ export class RecoveryCoordinationOrchestrator {
 
     const state: CoordinationCommandState = {
       runId: `${input.runId}` as RecoveryRunId,
-      state: input.runState.status,
+      state: 'draft',
       phase: 'discovery',
       startedAt: new Date().toISOString(),
       lastUpdatedAt: new Date().toISOString(),
@@ -164,7 +164,7 @@ export class RecoveryCoordinationOrchestrator {
     const delivery = await this.delivery.publish(notification);
     if (!delivery.ok) return fail(new Error('coordination-notification-failed'));
 
-    return ok({
+    const successReport: CoordinationAttemptReport = {
       runId: `${input.runId}` as RecoveryRunId,
       correlationId: input.context.correlationId,
       tenant: input.tenant,
@@ -177,7 +177,8 @@ export class RecoveryCoordinationOrchestrator {
         progressPercent: 100,
         lastUpdatedAt: new Date().toISOString(),
       },
-    });
+    };
+    return ok(successReport);
   }
 
   async recent(runId: RecoveryRunId): Promise<readonly CoordinationAttemptReport[]> {
@@ -382,7 +383,7 @@ export class RecoveryCoordinationOrchestrator {
   private makeState(runId: RecoveryRunId, decision: CoordinationSelectionResult['decision']): CoordinationCommandState {
     return {
       runId,
-      state: decision === 'approved' ? 'completed' as never : 'draft' as never,
+      state: decision === 'approved' ? 'completed' : 'staging',
       phase: decision === 'approved' ? 'complete' : 'selection',
       startedAt: new Date().toISOString(),
       lastUpdatedAt: new Date().toISOString(),
