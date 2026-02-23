@@ -41,6 +41,15 @@
       "path": "./packages/app/recovery-incident-dashboard"
     },
     {
+      "path": "./packages/domain/recovery-continuity-readiness"
+    },
+    {
+      "path": "./packages/data/continuity-readiness-store"
+    },
+    {
+      "path": "./packages/service/continuity-readiness-orchestrator"
+    },
+    {
       "path": "./packages/app/recovery-playbook-orchestrator"
     },
     {

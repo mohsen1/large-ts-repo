@@ -163,6 +163,15 @@
       "path": "../../service/incident-orchestration/tsconfig.json"
     },
     {
+      "path": "../../data/continuity-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "../../service/continuity-readiness-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-continuity-readiness/tsconfig.json"
+    },
+    {
       "path": "../../data/repositories/tsconfig.json"
     },
     {

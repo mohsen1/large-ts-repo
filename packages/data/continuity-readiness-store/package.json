@@ -1,0 +1,22 @@
+{
+  "name": "@data/continuity-readiness-store",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-continuity-readiness": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/result": "workspace:*"
+  }
+}
