@@ -212,6 +212,9 @@ importers:
       '@data/incident-fusion-store':
         specifier: workspace:*
         version: link:../../data/incident-fusion-store
+      '@data/recovery-atlas-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-atlas-store
       '@data/recovery-command-control-plane':
         specifier: workspace:*
         version: link:../../data/recovery-command-control-plane
@@ -263,6 +266,9 @@ importers:
       '@domain/recovery-incident-graph':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-graph
+      '@domain/recovery-operations-atlas':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-atlas
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
@@ -296,6 +302,9 @@ importers:
       '@service/incident-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/incident-fusion-orchestrator
+      '@service/recovery-command-control-hub':
+        specifier: workspace:*
+        version: link:../../service/recovery-command-control-hub
       '@service/recovery-command-forge-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-forge-orchestrator
@@ -335,6 +344,9 @@ importers:
       '@service/recovery-ops-playbook-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-ops-playbook-orchestrator
+      '@service/recovery-orchestration-atlas':
+        specifier: workspace:*
+        version: link:../../service/recovery-orchestration-atlas
       '@service/recovery-playbook-engine':
         specifier: workspace:*
         version: link:../../service/recovery-playbook-engine
@@ -846,6 +858,12 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-atlas-store:
+    dependencies:
+      '@domain/recovery-operations-atlas':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-atlas
 
   packages/data/recovery-cockpit-analytics:
     dependencies:
@@ -1936,6 +1954,12 @@ importers:
         specifier: workspace:*
         version: link:../../shared/util
 
+  packages/domain/recovery-command-control-hub:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+
   packages/domain/recovery-command-forge:
     dependencies:
       '@domain/recovery-operations-models':
@@ -2202,6 +2226,12 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-operations-atlas:
+    dependencies:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -3455,6 +3485,18 @@ importers:
         specifier: workspace:*
         version: link:../../shared/util
 
+  packages/service/recovery-command-control-hub:
+    dependencies:
+      '@domain/recovery-command-control-hub':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-control-hub
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/service/recovery-command-forge-orchestrator:
     dependencies:
       '@domain/recovery-command-forge':
@@ -4087,6 +4129,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-orchestration-atlas:
+    dependencies:
+      '@data/recovery-atlas-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-atlas-store
+      '@domain/recovery-operations-atlas':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-atlas
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-plan-orchestrator:
     dependencies:

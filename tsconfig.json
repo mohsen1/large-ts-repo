@@ -764,7 +764,13 @@
       "path": "./packages/data/recovery-ops-orchestration-store"
     },
     {
+      "path": "./packages/data/recovery-atlas-store"
+    },
+    {
       "path": "./packages/domain/recovery-ops-orchestration-surface"
+    },
+    {
+      "path": "./packages/service/recovery-orchestration-atlas"
     },
     {
       "path": "./packages/service/reporting"
@@ -822,6 +828,9 @@
     },
     {
       "path": "./packages/domain/recovery-ops-playbook"
+    },
+    {
+      "path": "./packages/domain/recovery-operations-atlas"
     },
     {
       "path": "./packages/service/recovery-ops-playbook-orchestrator"

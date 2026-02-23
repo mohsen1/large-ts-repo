@@ -71,6 +71,9 @@
     "@service/recovery-simulation-orchestrator": "workspace:*",
     "@data/recovery-simulation-store": "workspace:*",
     "@domain/recovery-simulation-lab-models": "workspace:*",
-    "@service/recovery-command-control-hub": "workspace:*"
+    "@service/recovery-command-control-hub": "workspace:*",
+    "@domain/recovery-operations-atlas": "workspace:*",
+    "@data/recovery-atlas-store": "workspace:*",
+    "@service/recovery-orchestration-atlas": "workspace:*"
   }
 }

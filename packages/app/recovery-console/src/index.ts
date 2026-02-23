@@ -173,3 +173,6 @@ export { PlaybookSynthesisTimeline } from './features/recovery-playbook-orchestr
 export { useRecoveryPlaybookOrchestrationLab } from './features/recovery-playbook-orchestration-lab/hooks/useRecoveryPlaybookOrchestrationLab';
 export { usePlaybookHealthProjection } from './features/recovery-playbook-orchestration-lab/hooks/usePlaybookHealthProjection';
 export { usePlaybookPolicyMatrix } from './features/recovery-playbook-orchestration-lab/hooks/usePlaybookPolicyMatrix';
+export { useRecoveryAtlasWorkspace } from './features/recovery-atlas/hooks/useRecoveryAtlasWorkspace';
+export { RecoveryAtlasPanel } from './features/recovery-atlas/components/RecoveryAtlasPanel';
+export { RecoveryAtlasOrchestrationPage } from './features/recovery-atlas/pages/RecoveryAtlasOrchestrationPage';

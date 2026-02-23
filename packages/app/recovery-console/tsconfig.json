@@ -151,6 +151,15 @@
       "path": "./../../service/recovery-playbook-orchestrator/tsconfig.json"
     },
     {
+      "path": "../../data/recovery-atlas-store/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-operations-atlas/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-orchestration-atlas/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
     },
     {

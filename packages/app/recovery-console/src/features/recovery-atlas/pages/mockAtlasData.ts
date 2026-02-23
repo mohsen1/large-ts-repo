@@ -1,0 +1,137 @@
+import type { RecoveryAtlasSnapshot } from '@domain/recovery-operations-atlas';
+import { asRecoveryAtlasSnapshot } from '@domain/recovery-operations-atlas/adapter';
+
+const atlasSnapshots: RecoveryAtlasSnapshot[] = [
+  asRecoveryAtlasSnapshot({
+    tenantId: 'tenant-atlas',
+    incidentId: 'incident-001',
+    windows: [
+      {
+        id: 'window-001',
+        label: 'Production region A',
+        order: 1,
+        priority: 84,
+      },
+      {
+        id: 'window-002',
+        label: 'Recovery lane B',
+        order: 2,
+        priority: 72,
+      },
+    ],
+    nodes: [
+      {
+        id: 'service-auth',
+        windowId: 'window-001',
+        component: 'auth-gateway',
+        region: 'us-east-1',
+        environment: 'prod',
+        severity: 'critical',
+        driftState: 'disruptive',
+        recoveredBySlaMinutes: 45,
+        ownerTeam: 'platform',
+        resilienceTags: ['auth', 'edge'],
+        tags: ['critical', 'auth'],
+      },
+      {
+        id: 'service-api',
+        windowId: 'window-001',
+        component: 'api-core',
+        region: 'us-east-1',
+        environment: 'prod',
+        severity: 'high',
+        driftState: 'degraded',
+        recoveredBySlaMinutes: 30,
+        ownerTeam: 'core',
+        resilienceTags: ['api', 'core'],
+        tags: ['api', 'traffic'],
+      },
+      {
+        id: 'service-cache',
+        windowId: 'window-002',
+        component: 'cache-gw',
+        region: 'us-west-2',
+        environment: 'dr',
+        severity: 'medium',
+        driftState: 'stable',
+        recoveredBySlaMinutes: 24,
+        ownerTeam: 'platform',
+        resilienceTags: ['cache'],
+        tags: ['latency'],
+      },
+    ],
+    edges: [
+      {
+        id: 'edge-01',
+        from: 'service-auth',
+        to: 'service-api',
+        dependencyWeight: 0.91,
+        requiredFor: ['readiness', 'traffic'],
+        isHardDependency: true,
+        slaMinutes: 45,
+      },
+      {
+        id: 'edge-02',
+        from: 'service-api',
+        to: 'service-cache',
+        dependencyWeight: 0.82,
+        requiredFor: ['cache-fill'],
+        isHardDependency: false,
+        slaMinutes: 65,
+      },
+    ],
+  }),
+  asRecoveryAtlasSnapshot({
+    tenantId: 'tenant-atlas',
+    incidentId: 'incident-007',
+    windows: [
+      {
+        id: 'window-007',
+        label: 'Incident lane',
+        order: 1,
+        priority: 91,
+      },
+    ],
+    nodes: [
+      {
+        id: 'service-db',
+        windowId: 'window-007',
+        component: 'primary-db',
+        region: 'eu-west-1',
+        environment: 'prod',
+        severity: 'critical',
+        driftState: 'critical',
+        recoveredBySlaMinutes: 80,
+        ownerTeam: 'platform',
+        resilienceTags: ['db'],
+        tags: ['primary', 'txn'],
+      },
+      {
+        id: 'service-queue',
+        windowId: 'window-007',
+        component: 'event-queue',
+        region: 'eu-west-1',
+        environment: 'canary',
+        severity: 'high',
+        driftState: 'disruptive',
+        recoveredBySlaMinutes: 62,
+        ownerTeam: 'platform',
+        resilienceTags: ['stream'],
+        tags: ['buffer'],
+      },
+    ],
+    edges: [
+      {
+        id: 'edge-07',
+        from: 'service-db',
+        to: 'service-queue',
+        dependencyWeight: 0.75,
+        requiredFor: ['ingest'],
+        isHardDependency: true,
+        slaMinutes: 95,
+      },
+    ],
+  }),
+];
+
+export const createMockAtlasWorkspaceState = (): readonly RecoveryAtlasSnapshot[] => atlasSnapshots;
