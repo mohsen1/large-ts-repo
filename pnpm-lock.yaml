@@ -419,6 +419,9 @@ importers:
       '@service/recovery-drill-observability':
         specifier: workspace:*
         version: link:../../service/recovery-drill-observability
+      '@service/recovery-drill-surface-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-drill-surface-orchestrator
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -509,6 +512,9 @@ importers:
       '@domain/recovery-scenario-lens':
         specifier: workspace:*
         version: link:../../domain/recovery-scenario-lens
+      '@domain/recovery-scenario-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-orchestration
       '@domain/recovery-simulation-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-core
@@ -521,6 +527,9 @@ importers:
       '@domain/recovery-workload-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-workload-intelligence
+      '@infrastructure/recovery-scenario-gateway':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-scenario-gateway
       '@service/recovery-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-command-orchestrator
@@ -542,6 +551,9 @@ importers:
       '@service/recovery-incident-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-orchestrator
+      '@service/recovery-incident-scenario-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-scenario-orchestrator
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
@@ -2651,6 +2663,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-scenario-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-scenario-planner:
     dependencies:
       '@shared/type-level':
@@ -3031,6 +3055,21 @@ importers:
         version: link:../../shared/result
       zod:
         specifier: ^3.25.76
+        version: 3.25.76
+
+  packages/infrastructure/recovery-scenario-gateway:
+    dependencies:
+      '@domain/recovery-scenario-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
         version: 3.25.76
 
   packages/infrastructure/recovery-scenario-notifier:
@@ -3837,6 +3876,30 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-drill-surface-orchestrator:
+    dependencies:
+      '@data/recovery-drill-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-drill-lab-store
+      '@data/recovery-drill-metrics':
+        specifier: workspace:*
+        version: link:../../data/recovery-drill-metrics
+      '@domain/recovery-drill-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-drill-lab
+      '@service/recovery-drill-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-drill-lab-orchestrator
+      '@service/recovery-drill-observability':
+        specifier: workspace:*
+        version: link:../recovery-drill-observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/service/recovery-fabric-controller:
     dependencies:
       '@domain/incident-management':
@@ -4043,6 +4106,24 @@ importers:
       '@shared/protocol':
         specifier: workspace:*
         version: link:../../shared/protocol
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-incident-scenario-orchestrator:
+    dependencies:
+      '@domain/recovery-scenario-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-orchestration
+      '@infrastructure/recovery-scenario-gateway':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-scenario-gateway
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76

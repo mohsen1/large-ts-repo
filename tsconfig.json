@@ -906,6 +906,15 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
+    },
+    {
+      "path": "./packages/domain/recovery-scenario-orchestration"
+    },
+    {
+      "path": "./packages/infrastructure/recovery-scenario-gateway"
+    },
+    {
+      "path": "./packages/service/recovery-incident-scenario-orchestrator"
     }
   ]
 }

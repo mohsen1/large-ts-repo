@@ -144,6 +144,15 @@
     },
     {
       "path": "./../../domain/recovery-ops-orchestration-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-incident-scenario-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-scenario-gateway/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-scenario-orchestration/tsconfig.json"
     }
   ]
 }
