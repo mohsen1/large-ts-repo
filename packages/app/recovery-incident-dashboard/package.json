@@ -14,6 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@service/recovery-signal-intelligence-orchestrator": "workspace:*",
     "@aws-sdk/client-eventbridge": "^3.900.0",
     "@data/incident-signal-store": "workspace:*",
     "@data/recovery-incident-store": "workspace:*",

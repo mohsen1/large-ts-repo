@@ -821,7 +821,13 @@
       "path": "./packages/domain/recovery-playbook-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-signal-orchestration-models"
+    },
+    {
       "path": "./packages/data/recovery-playbook-orchestration-store"
+    },
+    {
+      "path": "./packages/data/recovery-signal-orchestration-store"
     },
     {
       "path": "./packages/service/recovery-playbook-orchestrator"

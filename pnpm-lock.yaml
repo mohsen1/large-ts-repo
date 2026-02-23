@@ -347,6 +347,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-ops-orchestration-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-orchestration-lab-store
       '@data/recovery-readiness-store':
         specifier: workspace:*
         version: link:../../data/recovery-readiness-store
@@ -377,6 +380,9 @@ importers:
       '@domain/recovery-incident-workflows':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-workflows
+      '@domain/recovery-ops-orchestration-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-lab
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
@@ -1035,6 +1041,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-ops-orchestration-lab-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/recovery-ops-orchestration-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-lab
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/data/recovery-ops-orchestration-store:
     dependencies:
@@ -2100,6 +2124,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-ops-orchestration-lab:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-ops-orchestration-surface:
     dependencies:
@@ -3538,6 +3571,9 @@ importers:
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
+      '@data/recovery-ops-orchestration-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-orchestration-lab-store
       '@data/repositories':
         specifier: workspace:*
         version: link:../../data/repositories
@@ -3550,6 +3586,9 @@ importers:
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
+      '@domain/recovery-ops-orchestration-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-lab
       '@infrastructure/incident-notifications':
         specifier: workspace:*
         version: link:../../infrastructure/incident-notifications

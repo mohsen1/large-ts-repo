@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-signal-intelligence-orchestrator",
+  "name": "@data/recovery-signal-orchestration-store",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,10 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-signal-intelligence": "workspace:*",
     "@domain/recovery-signal-orchestration-models": "workspace:*",
-    "@data/recovery-signal-intelligence-store": "workspace:*",
-    "@data/recovery-signal-orchestration-store": "workspace:*",
     "@shared/result": "workspace:*"
   }
 }

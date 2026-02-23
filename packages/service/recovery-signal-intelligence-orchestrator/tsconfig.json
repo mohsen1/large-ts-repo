@@ -8,7 +8,9 @@
   "include": ["src/**/*"],
   "references": [
     { "path": "./../../domain/recovery-signal-intelligence/tsconfig.json" },
+    { "path": "./../../domain/recovery-signal-orchestration-models/tsconfig.json" },
     { "path": "./../../data/recovery-signal-intelligence-store/tsconfig.json" },
+    { "path": "./../../data/recovery-signal-orchestration-store/tsconfig.json" },
     { "path": "./../../shared/result/tsconfig.json" }
   ]
 }
