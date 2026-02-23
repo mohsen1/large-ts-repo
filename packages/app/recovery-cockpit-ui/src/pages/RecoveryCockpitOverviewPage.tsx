@@ -5,15 +5,21 @@ import { CockpitSummaryPanel } from '../components/CockpitSummaryPanel';
 import { ScenarioTimeline } from '../components/ScenarioTimeline';
 import { ReadinessMatrix } from '../components/ReadinessMatrix';
 import { PolicyRecommendations } from '../components/PolicyRecommendations';
+import { useCockpitSimulation } from '../hooks/useCockpitSimulation';
+import { PlanOpsConsole } from '../components/orchestration/PlanOpsConsole';
+import { ForecastWorkspacePanel } from '../components/orchestration/ForecastWorkspacePanel';
+import { SloGauge } from '../components/orchestration/SloGauge';
 
 const EMPTY: ReadonlyArray<RecoveryPlan> = [];
 
 export const RecoveryCockpitOverviewPage: FC = () => {
   const [mode, setMode] = useState<'optimistic' | 'balanced' | 'conservative'>('balanced');
+  const [panelMode, setPanelMode] = useState<'forecast' | 'preview' | 'simulate'>('forecast');
   const workspace = useCockpitWorkspace({
     parallelism: 3,
     maxRuntimeMinutes: 240,
   });
+  const simulation = useCockpitSimulation({ plans: workspace.plans });
 
   const selectedPlan = workspace.plans.find((candidate) => candidate.planId === workspace.selectedPlanId);
 
@@ -58,6 +64,35 @@ export const RecoveryCockpitOverviewPage: FC = () => {
       <section style={{ display: 'grid', gap: 12, gridTemplateColumns: '1fr 1fr' }}>
         {selectedPlan ? <ScenarioTimeline plan={selectedPlan} /> : <p>No plan selected</p>}
         {selectedPlan ? <ReadinessMatrix plan={selectedPlan} selectedMode={mode} /> : <p>No readiness view</p>}
+      </section>
+
+      <section style={{ display: 'grid', gap: 12, gridTemplateColumns: '1fr 1fr' }}>
+        <SloGauge plans={workspace.plans} selectedPlanId={workspace.selectedPlanId} />
+        <ForecastWorkspacePanel
+          plan={selectedPlan}
+          rows={simulation.summaries.map((entry) => ({
+            planId: entry.planId,
+            score: entry.score,
+            heat: entry.heat,
+          }))}
+          onChangeMode={setPanelMode}
+        />
+      </section>
+
+      <section>
+        <h3>Simulation mode</h3>
+        <p>{panelMode}</p>
+        <ul>
+          {simulation.simulations.map((entry) => (
+            <li key={entry.planId}>
+              {entry.planId}: estimated {entry.report.estimatedMinutes}m · {entry.actions.length} signals
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <PlanOpsConsole plans={workspace.plans} onPlanStarted={(planId) => void workspace.startPlan(planId)} />
       </section>
 
       <section>

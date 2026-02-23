@@ -3,3 +3,4 @@ export * from './inMemoryInsightsStore';
 export * from './projections';
 export * from './telemetry';
 export * from './facade';
+export * from './impactAnalysis';

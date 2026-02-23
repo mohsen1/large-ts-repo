@@ -6,3 +6,6 @@ export * from './validation';
 export * from './changeRequests';
 export * from './planContract';
 export * from './runbookSeries';
+export * from './slaPolicy';
+export * from './executionGraph';
+export * from './changeControl';

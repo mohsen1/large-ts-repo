@@ -4,3 +4,4 @@ export * from './fixtures';
 export * from './queries';
 export * from './archive';
 export * from './indices';
+export * from './workspaceHistory';
