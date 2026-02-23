@@ -1,13 +1,39 @@
-import type {
-  RecoveryPlaybook,
-  RecoveryPlanExecution,
-  RecoveryPlaybookQuery,
-  RecoveryPlaybookContext,
-  RecoveryPlaybookId,
-  RecoveryPlanId,
-  PlaybookSignal,
-  PlaybookSelectionPolicy,
-} from '@domain/recovery-playbooks';
+import type { PlaybookEnvelope, RecoveryPlaybookId, RecoveryPlaybookQuery, RecoveryPlanId } from '@domain/recovery-playbooks';
+import type { CampaignLane } from '@domain/recovery-playbook-lab';
+
+export interface PlaybookLabRouteState {
+  readonly tenant: string;
+  readonly lens: CampaignLane;
+}
+
+export interface CandidateRow {
+  readonly id: string;
+  readonly title: string;
+  readonly score: number;
+  readonly timeMinutes: number;
+  readonly confidence: number;
+  readonly status: string;
+  readonly lane: CampaignLane;
+}
+
+export interface PlaybookSelectionRow {
+  readonly playbookId: RecoveryPlaybookId;
+  readonly title: string;
+  readonly score: number;
+  readonly status: string;
+  readonly expectedMinutes: number;
+  readonly reasons: readonly string[];
+}
+
+export interface PlaybookTelemetryRow {
+  readonly runId: string;
+  readonly playbookId: RecoveryPlaybookId;
+  readonly startedAt: string;
+  readonly completedAt: string | undefined;
+  readonly status: RecoveryPlaybookQuery['status'] | string;
+  readonly selected: number;
+  readonly failures: number;
+}
 
 export interface PlaybookLabConfig {
   readonly tenantId: string;
@@ -16,46 +42,17 @@ export interface PlaybookLabConfig {
   readonly includeDeprecated: boolean;
 }
 
-export interface PlaybookSelectionRow {
-  readonly playbookId: RecoveryPlaybookId;
-  readonly title: string;
-  readonly score: number;
-  readonly status: 'queued' | 'running' | 'paused' | 'completed' | 'failed';
-  readonly expectedMinutes: number;
-  readonly reasons: readonly string[];
-}
-
 export interface PlaybookCatalogState {
   readonly query: RecoveryPlaybookQuery;
-  readonly policies: PlaybookSelectionPolicy;
-  readonly playbooks: readonly RecoveryPlaybook[];
+  readonly policies: {
+    readonly maxStepsPerRun: number;
+    readonly allowedStatuses: readonly string[];
+    readonly requiredLabels: readonly string[];
+    readonly forbiddenChannels: readonly string[];
+  };
+  readonly playbooks: readonly PlaybookEnvelope['playbook'][];
   readonly loading: boolean;
   readonly lastSyncedAt: string;
-}
-
-export interface PlaybookTelemetryRow {
-  readonly runId: RecoveryPlanId;
-  readonly playbookId: RecoveryPlaybookId;
-  readonly startedAt: string;
-  readonly completedAt?: string;
-  readonly status: RecoveryPlanExecution['status'];
-  readonly selected: number;
-  readonly failures: number;
-}
-
-export interface PlaybookLabContext {
-  readonly tenantId: string;
-  readonly context: RecoveryPlaybookContext;
-  readonly signals: readonly PlaybookSignal[];
-}
-
-export interface PlaybookLabAction {
-  readonly type: 'refresh' | 'queue' | 'start' | 'complete' | 'abort' | 'seed';
-  readonly payload?: {
-    readonly runId?: RecoveryPlanId;
-    readonly portfolioId?: string;
-    readonly tenant?: string;
-  };
 }
 
 export interface PlaybookLabPageState {
@@ -64,20 +61,41 @@ export interface PlaybookLabPageState {
   readonly rows: readonly PlaybookSelectionRow[];
   readonly catalog: PlaybookCatalogState;
   readonly history: readonly PlaybookTelemetryRow[];
-  readonly activeRunId?: RecoveryPlanId;
+  readonly activeRunId: RecoveryPlanId | undefined;
   readonly alerts: readonly string[];
   readonly busy: boolean;
   readonly health: string;
   readonly seeded: readonly SeededPlaybook[];
-  readonly policy: PlaybookSelectionPolicy;
-  readonly onRefresh: () => void;
-  readonly onQueue: () => void;
-  readonly onSeed: () => void;
-  readonly onStartLastRun: () => void;
+  readonly policy: PlaybookCatalogState['policies'];
+  readonly onRefresh: () => Promise<void>;
+  readonly onQueue: () => Promise<void>;
+  readonly onSeed: () => Promise<void>;
+  readonly onStartLastRun: () => Promise<void>;
+}
+
+export interface TelemetryRow {
+  readonly runId: string;
+  readonly at: string;
+  readonly score: number;
+  readonly lane: string;
+  readonly latencyMs: number;
+  readonly dryRun: boolean;
 }
 
 export interface SeededPlaybook {
-  readonly id: string;
+  readonly id: RecoveryPlaybookId;
   readonly title: string;
   readonly tenant: string;
 }
+
+export type PlaybookLabPage = {
+  readonly route: PlaybookLabRouteState;
+};
+
+export type PlaybookTelemetryPoint = {
+  readonly runId: string;
+  readonly lane: string;
+  readonly score: number;
+};
+
+export type PlaybookLabWorkspaceSummary = PlaybookLabPageState;

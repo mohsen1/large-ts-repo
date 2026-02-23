@@ -269,6 +269,9 @@
       "path": "./packages/domain/incident-forecasting"
     },
     {
+      "path": "./packages/domain/recovery-playbook-lab"
+    },
+    {
       "path": "./packages/domain/incident-fusion-models"
     },
     {
@@ -597,6 +600,9 @@
     },
     {
       "path": "./packages/service/incident-fusion-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-playbook-lab-orchestrator"
     },
     {
       "path": "./packages/service/incident-orchestration"

@@ -120,7 +120,7 @@ export const usePlaybookLab = (input: Partial<PlaybookLabConfig> = {}): Playbook
     const derivedRows = recommendations.length > 0
       ? recommendations.map((recommendation): PlaybookSelectionRow => {
         const candidate = catalogMap.get(recommendation.playbookId);
-        if (!candidate) return emptyRow(recommendation.playbookId);
+        if (!candidate) return emptyRow(withBrand(`missing:${recommendation.playbookId}`, 'RecoveryPlaybookId'));
         return {
           playbookId: candidate.id,
           title: candidate.title,
@@ -130,7 +130,7 @@ export const usePlaybookLab = (input: Partial<PlaybookLabConfig> = {}): Playbook
           reasons: recommendation.rationale,
         };
       })
-      : [emptyRow('seed:empty' as RecoveryPlaybookId)];
+      : [emptyRow(withBrand('seed:empty', 'RecoveryPlaybookId'))];
 
     setRows(derivedRows);
 

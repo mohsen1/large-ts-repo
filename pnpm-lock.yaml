@@ -230,6 +230,9 @@ importers:
       '@domain/recovery-orchestration-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-planning
+      '@domain/recovery-playbook-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-lab
       '@domain/recovery-playbooks':
         specifier: workspace:*
         version: link:../../domain/recovery-playbooks
@@ -257,6 +260,9 @@ importers:
       '@service/recovery-fabric-controller':
         specifier: workspace:*
         version: link:../../service/recovery-fabric-controller
+      '@service/recovery-fabric-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-fabric-orchestrator
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
@@ -278,6 +284,9 @@ importers:
       '@service/recovery-playbook-engine':
         specifier: workspace:*
         version: link:../../service/recovery-playbook-engine
+      '@service/recovery-playbook-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-playbook-lab-orchestrator
       '@service/recovery-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-readiness-orchestrator
@@ -984,6 +993,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-ops-fabric-store:
+    dependencies:
+      '@domain/recovery-ops-fabric':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-fabric
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-ops-orchestration-store:
     dependencies:
@@ -2008,6 +2026,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-ops-fabric:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-ops-orchestration-surface:
     dependencies:
       '@shared/core':
@@ -2067,6 +2097,21 @@ importers:
       '@domain/recovery-policy':
         specifier: workspace:*
         version: link:../recovery-policy
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-playbook-lab:
+    dependencies:
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../recovery-playbooks
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -3266,6 +3311,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-fabric-orchestrator:
+    dependencies:
+      '@data/recovery-ops-fabric-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-fabric-store
+      '@domain/recovery-ops-fabric':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-fabric
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/service/recovery-fusion-orchestrator:
     dependencies:
       '@data/recovery-command-graph-store':
@@ -3700,6 +3760,30 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-playbook-lab-orchestrator:
+    dependencies:
+      '@data/recovery-playbook-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-store
+      '@domain/recovery-playbook-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-lab
+      '@domain/recovery-playbooks':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbooks
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
