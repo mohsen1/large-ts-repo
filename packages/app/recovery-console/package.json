@@ -14,8 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@domain/recovery-command-surface-models": "workspace:*",
     "@data/recovery-command-control-plane": "workspace:*",
     "@service/recovery-runner": "workspace:*",
+    "@service/recovery-command-surface-orchestrator": "workspace:*",
     "@service/recovery-fusion-orchestrator": "workspace:*",
     "@service/recovery-command-intelligence-orchestrator": "workspace:*",
     "@service/recovery-scenario-orchestrator": "workspace:*",

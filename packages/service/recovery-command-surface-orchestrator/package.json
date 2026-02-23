@@ -1,0 +1,22 @@
+{
+  "name": "@service/recovery-command-surface-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-command-surface-models": "workspace:*",
+    "@data/recovery-command-surface-store": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

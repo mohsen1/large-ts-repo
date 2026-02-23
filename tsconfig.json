@@ -128,6 +128,9 @@
       "path": "./packages/data/recovery-incident-insights-store"
     },
     {
+      "path": "./packages/data/recovery-command-surface-store"
+    },
+    {
       "path": "./packages/data/recovery-incident-store"
     },
     {
@@ -270,6 +273,9 @@
     },
     {
       "path": "./packages/domain/incident-command-models"
+    },
+    {
+      "path": "./packages/domain/recovery-command-surface-models"
     },
     {
       "path": "./packages/domain/incident-forecasting"
@@ -684,6 +690,9 @@
     },
     {
       "path": "./packages/service/recovery-incident-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-command-surface-orchestrator"
     },
     {
       "path": "./packages/service/recovery-intelligence-orchestrator"

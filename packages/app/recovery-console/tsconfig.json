@@ -22,6 +22,9 @@
   ],
   "references": [
     {
+      "path": "./../../service/recovery-command-surface-orchestrator/tsconfig.json"
+    },
+    {
       "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
     },
     {

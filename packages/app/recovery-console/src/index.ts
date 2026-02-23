@@ -141,6 +141,11 @@ export * from './features/recovery-orchestration-lab/hooks/useRecoveryOpsOrchest
 export { RecoveryOpsSurfaceCard } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceCard';
 export { RecoveryOpsSurfaceTimeline } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceTimeline';
 export { RecoveryOpsSurfaceRiskTable } from './features/recovery-orchestration-lab/components/RecoveryOpsSurfaceRiskTable';
+export { RecoveryCommandSurfaceHubPage } from './features/recovery-command-surface/pages/RecoveryCommandSurfaceHubPage';
+export { RecoveryCommandSurfaceOverview } from './features/recovery-command-surface/components/RecoveryCommandSurfaceOverview';
+export { RecoveryCommandSurfaceTimeline } from './features/recovery-command-surface/components/RecoveryCommandSurfaceTimeline';
+export { RecoverySurfaceRiskPanel } from './features/recovery-command-surface/components/RecoverySurfaceRiskPanel';
+export { useRecoveryCommandSurfaceWorkspace } from './features/recovery-command-surface/hooks/useRecoveryCommandSurfaceWorkspace';
 export { useRecoveryOpsPlaybook } from './hooks/useRecoveryOpsPlaybook';
 export { RecoveryOpsPlaybookDashboard } from './components/RecoveryOpsPlaybookDashboard';
 export { RecoveryPlaybookTimeline } from './components/RecoveryPlaybookTimeline';

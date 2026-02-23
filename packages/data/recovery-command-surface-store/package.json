@@ -1,0 +1,20 @@
+{
+  "name": "@data/recovery-command-surface-store",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@domain/recovery-command-surface-models": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}
