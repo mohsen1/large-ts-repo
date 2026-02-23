@@ -110,6 +110,9 @@
       "path": "./packages/data/recovery-cockpit-analytics"
     },
     {
+      "path": "./packages/data/recovery-cockpit-intent-store"
+    },
+    {
       "path": "./packages/data/recovery-cockpit-insights"
     },
     {
@@ -366,6 +369,9 @@
     },
     {
       "path": "./packages/domain/recovery-cockpit-workloads"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-orchestration-core"
     },
     {
       "path": "./packages/domain/recovery-command-control-hub"
@@ -705,6 +711,9 @@
     },
     {
       "path": "./packages/service/recovery-cockpit-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-cockpit-intent-orchestrator"
     },
     {
       "path": "./packages/service/recovery-command-control-hub"

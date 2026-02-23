@@ -33,10 +33,19 @@
       "path": "./../../service/recovery-cockpit-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-cockpit-intent-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../shared/util/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-cockpit-workloads/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-cockpit-orchestration-core/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-intent-store/tsconfig.json"
     }
   ]
 }

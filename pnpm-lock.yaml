@@ -173,6 +173,9 @@ importers:
       '@data/recovery-cockpit-insights':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-insights
+      '@data/recovery-cockpit-intent-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-intent-store
       '@data/recovery-cockpit-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-store
@@ -182,9 +185,15 @@ importers:
       '@domain/recovery-cockpit-models':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-models
+      '@domain/recovery-cockpit-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-orchestration-core
       '@domain/recovery-cockpit-workloads':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-workloads
+      '@service/recovery-cockpit-intent-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-intent-orchestrator
       '@service/recovery-cockpit-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-orchestrator
@@ -212,6 +221,9 @@ importers:
       '@data/incident-fusion-store':
         specifier: workspace:*
         version: link:../../data/incident-fusion-store
+      '@data/incident-hub':
+        specifier: workspace:*
+        version: link:../../data/incident-hub
       '@data/recovery-atlas-store':
         specifier: workspace:*
         version: link:../../data/recovery-atlas-store
@@ -239,9 +251,15 @@ importers:
       '@data/recovery-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-store
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../../data/repositories
       '@domain/incident-fusion-models':
         specifier: workspace:*
         version: link:../../domain/incident-fusion-models
+      '@domain/incident-management':
+        specifier: workspace:*
+        version: link:../../domain/incident-management
       '@domain/recovery-command-forge':
         specifier: workspace:*
         version: link:../../domain/recovery-command-forge
@@ -302,6 +320,9 @@ importers:
       '@service/incident-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/incident-fusion-orchestrator
+      '@service/incident-orchestration':
+        specifier: workspace:*
+        version: link:../../service/incident-orchestration
       '@service/recovery-command-control-hub':
         specifier: workspace:*
         version: link:../../service/recovery-command-control-hub
@@ -928,6 +949,18 @@ importers:
         specifier: workspace:*
         version: link:../../shared/result
 
+  packages/data/recovery-cockpit-intent-store:
+    dependencies:
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@domain/recovery-cockpit-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-orchestration-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/data/recovery-cockpit-store:
     dependencies:
       '@domain/recovery-cockpit-models':
@@ -1492,7 +1525,14 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
-  packages/data/repositories: {}
+  packages/data/repositories:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/streaming-dashboard-store:
     dependencies:
@@ -1989,6 +2029,12 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/domain/recovery-cockpit-orchestration-core:
+    dependencies:
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-cockpit-workloads:
     dependencies:
@@ -3401,6 +3447,9 @@ importers:
       '@data/incident-hub':
         specifier: workspace:*
         version: link:../../data/incident-hub
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../../data/repositories
       '@domain/incident-management':
         specifier: workspace:*
         version: link:../../domain/incident-management
@@ -3532,6 +3581,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-cockpit-intent-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-intent-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-intent-store
+      '@domain/recovery-cockpit-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-orchestration-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-cockpit-orchestrator:
     dependencies:
