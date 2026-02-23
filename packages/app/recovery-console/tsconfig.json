@@ -82,7 +82,16 @@
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
     },
     {
+      "path": "./../../data/incident-fusion-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/incident-fusion-models/tsconfig.json"
+    },
+    {
       "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
     },
     {
       "path": "../../shared/result/tsconfig.json"

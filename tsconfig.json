@@ -738,6 +738,15 @@
     },
     {
       "path": "./packages/service/recovery-signal-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/domain/incident-fusion-models"
+    },
+    {
+      "path": "./packages/data/incident-fusion-store"
+    },
+    {
+      "path": "./packages/service/incident-fusion-orchestrator"
     }
   ]
 }

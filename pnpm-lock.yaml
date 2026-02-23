@@ -143,6 +143,9 @@ importers:
       '@data/recovery-readiness-store':
         specifier: workspace:*
         version: link:../../data/recovery-readiness-store
+      '@data/recovery-signal-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-signal-intelligence-store
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
@@ -167,6 +170,9 @@ importers:
       '@domain/recovery-orchestration-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-planning
+      '@domain/recovery-signal-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-signal-intelligence
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
@@ -200,6 +206,9 @@ importers:
       '@service/recovery-scenario-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-scenario-orchestrator
+      '@service/recovery-signal-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-signal-intelligence-orchestrator
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -948,6 +957,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-signal-intelligence-store:
+    dependencies:
+      '@domain/recovery-signal-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-signal-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-simulation-metrics:
     dependencies:
@@ -1911,6 +1929,8 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-signal-intelligence: {}
 
   packages/domain/recovery-simulation-core:
     dependencies:
@@ -3491,6 +3511,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-signal-intelligence-orchestrator:
+    dependencies:
+      '@data/recovery-signal-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-signal-intelligence-store
+      '@domain/recovery-signal-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-signal-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/recovery-simulation-orchestrator:
     dependencies:
