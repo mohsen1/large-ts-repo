@@ -158,6 +158,9 @@ importers:
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-orchestration-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-planning
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
@@ -185,6 +188,9 @@ importers:
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
+      '@service/recovery-scenario-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-scenario-orchestrator
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -3392,6 +3398,9 @@ importers:
       '@data/recovery-scenario-store':
         specifier: workspace:*
         version: link:../../data/recovery-scenario-store
+      '@domain/recovery-orchestration-planning':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-planning
       '@domain/recovery-scenario-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-scenario-engine
