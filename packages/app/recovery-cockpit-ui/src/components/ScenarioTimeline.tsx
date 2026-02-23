@@ -1,5 +1,5 @@
-import { FC, Fragment, useMemo } from 'react';
-import { RecoveryPlan, toTimestamp } from '@domain/recovery-cockpit-models';
+import { FC, useMemo } from 'react';
+import { RecoveryPlan } from '@domain/recovery-cockpit-models';
 import { buildTimeline } from '@service/recovery-cockpit-orchestrator';
 
 export type ScenarioTimelineProps = {
@@ -7,15 +7,7 @@ export type ScenarioTimelineProps = {
 };
 
 export const ScenarioTimeline: FC<ScenarioTimelineProps> = ({ plan }) => {
-  const timeline = useMemo(() => {
-    const windows = plan.actions.map((action) => ({
-      at: toTimestamp(new Date()),
-      score: 100 - action.expectedDurationMinutes,
-      services: [action.serviceCode],
-      expectedRecoveryMinutes: action.expectedDurationMinutes,
-    }));
-    return buildTimeline(plan, windows);
-  }, [plan]);
+  const timeline = useMemo(() => buildTimeline(plan), [plan]);
 
   return (
     <section style={{ border: '1px solid #ddd', borderRadius: 8, padding: 12 }}>

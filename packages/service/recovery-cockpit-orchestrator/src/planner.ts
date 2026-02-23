@@ -1,5 +1,6 @@
-import { RecoveryAction, RecoveryPlan, EntityRef, AuditContext } from '@domain/recovery-cockpit-models';
+import { RecoveryAction } from '@domain/recovery-cockpit-models';
 import { Pipeline } from '@shared/util';
+import { RecoveryPlan } from '@domain/recovery-cockpit-models';
 
 export const resolveExecutionOrder = (actions: readonly RecoveryAction[]): RecoveryAction[] => {
   const inDegree = new Map<string, number>();
@@ -62,22 +63,19 @@ export const tagHistogram = (actions: readonly RecoveryAction[]): Record<string,
   return values;
 };
 
-export const toPlanRuntimeHash = (plan: RecoveryPlan): string => {
-  return `${plan.planId}:${plan.version}:${plan.actions.length}`;
+export const runPlannerPipeline = (
+  plan: RecoveryPlan,
+  mutate: Array<(input: RecoveryPlan) => RecoveryPlan>,
+): RecoveryPlan => {
+  const pipeline = new Pipeline<RecoveryPlan>();
+  for (const step of mutate) {
+    pipeline.use(step);
+  }
+  return pipeline.run(plan);
 };
 
-export const buildAuditTrail = (actor: EntityRef<'operator'>, source = 'planner'): ReadonlyArray<AuditContext> => [
-  {
-    actor,
-    source,
-    requestId: `${actor.id}-req` as AuditContext['requestId'],
-    correlationId: `${Date.now()}`,
-  },
-];
-
-export const planPipeline = <T>(seed: T, mutate: Array<(input: T) => T>): T => {
-  const p = new Pipeline<T>();
-  return p.use((current) => {
-    return mutate.reduce((acc, fn) => fn(acc), current);
-  }).run(seed);
-};
+export const summarizePlan = (plan: RecoveryPlan): { plan: RecoveryPlan; tags: readonly string[]; actionCount: number } => ({
+  plan,
+  tags: [...new Set(plan.actions.flatMap((action) => action.tags))],
+  actionCount: plan.actions.length,
+});

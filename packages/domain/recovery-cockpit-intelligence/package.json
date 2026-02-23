@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-cockpit-orchestrator",
+  "name": "@domain/recovery-cockpit-intelligence",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,11 +14,8 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-cockpit-intelligence": "workspace:*",
     "@domain/recovery-cockpit-models": "workspace:*",
-    "@data/recovery-cockpit-insights": "workspace:*",
-    "@data/recovery-cockpit-store": "workspace:*",
-    "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "@shared/result": "workspace:*"
   }
 }

@@ -1,15 +1,17 @@
 import { Result, fail, ok } from '@shared/result';
-import { toTimestamp, EntityId } from '@domain/recovery-cockpit-models';
+import { toTimestamp, EntityId, computeReadiness } from '@domain/recovery-cockpit-models';
 import {
-  computeReadiness,
   CommandEvent,
   RecoveryAction,
   RecoveryPlan,
   RuntimeRun,
 } from '@domain/recovery-cockpit-models';
-import { createEvent, createAuditRun } from '@data/recovery-cockpit-store';
+import { evaluatePlanPolicy, policyGate } from './policyEngine';
 import { createInMemoryWorkspace, OrchestratorConfig, OrchestrationClock, OrchestrationResult } from './ports';
-import { groupByRegion, sortByDuration, resolveExecutionOrder } from './planner';
+import { groupByRegion, resolveExecutionOrder, sortByDuration, tagHistogram } from './planner';
+import { buildReadinessProjection, buildPlanForecast } from '@domain/recovery-cockpit-intelligence';
+import { createEvent, createAuditRun } from '@data/recovery-cockpit-store';
+import { simulatePlan } from './simulation';
 
 const defaultConfig: OrchestratorConfig = {
   parallelism: 2,
@@ -18,6 +20,7 @@ const defaultConfig: OrchestratorConfig = {
     enabled: true,
     maxRetries: 2,
   },
+  policyMode: 'enforce',
 };
 
 const shuffle = <T>(values: T[]): T[] => {
@@ -55,11 +58,12 @@ export class RecoveryCockpitOrchestrator {
     };
   }
 
-  private createEvents(run: RuntimeRun, action: RecoveryAction, status: CommandEvent['status'], reason?: string): CommandEvent {
-    return createEvent(run.planId, action.id, run.runId, status, reason);
-  }
-
   async start(plan: RecoveryPlan): Promise<Result<OrchestrationResult, string>> {
+    const policy = evaluatePlanPolicy(plan, this.config.policyMode);
+    if (!policyGate(plan, this.config.policyMode)) {
+      return fail(`policy-denied:${policy.violationCount}`);
+    }
+
     const runSeed = createAuditRun(plan.planId, {
       id: 'system:init' as EntityId,
       kind: 'operator',
@@ -87,58 +91,53 @@ export class RecoveryCockpitOrchestrator {
       activeByRegion: new Map(),
     };
 
-    return this.dripExecute();
-  }
-
-  private async dripExecute(): Promise<Result<OrchestrationResult, string>> {
-    const state = this.state;
-    if (!state) return fail('orchestrator not initialized');
-
     const events: CommandEvent[] = [];
-    const { remaining, run } = state;
+    const state = this.state;
+    if (!state) return fail('orchestrator-not-initialized');
 
-    while (remaining.length > 0) {
-      const action = remaining.shift();
+    while (state.remaining.length > 0) {
+      const action = state.remaining.shift();
       if (!action) break;
 
       const region = action.region as string;
       const active = state.activeByRegion.get(region) ?? 0;
       if (active >= state.config.parallelism) {
-        remaining.push(action);
+        state.remaining.push(action);
         continue;
       }
 
       try {
         const dispatch = await this.workspace.adapter.dispatch(action);
         state.activeByRegion.set(region, active + 1);
-        run.activeActionIds.push(action.id);
-        events.push(this.createEvents(run, action, 'queued'));
+        state.run.activeActionIds.push(action.id);
+        events.push(createEvent(plan.planId, action.id, run.runId, 'queued'));
 
         if (!dispatch.commandId) {
           throw new Error('empty-command-id');
         }
 
-        state.activeByRegion.set(region, Math.max(0, (state.activeByRegion.get(region) ?? 1) - 1));
+        const updatedActive = state.activeByRegion.get(region);
+        state.activeByRegion.set(region, Math.max(0, (updatedActive === undefined ? 1 : updatedActive) - 1));
 
         if (action.expectedDurationMinutes > state.config.maxRuntimeMinutes) {
-          run.failedActions.push(action);
-          run.activeActionIds = run.activeActionIds.filter((value) => value !== action.id);
-          events.push(this.createEvents(run, action, 'failed', 'Expected duration over limit'));
+          state.run.failedActions.push(action);
+          state.run.activeActionIds = state.run.activeActionIds.filter((value) => value !== action.id);
+          events.push(createEvent(plan.planId, action.id, run.runId, 'failed', 'Expected duration over limit'));
           continue;
         }
 
-        run.activeActionIds = run.activeActionIds.filter((value) => value !== action.id);
-        run.completedActions.push(action);
-        events.push(this.createEvents(run, action, 'completed'));
+        state.run.activeActionIds = state.run.activeActionIds.filter((value) => value !== action.id);
+        state.run.completedActions.push(action);
+        events.push(createEvent(plan.planId, action.id, run.runId, 'completed'));
       } catch (error) {
-        run.failedActions.push(action);
-        run.activeActionIds = run.activeActionIds.filter((value) => value !== action.id);
-        events.push(this.createEvents(run, action, 'failed', (error as Error).message));
+        state.run.failedActions.push(action);
+        state.run.activeActionIds = state.run.activeActionIds.filter((value) => value !== action.id);
+        events.push(createEvent(plan.planId, action.id, run.runId, 'failed', (error as Error).message));
       }
     }
 
-    run.state = run.failedActions.length > 0 ? 'failed' : 'completed';
-    const persisted = await this.workspace.store.upsertRun(run);
+    state.run.state = state.run.failedActions.length > 0 ? 'failed' : 'completed';
+    const persisted = await this.workspace.store.upsertRun(state.run);
     if (!persisted.ok) {
       return fail(persisted.error);
     }
@@ -147,7 +146,22 @@ export class RecoveryCockpitOrchestrator {
       await this.workspace.store.publishEvent(event);
     }
 
-    return ok({ run, events });
+    const timeline = this.forecast(plan);
+    await this.workspace.store.publishEvent(
+      createEvent(
+        plan.planId,
+        run.runId as unknown as EntityId,
+        state.run.runId,
+        'completed',
+        `readiness=${timeline.summary}`,
+      ),
+    );
+
+    return ok({ run: state.run, events });
+  }
+
+  private forecast(plan: RecoveryPlan) {
+    return buildPlanForecast(plan, plan.mode === 'automated' ? 'aggressive' : 'balanced');
   }
 
   async abort(runId: string): Promise<Result<boolean, string>> {
@@ -161,14 +175,21 @@ export class RecoveryCockpitOrchestrator {
   }
 
   estimateHealth(plan: RecoveryPlan): number {
-    const actionScore = plan.actions.reduce((acc, action) => {
-      if (action.retriesAllowed === 0) return acc + 2;
-      return acc + action.tags.length + action.expectedDurationMinutes / 10;
-    }, 0);
+    const duration = plan.actions.reduce((acc, action) => acc + action.expectedDurationMinutes, 0);
+    const histogram = Object.entries(tagHistogram(plan.actions));
+    const avgDuration = duration / Math.max(plan.actions.length, 1);
+    const readiness = computeReadiness(100, duration);
+    const penalty = histogram.length * 1.2 + (plan.isSafe ? 0 : 10);
+    const policy = evaluatePlanPolicy(plan, 'advisory').riskScore;
+    return Number(Math.max(0, Math.min(100, readiness - avgDuration - penalty - policy)).toFixed(2));
+  }
 
-    const readinessScore = computeReadiness(100, plan.actions.length);
-    const safetyModifier = plan.isSafe ? 1 : 0.65;
-    const normalized = (readinessScore - actionScore) * safetyModifier;
-    return Number(Math.max(0, Math.min(100, normalized)).toFixed(2));
+  simulate(plan: RecoveryPlan) {
+    const summary = simulatePlan(plan);
+    const readiness = buildReadinessProjection(plan, 'automated');
+    return {
+      ...summary,
+      readiness,
+    };
   }
 }

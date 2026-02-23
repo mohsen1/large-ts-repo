@@ -1,5 +1,5 @@
-import { RecoveryPlan, ReadinessEnvelope, ReadinessWindow } from '@domain/recovery-cockpit-models';
-import { computeReadiness } from '@domain/recovery-cockpit-models';
+import { RecoveryPlan, ReadinessWindow, ReadinessEnvelope } from '@domain/recovery-cockpit-models';
+import { buildPlanForecast } from '@domain/recovery-cockpit-intelligence';
 
 export type TimelinePoint = {
   at: string;
@@ -21,20 +21,18 @@ const deriveStatus = (score: number): TimelinePoint['status'] => {
   return 'critical';
 };
 
-export const buildTimeline = (plan: RecoveryPlan, windows: readonly ReadinessWindow[]): CockpitTimeline => {
-  const points = windows.map((window) => {
-    const score = normalize(computeReadiness(100, window.expectedRecoveryMinutes + window.services.length));
-    return {
-      at: window.at,
-      score,
-      status: deriveStatus(score),
-    };
-  });
-  const summary = points.reduce((acc, point) => acc + point.score, 0);
+export const buildTimeline = (plan: RecoveryPlan): CockpitTimeline => {
+  const forecast = buildPlanForecast(plan, 'balanced');
+  const points = forecast.windows.map((window) => ({
+    at: window.at,
+    score: normalize(window.value),
+    status: deriveStatus(window.value),
+  }));
+  const summary = points.reduce((acc, point) => acc + point.score, 0) / Math.max(1, points.length);
   return {
     planId: plan.planId,
     points,
-    summary: Number((summary / Math.max(1, points.length)).toFixed(2)),
+    summary: Number(summary.toFixed(2)),
   };
 };
 
@@ -42,7 +40,7 @@ export const buildEnvelope = (planId: string, points: readonly ReadinessWindow[]
   const envelope: ReadinessEnvelope = {
     planId: planId as any,
     namespace: 'ops',
-    baselineScore: points.length === 0 ? 100 : points[0].expectedRecoveryMinutes,
+    baselineScore: points.length === 0 ? 100 : points[0].score,
     windows: points,
   };
   return envelope;

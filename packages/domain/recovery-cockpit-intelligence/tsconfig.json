@@ -13,16 +13,7 @@
       "path": "./../../domain/recovery-cockpit-models/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-cockpit-intelligence/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-cockpit-store/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-cockpit-insights/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/util/tsconfig.json"
+      "path": "./../../shared/type-level/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"

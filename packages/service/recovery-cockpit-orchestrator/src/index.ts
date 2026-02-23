@@ -2,3 +2,6 @@ export * from './orchestrator';
 export * from './planner';
 export * from './timeline';
 export * from './ports';
+export * from './policyEngine';
+export * from './simulation';
+export * from './adapters';

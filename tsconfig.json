@@ -845,6 +845,12 @@
       "path": "./packages/domain/recovery-cockpit-models"
     },
     {
+      "path": "./packages/domain/recovery-cockpit-intelligence"
+    },
+    {
+      "path": "./packages/data/recovery-cockpit-insights"
+    },
+    {
       "path": "./packages/data/recovery-cockpit-store"
     },
     {

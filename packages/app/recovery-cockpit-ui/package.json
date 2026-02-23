@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "@domain/recovery-cockpit-models": "workspace:*",
+    "@domain/recovery-cockpit-intelligence": "workspace:*",
     "@data/recovery-cockpit-store": "workspace:*",
+    "@data/recovery-cockpit-insights": "workspace:*",
     "@service/recovery-cockpit-orchestrator": "workspace:*",
     "@shared/util": "workspace:*",
     "react": "^19.0.0",

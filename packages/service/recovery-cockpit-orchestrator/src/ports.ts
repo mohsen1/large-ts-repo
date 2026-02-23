@@ -1,5 +1,5 @@
-import { CommandEvent, RecoveryAction, RecoveryPlan, RuntimeRun, PlanId } from '@domain/recovery-cockpit-models';
-import { CockpitStore, InMemoryCockpitStore } from '@data/recovery-cockpit-store';
+import { CommandEvent, RecoveryAction, RuntimeRun } from '@domain/recovery-cockpit-models';
+import { CockpitStore } from '@data/recovery-cockpit-store';
 
 export type OrchestrationClock = {
   now(): Date;
@@ -8,6 +8,7 @@ export type OrchestrationClock = {
 export interface ExternalAdapter {
   dispatch(action: RecoveryAction): Promise<{ commandId: string }>;
   stop(commandId: string): Promise<boolean>;
+  dryRun?(action: RecoveryAction): Promise<{ commandId: string; etaMinutes: number }>;
 }
 
 export interface CockpitWorkspace {
@@ -18,7 +19,7 @@ export interface CockpitWorkspace {
 
 export type OrchestrationResult = {
   run: RuntimeRun;
-  events: CommandEvent[];
+  events: readonly CommandEvent[];
 };
 
 export type OrchestratorConfig = {
@@ -28,14 +29,15 @@ export type OrchestratorConfig = {
     enabled: boolean;
     maxRetries: number;
   };
+  policyMode: 'readonly' | 'advisory' | 'enforce';
 };
 
 export const defaultClock: OrchestrationClock = {
   now: () => new Date(),
 };
 
-export const createInMemoryWorkspace = (store?: CockpitStore): CockpitWorkspace => ({
-  store: store ?? new InMemoryCockpitStore(),
+export const createInMemoryWorkspace = (store: CockpitStore): CockpitWorkspace => ({
+  store,
   clock: defaultClock,
   adapter: {
     dispatch: async (action) => ({
