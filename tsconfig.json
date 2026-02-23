@@ -948,6 +948,12 @@
     },
     {
       "path": "./packages/service/recovery-incident-scenario-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-stress-lab"
+    },
+    {
+      "path": "./packages/service/recovery-stress-lab-orchestrator"
     }
   ]
 }

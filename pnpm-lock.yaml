@@ -647,9 +647,6 @@ importers:
 
   packages/app/recovery-timeline-studio:
     dependencies:
-      '@app/recovery-console':
-        specifier: workspace:*
-        version: link:../recovery-console
       '@data/recovery-timeline-store':
         specifier: workspace:*
         version: link:../../data/recovery-timeline-store
@@ -2856,6 +2853,12 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-stress-lab:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+
   packages/domain/recovery-timeline:
     dependencies:
       '@shared/core':
@@ -4909,6 +4912,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-stress-lab-orchestrator:
+    dependencies:
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/recovery-synthesis-orchestrator:
     dependencies:
