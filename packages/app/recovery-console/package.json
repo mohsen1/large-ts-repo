@@ -70,6 +70,7 @@
     "@domain/recovery-playbook-orchestration": "workspace:*",
     "@service/recovery-simulation-orchestrator": "workspace:*",
     "@data/recovery-simulation-store": "workspace:*",
-    "@domain/recovery-simulation-lab-models": "workspace:*"
+    "@domain/recovery-simulation-lab-models": "workspace:*",
+    "@service/recovery-command-control-hub": "workspace:*"
   }
 }

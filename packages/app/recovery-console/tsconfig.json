@@ -155,6 +155,9 @@
     },
     {
       "path": "./../../service/recovery-ops-playbook-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-command-control-hub/tsconfig.json"
     }
   ]
 }

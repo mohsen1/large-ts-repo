@@ -233,6 +233,9 @@ importers:
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
+      '@data/recovery-simulation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-simulation-store
       '@domain/incident-fusion-models':
         specifier: workspace:*
         version: link:../../domain/incident-fusion-models
@@ -284,6 +287,9 @@ importers:
       '@domain/recovery-signal-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-signal-intelligence
+      '@domain/recovery-simulation-lab-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-lab-models
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
@@ -350,6 +356,9 @@ importers:
       '@service/recovery-signal-intelligence-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-signal-intelligence-orchestrator
+      '@service/recovery-simulation-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-simulation-orchestrator
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -2517,6 +2526,12 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-simulation-lab-models:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/domain/recovery-simulation-planning:
     dependencies:
       '@shared/core':
@@ -4381,6 +4396,9 @@ importers:
       '@domain/recovery-simulation-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-core
+      '@domain/recovery-simulation-lab-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-lab-models
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result

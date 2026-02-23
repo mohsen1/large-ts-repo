@@ -867,6 +867,12 @@
     },
     {
       "path": "./packages/domain/recovery-simulation-lab-models"
+    },
+    {
+      "path": "./packages/domain/recovery-command-control-hub"
+    },
+    {
+      "path": "./packages/service/recovery-command-control-hub"
     }
   ]
 }
