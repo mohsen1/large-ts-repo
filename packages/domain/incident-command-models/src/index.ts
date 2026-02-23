@@ -3,3 +3,7 @@ export * from './constraints';
 export * from './priority';
 export * from './timeline';
 export * from './adapters';
+export * from './lab-objectives';
+export * from './lab-workspace-model';
+export * from './lab-workflow-model';
+export * from './lab-signal-profile';

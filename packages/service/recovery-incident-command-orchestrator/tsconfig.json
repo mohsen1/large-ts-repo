@@ -20,6 +20,18 @@
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/observability/tsconfig.json"
+    },
+    {
+      "path": "./../../platform/messaging/tsconfig.json"
     }
   ]
 }

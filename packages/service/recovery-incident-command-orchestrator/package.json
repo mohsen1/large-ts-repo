@@ -17,6 +17,10 @@
     "@data/incident-command-store": "workspace:*",
     "@domain/incident-command-models": "workspace:*",
     "@domain/incident-command-core": "workspace:*",
-    "@shared/result": "workspace:*"
+    "@shared/result": "workspace:*",
+    "@platform/observability": "workspace:*",
+    "@platform/messaging": "workspace:*",
+    "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*"
   }
 }

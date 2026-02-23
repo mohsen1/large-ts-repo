@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@domain/incident-command-models": "workspace:*",
-    "@shared/result": "workspace:*"
+    "@shared/result": "workspace:*",
+    "zod": "^3.24.0"
   }
 }

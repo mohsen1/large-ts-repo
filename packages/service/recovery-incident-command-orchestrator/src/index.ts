@@ -3,3 +3,7 @@ export * from './planner';
 export * from './evaluator';
 export * from './runner';
 export * from './command-lab';
+export * from './lab-workspace';
+export * from './lab-telemetry';
+export * from './lab-query-plan';
+export * from './lab-adapter';

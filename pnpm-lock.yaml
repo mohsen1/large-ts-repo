@@ -431,6 +431,9 @@ importers:
       '@service/recovery-incident-analytics-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-analytics-orchestrator
+      '@service/recovery-incident-command-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-command-orchestrator
       '@service/recovery-incident-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-orchestrator
@@ -677,6 +680,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/incident-forecast-store:
     dependencies:
@@ -3601,9 +3607,21 @@ importers:
       '@domain/incident-command-models':
         specifier: workspace:*
         version: link:../../domain/incident-command-models
+      '@platform/messaging':
+        specifier: workspace:*
+        version: link:../../platform/messaging
+      '@platform/observability':
+        specifier: workspace:*
+        version: link:../../platform/observability
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/service/recovery-incident-graph-engine:
     dependencies:

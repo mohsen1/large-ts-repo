@@ -35,6 +35,9 @@
       "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-incident-command-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-stability-orchestrator/tsconfig.json"
     },
     {
