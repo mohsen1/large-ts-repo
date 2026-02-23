@@ -5,3 +5,5 @@ export * from './ports';
 export * from './policyEngine';
 export * from './simulation';
 export * from './adapters';
+export * from './workloadPlanner';
+export * from './analyticsEngine';

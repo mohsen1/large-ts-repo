@@ -14,3 +14,4 @@ export * from './hooks/useCockpitPolicy';
 export * from './hooks/useCockpitTimeline';
 export * from './pages/RecoveryCockpitOverviewPage';
 export * from './pages/RecoveryCockpitControlCenterPage';
+export * from './pages/RecoveryCockpitOpsWorkspacePage';

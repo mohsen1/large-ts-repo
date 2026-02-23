@@ -27,10 +27,16 @@
       "path": "./../../data/recovery-cockpit-insights/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-cockpit-analytics/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-cockpit-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../shared/util/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-cockpit-workloads/tsconfig.json"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@app/recovery-cockpit-ui",
+  "name": "@data/recovery-cockpit-analytics",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,17 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/recovery-cockpit-store": "workspace:*",
     "@domain/recovery-cockpit-models": "workspace:*",
     "@domain/recovery-cockpit-intelligence": "workspace:*",
     "@domain/recovery-cockpit-workloads": "workspace:*",
-    "@data/recovery-cockpit-store": "workspace:*",
-    "@data/recovery-cockpit-insights": "workspace:*",
-    "@data/recovery-cockpit-analytics": "workspace:*",
-    "@service/recovery-cockpit-orchestrator": "workspace:*",
-    "@shared/util": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@shared/result": "workspace:*"
   }
 }
