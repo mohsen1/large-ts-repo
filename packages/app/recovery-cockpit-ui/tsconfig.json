@@ -1,0 +1,30 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2023"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-cockpit-models/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-cockpit-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    }
+  ]
+}

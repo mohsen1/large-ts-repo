@@ -840,6 +840,18 @@
     },
     {
       "path": "./packages/service/recovery-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-models"
+    },
+    {
+      "path": "./packages/data/recovery-cockpit-store"
+    },
+    {
+      "path": "./packages/service/recovery-cockpit-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-cockpit-ui"
     }
   ]
 }

@@ -165,6 +165,33 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
 
+  packages/app/recovery-cockpit-ui:
+    dependencies:
+      '@data/recovery-cockpit-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-store
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@service/recovery-cockpit-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-orchestrator
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
   packages/app/recovery-console:
     dependencies:
       '@aws-sdk/client-eventbridge':
@@ -798,6 +825,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-cockpit-store:
+    dependencies:
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-command-control-plane:
     dependencies:
@@ -1815,6 +1851,12 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+
+  packages/domain/recovery-cockpit-models:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-command-forge:
     dependencies:
@@ -3301,6 +3343,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-cockpit-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-store
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/service/recovery-command-forge-orchestrator:
     dependencies:

@@ -1,0 +1,26 @@
+{
+  "name": "@app/recovery-cockpit-ui",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-cockpit-models": "workspace:*",
+    "@data/recovery-cockpit-store": "workspace:*",
+    "@service/recovery-cockpit-orchestrator": "workspace:*",
+    "@shared/util": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}
