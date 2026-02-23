@@ -167,6 +167,9 @@ importers:
 
   packages/app/recovery-cockpit-ui:
     dependencies:
+      '@data/recovery-cockpit-analytics':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-analytics
       '@data/recovery-cockpit-insights':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-insights
@@ -179,6 +182,9 @@ importers:
       '@domain/recovery-cockpit-models':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-models
+      '@domain/recovery-cockpit-workloads':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-workloads
       '@service/recovery-cockpit-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-orchestrator
@@ -831,6 +837,24 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-cockpit-analytics:
+    dependencies:
+      '@data/recovery-cockpit-store':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-store
+      '@domain/recovery-cockpit-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-intelligence
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@domain/recovery-cockpit-workloads':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-workloads
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-cockpit-insights:
     dependencies:
@@ -1890,6 +1914,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/domain/recovery-cockpit-workloads:
+    dependencies:
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-models
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/domain/recovery-command-forge:
     dependencies:
@@ -3379,6 +3415,9 @@ importers:
 
   packages/service/recovery-cockpit-orchestrator:
     dependencies:
+      '@data/recovery-cockpit-analytics':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-analytics
       '@data/recovery-cockpit-insights':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-insights
@@ -3391,6 +3430,9 @@ importers:
       '@domain/recovery-cockpit-models':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-models
+      '@domain/recovery-cockpit-workloads':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-workloads
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result

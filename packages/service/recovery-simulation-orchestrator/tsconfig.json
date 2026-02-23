@@ -13,6 +13,9 @@
       "path": "./../../domain/recovery-simulation-core/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-simulation-lab-models/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-simulation-store/tsconfig.json"
     },
     {

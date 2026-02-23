@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@domain/recovery-simulation-core": "workspace:*",
+    "@domain/recovery-simulation-lab-models": "workspace:*",
     "@data/recovery-simulation-store": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*"

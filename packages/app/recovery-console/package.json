@@ -67,6 +67,9 @@
     "@service/recovery-playbook-lab-orchestrator": "workspace:*",
     "@domain/recovery-playbook-lab": "workspace:*",
     "@service/recovery-playbook-orchestrator": "workspace:*",
-    "@domain/recovery-playbook-orchestration": "workspace:*"
+    "@domain/recovery-playbook-orchestration": "workspace:*",
+    "@service/recovery-simulation-orchestrator": "workspace:*",
+    "@data/recovery-simulation-store": "workspace:*",
+    "@domain/recovery-simulation-lab-models": "workspace:*"
   }
 }

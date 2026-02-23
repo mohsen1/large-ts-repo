@@ -28,6 +28,12 @@
       "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
     },
     {
+      "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-simulation-orchestrator/tsconfig.json"
+    },
+    {
       "path": "../../service/recovery-ops-orchestration-engine/tsconfig.json"
     },
     {
@@ -50,6 +56,9 @@
     },
     {
       "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-simulation-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-playbook-store/tsconfig.json"
@@ -95,6 +104,9 @@
     },
     {
       "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-simulation-lab-models/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-command-forge-orchestrator/tsconfig.json"

@@ -864,6 +864,9 @@
     },
     {
       "path": "./packages/app/recovery-cockpit-ui"
+    },
+    {
+      "path": "./packages/domain/recovery-simulation-lab-models"
     }
   ]
 }
