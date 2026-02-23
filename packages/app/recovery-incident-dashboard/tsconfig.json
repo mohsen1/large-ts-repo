@@ -74,6 +74,9 @@
       "path": "./../../service/recovery-strategy-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-command-network/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-synthesis-orchestrator/tsconfig.json"
     },
     {

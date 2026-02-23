@@ -383,6 +383,9 @@
       "path": "./packages/domain/recovery-command-studio"
     },
     {
+      "path": "./packages/domain/recovery-command-network"
+    },
+    {
       "path": "./packages/domain/recovery-command-surface-models"
     },
     {
