@@ -123,3 +123,8 @@ export * from './components/RecoveryOperationsOrchestrationDashboard';
 export * from './components/ReadinessHorizonChart';
 export * from './components/ForecastPulseTimeline';
 export * from './pages/RecoveryOperationsOrchestrationWorkspacePage';
+export { useRecoveryCommandForgeWorkspace } from './hooks/useRecoveryCommandForgeWorkspace';
+export { RecoveryCommandForgePage } from './pages/RecoveryCommandForgePage';
+export { CommandForgeDashboard } from './components/recovery-command-forge/CommandForgeDashboard';
+export { CommandForgePlanGraph } from './components/recovery-command-forge/CommandForgePlanGraph';
+export { CommandForgeSignals } from './components/recovery-command-forge/CommandForgeSignals';

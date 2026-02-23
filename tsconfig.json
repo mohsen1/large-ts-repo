@@ -750,6 +750,7 @@
     },
     {
       "path": "./packages/service/incident-fusion-orchestrator"
-    }
+    },
+    { "path": "./packages/domain/recovery-command-forge" }
   ]
 }

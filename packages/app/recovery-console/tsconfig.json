@@ -22,6 +22,9 @@
   ],
   "references": [
     {
+      "path": "./../../domain/recovery-command-forge/tsconfig.json"
+    },
+      {
       "path": "./../../data/recovery-operations-store/tsconfig.json"
     },
     {
