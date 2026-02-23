@@ -7,3 +7,7 @@ export * from './simulation';
 export * from './adapters';
 export * from './workloadPlanner';
 export * from './analyticsEngine';
+export * from './strategy';
+export * from './runObservability';
+export * from './simulationEngine';
+export * from './adapterFacade';
