@@ -3,12 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true,
-    "jsx": "react-jsx",
-    "lib": [
-      "DOM",
-      "ES2023"
-    ]
+    "declaration": true
   },
   "include": [
     "src/**/*"
@@ -18,6 +13,9 @@
       "path": "./../../data/recovery-drill-lab-store/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-drill-metrics/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-drill-lab/tsconfig.json"
     },
     {
@@ -25,9 +23,6 @@
     },
     {
       "path": "./../../service/recovery-drill-observability/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-drill-surface-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../shared/core/tsconfig.json"

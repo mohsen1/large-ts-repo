@@ -1,5 +1,5 @@
 {
-  "name": "@app/recovery-drill-observer",
+  "name": "@service/recovery-drill-surface-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,15 +14,12 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@service/recovery-drill-observability": "workspace:*",
+    "@data/recovery-drill-lab-store": "workspace:*",
+    "@data/recovery-drill-metrics": "workspace:*",
+    "@domain/recovery-drill-lab": "workspace:*",
     "@service/recovery-drill-lab-orchestrator": "workspace:*",
-    "@service/recovery-drill-surface-orchestrator": "workspace:*",
-    "@shared/result": "workspace:*",
+    "@service/recovery-drill-observability": "workspace:*",
     "@shared/core": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "zod": "^3.24.0"
+    "@shared/result": "workspace:*"
   }
 }

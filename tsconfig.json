@@ -809,6 +809,9 @@
       "path": "./packages/service/recovery-playbook-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-drill-surface-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-policy-engine"
     },
     {
