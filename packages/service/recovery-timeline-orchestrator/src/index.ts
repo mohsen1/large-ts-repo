@@ -3,3 +3,7 @@ export * from './engine';
 export * from './pipeline';
 export * from './workspace';
 export * from './query';
+export * from './bootstrap';
+export * from './policy-catalog';
+export * from './advanced-orchestrator';
+export * from './policy-execution';

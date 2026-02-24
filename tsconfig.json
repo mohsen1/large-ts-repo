@@ -53,6 +53,15 @@
       "path": "./packages/app/recovery-timeline-studio"
     },
     {
+      "path": "./packages/domain/recovery-timeline-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-ops-mesh"
+    },
+    {
+      "path": "./packages/shared/timeline-orchestration-runtime"
+    },
+    {
       "path": "./packages/app/reporter"
     },
     {
@@ -63,6 +72,15 @@
     },
     {
       "path": "./packages/app/recovery-chaos-lab"
+    },
+    {
+      "path": "./packages/app/recovery-mesh-console"
+    },
+    {
+      "path": "./packages/shared/chaos-lab-console-kernel"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-lab-console-orchestrator"
     },
     {
       "path": "./packages/data/adapters"
@@ -177,6 +195,9 @@
     },
     {
       "path": "./packages/data/recovery-horizon-store"
+    },
+    {
+      "path": "./packages/data/recovery-incident-intent-store"
     },
     {
       "path": "./packages/data/recovery-incident-insights-store"
@@ -707,6 +728,9 @@
       "path": "./packages/domain/recovery-intent-graph"
     },
     {
+      "path": "./packages/domain/recovery-incident-intent"
+    },
+    {
       "path": "./packages/domain/temporal"
     },
     {
@@ -935,6 +959,9 @@
       "path": "./packages/service/recovery-fabric-controller"
     },
     {
+      "path": "./packages/service/recovery-ops-mesh-engine"
+    },
+    {
       "path": "./packages/service/recovery-fabric-orchestrator"
     },
     {
@@ -1011,6 +1038,9 @@
     },
     {
       "path": "./packages/service/recovery-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-intent-orchestrator"
     },
     {
       "path": "./packages/service/recovery-policy-engine"
@@ -1106,7 +1136,13 @@
       "path": "./packages/domain/recovery-orchestration-design"
     },
     {
+      "path": "./packages/shared/ops-orchestration-runtime"
+    },
+    {
       "path": "./packages/domain/recovery-lab-orchestration-core"
+    },
+    {
+      "path": "./packages/domain/recovery-automation-orchestrator"
     },
     {
       "path": "./packages/shared/orchestration-kernel"
@@ -1116,6 +1152,9 @@
     },
     {
       "path": "./packages/shared/codec"
+    },
+    {
+      "path": "./packages/shared/automation-orchestration-runtime"
     },
     {
       "path": "./packages/shared/core"
@@ -1160,6 +1199,9 @@
       "path": "./packages/shared/orchestration-lab-core"
     },
     {
+      "path": "./packages/shared/mesh-control-plane"
+    },
+    {
       "path": "./packages/shared/recovery-lab-kernel"
     },
     {
@@ -1170,6 +1212,39 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
+    },
+    {
+      "path": "./packages/shared/lab-simulation-kernel"
+    },
+    {
+      "path": "./packages/shared/lab-graph-runtime"
+    },
+    {
+      "path": "./packages/domain/recovery-chronicle-core"
+    },
+    {
+      "path": "./packages/domain/recovery-lab-synthetic-orchestration"
+    },
+    {
+      "path": "./packages/data/recovery-chronicle-store"
+    },
+    {
+      "path": "./packages/service/recovery-chronicle-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-chronicle-console"
+    },
+    {
+      "path": "./packages/domain/recovery-lab-signal-studio"
+    },
+    {
+      "path": "./packages/data/recovery-lab-digital-twin-store"
+    },
+    {
+      "path": "./packages/service/recovery-lab-orchestration-studio"
+    },
+    {
+      "path": "./packages/service/recovery-lab-graph-orchestrator"
     }
   ]
 }

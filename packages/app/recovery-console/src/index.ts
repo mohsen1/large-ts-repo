@@ -297,3 +297,10 @@ export { ChaosLabTimeline } from './features/recovery-orchestration-lab/componen
 export { ChaosLabSignalDeck } from './features/recovery-orchestration-lab/components/ChaosLabSignalDeck';
 export { useChaosLabDashboard } from './features/recovery-orchestration-lab/hooks/useChaosLabDashboard';
 export * from './features/recovery-orchestration-lab/services/lab-orchestration-service';
+export { RecoveryAutomationOrchestratorPage } from './features/recovery-automation-orchestrator/pages/RecoveryAutomationOrchestratorPage';
+export { useRecoveryAutomationOrchestrator } from './features/recovery-automation-orchestrator/hooks/useRecoveryAutomationOrchestrator';
+export * from './features/recovery-automation-orchestrator/services/automationOrchestratorService';
+export * from './features/recovery-automation-orchestrator/components/AutomationCommandBoard';
+export * from './features/recovery-automation-orchestrator/components/AutomationPulseTimeline';
+export * from './features/recovery-automation-orchestrator/components/AutomationStatusDeck';
+export * from './features/recovery-automation-orchestrator/types';

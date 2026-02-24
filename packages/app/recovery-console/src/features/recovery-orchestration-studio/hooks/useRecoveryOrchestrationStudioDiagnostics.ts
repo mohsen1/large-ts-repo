@@ -5,7 +5,7 @@ import type {
   RuntimeStatus,
 } from '@service/recovery-orchestration-studio-engine';
 import type { RecoveryRunbook, RecoveryRun } from '@domain/recovery-orchestration-design';
-import { collectRunbookProjections, summarizeDiagnostics, buildWindows } from '@domain/recovery-orchestration-design';
+import { collectRunbookProjections, summarizeDiagnostics, buildWindows } from '@domain/recovery-orchestration-design/diagnostics';
 
 export type DiagnosisPhase = 'boot' | 'plan' | 'run' | 'report' | 'drain';
 export type DiagnosisTag = `diag:${string}`;
@@ -67,7 +67,10 @@ const diagnose = (
 ): DiagnosisSummary => {
   const projections = collectRunbookProjections(runbook);
   const completed = projections.filter((entry) => entry.complete > 0).length;
-  const projected = projections.reduce((acc, entry) => acc + entry.active, 0);
+  const projected = projections.reduce(
+    (acc: number, entry: { readonly complete: number; readonly active: number }) => acc + entry.active,
+    0,
+  );
   const trend: PhaseTrend = projected > completed ? 'trend/up' : projected === completed ? 'trend/flat' : 'trend/down';
   const summary = summarizeDiagnostics(runbook, run ? [run] : []);
 

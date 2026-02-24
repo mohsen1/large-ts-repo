@@ -176,6 +176,9 @@
       "path": "./../../shared/recovery-orchestration-runtime/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-chaos-lab-console-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
     }
   ]

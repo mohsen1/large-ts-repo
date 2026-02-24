@@ -74,6 +74,7 @@
     "@data/recovery-horizon-store": "workspace:*",
     "@domain/recovery-horizon-studio-core": "workspace:*",
     "@service/recovery-intent-graph-orchestrator": "workspace:*",
+    "@service/recovery-chaos-lab-console-orchestrator": "workspace:*",
     "@shared/recovery-orchestration-runtime": "workspace:*"
   }
 }

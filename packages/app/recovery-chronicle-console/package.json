@@ -1,0 +1,27 @@
+{
+  "name": "@app/recovery-chronicle-console",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@data/recovery-chronicle-store": "workspace:*",
+    "@domain/recovery-chronicle-core": "workspace:*",
+    "@service/recovery-chronicle-orchestrator": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/result": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

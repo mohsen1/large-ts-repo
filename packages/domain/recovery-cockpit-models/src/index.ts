@@ -9,3 +9,4 @@ export * from './runbookSeries';
 export * from './slaPolicy';
 export * from './executionGraph';
 export * from './changeControl';
+export * from './orchestrationBlueprints';

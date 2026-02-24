@@ -172,3 +172,6 @@ export * from './recovery-intent-graph/hooks/useIntentGraphSignals';
 export * from './recovery-intent-graph/components/IntentGraphTopology';
 export * from './recovery-intent-graph/components/IntentGraphSummaryPanel';
 export * from './recovery-intent-graph/pages/IntentGraphPage';
+export * from './hooks/useChaosLabConsoleFacade';
+export * from './components/ChaosLabConsolePanel';
+export * from './pages/ChaosLabConsoleOrchestratorPage';

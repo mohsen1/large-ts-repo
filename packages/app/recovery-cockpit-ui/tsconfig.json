@@ -79,10 +79,18 @@
     },
     {
       "path": "./../../service/recovery-cockpit-constellation-orchestrator/tsconfig.json"
-    }
-    ,
+    },
     {
       "path": "./../../domain/recovery-stress-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/orchestration-lab-core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/mesh-control-plane/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/ops-orchestration-runtime/tsconfig.json"
     }
   ]
 }

@@ -73,6 +73,9 @@
     },
     {
       "path": "./../../domain/recovery-lattice/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-incident-intent-orchestrator/tsconfig.json"
     }
   ]
 }

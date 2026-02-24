@@ -1,0 +1,33 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2023"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../data/recovery-chronicle-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-chronicle-core/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-chronicle-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    }
+  ]
+}

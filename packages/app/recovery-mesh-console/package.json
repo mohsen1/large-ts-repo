@@ -1,0 +1,25 @@
+{
+  "name": "@app/recovery-mesh-console",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-ops-mesh": "workspace:*",
+    "@service/recovery-ops-mesh-engine": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "zod": "^3.24.0"
+  }
+}

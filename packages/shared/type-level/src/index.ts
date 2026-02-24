@@ -1,4 +1,5 @@
 export * from './patterns';
+export * from './plugin-registry';
 
 export type Primitive = string | number | boolean | bigint | symbol | null | undefined;
 export type JsonPrimitive = string | number | boolean | null;
