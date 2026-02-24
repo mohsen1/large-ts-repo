@@ -148,7 +148,7 @@ jobs:
         shell: bash
         env:
           COMPILER: tsc-v6
-          COMMAND: npx -y -p typescript@beta tsc -b tsconfig.json --pretty false
+          COMMAND: npx -y -p typescript@beta tsc -b tsconfig.json --pretty false --ignoreDeprecations 6.0
           ALLOW_FAILURE: false
         run: |
           set -euo pipefail
