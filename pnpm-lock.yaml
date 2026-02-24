@@ -797,6 +797,9 @@ importers:
       '@service/recovery-workload-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-workload-orchestrator
+      '@shared/recovery-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
