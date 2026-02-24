@@ -608,6 +608,9 @@ importers:
       '@shared/orchestration-lab-core':
         specifier: workspace:*
         version: link:../../shared/orchestration-lab-core
+      '@shared/orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-runtime
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
@@ -617,6 +620,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
@@ -6671,6 +6677,15 @@ importers:
 
   packages/shared/orchestration-lab-core: {}
 
+  packages/shared/orchestration-runtime:
+    dependencies:
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../typed-orchestration-core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/shared/protocol:
     dependencies:
       '@shared/core':
@@ -6717,6 +6732,12 @@ importers:
         version: link:../type-level
 
   packages/shared/type-level:
+    dependencies:
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/shared/typed-orchestration-core:
     dependencies:
       zod:
         specifier: ^3.24.0

@@ -1130,6 +1130,12 @@
       "path": "./packages/shared/incident-saga-core"
     },
     {
+      "path": "./packages/shared/typed-orchestration-core"
+    },
+    {
+      "path": "./packages/shared/orchestration-runtime"
+    },
+    {
       "path": "./packages/shared/monads"
     },
     {

@@ -277,6 +277,12 @@
       "path": "./../../shared/incident-saga-core/tsconfig.json"
     },
     {
+      "path": "../../shared/typed-orchestration-core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/orchestration-runtime/tsconfig.json"
+    },
+    {
       "path": "../../domain/recovery-readiness/tsconfig.json"
     },
     {
