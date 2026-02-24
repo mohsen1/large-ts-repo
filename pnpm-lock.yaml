@@ -590,6 +590,9 @@ importers:
       '@shared/incident-saga-core':
         specifier: workspace:*
         version: link:../../shared/incident-saga-core
+      '@shared/orchestration-kernel':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-kernel
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
@@ -6503,6 +6506,12 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
 
   packages/shared/protocol:
     dependencies:
