@@ -65,6 +65,12 @@
       "path": "./packages/app/recovery-chaos-lab"
     },
     {
+      "path": "./packages/shared/chaos-lab-console-kernel"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-lab-console-orchestrator"
+    },
+    {
       "path": "./packages/data/adapters"
     },
     {
