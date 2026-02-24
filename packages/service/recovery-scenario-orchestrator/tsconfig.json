@@ -19,6 +19,12 @@
       "path": "./../../domain/recovery-scenario-engine/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-scenario-planner/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-scenario-notifier/tsconfig.json"
+    },
+    {
       "path": "./../../infrastructure/recovery-scenario-orchestration-adapters/tsconfig.json"
     },
     {

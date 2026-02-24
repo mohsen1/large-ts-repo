@@ -13,10 +13,16 @@
       "path": "./../../domain/recovery-scenario-engine/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-scenario-planner/tsconfig.json"
+    },
+    {
       "path": "./../../shared/protocol/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-intelligence-store/tsconfig.json"
     }
   ]
 }
