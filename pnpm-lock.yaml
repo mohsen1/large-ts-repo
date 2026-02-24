@@ -44,6 +44,9 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
       '@domain/recovery-operations-control-plane':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-control-plane
@@ -68,6 +71,9 @@ importers:
       '@service/recovery-incident-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-command-orchestrator
+      '@service/recovery-lattice-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-lattice-orchestrator
       '@service/recovery-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-readiness-orchestrator
@@ -1650,6 +1656,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-lattice-orchestrator-store:
+    dependencies:
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -5482,6 +5506,27 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-lattice-orchestrator:
+    dependencies:
+      '@data/recovery-lattice-orchestrator-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lattice-orchestrator-store
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76

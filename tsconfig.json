@@ -188,7 +188,7 @@
       "path": "./packages/data/recovery-intelligence-store"
     },
     {
-      "path": "./packages/data/recovery-lattice-store"
+      "path": "./packages/data/recovery-lattice-orchestrator-store"
     },
     {
       "path": "./packages/data/recovery-observability"
@@ -993,6 +993,9 @@
     },
     {
       "path": "./packages/service/recovery-policy-engine"
+    },
+    {
+      "path": "./packages/service/recovery-lattice-orchestrator"
     },
     {
       "path": "./packages/service/recovery-readiness-orchestrator"

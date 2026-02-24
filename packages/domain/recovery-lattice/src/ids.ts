@@ -22,6 +22,7 @@ export interface LatticeContext {
   readonly regionId: LatticeRegionId;
   readonly zoneId: LatticeZoneId;
   readonly requestId: BrandedTraceId;
+  readonly [key: string]: unknown;
 }
 
 export const asTenantId = (value: string): LatticeTenantId => withBrand(value, 'lattice-tenant:id');
@@ -86,4 +87,3 @@ export interface LabeledEntity {
 export const withZoneLabel = <T extends string>(label: T, zone: LatticeZoneId): `${T}::${LatticeZoneId}` => {
   return `${label}::${zone}` as `${T}::${LatticeZoneId}`;
 };
-

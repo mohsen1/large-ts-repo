@@ -35,6 +35,8 @@
     "@service/recovery-horizon-orchestrator": "workspace:*",
     "@domain/recovery-horizon-engine": "workspace:*",
     "@data/recovery-horizon-store": "workspace:*",
-    "@domain/recovery-stress-lab": "workspace:*"
+    "@domain/recovery-stress-lab": "workspace:*",
+    "@service/recovery-lattice-orchestrator": "workspace:*",
+    "@domain/recovery-lattice": "workspace:*"
   }
 }

@@ -67,6 +67,12 @@
     },
     {
       "path": "./../../domain/recovery-stress-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-lattice-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lattice/tsconfig.json"
     }
   ]
 }

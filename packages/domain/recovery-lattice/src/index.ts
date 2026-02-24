@@ -5,3 +5,6 @@ export * from './constraints';
 export * from './planning';
 export * from './runtime';
 export * from './adapters';
+export * from './blueprints';
+export * from './observability';
+export * from './registry-core';

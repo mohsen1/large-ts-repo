@@ -101,3 +101,8 @@ export { StressLabPolicyPanel } from './components/stress-lab/StressLabPolicyPan
 export { StressLabEventFeed } from './components/stress-lab/StressLabEventFeed';
 export { useRecoveryStressLab } from './hooks/useRecoveryStressLab';
 export { createRecoveryStressLabClient } from './services/recoveryStressLabClient';
+export { RecoveryLatticeStudioPage } from './pages/RecoveryLatticeStudioPage';
+export { LatticeTopologyPanel } from './components/lattice/LatticeTopologyPanel';
+export { LatticeStatusCards } from './components/lattice/LatticeStatusCards';
+export { LatticeRunLog } from './components/lattice/LatticeRunLog';
+export { useLatticeStudio } from './hooks/useLatticeStudio';
