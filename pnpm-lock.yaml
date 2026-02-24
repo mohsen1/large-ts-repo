@@ -983,18 +983,27 @@ importers:
       '@domain/recovery-lab-signal-studio':
         specifier: workspace:*
         version: link:../../domain/recovery-lab-signal-studio
+      '@domain/recovery-lab-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-synthetic-orchestration
       '@domain/recovery-orchestration-design':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-design
       '@domain/recovery-simulation-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-lab-core
+      '@service/recovery-lab-graph-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-lab-graph-orchestrator
       '@service/recovery-lab-orchestration-studio':
         specifier: workspace:*
         version: link:../../service/recovery-lab-orchestration-studio
       '@service/recovery-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-lab-orchestrator
+      '@shared/lab-graph-runtime':
+        specifier: workspace:*
+        version: link:../../shared/lab-graph-runtime
       '@shared/recovery-lab-kernel':
         specifier: workspace:*
         version: link:../../shared/recovery-lab-kernel
@@ -3598,6 +3607,12 @@ importers:
         specifier: workspace:*
         version: link:../../shared/orchestration-lab-core
 
+  packages/domain/recovery-lab-synthetic-orchestration:
+    dependencies:
+      '@shared/lab-graph-runtime':
+        specifier: workspace:*
+        version: link:../../shared/lab-graph-runtime
+
   packages/domain/recovery-lattice:
     dependencies:
       '@shared/core':
@@ -5942,6 +5957,15 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-lab-graph-orchestrator:
+    dependencies:
+      '@domain/recovery-lab-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-synthetic-orchestration
+      '@shared/lab-graph-runtime':
+        specifier: workspace:*
+        version: link:../../shared/lab-graph-runtime
+
   packages/service/recovery-lab-orchestration-studio:
     dependencies:
       '@data/recovery-lab-digital-twin-store':
@@ -6996,6 +7020,8 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+
+  packages/shared/lab-graph-runtime: {}
 
   packages/shared/lab-simulation-kernel:
     dependencies:
