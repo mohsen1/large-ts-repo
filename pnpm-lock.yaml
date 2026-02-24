@@ -5983,6 +5983,9 @@ importers:
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
+      '@data/recovery-workflow-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-workflow-store
       '@domain/recovery-fusion-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-fusion-intelligence
