@@ -1208,6 +1208,18 @@
       "path": "./packages/shared/lab-simulation-kernel"
     },
     {
+      "path": "./packages/domain/recovery-chronicle-core"
+    },
+    {
+      "path": "./packages/data/recovery-chronicle-store"
+    },
+    {
+      "path": "./packages/service/recovery-chronicle-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-chronicle-console"
+    },
+    {
       "path": "./packages/domain/recovery-lab-signal-studio"
     },
     {
