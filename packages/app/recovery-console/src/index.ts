@@ -237,3 +237,15 @@ export { FusionLabCommandRail } from './features/recovery-fusion-lab/components/
 export { FusionLabPolicyPanel } from './features/recovery-fusion-lab/components/FusionLabPolicyPanel';
 export { RecoveryFusionLabOperationsPage } from './features/recovery-fusion-lab/pages/RecoveryFusionLabOperationsPage';
 export { RecoveryFusionLabSummaryPage } from './features/recovery-fusion-lab/pages/RecoveryFusionLabSummaryPage';
+export * from './features/recovery-saga-lab/types';
+export * from './features/recovery-saga-lab/services/sagaApi';
+export * from './features/recovery-saga-lab/services/sagaAdapters';
+export * from './features/recovery-saga-lab/hooks/useSagaOrchestrator';
+export * from './features/recovery-saga-lab/hooks/useSagaTimeline';
+export * from './features/recovery-saga-lab/hooks/useSagaPlugins';
+export * from './features/recovery-saga-lab/components/SagaWorkspaceHeader';
+export * from './features/recovery-saga-lab/components/SagaRuntimeSummary';
+export * from './features/recovery-saga-lab/components/SagaPolicyTable';
+export * from './features/recovery-saga-lab/components/SagaEventTicker';
+export * from './features/recovery-saga-lab/components/SagaNodeCard';
+export * from './features/recovery-saga-lab/pages/RecoverySagaOpsLabPage';

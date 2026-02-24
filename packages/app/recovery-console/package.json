@@ -92,10 +92,12 @@
     "@data/recovery-atlas-store": "workspace:*",
     "@service/recovery-orchestration-atlas": "workspace:*",
     "@service/recovery-fabric-cadence-orchestrator": "workspace:*",
-    "@domain/recovery-fabric-cadence-core": "workspace:*"
-    ,
+    "@domain/recovery-fabric-cadence-core": "workspace:*",
     "@domain/recovery-fusion-intelligence": "workspace:*",
     "@domain/recovery-stress-lab": "workspace:*",
-    "@service/recovery-stress-lab-orchestrator": "workspace:*"
+    "@service/recovery-stress-lab-orchestrator": "workspace:*",
+    "@shared/incident-saga-core": "workspace:*",
+    "@domain/recovery-incident-saga": "workspace:*",
+    "@service/recovery-incident-saga-orchestrator": "workspace:*"
   }
 }

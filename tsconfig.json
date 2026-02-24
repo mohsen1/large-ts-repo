@@ -1068,6 +1068,15 @@
     },
     {
       "path": "./packages/service/recovery-cockpit-cognitive-orchestrator"
+    },
+    {
+      "path": "./packages/shared/incident-saga-core"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-saga"
+    },
+    {
+      "path": "./packages/service/recovery-incident-saga-orchestrator"
     }
   ]
 }

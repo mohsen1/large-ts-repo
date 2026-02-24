@@ -368,6 +368,9 @@ importers:
       '@domain/recovery-incident-graph':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-graph
+      '@domain/recovery-incident-saga':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-saga
       '@domain/recovery-operations-atlas':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-atlas
@@ -455,6 +458,9 @@ importers:
       '@service/recovery-incident-graph-engine':
         specifier: workspace:*
         version: link:../../service/recovery-incident-graph-engine
+      '@service/recovery-incident-saga-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-saga-orchestrator
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
@@ -500,6 +506,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/incident-saga-core':
+        specifier: workspace:*
+        version: link:../../shared/incident-saga-core
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
@@ -2959,6 +2968,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-incident-saga:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/incident-saga-core':
+        specifier: workspace:*
+        version: link:../../shared/incident-saga-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-incident-workflows:
     dependencies:
       '@domain/recovery-incident-orchestration':
@@ -5105,6 +5129,27 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-incident-saga-orchestrator:
+    dependencies:
+      '@domain/recovery-incident-saga':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-saga
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/incident-saga-core':
+        specifier: workspace:*
+        version: link:../../shared/incident-saga-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-incident-scenario-orchestrator:
     dependencies:
       '@domain/recovery-scenario-orchestration':
@@ -5988,6 +6033,15 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+
+  packages/shared/incident-saga-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level

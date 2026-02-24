@@ -230,6 +230,15 @@
     },
     {
       "path": "../../service/recovery-fabric-cadence-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/incident-saga-core/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-saga/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-incident-saga-orchestrator/tsconfig.json"
     }
   ]
 }
