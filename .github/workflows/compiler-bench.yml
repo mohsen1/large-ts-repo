@@ -53,7 +53,8 @@ jobs:
         run: |
           set -euo pipefail
 
-          mkdir -p .bench
+          BENCH_DIR="${GITHUB_WORKSPACE}/.bench"
+          mkdir -p "$BENCH_DIR"
 
           clean_outputs() {
             find . -type d -name dist -prune -exec rm -rf {} +
@@ -63,7 +64,7 @@ jobs:
           run_bench() {
             local name="$1"
             local cmd="$2"
-            local log_file=".bench/${name// /_}.log"
+            local log_file="${BENCH_DIR}/${name// /_}.log"
             local start_ms end_ms duration_ms duration_s
             local status
             local log_tail=20
@@ -90,13 +91,13 @@ jobs:
               cat "$log_file"
             fi
 
-            printf "| %s | %s | %s |\n" "$name" "$status" "$duration_s" >> .bench/summary.table.md
-            printf "%s|%s|%s|%s\n" "$name" "$status" "$duration_ms" "$cmd" >> .bench/results.csv
+            printf "| %s | %s | %s |\n" "$name" "$status" "$duration_s" >> "$BENCH_DIR/summary.table.md"
+            printf "%s|%s|%s|%s\n" "$name" "$status" "$duration_ms" "$cmd" >> "$BENCH_DIR/results.csv"
           }
 
-          echo "| Compiler | Status | Duration (s) |" > .bench/summary.table.md
-          echo "| --- | --- | ---: |" >> .bench/summary.table.md
-          echo "compiler,status,duration_ms,command" > .bench/results.csv
+          echo "| Compiler | Status | Duration (s) |" > "$BENCH_DIR/summary.table.md"
+          echo "| --- | --- | ---: |" >> "$BENCH_DIR/summary.table.md"
+          echo "compiler,status,duration_ms,command" > "$BENCH_DIR/results.csv"
 
           run_bench "tsc v5" "npx -y -p typescript@5 tsc -b tsconfig.json --pretty false"
           run_bench "tsc v6 beta" "npx -y -p typescript@beta tsc -b tsconfig.json --pretty false"
@@ -105,31 +106,31 @@ jobs:
           {
             echo "## Compiler Benchmark"
             echo
-            cat .bench/summary.table.md
+            cat "$BENCH_DIR/summary.table.md"
             echo
             echo "Raw results: \`.bench/results.csv\`"
             echo
             echo "Note: benchmark status may show compiler failures while CI still succeeds to preserve timing/report visibility."
           } >> "$GITHUB_STEP_SUMMARY"
 
-          if [ ! -s ".bench/summary.table.md" ]; then
+          if [ ! -s "$BENCH_DIR/summary.table.md" ]; then
             {
               echo "| Compiler | Status | Duration (s) |"
               echo "| --- | --- | ---: |"
               echo "| no-run | FAIL | 0.000 |"
-            } > .bench/summary.table.md
+            } > "$BENCH_DIR/summary.table.md"
           fi
 
-          if [ ! -s ".bench/results.csv" ]; then
+          if [ ! -s "$BENCH_DIR/results.csv" ]; then
             {
               echo "compiler,status,duration_ms,command"
               echo "no-run,FAIL,0,compile-and-bench"
-            } > .bench/results.csv
+            } > "$BENCH_DIR/results.csv"
           fi
 
-          if ! find .bench -maxdepth 1 -type f -name '*.log' | grep -q .; then
-            : > ".bench/no-output.log"
-            printf "%s\n" "No compiler output logs were produced." > ".bench/no-output.log"
+          if ! find "$BENCH_DIR" -maxdepth 1 -type f -name '*.log' | grep -q .; then
+            : > "$BENCH_DIR/no-output.log"
+            printf "%s\n" "No compiler output logs were produced." > "$BENCH_DIR/no-output.log"
           fi
 
       - name: Upload benchmark artifacts
@@ -139,6 +140,6 @@ jobs:
           name: compiler-bench-${{ github.run_id }}
           if-no-files-found: ignore
           path: |
-            .bench/summary.table.md
-            .bench/results.csv
-            .bench/*.log
+            ${{ github.workspace }}/.bench/summary.table.md
+            ${{ github.workspace }}/.bench/results.csv
+            ${{ github.workspace }}/.bench/*.log
