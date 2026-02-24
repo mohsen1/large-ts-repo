@@ -57,7 +57,13 @@
       "path": "./../../shared/stress-lab-runtime/tsconfig.json"
     },
     {
+      "path": "./../../shared/util/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

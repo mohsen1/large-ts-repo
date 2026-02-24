@@ -26,6 +26,7 @@
     "@domain/recovery-stress-lab": "workspace:*",
     "@domain/streaming-observability": "workspace:*",
     "@domain/streaming-engine": "workspace:*",
+    "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/stress-lab-runtime": "workspace:*",
     "@shared/result": "workspace:*",
@@ -35,6 +36,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "zod": "^3.24.0"
   }
 }
