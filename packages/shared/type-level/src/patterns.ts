@@ -161,6 +161,25 @@ export interface Foldable<T> {
   reduce<A>(seed: A, fn: (acc: A, value: T) => A): A;
 }
 
+export type NoInfer<T> = [T][T extends any ? 0 : never];
+
+export type RecursivePath<T> = T extends string | number | bigint | boolean | symbol | null | undefined
+  ? never
+  : T extends Date
+    ? never
+    : T extends readonly (infer U)[]
+      ? `${number}` | `${number}.${RecursivePath<U>}`
+      : T extends object
+        ? {
+            [K in keyof T & string]:
+              T[K] extends readonly (infer V)[]
+                ? `${K}[${number}]${RecursivePath<V> extends never ? '' : `.${RecursivePath<V>}`}` | `${K}`
+                : T[K] extends object
+                  ? `${K}` | `${K}.${RecursivePath<T[K]>}`
+                  : `${K}`;
+          }[keyof T & string]
+        : never;
+
 export type AsyncReducer<T, A> = (acc: A, value: T, index: number) => Promise<A>;
 
 export async function runPipeline<I, O>(

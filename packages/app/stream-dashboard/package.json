@@ -22,6 +22,7 @@
     "@domain/streaming-engine": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/result": "workspace:*",
+    "@service/streaming-control": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",

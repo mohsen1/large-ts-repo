@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/streaming-observability": "workspace:*",
     "@domain/streaming-engine": "workspace:*",
+    "@service/streaming-control": "workspace:*",
     "@data/streaming-dashboard-store": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",

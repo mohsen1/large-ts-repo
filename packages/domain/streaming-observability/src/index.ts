@@ -5,3 +5,5 @@ export * from './sla';
 export * from './forecast';
 export * from './diagnostics';
 export * from './policy';
+export * from './plugin-framework';
+export * from './policy-plugin-stack';

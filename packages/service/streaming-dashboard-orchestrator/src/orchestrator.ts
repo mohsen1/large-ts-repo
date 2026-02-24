@@ -16,9 +16,11 @@ import {
   validateTopology,
   defaultPolicySnapshot,
   evaluatePolicy,
+  StreamTopologyAlert as TopologyAlert,
 } from '@domain/streaming-observability';
 import { InMemoryStreamingDashboardRepository, upsertSnapshot, loadViewModel } from '@data/streaming-dashboard-store';
 import { ok, fail, Result } from '@shared/result';
+import { evaluatePolicyGate } from './policy-gates';
 
 export interface OrchestrationInput {
   tenant: string;
@@ -91,6 +93,11 @@ export const runOrchestration = async (
   repository: InMemoryStreamingDashboardRepository,
 ): Promise<Result<StreamTopologyPlan, Error>> => {
   const start = Date.now();
+  const policyGate = await evaluatePolicyGate({
+    tenant: input.tenant,
+    streamId: input.streamId,
+    events: input.events,
+  });
   const buildResult = createTopologyForStream(input.streamId);
   const basePlan = plan(createTopology({
     id: asStreamId(input.streamId),
@@ -131,6 +138,14 @@ export const runOrchestration = async (
   const slaContext = { windows: [toWindow(start, input.windowTargetMs)], signals };
   const slaResult = evaluateSla(slaContext, input.slaTarget);
   const policy = evaluatePolicy(defaultPolicySnapshot(), { alerts: buildResult.validationAlerts, signals });
+  const gateAlerts: TopologyAlert[] = policyGate.accepted
+    ? []
+    : [{
+      nodeId: input.streamId,
+      code: 'POLICY',
+      message: `policy gate actions: ${policyGate.actionCount}`,
+      severity: 4,
+    }];
 
   const snapshot: StreamSnapshot = {
     id: `${input.streamId}:${start}`,
@@ -148,6 +163,7 @@ export const runOrchestration = async (
     },
     alerts: [
       ...buildResult.validationAlerts,
+      ...gateAlerts,
       ...(policy.requiresEscalation
         ? [{
           nodeId: input.streamId,
@@ -203,7 +219,7 @@ export const runOrchestration = async (
     streamId: input.streamId,
     topologyAlerts: snapshot.alerts,
     planSteps: scaledPlan.steps,
-    expectedScale: forecast.recommendedParallelism,
+    expectedScale: Math.max(forecast.recommendedParallelism, policyGate.recommendedScale),
     slaCompliant: slaResult.compliant && !policy.requiresEscalation,
     snapshotId: snapshot.id,
   });

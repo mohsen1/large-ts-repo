@@ -176,7 +176,7 @@ ensure_build_clean() {
     run_and_wait codex exec \
       --model=gpt-5.3-codex-spark \
       --dangerously-bypass-approvals-and-sandbox \
-      --config model_reasoning_effort=low \
+      --config model_reasoning_effort=medium \
       "$FIX_PROMPT"
 
     attempt=$((attempt + 1))
@@ -224,11 +224,11 @@ ensure_repo_clean
 for i in $(seq 0 "$COUNT"); do
   echo ""
   echo "=== Iteration $i (0..$COUNT) ==="
-  run_and_wait codex exec \
-    --model=gpt-5.3-codex-spark \
-    --dangerously-bypass-approvals-and-sandbox \
-    --config model_reasoning_effort=low \
-    "$PROMPT"
+    run_and_wait codex exec \
+      --model=gpt-5.3-codex-spark \
+      --dangerously-bypass-approvals-and-sandbox \
+      --config model_reasoning_effort=medium \
+      "$PROMPT"
   install_deps_if_needed
   echo "Verifying strict compile gate (pnpm exec tsc -b tsconfig.json --pretty false + pnpm build) after iteration $i..."
   ensure_repo_clean

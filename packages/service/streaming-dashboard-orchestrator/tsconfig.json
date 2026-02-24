@@ -26,6 +26,9 @@
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../service/streaming-control/tsconfig.json"
     }
   ]
 }

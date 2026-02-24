@@ -31,6 +31,9 @@
       "path": "./../../service/streaming-dashboard-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/streaming-control/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-stress-lab-orchestrator/tsconfig.json"
     }
   ]
