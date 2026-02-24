@@ -10,3 +10,6 @@ export * from './runbook-metrics';
 export * from './repository-guard';
 export * from './catalog';
 export * from './scenario-events';
+export * from './extension-registry';
+export * from './temporal-series';
+export * from './streamed-events';

@@ -16,6 +16,9 @@
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
+      "path": "./../../shared/stress-lab-runtime/tsconfig.json"
+    },
+    {
       "path": "./../../shared/validation/tsconfig.json"
     }
   ]

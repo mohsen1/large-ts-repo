@@ -6,3 +6,5 @@ export * from './types';
 export * from './pipeline';
 export * from './coordinator';
 export * from './workbook';
+export * from './advanced-orchestrator';
+export * from './disposable-runner';

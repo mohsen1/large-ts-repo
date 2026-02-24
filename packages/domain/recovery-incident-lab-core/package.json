@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@shared/core": "workspace:*",
+    "@shared/stress-lab-runtime": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/validation": "workspace:*"
   }

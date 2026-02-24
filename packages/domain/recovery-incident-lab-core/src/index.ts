@@ -10,3 +10,6 @@ export * from './risk';
 export * from './orchestration-model';
 export * from './scenario-dsl';
 export * from './metrics';
+export * from './advanced-types';
+export * from './scenario-registry';
+export * from './telemetry-math';

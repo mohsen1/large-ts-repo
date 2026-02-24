@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/recovery-incident-lab-core": "workspace:*",
     "@domain/recovery-stress-lab": "workspace:*",
+    "@shared/stress-lab-runtime": "workspace:*",
     "@shared/validation": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*"
