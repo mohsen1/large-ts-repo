@@ -35,3 +35,5 @@ export * from './convergence-observability';
 export * from './convergence-runner';
 export * from './intelligence-orchestration';
 export * from './intelligence-registry';
+export * from './orchestration-console';
+export * from './portfolio-coordinator';

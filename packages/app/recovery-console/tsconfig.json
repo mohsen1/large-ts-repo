@@ -130,6 +130,9 @@
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-stress-lab-orchestration-store/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
     },
     {

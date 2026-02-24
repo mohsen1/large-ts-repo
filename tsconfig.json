@@ -191,6 +191,9 @@
       "path": "./packages/data/recovery-lattice-orchestrator-store"
     },
     {
+      "path": "./packages/data/recovery-stress-lab-orchestration-store"
+    },
+    {
       "path": "./packages/data/recovery-observability"
     },
     {
