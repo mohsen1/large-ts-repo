@@ -18,3 +18,6 @@ export * from './workloadDirector';
 export * from './directiveEngine';
 export * from './runbookOrchestrator';
 export * from './controlPlane';
+export * from './scenarioFacade';
+export * from './scenarioSignals';
+export * from './readinessWorkload';

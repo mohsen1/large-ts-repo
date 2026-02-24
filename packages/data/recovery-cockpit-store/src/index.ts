@@ -9,3 +9,6 @@ export * from './eventBus';
 export * from './planHealth';
 export * from './planTimeline';
 export * from './sloLedger';
+export * from './scenarioCache';
+export * from './planProjection';
+export * from './sloSignals';

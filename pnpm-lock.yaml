@@ -677,6 +677,9 @@ importers:
       '@service/recovery-incident-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-lab-orchestrator
+      '@service/recovery-stress-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-stress-lab-orchestrator
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -1293,6 +1296,9 @@ importers:
       '@domain/recovery-incident-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-lab-core
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -5149,6 +5155,9 @@ importers:
 
   packages/service/recovery-stress-lab-orchestrator:
     dependencies:
+      '@data/recovery-incident-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-lab-store
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab

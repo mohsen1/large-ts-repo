@@ -16,16 +16,19 @@
       "path": "./../../domain/recovery-cockpit-intelligence/tsconfig.json"
     },
     {
-      "path": "./../../data/recovery-cockpit-store/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-cockpit-insights/tsconfig.json"
-    },
-    {
       "path": "./../../domain/recovery-cockpit-workloads/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-cockpit-orchestration-core/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-store/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-cockpit-analytics/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-insights/tsconfig.json"
     },
     {
       "path": "./../../shared/util/tsconfig.json"
