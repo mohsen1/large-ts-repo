@@ -40,6 +40,7 @@
     "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@domain/recovery-command-forge": "workspace:*",
+    "@domain/incident-command-models": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
     "@domain/recovery-command-studio": "workspace:*",
     "@domain/incident-fusion-models": "workspace:*",

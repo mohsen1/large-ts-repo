@@ -362,6 +362,9 @@ importers:
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
       '@service/continuity-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/continuity-readiness-orchestrator
@@ -446,6 +449,9 @@ importers:
       '@service/recovery-simulation-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-simulation-orchestrator
+      '@service/recovery-stress-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-stress-lab-orchestrator
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -1377,6 +1383,9 @@ importers:
       '@shared/stress-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation

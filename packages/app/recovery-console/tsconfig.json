@@ -85,6 +85,9 @@
       "path": "./../../domain/incident-fusion-models/tsconfig.json"
     },
     {
+      "path": "./../../domain/incident-command-models/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-command-forge/tsconfig.json"
     },
     {

@@ -225,3 +225,9 @@ export { HorizonLabWorkspaceDeck } from './features/recovery-horizon-lab/compone
 export { HorizonLabTelemetryPanel } from './features/recovery-horizon-lab/components/HorizonLabTelemetryPanel';
 export { RecoveryHorizonLabWorkspacePage } from './features/recovery-horizon-lab/pages/RecoveryHorizonLabWorkspacePage';
 export { default as DefaultRecoveryHorizonLabWorkspacePage } from './features/recovery-horizon-lab/pages/RecoveryHorizonLabWorkspacePage';
+export { RecoveryCommandConstellationPage } from './features/recovery-command-constellation/pages/RecoveryCommandConstellationPage';
+export { ConstellationBoard } from './features/recovery-command-constellation/components/ConstellationBoard';
+export { ConstellationTimeline } from './features/recovery-command-constellation/components/ConstellationTimeline';
+export { ConstellationPolicyHeatmap } from './features/recovery-command-constellation/components/ConstellationPolicyHeatmap';
+export { useRecoveryCommandConstellation } from './features/recovery-command-constellation/hooks/useRecoveryCommandConstellation';
+export { createRuntimeSummary, runConstellation } from './features/recovery-command-constellation/services/constellationService';
