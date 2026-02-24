@@ -416,6 +416,9 @@ importers:
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab
+      '@domain/recovery-stress-lab-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab-intelligence
       '@domain/recovery-synthetic-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-synthetic-orchestration
@@ -3572,6 +3575,9 @@ importers:
       '@domain/recovery-lab-governance':
         specifier: workspace:*
         version: link:../recovery-lab-governance
+      '@domain/recovery-stress-lab-intelligence':
+        specifier: workspace:*
+        version: link:../recovery-stress-lab-intelligence
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -3587,6 +3593,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-stress-lab-intelligence:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-synthetic-orchestration:
     dependencies:
@@ -5875,6 +5890,9 @@ importers:
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab
+      '@domain/recovery-stress-lab-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab-intelligence
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
