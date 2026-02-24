@@ -14,6 +14,7 @@ import {
   type RecoveryLatticeOrchestrator,
   runPlannerDryRun,
 } from '@service/recovery-lattice-orchestrator';
+import { useLatticeCommand, type CommandRunner } from './useLatticeCommand';
 import {
   type LatticeOrchestratorRequest,
   type LatticeOrchestratorResult,
@@ -62,6 +63,8 @@ export const useLatticeStudio = (
   initialBlueprints: readonly LatticeBlueprintManifest[] = [],
 ): {
   readonly state: StudioState;
+  readonly commandState: ReturnType<typeof useLatticeCommand>['commandState'];
+  readonly commandRunners: readonly CommandRunner[];
   readonly setMode: (mode: StudioState['mode']) => void;
   readonly setBlueprintById: (blueprintId: string) => void;
   readonly setRouteId: (routeId: string) => void;
@@ -76,6 +79,7 @@ export const useLatticeStudio = (
   const [log, setLog] = useState<readonly string[]>([]);
 
   const [orchestrator, setOrchestrator] = useState<RecoveryLatticeOrchestrator | null>(null);
+  const commandState = useLatticeCommand(tenantId);
 
   useEffect(() => {
     let active = true;
@@ -188,6 +192,8 @@ export const useLatticeStudio = (
       log,
       stageSummaries,
     },
+    commandState: commandState.commandState,
+    commandRunners: commandState.runners,
     setMode,
     setBlueprintById,
     setRouteId,

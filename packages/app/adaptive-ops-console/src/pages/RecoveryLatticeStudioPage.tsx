@@ -1,11 +1,26 @@
 import { useMemo, useState, type ReactElement } from 'react';
 import { withBrand } from '@shared/core';
 import type { LatticeBlueprintManifest } from '@domain/recovery-lattice';
-import { asTenantId, asRouteId } from '@domain/recovery-lattice';
+import { 
+  asTenantId,
+  asZoneId,
+  asRegionId,
+  asRouteId,
+  makeMetricId,
+  makeTraceId,
+  makeTimestamp,
+  type LatticeMetricSample,
+} from '@domain/recovery-lattice';
 import { LatticeTopologyPanel } from '../components/lattice/LatticeTopologyPanel';
 import { LatticeStatusCards } from '../components/lattice/LatticeStatusCards';
 import { LatticeRunLog } from '../components/lattice/LatticeRunLog';
+import { LatticePolicyPanel, type PolicyItem } from '../components/lattice/LatticePolicyPanel';
+import { LatticeMetricsPanel } from '../components/lattice/LatticeMetricsPanel';
+import { LatticeExecutionStepper } from '../components/lattice/LatticeExecutionStepper';
+import { LatticeScenarioMatrix, type ScenarioSeed } from '../components/lattice/LatticeScenarioMatrix';
+import { LatticeEventStream } from '../components/lattice/LatticeEventStream';
 import { useLatticeStudio } from '../hooks/useLatticeStudio';
+import type { LatticeOrchestratorEvent } from '@service/recovery-lattice-orchestrator';
 
 const exampleBlueprints: readonly LatticeBlueprintManifest[] = [
   {
@@ -73,6 +88,53 @@ const exampleBlueprints: readonly LatticeBlueprintManifest[] = [
 export const RecoveryLatticeStudioPage = (): ReactElement => {
   const studio = useLatticeStudio('tenant:demo', exampleBlueprints);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  const [selectedScenario, setSelectedScenario] = useState<string>('');
+  const policies = useMemo<readonly PolicyItem[]>(
+    () =>
+      studio.state.blueprints.map((blueprint) => ({
+        id: `${blueprint.tenantId}:${blueprint.name}`,
+        policyName: blueprint.name,
+        mode: studio.state.mode === 'rehearsal' ? 'observe' : studio.state.mode === 'validation' ? 'allow' : 'allow',
+        route: String(blueprint.route),
+        score: blueprint.steps.length / 10,
+        constraints: [
+          ['allow', { path: 'tenantId', operator: 'eq', value: String(blueprint.tenantId) }],
+          ['observe', { path: 'route', operator: 'regex', value: String(blueprint.route) }],
+        ],
+      })),
+    [studio.state.blueprints, studio.state.mode],
+  );
+  const selectedBlueprint = studio.state.blueprints[0] ?? exampleBlueprints[0];
+
+  const samples = useMemo(
+    () =>
+      studio.state.stageSummaries.flatMap((summary) =>
+        summary.steps > 0 ? (
+          Array.from({ length: summary.steps }).map(
+            (): LatticeMetricSample => ({
+              tenantId: selectedBlueprint.tenantId,
+              timestamp: makeTimestamp(),
+              name: makeMetricId(selectedBlueprint.tenantId, `${selectedBlueprint.name}:${summary.id}`),
+              unit: 'count' as const,
+              value: Math.max(1, summary.steps),
+              severity: 'stable' as const,
+              context: {
+                tenantId: selectedBlueprint.tenantId,
+                regionId: asRegionId('region:demo'),
+                zoneId: asZoneId('zone:demo'),
+                requestId: makeTraceId('sample', summary.id),
+                route: String(summary.id),
+              },
+              tags: [summary.mode],
+            }),
+          )
+        ) : [],
+      ) as readonly LatticeMetricSample[],
+    [selectedBlueprint.tenantId, studio.state.stageSummaries],
+  );
+  const pinned = useMemo(() => [...studio.state.stageSummaries].map((summary) => summary.id), [studio.state.stageSummaries]);
+  const [selection, setSelection] = useState<string>(studio.state.routeId);
+  const [activeStep, setActiveStep] = useState<string>('');
 
   const cards = useMemo(
     () =>
@@ -83,8 +145,6 @@ export const RecoveryLatticeStudioPage = (): ReactElement => {
       })),
     [studio.state.blueprints, studio.state.mode],
   );
-
-  const blueprint = studio.state.blueprints[0] ?? exampleBlueprints[0];
 
   return (
     <main className="recovery-lattice-studio-page">
@@ -139,7 +199,7 @@ export const RecoveryLatticeStudioPage = (): ReactElement => {
 
       <section className="studio-body">
         <LatticeTopologyPanel
-          blueprint={blueprint}
+          blueprint={selectedBlueprint}
           onHoverNode={setHoveredNode}
           hoveredNode={hoveredNode}
         />
@@ -153,9 +213,68 @@ export const RecoveryLatticeStudioPage = (): ReactElement => {
         <LatticeRunLog lines={studio.state.log} onClear={() => studio.setRouteId(studio.state.routeId)} />
       </section>
 
+      <section className="studio-panels">
+        <LatticePolicyPanel
+          title="Policy Surface"
+          policies={policies}
+          onActivate={(policyId) => setActiveStep(policyId)}
+          onClear={() => setSelection('')}
+        />
+
+        <LatticeMetricsPanel
+          samples={samples}
+          limit={12}
+          pinned={pinned}
+          onPin={(metric) => setSelection(metric)}
+        />
+
+        <LatticeExecutionStepper
+          state={{
+            tenantId: selectedBlueprint.tenantId,
+            requestId: studio.state.routeId,
+            mode: studio.state.mode,
+            context: {
+              tenantId: selectedBlueprint.tenantId,
+              regionId: asRegionId('region:demo'),
+              zoneId: asZoneId('zone:demo'),
+              requestId: makeTraceId('request', studio.state.routeId),
+            },
+            status: studio.state.running ? 'initialized' : 'complete',
+            logs: [],
+          }}
+          onActivate={setActiveStep}
+          selected={activeStep}
+        />
+
+        <LatticeScenarioMatrix
+          mode={studio.state.mode}
+          blueprints={studio.state.blueprints}
+          selectedBlueprintId={studio.state.selectedBlueprintId}
+          onSeed={(seed: ScenarioSeed) => {
+            setSelectedScenario(seed.id);
+            setActiveStep(seed.mode);
+          }}
+        />
+
+        <LatticeEventStream
+          events={studio.commandRunners.flatMap((runner) => {
+            const event: LatticeOrchestratorEvent = {
+              id: runner.commandId,
+              type: runner.result instanceof Error ? 'stage.failed' : 'finalized',
+              at: runner.startedAt,
+              details: { command: runner.commandId },
+            };
+            return [event];
+          })}
+          onTrim={() => setSelectedScenario('')}
+          maxRows={25}
+        />
+      </section>
+
       <footer>
         <small>trace: {studio.state.trace ?? 'n/a'}</small>
       </footer>
+      <small>scenario: {selectedScenario || 'none'}</small>
     </main>
   );
 };

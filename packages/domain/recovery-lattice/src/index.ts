@@ -8,3 +8,6 @@ export * from './adapters';
 export * from './blueprints';
 export * from './observability';
 export * from './registry-core';
+export * from './policy-engine';
+export * from './plugin-fleet';
+export * from './telemetry-profile';
