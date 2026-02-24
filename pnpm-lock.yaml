@@ -929,6 +929,9 @@ importers:
       '@data/recovery-lab-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-lab-simulation-store
+      '@domain/recovery-orchestration-design':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-design
       '@domain/recovery-simulation-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-lab-core
@@ -3621,6 +3624,12 @@ importers:
       '@shared/orchestration-kernel':
         specifier: workspace:*
         version: link:../../shared/orchestration-kernel
+      '@shared/recovery-lab-kernel':
+        specifier: workspace:*
+        version: link:../../shared/recovery-lab-kernel
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
