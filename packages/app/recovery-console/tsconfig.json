@@ -67,6 +67,12 @@
       "path": "../../service/recovery-cadence-coordinator/tsconfig.json"
     },
     {
+      "path": "../../domain/recovery-ops-orchestration-lab/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-ops-orchestration-lab-store/tsconfig.json"
+    },
+    {
       "path": "../../service/recovery-command-control-hub/tsconfig.json"
     },
     {

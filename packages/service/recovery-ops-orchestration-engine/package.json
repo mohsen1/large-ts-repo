@@ -14,7 +14,9 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/recovery-ops-orchestration-lab-store": "workspace:*",
     "@domain/recovery-ops-orchestration-surface": "workspace:*",
+    "@domain/recovery-ops-orchestration-lab": "workspace:*",
     "@data/recovery-ops-orchestration-store": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",

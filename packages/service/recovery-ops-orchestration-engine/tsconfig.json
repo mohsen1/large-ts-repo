@@ -10,7 +10,13 @@
   ],
   "references": [
     {
+      "path": "./../../domain/recovery-ops-orchestration-lab/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-ops-orchestration-surface/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-ops-orchestration-lab-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-ops-orchestration-store/tsconfig.json"

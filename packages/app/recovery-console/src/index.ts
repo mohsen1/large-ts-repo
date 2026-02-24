@@ -255,3 +255,9 @@ export { SyntheticPluginRail } from './features/recovery-synthetic-orchestration
 export { SyntheticExecutionTimeline } from './features/recovery-synthetic-orchestration/components/SyntheticExecutionTimeline';
 export { RecoverySyntheticOrchestrationPage } from './features/recovery-synthetic-orchestration/pages/RecoverySyntheticOrchestrationPage';
 export { RecoverySyntheticStrategyControlPage } from './features/recovery-synthetic-orchestration/pages/RecoverySyntheticStrategyControlPage';
+export { useRecoveryOpsLabSignals } from './hooks/useRecoveryOpsLabSignals';
+export { useRecoveryOpsOrchestrationLab } from './hooks/useRecoveryOpsOrchestrationLab';
+export { RecoveryOpsOrchestrationLabPanel } from './components/RecoveryOpsOrchestrationLabPanel';
+export { RecoveryOpsLabTimeline } from './components/RecoveryOpsLabTimeline';
+export { RecoveryOpsPolicyMatrix } from './components/RecoveryOpsPolicyMatrix';
+export { RecoveryOpsLabPolicyPage } from './pages/RecoveryOpsLabPolicyPage';
