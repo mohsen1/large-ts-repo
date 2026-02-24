@@ -26,3 +26,7 @@ export * from './control-orchestration-types';
 export * from './control-registry';
 export * from './control-governance-adapter';
 export * from './control-observability';
+export * from './plugin-contracts';
+export * from './plugin-topology';
+export * from './plugin-workflow-dsl';
+export * from './plugin-adapter-registry';

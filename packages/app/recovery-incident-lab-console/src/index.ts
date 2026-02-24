@@ -50,3 +50,7 @@ export * from './components/RecoveryLabTopologyMatrix';
 export * from './pages/RecoveryIncidentLabControlPlanePage';
 export * from './pages/RecoveryLabRegistryPage';
 export * from './pages/RecoveryLabTopologyPage';
+export * from './hooks/useRecoveryLabPluginOrchestrator';
+export * from './pages/RecoveryLabPluginOrchestrationPage';
+export * from './components/RecoveryLabPluginPolicyMatrix';
+export * from './components/RecoveryLabPluginControlPanel';

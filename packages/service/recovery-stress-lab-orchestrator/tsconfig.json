@@ -19,6 +19,12 @@
       "path": "./../../data/recovery-incident-lab-store/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-horizon-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-lab-core/tsconfig.json"
+    },
+    {
       "path": "./../../shared/core/tsconfig.json"
     },
     {

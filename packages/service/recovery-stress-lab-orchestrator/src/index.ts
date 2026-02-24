@@ -22,3 +22,5 @@ export * from './studio-plugin-registry';
 export * from './studio-orchestrator';
 export * from './studio-insights';
 export * from './incident-surface';
+export * from './plugin-registry';
+export * from './plugin-orchestration';

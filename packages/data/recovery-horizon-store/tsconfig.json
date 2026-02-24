@@ -1,6 +1,17 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
+    "paths": {
+      "@shared/core": [
+        "../../shared/core/src/index.ts"
+      ],
+      "@domain/recovery-incident-lab-core": [
+        "../../domain/recovery-incident-lab-core/src/index.ts"
+      ],
+      "@domain/recovery-incident-lab-core/*": [
+        "../../domain/recovery-incident-lab-core/src/*"
+      ]
+    },
     "outDir": "./dist",
     "composite": true,
     "declaration": true
@@ -11,6 +22,12 @@
   "references": [
     {
       "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-lab-core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/core/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
