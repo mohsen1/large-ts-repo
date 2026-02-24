@@ -96,7 +96,7 @@
         "packages/domain/recovery-operations-intelligence/src/index.ts"
       ],
       "@domain/recovery-scenario-planner": [
-        "packages/domain/recovery-scenario-planner/dist/src/index.d.ts"
+        "packages/domain/recovery-scenario-planner/src/index.ts"
       ],
       "@domain/recovery-scenario-engine": [
         "packages/domain/recovery-scenario-engine/src/index.ts"
@@ -133,7 +133,7 @@
         "packages/data/recovery-continuity-plan-store/src/index.ts"
       ],
       "@data/recovery-intelligence-store": [
-        "packages/data/recovery-intelligence-store/dist/src/index.d.ts"
+        "packages/data/recovery-intelligence-store/src/index.ts"
       ],
       "@service/*": [
         "packages/service/*",
@@ -213,7 +213,7 @@
         "packages/infrastructure/recovery-operations-intelligence-adapters/src/index.ts"
       ],
       "@infrastructure/recovery-scenario-notifier": [
-        "packages/infrastructure/recovery-scenario-notifier/dist/src/index.d.ts"
+        "packages/infrastructure/recovery-scenario-notifier/src/index.ts"
       ],
       "@infrastructure/recovery-continuity-adapters": [
         "packages/infrastructure/recovery-continuity-adapters/src/index.ts"
