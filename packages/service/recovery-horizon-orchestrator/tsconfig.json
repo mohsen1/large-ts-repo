@@ -23,6 +23,9 @@
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../infrastructure/recovery-scenario-orchestration-adapters/tsconfig.json"
     }
   ]
 }

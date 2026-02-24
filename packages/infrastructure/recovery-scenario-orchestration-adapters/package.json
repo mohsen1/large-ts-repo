@@ -8,6 +8,7 @@
     ".": "./src/index.ts",
     "./src": "./src/index.ts",
     "./*": "./src/*.ts",
+    "./*.js": "./src/*.ts",
     "./src/*": "./src/*.ts"
   },
   "scripts": {
@@ -16,8 +17,10 @@
   "dependencies": {
     "@aws-sdk/client-sns": "^3.900.0",
     "@domain/recovery-scenario-engine": "workspace:*",
+    "@domain/recovery-horizon-engine": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
-    "@shared/zod-adapters": "workspace:*"
+    "@shared/zod-adapters": "workspace:*",
+    "@shared/type-level": "workspace:*"
   }
 }

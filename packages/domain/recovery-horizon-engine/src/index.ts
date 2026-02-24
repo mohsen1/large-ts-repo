@@ -9,3 +9,7 @@ export * from './temporal.js';
 export * from './graph-lifecycle.js';
 export { StageTuple as PlanStageTuple } from './plan-dsl.js';
 export * from './plan-dsl.js';
+export * from './plugin-network.js';
+export * from './horizon-constraints.js';
+export * from './signal-payloads.js';
+export * from './saga-orchestrator.js';
