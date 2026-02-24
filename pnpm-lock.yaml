@@ -689,6 +689,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -1314,6 +1317,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
@@ -2619,6 +2625,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -4510,6 +4519,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
