@@ -16,3 +16,7 @@ export * from './risk-profiles';
 export * from './runbook-lineage';
 export * from './stress-metrics';
 export * from './scenario-workflow';
+export * from './mesh-types';
+export * from './signal-matrix';
+export * from './policy-envelope';
+export * from './workload-forecast';

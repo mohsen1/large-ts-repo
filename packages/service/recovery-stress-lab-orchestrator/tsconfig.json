@@ -17,6 +17,9 @@
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

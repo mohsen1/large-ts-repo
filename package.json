@@ -6,7 +6,8 @@
   "scripts": {
     "build": "pnpm -r --parallel run build",
     "count-ts-lines": "bash scripts/count.sh",
-    "count": "bash scripts/count.sh"
+    "count": "bash scripts/count.sh",
+    "typecheck": "pnpm exec tsc -b tsconfig.json --pretty false"
   },
   "devDependencies": {
     "@types/node": "^25.3.0",

@@ -11,3 +11,7 @@ export * from './execution-pipeline';
 export * from './pipeline-orchestrator';
 export * from './reporting';
 export * from './intelligence';
+export { buildMeshState, publishMeshReport, persistDecision as persistMeshDecision, type MeshOperatorState, type StressLabMeshAdapters, type StressLabMeshReport, type SignalAdapter, type ReportAdapter } from './mesh-adapters';
+export * from './mesh-intelligence';
+export * from './mesh-operator';
+export * from './mesh-pipeline';

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@shared/core": "workspace:*",
-    "@domain/analytics": "workspace:*"
+    "@domain/analytics": "workspace:*",
+    "@shared/util": "workspace:*"
   }
 }
