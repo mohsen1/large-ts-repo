@@ -21,3 +21,8 @@ export {
   manifestFromRoute,
   parseRoutePayload as parseControlPlaneRoutePayload,
 } from './adapters';
+export * from './advanced-types';
+export * from './workflow-graph';
+export * from './plugin-registry';
+export * from './engine';
+export * from './bootstrap';

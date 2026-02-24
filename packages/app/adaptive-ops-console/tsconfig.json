@@ -52,6 +52,9 @@
     },
     {
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-control-plane/tsconfig.json"
     }
   ]
 }

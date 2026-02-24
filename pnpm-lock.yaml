@@ -38,6 +38,9 @@ importers:
       '@domain/incident-command-models':
         specifier: workspace:*
         version: link:../../domain/incident-command-models
+      '@domain/recovery-operations-control-plane':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-control-plane
       '@domain/recovery-readiness':
         specifier: workspace:*
         version: link:../../domain/recovery-readiness

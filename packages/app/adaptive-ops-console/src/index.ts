@@ -30,6 +30,10 @@ import { useCommandLab } from './hooks/useCommandLab';
 import { CommandLabControls } from './components/incident-lab/CommandLabControls';
 import { CommandLabReadinessPanel } from './components/incident-lab/CommandLabReadinessPanel';
 import { CommandLabTimeline } from './components/incident-lab/CommandLabTimeline';
+import { RecoveryOperationsControlPlanePage } from './pages/RecoveryOperationsControlPlanePage';
+import { useAdaptiveControlPlane } from './hooks/useAdaptiveControlPlane';
+import { ControlPlaneCommandTimeline } from './components/control-plane/ControlPlaneCommandTimeline';
+import { ControlPlaneManifestPanel } from './components/control-plane/ControlPlaneManifestPanel';
 
 export {
   AdaptiveOpsStudioPage,
@@ -71,6 +75,10 @@ export {
   CommandLabControls,
   CommandLabReadinessPanel,
   CommandLabTimeline,
+  RecoveryOperationsControlPlanePage,
+  useAdaptiveControlPlane,
+  ControlPlaneCommandTimeline,
+  ControlPlaneManifestPanel,
 };
 export { ReadinessPlaybookOperationsPage } from './pages/ReadinessPlaybookOperationsPage';
 export { ReadinessPlaybookTimeline } from './components/readiness-lab/ReadinessPlaybookTimeline';
