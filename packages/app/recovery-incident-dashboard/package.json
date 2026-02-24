@@ -73,6 +73,7 @@
     "@domain/recovery-horizon-engine": "workspace:*",
     "@data/recovery-horizon-store": "workspace:*",
     "@domain/recovery-horizon-studio-core": "workspace:*",
+    "@service/recovery-intent-graph-orchestrator": "workspace:*",
     "@shared/recovery-orchestration-runtime": "workspace:*"
   }
 }

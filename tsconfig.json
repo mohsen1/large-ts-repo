@@ -695,6 +695,9 @@
       "path": "./packages/domain/telemetry-models"
     },
     {
+      "path": "./packages/domain/recovery-intent-graph"
+    },
+    {
       "path": "./packages/domain/temporal"
     },
     {
@@ -990,6 +993,9 @@
     },
     {
       "path": "./packages/service/recovery-playbook-engine"
+    },
+    {
+      "path": "./packages/service/recovery-intent-graph-orchestrator"
     },
     {
       "path": "./packages/service/recovery-playbook-lab-orchestrator"

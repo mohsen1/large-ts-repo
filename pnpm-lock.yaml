@@ -794,6 +794,9 @@ importers:
       '@service/recovery-incident-scenario-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-scenario-orchestrator
+      '@service/recovery-intent-graph-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-intent-graph-orchestrator
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
@@ -3232,6 +3235,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-intent-graph:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-lab-adaptive-orchestration:
     dependencies:
       '@domain/recovery-incident-lab-core':
@@ -5551,6 +5566,21 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-intent-graph-orchestrator:
+    dependencies:
+      '@domain/recovery-intent-graph':
+        specifier: workspace:*
+        version: link:../../domain/recovery-intent-graph
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
