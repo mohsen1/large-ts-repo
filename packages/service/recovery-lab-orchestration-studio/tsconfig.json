@@ -1,0 +1,18 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    { "path": "./../../domain/recovery-lab-signal-studio/tsconfig.json" },
+    { "path": "./../../data/recovery-lab-digital-twin-store/tsconfig.json" },
+    { "path": "./../../shared/lab-simulation-kernel/tsconfig.json" },
+    { "path": "./../../shared/result/tsconfig.json" },
+    { "path": "./../../shared/type-level/tsconfig.json" }
+  ]
+}

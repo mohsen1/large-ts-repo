@@ -1203,6 +1203,18 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
+    },
+    {
+      "path": "./packages/shared/lab-simulation-kernel"
+    },
+    {
+      "path": "./packages/domain/recovery-lab-signal-studio"
+    },
+    {
+      "path": "./packages/data/recovery-lab-digital-twin-store"
+    },
+    {
+      "path": "./packages/service/recovery-lab-orchestration-studio"
     }
   ]
 }

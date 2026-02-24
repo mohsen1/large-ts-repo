@@ -14,11 +14,14 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/recovery-lab-digital-twin-store": "workspace:*",
+    "@domain/recovery-lab-signal-studio": "workspace:*",
     "@domain/recovery-lab-intelligence-core": "workspace:*",
     "@domain/recovery-simulation-lab-core": "workspace:*",
     "@domain/recovery-orchestration-design": "workspace:*",
     "@data/recovery-lab-simulation-store": "workspace:*",
     "@service/recovery-lab-orchestrator": "workspace:*",
+    "@service/recovery-lab-orchestration-studio": "workspace:*",
     "@shared/recovery-lab-kernel": "workspace:*",
     "@shared/type-level": "workspace:*",
     "react": "^19.0.0",

@@ -18,8 +18,11 @@
     { "path": "./../../domain/recovery-simulation-lab-core/tsconfig.json" },
     { "path": "./../../domain/recovery-orchestration-design/tsconfig.json" },
     { "path": "./../../data/recovery-lab-simulation-store/tsconfig.json" },
+    { "path": "./../../data/recovery-lab-digital-twin-store/tsconfig.json" },
     { "path": "./../../service/recovery-lab-orchestrator/tsconfig.json" },
+    { "path": "./../../service/recovery-lab-orchestration-studio/tsconfig.json" },
     { "path": "./../../shared/recovery-lab-kernel/tsconfig.json" },
-    { "path": "./../../shared/type-level/tsconfig.json" }
+    { "path": "./../../shared/type-level/tsconfig.json" },
+    { "path": "./../../domain/recovery-lab-signal-studio/tsconfig.json" }
   ]
 }
