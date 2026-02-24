@@ -284,6 +284,9 @@ importers:
       '@data/repositories':
         specifier: workspace:*
         version: link:../../data/repositories
+      '@domain/incident-command-models':
+        specifier: workspace:*
+        version: link:../../domain/incident-command-models
       '@domain/incident-fusion-models':
         specifier: workspace:*
         version: link:../../domain/incident-fusion-models
@@ -2121,6 +2124,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76

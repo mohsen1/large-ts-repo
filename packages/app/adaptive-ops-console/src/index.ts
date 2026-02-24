@@ -84,3 +84,8 @@ export { ReadinessPlaybookOperationsPage } from './pages/ReadinessPlaybookOperat
 export { ReadinessPlaybookTimeline } from './components/readiness-lab/ReadinessPlaybookTimeline';
 export { ReadinessRiskRadar } from './components/readiness-lab/ReadinessRiskRadar';
 export { useReadinessPlaybook } from './hooks/useReadinessPlaybook';
+export { HorizonLabPage } from './pages/HorizonLabPage';
+export { HorizonLabControlPanel } from './components/horizon/HorizonLabControlPanel';
+export { HorizonLabTimeline } from './components/horizon/HorizonLabTimeline';
+export { HorizonLabSummary } from './components/horizon/HorizonLabSummary';
+export { useHorizonLab } from './hooks/useHorizonLab';

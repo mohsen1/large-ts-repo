@@ -6,3 +6,6 @@ export * from './orchestration.js';
 export * from './blueprints.js';
 export * from './insights.js';
 export * from './temporal.js';
+export * from './graph-lifecycle.js';
+export { StageTuple as PlanStageTuple } from './plan-dsl.js';
+export * from './plan-dsl.js';

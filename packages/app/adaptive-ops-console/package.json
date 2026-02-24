@@ -31,6 +31,9 @@
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@domain/recovery-operations-control-plane": "workspace:*"
+    "@domain/recovery-operations-control-plane": "workspace:*",
+    "@service/recovery-horizon-orchestrator": "workspace:*",
+    "@domain/recovery-horizon-engine": "workspace:*",
+    "@data/recovery-horizon-store": "workspace:*"
   }
 }
