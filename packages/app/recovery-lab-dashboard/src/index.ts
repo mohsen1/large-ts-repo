@@ -15,3 +15,7 @@ export * from './hooks/useDesignStudioWorkspace';
 export * from './hooks/useDesignSignalStream';
 export * from './services/labAdapter';
 export * from './services/designStudioService';
+export * from './components/RecoveryLabConductorPanel';
+export * from './components/RecoveryLabSignalForecastPanel';
+export * from './hooks/useRecoveryLabConductor';
+export * from './pages/RecoveryLabConductorPage';
