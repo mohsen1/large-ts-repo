@@ -46,6 +46,9 @@
     },
     {
       "path": "./../../data/recovery-cockpit-intent-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-operations-cadence/tsconfig.json"
     }
   ]
 }

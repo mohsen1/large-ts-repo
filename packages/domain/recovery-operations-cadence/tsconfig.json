@@ -12,6 +12,7 @@
     { "path": "./../../shared/core/tsconfig.json" },
     { "path": "./../../shared/type-level/tsconfig.json" },
     { "path": "./../../domain/recovery-orchestration/tsconfig.json" },
+    { "path": "./../../domain/recovery-readiness/tsconfig.json" },
     { "path": "./../../domain/recovery-operations-models/tsconfig.json" }
   ]
 }

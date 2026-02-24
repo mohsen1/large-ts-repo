@@ -35,6 +35,31 @@ export const toNumeric = (value: unknown, fallback: number): number => {
 
 export const asWindowKey = (window: CadenceWindow): string => `${window.id}:${window.title}`;
 
+export const calculateSignalDensity = (signals: readonly CadenceSlot[]): number => {
+  if (signals.length === 0) {
+    return 0;
+  }
+
+  const sourceCount = new Map<string, number>();
+  for (const signal of signals) {
+    for (const tag of signal.tags) {
+      sourceCount.set(tag, (sourceCount.get(tag) ?? 0) + 1);
+    }
+  }
+
+  if (sourceCount.size === 0) {
+    return 0;
+  }
+
+  const total = signals.length;
+  let maxDensity = 0;
+  for (const count of sourceCount.values()) {
+    maxDensity = Math.max(maxDensity, count / total);
+  }
+
+  return maxDensity;
+};
+
 export const bucketByWindow = <T extends { readonly windowId: CadenceWindowId }>(items: readonly T[]): Map<CadenceWindowId, T[]> => {
   const buckets = new Map<CadenceWindowId, T[]>();
   for (const item of items) {

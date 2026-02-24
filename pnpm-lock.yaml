@@ -2918,6 +2918,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/domain/recovery-timeline:
     dependencies:
@@ -4999,6 +5002,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-synthesis-orchestrator:
     dependencies:
