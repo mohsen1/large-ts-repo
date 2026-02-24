@@ -274,4 +274,12 @@ export { ReadinessLabRunner } from './features/recovery-readiness-lab/components
 export { ReadinessLabSummary } from './features/recovery-readiness-lab/components/ReadinessLabSummary';
 export { useReadinessLabSignals } from './features/recovery-readiness-lab/hooks/useReadinessLabSignals';
 export { useReadinessLabFacade } from './features/recovery-readiness-lab/hooks/useReadinessLabFacade';
+export { RecoveryOrchestrationStudioPage } from './features/recovery-orchestration-studio/pages/RecoveryOrchestrationStudioPage';
+export { RecoveryOrchestrationStudioInsightsPage } from './features/recovery-orchestration-studio/pages/RecoveryOrchestrationStudioInsightsPage';
+export { useRecoveryOrchestrationStudio } from './features/recovery-orchestration-studio/hooks/useRecoveryOrchestrationStudio';
+export { StudioHeader } from './features/recovery-orchestration-studio/components/StudioHeader';
+export { PluginRegistryPanel } from './features/recovery-orchestration-studio/components/PluginRegistryPanel';
+export { PolicyTimeline } from './features/recovery-orchestration-studio/components/PolicyTimeline';
+export { TopologyDigestCard } from './features/recovery-orchestration-studio/components/TopologyDigestCard';
+export { RunbookWorkloadPanel } from './features/recovery-orchestration-studio/components/RunbookWorkloadPanel';
 export { eventChannelName, type ReadinessLabDashboardState, type ReadinessLabHeatmapCell } from './features/recovery-readiness-lab/types';

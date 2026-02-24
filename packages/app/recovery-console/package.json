@@ -82,6 +82,7 @@
     "@service/recovery-playbook-lab-orchestrator": "workspace:*",
     "@domain/recovery-playbook-lab": "workspace:*",
     "@service/recovery-playbook-orchestrator": "workspace:*",
+    "@service/recovery-orchestration-studio-engine": "workspace:*",
     "@service/recovery-fusion-lab-orchestrator": "workspace:*",
     "@service/recovery-cadence-coordinator": "workspace:*",
     "@domain/recovery-playbook-orchestration": "workspace:*",
@@ -106,6 +107,7 @@
     "@domain/recovery-synthetic-orchestration": "workspace:*",
     "@data/recovery-synthetic-orchestration-store": "workspace:*",
     "@service/recovery-synthetic-orchestrator": "workspace:*",
-    "@domain/recovery-stress-lab-intelligence": "workspace:*"
+    "@domain/recovery-stress-lab-intelligence": "workspace:*",
+    "@domain/recovery-orchestration-design": "workspace:*"
   }
 }

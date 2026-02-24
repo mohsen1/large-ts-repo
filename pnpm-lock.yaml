@@ -437,6 +437,9 @@ importers:
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-orchestration-design':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-design
       '@domain/recovery-orchestration-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-planning
@@ -542,6 +545,9 @@ importers:
       '@service/recovery-orchestration-atlas':
         specifier: workspace:*
         version: link:../../service/recovery-orchestration-atlas
+      '@service/recovery-orchestration-studio-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-orchestration-studio-engine
       '@service/recovery-playbook-engine':
         specifier: workspace:*
         version: link:../../service/recovery-playbook-engine
@@ -3469,6 +3475,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-orchestration-design:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/orchestration-kernel':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-kernel
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-orchestration-planning:
     dependencies:
       '@shared/core':
@@ -5732,6 +5750,18 @@ importers:
         specifier: workspace:*
         version: link:../../shared/type-level
 
+  packages/service/recovery-orchestration-studio-engine:
+    dependencies:
+      '@domain/recovery-orchestration-design':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-design
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/orchestration-kernel':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-kernel
+
   packages/service/recovery-plan-orchestrator:
     dependencies:
       '@data/recovery-plan-store':
@@ -6407,6 +6437,12 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/shared/orchestration-kernel:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
 
   packages/shared/protocol:
     dependencies:

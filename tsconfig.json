@@ -1073,6 +1073,15 @@
       "path": "./packages/service/workflow"
     },
     {
+      "path": "./packages/service/recovery-orchestration-studio-engine"
+    },
+    {
+      "path": "./packages/domain/recovery-orchestration-design"
+    },
+    {
+      "path": "./packages/shared/orchestration-kernel"
+    },
+    {
       "path": "./packages/shared/aws-adapters"
     },
     {

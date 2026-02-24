@@ -223,6 +223,9 @@
       "path": "./../../service/recovery-incident-saga-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-orchestration-studio-engine/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-operations-engine/tsconfig.json"
     },
     {
@@ -263,6 +266,9 @@
     },
     {
       "path": "../../domain/recovery-readiness/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-orchestration-design/tsconfig.json"
     }
   ]
 }
