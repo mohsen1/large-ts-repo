@@ -627,6 +627,36 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/app/recovery-incident-lab-console:
+    dependencies:
+      '@data/recovery-incident-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-lab-store
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-lab-core
+      '@service/recovery-incident-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-lab-orchestrator
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
   packages/app/recovery-playbook-orchestrator:
     dependencies:
       '@data/recovery-playbook-store':
@@ -686,12 +716,18 @@ importers:
       '@data/streaming-dashboard-store':
         specifier: workspace:*
         version: link:../../data/streaming-dashboard-store
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
       '@domain/streaming-engine':
         specifier: workspace:*
         version: link:../../domain/streaming-engine
       '@domain/streaming-observability':
         specifier: workspace:*
         version: link:../../domain/streaming-observability
+      '@service/recovery-stress-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-stress-lab-orchestrator
       '@service/streaming-dashboard-orchestrator':
         specifier: workspace:*
         version: link:../../service/streaming-dashboard-orchestrator
@@ -1185,6 +1221,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-incident-lab-store:
+    dependencies:
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-lab-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-incident-store:
     dependencies:
@@ -2440,6 +2488,15 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-incident-lab-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/domain/recovery-incident-orchestration:
     dependencies:
       '@shared/core':
@@ -2855,6 +2912,9 @@ importers:
 
   packages/domain/recovery-stress-lab:
     dependencies:
+      '@domain/analytics':
+        specifier: workspace:*
+        version: link:../analytics
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -4240,6 +4300,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-incident-lab-orchestrator:
+    dependencies:
+      '@data/recovery-incident-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-lab-store
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-lab-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/service/recovery-incident-orchestrator:
     dependencies:

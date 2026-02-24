@@ -1,0 +1,27 @@
+{
+  "name": "@app/recovery-incident-lab-console",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.tsx"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@data/recovery-incident-lab-store": "workspace:*",
+    "@domain/recovery-incident-lab-core": "workspace:*",
+    "@service/recovery-incident-lab-orchestrator": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/result": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

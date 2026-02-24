@@ -954,6 +954,18 @@
     },
     {
       "path": "./packages/service/recovery-stress-lab-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-incident-lab-core"
+    },
+    {
+      "path": "./packages/data/recovery-incident-lab-store"
+    },
+    {
+      "path": "./packages/service/recovery-incident-lab-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-incident-lab-console"
     }
   ]
 }
