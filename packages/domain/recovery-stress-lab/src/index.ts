@@ -70,3 +70,6 @@ export {
   mapStageSequence,
   summarizeTraceByPlugin,
 } from './advanced-workflow-adapter';
+export * from './stress-lab-workbench';
+export * from './stress-lab-orchestrator-control';
+export * from './stress-lab-aws-step-functions';

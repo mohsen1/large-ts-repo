@@ -80,5 +80,9 @@
     {
       "path": "./../../service/recovery-cockpit-constellation-orchestrator/tsconfig.json"
     }
+    ,
+    {
+      "path": "./../../domain/recovery-stress-lab/tsconfig.json"
+    }
   ]
 }
