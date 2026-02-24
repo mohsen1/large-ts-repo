@@ -207,3 +207,9 @@ export { IncidentManagementWorkspacePage } from './features/incident-management/
 export { IncidentManagementWorkspacePanel } from './features/incident-management/components/IncidentManagementWorkspacePanel';
 export { IncidentReadinessTimeline } from './features/incident-management/components/IncidentReadinessTimeline';
 export { IncidentReadinessScoreCard } from './features/incident-management/components/IncidentReadinessScoreCard';
+
+export { useRecoveryFabricCadenceWorkspace } from './features/recovery-fabric-cadence-orchestration/hooks/useRecoveryFabricCadenceWorkspace';
+export { FabricCadenceControlSurface } from './features/recovery-fabric-cadence-orchestration/components/FabricCadenceControlSurface';
+export { FabricCadenceForecastBoard } from './features/recovery-fabric-cadence-orchestration/components/FabricCadenceForecastBoard';
+export { FabricCadenceSignalsPanel } from './features/recovery-fabric-cadence-orchestration/components/FabricCadenceSignalsPanel';
+export { RecoveryFabricCadenceOrchestrationPage } from './features/recovery-fabric-cadence-orchestration/pages/RecoveryFabricCadenceOrchestrationPage';

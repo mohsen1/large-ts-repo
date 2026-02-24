@@ -87,6 +87,8 @@
     "@service/recovery-command-control-hub": "workspace:*",
     "@domain/recovery-operations-atlas": "workspace:*",
     "@data/recovery-atlas-store": "workspace:*",
-    "@service/recovery-orchestration-atlas": "workspace:*"
+    "@service/recovery-orchestration-atlas": "workspace:*",
+    "@service/recovery-fabric-cadence-orchestrator": "workspace:*",
+    "@domain/recovery-fabric-cadence-core": "workspace:*"
   }
 }

@@ -212,6 +212,9 @@
     },
     {
       "path": "../../service/recovery-stress-lab-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-fabric-cadence-orchestrator/tsconfig.json"
     }
   ]
 }

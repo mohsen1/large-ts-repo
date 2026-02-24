@@ -975,6 +975,12 @@
     },
     {
       "path": "./packages/app/recovery-incident-lab-console"
+    },
+    {
+      "path": "./packages/domain/recovery-fabric-cadence-core"
+    },
+    {
+      "path": "./packages/service/recovery-fabric-cadence-orchestrator"
     }
   ]
 }
