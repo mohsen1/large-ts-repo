@@ -167,6 +167,12 @@
       "path": "./../../data/recovery-horizon-store/tsconfig.json"
     },
     {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/recovery-orchestration-runtime/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
     }
   ]
