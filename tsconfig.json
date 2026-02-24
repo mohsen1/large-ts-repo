@@ -551,6 +551,9 @@
       "path": "./packages/domain/recovery-lab-orchestration-core"
     },
     {
+      "path": "./packages/domain/recovery-lab-stress-lab-core"
+    },
+    {
       "path": "./packages/domain/recovery-lattice"
     },
     {
@@ -1085,6 +1088,9 @@
       "path": "./packages/domain/recovery-orchestration-design"
     },
     {
+      "path": "./packages/domain/recovery-lab-orchestration-core"
+    },
+    {
       "path": "./packages/shared/orchestration-kernel"
     },
     {
@@ -1125,6 +1131,9 @@
     },
     {
       "path": "./packages/shared/type-level"
+    },
+    {
+      "path": "./packages/shared/orchestration-lab-core"
     },
     {
       "path": "./packages/shared/util"

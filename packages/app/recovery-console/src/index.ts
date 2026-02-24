@@ -291,3 +291,9 @@ export { QuantumPluginRegistryPanel } from './features/recovery-quantum-orchestr
 export { runQuantumScenario, buildScenarioSteps, defaultScenarioNode, hasDefaultPlugins } from './features/recovery-quantum-orchestration/services/quantumScenarioEngine';
 export * from './features/recovery-quantum-orchestration/services/quantumAdapterLayer';
 export * from './features/recovery-quantum-orchestration/types';
+export { ChaosLabOrchestrationPage } from './features/recovery-orchestration-lab/pages/ChaosLabOrchestrationPage';
+export { ChaosLabControlDeck } from './features/recovery-orchestration-lab/components/ChaosLabControlDeck';
+export { ChaosLabTimeline } from './features/recovery-orchestration-lab/components/ChaosLabTimeline';
+export { ChaosLabSignalDeck } from './features/recovery-orchestration-lab/components/ChaosLabSignalDeck';
+export { useChaosLabDashboard } from './features/recovery-orchestration-lab/hooks/useChaosLabDashboard';
+export * from './features/recovery-orchestration-lab/services/lab-orchestration-service';

@@ -431,6 +431,9 @@ importers:
       '@domain/recovery-incident-saga':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-saga
+      '@domain/recovery-lab-stress-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-stress-lab-core
       '@domain/recovery-operations-atlas':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-atlas
@@ -596,6 +599,9 @@ importers:
       '@shared/orchestration-kernel':
         specifier: workspace:*
         version: link:../../shared/orchestration-kernel
+      '@shared/orchestration-lab-core':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-lab-core
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
@@ -3327,6 +3333,12 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-lab-stress-lab-core:
+    dependencies:
+      '@shared/orchestration-lab-core':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-lab-core
 
   packages/domain/recovery-lattice:
     dependencies:
@@ -6533,6 +6545,8 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../util
+
+  packages/shared/orchestration-lab-core: {}
 
   packages/shared/protocol:
     dependencies:
