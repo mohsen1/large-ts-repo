@@ -6,3 +6,6 @@ export * from './telemetry';
 export * from './adapters';
 export * from './executor';
 export * from './loader';
+export * from './constraint-lattice';
+export * from './typed-lattice';
+export * from './lattice-compiler';

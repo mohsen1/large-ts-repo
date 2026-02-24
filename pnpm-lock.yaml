@@ -416,6 +416,9 @@ importers:
       '@service/recovery-fabric-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fabric-orchestrator
+      '@service/recovery-fusion-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-fusion-lab-orchestrator
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
@@ -2656,6 +2659,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-fusion-lab-core:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+
   packages/domain/recovery-horizon-engine:
     dependencies:
       '@shared/horizon-lab-runtime':
@@ -4537,6 +4552,27 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-fusion-lab-orchestrator:
+    dependencies:
+      '@domain/recovery-fusion-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fusion-lab-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-fusion-orchestrator:
     dependencies:
