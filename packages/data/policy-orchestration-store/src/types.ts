@@ -17,6 +17,8 @@ export interface PolicyStoreArtifact extends PolicyStoreRecordMeta {
   payload: Record<string, unknown>;
 }
 
+export type PolicyStoreArtifactFilterState = 'active' | 'archived' | 'retired';
+
 export interface PolicyStorePlanSnapshot extends PolicyStoreRecordMeta {
   planId: string;
   orchestratorId: string;

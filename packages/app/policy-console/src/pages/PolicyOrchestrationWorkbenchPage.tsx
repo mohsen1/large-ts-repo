@@ -3,6 +3,9 @@ import { usePolicyConsoleWorkspace } from '../hooks/usePolicyConsoleWorkspace';
 import { PolicyExecutionTimeline } from '../components/PolicyExecutionTimeline';
 import { PolicyMetricCards } from '../components/PolicyMetricCards';
 import { PolicyOrchestrationWorkspace } from '../components/PolicyOrchestrationWorkspace';
+import { PolicyPluginRegistryPanel } from '../components/PolicyPluginRegistryPanel';
+import { PolicyPluginLogTimeline } from '../components/PolicyPluginLogTimeline';
+import { PolicyRunCards } from '../components/PolicyRunCards';
 
 const fakeTimelines = [
   { label: 'plan-ready', startedAt: '2026-01-01T00:00:00.000Z', completed: true, score: 93.4 },
@@ -39,6 +42,9 @@ export function PolicyOrchestrationWorkbenchPage() {
         onSetQuery={setQuery}
         onClearError={clearError}
       />
+      <PolicyRunCards orchestratorId={state.orchestratorId ?? 'orchestrator:policy-console'} />
+      <PolicyPluginRegistryPanel namespace="telemetry" seed={state.lastPluginEnvelope} />
+      <PolicyPluginLogTimeline envelope={state.lastPluginEnvelope} />
 
       <PolicyMetricCards metrics={metrics} />
       <PolicyExecutionTimeline points={fakeTimelines} />

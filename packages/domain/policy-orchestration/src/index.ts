@@ -4,3 +4,4 @@ export * from './planner';
 export * from './simulator';
 export * from './adapters';
 export * from './orchestration-utils';
+export * from './plugin-framework';

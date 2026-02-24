@@ -29,3 +29,7 @@ export { PolicyOrchestrationWorkspace } from './components/PolicyOrchestrationWo
 export { PolicyExecutionTimeline } from './components/PolicyExecutionTimeline';
 export { PolicyMetricCards } from './components/PolicyMetricCards';
 export { PolicyOrchestrationWorkbenchPage } from './pages/PolicyOrchestrationWorkbenchPage';
+export { PolicyConsoleOpsPage } from './pages/PolicyConsoleOpsPage';
+export { PolicyPluginRegistryPanel } from './components/PolicyPluginRegistryPanel';
+export { PolicyRunCards } from './components/PolicyRunCards';
+export { PolicyPluginLogTimeline } from './components/PolicyPluginLogTimeline';
