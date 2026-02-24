@@ -47,6 +47,9 @@
       "path": "./packages/app/recovery-playbook-orchestrator"
     },
     {
+      "path": "./packages/app/recovery-lab-dashboard"
+    },
+    {
       "path": "./packages/app/recovery-timeline-studio"
     },
     {
@@ -255,6 +258,9 @@
     },
     {
       "path": "./packages/data/recovery-simulation-store"
+    },
+    {
+      "path": "./packages/data/recovery-lab-simulation-store"
     },
     {
       "path": "./packages/data/recovery-situational-store"
@@ -636,6 +642,9 @@
     },
     {
       "path": "./packages/domain/recovery-scenario-planner"
+    },
+    {
+      "path": "./packages/domain/recovery-simulation-lab-core"
     },
     {
       "path": "./packages/domain/recovery-signal-intelligence"
@@ -1091,6 +1100,9 @@
       "path": "./packages/service/recovery-orchestration-studio-engine"
     },
     {
+      "path": "./packages/service/recovery-lab-orchestrator"
+    },
+    {
       "path": "./packages/domain/recovery-orchestration-design"
     },
     {
@@ -1140,6 +1152,9 @@
     },
     {
       "path": "./packages/shared/orchestration-lab-core"
+    },
+    {
+      "path": "./packages/shared/recovery-lab-kernel"
     },
     {
       "path": "./packages/shared/util"

@@ -1,0 +1,16 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    { "path": "./../../domain/recovery-simulation-lab-core/tsconfig.json" },
+    { "path": "./../../shared/recovery-lab-kernel/tsconfig.json" },
+    { "path": "./../../shared/result/tsconfig.json" }
+  ]
+}

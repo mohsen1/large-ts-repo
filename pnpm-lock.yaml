@@ -915,6 +915,36 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
 
+  packages/app/recovery-lab-dashboard:
+    dependencies:
+      '@data/recovery-lab-simulation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lab-simulation-store
+      '@domain/recovery-simulation-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-lab-core
+      '@service/recovery-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-lab-orchestrator
+      '@shared/recovery-lab-kernel':
+        specifier: workspace:*
+        version: link:../../shared/recovery-lab-kernel
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
   packages/app/recovery-playbook-orchestrator:
     dependencies:
       '@data/recovery-playbook-store':
@@ -1674,6 +1704,21 @@ importers:
       '@shared/protocol':
         specifier: workspace:*
         version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-lab-simulation-store:
+    dependencies:
+      '@domain/recovery-simulation-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-lab-core
+      '@shared/recovery-lab-kernel':
+        specifier: workspace:*
+        version: link:../../shared/recovery-lab-kernel
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -3765,6 +3810,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-simulation-lab-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/recovery-lab-kernel':
+        specifier: workspace:*
+        version: link:../../shared/recovery-lab-kernel
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-simulation-lab-models:
     dependencies:
       '@shared/type-level':
@@ -5585,6 +5648,27 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-lab-orchestrator:
+    dependencies:
+      '@data/recovery-lab-simulation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lab-simulation-store
+      '@domain/recovery-simulation-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-simulation-lab-core
+      '@shared/recovery-lab-kernel':
+        specifier: workspace:*
+        version: link:../../shared/recovery-lab-kernel
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-lattice-orchestrator:
     dependencies:
       '@data/recovery-lattice-orchestrator-store':
@@ -6592,6 +6676,15 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+
+  packages/shared/recovery-lab-kernel:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
 
   packages/shared/recovery-orchestration-runtime:
     dependencies:
