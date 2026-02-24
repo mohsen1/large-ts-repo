@@ -53,7 +53,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          BENCH_DIR="${GITHUB_WORKSPACE}/.bench"
+          BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
 
           clean_outputs() {
