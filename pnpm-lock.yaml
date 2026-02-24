@@ -1078,12 +1078,18 @@ importers:
       '@data/repositories':
         specifier: workspace:*
         version: link:../repositories
+      '@domain/policy-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/policy-orchestration
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/data/query-models: {}
 
@@ -2649,6 +2655,9 @@ importers:
 
   packages/domain/recovery-incident-lab-core:
     dependencies:
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../recovery-stress-lab
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -2661,6 +2670,9 @@ importers:
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-incident-orchestration:
     dependencies:

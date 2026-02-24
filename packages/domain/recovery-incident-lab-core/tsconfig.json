@@ -19,6 +19,9 @@
       "path": "./../../shared/stress-lab-runtime/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-stress-lab/tsconfig.json"
+    },
+    {
       "path": "./../../shared/validation/tsconfig.json"
     }
   ]
