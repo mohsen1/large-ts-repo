@@ -185,6 +185,9 @@ importers:
       '@service/policy-orchestration-engine':
         specifier: workspace:*
         version: link:../../service/policy-orchestration-engine
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -734,6 +737,9 @@ importers:
       '@domain/recovery-incident-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-lab-core
+      '@domain/recovery-lab-adaptive-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-adaptive-orchestration
       '@domain/recovery-lab-console-runtime':
         specifier: workspace:*
         version: link:../../domain/recovery-lab-console-runtime
@@ -2841,6 +2847,27 @@ importers:
 
   packages/domain/recovery-intelligence:
     dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-lab-adaptive-orchestration:
+    dependencies:
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../recovery-incident-lab-core
+      '@domain/recovery-lab-console-core':
+        specifier: workspace:*
+        version: link:../recovery-lab-console-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level

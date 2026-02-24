@@ -986,6 +986,9 @@
       "path": "./packages/domain/recovery-lab-console-core"
     },
     {
+      "path": "./packages/domain/recovery-lab-adaptive-orchestration"
+    },
+    {
       "path": "./packages/domain/recovery-lab-orchestration-core"
     },
     {

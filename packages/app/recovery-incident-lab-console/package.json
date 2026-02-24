@@ -16,6 +16,7 @@
   "dependencies": {
     "@data/recovery-incident-lab-store": "workspace:*",
     "@domain/recovery-incident-lab-core": "workspace:*",
+    "@domain/recovery-lab-adaptive-orchestration": "workspace:*",
     "@domain/recovery-horizon-engine": "workspace:*",
     "@data/recovery-horizon-store": "workspace:*",
     "@domain/recovery-lab-orchestration-core": "workspace:*",
