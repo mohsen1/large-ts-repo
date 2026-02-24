@@ -3458,6 +3458,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/stress-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/stress-lab-runtime
