@@ -683,12 +683,24 @@ importers:
 
   packages/app/recovery-incident-lab-console:
     dependencies:
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
       '@data/recovery-incident-lab-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-lab-store
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
       '@domain/recovery-incident-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-lab-core
+      '@domain/recovery-lab-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-orchestration-core
+      '@service/recovery-horizon-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-horizon-orchestrator
       '@service/recovery-incident-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-lab-orchestrator
@@ -698,6 +710,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/horizon-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/horizon-lab-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -1317,6 +1332,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/data/recovery-incident-insights-store:
     dependencies:
@@ -2604,6 +2622,9 @@ importers:
 
   packages/domain/recovery-horizon-engine:
     dependencies:
+      '@shared/horizon-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/horizon-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -2736,6 +2757,30 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-lab-orchestration-core:
+    dependencies:
+      '@domain/recovery-lab-governance':
+        specifier: workspace:*
+        version: link:../recovery-lab-governance
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../recovery-stress-lab
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -4474,6 +4519,9 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@shared/horizon-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/horizon-lab-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -5490,6 +5538,15 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+
+  packages/shared/horizon-lab-runtime:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
 
   packages/shared/monads: {}
 

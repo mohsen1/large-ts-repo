@@ -971,6 +971,9 @@
       "path": "./packages/domain/recovery-lab-governance"
     },
     {
+      "path": "./packages/domain/recovery-lab-orchestration-core"
+    },
+    {
       "path": "./packages/service/recovery-stress-lab-orchestrator"
     },
     {
