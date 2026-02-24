@@ -5323,6 +5323,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
