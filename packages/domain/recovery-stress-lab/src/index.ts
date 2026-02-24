@@ -26,3 +26,8 @@ export * from './orchestration-metrics';
 export * from './governance-matrix';
 export * from './runbook-audit';
 export * from './drill-orchestration';
+export * from './stress-studio-manifest';
+export * from './stress-studio-registry';
+export * from './stress-studio-telemetry';
+export * from './stress-studio-workflow';
+export { pickTopSignalsForWorkflow as pickTopSignalsFromWorkflow } from './stress-studio-workflow';

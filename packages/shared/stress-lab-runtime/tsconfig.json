@@ -10,19 +10,7 @@
   ],
   "references": [
     {
-      "path": "./../../domain/recovery-stress-lab/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/stress-lab-runtime/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-incident-lab-store/tsconfig.json"
-    },
-    {
       "path": "./../../shared/core/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/result/tsconfig.json"
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"

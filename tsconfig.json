@@ -935,6 +935,9 @@
       "path": "./packages/shared/type-level"
     },
     {
+      "path": "./packages/shared/stress-lab-runtime"
+    },
+    {
       "path": "./packages/shared/util"
     },
     {

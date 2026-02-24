@@ -17,4 +17,8 @@ export * from './mesh-operator';
 export * from './mesh-pipeline';
 export * from './orchestration-workflow';
 export * from './policy-routing';
+export * from './studio-plugin-manifest';
+export * from './studio-plugin-registry';
+export * from './studio-orchestrator';
+export * from './studio-insights';
 export * from './incident-surface';

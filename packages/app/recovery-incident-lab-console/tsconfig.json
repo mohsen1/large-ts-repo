@@ -18,6 +18,9 @@
       "path": "./../../service/recovery-incident-lab-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-stress-lab-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-incident-lab-store/tsconfig.json"
     },
     {

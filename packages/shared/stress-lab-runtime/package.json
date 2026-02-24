@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-stress-lab-orchestrator",
+  "name": "@shared/stress-lab-runtime",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,11 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-stress-lab": "workspace:*",
-    "@data/recovery-incident-lab-store": "workspace:*",
-    "@shared/type-level": "workspace:*",
     "@shared/core": "workspace:*",
-    "@shared/stress-lab-runtime": "workspace:*",
-    "@shared/result": "workspace:*"
+    "@shared/type-level": "workspace:*"
   }
 }

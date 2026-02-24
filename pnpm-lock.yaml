@@ -773,6 +773,9 @@ importers:
       '@service/recovery-stress-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stress-lab-orchestrator
+      '@service/streaming-control':
+        specifier: workspace:*
+        version: link:../../service/streaming-control
       '@service/streaming-dashboard-orchestrator':
         specifier: workspace:*
         version: link:../../service/streaming-dashboard-orchestrator
@@ -1770,6 +1773,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -5284,6 +5290,18 @@ importers:
       '@domain/streaming-engine':
         specifier: workspace:*
         version: link:../../domain/streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/streaming-dashboard-orchestrator:
     dependencies:
@@ -5296,6 +5314,9 @@ importers:
       '@domain/streaming-observability':
         specifier: workspace:*
         version: link:../../domain/streaming-observability
+      '@service/streaming-control':
+        specifier: workspace:*
+        version: link:../streaming-control
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
