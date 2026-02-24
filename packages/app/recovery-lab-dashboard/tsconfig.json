@@ -14,6 +14,7 @@
     "src/**/*"
   ],
   "references": [
+    { "path": "./../../domain/recovery-lab-intelligence-core/tsconfig.json" },
     { "path": "./../../domain/recovery-simulation-lab-core/tsconfig.json" },
     { "path": "./../../domain/recovery-orchestration-design/tsconfig.json" },
     { "path": "./../../data/recovery-lab-simulation-store/tsconfig.json" },

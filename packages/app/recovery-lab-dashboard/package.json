@@ -14,6 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@domain/recovery-lab-intelligence-core": "workspace:*",
     "@domain/recovery-simulation-lab-core": "workspace:*",
     "@domain/recovery-orchestration-design": "workspace:*",
     "@data/recovery-lab-simulation-store": "workspace:*",
