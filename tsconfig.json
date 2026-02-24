@@ -926,6 +926,9 @@
       "path": "./packages/shared/core"
     },
     {
+      "path": "./packages/shared/recovery-orchestration-runtime"
+    },
+    {
       "path": "./packages/shared/errors"
     },
     {

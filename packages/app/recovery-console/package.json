@@ -39,6 +39,7 @@
     "@shared/core": "workspace:*",
     "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/recovery-orchestration-runtime": "workspace:*",
     "@domain/recovery-command-forge": "workspace:*",
     "@domain/incident-command-models": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",

@@ -55,6 +55,9 @@
       "path": "../../shared/result/tsconfig.json"
     },
     {
+      "path": "../../shared/recovery-orchestration-runtime/tsconfig.json"
+    },
+    {
       "path": "../../shared/util/tsconfig.json"
     },
     {
