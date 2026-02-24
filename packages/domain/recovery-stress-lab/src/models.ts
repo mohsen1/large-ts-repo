@@ -5,10 +5,23 @@ export type WorkloadId = NodeId;
 export type CommandRunbookId = Brand<string, 'CommandRunbookId'>;
 export type CommandStepId = Brand<string, 'CommandStepId'>;
 export type RecoverySignalId = Brand<string, 'RecoverySignalId'>;
+export type StressLabPluginId = Brand<string, 'StressLabPluginId'>;
+export type StageAttemptId = Brand<string, 'StageAttemptId'>;
+export type StageSignalId = RecoverySignalId;
+export type ForecastWindowId = Brand<string, 'ForecastWindowId'>;
 
-export type StressPhase = 'observe' | 'isolate' | 'migrate' | 'restore' | 'verify' | 'standdown';
+export type StressPhase =
+  | 'observe'
+  | 'isolate'
+  | 'migrate'
+  | 'restore'
+  | 'verify'
+  | 'standdown';
+export type ExtendedStressPhase = StressPhase | 'diagnose' | 'score' | 'recommend';
 export type SeverityBand = 'low' | 'medium' | 'high' | 'critical';
 export type SignalClass = 'availability' | 'integrity' | 'performance' | 'compliance';
+
+export type StageClass = 'raw' | 'derived' | 'prediction' | 'decision';
 
 export interface RecoverySignal {
   readonly id: RecoverySignalId;
@@ -17,6 +30,32 @@ export interface RecoverySignal {
   readonly title: string;
   readonly createdAt: string;
   readonly metadata: Readonly<Record<string, unknown>>;
+}
+
+export interface StageSignal {
+  readonly signal: StageSignalId;
+  readonly tenantId: TenantId;
+  readonly signalClass: SignalClass;
+  readonly severity: SeverityBand;
+  readonly score: number;
+  readonly createdAt: number;
+  readonly source: string;
+}
+
+export interface PluginContextState {
+  readonly tenantId: TenantId;
+  readonly route: string;
+  readonly stageHistory: readonly string[];
+  readonly tags: readonly string[];
+}
+
+export interface PluginResult<TOutput = unknown> {
+  readonly ok: boolean;
+  readonly generatedAt: string;
+  readonly error?: {
+    readonly message: string;
+  };
+  readonly value?: TOutput;
 }
 
 export interface WorkloadTarget {
@@ -50,6 +89,14 @@ export interface CommandRunbook {
   readonly cadence: Readonly<{ weekday: number; windowStartMinute: number; windowEndMinute: number }>;
 }
 
+export interface StageAttempt {
+  readonly id: StageAttemptId;
+  readonly source: StageSignalId;
+  readonly phaseClass: StageClass;
+  readonly severityBand: SeverityBand;
+  readonly normalizedScore: number;
+}
+
 export interface WorkloadTopologyNode {
   readonly id: WorkloadId;
   readonly name: string;
@@ -64,6 +111,10 @@ export interface WorkloadTopologyEdge {
   readonly coupling: number;
   readonly reason: string;
 }
+
+export type StageRoute<TPath extends string> = TPath extends `${infer Head}/${infer Tail}`
+  ? readonly [Head, ...StageRoute<Tail>]
+  : readonly [TPath];
 
 export interface WorkloadTopology {
   readonly tenantId: TenantId;
@@ -118,6 +169,9 @@ export const createWorkloadId = (value: string): WorkloadId => withBrand(value, 
 export const createRunbookId = (value: string): CommandRunbookId => withBrand(value, 'CommandRunbookId');
 export const createStepId = (value: string): CommandStepId => withBrand(value, 'CommandStepId');
 export const createSignalId = (value: string): RecoverySignalId => withBrand(value, 'RecoverySignalId');
+export const createPluginId = (value: string): StressLabPluginId => withBrand(value, 'StressLabPluginId');
+export const createStageAttemptId = (value: string): StageAttemptId => withBrand(value, 'StageAttemptId');
+export const createForecastWindowId = (value: string): ForecastWindowId => withBrand(value, 'ForecastWindowId');
 
 export const normalizeTenantLimit = normalizeLimit;
 export const severityRank: Record<SeverityBand, number> = {

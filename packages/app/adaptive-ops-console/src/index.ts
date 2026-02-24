@@ -95,3 +95,9 @@ export { PlaybookDependencyGraph } from './components/playbook/PlaybookDependenc
 export { PlaybookTelemetryPanel } from './components/playbook/PlaybookTelemetryPanel';
 export { useAdaptiveOpsPlaybook } from './hooks/useAdaptiveOpsPlaybook';
 export { createPlaybookEngine } from './services/playbookEngine';
+export { RecoveryStressLabStudioPage } from './pages/RecoveryStressLabStudioPage';
+export { StressLabRunDeck } from './components/stress-lab/StressLabRunDeck';
+export { StressLabPolicyPanel } from './components/stress-lab/StressLabPolicyPanel';
+export { StressLabEventFeed } from './components/stress-lab/StressLabEventFeed';
+export { useRecoveryStressLab } from './hooks/useRecoveryStressLab';
+export { createRecoveryStressLabClient } from './services/recoveryStressLabClient';
