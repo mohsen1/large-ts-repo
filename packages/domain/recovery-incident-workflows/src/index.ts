@@ -3,3 +3,7 @@ export * from './graph';
 export * from './validators';
 export * from './adapters';
 export * from './policies';
+export * from './continuity-lab/types';
+export * from './continuity-lab/policies';
+export * from './continuity-lab/registry';
+export * from './continuity-lab/engine';

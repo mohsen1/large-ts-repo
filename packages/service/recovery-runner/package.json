@@ -21,6 +21,7 @@
     "@data/recovery-observability": "workspace:*",
     "@data/recovery-artifacts": "workspace:*",
     "@shared/core": "workspace:*",
+    "@data/recovery-workflow-store": "workspace:*",
     "@data/recovery-policy-store": "workspace:*",
     "@data/recovery-plan-store": "workspace:*",
     "@data/recovery-risk-store": "workspace:*",
