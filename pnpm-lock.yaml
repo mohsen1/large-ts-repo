@@ -374,6 +374,9 @@ importers:
       '@data/recovery-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-store
+      '@data/recovery-stress-lab-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-stress-lab-orchestration-store
       '@data/recovery-synthetic-orchestration-store':
         specifier: workspace:*
         version: link:../../data/recovery-synthetic-orchestration-store
@@ -2076,6 +2079,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-stress-lab-orchestration-store:
+    dependencies:
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
+      '@domain/recovery-stress-lab-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab-intelligence
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/data/recovery-synthetic-orchestration-store:
     dependencies:
@@ -6202,6 +6220,9 @@ importers:
       '@data/recovery-incident-lab-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-lab-store
+      '@data/recovery-stress-lab-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-stress-lab-orchestration-store
       '@domain/recovery-incident-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-lab-core
