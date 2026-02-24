@@ -53,3 +53,8 @@ export * from './components/intent/IntentTimelinePanel';
 export * from './hooks/useScenarioOrchestration';
 export * from './pages/RecoveryCockpitScenarioPlaybookPage';
 export * from './pages/RecoveryCockpitDeepDrillPage';
+export * from './pages/RecoveryCockpitSignalMeshPage';
+export * from './components/mesh/SignalMeshTopologyGraph';
+export * from './components/mesh/SignalMeshStatusBoard';
+export * from './components/mesh/SignalMeshCommandConsole';
+export * from './hooks/useSignalMeshOrchestration';

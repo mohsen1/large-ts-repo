@@ -209,6 +209,9 @@ importers:
       '@data/recovery-cockpit-intent-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-intent-store
+      '@data/recovery-cockpit-signal-mesh-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-signal-mesh-store
       '@data/recovery-cockpit-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-store
@@ -221,6 +224,9 @@ importers:
       '@domain/recovery-cockpit-orchestration-core':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-orchestration-core
+      '@domain/recovery-cockpit-signal-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-signal-mesh
       '@domain/recovery-cockpit-workloads':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-workloads
@@ -233,6 +239,9 @@ importers:
       '@service/recovery-cockpit-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-orchestrator
+      '@service/recovery-cockpit-signal-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-signal-orchestrator
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
@@ -1224,6 +1233,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-cockpit-signal-mesh-store:
+    dependencies:
+      '@aws-sdk/client-dynamodb':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-cockpit-signal-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-signal-mesh
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-cockpit-store:
     dependencies:
@@ -2395,6 +2422,18 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-signal-mesh:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -4279,6 +4318,21 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+
+  packages/service/recovery-cockpit-signal-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-signal-mesh-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-signal-mesh-store
+      '@domain/recovery-cockpit-signal-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-signal-mesh
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-command-control-hub:
     dependencies:

@@ -33,6 +33,9 @@
       "path": "./../../service/recovery-cockpit-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-cockpit-signal-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-cockpit-intent-orchestrator/tsconfig.json"
     },
     {
@@ -49,6 +52,13 @@
     },
     {
       "path": "./../../domain/recovery-operations-cadence/tsconfig.json"
+    }
+    ,
+    {
+      "path": "./../../domain/recovery-cockpit-signal-mesh/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-signal-mesh-store/tsconfig.json"
     }
   ]
 }

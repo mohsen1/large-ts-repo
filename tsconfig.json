@@ -131,6 +131,9 @@
       "path": "./packages/data/recovery-cockpit-store"
     },
     {
+      "path": "./packages/data/recovery-cockpit-signal-mesh-store"
+    },
+    {
       "path": "./packages/data/recovery-command-control-plane"
     },
     {
@@ -393,6 +396,9 @@
     },
     {
       "path": "./packages/domain/recovery-cockpit-workloads"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-signal-mesh"
     },
     {
       "path": "./packages/domain/recovery-cockpit-orchestration-core"
@@ -741,6 +747,9 @@
     },
     {
       "path": "./packages/service/recovery-cockpit-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-cockpit-signal-orchestrator"
     },
     {
       "path": "./packages/service/recovery-cockpit-intent-orchestrator"
