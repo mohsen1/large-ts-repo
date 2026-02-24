@@ -28,6 +28,9 @@
     },
     {
       "path": "./../../service/policy-orchestration-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

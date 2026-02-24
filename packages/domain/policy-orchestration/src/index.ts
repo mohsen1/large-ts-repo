@@ -7,3 +7,6 @@ export * from './orchestration-utils';
 export * from './workflow-template';
 export * from './policy-matrix';
 export * from './plugin-framework';
+export * from './strategy-types';
+export * from './strategy-registry';
+export * from './topology-compiler';
