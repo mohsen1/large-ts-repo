@@ -143,6 +143,9 @@
       "path": "./packages/data/recovery-cockpit-signal-mesh-store"
     },
     {
+      "path": "./packages/data/recovery-chaos-observability"
+    },
+    {
       "path": "./packages/data/recovery-cockpit-store"
     },
     {
@@ -1044,6 +1047,9 @@
     },
     {
       "path": "./packages/service/recovery-chaos-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-intelligence-orchestrator"
     },
     {
       "path": "./packages/service/streaming-control"
