@@ -1008,6 +1008,12 @@
     },
     {
       "path": "./packages/service/recovery-horizon-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-fusion-lab-core"
+    },
+    {
+      "path": "./packages/service/recovery-fusion-lab-orchestrator"
     }
   ]
 }

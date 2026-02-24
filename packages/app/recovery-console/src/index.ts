@@ -231,3 +231,9 @@ export { ConstellationTimeline } from './features/recovery-command-constellation
 export { ConstellationPolicyHeatmap } from './features/recovery-command-constellation/components/ConstellationPolicyHeatmap';
 export { useRecoveryCommandConstellation } from './features/recovery-command-constellation/hooks/useRecoveryCommandConstellation';
 export { createRuntimeSummary, runConstellation } from './features/recovery-command-constellation/services/constellationService';
+export { useRecoveryFusionLabWorkspace } from './features/recovery-fusion-lab/hooks/useRecoveryFusionLabWorkspace';
+export { FusionLabTopologyDeck } from './features/recovery-fusion-lab/components/FusionLabTopologyDeck';
+export { FusionLabCommandRail } from './features/recovery-fusion-lab/components/FusionLabCommandRail';
+export { FusionLabPolicyPanel } from './features/recovery-fusion-lab/components/FusionLabPolicyPanel';
+export { RecoveryFusionLabOperationsPage } from './features/recovery-fusion-lab/pages/RecoveryFusionLabOperationsPage';
+export { RecoveryFusionLabSummaryPage } from './features/recovery-fusion-lab/pages/RecoveryFusionLabSummaryPage';

@@ -166,6 +166,9 @@
       "path": "./../../service/recovery-playbook-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-fusion-lab-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-fabric-controller/tsconfig.json"
     },
     {
