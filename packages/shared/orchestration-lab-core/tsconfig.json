@@ -8,5 +8,15 @@
   "include": [
     "src/**/*"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/stress-lab-runtime/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    }
+  ]
 }

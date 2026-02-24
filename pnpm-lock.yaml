@@ -320,6 +320,9 @@ importers:
       '@service/recovery-cockpit-signal-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-signal-orchestrator
+      '@shared/orchestration-lab-core':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-lab-core
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
@@ -6786,7 +6789,20 @@ importers:
         specifier: workspace:*
         version: link:../util
 
-  packages/shared/orchestration-lab-core: {}
+  packages/shared/orchestration-lab-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/orchestration-runtime:
     dependencies:

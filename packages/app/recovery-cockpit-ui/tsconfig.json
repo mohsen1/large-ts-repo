@@ -83,6 +83,9 @@
     ,
     {
       "path": "./../../domain/recovery-stress-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/orchestration-lab-core/tsconfig.json"
     }
   ]
 }

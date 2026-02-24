@@ -41,6 +41,7 @@
     "@domain/recovery-cockpit-cognitive-core": "workspace:*",
     "@service/recovery-cockpit-cognitive-orchestrator": "workspace:*",
     "@data/recovery-cockpit-cognitive-store": "workspace:*",
+    "@shared/orchestration-lab-core": "workspace:*",
     "zod": "^3.24.0"
   }
 }
