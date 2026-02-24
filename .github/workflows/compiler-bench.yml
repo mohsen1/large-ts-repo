@@ -66,6 +66,8 @@ jobs:
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
+          find . -type d -name dist -prune -exec rm -rf {} +
+          find . -type f -name '*.tsbuildinfo' -delete
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
           set +e
@@ -153,6 +155,8 @@ jobs:
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
+          find . -type d -name dist -prune -exec rm -rf {} +
+          find . -type f -name '*.tsbuildinfo' -delete
 
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
@@ -242,6 +246,8 @@ jobs:
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
+          find . -type d -name dist -prune -exec rm -rf {} +
+          find . -type f -name '*.tsbuildinfo' -delete
 
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
@@ -331,6 +337,8 @@ jobs:
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
+          find . -type d -name dist -prune -exec rm -rf {} +
+          find . -type f -name '*.tsbuildinfo' -delete
 
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
