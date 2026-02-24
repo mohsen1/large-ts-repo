@@ -2281,6 +2281,12 @@ importers:
 
   packages/domain/recovery-cockpit-orchestration-core:
     dependencies:
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-models
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -4036,6 +4042,9 @@ importers:
       '@domain/recovery-cockpit-models':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-models
+      '@domain/recovery-cockpit-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-orchestration-core
       '@domain/recovery-cockpit-workloads':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-workloads

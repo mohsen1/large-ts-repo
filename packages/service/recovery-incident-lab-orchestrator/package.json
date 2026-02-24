@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/recovery-incident-lab-core": "workspace:*",
     "@data/recovery-incident-lab-store": "workspace:*",
+    "@shared/validation": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*"
   }

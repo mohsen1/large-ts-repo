@@ -16,6 +16,9 @@
       "path": "./../../data/recovery-incident-lab-store/tsconfig.json"
     },
     {
+      "path": "./../../shared/validation/tsconfig.json"
+    },
+    {
       "path": "./../../shared/core/tsconfig.json"
     },
     {

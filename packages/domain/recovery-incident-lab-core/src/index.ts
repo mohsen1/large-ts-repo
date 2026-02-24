@@ -5,3 +5,8 @@ export * from './simulation';
 export * from './validation';
 export * from './adapters';
 export * from './telemetry';
+export * from './topology-policy';
+export * from './risk';
+export * from './orchestration-model';
+export * from './scenario-dsl';
+export * from './metrics';

@@ -109,10 +109,12 @@ Your job:
 8. Do not leave unresolved imports: only use internal aliases that exist in tsconfig path mappings and project references.
 9. Do not add scripts or generators; only edit normal source/config files needed for build stability.
 10. After fixes, rerun both commands and report success only if both pass.
+11. Prefer `using` declarations/resource cleanup patterns where appropriate and include modern JS/TS ergonomics in all generated code.
+12. If either command reports diagnostics, continue fixing and re-run both commands immediately before any completion claim.
 EOF
 
 read -r -d '' PROMPT <<'EOF' || true
-Continue improving this synthetic TypeScript monorepo to stress tsz.
+Continue improving this synthetic TypeScript monorepo to stress tsz with very modern and advanced TypeScript/JavaScript features.
 
 Execution style:
 - Write code directly. Do not provide plans, long explanations, or analysis in the final response.
@@ -125,13 +127,15 @@ Hard constraints:
 4. Prefer real dependencies (e.g. zod, AWS SDK packages where appropriate), avoid fake local stubs pretending to be external libs.
 5. Maintain/expand composite project references in root tsconfig.json and package-level tsconfig references.
 6. Add substantial new TypeScript source (.ts/.tsx) with meaningful domain models, generic utility types, orchestration code, adapters, realistic service layers, and frontend UI modules.
+6a. Use modern constructs extensively: `using` declarations and `Symbol.dispose`/`Symbol.asyncDispose` where relevant, `satisfies`, `infer`, recursive/variadic generics, template literal types, conditional/mapped types with key remapping, `NoInfer`, branded/nominal typing, recursive tuple helpers, and advanced utility composition.
+6b. Include modern JavaScript idioms: top-level `await` where appropriate, iterator helpers, `AsyncDisposableStack`, and strongly typed plugin/registry patterns.
 7. Keep imports/path aliases coherent; do not break existing workspace structure.
 8. Every changed or new TypeScript file must be syntactically valid and compatible with current tsconfig settings (no placeholders, no pseudocode, no TODO-only stubs).
 9. Do not introduce unresolved imports. Only import workspace aliases that already exist in tsconfig path mappings and are backed by referenced packages.
 10. When introducing external imports, add them to the correct package.json dependency section and ensure install succeeds with `pnpm install --prefer-frozen-lockfile`.
 11. Keep every changed package.json file valid JSON (no trailing commas/comments).
 12. Do not add/modify code-generation scripts, shell scripts, node scripts, or one-off generators for this task.
-13. Before finishing, run `pnpm build`; if it fails, fix errors and rerun until clean.
+13. Before finishing, run `pnpm exec tsc -b tsconfig.json --pretty false` and `pnpm build`; if either fails, fix errors and rerun until both are clean.
 14. In every iteration, add React code too: at least 200 net-new lines of `.tsx` across at least 3 files (components/hooks/pages), with typed props/state and valid imports.
 15. When introducing or expanding React code, ensure required dependencies/types are present in the correct package.json files (e.g. react, react-dom, @types/react, @types/react-dom when needed).
 16. Add at least 900 net-new lines of TypeScript total per iteration across at least 8 new or expanded `.ts`/`.tsx` files.
@@ -152,7 +156,20 @@ ensure_build_clean() {
     install_deps_if_needed
     if run_build; then
       echo "Build is clean."
-      return 0
+      echo "Re-running typecheck after successful build..."
+      if run_typecheck; then
+        echo "Typecheck is clean."
+        return 0
+      fi
+      echo "Typecheck failed after build success. Running Codex fix pass..."
+      run_and_wait codex exec \
+        --model=gpt-5.3-codex-spark \
+        --dangerously-bypass-approvals-and-sandbox \
+        --config model_reasoning_effort=low \
+        "$FIX_PROMPT"
+      attempt=$((attempt + 1))
+      continue
+
     fi
 
     echo "Build failed. Running Codex fix pass..."
@@ -213,9 +230,9 @@ for i in $(seq 0 "$COUNT"); do
     --config model_reasoning_effort=low \
     "$PROMPT"
   install_deps_if_needed
-  echo "Verifying full typecheck + build after iteration $i..."
+  echo "Verifying strict compile gate (pnpm exec tsc -b tsconfig.json --pretty false + pnpm build) after iteration $i..."
   ensure_repo_clean
-  echo "Iteration $i complete: full typecheck + build are clean."
+  echo "Iteration $i complete: all TypeScript checks are clean and no tsc errors remain."
 done
 
 echo ""
