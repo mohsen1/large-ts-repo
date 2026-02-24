@@ -2697,6 +2697,9 @@ importers:
 
   packages/domain/recovery-incident-lab-core:
     dependencies:
+      '@domain/recovery-lab-governance':
+        specifier: workspace:*
+        version: link:../recovery-lab-governance
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../recovery-stress-lab

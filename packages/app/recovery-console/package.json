@@ -90,5 +90,7 @@
     "@service/recovery-orchestration-atlas": "workspace:*",
     "@service/recovery-fabric-cadence-orchestrator": "workspace:*",
     "@domain/recovery-fabric-cadence-core": "workspace:*"
+    ,
+    "@domain/recovery-fusion-intelligence": "workspace:*"
   }
 }

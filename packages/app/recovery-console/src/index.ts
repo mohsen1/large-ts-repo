@@ -213,3 +213,9 @@ export { FabricCadenceControlSurface } from './features/recovery-fabric-cadence-
 export { FabricCadenceForecastBoard } from './features/recovery-fabric-cadence-orchestration/components/FabricCadenceForecastBoard';
 export { FabricCadenceSignalsPanel } from './features/recovery-fabric-cadence-orchestration/components/FabricCadenceSignalsPanel';
 export { RecoveryFabricCadenceOrchestrationPage } from './features/recovery-fabric-cadence-orchestration/pages/RecoveryFabricCadenceOrchestrationPage';
+
+export { RecoveryFusionMeshOrchestratorPage } from './features/recovery-fusion-mesh/pages/RecoveryFusionMeshOrchestratorPage';
+export { FusionMeshCommandQueue } from './features/recovery-fusion-mesh/components/FusionMeshCommandQueue';
+export { FusionMeshSignalBoard } from './features/recovery-fusion-mesh/components/FusionMeshSignalBoard';
+export { FusionMeshTopologyPanel } from './features/recovery-fusion-mesh/components/FusionMeshTopologyPanel';
+export { useRecoveryFusionMeshOrchestrator } from './features/recovery-fusion-mesh/hooks/useRecoveryFusionMeshOrchestrator';

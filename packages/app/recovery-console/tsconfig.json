@@ -163,6 +163,9 @@
       "path": "./../../service/recovery-playbook-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-fabric-controller/tsconfig.json"
+    },
+    {
       "path": "../../data/recovery-atlas-store/tsconfig.json"
     },
     {
@@ -203,6 +206,9 @@
     },
     {
       "path": "../../service/recovery-cadence-coordinator/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-fusion-intelligence/tsconfig.json"
     },
     {
       "path": "../../domain/recovery-continuity-lab-core/tsconfig.json"

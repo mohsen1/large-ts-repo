@@ -27,5 +27,9 @@
     {
       "path": "./../../shared/core/tsconfig.json"
     }
+    ,
+    {
+      "path": "./../../domain/recovery-fusion-intelligence/tsconfig.json"
+    }
   ]
 }

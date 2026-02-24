@@ -17,6 +17,7 @@
     "@domain/recovery-fabric-models": "workspace:*",
     "@domain/recovery-orchestration": "workspace:*",
     "@domain/recovery-fabric-orchestration": "workspace:*",
+    "@domain/recovery-fusion-intelligence": "workspace:*",
     "@domain/incident-management": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/core": "workspace:*",

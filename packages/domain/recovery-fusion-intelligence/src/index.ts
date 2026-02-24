@@ -16,3 +16,8 @@ export * from './signal-ingestion';
 export * from './schedule-engine';
 export * from './telemetry-analytics';
 export * from './coordinator';
+export * from './mesh-types';
+export * from './mesh-schemas';
+export * from './mesh-registry';
+export * from './mesh-planner';
+export * from './mesh-runtime';
