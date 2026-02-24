@@ -722,6 +722,9 @@ importers:
       '@domain/recovery-incident-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-lab-core
+      '@domain/recovery-lab-console-runtime':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-console-runtime
       '@domain/recovery-lab-orchestration-core':
         specifier: workspace:*
         version: link:../../domain/recovery-lab-orchestration-core
@@ -2811,6 +2814,21 @@ importers:
       '@domain/recovery-lab-orchestration-core':
         specifier: workspace:*
         version: link:../recovery-lab-orchestration-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-lab-console-runtime:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result

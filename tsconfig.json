@@ -1004,6 +1004,9 @@
       "path": "./packages/domain/recovery-horizon-studio-core"
     },
     {
+      "path": "./packages/domain/recovery-lab-console-runtime"
+    },
+    {
       "path": "./packages/data/recovery-horizon-store"
     },
     {

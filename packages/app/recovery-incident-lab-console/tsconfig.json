@@ -39,6 +39,9 @@
       "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-lab-console-runtime/tsconfig.json"
+    },
+    {
       "path": "./../../shared/core/tsconfig.json"
     },
     {

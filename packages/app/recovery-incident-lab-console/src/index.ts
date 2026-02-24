@@ -54,3 +54,8 @@ export * from './hooks/useRecoveryLabPluginOrchestrator';
 export * from './pages/RecoveryLabPluginOrchestrationPage';
 export * from './components/RecoveryLabPluginPolicyMatrix';
 export * from './components/RecoveryLabPluginControlPanel';
+export * from './services/recoveryLabRuntimeService';
+export * from './hooks/useRecoveryLabConsoleRuntime';
+export * from './components/LabConsoleRuntimePanel';
+export * from './components/LabConsoleRuntimeSummary';
+export * from './pages/RecoveryLabRuntimeConsolePage';
