@@ -1,0 +1,20 @@
+{
+  "name": "@service/recovery-lab-graph-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-lab-synthetic-orchestration": "workspace:*",
+    "@shared/lab-graph-runtime": "workspace:*"
+  }
+}

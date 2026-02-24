@@ -1217,7 +1217,13 @@
       "path": "./packages/shared/lab-simulation-kernel"
     },
     {
+      "path": "./packages/shared/lab-graph-runtime"
+    },
+    {
       "path": "./packages/domain/recovery-chronicle-core"
+    },
+    {
+      "path": "./packages/domain/recovery-lab-synthetic-orchestration"
     },
     {
       "path": "./packages/data/recovery-chronicle-store"
@@ -1236,6 +1242,9 @@
     },
     {
       "path": "./packages/service/recovery-lab-orchestration-studio"
+    },
+    {
+      "path": "./packages/service/recovery-lab-graph-orchestrator"
     }
   ]
 }

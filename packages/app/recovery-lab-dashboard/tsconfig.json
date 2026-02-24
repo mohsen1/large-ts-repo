@@ -14,6 +14,7 @@
     "src/**/*"
   ],
   "references": [
+    { "path": "./../../shared/lab-graph-runtime/tsconfig.json" },
     { "path": "./../../domain/recovery-lab-intelligence-core/tsconfig.json" },
     { "path": "./../../domain/recovery-simulation-lab-core/tsconfig.json" },
     { "path": "./../../domain/recovery-orchestration-design/tsconfig.json" },
@@ -23,6 +24,8 @@
     { "path": "./../../service/recovery-lab-orchestration-studio/tsconfig.json" },
     { "path": "./../../shared/recovery-lab-kernel/tsconfig.json" },
     { "path": "./../../shared/type-level/tsconfig.json" },
+    { "path": "./../../domain/recovery-lab-synthetic-orchestration/tsconfig.json" },
+    { "path": "./../../service/recovery-lab-graph-orchestrator/tsconfig.json" },
     { "path": "./../../domain/recovery-lab-signal-studio/tsconfig.json" }
   ]
 }

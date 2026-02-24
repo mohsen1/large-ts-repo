@@ -14,6 +14,9 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@shared/lab-graph-runtime": "workspace:*",
+    "@domain/recovery-lab-synthetic-orchestration": "workspace:*",
+    "@service/recovery-lab-graph-orchestrator": "workspace:*",
     "@data/recovery-lab-digital-twin-store": "workspace:*",
     "@domain/recovery-lab-signal-studio": "workspace:*",
     "@domain/recovery-lab-intelligence-core": "workspace:*",

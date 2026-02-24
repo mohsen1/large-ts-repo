@@ -1,0 +1,23 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "lib": [
+      "ES2024",
+      "DOM"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-lab-synthetic-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/lab-graph-runtime/tsconfig.json"
+    }
+  ]
+}
