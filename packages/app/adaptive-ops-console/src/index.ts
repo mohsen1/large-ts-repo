@@ -13,6 +13,9 @@ import { CommandDependencyPanel } from './components/command-plan/CommandDepende
 import { CommandTimeline } from './components/command-center/CommandTimeline';
 import { CommandControlStrip } from './components/command-center/CommandControlStrip';
 import { CommandPlanMatrix } from './components/command-plan/CommandPlanMatrix';
+import { IntentIntentPanel } from './components/incident-intent/IntentIntentPanel';
+import { IntentDecisionGrid } from './components/incident-intent/IntentDecisionGrid';
+import { IntentTimeline } from './components/incident-intent/IntentTimeline';
 import { ReadinessOperationsConsolePage } from './pages/ReadinessOperationsConsolePage';
 import { useReadinessConsole } from './hooks/useReadinessConsole';
 import { ReadinessCommandStrip } from './components/readiness/ReadinessCommandStrip';
@@ -27,6 +30,8 @@ import { WorkloadForecastSummary } from './components/workload/WorkloadForecastS
 import { WorkloadSignalPanel } from './components/workload/WorkloadSignalPanel';
 import { IncidentCommandLabPage } from './pages/IncidentCommandLabPage';
 import { useCommandLab } from './hooks/useCommandLab';
+import { useIncidentIntentOrchestrator } from './hooks/useIncidentIntentOrchestrator';
+import { IncidentIntentOrchestrationPage } from './pages/IncidentIntentOrchestrationPage';
 import { CommandLabControls } from './components/incident-lab/CommandLabControls';
 import { CommandLabReadinessPanel } from './components/incident-lab/CommandLabReadinessPanel';
 import { CommandLabTimeline } from './components/incident-lab/CommandLabTimeline';
@@ -54,6 +59,9 @@ export {
   CommandTimeline,
   CommandControlStrip,
   CommandPlanMatrix,
+  IntentIntentPanel,
+  IntentDecisionGrid,
+  IntentTimeline,
   ReadinessOperationsConsolePage,
   useReadinessConsole,
   ReadinessCommandStrip,
@@ -71,7 +79,9 @@ export {
   WorkloadForecastSummary,
   WorkloadSignalPanel,
   IncidentCommandLabPage,
+  IncidentIntentOrchestrationPage,
   useCommandLab,
+  useIncidentIntentOrchestrator,
   CommandLabControls,
   CommandLabReadinessPanel,
   CommandLabTimeline,

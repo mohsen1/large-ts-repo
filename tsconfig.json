@@ -185,6 +185,9 @@
       "path": "./packages/data/recovery-horizon-store"
     },
     {
+      "path": "./packages/data/recovery-incident-intent-store"
+    },
+    {
       "path": "./packages/data/recovery-incident-insights-store"
     },
     {
@@ -713,6 +716,9 @@
       "path": "./packages/domain/recovery-intent-graph"
     },
     {
+      "path": "./packages/domain/recovery-incident-intent"
+    },
+    {
       "path": "./packages/domain/temporal"
     },
     {
@@ -1017,6 +1023,9 @@
     },
     {
       "path": "./packages/service/recovery-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-incident-intent-orchestrator"
     },
     {
       "path": "./packages/service/recovery-policy-engine"
