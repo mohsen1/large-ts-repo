@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@domain/recovery-simulation-lab-core": "workspace:*",
+    "@domain/recovery-orchestration-design": "workspace:*",
     "@data/recovery-lab-simulation-store": "workspace:*",
     "@service/recovery-lab-orchestrator": "workspace:*",
     "@shared/recovery-lab-kernel": "workspace:*",

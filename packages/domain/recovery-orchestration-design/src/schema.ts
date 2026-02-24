@@ -171,7 +171,7 @@ export const runTemplateSchema = z.object({
 
 export const parseRunbook = (value: unknown): RecoveryRunbook => runbookSchema.parse(value);
 export const parseRun = (value: unknown): RecoveryRun => runSchema.parse(value);
-export const parseTemplate = (value: unknown): RecoveryScenarioTemplate => scenarioTemplateSchema.parse(value);
+export const parseScenarioTemplate = (value: unknown): RecoveryScenarioTemplate => scenarioTemplateSchema.parse(value);
 export const parseRunTemplate = (value: unknown): unknown => runTemplateSchema.parse(value);
 
 export type ParsedRunbook = z.output<typeof runbookSchema>;

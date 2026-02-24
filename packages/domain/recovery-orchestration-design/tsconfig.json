@@ -14,6 +14,12 @@
     },
     {
       "path": "./../../shared/orchestration-kernel/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/recovery-lab-kernel/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }
