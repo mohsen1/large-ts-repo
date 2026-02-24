@@ -4,3 +4,6 @@ export * from './store';
 export * from './queries';
 export * from './metrics';
 export * from './analytics';
+export * from './typed-catalog';
+export * from './stream-analytics';
+export * from './lifecycle-queries';

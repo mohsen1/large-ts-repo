@@ -4,4 +4,6 @@ export * from './planner';
 export * from './simulator';
 export * from './adapters';
 export * from './orchestration-utils';
+export * from './workflow-template';
+export * from './policy-matrix';
 export * from './plugin-framework';
