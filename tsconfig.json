@@ -584,6 +584,9 @@
       "path": "./packages/domain/recovery-ops-playbook-studio"
     },
     {
+      "path": "./packages/domain/recovery-ops-orchestration-graph"
+    },
+    {
       "path": "./packages/domain/recovery-orchestration"
     },
     {
@@ -1062,6 +1065,9 @@
     },
     {
       "path": "./packages/service/telemetry"
+    },
+    {
+      "path": "./packages/service/recovery-ops-graph-orchestrator"
     },
     {
       "path": "./packages/service/workflow"

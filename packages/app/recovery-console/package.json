@@ -69,6 +69,7 @@
     "@domain/recovery-signal-intelligence": "workspace:*",
     "@domain/recovery-playbooks": "workspace:*",
     "@service/recovery-playbook-engine": "workspace:*",
+    "@service/recovery-ops-graph-orchestrator": "workspace:*",
     "@data/recovery-playbook-store": "workspace:*",
     "@service/recovery-fabric-orchestrator": "workspace:*",
     "@service/recovery-incident-graph-engine": "workspace:*",

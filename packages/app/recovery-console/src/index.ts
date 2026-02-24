@@ -261,3 +261,9 @@ export { RecoveryOpsOrchestrationLabPanel } from './components/RecoveryOpsOrches
 export { RecoveryOpsLabTimeline } from './components/RecoveryOpsLabTimeline';
 export { RecoveryOpsPolicyMatrix } from './components/RecoveryOpsPolicyMatrix';
 export { RecoveryOpsLabPolicyPage } from './pages/RecoveryOpsLabPolicyPage';
+export { useRecoveryOpsGraphWorkspace } from './features/recovery-ops-graph-lab/hooks/useRecoveryOpsGraphWorkspace';
+export { GraphOpsPlanCatalog } from './features/recovery-ops-graph-lab/components/GraphOpsPlanCatalog';
+export { GraphOpsExecutionConsole } from './features/recovery-ops-graph-lab/components/GraphOpsExecutionConsole';
+export { GraphOpsSignalTimeline } from './features/recovery-ops-graph-lab/components/GraphOpsSignalTimeline';
+export { RecoveryOpsGraphLabPage } from './features/recovery-ops-graph-lab/pages/RecoveryOpsGraphLabPage';
+export * from './features/recovery-ops-graph-lab/types';

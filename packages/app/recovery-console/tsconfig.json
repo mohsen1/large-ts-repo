@@ -256,6 +256,9 @@
       "path": "./../../service/recovery-synthetic-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-ops-graph-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../shared/incident-saga-core/tsconfig.json"
     }
   ]
