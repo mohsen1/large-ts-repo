@@ -320,6 +320,9 @@ importers:
       '@domain/recovery-fabric-models':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-models
+      '@domain/recovery-fusion-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fusion-intelligence
       '@domain/recovery-incident-graph':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-graph
@@ -4453,6 +4456,9 @@ importers:
       '@domain/recovery-fabric-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-orchestration
+      '@domain/recovery-fusion-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fusion-intelligence
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
