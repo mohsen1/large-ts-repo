@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@domain/recovery-horizon-engine": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "@shared/result": "workspace:*"
   }
 }

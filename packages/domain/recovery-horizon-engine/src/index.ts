@@ -3,3 +3,6 @@ export * from './schema.js';
 export * from './registry.js';
 export * from './adapters.js';
 export * from './orchestration.js';
+export * from './blueprints.js';
+export * from './insights.js';
+export * from './temporal.js';

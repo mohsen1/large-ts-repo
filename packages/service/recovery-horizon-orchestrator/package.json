@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/recovery-horizon-engine": "workspace:*",
     "@data/recovery-horizon-store": "workspace:*",
+    "@shared/horizon-lab-runtime": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*"
   }

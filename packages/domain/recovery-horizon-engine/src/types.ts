@@ -1,4 +1,9 @@
 import type { Brand, JsonValue } from '@shared/type-level';
+import type {
+  HorizonTenant,
+  HorizonSessionId,
+  HorizonTraceId,
+} from '@shared/horizon-lab-runtime';
 
 export type Milliseconds<T extends number> = Brand<number, `ms:${T}`>;
 export type TimeMs = Milliseconds<number>;
@@ -236,3 +241,9 @@ export const horizonBrand = {
 } as const;
 
 export type PluginPayload = JsonLike;
+
+export type {
+  HorizonTenant,
+  HorizonSessionId,
+  HorizonTraceId,
+};

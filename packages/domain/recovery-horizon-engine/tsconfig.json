@@ -11,6 +11,9 @@
   "references": [
     {
       "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/horizon-lab-runtime/tsconfig.json"
     }
   ]
 }

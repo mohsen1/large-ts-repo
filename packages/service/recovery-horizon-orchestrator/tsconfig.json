@@ -16,6 +16,9 @@
       "path": "./../../data/recovery-horizon-store/tsconfig.json"
     },
     {
+      "path": "./../../shared/horizon-lab-runtime/tsconfig.json"
+    },
+    {
       "path": "./../../shared/result/tsconfig.json"
     },
     {

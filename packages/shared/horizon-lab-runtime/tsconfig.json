@@ -10,13 +10,10 @@
   ],
   "references": [
     {
-      "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
+      "path": "./../../shared/type-level/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

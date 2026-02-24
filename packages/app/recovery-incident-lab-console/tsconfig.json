@@ -21,16 +21,28 @@
       "path": "./../../service/recovery-stress-lab-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-incident-lab-store/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-horizon-store/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-incident-lab-core/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
     },
     {
       "path": "./../../shared/core/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     },
     {
       "path": "./../../shared/stress-lab-runtime/tsconfig.json"
