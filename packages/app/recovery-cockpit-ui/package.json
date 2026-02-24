@@ -30,6 +30,7 @@
     "@service/recovery-cockpit-signal-orchestrator": "workspace:*",
     "@service/recovery-cockpit-intent-orchestrator": "workspace:*",
     "@shared/util": "workspace:*",
+    "@shared/ops-orchestration-runtime": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
