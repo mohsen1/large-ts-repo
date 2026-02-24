@@ -17,19 +17,26 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/streaming-command-intelligence-store": "workspace:*",
     "@data/streaming-dashboard-store": "workspace:*",
+    "@domain/streaming-command-intelligence": "workspace:*",
     "@service/streaming-dashboard-orchestrator": "workspace:*",
+    "@service/streaming-command-intelligence-orchestrator": "workspace:*",
     "@service/recovery-stress-lab-orchestrator": "workspace:*",
     "@domain/recovery-stress-lab": "workspace:*",
     "@domain/streaming-observability": "workspace:*",
     "@domain/streaming-engine": "workspace:*",
+    "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/stress-lab-runtime": "workspace:*",
     "@shared/result": "workspace:*",
     "@service/streaming-control": "workspace:*",
+    "@domain/recovery-lattice": "workspace:*",
+    "@data/recovery-lattice-store": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "zod": "^3.24.0"
   }
 }

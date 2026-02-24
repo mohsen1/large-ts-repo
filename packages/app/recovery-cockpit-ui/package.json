@@ -22,13 +22,23 @@
     "@data/recovery-cockpit-store": "workspace:*",
     "@data/recovery-cockpit-insights": "workspace:*",
     "@data/recovery-cockpit-analytics": "workspace:*",
+    "@domain/recovery-cockpit-signal-mesh": "workspace:*",
+    "@data/recovery-cockpit-signal-mesh-store": "workspace:*",
     "@data/recovery-cockpit-intent-store": "workspace:*",
     "@service/recovery-cockpit-orchestrator": "workspace:*",
+    "@service/recovery-cockpit-signal-orchestrator": "workspace:*",
     "@service/recovery-cockpit-intent-orchestrator": "workspace:*",
     "@shared/util": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "@domain/recovery-cockpit-synthetic-lab": "workspace:*",
+    "@domain/recovery-cockpit-constellation-core": "workspace:*",
+    "@data/recovery-cockpit-constellation-store": "workspace:*",
+    "@service/recovery-cockpit-constellation-orchestrator": "workspace:*",
+    "@domain/recovery-cockpit-cognitive-core": "workspace:*",
+    "@service/recovery-cockpit-cognitive-orchestrator": "workspace:*",
+    "@data/recovery-cockpit-cognitive-store": "workspace:*"
   }
 }

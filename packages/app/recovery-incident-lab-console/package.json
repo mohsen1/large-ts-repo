@@ -16,9 +16,12 @@
   "dependencies": {
     "@data/recovery-incident-lab-store": "workspace:*",
     "@domain/recovery-incident-lab-core": "workspace:*",
+    "@domain/recovery-lab-adaptive-orchestration": "workspace:*",
     "@domain/recovery-horizon-engine": "workspace:*",
+    "@domain/recovery-lab-intelligence-core": "workspace:*",
     "@data/recovery-horizon-store": "workspace:*",
     "@domain/recovery-lab-orchestration-core": "workspace:*",
+    "@domain/recovery-lab-console-runtime": "workspace:*",
     "@service/recovery-horizon-orchestrator": "workspace:*",
     "@shared/horizon-lab-runtime": "workspace:*",
     "@service/recovery-stress-lab-orchestrator": "workspace:*",

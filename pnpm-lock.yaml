@@ -23,6 +23,9 @@ importers:
       '@data/incident-command-store':
         specifier: workspace:*
         version: link:../../data/incident-command-store
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
       '@data/recovery-readiness-store':
         specifier: workspace:*
         version: link:../../data/recovery-readiness-store
@@ -38,12 +41,21 @@ importers:
       '@domain/incident-command-models':
         specifier: workspace:*
         version: link:../../domain/incident-command-models
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
       '@domain/recovery-operations-control-plane':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-control-plane
       '@domain/recovery-readiness':
         specifier: workspace:*
         version: link:../../domain/recovery-readiness
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
       '@domain/recovery-workload-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-workload-intelligence
@@ -53,9 +65,15 @@ importers:
       '@service/adaptive-ops-runner':
         specifier: workspace:*
         version: link:../../service/adaptive-ops-runner
+      '@service/recovery-horizon-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-horizon-orchestrator
       '@service/recovery-incident-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-command-orchestrator
+      '@service/recovery-lattice-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-lattice-orchestrator
       '@service/recovery-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-readiness-orchestrator
@@ -176,6 +194,9 @@ importers:
       '@service/policy-orchestration-engine':
         specifier: workspace:*
         version: link:../../service/policy-orchestration-engine
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -189,20 +210,74 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
 
+  packages/app/recovery-chaos-lab:
+    dependencies:
+      '@data/recovery-chaos-observability':
+        specifier: workspace:*
+        version: link:../../data/recovery-chaos-observability
+      '@domain/recovery-chaos-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chaos-lab
+      '@service/recovery-chaos-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-chaos-intelligence-orchestrator
+      '@service/recovery-chaos-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-chaos-orchestrator
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/app/recovery-cockpit-ui:
     dependencies:
       '@data/recovery-cockpit-analytics':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-analytics
+      '@data/recovery-cockpit-cognitive-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-cognitive-store
+      '@data/recovery-cockpit-constellation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-constellation-store
       '@data/recovery-cockpit-insights':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-insights
       '@data/recovery-cockpit-intent-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-intent-store
+      '@data/recovery-cockpit-signal-mesh-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-signal-mesh-store
       '@data/recovery-cockpit-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-store
+      '@domain/recovery-cockpit-cognitive-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-cognitive-core
+      '@domain/recovery-cockpit-constellation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-constellation-core
       '@domain/recovery-cockpit-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-intelligence
@@ -212,18 +287,33 @@ importers:
       '@domain/recovery-cockpit-orchestration-core':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-orchestration-core
+      '@domain/recovery-cockpit-signal-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-signal-mesh
+      '@domain/recovery-cockpit-synthetic-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-synthetic-lab
       '@domain/recovery-cockpit-workloads':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-workloads
       '@domain/recovery-operations-cadence':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-cadence
+      '@service/recovery-cockpit-cognitive-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-cognitive-orchestrator
+      '@service/recovery-cockpit-constellation-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-constellation-orchestrator
       '@service/recovery-cockpit-intent-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-intent-orchestrator
       '@service/recovery-cockpit-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-orchestrator
+      '@service/recovery-cockpit-signal-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-signal-orchestrator
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
@@ -266,6 +356,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-ops-orchestration-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-orchestration-lab-store
       '@data/recovery-playbook-store':
         specifier: workspace:*
         version: link:../../data/recovery-playbook-store
@@ -281,9 +374,15 @@ importers:
       '@data/recovery-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-store
+      '@data/recovery-synthetic-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-synthetic-orchestration-store
       '@data/repositories':
         specifier: workspace:*
         version: link:../../data/repositories
+      '@domain/incident-command-models':
+        specifier: workspace:*
+        version: link:../../domain/incident-command-models
       '@domain/incident-fusion-models':
         specifier: workspace:*
         version: link:../../domain/incident-fusion-models
@@ -326,18 +425,27 @@ importers:
       '@domain/recovery-incident-graph':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-graph
+      '@domain/recovery-incident-saga':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-saga
       '@domain/recovery-operations-atlas':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-atlas
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
+      '@domain/recovery-ops-orchestration-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-lab
       '@domain/recovery-ops-playbook':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-playbook
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration
+      '@domain/recovery-orchestration-design':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-design
       '@domain/recovery-orchestration-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-planning
@@ -350,6 +458,9 @@ importers:
       '@domain/recovery-playbooks':
         specifier: workspace:*
         version: link:../../domain/recovery-playbooks
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
       '@domain/recovery-scenario-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-scenario-orchestration
@@ -362,6 +473,15 @@ importers:
       '@domain/recovery-simulation-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-planning
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
+      '@domain/recovery-stress-lab-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab-intelligence
+      '@domain/recovery-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-synthetic-orchestration
       '@service/continuity-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/continuity-readiness-orchestrator
@@ -401,18 +521,27 @@ importers:
       '@service/recovery-fabric-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fabric-orchestrator
+      '@service/recovery-fusion-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-fusion-lab-orchestrator
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
       '@service/recovery-incident-graph-engine':
         specifier: workspace:*
         version: link:../../service/recovery-incident-graph-engine
+      '@service/recovery-incident-saga-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-saga-orchestrator
       '@service/recovery-operations-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-engine
       '@service/recovery-operations-policy-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-policy-engine
+      '@service/recovery-ops-graph-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-graph-orchestrator
       '@service/recovery-ops-orchestration-engine':
         specifier: workspace:*
         version: link:../../service/recovery-ops-orchestration-engine
@@ -422,6 +551,9 @@ importers:
       '@service/recovery-orchestration-atlas':
         specifier: workspace:*
         version: link:../../service/recovery-orchestration-atlas
+      '@service/recovery-orchestration-studio-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-orchestration-studio-engine
       '@service/recovery-playbook-engine':
         specifier: workspace:*
         version: link:../../service/recovery-playbook-engine
@@ -446,9 +578,21 @@ importers:
       '@service/recovery-simulation-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-simulation-orchestrator
+      '@service/recovery-stress-lab-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-stress-lab-orchestrator
+      '@service/recovery-synthetic-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-synthetic-orchestrator
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/incident-saga-core':
+        specifier: workspace:*
+        version: link:../../shared/incident-saga-core
+      '@shared/recovery-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -665,6 +809,9 @@ importers:
       '@service/recovery-workload-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-workload-orchestrator
+      '@shared/recovery-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -701,6 +848,15 @@ importers:
       '@domain/recovery-incident-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-lab-core
+      '@domain/recovery-lab-adaptive-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-adaptive-orchestration
+      '@domain/recovery-lab-console-runtime':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-console-runtime
+      '@domain/recovery-lab-intelligence-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-intelligence-core
       '@domain/recovery-lab-orchestration-core':
         specifier: workspace:*
         version: link:../../domain/recovery-lab-orchestration-core
@@ -758,12 +914,21 @@ importers:
 
   packages/app/recovery-timeline-studio:
     dependencies:
+      '@data/recovery-ops-playbook-studio-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-playbook-studio-store
       '@data/recovery-timeline-store':
         specifier: workspace:*
         version: link:../../data/recovery-timeline-store
+      '@domain/recovery-ops-playbook-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-playbook-studio
       '@domain/recovery-timeline':
         specifier: workspace:*
         version: link:../../domain/recovery-timeline
+      '@service/recovery-ops-playbook-studio-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-playbook-studio-orchestrator
       '@service/recovery-timeline-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-timeline-orchestrator
@@ -794,12 +959,24 @@ importers:
 
   packages/app/stream-dashboard:
     dependencies:
+      '@data/recovery-lattice-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lattice-store
+      '@data/streaming-command-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/streaming-command-intelligence-store
       '@data/streaming-dashboard-store':
         specifier: workspace:*
         version: link:../../data/streaming-dashboard-store
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab
+      '@domain/streaming-command-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/streaming-command-intelligence
       '@domain/streaming-engine':
         specifier: workspace:*
         version: link:../../domain/streaming-engine
@@ -809,6 +986,9 @@ importers:
       '@service/recovery-stress-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stress-lab-orchestrator
+      '@service/streaming-command-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/streaming-command-intelligence-orchestrator
       '@service/streaming-control':
         specifier: workspace:*
         version: link:../../service/streaming-control
@@ -824,6 +1004,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -836,6 +1019,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/app/worker:
     dependencies:
@@ -1153,6 +1339,18 @@ importers:
         specifier: workspace:*
         version: link:../../shared/result
 
+  packages/data/recovery-chaos-observability:
+    dependencies:
+      '@domain/recovery-chaos-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chaos-lab
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/recovery-cockpit-analytics:
     dependencies:
       '@data/recovery-cockpit-store':
@@ -1170,6 +1368,36 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-cockpit-cognitive-store:
+    dependencies:
+      '@domain/recovery-cockpit-cognitive-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-cognitive-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-cockpit-constellation-store:
+    dependencies:
+      '@domain/recovery-cockpit-constellation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-constellation-core
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/data/recovery-cockpit-insights:
     dependencies:
@@ -1200,6 +1428,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-cockpit-signal-mesh-store:
+    dependencies:
+      '@aws-sdk/client-dynamodb':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-cockpit-signal-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-signal-mesh
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-cockpit-store:
     dependencies:
@@ -1335,6 +1581,12 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-lab-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -1371,6 +1623,9 @@ importers:
       '@shared/stress-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
@@ -1401,6 +1656,42 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-lattice-orchestrator-store:
+    dependencies:
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-lattice-store:
+    dependencies:
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -1554,6 +1845,24 @@ importers:
       '@domain/recovery-ops-orchestration-surface':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-orchestration-surface
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-ops-playbook-studio-store:
+    dependencies:
+      '@domain/recovery-ops-playbook-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-playbook-studio
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -1765,6 +2074,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/data/recovery-synthetic-orchestration-store:
+    dependencies:
+      '@domain/recovery-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-synthetic-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/recovery-timeline-store:
     dependencies:
       '@domain/recovery-timeline':
@@ -1818,6 +2145,27 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/streaming-command-intelligence-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/streaming-command-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/streaming-command-intelligence
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/data/streaming-dashboard-store:
     dependencies:
@@ -2106,6 +2454,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2330,6 +2681,45 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-chaos-lab:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-cognitive-core:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-constellation-core:
+    dependencies:
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-models
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-cockpit-intelligence:
     dependencies:
       '@domain/recovery-cockpit-models':
@@ -2359,6 +2749,30 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-signal-mesh:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-synthetic-lab:
+    dependencies:
+      '@shared/recovery-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2626,6 +3040,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-fusion-lab-core:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+
   packages/domain/recovery-horizon-engine:
     dependencies:
       '@shared/horizon-lab-runtime':
@@ -2737,6 +3163,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-incident-saga:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/incident-saga-core':
+        specifier: workspace:*
+        version: link:../../shared/incident-saga-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-incident-workflows:
     dependencies:
       '@domain/recovery-incident-orchestration':
@@ -2751,6 +3192,27 @@ importers:
 
   packages/domain/recovery-intelligence:
     dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-lab-adaptive-orchestration:
+    dependencies:
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../recovery-incident-lab-core
+      '@domain/recovery-lab-console-core':
+        specifier: workspace:*
+        version: link:../recovery-lab-console-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -2776,11 +3238,44 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-lab-console-runtime:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-lab-governance:
     dependencies:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-lab-intelligence-core:
+    dependencies:
+      '@domain/recovery-lab-adaptive-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-lab-adaptive-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -2811,6 +3306,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-lattice:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/domain/recovery-operations-atlas:
     dependencies:
@@ -2917,6 +3427,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-ops-orchestration-graph:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-ops-orchestration-lab:
     dependencies:
       '@shared/core':
@@ -2950,6 +3478,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-ops-playbook-studio:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-orchestration:
     dependencies:
       '@shared/core':
@@ -2958,6 +3501,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-orchestration-design:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/orchestration-kernel':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-kernel
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -3200,12 +3755,42 @@ importers:
       '@domain/recovery-lab-governance':
         specifier: workspace:*
         version: link:../recovery-lab-governance
+      '@domain/recovery-stress-lab-intelligence':
+        specifier: workspace:*
+        version: link:../recovery-stress-lab-intelligence
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/stress-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-stress-lab-intelligence:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
+  packages/domain/recovery-synthetic-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -3239,6 +3824,24 @@ importers:
   packages/domain/risk: {}
 
   packages/domain/search-suite: {}
+
+  packages/domain/streaming-command-intelligence:
+    dependencies:
+      '@domain/streaming-engine':
+        specifier: workspace:*
+        version: link:../streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../streaming-observability
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/streaming-engine: {}
 
@@ -3577,6 +4180,9 @@ importers:
       '@aws-sdk/client-sns':
         specifier: ^3.900.0
         version: 3.995.0
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
       '@domain/recovery-scenario-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-scenario-engine
@@ -3586,6 +4192,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@shared/zod-adapters':
         specifier: workspace:*
         version: link:../../shared/zod-adapters
@@ -4172,6 +4781,90 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-chaos-intelligence-orchestrator:
+    dependencies:
+      '@data/incident-hub':
+        specifier: workspace:*
+        version: link:../../data/incident-hub
+      '@data/recovery-chaos-observability':
+        specifier: workspace:*
+        version: link:../../data/recovery-chaos-observability
+      '@domain/recovery-chaos-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chaos-lab
+      '@service/recovery-chaos-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-chaos-orchestrator
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-chaos-orchestrator:
+    dependencies:
+      '@domain/recovery-chaos-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chaos-lab
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-cockpit-cognitive-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-cognitive-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-cognitive-store
+      '@domain/recovery-cockpit-cognitive-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-cognitive-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
+  packages/service/recovery-cockpit-constellation-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-constellation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-constellation-store
+      '@domain/recovery-cockpit-constellation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-constellation-core
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+
   packages/service/recovery-cockpit-intent-orchestrator:
     dependencies:
       '@data/recovery-cockpit-intent-store':
@@ -4216,6 +4909,21 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+
+  packages/service/recovery-cockpit-signal-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-signal-mesh-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-signal-mesh-store
+      '@domain/recovery-cockpit-signal-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-signal-mesh
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-command-control-hub:
     dependencies:
@@ -4508,6 +5216,27 @@ importers:
         specifier: workspace:*
         version: link:../../shared/type-level
 
+  packages/service/recovery-fusion-lab-orchestrator:
+    dependencies:
+      '@domain/recovery-fusion-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fusion-lab-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-fusion-orchestrator:
     dependencies:
       '@data/recovery-command-graph-store':
@@ -4549,6 +5278,9 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@infrastructure/recovery-scenario-orchestration-adapters':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-scenario-orchestration-adapters
       '@shared/horizon-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/horizon-lab-runtime
@@ -4718,6 +5450,27 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-incident-saga-orchestrator:
+    dependencies:
+      '@domain/recovery-incident-saga':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-saga
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/incident-saga-core':
+        specifier: workspace:*
+        version: link:../../shared/incident-saga-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-incident-scenario-orchestrator:
     dependencies:
       '@domain/recovery-scenario-orchestration':
@@ -4753,6 +5506,27 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-lattice-orchestrator:
+    dependencies:
+      '@data/recovery-lattice-orchestrator-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lattice-orchestrator-store
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -4934,11 +5708,35 @@ importers:
         specifier: workspace:*
         version: link:../../shared/result
 
+  packages/service/recovery-ops-graph-orchestrator:
+    dependencies:
+      '@domain/recovery-ops-orchestration-graph':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-graph
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-ops-orchestration-engine:
     dependencies:
+      '@data/recovery-ops-orchestration-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-orchestration-lab-store
       '@data/recovery-ops-orchestration-store':
         specifier: workspace:*
         version: link:../../data/recovery-ops-orchestration-store
+      '@domain/recovery-ops-orchestration-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-lab
       '@domain/recovery-ops-orchestration-surface':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-orchestration-surface
@@ -4970,6 +5768,27 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-ops-playbook-studio-orchestrator:
+    dependencies:
+      '@data/recovery-ops-playbook-studio-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-playbook-studio-store
+      '@domain/recovery-ops-playbook-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-playbook-studio
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-orchestration-atlas:
     dependencies:
       '@data/recovery-atlas-store':
@@ -4981,6 +5800,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-orchestration-studio-engine:
+    dependencies:
+      '@domain/recovery-orchestration-design':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-design
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/orchestration-kernel':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-kernel
 
   packages/service/recovery-plan-orchestrator:
     dependencies:
@@ -5113,6 +5944,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -5194,6 +6028,9 @@ importers:
       '@data/recovery-simulation-metrics':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-metrics
+      '@data/recovery-workflow-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-workflow-store
       '@domain/recovery-fusion-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-fusion-intelligence
@@ -5353,12 +6190,21 @@ importers:
 
   packages/service/recovery-stress-lab-orchestrator:
     dependencies:
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
       '@data/recovery-incident-lab-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-lab-store
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-lab-core
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab
+      '@domain/recovery-stress-lab-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab-intelligence
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -5389,6 +6235,24 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-synthetic-orchestrator:
+    dependencies:
+      '@data/recovery-synthetic-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-synthetic-orchestration-store
+      '@domain/recovery-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-synthetic-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-timeline-orchestrator:
     dependencies:
@@ -5458,6 +6322,33 @@ importers:
       '@domain/risk':
         specifier: workspace:*
         version: link:../../domain/risk
+
+  packages/service/streaming-command-intelligence-orchestrator:
+    dependencies:
+      '@data/streaming-command-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/streaming-command-intelligence-store
+      '@domain/streaming-command-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/streaming-command-intelligence
+      '@domain/streaming-engine':
+        specifier: workspace:*
+        version: link:../../domain/streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@service/streaming-dashboard-orchestrator':
+        specifier: workspace:*
+        version: link:../streaming-dashboard-orchestrator
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/streaming-control:
     dependencies:
@@ -5578,6 +6469,15 @@ importers:
         specifier: workspace:*
         version: link:../type-level
 
+  packages/shared/incident-saga-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+
   packages/shared/monads: {}
 
   packages/shared/observability-contracts:
@@ -5592,11 +6492,32 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/shared/orchestration-kernel:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+
   packages/shared/protocol:
     dependencies:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+
+  packages/shared/recovery-orchestration-runtime:
+    dependencies:
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
 
   packages/shared/result:
     dependencies:

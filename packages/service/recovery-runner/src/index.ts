@@ -11,3 +11,5 @@ export * from './operations-control';
 export * from './ops-portfolio-dashboard';
 export * from './simulation-readiness';
 export * from './recovery-fusion-console';
+export * from './continuity-lab/orchestrator';
+export * from './continuity-lab/adapters';

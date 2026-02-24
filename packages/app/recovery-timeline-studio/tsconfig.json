@@ -21,6 +21,15 @@
       "path": "./../../service/recovery-timeline-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-ops-playbook-studio-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-ops-playbook-studio/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-ops-playbook-studio-store/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-timeline/tsconfig.json"
     },
     {

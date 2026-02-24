@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../data/recovery-chaos-observability/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-chaos-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-chaos-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    }
+  ]
+}

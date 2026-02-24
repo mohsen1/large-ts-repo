@@ -1,0 +1,24 @@
+{
+  "name": "@service/recovery-cockpit-constellation-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@data/recovery-cockpit-constellation-store": "workspace:*",
+    "@domain/recovery-cockpit-constellation-core": "workspace:*",
+    "@domain/recovery-cockpit-models": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*"
+  }
+}

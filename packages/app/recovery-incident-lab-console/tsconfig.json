@@ -36,7 +36,16 @@
       "path": "./../../domain/recovery-lab-orchestration-core/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-lab-adaptive-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-intelligence-core/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-console-runtime/tsconfig.json"
     },
     {
       "path": "./../../shared/core/tsconfig.json"

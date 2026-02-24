@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@domain/policy-engine": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "@platform/security": "workspace:*",
     "@data/policy-orchestration-store": "workspace:*",
     "@domain/policy-orchestration": "workspace:*",

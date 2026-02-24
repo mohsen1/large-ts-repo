@@ -55,6 +55,24 @@
     },
     {
       "path": "./../../domain/recovery-operations-control-plane/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-horizon-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-stress-lab/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-lattice-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lattice/tsconfig.json"
     }
   ]
 }

@@ -22,7 +22,37 @@
   ],
   "references": [
     {
-      "path": "./../../service/recovery-command-surface-orchestrator/tsconfig.json"
+      "path": "../../data/continuity-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-atlas-store/tsconfig.json"
+    },
+    {
+      "path": "../../data/repositories/tsconfig.json"
+    },
+    {
+      "path": "../../domain/incident-management/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-continuity-lab-core/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-continuity-readiness/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-fusion-intelligence/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-operations-atlas/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-scenario-orchestration/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-stress-lab/tsconfig.json"
+    },
+    {
+      "path": "../../service/continuity-readiness-orchestrator/tsconfig.json"
     },
     {
       "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
@@ -31,25 +61,46 @@
       "path": "../../service/incident-fusion-orchestrator/tsconfig.json"
     },
     {
-      "path": "../../service/recovery-simulation-orchestrator/tsconfig.json"
+      "path": "../../service/incident-orchestration/tsconfig.json"
     },
     {
-      "path": "../../service/recovery-ops-orchestration-engine/tsconfig.json"
+      "path": "../../service/recovery-cadence-coordinator/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-ops-orchestration-lab/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-ops-orchestration-lab-store/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-command-control-hub/tsconfig.json"
     },
     {
       "path": "../../service/recovery-drill-orchestrator/tsconfig.json"
     },
     {
-      "path": "../../shared/result/tsconfig.json"
+      "path": "../../service/recovery-fabric-cadence-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../data/incident-fusion-store/tsconfig.json"
+      "path": "../../service/recovery-ops-orchestration-engine/tsconfig.json"
     },
     {
-      "path": "./../../data/incident-hub/tsconfig.json"
+      "path": "../../service/recovery-orchestration-atlas/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-simulation-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-stress-lab-orchestrator/tsconfig.json"
     },
     {
       "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/recovery-orchestration-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
     },
     {
       "path": "../../shared/result/tsconfig.json"
@@ -58,10 +109,19 @@
       "path": "../../shared/util/tsconfig.json"
     },
     {
+      "path": "./../../data/incident-fusion-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/incident-hub/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-command-control-plane/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-operations-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-playbook-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
@@ -73,13 +133,10 @@
       "path": "./../../data/recovery-simulation-store/tsconfig.json"
     },
     {
-      "path": "./../../data/recovery-playbook-store/tsconfig.json"
+      "path": "./../../data/recovery-synthetic-orchestration-store/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-playbook-engine/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-playbooks/tsconfig.json"
+      "path": "./../../domain/incident-command-models/tsconfig.json"
     },
     {
       "path": "./../../domain/incident-fusion-models/tsconfig.json"
@@ -106,7 +163,13 @@
       "path": "./../../domain/recovery-incident-graph/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-incident-saga/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-operations-models/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
@@ -115,10 +178,19 @@
       "path": "./../../domain/recovery-orchestration/tsconfig.json"
     },
     {
-      "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
+      "path": "./../../domain/recovery-playbooks/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-simulation-lab-models/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-stress-lab-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-synthetic-orchestration/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-command-forge-orchestrator/tsconfig.json"
@@ -127,7 +199,19 @@
       "path": "./../../service/recovery-command-intelligence-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-command-surface-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-continuity-lens/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-fabric-controller/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-fabric-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-fusion-lab-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"
@@ -136,10 +220,28 @@
       "path": "./../../service/recovery-incident-graph-engine/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-incident-saga-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-orchestration-studio-engine/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-operations-engine/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-operations-policy-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-ops-playbook-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-playbook-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-playbook-lab-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-playbook-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-readiness-orchestrator/tsconfig.json"
@@ -154,73 +256,19 @@
       "path": "./../../service/recovery-signal-intelligence-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-fabric-orchestrator/tsconfig.json"
+      "path": "./../../service/recovery-synthetic-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-playbook-lab-orchestrator/tsconfig.json"
+      "path": "./../../service/recovery-ops-graph-orchestrator/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-playbook-orchestrator/tsconfig.json"
+      "path": "./../../shared/incident-saga-core/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-fabric-controller/tsconfig.json"
+      "path": "../../domain/recovery-readiness/tsconfig.json"
     },
     {
-      "path": "../../data/recovery-atlas-store/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-operations-atlas/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-orchestration-atlas/tsconfig.json"
-    },
-    {
-      "path": "../../service/incident-orchestration/tsconfig.json"
-    },
-    {
-      "path": "../../data/continuity-readiness-store/tsconfig.json"
-    },
-    {
-      "path": "../../service/continuity-readiness-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-continuity-readiness/tsconfig.json"
-    },
-    {
-      "path": "../../data/repositories/tsconfig.json"
-    },
-    {
-      "path": "../../domain/incident-management/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-scenario-orchestration/tsconfig.json"
-    },
-    {
-      "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-ops-playbook-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-command-control-hub/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-cadence-coordinator/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-fusion-intelligence/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-continuity-lab-core/tsconfig.json"
-    },
-    {
-      "path": "../../domain/recovery-stress-lab/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-stress-lab-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "../../service/recovery-fabric-cadence-orchestrator/tsconfig.json"
+      "path": "./../../domain/recovery-orchestration-design/tsconfig.json"
     }
   ]
 }

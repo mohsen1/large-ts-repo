@@ -1,0 +1,28 @@
+{
+  "name": "@service/recovery-chaos-intelligence-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*/index.ts",
+    "./src/*/*": "./src/*/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@data/recovery-chaos-observability": "workspace:*",
+    "@data/incident-hub": "workspace:*",
+    "@domain/recovery-chaos-lab": "workspace:*",
+    "@service/recovery-chaos-orchestrator": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/util": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

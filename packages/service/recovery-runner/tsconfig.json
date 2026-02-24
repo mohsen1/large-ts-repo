@@ -40,6 +40,9 @@
       "path": "./../../data/recovery-operations-store/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-workflow-store/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-incident-store/tsconfig.json"
     },
     {

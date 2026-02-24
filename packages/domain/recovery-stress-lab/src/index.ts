@@ -32,3 +32,39 @@ export * from './stress-studio-telemetry';
 export * from './stress-studio-workflow';
 export * from './studio-workspace';
 export * from './workspace-adapters';
+export * from './horizon-types';
+export * from './horizon-events';
+export * from './horizon-workflow-model';
+export * from './advanced-workflow-models';
+export * from './advanced-workflow-catalog';
+export * from './advanced-workflow-schema';
+export * from './advanced-workflow-engine';
+export * from './advanced-workflow-audit';
+export * from './intelligence-workspace';
+export {
+  type PluginManifestShape,
+  type PluginCatalogKind,
+  type PluginCatalogMap,
+  type PluginInputOf,
+  type PluginOutputOf,
+  type RegistryEvent,
+  type StressLabPlugin,
+  StressLabPluginRegistry,
+  buildCatalog as buildStressLabPluginCatalog,
+} from './modern-registry';
+export * from './signal-orchestration';
+export * from './workflow-designer';
+export * from './orchestrator-session';
+export {
+  type WorkflowRenderModel,
+  type WorkflowRenderStage,
+  summarizeBySignalClass,
+  toFlatTrace,
+  toRenderModel,
+  toRenderStageRows,
+  toWorkspaceTargetsTuple as toWorkspaceTargetsTupleFromAdapter,
+  renderWorkspaceProfile,
+  mapWorkspaceSignals,
+  mapStageSequence,
+  summarizeTraceByPlugin,
+} from './advanced-workflow-adapter';

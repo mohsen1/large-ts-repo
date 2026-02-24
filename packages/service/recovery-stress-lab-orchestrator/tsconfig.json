@@ -10,19 +10,31 @@
   ],
   "references": [
     {
-      "path": "./../../domain/recovery-stress-lab/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/stress-lab-runtime/tsconfig.json"
+      "path": "./../../data/recovery-horizon-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-incident-lab-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-incident-lab-core/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-orchestration-core/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-stress-lab-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-stress-lab/tsconfig.json"
     },
     {
       "path": "./../../shared/core/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/stress-lab-runtime/tsconfig.json"
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"

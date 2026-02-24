@@ -72,6 +72,7 @@
     "@infrastructure/recovery-scenario-gateway": "workspace:*",
     "@domain/recovery-horizon-engine": "workspace:*",
     "@data/recovery-horizon-store": "workspace:*",
-    "@domain/recovery-horizon-studio-core": "workspace:*"
+    "@domain/recovery-horizon-studio-core": "workspace:*",
+    "@shared/recovery-orchestration-runtime": "workspace:*"
   }
 }

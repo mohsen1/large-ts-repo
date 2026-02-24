@@ -33,6 +33,9 @@
       "path": "./../../service/recovery-cockpit-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../service/recovery-cockpit-signal-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-cockpit-intent-orchestrator/tsconfig.json"
     },
     {
@@ -42,6 +45,9 @@
       "path": "./../../domain/recovery-cockpit-workloads/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-cockpit-synthetic-lab/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-cockpit-orchestration-core/tsconfig.json"
     },
     {
@@ -49,6 +55,30 @@
     },
     {
       "path": "./../../domain/recovery-operations-cadence/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-cockpit-signal-mesh/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-signal-mesh-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-cockpit-cognitive-core/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-cognitive-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-cockpit-cognitive-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-cockpit-constellation-core/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-constellation-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-cockpit-constellation-orchestrator/tsconfig.json"
     }
   ]
 }

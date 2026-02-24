@@ -14,6 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@domain/recovery-readiness": "workspace:*",
     "@domain/recovery-command-surface-models": "workspace:*",
     "@data/recovery-command-control-plane": "workspace:*",
     "@service/recovery-runner": "workspace:*",
@@ -36,10 +37,14 @@
     "@data/continuity-readiness-store": "workspace:*",
     "@service/continuity-readiness-orchestrator": "workspace:*",
     "@domain/recovery-continuity-readiness": "workspace:*",
+    "@domain/recovery-ops-orchestration-lab": "workspace:*",
+    "@data/recovery-ops-orchestration-lab-store": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/recovery-orchestration-runtime": "workspace:*",
     "@domain/recovery-command-forge": "workspace:*",
+    "@domain/incident-command-models": "workspace:*",
     "@domain/recovery-operations-models": "workspace:*",
     "@domain/recovery-command-studio": "workspace:*",
     "@domain/incident-fusion-models": "workspace:*",
@@ -65,6 +70,7 @@
     "@domain/recovery-signal-intelligence": "workspace:*",
     "@domain/recovery-playbooks": "workspace:*",
     "@service/recovery-playbook-engine": "workspace:*",
+    "@service/recovery-ops-graph-orchestrator": "workspace:*",
     "@data/recovery-playbook-store": "workspace:*",
     "@service/recovery-fabric-orchestrator": "workspace:*",
     "@service/recovery-incident-graph-engine": "workspace:*",
@@ -76,6 +82,8 @@
     "@service/recovery-playbook-lab-orchestrator": "workspace:*",
     "@domain/recovery-playbook-lab": "workspace:*",
     "@service/recovery-playbook-orchestrator": "workspace:*",
+    "@service/recovery-orchestration-studio-engine": "workspace:*",
+    "@service/recovery-fusion-lab-orchestrator": "workspace:*",
     "@service/recovery-cadence-coordinator": "workspace:*",
     "@domain/recovery-playbook-orchestration": "workspace:*",
     "@service/recovery-simulation-orchestrator": "workspace:*",
@@ -89,8 +97,17 @@
     "@data/recovery-atlas-store": "workspace:*",
     "@service/recovery-orchestration-atlas": "workspace:*",
     "@service/recovery-fabric-cadence-orchestrator": "workspace:*",
-    "@domain/recovery-fabric-cadence-core": "workspace:*"
-    ,
-    "@domain/recovery-fusion-intelligence": "workspace:*"
+    "@domain/recovery-fabric-cadence-core": "workspace:*",
+    "@domain/recovery-fusion-intelligence": "workspace:*",
+    "@domain/recovery-stress-lab": "workspace:*",
+    "@service/recovery-stress-lab-orchestrator": "workspace:*",
+    "@shared/incident-saga-core": "workspace:*",
+    "@domain/recovery-incident-saga": "workspace:*",
+    "@service/recovery-incident-saga-orchestrator": "workspace:*",
+    "@domain/recovery-synthetic-orchestration": "workspace:*",
+    "@data/recovery-synthetic-orchestration-store": "workspace:*",
+    "@service/recovery-synthetic-orchestrator": "workspace:*",
+    "@domain/recovery-stress-lab-intelligence": "workspace:*",
+    "@domain/recovery-orchestration-design": "workspace:*"
   }
 }

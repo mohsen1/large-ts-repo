@@ -15,10 +15,13 @@
   },
   "dependencies": {
     "@domain/recovery-stress-lab": "workspace:*",
+    "@domain/recovery-incident-lab-core": "workspace:*",
     "@data/recovery-incident-lab-store": "workspace:*",
+    "@data/recovery-horizon-store": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/stress-lab-runtime": "workspace:*",
-    "@shared/result": "workspace:*"
+    "@shared/result": "workspace:*",
+    "@domain/recovery-stress-lab-intelligence": "workspace:*"
   }
 }
