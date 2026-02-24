@@ -566,6 +566,9 @@ importers:
       '@domain/recovery-incident-workflows':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-workflows
+      '@domain/recovery-lab-console-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-console-core
       '@domain/recovery-ops-orchestration-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-orchestration-lab
@@ -2748,6 +2751,24 @@ importers:
 
   packages/domain/recovery-intelligence:
     dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-lab-console-core:
+    dependencies:
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../recovery-incident-lab-core
+      '@domain/recovery-lab-orchestration-core':
+        specifier: workspace:*
+        version: link:../recovery-lab-orchestration-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level

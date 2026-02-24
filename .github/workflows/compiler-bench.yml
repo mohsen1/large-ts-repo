@@ -140,6 +140,7 @@ jobs:
           set -euo pipefail
 
           BENCH_DIR="${{ github.workspace }}/.bench"
+          ARTIFACT_BUNDLE="${{ runner.temp }}/compiler-bench-artifacts.tgz"
           mkdir -p "$BENCH_DIR"
 
           if [ ! -s "$BENCH_DIR/summary.table.md" ]; then
@@ -162,13 +163,12 @@ jobs:
             printf "%s\n" "No compiler output logs were produced." > "$BENCH_DIR/no-output.log"
           fi
 
+          tar -czf "$ARTIFACT_BUNDLE" -C "$BENCH_DIR" .
+
       - name: Upload benchmark artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: compiler-bench-${{ github.run_id }}
           if-no-files-found: ignore
-          path: |
-            ${{ github.workspace }}/.bench/summary.table.md
-            ${{ github.workspace }}/.bench/results.csv
-            ${{ github.workspace }}/.bench/*.log
+          path: ${{ runner.temp }}/compiler-bench-artifacts.tgz
