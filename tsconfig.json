@@ -1175,6 +1175,9 @@
       "path": "./packages/shared/orchestration-lab-core"
     },
     {
+      "path": "./packages/shared/mesh-control-plane"
+    },
+    {
       "path": "./packages/shared/recovery-lab-kernel"
     },
     {

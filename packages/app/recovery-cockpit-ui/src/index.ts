@@ -90,3 +90,8 @@ export * from './components/mesh/SignalMeshPolicyHeatmap';
 export * from './hooks/useMeshLabOrchestrator';
 export * from './pages/RecoveryCockpitMeshOrchestrationPage';
 export * from './services/recoveryCockpitOrchestrationService';
+export * from './services/meshControlPlaneScenarioService';
+export * from './hooks/useMeshControlPlane';
+export * from './components/mesh/SignalMeshControlPlaneConsole';
+export * from './components/mesh/SignalMeshPolicyTimeline';
+export * from './pages/RecoveryCockpitMeshControlPlanePage';

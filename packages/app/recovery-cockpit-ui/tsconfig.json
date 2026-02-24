@@ -86,6 +86,9 @@
     },
     {
       "path": "./../../shared/orchestration-lab-core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/mesh-control-plane/tsconfig.json"
     }
   ]
 }

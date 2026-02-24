@@ -320,6 +320,9 @@ importers:
       '@service/recovery-cockpit-signal-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-signal-orchestrator
+      '@shared/mesh-control-plane':
+        specifier: workspace:*
+        version: link:../../shared/mesh-control-plane
       '@shared/orchestration-lab-core':
         specifier: workspace:*
         version: link:../../shared/orchestration-lab-core
@@ -6762,6 +6765,24 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+
+  packages/shared/mesh-control-plane:
+    dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.995.0
+        version: 3.995.0
+      '@shared/orchestration-lab-core':
+        specifier: workspace:*
+        version: link:../orchestration-lab-core
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/monads: {}
 
