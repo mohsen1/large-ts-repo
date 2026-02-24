@@ -260,6 +260,9 @@
     },
     {
       "path": "./../../shared/incident-saga-core/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-readiness/tsconfig.json"
     }
   ]
 }

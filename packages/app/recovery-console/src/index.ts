@@ -267,3 +267,11 @@ export { GraphOpsExecutionConsole } from './features/recovery-ops-graph-lab/comp
 export { GraphOpsSignalTimeline } from './features/recovery-ops-graph-lab/components/GraphOpsSignalTimeline';
 export { RecoveryOpsGraphLabPage } from './features/recovery-ops-graph-lab/pages/RecoveryOpsGraphLabPage';
 export * from './features/recovery-ops-graph-lab/types';
+export { RecoveryReadinessLabOrchestratorPage } from './features/recovery-readiness-lab/pages/RecoveryReadinessLabOrchestratorPage';
+export { ReadinessLabControls } from './features/recovery-readiness-lab/components/ReadinessLabControls';
+export { ReadinessLabHeatmap } from './features/recovery-readiness-lab/components/ReadinessLabHeatmap';
+export { ReadinessLabRunner } from './features/recovery-readiness-lab/components/ReadinessLabRunner';
+export { ReadinessLabSummary } from './features/recovery-readiness-lab/components/ReadinessLabSummary';
+export { useReadinessLabSignals } from './features/recovery-readiness-lab/hooks/useReadinessLabSignals';
+export { useReadinessLabFacade } from './features/recovery-readiness-lab/hooks/useReadinessLabFacade';
+export { eventChannelName, type ReadinessLabDashboardState, type ReadinessLabHeatmapCell } from './features/recovery-readiness-lab/types';

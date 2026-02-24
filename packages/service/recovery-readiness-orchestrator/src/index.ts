@@ -20,3 +20,5 @@ export * from './readiness-simulation-dashboard';
 export * from './readiness-playbook-engine';
 export * from './readiness-playbook-metrics';
 export * from './readiness-playbook-scheduler';
+export * from './lab-runtime';
+export * from './lab-orchestrator';
