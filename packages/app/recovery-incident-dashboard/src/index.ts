@@ -138,3 +138,4 @@ export * from './hooks/scenario/useScenarioPlanEngine';
 export * from './hooks/scenario/useScenarioDataStream';
 export * from './pages/scenario/ScenarioOrchestrationPage';
 export * from './pages/scenario/ScenarioOpsHistoryPage';
+export * from './stressLab/pages/RecoveryHorizonLabPage';

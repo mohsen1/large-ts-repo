@@ -44,6 +44,7 @@
     "@service/recovery-workload-orchestrator": "workspace:*",
     "@service/recovery-readiness-orchestrator": "workspace:*",
     "@service/recovery-incident-command-orchestrator": "workspace:*",
+    "@service/recovery-horizon-orchestrator": "workspace:*",
     "@domain/recovery-ops-orchestration-lab": "workspace:*",
     "@service/recovery-coordination-orchestrator": "workspace:*",
     "@data/recovery-ops-orchestration-lab-store": "workspace:*",
@@ -67,6 +68,8 @@
     "@shared/type-level": "workspace:*",
     "@domain/recovery-scenario-orchestration": "workspace:*",
     "@service/recovery-incident-scenario-orchestrator": "workspace:*",
-    "@infrastructure/recovery-scenario-gateway": "workspace:*"
+    "@infrastructure/recovery-scenario-gateway": "workspace:*",
+    "@domain/recovery-horizon-engine": "workspace:*",
+    "@data/recovery-horizon-store": "workspace:*"
   }
 }

@@ -987,6 +987,15 @@
     },
     {
       "path": "./packages/service/recovery-fabric-cadence-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-horizon-engine"
+    },
+    {
+      "path": "./packages/data/recovery-horizon-store"
+    },
+    {
+      "path": "./packages/service/recovery-horizon-orchestrator"
     }
   ]
 }

@@ -153,6 +153,15 @@
     },
     {
       "path": "./../../domain/recovery-scenario-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-horizon-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
     }
   ]
 }

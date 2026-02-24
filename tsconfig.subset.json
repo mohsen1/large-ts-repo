@@ -1,0 +1,65 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/app/adaptive-ops-console"
+    },
+    {
+      "path": "./packages/app/admin-portal"
+    },
+    {
+      "path": "./packages/app/api-gateway"
+    },
+    {
+      "path": "./packages/app/cli"
+    },
+    {
+      "path": "./packages/app/fuzzy-console"
+    },
+    {
+      "path": "./packages/app/incident-forecast-operator"
+    },
+    {
+      "path": "./packages/app/insights"
+    },
+    {
+      "path": "./packages/app/policy-console"
+    },
+    {
+      "path": "./packages/app/recovery-cockpit-ui"
+    },
+    {
+      "path": "./packages/app/recovery-console"
+    },
+    {
+      "path": "./packages/app/recovery-drill-observer"
+    },
+    {
+      "path": "./packages/app/recovery-incident-dashboard"
+    },
+    {
+      "path": "./packages/app/recovery-incident-dashboard"
+    },
+    {
+      "path": "./packages/domain/recovery-continuity-readiness"
+    },
+    {
+      "path": "./packages/data/continuity-readiness-store"
+    },
+    {
+      "path": "./packages/service/continuity-readiness-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-timeline-studio"
+    },
+    {
+      "path": "./packages/app/reporter"
+    },
+    {
+      "path": "./packages/app/stream-dashboard"
+    }
+  ]
+}

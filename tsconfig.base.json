@@ -57,6 +57,18 @@
         "packages/shared/*",
         "packages/shared/*/src"
       ],
+      "@shared/type-level": [
+        "packages/shared/type-level/src/index.ts"
+      ],
+      "@shared/type-level/*": [
+        "packages/shared/type-level/src/*"
+      ],
+      "@shared/result": [
+        "packages/shared/result/src/index.ts"
+      ],
+      "@shared/result/*": [
+        "packages/shared/result/src/*"
+      ],
       "@platform/*": [
         "packages/platform/*",
         "packages/platform/*/src"
@@ -64,6 +76,21 @@
       "@domain/*": [
         "packages/domain/*",
         "packages/domain/*/src"
+      ],
+      "@domain/recovery-horizon-engine": [
+        "packages/domain/recovery-horizon-engine/src/index.ts"
+      ],
+      "@domain/recovery-horizon-engine/*": [
+        "packages/domain/recovery-horizon-engine/src/*"
+      ],
+      "@data/recovery-horizon-store": [
+        "packages/data/recovery-horizon-store/src/index.ts"
+      ],
+      "@data/recovery-horizon-store/*": [
+        "packages/data/recovery-horizon-store/src/*"
+      ],
+      "@service/recovery-horizon-orchestrator": [
+        "packages/service/recovery-horizon-orchestrator/src/index.ts"
       ],
       "@domain/recovery-operations-intelligence": [
         "packages/domain/recovery-operations-intelligence/src/index.ts"

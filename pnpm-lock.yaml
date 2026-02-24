@@ -512,6 +512,9 @@ importers:
       '@data/incident-signal-store':
         specifier: workspace:*
         version: link:../../data/incident-signal-store
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
       '@data/recovery-incident-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-store
@@ -548,6 +551,9 @@ importers:
       '@domain/recovery-fabric-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-orchestration
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
       '@domain/recovery-incident-analytics':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-analytics
@@ -602,6 +608,9 @@ importers:
       '@service/recovery-fusion-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-fusion-orchestrator
+      '@service/recovery-horizon-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-horizon-orchestrator
       '@service/recovery-incident-analytics-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-analytics-orchestrator
@@ -1290,6 +1299,15 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/data/recovery-horizon-store:
+    dependencies:
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-incident-insights-store:
     dependencies:
@@ -2571,6 +2589,15 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-horizon-engine:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -4405,6 +4432,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-horizon-orchestrator:
+    dependencies:
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-incident-analytics-orchestrator:
     dependencies:
