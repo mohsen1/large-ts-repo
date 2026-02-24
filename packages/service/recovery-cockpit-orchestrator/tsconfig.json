@@ -35,6 +35,9 @@
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/typed-orchestration-core/tsconfig.json"
     }
   ]
 }

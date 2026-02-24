@@ -22,6 +22,7 @@
     "@data/recovery-cockpit-insights": "workspace:*",
     "@data/recovery-cockpit-store": "workspace:*",
     "@shared/util": "workspace:*",
-    "@shared/result": "workspace:*"
+    "@shared/result": "workspace:*",
+    "@shared/typed-orchestration-core": "workspace:*"
   }
 }
