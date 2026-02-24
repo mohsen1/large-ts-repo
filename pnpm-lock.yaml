@@ -527,6 +527,9 @@ importers:
       '@service/recovery-operations-policy-engine':
         specifier: workspace:*
         version: link:../../service/recovery-operations-policy-engine
+      '@service/recovery-ops-graph-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-graph-orchestrator
       '@service/recovery-ops-orchestration-engine':
         specifier: workspace:*
         version: link:../../service/recovery-ops-orchestration-engine
@@ -3382,6 +3385,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-ops-orchestration-graph:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-ops-orchestration-lab:
     dependencies:
       '@shared/core':
@@ -5611,6 +5632,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/service/recovery-ops-graph-orchestrator:
+    dependencies:
+      '@domain/recovery-ops-orchestration-graph':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-graph
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-ops-orchestration-engine:
     dependencies:
