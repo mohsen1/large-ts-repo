@@ -56,6 +56,9 @@
       "path": "./packages/domain/recovery-timeline-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-ops-mesh"
+    },
+    {
       "path": "./packages/shared/timeline-orchestration-runtime"
     },
     {
@@ -69,6 +72,9 @@
     },
     {
       "path": "./packages/app/recovery-chaos-lab"
+    },
+    {
+      "path": "./packages/app/recovery-mesh-console"
     },
     {
       "path": "./packages/shared/chaos-lab-console-kernel"
@@ -951,6 +957,9 @@
     },
     {
       "path": "./packages/service/recovery-fabric-controller"
+    },
+    {
+      "path": "./packages/service/recovery-ops-mesh-engine"
     },
     {
       "path": "./packages/service/recovery-fabric-orchestrator"

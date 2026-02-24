@@ -1014,6 +1014,30 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
 
+  packages/app/recovery-mesh-console:
+    dependencies:
+      '@domain/recovery-ops-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-mesh
+      '@service/recovery-ops-mesh-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-mesh-engine
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/app/recovery-playbook-orchestrator:
     dependencies:
       '@data/recovery-playbook-store':
@@ -3694,6 +3718,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-ops-mesh:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-ops-orchestration-graph:
     dependencies:
       '@shared/core':
@@ -6145,6 +6184,24 @@ importers:
       '@domain/recovery-ops-orchestration-graph':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-orchestration-graph
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-ops-mesh-engine:
+    dependencies:
+      '@domain/recovery-ops-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-mesh
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
