@@ -133,6 +133,35 @@ jobs:
             printf "%s\n" "No compiler output logs were produced." > "$BENCH_DIR/no-output.log"
           fi
 
+      - name: Ensure benchmark artifacts exist
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BENCH_DIR="${{ github.workspace }}/.bench"
+          mkdir -p "$BENCH_DIR"
+
+          if [ ! -s "$BENCH_DIR/summary.table.md" ]; then
+            {
+              echo "| Compiler | Status | Duration (s) |"
+              echo "| --- | --- | ---: |"
+              echo "| no-run | FAIL | 0.000 |"
+            } > "$BENCH_DIR/summary.table.md"
+          fi
+
+          if [ ! -s "$BENCH_DIR/results.csv" ]; then
+            {
+              echo "compiler,status,duration_ms,command"
+              echo "no-run,FAIL,0,compile-and-bench"
+            } > "$BENCH_DIR/results.csv"
+          fi
+
+          if ! find "$BENCH_DIR" -maxdepth 1 -type f -name '*.log' | grep -q .; then
+            : > "$BENCH_DIR/no-output.log"
+            printf "%s\n" "No compiler output logs were produced." > "$BENCH_DIR/no-output.log"
+          fi
+
       - name: Upload benchmark artifacts
         if: always()
         uses: actions/upload-artifact@v4
