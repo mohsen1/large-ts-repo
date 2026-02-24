@@ -206,9 +206,15 @@ importers:
 
   packages/app/recovery-chaos-lab:
     dependencies:
+      '@data/recovery-chaos-observability':
+        specifier: workspace:*
+        version: link:../../data/recovery-chaos-observability
       '@domain/recovery-chaos-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-chaos-lab
+      '@service/recovery-chaos-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-chaos-intelligence-orchestrator
       '@service/recovery-chaos-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-chaos-orchestrator
@@ -1305,6 +1311,18 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-chaos-observability:
+    dependencies:
+      '@domain/recovery-chaos-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chaos-lab
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-cockpit-analytics:
     dependencies:
@@ -4684,6 +4702,36 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-chaos-intelligence-orchestrator:
+    dependencies:
+      '@data/incident-hub':
+        specifier: workspace:*
+        version: link:../../data/incident-hub
+      '@data/recovery-chaos-observability':
+        specifier: workspace:*
+        version: link:../../data/recovery-chaos-observability
+      '@domain/recovery-chaos-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chaos-lab
+      '@service/recovery-chaos-orchestrator':
+        specifier: workspace:*
+        version: link:../recovery-chaos-orchestrator
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
