@@ -311,6 +311,9 @@ importers:
       '@domain/recovery-drill':
         specifier: workspace:*
         version: link:../../domain/recovery-drill
+      '@domain/recovery-fabric-cadence-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fabric-cadence-core
       '@domain/recovery-fabric-models':
         specifier: workspace:*
         version: link:../../domain/recovery-fabric-models
@@ -383,6 +386,9 @@ importers:
       '@service/recovery-drill-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-drill-orchestrator
+      '@service/recovery-fabric-cadence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-fabric-cadence-orchestrator
       '@service/recovery-fabric-controller':
         specifier: workspace:*
         version: link:../../service/recovery-fabric-controller
@@ -2464,6 +2470,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-fabric-cadence-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-fabric-models:
     dependencies:
       '@shared/core':
@@ -4237,6 +4255,18 @@ importers:
       '@service/recovery-drill-observability':
         specifier: workspace:*
         version: link:../recovery-drill-observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
+  packages/service/recovery-fabric-cadence-orchestrator:
+    dependencies:
+      '@domain/recovery-fabric-cadence-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-fabric-cadence-core
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core

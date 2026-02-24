@@ -20,3 +20,5 @@ export * from './mesh-types';
 export * from './signal-matrix';
 export * from './policy-envelope';
 export * from './workload-forecast';
+export { summarizeGovernanceSignals as summarizeSignals, buildGovernanceDraft } from './governance-overview';
+export * from './governance-overview';

@@ -1,4 +1,11 @@
 import { CommandRunbook, OrchestrationPlan, RecoverySignal, WorkloadTopology, TenantId, SeverityBand } from './models';
+import {
+  PolicyEnvelope,
+  evaluateGovernance,
+  buildEnvelope,
+  createGovernanceTenantId,
+} from '@domain/recovery-lab-governance';
+import { evaluateGovernanceDecision, summarizeGovernanceSignals, buildGovernanceDraft } from './governance-overview';
 
 export interface ValidationIssue {
   readonly code: string;
@@ -28,6 +35,20 @@ export interface SignalValidation {
   readonly tenantId: TenantId;
   readonly valid: boolean;
   readonly issues: ReadonlyArray<ValidationIssue>;
+}
+
+interface RankedPolicy {
+  readonly policyId: string;
+  readonly score: number;
+}
+
+export interface GovernanceBundle {
+  readonly tenantId: TenantId;
+  readonly policyCount: number;
+  readonly topRanked: readonly RankedPolicy[];
+  readonly envelopes: readonly PolicyEnvelope[];
+  readonly signalDigest: ReturnType<typeof summarizeGovernanceSignals>;
+  readonly snapshotWarnings: readonly string[];
 }
 
 const issue = (code: string, message: string, remediation: string): ValidationIssue => ({ code, message, remediation });
@@ -169,6 +190,8 @@ export const compileValidationBundle = (
     runbooks: readonly CommandRunbook[];
     signals: readonly RecoverySignal[];
     band: SeverityBand;
+    plan?: OrchestrationPlan;
+    signalDigest?: ReturnType<typeof summarizeGovernanceSignals>;
   },
 ) => {
   const topology = validateTopology(tenantId, input.topology);
@@ -178,11 +201,49 @@ export const compileValidationBundle = (
   const warnings = [...runbooks.warnings];
   const valid = issues.length === 0;
 
+  const profile = buildGovernanceDraft(tenantId, input.runbooks, input.signals, input.topology, input.band).profile;
+  const context = {
+    tenantId: createGovernanceTenantId(tenantId),
+    timestamp: new Date().toISOString(),
+    domain: input.topology.tenantId,
+    region: 'global',
+    state: 'active' as const,
+  };
+  const governanceSignals = input.signals.map((signal) => ({
+    id: signal.id as unknown as any,
+    metric: signal.class,
+    severity: input.band,
+    value: signal.severity === 'critical' ? 100 : signal.severity === 'high' ? 75 : signal.severity === 'medium' ? 50 : 25,
+    tags: [signal.class, `tenant:${tenantId}`],
+    observedAt: signal.createdAt,
+  }));
+
+  const decision = evaluateGovernanceDecision(tenantId, input.runbooks, input.topology, input.plan ?? null, input.signals, input.band);
+  const governance = evaluateGovernance({
+    context,
+    profile,
+    signals: governanceSignals,
+    profileList: [profile],
+    windows: buildEnvelope(context, [profile]).windows,
+    rules: profile.rules,
+  });
+
+  const bundle: GovernanceBundle = {
+    tenantId,
+    policyCount: decision.matrix.envelopes.length,
+    topRanked: decision.rankings,
+    envelopes: decision.matrix.envelopes,
+    signalDigest: summarizeGovernanceSignals(tenantId, input.signals),
+    snapshotWarnings: governance.warning,
+  };
+
   return {
     tenantId,
     valid,
     issues,
     warnings,
     breakdown: { topology, runbooks, signals },
+    governance,
+    bundle,
   };
 };

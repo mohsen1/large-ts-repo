@@ -1,5 +1,5 @@
 {
-  "name": "@domain/recovery-stress-lab",
+  "name": "@domain/recovery-lab-governance",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -16,7 +16,6 @@
   "dependencies": {
     "@shared/core": "workspace:*",
     "@shared/type-level": "workspace:*",
-    "@domain/recovery-lab-governance": "workspace:*",
     "zod": "^3.24.0"
   }
 }
