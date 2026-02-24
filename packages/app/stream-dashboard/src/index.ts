@@ -48,3 +48,8 @@ export * from './components/StressLabWorkflowStageBoard';
 export * from './components/StressLabSignalsInspector';
 export * from './components/StressLabWorkflowRegistry';
 export * from './pages/StreamingStressLabOrchestratorPage';
+export * from './services/commandIntelligenceService';
+export * from './hooks/useCommandIntelligenceDashboard';
+export * from './components/command-intelligence/CommandIntelligenceOverview';
+export * from './components/command-intelligence/CommandIntelligencePolicyFlow';
+export * from './pages/StreamingCommandIntelligencePage';

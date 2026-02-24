@@ -1,0 +1,26 @@
+{
+  "name": "@service/streaming-command-intelligence-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/streaming-command-intelligence": "workspace:*",
+    "@data/streaming-command-intelligence-store": "workspace:*",
+    "@domain/streaming-observability": "workspace:*",
+    "@domain/streaming-engine": "workspace:*",
+    "@service/streaming-dashboard-orchestrator": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

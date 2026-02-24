@@ -17,8 +17,11 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/streaming-command-intelligence-store": "workspace:*",
     "@data/streaming-dashboard-store": "workspace:*",
+    "@domain/streaming-command-intelligence": "workspace:*",
     "@service/streaming-dashboard-orchestrator": "workspace:*",
+    "@service/streaming-command-intelligence-orchestrator": "workspace:*",
     "@service/recovery-stress-lab-orchestrator": "workspace:*",
     "@domain/recovery-stress-lab": "workspace:*",
     "@domain/streaming-observability": "workspace:*",

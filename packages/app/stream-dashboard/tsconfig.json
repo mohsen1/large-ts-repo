@@ -27,13 +27,22 @@
       "path": "./../../domain/streaming-engine/tsconfig.json"
     },
     {
+      "path": "./../../domain/streaming-command-intelligence/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-stress-lab/tsconfig.json"
     },
     {
       "path": "./../../data/streaming-dashboard-store/tsconfig.json"
     },
     {
+      "path": "./../../data/streaming-command-intelligence-store/tsconfig.json"
+    },
+    {
       "path": "./../../service/streaming-dashboard-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/streaming-command-intelligence-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../service/streaming-control/tsconfig.json"

@@ -935,6 +935,9 @@ importers:
       '@data/recovery-lattice-store':
         specifier: workspace:*
         version: link:../../data/recovery-lattice-store
+      '@data/streaming-command-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/streaming-command-intelligence-store
       '@data/streaming-dashboard-store':
         specifier: workspace:*
         version: link:../../data/streaming-dashboard-store
@@ -944,6 +947,9 @@ importers:
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab
+      '@domain/streaming-command-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/streaming-command-intelligence
       '@domain/streaming-engine':
         specifier: workspace:*
         version: link:../../domain/streaming-engine
@@ -953,6 +959,9 @@ importers:
       '@service/recovery-stress-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stress-lab-orchestrator
+      '@service/streaming-command-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/streaming-command-intelligence-orchestrator
       '@service/streaming-control':
         specifier: workspace:*
         version: link:../../service/streaming-control
@@ -2073,6 +2082,27 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/streaming-command-intelligence-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/streaming-command-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/streaming-command-intelligence
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/data/streaming-dashboard-store:
     dependencies:
@@ -3701,6 +3731,24 @@ importers:
   packages/domain/risk: {}
 
   packages/domain/search-suite: {}
+
+  packages/domain/streaming-command-intelligence:
+    dependencies:
+      '@domain/streaming-engine':
+        specifier: workspace:*
+        version: link:../streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../streaming-observability
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/streaming-engine: {}
 
@@ -6094,6 +6142,33 @@ importers:
       '@domain/risk':
         specifier: workspace:*
         version: link:../../domain/risk
+
+  packages/service/streaming-command-intelligence-orchestrator:
+    dependencies:
+      '@data/streaming-command-intelligence-store':
+        specifier: workspace:*
+        version: link:../../data/streaming-command-intelligence-store
+      '@domain/streaming-command-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/streaming-command-intelligence
+      '@domain/streaming-engine':
+        specifier: workspace:*
+        version: link:../../domain/streaming-engine
+      '@domain/streaming-observability':
+        specifier: workspace:*
+        version: link:../../domain/streaming-observability
+      '@service/streaming-dashboard-orchestrator':
+        specifier: workspace:*
+        version: link:../streaming-dashboard-orchestrator
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/streaming-control:
     dependencies:

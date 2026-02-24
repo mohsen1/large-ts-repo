@@ -278,6 +278,9 @@
       "path": "./packages/data/streaming-dashboard-store"
     },
     {
+      "path": "./packages/data/streaming-command-intelligence-store"
+    },
+    {
       "path": "./packages/data/telemetry-store"
     },
     {
@@ -674,6 +677,9 @@
       "path": "./packages/domain/streaming-observability"
     },
     {
+      "path": "./packages/domain/streaming-command-intelligence"
+    },
+    {
       "path": "./packages/domain/telemetry-models"
     },
     {
@@ -1044,6 +1050,9 @@
     },
     {
       "path": "./packages/service/streaming-dashboard-orchestrator"
+    },
+    {
+      "path": "./packages/service/streaming-command-intelligence-orchestrator"
     },
     {
       "path": "./packages/service/telemetry"
