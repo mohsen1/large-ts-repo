@@ -70,6 +70,7 @@
     "@service/recovery-incident-scenario-orchestrator": "workspace:*",
     "@infrastructure/recovery-scenario-gateway": "workspace:*",
     "@domain/recovery-horizon-engine": "workspace:*",
-    "@data/recovery-horizon-store": "workspace:*"
+    "@data/recovery-horizon-store": "workspace:*",
+    "@domain/recovery-horizon-studio-core": "workspace:*"
   }
 }

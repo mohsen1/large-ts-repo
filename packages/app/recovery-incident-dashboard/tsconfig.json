@@ -158,6 +158,9 @@
       "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-horizon-studio-core/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-horizon-store/tsconfig.json"
     },
     {

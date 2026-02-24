@@ -554,6 +554,9 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-horizon-studio-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-studio-core
       '@domain/recovery-incident-analytics':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-analytics
@@ -2601,6 +2604,24 @@ importers:
 
   packages/domain/recovery-horizon-engine:
     dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-horizon-studio-core:
+    dependencies:
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../recovery-horizon-engine
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level

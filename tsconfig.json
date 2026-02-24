@@ -992,6 +992,9 @@
       "path": "./packages/domain/recovery-horizon-engine"
     },
     {
+      "path": "./packages/domain/recovery-horizon-studio-core"
+    },
+    {
       "path": "./packages/data/recovery-horizon-store"
     },
     {
