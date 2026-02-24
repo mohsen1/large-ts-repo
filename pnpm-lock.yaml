@@ -50,6 +50,9 @@ importers:
       '@domain/recovery-readiness':
         specifier: workspace:*
         version: link:../../domain/recovery-readiness
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
       '@domain/recovery-workload-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-workload-intelligence
