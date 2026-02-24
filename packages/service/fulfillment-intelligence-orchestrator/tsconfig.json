@@ -3,12 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true,
-    "jsx": "react-jsx",
-    "lib": [
-      "DOM",
-      "ES2023"
-    ]
+    "declaration": true
   },
   "include": [
     "src/**/*"
@@ -18,13 +13,22 @@
       "path": "./../../service/fulfillment-planner/tsconfig.json"
     },
     {
-      "path": "./../../service/fulfillment-intelligence-orchestrator/tsconfig.json"
-    },
-    {
       "path": "./../../data/fulfillment-telemetry-store/tsconfig.json"
     },
     {
       "path": "./../../domain/fulfillment-orchestration-analytics/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/protocol/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
     }
   ]
 }

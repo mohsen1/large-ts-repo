@@ -1,4 +1,5 @@
 import { createOrchestrator, SubmitFulfillmentCommand } from '@service/fulfillment-planner';
+import { createFulfillmentIntelligenceOrchestrator } from '@service/fulfillment-intelligence-orchestrator';
 
 export interface ConsoleInput {
   tenantId: string;
@@ -18,6 +19,15 @@ export const bootstrapFulfillmentRun = async (input: ConsoleInput): Promise<{
   planId?: string;
   summary: readonly FulfillmentSummary[];
 }> => {
+  const intelligence = createFulfillmentIntelligenceOrchestrator();
+  void intelligence.run({
+    tenantId: input.tenantId,
+    productId: input.orderId,
+    signals: [],
+    windows: [],
+    targetSla: 0.75,
+  });
+
   const service = createOrchestrator();
   const command: SubmitFulfillmentCommand = {
     orderId: input.orderId as any,

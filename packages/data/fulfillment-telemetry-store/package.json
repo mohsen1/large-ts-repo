@@ -1,5 +1,5 @@
 {
-  "name": "@app/fulfillment-console",
+  "name": "@data/fulfillment-telemetry-store",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,13 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@service/fulfillment-planner": "workspace:*",
-    "@service/fulfillment-intelligence-orchestrator": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/util": "workspace:*",
     "@domain/fulfillment-orchestration-analytics": "workspace:*",
-    "@data/fulfillment-telemetry-store": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@domain/fulfillment-orchestration": "workspace:*"
   }
 }

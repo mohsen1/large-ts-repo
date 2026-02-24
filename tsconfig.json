@@ -257,6 +257,9 @@
       "path": "./packages/data/warehouse"
     },
     {
+      "path": "./packages/data/fulfillment-telemetry-store"
+    },
+    {
       "path": "./packages/domain/adaptive-ops"
     },
     {
@@ -303,6 +306,9 @@
     },
     {
       "path": "./packages/domain/fulfillment"
+    },
+    {
+      "path": "./packages/domain/fulfillment-orchestration-analytics"
     },
     {
       "path": "./packages/domain/fuzzy"
@@ -726,6 +732,9 @@
     },
     {
       "path": "./packages/service/quality"
+    },
+    {
+      "path": "./packages/service/fulfillment-intelligence-orchestrator"
     },
     {
       "path": "./packages/service/recommendation"

@@ -101,9 +101,30 @@ importers:
 
   packages/app/fulfillment-console:
     dependencies:
+      '@data/fulfillment-telemetry-store':
+        specifier: workspace:*
+        version: link:../../data/fulfillment-telemetry-store
+      '@domain/fulfillment-orchestration-analytics':
+        specifier: workspace:*
+        version: link:../../domain/fulfillment-orchestration-analytics
+      '@service/fulfillment-intelligence-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/fulfillment-intelligence-orchestrator
       '@service/fulfillment-planner':
         specifier: workspace:*
         version: link:../../service/fulfillment-planner
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
 
   packages/app/fuzzy-console:
     dependencies:
@@ -191,6 +212,9 @@ importers:
       '@domain/recovery-cockpit-workloads':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-workloads
+      '@domain/recovery-operations-cadence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-cadence
       '@service/recovery-cockpit-intent-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-intent-orchestrator
@@ -887,6 +911,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/fulfillment-telemetry-store:
+    dependencies:
+      '@domain/fulfillment-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/fulfillment-orchestration
+      '@domain/fulfillment-orchestration-analytics':
+        specifier: workspace:*
+        version: link:../../domain/fulfillment-orchestration-analytics
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/data/incident-command-store:
     dependencies:
@@ -1895,6 +1937,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/fulfillment-orchestration-analytics:
+    dependencies:
+      '@domain/fulfillment':
+        specifier: workspace:*
+        version: link:../fulfillment
+      '@domain/fulfillment-orchestration':
+        specifier: workspace:*
+        version: link:../fulfillment-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/fuzzy: {}
 
   packages/domain/identity:
@@ -2544,6 +2604,9 @@ importers:
       '@domain/recovery-orchestration':
         specifier: workspace:*
         version: link:../recovery-orchestration
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../recovery-readiness
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -3620,6 +3683,33 @@ importers:
       '@domain/billing':
         specifier: workspace:*
         version: link:../../domain/billing
+
+  packages/service/fulfillment-intelligence-orchestrator:
+    dependencies:
+      '@data/fulfillment-telemetry-store':
+        specifier: workspace:*
+        version: link:../../data/fulfillment-telemetry-store
+      '@domain/fulfillment-orchestration-analytics':
+        specifier: workspace:*
+        version: link:../../domain/fulfillment-orchestration-analytics
+      '@service/fulfillment-planner':
+        specifier: workspace:*
+        version: link:../fulfillment-planner
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/protocol':
+        specifier: workspace:*
+        version: link:../../shared/protocol
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/fulfillment-planner:
     dependencies:
