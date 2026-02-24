@@ -932,6 +932,9 @@ importers:
       '@data/recovery-lab-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-lab-simulation-store
+      '@domain/recovery-lab-intelligence-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-intelligence-core
       '@domain/recovery-orchestration-design':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-design
