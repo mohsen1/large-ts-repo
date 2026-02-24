@@ -941,18 +941,27 @@ importers:
 
   packages/app/recovery-lab-dashboard:
     dependencies:
+      '@data/recovery-lab-digital-twin-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lab-digital-twin-store
       '@data/recovery-lab-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-lab-simulation-store
       '@domain/recovery-lab-intelligence-core':
         specifier: workspace:*
         version: link:../../domain/recovery-lab-intelligence-core
+      '@domain/recovery-lab-signal-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-signal-studio
       '@domain/recovery-orchestration-design':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-design
       '@domain/recovery-simulation-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-lab-core
+      '@service/recovery-lab-orchestration-studio':
+        specifier: workspace:*
+        version: link:../../service/recovery-lab-orchestration-studio
       '@service/recovery-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-lab-orchestrator
@@ -1764,6 +1773,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-lab-digital-twin-store:
+    dependencies:
+      '@domain/recovery-lab-signal-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-signal-studio
+      '@shared/lab-simulation-kernel':
+        specifier: workspace:*
+        version: link:../../shared/lab-simulation-kernel
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
 
   packages/data/recovery-lab-simulation-store:
     dependencies:
@@ -3477,6 +3498,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-lab-signal-studio:
+    dependencies:
+      '@shared/lab-simulation-kernel':
+        specifier: workspace:*
+        version: link:../../shared/lab-simulation-kernel
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-lab-stress-lab-core:
     dependencies:
@@ -5795,6 +5825,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-lab-orchestration-studio:
+    dependencies:
+      '@data/recovery-lab-digital-twin-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lab-digital-twin-store
+      '@domain/recovery-lab-signal-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-signal-studio
+      '@shared/lab-simulation-kernel':
+        specifier: workspace:*
+        version: link:../../shared/lab-simulation-kernel
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+
   packages/service/recovery-lab-orchestrator:
     dependencies:
       '@data/recovery-lab-simulation-store':
@@ -6810,6 +6858,12 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+
+  packages/shared/lab-simulation-kernel:
+    dependencies:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
