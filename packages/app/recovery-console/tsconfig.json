@@ -73,6 +73,9 @@
       "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-synthetic-orchestration-store/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-simulation-store/tsconfig.json"
     },
     {
@@ -124,6 +127,9 @@
       "path": "./../../domain/recovery-simulation-planning/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-synthetic-orchestration/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-simulation-lab-models/tsconfig.json"
     },
     {
@@ -134,6 +140,9 @@
     },
     {
       "path": "./../../service/recovery-continuity-lens/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-synthetic-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-fusion-orchestrator/tsconfig.json"

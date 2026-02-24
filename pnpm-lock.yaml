@@ -323,6 +323,9 @@ importers:
       '@data/recovery-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-simulation-store
+      '@data/recovery-synthetic-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-synthetic-orchestration-store
       '@data/repositories':
         specifier: workspace:*
         version: link:../../data/repositories
@@ -413,6 +416,9 @@ importers:
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab
+      '@domain/recovery-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-synthetic-orchestration
       '@service/continuity-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/continuity-readiness-orchestrator
@@ -506,6 +512,9 @@ importers:
       '@service/recovery-stress-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stress-lab-orchestrator
+      '@service/recovery-synthetic-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-synthetic-orchestrator
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -1944,6 +1953,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-synthetic-orchestration-store:
+    dependencies:
+      '@domain/recovery-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-synthetic-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -3554,6 +3581,21 @@ importers:
       '@shared/stress-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-synthetic-orchestration:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -5863,6 +5905,24 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-synthetic-orchestrator:
+    dependencies:
+      '@data/recovery-synthetic-orchestration-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-synthetic-orchestration-store
+      '@domain/recovery-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-synthetic-orchestration
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-timeline-orchestrator:
     dependencies:

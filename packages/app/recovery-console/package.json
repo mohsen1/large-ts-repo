@@ -98,6 +98,9 @@
     "@service/recovery-stress-lab-orchestrator": "workspace:*",
     "@shared/incident-saga-core": "workspace:*",
     "@domain/recovery-incident-saga": "workspace:*",
-    "@service/recovery-incident-saga-orchestrator": "workspace:*"
+    "@service/recovery-incident-saga-orchestrator": "workspace:*",
+    "@domain/recovery-synthetic-orchestration": "workspace:*",
+    "@data/recovery-synthetic-orchestration-store": "workspace:*",
+    "@service/recovery-synthetic-orchestrator": "workspace:*"
   }
 }

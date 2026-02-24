@@ -1080,6 +1080,15 @@
     },
     {
       "path": "./packages/service/recovery-incident-saga-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-synthetic-orchestration"
+    },
+    {
+      "path": "./packages/data/recovery-synthetic-orchestration-store"
+    },
+    {
+      "path": "./packages/service/recovery-synthetic-orchestrator"
     }
   ]
 }
