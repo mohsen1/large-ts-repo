@@ -10,6 +10,7 @@ export interface RecoveryFusionMeshState {
   readonly run: MeshRun | null;
   readonly output: MeshOrchestrationOutput | null;
   readonly isRunning: boolean;
+  readonly signals: readonly MeshSignalEnvelope[];
   readonly error: string | null;
   readonly phases: readonly MeshPhase[];
 }

@@ -7,4 +7,6 @@ export * from './repository';
 export * from './insights';
 export * from './mesh-lifecycle';
 export * from './mesh-orchestrator';
+export type { MeshOrchestrationInput } from './mesh-orchestrator';
+export type { MeshOrchestrationOutput, MeshOrchestrationStatus } from '@domain/recovery-fusion-intelligence';
 export * from './mesh-analytics';

@@ -1,95 +1,150 @@
 import { fail, ok, type Result } from '@shared/result';
-
-import type {
-  MeshManifestEntry,
-  MeshPlugin,
-  MeshPluginContext,
-  MeshPluginId,
-  MeshPluginName,
+import type { NoInfer } from '@shared/type-level';
+import {
+  type MeshManifestEntry,
+  type MeshPlugin,
+  type MeshPluginContext,
+  type MeshPluginInputShape,
+  type MeshPluginName,
+  type MeshPluginId,
+  type MeshRunId,
+  type MeshPolicy,
+  type MeshNode,
+  type MeshSignalEnvelope,
 } from './mesh-types';
 
-type PluginWithName<TName extends MeshPluginName> = Extract<MeshPlugin, { readonly manifest: { readonly name: TName } }>;
-type InputForName<TName extends MeshPluginName> = PluginWithName<TName> extends MeshPlugin<infer I, unknown> ? I : never;
-type OutputForName<TName extends MeshPluginName> = PluginWithName<TName> extends MeshPlugin<unknown, infer O> ? O : never;
+interface RegistryRecord {
+  readonly manifest: MeshManifestEntry;
+  readonly plugin: MeshPlugin;
+}
+
+type PluginInputForName<TName extends MeshPluginName> =
+  Extract<MeshPlugin, { readonly manifest: { readonly name: TName } }> extends infer TPlugin
+    ? TPlugin extends { readonly run: (input: infer Input, context: MeshPluginContext) => Promise<infer Output> }
+      ? [Input, Output]
+      : never
+    : never;
 
 export interface MeshRegistryOptions {
   readonly plugins?: readonly MeshPlugin[];
+  readonly strict?: boolean;
 }
 
 export class MeshPluginRegistry {
-  private readonly byId = new Map<MeshPluginId, MeshPlugin>();
-  private readonly byName = new Map<MeshPluginName, MeshPlugin>();
-  private readonly ordered: MeshPlugin[] = [];
+  #records = new Map<MeshPluginName, RegistryRecord>();
 
-  private constructor(plugins: readonly MeshPlugin[] = []) {
+  private constructor(
+    private readonly plugins: readonly MeshPlugin[],
+    private readonly strict: boolean,
+  ) {
     for (const plugin of plugins) {
-      this.register(plugin);
+      this.#records.set(plugin.manifest.name, { manifest: plugin.manifest, plugin });
     }
   }
 
   static create(config?: MeshRegistryOptions): MeshPluginRegistry {
-    return new MeshPluginRegistry(config?.plugins ?? []);
+    return new MeshPluginRegistry(config?.plugins ?? [], config?.strict ?? false);
   }
 
   static createWithEntries(plugins: readonly MeshPlugin[]): MeshPluginRegistry {
-    return new MeshPluginRegistry(plugins);
-  }
-
-  get pluginNames(): readonly MeshPluginName[] {
-    return [...this.byName.keys()];
-  }
-
-  get size(): number {
-    return this.byId.size;
-  }
-
-  register(plugin: MeshPlugin): this {
-    this.byId.set(plugin.manifest.pluginId, plugin);
-    this.byName.set(plugin.manifest.name, plugin);
-    this.ordered.push(plugin);
-    return this;
+    return new MeshPluginRegistry(plugins, false);
   }
 
   has(pluginName: MeshPluginName): boolean {
-    return this.byName.has(pluginName);
+    return this.#records.has(pluginName);
   }
 
-  get<TName extends MeshPluginName>(pluginName: TName): PluginWithName<TName> | undefined {
-    return this.byName.get(pluginName) as PluginWithName<TName> | undefined;
+  get pluginNames(): readonly MeshPluginName[] {
+    return [...this.#records.keys()];
+  }
+
+  get size(): number {
+    return this.#records.size;
+  }
+
+  get(pluginName: MeshPluginName): MeshPlugin | undefined {
+    return this.#records.get(pluginName)?.plugin;
+  }
+
+  get pluginIds(): readonly MeshPluginId[] {
+    return [...this.#records.values()].map((entry) => entry.manifest.pluginId);
+  }
+
+  add(plugin: MeshPlugin): Result<void, Error> {
+    if (this.strict && this.#records.has(plugin.manifest.name)) {
+      return fail(new Error(`plugin already exists: ${plugin.manifest.name}`));
+    }
+    this.#records.set(plugin.manifest.name, { manifest: plugin.manifest, plugin });
+    return ok(undefined);
   }
 
   async runByName<TName extends MeshPluginName>(
     pluginName: TName,
-    input: NoInfer<InputForName<TName>>,
+    input: NoInfer<PluginInputForName<TName>[0]>,
     context: MeshPluginContext,
-  ): Promise<Result<OutputForName<TName>, Error>> {
-    const plugin = this.get(pluginName);
-    if (!plugin) {
-      return fail(new Error(`mesh plugin missing: ${pluginName}`));
+  ): Promise<Result<PluginInputForName<TName>[1], Error>> {
+    const record = this.#records.get(pluginName);
+    if (!record) {
+      return fail(new Error(`unknown plugin: ${pluginName}`));
     }
+
     try {
-      return ok(await plugin.run(input as never, context) as OutputForName<TName>);
+      const output = await record.plugin.run(input, context);
+      return ok(output as PluginInputForName<TName>[1]);
     } catch (error) {
-      return fail(error instanceof Error ? error : new Error('plugin-run-failed'));
+      return fail(error instanceof Error ? error : new Error('mesh plugin run failed'));
     }
   }
 
-  *plugins(): IterableIterator<MeshPlugin> {
-    for (const plugin of this.ordered) {
-      yield plugin;
-    }
-  }
-
-  manifestSnapshot(): MeshManifestEntry[] {
-    return this.ordered.map((plugin) => plugin.manifest);
+  manifestSnapshot(): readonly MeshManifestEntry[] {
+    return [...this.#records.values()].map((record) => record.manifest);
   }
 
   close(): void {
-    for (const plugin of this.ordered) {
-      void plugin.dispose?.();
+    for (const record of this.#records.values()) {
+      void Promise.resolve(record.plugin.dispose?.());
     }
-    this.byId.clear();
-    this.byName.clear();
-    this.ordered.length = 0;
+
+    this.#records.clear();
+  }
+
+  [Symbol.dispose](): void {
+    this.close();
+  }
+
+  [Symbol.asyncDispose](): Promise<void> {
+    this.close();
+    return Promise.resolve();
   }
 }
+
+export const pluginManifestMap = <TPlugins extends readonly MeshManifestEntry[]>(
+  plugins: TPlugins,
+): Readonly<Record<TPlugins[number]['name'], TPlugins[number]>> => {
+  return Object.freeze(
+    plugins.reduce<Record<TPlugins[number]['name'], TPlugins[number]>>(
+      (acc, plugin) => ({
+        ...acc,
+        [plugin.name]: plugin,
+      }),
+      {} as Record<TPlugins[number]['name'], TPlugins[number]>,
+    ),
+  );
+};
+
+export const buildPhaseSignals = (
+  runId: MeshRunId,
+  phase: import('./mesh-types').MeshPhase,
+  source: MeshNode,
+  nodes: readonly MeshNode[],
+): readonly MeshSignalEnvelope[] =>
+  nodes.map((node, index) => ({
+    id: `${runId}:signal:${phase}:${index}` as import('./mesh-types').MeshEventId,
+    phase,
+    source: node.id,
+    target: source.id,
+    class: 'baseline',
+    severity: node.score >= 4 ? (4 as import('./mesh-types').MeshPriority) : (1 as import('./mesh-types').MeshPriority),
+    payload: { phase, index },
+    createdAt: new Date().toISOString(),
+  }));

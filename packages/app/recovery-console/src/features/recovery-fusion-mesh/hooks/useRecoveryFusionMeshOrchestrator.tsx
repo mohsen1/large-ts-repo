@@ -1,90 +1,125 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { executeMeshOrchestration, type MeshOrchestrationInput } from '@service/recovery-fabric-controller';
-import { buildPlan, defaultTopology, type MeshRun } from '@domain/recovery-fusion-intelligence';
+import {
+  asMeshEventId,
+  asMeshNodeId,
+  asMeshPolicyId,
+  asMeshPluginId,
+  asMeshRunId,
+  defaultTopology,
+  type MeshExecutionContext,
+  type MeshRun,
+  type MeshNode,
+  type MeshPolicy,
+  type MeshTopology,
+  type MeshSignalEnvelope,
+  type MeshOrchestrationOutput,
+} from '@domain/recovery-fusion-intelligence';
 import { isCriticalSignal } from '@domain/recovery-fusion-intelligence';
-import type { MeshOrchestrationOutput } from '@service/recovery-fabric-controller';
+import { executeMeshOrchestration, type MeshOrchestrationInput } from '@service/recovery-fabric-controller';
 
 import type { RecoveryFusionMeshState } from '../types';
 
-const toTopologyRun = async (): Promise<MeshOrchestrationInput> => {
-  const runId = `ui-${Date.now()}` as MeshRun['id'];
-  const runtimeInput = {
-    runId,
-    phases: defaultTopology.phases,
-    nodes: defaultTopology.phases.map((phase, index) => ({
-      id: `ui-node:${phase}:${index}` as never,
-      role: index % 2 === 0 ? 'source' : 'sink',
-      score: (index + 1) / 10,
-      phase,
-      active: index % 2 === 0,
-      metadata: { source: 'ui' },
-    })),
-    edges: [],
-    pluginIds: ['bootstrap-plugin'],
-    tenant: 'ui-tenant',
-  };
+const policyGating = {
+  ingest: true,
+  normalize: true,
+  plan: true,
+  execute: true,
+  observe: true,
+  finish: true,
+} as const;
 
-  const plan = buildPlan(runtimeInput as never);
+const buildTopology = (runId: string): MeshTopology => {
+  const nodes = defaultTopology.phases.toSorted().map((phase, index) => ({
+    id: asMeshNodeId(`${runId}:mesh-${phase}:${index}`),
+    role: (index % 2 === 0 ? 'source' : 'transform') as MeshNode['role'],
+    score: Number.isFinite(0.85 - index * 0.1) ? Math.max(0, 1 - index * 0.08) : 0.6,
+    phase,
+    active: index % 2 === 0,
+    metadata: {
+      source: 'ui-orchestrator',
+      phasePriority: String(index + 1),
+    },
+  }));
+
+  const edges = nodes.slice(0, -1).flatMap((node, index) => ({
+    from: node.id,
+    to: nodes[index + 1]?.id ?? node.id,
+    weight: 1 + (index % 3),
+    latencyMs: 120 + index * 15,
+    mandatory: index !== 2,
+  }));
+
   return {
-    topology: {
-      runId,
-      nodes: runtimeInput.nodes as never,
-      edges: [],
-      updatedAt: new Date().toISOString(),
-    },
-    policy: {
-      id: `policy-${runId}` as never,
-      maxConcurrency: 2,
-      allowPause: true,
-      allowWarnings: true,
-      pluginIds: plan.waves.flatMap((wave) => wave.id as never),
-      phaseGating: {
-        ingest: true,
-        normalize: true,
-        plan: true,
-        execute: true,
-        observe: true,
-        finish: true,
-      },
-    },
-    pluginManifests: [],
-    context: {
-      runId,
-      topology: {
-        runId,
-        nodes: runtimeInput.nodes as never,
-        edges: [],
-        updatedAt: new Date().toISOString(),
-      },
-      policy: {
-        id: `policy-${runId}` as never,
-        maxConcurrency: 2,
-        allowPause: true,
-        allowWarnings: true,
-        pluginIds: [],
-        phaseGating: {
-          ingest: true,
-          normalize: true,
-          plan: true,
-          execute: true,
-          observe: true,
-          finish: true,
-        },
-      },
-      startedAt: new Date().toISOString(),
-      metadata: {},
-    },
+    runId: asMeshRunId('ui', runId),
+    nodes,
+    edges,
+    updatedAt: new Date().toISOString(),
   };
 };
+
+const buildPolicy = (runId: string, waves: number): MeshPolicy => ({
+  id: asMeshPolicyId(`ui-${runId}`),
+  maxConcurrency: 3,
+  allowPause: false,
+  allowWarnings: true,
+  pluginIds: Array.from({ length: Math.max(1, waves) }, (_, index) => asMeshPluginId(`ui-${runId}-plugin-${index}`)),
+  phaseGating: policyGating,
+});
+
+const buildContext = (runId: string, topology: MeshTopology): MeshExecutionContext => ({
+  runId: topology.runId,
+  topology,
+  policy: buildPolicy(runId, topology.nodes.length),
+  phase: topology.nodes[0]?.phase ?? 'ingest',
+  startedAt: new Date().toISOString(),
+  metadata: {
+    runType: 'ui',
+    nodeCount: topology.nodes.length,
+  },
+});
+
+const toRuntimeSignals = (runId: string, output: MeshOrchestrationOutput): readonly MeshSignalEnvelope[] =>
+  output.commandIds.map((commandId, index) => ({
+    id: asMeshEventId(
+      asMeshRunId('ui', runId),
+      output.phases[index % output.phases.length],
+      index,
+    ),
+    phase: output.phases[index % output.phases.length],
+    source: asMeshNodeId(`${runId}:signal-source:${index}`),
+    class: output.phases[index % output.phases.length] === 'execute' ? 'warning' : 'baseline',
+    severity: (((index + 1) % 6) as 0 | 1 | 2 | 3 | 4 | 5),
+    payload: {
+      command: commandId,
+      phase: output.phases[index % output.phases.length],
+      rank: index,
+    },
+    createdAt: new Date().toISOString(),
+  }));
 
 const defaultState = (): RecoveryFusionMeshState => ({
   run: null,
   output: null,
   isRunning: false,
+  signals: [],
   error: null,
   phases: ['ingest', 'normalize', 'plan', 'execute', 'observe', 'finish'],
 });
+
+const toOrchestrationInput = (): MeshOrchestrationInput => {
+  const runId = `${Date.now()}`;
+  const topology = buildTopology(runId);
+  const policy = buildPolicy(runId, topology.nodes.length);
+  const context = buildContext(runId, topology);
+
+  return {
+    topology,
+    policy,
+    pluginManifests: [],
+    context,
+  };
+};
 
 export const useRecoveryFusionMeshOrchestrator = () => {
   const [state, setState] = useState<RecoveryFusionMeshState>(defaultState);
@@ -94,7 +129,7 @@ export const useRecoveryFusionMeshOrchestrator = () => {
     activeRun.current = true;
     setState((previous) => ({ ...previous, isRunning: true, error: null }));
 
-    const input = await toTopologyRun();
+    const input = toOrchestrationInput();
     const result = await executeMeshOrchestration(input);
 
     if (!activeRun.current) return;
@@ -107,7 +142,18 @@ export const useRecoveryFusionMeshOrchestrator = () => {
     setState((previous) => ({
       ...previous,
       isRunning: false,
-      output: result.value as MeshOrchestrationOutput,
+      run: input.topology
+        ? ({
+            id: input.context.runId,
+            topology: input.topology,
+            waves: result.value.waves,
+            policies: [input.policy.id],
+            phase: result.value.phases.at(-1) ?? 'finish',
+            createdAt: new Date().toISOString(),
+          } satisfies MeshRun)
+        : previous.run,
+      output: result.value,
+      signals: toRuntimeSignals(input.context.runId, result.value),
       phases: result.value.phases,
     }));
   }, []);

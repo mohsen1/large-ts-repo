@@ -9,7 +9,8 @@ export const FusionMeshTopologyPanel = ({ topology }: FusionMeshTopologyPanelPro
     return <section className="fusion-mesh-topology">No topology loaded</section>;
   }
 
-  const nodes = topology.nodes.map((node) => (
+  const sortedNodes = [...topology.nodes].toSorted((left, right) => right.id.localeCompare(left.id));
+  const nodes = sortedNodes.map((node) => (
     <li key={`${topology.runId}:${node.id}`}>
       {`${node.id} (${node.role}) phase=${node.phase} score=${node.score.toFixed(2)} active=${node.active}`}
     </li>
@@ -28,6 +29,7 @@ export const FusionMeshTopologyPanel = ({ topology }: FusionMeshTopologyPanelPro
       <p>Nodes: {topology.nodes.length}</p>
       <p>Edges: {topology.edges.length}</p>
       <p>Updated: {topology.updatedAt}</p>
+      <p>Active nodes: {topology.nodes.filter((node) => node.active).length}</p>
       <div>
         <strong>Node Map</strong>
         <ul>{nodes}</ul>

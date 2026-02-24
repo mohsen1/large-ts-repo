@@ -1,73 +1,104 @@
 import { fail, ok, type Result } from '@shared/result';
 
-import { type MeshExecutionContext, type MeshPhase, type MeshRuntimeEvent } from '@domain/recovery-fusion-intelligence';
+import {
+  type MeshExecutionContext,
+  type MeshManifestEntry,
+  type MeshPhase,
+  type MeshRunId,
+  type MeshRuntimeEvent,
+  asMeshRuntimeMarker,
+} from '@domain/recovery-fusion-intelligence';
 
 export interface MeshExecutionScope {
-  readonly runId: string;
+  readonly runId: MeshRunId;
   readonly startedAt: string;
   readonly phase: MeshPhase;
+  readonly events: readonly MeshRuntimeEvent[];
+  readonly manifests: readonly MeshManifestEntry[];
 }
 
 interface AsyncDisposableLike {
   [Symbol.asyncDispose](): Promise<void>;
 }
 
-interface MeshScopeState {
-  readonly runId: string;
+class ScopeState {
+  readonly startedAt: string;
+  readonly events: MeshRuntimeEvent[];
   phase: MeshPhase;
-  events: MeshRuntimeEvent[];
+
+  constructor(readonly runId: MeshRunId, readonly manifests: readonly MeshManifestEntry[], initialPhase: MeshPhase) {
+    this.phase = initialPhase;
+    this.startedAt = new Date().toISOString();
+    this.events = [];
+  }
+
+  push(event: Omit<MeshRuntimeEvent, 'runId'>): void {
+    this.events.push({ ...event, runId: this.runId });
+  }
 }
 
 export class MeshRunScope implements AsyncDisposableLike {
+  #state: ScopeState;
   #disposed = false;
-  readonly #events: MeshRuntimeEvent[];
 
-  constructor(private readonly state: MeshScopeState, private readonly context: MeshExecutionContext | null = null) {
-    this.#events = state.events;
+  constructor(
+    state: ScopeState,
+    private readonly context: MeshExecutionContext,
+  ) {
+    this.#state = state;
   }
 
-  [Symbol.asyncDispose] = async (): Promise<void> => {
-    this.#disposed = true;
-    this.state.phase = 'finish';
-    if (this.context) {
-      this.state.events.push({
-        runId: this.state.runId as MeshExecutionContext['runId'],
-        phase: this.state.phase,
-        marker: `phase:${this.state.phase}`,
-        payload: {
-          contextPhase: this.context.phase,
-          pluginCount: this.context.policy.pluginIds.length,
-          signalCount: this.context.topology.nodes.length,
-        },
-      });
-    }
-  };
+  get events(): readonly MeshRuntimeEvent[] {
+    return [...this.#state.events];
+  }
+
+  get phase(): MeshPhase {
+    return this.#state.phase;
+  }
 
   get disposed(): boolean {
     return this.#disposed;
   }
+
+  [Symbol.asyncDispose] = async (): Promise<void> => {
+    if (this.#disposed) return;
+
+    this.#disposed = true;
+    this.#state.push({
+      phase: 'finish',
+      marker: asMeshRuntimeMarker('finish'),
+      payload: {
+        contextRunId: this.context.runId,
+        pluginCount: this.context.policy.pluginIds.length,
+      },
+    });
+
+    this.#state.phase = 'finish';
+  };
+
+  [Symbol.dispose] = (): void => {
+    void this[Symbol.asyncDispose]();
+  };
+
+  log(event: Omit<MeshRuntimeEvent, 'runId'>): void {
+    this.#state.push(event);
+  }
 }
 
 export const createMeshRunScope = (
-  runId: string,
+  runId: MeshRunId,
   context: MeshExecutionContext,
+  manifests: readonly MeshManifestEntry[] = [],
 ): Result<MeshRunScope, Error> => {
-  if (!runId) {
+  if (!runId || !context?.runId) {
     return fail(new Error('runId required'));
   }
 
-  return ok(
-    new MeshRunScope(
-      {
-        runId,
-        events: [],
-        phase: 'ingest',
-      },
-      context,
-    ),
-  );
+  const state = new ScopeState(runId, manifests, context.phase);
+  return ok(new MeshRunScope(state, context));
 };
 
-export const appendEvent = (event: MeshRuntimeEvent, events: MeshRuntimeEvent[]): void => {
-  events.push(event);
-};
+export const appendEvent = (event: MeshRuntimeEvent, events: readonly MeshRuntimeEvent[]): readonly MeshRuntimeEvent[] => [
+  ...events,
+  event,
+];

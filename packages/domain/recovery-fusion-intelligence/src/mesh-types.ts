@@ -11,16 +11,13 @@ export type MeshPriority = 0 | 1 | 2 | 3 | 4 | 5;
 export type MeshNodeRole = 'source' | 'transform' | 'aggregator' | 'sink';
 
 export type MeshNodeId = Brand<string, 'mesh-node'>;
-
 export type MeshRunId = Brand<string, 'mesh-run'>;
-
 export type MeshWaveId = Brand<string, 'mesh-wave'>;
-
 export type MeshPolicyId = Brand<string, 'mesh-policy'>;
-
 export type MeshPluginId = Brand<string, 'mesh-plugin'>;
-
 export type MeshEventId = Brand<string, 'mesh-event'>;
+export type MeshCommandId = Brand<string, 'mesh-command'>;
+export type MeshWaveCommandId = Brand<string, 'mesh-wave-command'>;
 
 export type MeshPluginName = `fusion-plugin:${string}`;
 
@@ -32,7 +29,7 @@ export interface MeshNode {
   readonly score: number;
   readonly phase: MeshPhase;
   readonly active: boolean;
-  readonly metadata: Record<string, unknown>;
+  readonly metadata: Readonly<Record<string, unknown>>;
 }
 
 export interface MeshEdge {
@@ -62,7 +59,7 @@ export interface MeshSignalEnvelope<TPayload = unknown> {
 }
 
 export interface MeshCommand {
-  readonly commandId: Brand<string, 'mesh-command'>;
+  readonly commandId: MeshCommandId;
   readonly runId: MeshRunId;
   readonly nodeId: MeshNodeId;
   readonly action: 'start' | 'pause' | 'resume' | 'finish';
@@ -73,7 +70,7 @@ export interface MeshCommand {
 export interface MeshWave {
   readonly id: MeshWaveId;
   readonly runId: MeshRunId;
-  readonly commandIds: readonly Brand<string, 'mesh-wave-command'>[];
+  readonly commandIds: readonly MeshWaveCommandId[];
   readonly nodes: readonly MeshNodeId[];
   readonly startAt: string;
   readonly windowMinutes: number;
@@ -90,7 +87,7 @@ export interface MeshRun {
 
 export interface MeshPolicy {
   readonly id: MeshPolicyId;
-  readonly maxConcurrency: number;
+  readonly maxConcurrency: MeshPriority;
   readonly allowPause: boolean;
   readonly allowWarnings: boolean;
   readonly pluginIds: readonly MeshPluginId[];
@@ -109,68 +106,18 @@ export interface MeshManifestEntry {
   readonly tags: readonly MeshSignalClass[];
 }
 
+export interface MeshManifestCatalog {
+  readonly tenantId: string;
+  readonly policyId: MeshPolicyId;
+  readonly runId: MeshRunId;
+  readonly timestamp: string;
+  readonly plugins: readonly MeshManifestEntry[];
+  readonly schemaVersion: '1.0' | '2.0';
+}
+
 export type MeshPluginInputShape<T> = {
   readonly [K in keyof T]: T[K];
 };
-
-export interface MeshPluginContract<TInput = unknown, TOutput = unknown> {
-  readonly manifest: MeshManifestEntry;
-  readonly input: MeshPluginInputShape<TInput>;
-  readonly output: MeshPluginInputShape<TOutput>;
-}
-
-export interface MeshExecutionContext {
-  readonly runId: MeshRunId;
-  readonly topology: MeshTopology;
-  readonly policy: MeshPolicy;
-  readonly startedAt: string;
-  readonly metadata: Readonly<Record<string, unknown>>;
-}
-
-export type AnyMeshPlugin = MeshPlugin<any, any>;
-
-export interface MeshRuntimeEvent {
-  readonly runId: MeshRunId;
-  readonly phase: MeshPhase;
-  readonly marker: MeshPhaseMarker;
-  readonly payload: Record<string, unknown>;
-}
-
-export interface MeshRunSummary {
-  readonly runId: MeshRunId;
-  readonly phaseCount: number;
-  readonly nodeCount: number;
-  readonly waveCount: number;
-  readonly criticality: MeshPriority;
-  readonly metrics: readonly MeshSignalEnvelope[];
-}
-
-export interface MeshPlanRecord {
-  readonly pluginId: MeshPluginId;
-  readonly rank: MeshPriority;
-  readonly reasons: readonly string[];
-}
-
-export type PluginRecordMap<T extends readonly MeshManifestEntry[]> = {
-  [K in T[number] as K['name']]: K;
-};
-
-export type PluginName<T> = T extends { readonly name: infer Name } ? Name : never;
-
-export type PluginInputOf<T> = T extends MeshPlugin<infer I, any> ? I : never;
-
-export type PluginOutputOf<T> = T extends MeshPlugin<any, infer O> ? O : never;
-
-export type NodeLookup<T, TId extends MeshNodeId> = T extends readonly MeshNode[]
-  ? T[number] & { id: TId }
-  : never;
-
-export interface MeshPluginContext {
-  readonly pluginId: MeshPluginId;
-  readonly runId: MeshRunId;
-  readonly nodeIndex: ReadonlyMap<MeshNodeId, MeshNode>;
-  readonly signalSink: (signal: MeshSignalEnvelope) => void;
-}
 
 export interface MeshPlugin<TInput = unknown, TOutput = unknown> {
   readonly manifest: MeshManifestEntry;
@@ -179,19 +126,42 @@ export interface MeshPlugin<TInput = unknown, TOutput = unknown> {
   readonly dispose?: () => Promise<void> | void;
 }
 
-export type MeshRuntimeInput = {
+export interface MeshPluginContext {
+  readonly pluginId: MeshPluginId;
+  readonly runId: MeshRunId;
+  readonly nodeIndex: ReadonlyMap<MeshNodeId, MeshNode>;
+  readonly signalSink: (signal: MeshSignalEnvelope) => void;
+}
+
+export interface MeshExecutionContext {
+  readonly runId: MeshRunId;
+  readonly topology: MeshTopology;
+  readonly policy: MeshPolicy;
+  readonly phase: MeshPhase;
+  readonly startedAt: string;
+  readonly metadata: Readonly<Record<string, unknown>>;
+}
+
+export interface MeshRuntimeInput {
   readonly phases: readonly MeshPhase[];
   readonly nodes: readonly MeshNode[];
   readonly edges: readonly MeshEdge[];
   readonly pluginIds: readonly MeshPluginId[];
-};
+}
 
-export type MeshRuntimeEventEnvelope<TType extends string, TPayload = unknown> = {
+export interface MeshRuntimeEvent {
+  readonly runId: MeshRunId;
+  readonly phase: MeshPhase;
+  readonly marker: MeshPhaseMarker;
+  readonly payload: Record<string, unknown>;
+}
+
+export interface MeshRuntimeEventEnvelope<TType extends string, TPayload = unknown> {
   readonly kind: TType;
   readonly phase: MeshPhase;
   readonly payload: TPayload;
   readonly timestamp: string;
-};
+}
 
 export interface MeshTelemetryPoint {
   readonly key: `mesh.${string}`;
@@ -200,60 +170,163 @@ export interface MeshTelemetryPoint {
   readonly timestamp: string;
 }
 
-export type RenamedMetricMap<TRecord extends Record<string, number>> = {
+export interface MeshPriorityEnvelope {
+  readonly window: MeshPhase;
+  readonly value: MeshPriority;
+  readonly reasons: readonly string[];
+}
+
+export interface MeshRuntimeContext {
+  readonly runId: MeshRunId;
+  readonly topology: MeshTopology;
+  readonly policy: MeshPolicy;
+  readonly phase: MeshPhase;
+  readonly startedAt: string;
+  readonly metadata: Readonly<Record<string, unknown>>;
+}
+
+export interface MeshOrchestrationSummary {
+  readonly warningRatio: number;
+  readonly warningCount: number;
+  readonly commandCount: number;
+  readonly waveCount: number;
+}
+
+export type MeshOrchestrationStatus = 'bootstrapping' | 'queued' | 'running' | 'degraded' | 'ok' | 'failed';
+
+export interface MeshOrchestrationOutput {
+  readonly runId: MeshRunId;
+  readonly status: MeshOrchestrationStatus;
+  readonly phases: readonly MeshPhase[];
+  readonly waves: readonly MeshWave[];
+  readonly commandIds: readonly MeshWaveCommandId[];
+  readonly summary: MeshOrchestrationSummary;
+}
+
+export interface MeshPolicyWindow {
+  readonly phase: MeshPhase;
+  readonly enabled: boolean;
+  readonly priorityCutoff: MeshPriority;
+}
+
+export type MeshPlanRecord = {
+  readonly pluginId: MeshPluginId;
+  readonly rank: MeshPriority;
+  readonly reasons: readonly string[];
+};
+
+export type MeshRuntimeBlueprint = {
+  readonly phases: readonly MeshPhase[];
+  readonly maxWaveLength: number;
+  readonly concurrency: MeshPriority;
+};
+
+export type MeshSignalMap<TRecord extends Record<string, number>> = {
   [K in keyof TRecord as `mesh.${Extract<K, string>}`]: TRecord[K];
 };
 
-export type EventPayloadFromTopology<T> = T extends MeshRuntimeEventEnvelope<infer _K, infer P> ? P : never;
+export type MeshPluginNameMap<T extends readonly MeshManifestEntry[]> = {
+  [K in T[number] as K['name']]: K;
+};
 
-export type InferPluginInput<T> = T extends MeshPlugin<infer I, unknown> ? I : never;
+export type MeshPluginByIdMap<T extends readonly MeshManifestEntry[]> = {
+  [K in T[number] as K['pluginId']]: K;
+};
 
-export type InferPluginOutput<T> = T extends MeshPlugin<unknown, infer O> ? O : never;
+export type PluginInputOf<T> = T extends MeshPlugin<infer I, unknown> ? I : never;
+export type PluginOutputOf<T> = T extends MeshPlugin<unknown, infer O> ? O : never;
 
-export type MeshNodeSequence<T extends readonly MeshNode[]> =
+export type PluginName<T> = T extends { readonly name: infer Name } ? Name : never;
+
+export type NodePath<T extends readonly MeshNode[]> =
   T extends readonly [infer Head, ...infer Tail]
     ? Head extends MeshNode
-      ? readonly [Head, ...MeshNodeSequence<Tail & readonly MeshNode[]>]
+      ? readonly [Head, ...NodePath<Tail & readonly MeshNode[]>]
       : readonly []
     : readonly [];
 
-export type RecursiveTuple<T, Max extends number, Acc extends readonly unknown[] = []> =
-  Acc['length'] extends Max
+export type MeshPhaseString<T extends readonly MeshPhase[]> =
+  T[number] extends infer Value
+    ? Value extends MeshPhase
+      ? `${Value}`
+      : never
+    : never;
+
+export type TupleRec<T, N extends number, Acc extends readonly T[] = []> =
+  Acc['length'] extends N
     ? Acc
-    : RecursiveTuple<T, Max, [...Acc, T]>;
+    : TupleRec<T, N, readonly [ ...Acc, T ]>;
 
-export type TemplateEventCode<TEvent> = TEvent extends { readonly kind: infer Kind }
-  ? Kind extends string
-    ? `mesh-event:${Kind}`
-    : never
-  : never;
+export type TemplateCode<T extends string> = `mesh.${T}`;
 
-export const normalizePriority = (value: MeshPriority): MeshPriority => (value < 0 ? 0 : value > 5 ? 5 : value);
+export type EventPayloadFromEnvelope<T> = T extends MeshRuntimeEventEnvelope<infer _K, infer Payload> ? Payload : never;
+
+export const normalizePriority = (value: number): MeshPriority => {
+  const rounded = Math.round(value);
+  if (!Number.isFinite(rounded)) return 0;
+  if (rounded < 0) return 0;
+  if (rounded > 5) return 5;
+  return rounded as MeshPriority;
+};
+
+export const normalizeWeightedPriority = (value: number, cap = 5): MeshPriority => normalizePriority(value * cap);
 
 export const isCriticalSignal = (severity: MeshPriority): boolean => severity >= 4;
 
-export const phaseToMetric = (phase: MeshPhase): MeshSignalClass =>
-  phase === 'execute' || phase === 'plan' ? 'warning' : phase === 'observe' ? 'critical' : 'baseline';
+export const phaseToSignalClass = (phase: MeshPhase): MeshSignalClass =>
+  phase === 'execute' || phase === 'plan'
+    ? 'warning'
+    : phase === 'observe'
+      ? 'critical'
+      : 'baseline';
 
-export const makeNodeId = (scope: string, id: string): MeshNodeId => `${scope}:${id}` as MeshNodeId;
+export const asMeshNodeId = (value: string): MeshNodeId => `mesh-node:${value}` as MeshNodeId;
+export const asMeshRunId = (tenant: string, tag: string): MeshRunId => `tenant-${tenant}-${tag}` as MeshRunId;
+export const asMeshPluginId = (value: string): MeshPluginId => `plugin:${value}` as MeshPluginId;
+export const asMeshWaveId = (runId: MeshRunId, phase: MeshPhase, index: number): MeshWaveId =>
+  `${runId}:${phase}:${index}` as MeshWaveId;
+export const asMeshCommandId = (runId: MeshRunId, nodeId: MeshNodeId, order: number): MeshCommandId =>
+  `${runId}:${nodeId}:${order}` as MeshCommandId;
+export const asMeshWaveCommandId = (runId: MeshRunId, waveId: MeshWaveId, order: number): MeshWaveCommandId =>
+  `${runId}:${waveId}:cmd-${order}` as MeshWaveCommandId;
+export const asMeshEventId = (runId: MeshRunId, phase: MeshPhase, index: number): MeshEventId => `${runId}:${phase}:${index}` as MeshEventId;
+export const asMeshPolicyId = (value: string): MeshPolicyId => `policy:${value}` as MeshPolicyId;
+export const asMeshRuntimeMarker = <TPhase extends MeshPhase>(phase: TPhase): `phase:${TPhase}` => `phase:${phase}`;
 
-export const makeRunId = (tenant: string, tag: string): MeshRunId => `tenant-${tenant}-${tag}` as MeshRunId;
+export const isMeshPluginName = (value: string): value is MeshPluginName => value.startsWith('fusion-plugin:');
 
-export const runWithMarker = <T>(marker: MeshPhaseMarker, value: T): { marker: MeshPhaseMarker; value: T } => ({
-  marker,
-  value,
+export const asSignalEnvelope = <TPayload>(value: {
+  readonly runId: MeshRunId;
+  readonly phase: MeshPhase;
+  readonly source: MeshNodeId;
+  readonly target?: MeshNodeId;
+  readonly class: MeshSignalClass;
+  readonly severity: MeshPriority;
+  readonly payload: TPayload;
+}): MeshSignalEnvelope<TPayload> => ({
+  ...value,
+  id: asMeshEventId(value.runId, value.phase, Date.now()),
+  createdAt: new Date().toISOString(),
 });
 
-export const defaultTopology = {
+export const asRuntimeDigest = (input: MeshRuntimeInput): string =>
+  `${input.phases.join('|')}|${input.nodes.length}|${input.edges.length}|${input.pluginIds.length}`;
+
+export const toPolicyWindow = (policy: MeshPolicy): readonly MeshPolicyWindow[] =>
+  (Object.entries(policy.phaseGating) as [MeshPhase, boolean][]).map(([phase, enabled]) => ({
+    phase,
+    enabled,
+    priorityCutoff: enabled ? policy.maxConcurrency : 0,
+  }));
+
+export const defaultTopology: MeshRuntimeBlueprint & { readonly phasePath: MeshPhaseString<MeshRuntimeBlueprint['phases']> } = {
   phases: ['ingest', 'normalize', 'plan', 'execute', 'observe', 'finish'],
   maxWaveLength: 9,
-  concurrency: 2,
-} as const satisfies MeshRuntimeInput;
+  concurrency: 3,
+  phasePath: 'ingest',
+} satisfies MeshRuntimeBlueprint & { readonly phasePath: MeshPhaseString<MeshRuntimeBlueprint['phases']> };
 
 export const meshPluginVersions = ['1.0.0', '1.1.0', '2.0.0'] as const;
 
-export const isMeshPluginName = (name: string): name is MeshPluginName =>
-  name.startsWith('fusion-plugin:');
-
-export const pluginNameFromManifest = (manifest: MeshManifestEntry): MeshPluginName => manifest.name;
-
+export const meshSignalEnvelopeKind = <TPayload>(seed: MeshRuntimeEventEnvelope<`mesh-${string}`, TPayload>): `mesh-${string}` =>
+  seed.kind;

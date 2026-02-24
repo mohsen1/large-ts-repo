@@ -1,158 +1,199 @@
 import {
+  asMeshCommandId,
+  asMeshWaveCommandId,
+  asMeshWaveId,
+  asMeshRunId,
+  defaultTopology,
+  normalizePriority,
+  normalizeWeightedPriority,
+  phaseToSignalClass,
   type MeshEdge,
   type MeshNode,
   type MeshPhase,
   type MeshPriority,
   type MeshRunId,
-  type MeshWave,
-  type MeshWaveId,
-  type MeshCommand,
-  type MeshSignalEnvelope,
   type MeshTelemetryPoint,
+  type MeshWave,
+  type MeshWaveCommandId,
+  type MeshWaveId,
+  type MeshRuntimeInput,
 } from './mesh-types';
-import { isCriticalSignal, normalizePriority, makeRunId } from './mesh-types';
-import { type MeshRuntimeInput, defaultTopology, phaseToMetric } from './mesh-types';
-
-export type WavePlan = readonly MeshWave[];
 
 export interface MeshPlannerInput {
   readonly runId: MeshRunId;
   readonly nodes: readonly MeshNode[];
   readonly edges: readonly MeshEdge[];
-  readonly maxConcurrency: number;
+  readonly maxConcurrency: MeshPriority;
   readonly seed: string;
 }
 
 export interface MeshPlannerOutput {
-  readonly waves: WavePlan;
-  readonly commandIds: readonly MeshCommand['commandId'][];
+  readonly waves: readonly MeshWave[];
+  readonly commandIds: readonly MeshWaveCommandId[];
   readonly telemetry: readonly MeshTelemetryPoint[];
   readonly planDigest: string;
 }
 
-type NodeWeight<TNode extends MeshNode = MeshNode> = TNode['score'] & number;
+export type WavePlan = readonly MeshWave[];
 
-type TupleBuilder<T, N extends number, Acc extends readonly T[] = []> = Acc['length'] extends N
-  ? Acc
-  : TupleBuilder<T, N, [...Acc, T]>;
+type WaveInputTuple<T extends readonly MeshNode[]> = readonly [...T];
 
-type WavePath<TNodes extends readonly MeshNode[], Acc extends readonly MeshNode[] = []> =
-  TNodes extends readonly [infer Head, ...infer Tail]
-    ? Head extends MeshNode
-      ? WavePath<Tail extends readonly MeshNode[] ? Tail : readonly MeshNode[], [...Acc, Head]>
-      : Acc
-    : Acc;
+const estimateWeight = (node: MeshNode): number => node.score * (node.active ? 1 : 0.3);
 
-type BuildWaveId<TSeed extends string> = `wave:${TSeed}:${number}`;
-
-export const estimateWaveWeight = (node: MeshNode): number => node.score * (node.active ? 1 : 0.3);
-
-export const rankByWeight = (nodes: readonly MeshNode[]): readonly MeshNode[] => [...nodes].sort((left, right) => {
-  const leftScore = estimateWaveWeight(left);
-  const rightScore = estimateWaveWeight(right);
-  return rightScore - leftScore;
+const normalizeNode = (node: MeshNode): MeshNode => ({
+  ...node,
+  score: Number.isFinite(node.score) ? Math.max(0, Math.min(1, node.score)) : 0,
 });
 
-export const mapNodePath = (nodes: readonly MeshNode[]): readonly string[] =>
-  nodes.map((node) => `${node.role}:${node.id}:${node.phase}`);
-
-export const selectCommandableNodes = (nodes: readonly MeshNode[], maxConcurrency: number): readonly MeshNode[] => {
-  const sorted = rankByWeight(nodes);
-  return sorted.slice(0, Math.min(sorted.length, maxConcurrency));
-};
-
-export const pickCriticalNodes = (nodes: readonly MeshNode[]): readonly MeshNode[] =>
-  nodes.filter((node) => isCriticalSignal(normalizePriority(Math.round(node.score * 5)) ? 4 as MeshPriority : 2));
-
-export const buildWave = (
-  waveIdSeed: string,
-  runId: MeshRunId,
-  nodes: readonly MeshNode[],
-  startAt: string,
-  windowMinutes: number,
-): MeshWave => ({
-  id: `wave:${waveIdSeed}` as MeshWaveId,
-  runId,
-  commandIds: nodes.map((node, index) => `${node.id}:cmd:${index}` as MeshCommand['commandId']),
-  nodes: nodes.map((node) => node.id),
-  startAt,
-  windowMinutes,
-});
-
-export const emitTelemetry = (runId: MeshRunId, phase: MeshPhase): MeshTelemetryPoint => ({
-  key: `mesh.${phase}`,
-  value: Date.now(),
-  runId,
-  timestamp: new Date().toISOString(),
-});
-
-export const collectSignals = (
-  nodes: readonly MeshNode[],
-  phase: MeshPhase,
-): MeshSignalEnvelope[] =>
+const collectSignals = (nodes: readonly MeshNode[], phase: MeshPhase): readonly {
+  readonly id: string;
+  readonly phase: MeshPhase;
+  readonly source: MeshNode['id'];
+  readonly class: ReturnType<typeof phaseToSignalClass>;
+  readonly severity: MeshPriority;
+  readonly payload: { readonly role: MeshNode['role']; readonly index: number };
+  readonly createdAt: string;
+}[] =>
   nodes.map((node, index) => ({
-    id: `${node.id}:signal:${phase}` as MeshSignalEnvelope['id'],
+    id: `${node.id}:signal:${phase}:${index}`,
     phase,
     source: node.id,
-    target: nodes[index + 1]?.id,
-    class: phaseToMetric(phase),
-    severity: normalizePriority(Math.round((node.score * 5) + index)),
-    payload: { role: node.role, active: node.active },
+    class: phaseToSignalClass(phase),
+    severity: normalizePriority(Math.round(node.score * 5)),
+    payload: { role: node.role, index },
     createdAt: new Date().toISOString(),
   }));
 
-export const planWaves = (input: MeshPlannerInput): MeshPlannerOutput => {
-  const maxConcurrency = normalizePriority(Math.round(input.maxConcurrency)) || 1;
-  const sortedNodes = rankByWeight(input.nodes);
-  const tuples = TupleBuilder<MeshNode, 4>();
-  const planned: MeshWave[] = [];
-  const telemetry: MeshTelemetryPoint[] = [];
-  const planIndex = new Map<MeshNode['id'], number>();
+const toSignalMap = (nodes: readonly MeshNode[], phase: MeshPhase) =>
+  collectSignals(nodes, phase).reduce<Record<string, number>>((acc, signal) => {
+    acc[signal.class] = (acc[signal.class] ?? 0) + 1;
+    return acc;
+  }, {});
 
-  let waveCounter = 0;
-  for (let index = 0; index < sortedNodes.length; index += maxConcurrency || 1) {
-    const selected = sortedNodes.slice(index, index + maxConcurrency);
-    const waveId = `${input.seed}:W${waveCounter++}` as MeshWave['id'];
-    const phase: MeshPhase = waveCounter === 1 ? 'plan' : 'execute';
-    const windowMinutes = Math.max(1, Math.round(selected.length * 2 + waveCounter));
-    const startAt = new Date(Date.now() + (waveCounter - 1) * 900).toISOString();
-    const wave = buildWave(waveId, input.runId, selected, startAt, windowMinutes);
-    planned.push(wave);
-    telemetry.push(emitTelemetry(input.runId, phase));
-    for (const node of selected) {
-      planIndex.set(node.id, waveCounter);
-    }
-  }
-
-  const wavePath = mapNodePath(input.nodes);
-  const wavePathDigest = [...wavePath, ...tuples.map((item) => `${item.id}`), ...wavePath].join('|');
-  const commandIds = planned.flatMap((wave) => wave.commandIds);
+const buildWaveWindow = (runId: MeshRunId, phase: MeshPhase, index: number, nodes: readonly MeshNode[]): {
+  wave: MeshWave;
+  commandIds: readonly MeshWaveCommandId[];
+  telemetry: MeshTelemetryPoint;
+} => {
+  const waveId = asMeshWaveId(runId, phase, index);
+  const startAt = new Date(Date.now() + index * 900).toISOString();
+  const windowMinutes = Math.max(1, nodes.length + index);
+  const commandIds = nodes.map((node, nodeIndex) => asMeshWaveCommandId(runId, waveId, nodeIndex));
+  const commandIdsByNode = commandIds.map((commandId, commandIndex) =>
+    asMeshCommandId(runId, nodes[commandIndex % nodes.length]?.id ?? nodes[0]!.id, commandIndex),
+  );
 
   return {
-    waves: planned,
+    wave: {
+      id: waveId,
+      runId,
+      commandIds,
+      nodes: nodes.map((node) => node.id),
+      startAt,
+      windowMinutes,
+    },
     commandIds,
-    telemetry,
-    planDigest: wavePathDigest.slice(0, 120),
+    telemetry: {
+      key: `mesh.wave.${phase}`,
+      value: commandIdsByNode.length,
+      runId,
+      timestamp: new Date().toISOString(),
+    },
   };
 };
 
-export const buildPlan = (payload: MeshRuntimeInput): MeshPlannerOutput => {
-  const topologyPhases = payload.phases;
-  const runId = makeRunId('runtime', payload.pluginIds.join('.'));
-  const plannerInput: MeshPlannerInput = {
-    runId,
-    nodes: topologyPhases.map((phase, index) => ({
-      id: `node:${index}:${phase}` as MeshNode['id'],
-      role: index % 4 === 0 ? 'source' : index % 4 === 1 ? 'transform' : index % 4 === 2 ? 'aggregator' : 'sink',
-      score: (index + 1) / Math.max(1, topologyPhases.length),
-      phase,
+export const waveSignals = (waves: WavePlan): number => waves.reduce((sum, wave) => sum + wave.nodes.length, 0);
+
+export const makeWavePlan = (input: MeshPlannerInput): MeshPlannerOutput => {
+  const phases = defaultTopology.phases;
+  const ranked = [...input.nodes].map(normalizeNode).toSorted((left, right) => estimateWeight(right) - estimateWeight(left));
+
+  const concurrency = Math.max(1, input.maxConcurrency);
+  const wavesInput: MeshNode[][] = [];
+
+  for (let index = 0; index < ranked.length; index += concurrency) {
+    wavesInput.push(ranked.slice(index, index + concurrency));
+  }
+
+  if (wavesInput.length === 0) {
+    const fallback = [[...ranked][0] ?? {
+      id: input.nodes[0]?.id ?? (`mesh-node:${input.seed}` as MeshNode['id']),
+      role: 'source',
+      score: 0.5,
+      phase: 'ingest',
       active: true,
-      metadata: { phase, version: defaultTopology.maxWaveLength },
-    })),
-    edges: [],
-    maxConcurrency: defaultTopology.concurrency,
-    seed: payload.phases.join(','),
+      metadata: {},
+    }];
+    wavesInput.push(fallback);
+  }
+
+  const allWaves: MeshWave[] = [];
+  const commandIds: MeshWaveCommandId[] = [];
+  const telemetry: MeshTelemetryPoint[] = [];
+  const phaseWindow = Object.entries(phases)
+    .map(([index]) => Number(index) % phases.length)
+    .map((phaseIndex) => phases[phaseIndex % phases.length] as MeshPhase);
+
+  for (const [index, nodes] of wavesInput.entries()) {
+    const phase = phaseWindow[index % phaseWindow.length];
+    const { wave, commandIds: batchCommandIds, telemetry: point } = buildWaveWindow(
+      input.runId,
+      phase,
+      index,
+      nodes,
+      );
+    allWaves.push(wave);
+    commandIds.push(...batchCommandIds);
+    telemetry.push(point);
+
+    const signalBuckets = toSignalMap(nodes, phase);
+    void signalBuckets;
+  }
+
+  const signatureParts = [input.seed, String(input.nodes.length), String(wavesInput.length), String(commandIds.length)];
+
+  return {
+    waves: Object.freeze(allWaves),
+    commandIds: Object.freeze(commandIds),
+    telemetry: Object.freeze(telemetry),
+    planDigest: signatureParts.join('|'),
+  };
+};
+
+export const buildPlan = (runtime: MeshRuntimeInput): MeshPlannerOutput => {
+  const seededRunId = asMeshRunId(
+    'runtime',
+    runtime.pluginIds.length > 0
+      ? `${runtime.pluginIds[0]}-${runtime.nodes.length}-${runtime.edges.length}`
+      : `seed-${runtime.nodes.length}-${runtime.phases.length}`,
+  );
+  const input: MeshPlannerInput = {
+    runId: seededRunId,
+    nodes: runtime.nodes,
+    edges: runtime.edges,
+    maxConcurrency: normalizeWeightedPriority(runtime.pluginIds.length, 5),
+    seed: runtime.pluginIds.map((pluginId) => pluginId).join(':'),
   };
 
-  return planWaves(plannerInput);
+  return makeWavePlan(input);
 };
+
+export const policyWindowSignature = (phases: readonly MeshPhase[]): string =>
+  phases.toSorted().join('->');
+
+export const selectNodeTuple = <TNodes extends readonly MeshNode[]>(nodes: TNodes): WaveInputTuple<TNodes> =>
+  [...nodes] as WaveInputTuple<TNodes>;
+
+export const toCommandIds = (wave: MeshWave): readonly string[] => [...wave.commandIds];
+
+export const estimateTelemetry = (waves: readonly MeshWave[]): number => waves.reduce((sum, wave) => sum + wave.nodes.length, 0);
+
+export const mapNodePath = (nodes: readonly MeshNode[]): readonly string[] => nodes.map((node) => `${node.id}/${node.role}`);
+
+export const collectPlanMetrics = (waves: readonly MeshWave[]): readonly MeshTelemetryPoint[] =>
+  waves.map((wave, index) => ({
+    key: `mesh.metrics.${wave.id}`,
+    value: wave.nodes.length + index,
+    runId: wave.runId,
+    timestamp: new Date().toISOString(),
+  }));

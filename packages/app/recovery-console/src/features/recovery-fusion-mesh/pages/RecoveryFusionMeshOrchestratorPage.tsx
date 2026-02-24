@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
-
 import { FusionMeshCommandQueue } from '../components/FusionMeshCommandQueue';
+import { FusionMeshPolicyBadge } from '../components/FusionMeshPolicyBadge';
+import { FusionMeshSignalInspector } from '../components/FusionMeshSignalInspector';
 import { FusionMeshSignalBoard } from '../components/FusionMeshSignalBoard';
 import { FusionMeshTopologyPanel } from '../components/FusionMeshTopologyPanel';
 import { useRecoveryFusionMeshOrchestrator } from '../hooks/useRecoveryFusionMeshOrchestrator';
@@ -8,8 +8,10 @@ import { useRecoveryFusionMeshOrchestrator } from '../hooks/useRecoveryFusionMes
 export const RecoveryFusionMeshOrchestratorPage = () => {
   const { state, runOrchestration, clear, topCriticalSignals } = useRecoveryFusionMeshOrchestrator();
 
-  const phases = state.phases.map((phase) => <li key={phase}>{phase}</li>);
-  const statusLine = state.error ? `Error: ${state.error}` : state.isRunning ? 'running...' : 'idle';
+  const phaseChips = state.phases.map((phase) => <li key={phase}>{phase}</li>);
+  const statusLine = state.error ? `Error: ${state.error}` : state.isRunning ? 'running...' : 'ready';
+  const commandCount = state.output?.commandIds.length ?? 0;
+  const latestSignals = state.output ? state.output.waves.flatMap((wave) => wave.commandIds).slice(-6) : [];
 
   return (
     <article className="fusion-mesh-page">
@@ -17,6 +19,12 @@ export const RecoveryFusionMeshOrchestratorPage = () => {
         <h2>Recovery Fusion Mesh Orchestrator</h2>
         <p>{statusLine}</p>
         <p>Critical signal view: {topCriticalSignals ? 'active' : 'steady'}</p>
+        <FusionMeshPolicyBadge
+          className="mesh-policy-badge"
+          status={topCriticalSignals ? 'warning' : 'stable'}
+          commandCount={commandCount}
+          phaseCount={state.phases.length}
+        />
       </header>
 
       <section>
@@ -30,7 +38,7 @@ export const RecoveryFusionMeshOrchestratorPage = () => {
 
       <section>
         <h3>Phases</h3>
-        <ul>{phases}</ul>
+        <ul>{phaseChips}</ul>
       </section>
 
       <section>
@@ -39,16 +47,11 @@ export const RecoveryFusionMeshOrchestratorPage = () => {
 
       <section>
         <h3>Signals</h3>
-        <FusionMeshSignalBoard signals={state.output?.waves.flatMap((wave) => wave.commandIds.map((commandId) => ({
-          id: commandId,
-          phase: state.phases[state.phases.length - 1] ?? 'finish',
-          source: (wave.nodes[0] ?? 'node-missing') as never,
-          target: wave.nodes[1],
-          class: 'baseline',
-          severity: 2,
-          payload: { commandId },
-          createdAt: new Date().toISOString(),
-        }))} />
+        <FusionMeshSignalBoard signals={state.signals} />
+      </section>
+
+      <section>
+        <FusionMeshSignalInspector signalIds={latestSignals} />
       </section>
 
       <section>

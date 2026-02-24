@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import type { MeshSignalEnvelope } from '@domain/recovery-fusion-intelligence';
 
 interface FusionMeshSignalBoardProps {
@@ -5,18 +7,34 @@ interface FusionMeshSignalBoardProps {
 }
 
 export const FusionMeshSignalBoard = ({ signals }: FusionMeshSignalBoardProps) => {
-  const signalBuckets = signals.reduce(
-    (acc, signal) => {
-      const bucket = acc.get(signal.class) ?? [];
-      bucket.push(signal);
-      acc.set(signal.class, bucket);
-      return acc;
-    },
-    new Map<string, typeof signals>(),
+  const { critical, warning, baseline } = useMemo(() => {
+    const initial = { critical: [] as MeshSignalEnvelope[], warning: [] as MeshSignalEnvelope[], baseline: [] as MeshSignalEnvelope[] };
+    return signals.reduce(
+      (acc, signal) => {
+        if (signal.class === 'critical') {
+          acc.critical.push(signal);
+        } else if (signal.class === 'warning') {
+          acc.warning.push(signal);
+        } else {
+          acc.baseline.push(signal);
+        }
+        return acc;
+      },
+      initial,
+    );
+  }, [signals]);
+
+  const buckets = useMemo(
+    () =>
+      [
+        ['critical', critical],
+        ['warning', warning],
+        ['baseline', baseline],
+      ] as const,
+    [critical, warning, baseline],
   );
 
-  const buckets = ['critical', 'warning', 'baseline'].map((bucket) => {
-    const items = signalBuckets.get(bucket) ?? [];
+  const rendered = buckets.map(([bucket, items]) => {
     const rendered = items.map((signal) => (
       <li key={signal.id}>
         <span>{signal.source}</span>
@@ -35,5 +53,5 @@ export const FusionMeshSignalBoard = ({ signals }: FusionMeshSignalBoardProps) =
     );
   });
 
-  return <section className="fusion-mesh-signal-board">{buckets}</section>;
+  return <section className="fusion-mesh-signal-board">{rendered}</section>;
 };
