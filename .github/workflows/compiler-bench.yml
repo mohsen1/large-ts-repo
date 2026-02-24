@@ -23,6 +23,28 @@ jobs:
         with:
           node-version: 22
 
+      - name: Validate package manifest JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Validating all package.json files..."
+          fail=0
+
+          while IFS= read -r -d '' file; do
+            if ! node -e "const fs = require('node:fs'); JSON.parse(fs.readFileSync(process.argv[1], 'utf8'))" "$file"; then
+              echo "::error file=$file::Invalid JSON in package.json"
+              fail=1
+            fi
+          done < <(find . -name package.json -print0)
+
+          if [ "$fail" -ne 0 ]; then
+            echo "One or more package.json files are invalid JSON."
+            exit 1
+          fi
+
+          echo "All package.json files are valid JSON."
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile=false
 
