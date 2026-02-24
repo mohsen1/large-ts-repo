@@ -71,6 +71,9 @@ importers:
       '@service/recovery-incident-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-command-orchestrator
+      '@service/recovery-incident-intent-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-intent-orchestrator
       '@service/recovery-lattice-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-lattice-orchestrator
@@ -1675,6 +1678,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/data/recovery-incident-intent-store:
+    dependencies:
+      '@domain/recovery-incident-intent':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-intent
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/data/recovery-incident-lab-store:
     dependencies:
       '@domain/recovery-incident-lab-core':
@@ -3225,6 +3240,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-incident-intent:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-incident-lab-core:
     dependencies:
@@ -5569,6 +5596,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-incident-intent-orchestrator:
+    dependencies:
+      '@data/recovery-incident-intent-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-incident-intent-store
+      '@domain/recovery-incident-intent':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-intent
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-incident-lab-orchestrator:
     dependencies:
