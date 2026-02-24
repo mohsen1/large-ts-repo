@@ -1001,6 +1001,9 @@ importers:
       '@domain/recovery-timeline':
         specifier: workspace:*
         version: link:../../domain/recovery-timeline
+      '@domain/recovery-timeline-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-timeline-orchestration
       '@service/recovery-ops-playbook-studio-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-ops-playbook-studio-orchestrator
@@ -1010,6 +1013,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/timeline-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/timeline-orchestration-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -3996,6 +4002,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-timeline-orchestration:
+    dependencies:
+      '@domain/recovery-timeline':
+        specifier: workspace:*
+        version: link:../recovery-timeline
+      '@shared/timeline-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/timeline-orchestration-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-workload-intelligence:
     dependencies:
       '@shared/core':
@@ -6878,6 +6899,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+
+  packages/shared/timeline-orchestration-runtime:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/type-level:
     dependencies:

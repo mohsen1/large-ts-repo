@@ -53,6 +53,12 @@
       "path": "./packages/app/recovery-timeline-studio"
     },
     {
+      "path": "./packages/domain/recovery-timeline-orchestration"
+    },
+    {
+      "path": "./packages/shared/timeline-orchestration-runtime"
+    },
+    {
       "path": "./packages/app/reporter"
     },
     {

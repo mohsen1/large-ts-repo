@@ -39,10 +39,16 @@
       "path": "./../../shared/result/tsconfig.json"
     },
     {
+      "path": "./../../shared/timeline-orchestration-runtime/tsconfig.json"
+    },
+    {
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
       "path": "./../../shared/util/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-timeline-orchestration/tsconfig.json"
     }
   ]
 }
