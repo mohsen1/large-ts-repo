@@ -22,3 +22,7 @@ export * from './incident-studio-schedule';
 export * from './incident-studio-adaptivity';
 export * from './incident-studio-observability';
 export * from './incident-studio-workbench';
+export * from './control-orchestration-types';
+export * from './control-registry';
+export * from './control-governance-adapter';
+export * from './control-observability';

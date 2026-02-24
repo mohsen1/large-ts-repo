@@ -112,6 +112,26 @@ jobs:
             echo "Note: benchmark status may show compiler failures while CI still succeeds to preserve timing/report visibility."
           } >> "$GITHUB_STEP_SUMMARY"
 
+          if [ ! -s ".bench/summary.table.md" ]; then
+            {
+              echo "| Compiler | Status | Duration (s) |"
+              echo "| --- | --- | ---: |"
+              echo "| no-run | FAIL | 0.000 |"
+            } > .bench/summary.table.md
+          fi
+
+          if [ ! -s ".bench/results.csv" ]; then
+            {
+              echo "compiler,status,duration_ms,command"
+              echo "no-run,FAIL,0,compile-and-bench"
+            } > .bench/results.csv
+          fi
+
+          if ! find .bench -maxdepth 1 -type f -name '*.log' | grep -q .; then
+            : > ".bench/no-output.log"
+            printf "%s\n" "No compiler output logs were produced." > ".bench/no-output.log"
+          fi
+
       - name: Upload benchmark artifacts
         if: always()
         uses: actions/upload-artifact@v4
