@@ -33,3 +33,5 @@ export * from './convergence-runtime-contracts';
 export * from './convergence-graph';
 export * from './convergence-observability';
 export * from './convergence-runner';
+export * from './intelligence-orchestration';
+export * from './intelligence-registry';

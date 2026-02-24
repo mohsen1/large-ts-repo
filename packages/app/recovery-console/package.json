@@ -101,6 +101,7 @@
     "@service/recovery-incident-saga-orchestrator": "workspace:*",
     "@domain/recovery-synthetic-orchestration": "workspace:*",
     "@data/recovery-synthetic-orchestration-store": "workspace:*",
-    "@service/recovery-synthetic-orchestrator": "workspace:*"
+    "@service/recovery-synthetic-orchestrator": "workspace:*",
+    "@domain/recovery-stress-lab-intelligence": "workspace:*"
   }
 }

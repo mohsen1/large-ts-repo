@@ -9,12 +9,29 @@
     "src/**/*"
   ],
   "references": [
-    { "path": "./../../shared/core/tsconfig.json" },
-    { "path": "./../../shared/type-level/tsconfig.json" },
-    { "path": "./../../shared/result/tsconfig.json" },
-    { "path": "./../../shared/stress-lab-runtime/tsconfig.json" },
-    { "path": "./../../shared/util/tsconfig.json" },
-    { "path": "./../../domain/analytics/tsconfig.json" },
-    { "path": "./../../domain/recovery-lab-governance/tsconfig.json" }
+    {
+      "path": "./../../domain/analytics/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-governance/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-stress-lab-intelligence/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/stress-lab-runtime/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    }
   ]
 }

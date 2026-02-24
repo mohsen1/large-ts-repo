@@ -40,6 +40,7 @@ export * from './advanced-workflow-catalog';
 export * from './advanced-workflow-schema';
 export * from './advanced-workflow-engine';
 export * from './advanced-workflow-audit';
+export * from './intelligence-workspace';
 export {
   type WorkflowRenderModel,
   type WorkflowRenderStage,

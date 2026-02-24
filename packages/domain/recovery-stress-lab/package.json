@@ -19,6 +19,7 @@
     "@shared/stress-lab-runtime": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@domain/recovery-lab-governance": "workspace:*",
-    "zod": "^3.24.0"
+    "zod": "^3.24.0",
+    "@domain/recovery-stress-lab-intelligence": "workspace:*"
   }
 }
