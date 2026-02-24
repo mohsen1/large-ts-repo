@@ -1305,6 +1305,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
 
   packages/data/recovery-incident-store:
     dependencies:
@@ -2607,6 +2610,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
 
   packages/domain/recovery-incident-orchestration:
     dependencies:
@@ -4489,6 +4495,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/validation':
+        specifier: workspace:*
+        version: link:../../shared/validation
 
   packages/service/recovery-incident-orchestrator:
     dependencies:

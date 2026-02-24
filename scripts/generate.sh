@@ -81,7 +81,7 @@ manifest_signature() {
 
 install_deps() {
   echo "Installing dependencies with pnpm..."
-  run_and_wait pnpm install --prefer-frozen-lockfile
+  run_and_wait pnpm install --frozen-lockfile=false
   DEPS_SIGNATURE="$(manifest_signature)"
 }
 
@@ -103,7 +103,7 @@ Your job:
 2. Fix TypeScript/build/project-reference issues until both commands pass.
 3. Keep `.gitignore` safe: do not commit `dist/`, `node_modules/`, or generated JS outputs.
 4. Make only targeted fixes; keep architecture and package boundaries coherent.
-5. If fixes add/change dependencies, update the correct package.json files and run `pnpm install --prefer-frozen-lockfile`.
+5. If fixes add/change dependencies, update the correct package.json files and run `pnpm install --frozen-lockfile=false` to refresh `pnpm-lock.yaml`.
 6. Keep all edited package.json files valid JSON.
 7. Keep tsconfig files valid and parseable (fix JSON syntax/config syntax errors like missing commas immediately).
 8. Do not leave unresolved imports: only use internal aliases that exist in tsconfig path mappings and project references.
@@ -141,7 +141,7 @@ Hard constraints:
 16. Add at least 900 net-new lines of TypeScript total per iteration across at least 8 new or expanded `.ts`/`.tsx` files.
 17. Prefer adding new `.ts/.tsx` modules over refactoring large existing files to maximize safe net-new LOC.
 18. Re-run scripts/count.sh and report TOTAL_TS_LINES and TOTAL_TS_FILES in your final response.
-19. Make a clean git commit for this iteration with a clear message.
+19. Make a clean git commit for this iteration with a clear message, and always include `pnpm-lock.yaml` in the commit whenever it changed.
 20. Do not use apply_patch via exec_command.
 
 Execution target:
