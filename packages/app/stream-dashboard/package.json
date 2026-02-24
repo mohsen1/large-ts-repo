@@ -27,6 +27,8 @@
     "@shared/stress-lab-runtime": "workspace:*",
     "@shared/result": "workspace:*",
     "@service/streaming-control": "workspace:*",
+    "@domain/recovery-lattice": "workspace:*",
+    "@data/recovery-lattice-store": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",

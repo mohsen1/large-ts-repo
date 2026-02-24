@@ -98,6 +98,9 @@
       "path": "./packages/data/incident-command-store"
     },
     {
+      "path": "./packages/data/recovery-lattice-store"
+    },
+    {
       "path": "./packages/data/incident-forecast-store"
     },
     {
@@ -279,6 +282,9 @@
     },
     {
       "path": "./packages/domain/analytics"
+    },
+    {
+      "path": "./packages/domain/recovery-lattice"
     },
     {
       "path": "./packages/domain/billing"

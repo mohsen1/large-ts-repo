@@ -845,9 +845,15 @@ importers:
 
   packages/app/stream-dashboard:
     dependencies:
+      '@data/recovery-lattice-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lattice-store
       '@data/streaming-dashboard-store':
         specifier: workspace:*
         version: link:../../data/streaming-dashboard-store
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab
@@ -1479,6 +1485,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-lattice-store:
+    dependencies:
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2971,6 +2995,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-lattice:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+
   packages/domain/recovery-operations-atlas:
     dependencies:
       zod:
@@ -3751,6 +3790,9 @@ importers:
       '@aws-sdk/client-sns':
         specifier: ^3.900.0
         version: 3.995.0
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
       '@domain/recovery-scenario-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-scenario-engine
@@ -3760,6 +3802,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@shared/zod-adapters':
         specifier: workspace:*
         version: link:../../shared/zod-adapters
@@ -4759,6 +4804,9 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@infrastructure/recovery-scenario-orchestration-adapters':
+        specifier: workspace:*
+        version: link:../../infrastructure/recovery-scenario-orchestration-adapters
       '@shared/horizon-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/horizon-lab-runtime

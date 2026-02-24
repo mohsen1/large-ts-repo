@@ -18,6 +18,9 @@
       "path": "./../../app/recovery-console/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-lattice/tsconfig.json"
+    },
+    {
       "path": "./../../domain/streaming-observability/tsconfig.json"
     },
     {
@@ -37,6 +40,9 @@
     },
     {
       "path": "./../../service/recovery-stress-lab-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-lattice-store/tsconfig.json"
     },
     {
       "path": "./../../shared/stress-lab-runtime/tsconfig.json"
