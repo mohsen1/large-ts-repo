@@ -5,3 +5,7 @@ export * from './workflows';
 export * from './telemetry';
 export * from './operations';
 export * from './adapters';
+export * from './advanced-types';
+export * from './plugin-registry';
+export * from './async-lifecycle';
+export * from './playbook-runtime';

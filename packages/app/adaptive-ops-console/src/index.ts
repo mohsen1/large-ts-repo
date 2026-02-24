@@ -89,3 +89,9 @@ export { HorizonLabControlPanel } from './components/horizon/HorizonLabControlPa
 export { HorizonLabTimeline } from './components/horizon/HorizonLabTimeline';
 export { HorizonLabSummary } from './components/horizon/HorizonLabSummary';
 export { useHorizonLab } from './hooks/useHorizonLab';
+export { AdaptiveOpsPlaybookControlRoomPage } from './pages/AdaptiveOpsPlaybookControlRoomPage';
+export { PlaybookControlPanel } from './components/playbook/PlaybookControlPanel';
+export { PlaybookDependencyGraph } from './components/playbook/PlaybookDependencyGraph';
+export { PlaybookTelemetryPanel } from './components/playbook/PlaybookTelemetryPanel';
+export { useAdaptiveOpsPlaybook } from './hooks/useAdaptiveOpsPlaybook';
+export { createPlaybookEngine } from './services/playbookEngine';

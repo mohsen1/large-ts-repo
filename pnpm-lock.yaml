@@ -23,6 +23,9 @@ importers:
       '@data/incident-command-store':
         specifier: workspace:*
         version: link:../../data/incident-command-store
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
       '@data/recovery-readiness-store':
         specifier: workspace:*
         version: link:../../data/recovery-readiness-store
@@ -38,6 +41,9 @@ importers:
       '@domain/incident-command-models':
         specifier: workspace:*
         version: link:../../domain/incident-command-models
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
       '@domain/recovery-operations-control-plane':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-control-plane
@@ -53,6 +59,9 @@ importers:
       '@service/adaptive-ops-runner':
         specifier: workspace:*
         version: link:../../service/adaptive-ops-runner
+      '@service/recovery-horizon-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-horizon-orchestrator
       '@service/recovery-incident-command-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-incident-command-orchestrator
