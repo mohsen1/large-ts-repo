@@ -18,6 +18,8 @@
     "@domain/recovery-timeline": "workspace:*",
     "@data/recovery-timeline-store": "workspace:*",
     "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/util": "workspace:*",
     "@service/recovery-ops-playbook-studio-orchestrator": "workspace:*",
     "@domain/recovery-ops-playbook-studio": "workspace:*",
     "@data/recovery-ops-playbook-studio-store": "workspace:*",
