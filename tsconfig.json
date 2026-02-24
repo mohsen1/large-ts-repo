@@ -59,6 +59,9 @@
       "path": "./packages/app/worker"
     },
     {
+      "path": "./packages/app/recovery-chaos-lab"
+    },
+    {
       "path": "./packages/data/adapters"
     },
     {
@@ -1032,6 +1035,9 @@
     },
     {
       "path": "./packages/service/reputation"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-orchestrator"
     },
     {
       "path": "./packages/service/streaming-control"

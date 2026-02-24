@@ -1,0 +1,28 @@
+{
+  "name": "@app/recovery-chaos-lab",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-chaos-lab": "workspace:*",
+    "@service/recovery-chaos-orchestrator": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.0"
+  }
+}
