@@ -374,6 +374,9 @@ jobs:
     needs: [tsc_v5, tsc_v6, tsgo, tsz]
     if: always()
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Print compiler summary
         shell: bash
         run: |
@@ -385,21 +388,93 @@ jobs:
           summary_file="$BENCH_DIR/summary.table.md"
           results_file="$BENCH_DIR/results.csv"
 
+          tsc_v5_status="${{ needs.tsc_v5.outputs.status }}"
+          tsc_v6_status="${{ needs.tsc_v6.outputs.status }}"
+          tsgo_status="${{ needs.tsgo.outputs.status }}"
+          tsz_status="${{ needs.tsz.outputs.status }}"
+
+          tsc_v5_duration="${{ needs.tsc_v5.outputs.duration_s }}"
+          tsc_v6_duration="${{ needs.tsc_v6.outputs.duration_s }}"
+          tsgo_duration="${{ needs.tsgo.outputs.duration_s }}"
+          tsz_duration="${{ needs.tsz.outputs.duration_s }}"
+
+          tsc_v5_duration_ms="${{ needs.tsc_v5.outputs.duration_ms }}"
+          tsc_v6_duration_ms="${{ needs.tsc_v6.outputs.duration_ms }}"
+          tsgo_duration_ms="${{ needs.tsgo.outputs.duration_ms }}"
+          tsz_duration_ms="${{ needs.tsz.outputs.duration_ms }}"
+
+          tsc_v5_command="${{ needs.tsc_v5.outputs.command }}"
+          tsc_v6_command="${{ needs.tsc_v6.outputs.command }}"
+          tsgo_command="${{ needs.tsgo.outputs.command }}"
+          tsz_command="${{ needs.tsz.outputs.command }}"
+
+          if [ -z "$tsc_v5_status" ]; then
+            tsc_v5_status="FAIL"
+          fi
+          if [ -z "$tsc_v6_status" ]; then
+            tsc_v6_status="FAIL"
+          fi
+          if [ -z "$tsgo_status" ]; then
+            tsgo_status="FAIL"
+          fi
+          if [ -z "$tsz_status" ]; then
+            tsz_status="FAIL"
+          fi
+
+          if [ -z "$tsc_v5_duration" ]; then
+            tsc_v5_duration="0.000"
+          fi
+          if [ -z "$tsc_v6_duration" ]; then
+            tsc_v6_duration="0.000"
+          fi
+          if [ -z "$tsgo_duration" ]; then
+            tsgo_duration="0.000"
+          fi
+          if [ -z "$tsz_duration" ]; then
+            tsz_duration="0.000"
+          fi
+
+          if [ -z "$tsc_v5_duration_ms" ]; then
+            tsc_v5_duration_ms="0"
+          fi
+          if [ -z "$tsc_v6_duration_ms" ]; then
+            tsc_v6_duration_ms="0"
+          fi
+          if [ -z "$tsgo_duration_ms" ]; then
+            tsgo_duration_ms="0"
+          fi
+          if [ -z "$tsz_duration_ms" ]; then
+            tsz_duration_ms="0"
+          fi
+
+          if [ -z "$tsc_v5_command" ]; then
+            tsc_v5_command="npx -y -p typescript@5 tsc -b tsconfig.json --pretty false"
+          fi
+          if [ -z "$tsc_v6_command" ]; then
+            tsc_v6_command="npx -y -p typescript@beta tsc -b tsconfig.json --pretty false"
+          fi
+          if [ -z "$tsgo_command" ]; then
+            tsgo_command="npx -y -p @typescript/native-preview tsgo -b tsconfig.json --pretty false"
+          fi
+          if [ -z "$tsz_command" ]; then
+            tsz_command="pnpm tsz-typecheck"
+          fi
+
           {
             echo "| Compiler | Status | Duration (s) | Command | Allowed to fail |"
             echo "| --- | --- | ---: | --- | --- |"
-            echo "| tsc v5 | ${{ needs.tsc_v5.outputs.status }} | ${{ needs.tsc_v5.outputs.duration_s }} | \`${{ needs.tsc_v5.outputs.command }}\` | false |"
-            echo "| tsc v6 | ${{ needs.tsc_v6.outputs.status }} | ${{ needs.tsc_v6.outputs.duration_s }} | \`${{ needs.tsc_v6.outputs.command }}\` | false |"
-            echo "| tsgo | ${{ needs.tsgo.outputs.status }} | ${{ needs.tsgo.outputs.duration_s }} | \`${{ needs.tsgo.outputs.command }}\` | true |"
-            echo "| tsz | ${{ needs.tsz.outputs.status }} | ${{ needs.tsz.outputs.duration_s }} | \`${{ needs.tsz.outputs.command }}\` | true |"
+            echo "| tsc v5 | $tsc_v5_status | $tsc_v5_duration | \`$tsc_v5_command\` | false |"
+            echo "| tsc v6 | $tsc_v6_status | $tsc_v6_duration | \`$tsc_v6_command\` | false |"
+            echo "| tsgo | $tsgo_status | $tsgo_duration | \`$tsgo_command\` | true |"
+            echo "| tsz | $tsz_status | $tsz_duration | \`$tsz_command\` | true |"
           } > "$summary_file"
 
           {
             echo "compiler,status,duration_ms,command,allowed_to_fail"
-            echo "tsc v5,${{ needs.tsc_v5.outputs.status }},${{ needs.tsc_v5.outputs.duration_ms }},\"${{ needs.tsc_v5.outputs.command }}\",false"
-            echo "tsc v6,${{ needs.tsc_v6.outputs.status }},${{ needs.tsc_v6.outputs.duration_ms }},\"${{ needs.tsc_v6.outputs.command }}\",false"
-            echo "tsgo,${{ needs.tsgo.outputs.status }},${{ needs.tsgo.outputs.duration_ms }},\"${{ needs.tsgo.outputs.command }}\",true"
-            echo "tsz,${{ needs.tsz.outputs.status }},${{ needs.tsz.outputs.duration_ms }},\"${{ needs.tsz.outputs.command }}\",true"
+            echo "tsc v5,$tsc_v5_status,$tsc_v5_duration_ms,\"$tsc_v5_command\",false"
+            echo "tsc v6,$tsc_v6_status,$tsc_v6_duration_ms,\"$tsc_v6_command\",false"
+            echo "tsgo,$tsgo_status,$tsgo_duration_ms,\"$tsgo_command\",true"
+            echo "tsz,$tsz_status,$tsz_duration_ms,\"$tsz_command\",true"
           } > "$results_file"
 
           if [ ! -s "$BENCH_DIR/summary.table.md" ]; then
@@ -416,6 +491,9 @@ jobs:
               echo "no-run,FAIL,0,compile-and-bench,false"
             } > "$results_file"
           fi
+
+          echo "## Compiler Benchmark Summary"
+          cat "$summary_file"
 
           {
             echo "## Compiler Benchmark"
