@@ -65,6 +65,8 @@ jobs:
             local cmd="$2"
             local log_file=".bench/${name// /_}.log"
             local start_ms end_ms duration_ms duration_s
+            local status
+            local log_tail=20
 
             clean_outputs
             start_ms="$(date +%s%3N)"
@@ -78,8 +80,14 @@ jobs:
 
             if [ "$rc" -eq 0 ]; then
               status="PASS"
+              echo "Compile/bench pass: $name (${duration_s}s)"
+              echo "Last ${log_tail} lines for $name:"
+              tail -n "$log_tail" "$log_file" || true
             else
               status="FAIL($rc)"
+              echo "Compile/bench failed: $name (exit $rc)"
+              echo "Full log for $name:"
+              cat "$log_file"
             fi
 
             printf "| %s | %s | %s |\n" "$name" "$status" "$duration_s" >> .bench/summary.table.md
