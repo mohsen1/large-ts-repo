@@ -30,4 +30,5 @@ export * from './stress-studio-manifest';
 export * from './stress-studio-registry';
 export * from './stress-studio-telemetry';
 export * from './stress-studio-workflow';
-export { pickTopSignalsForWorkflow as pickTopSignalsFromWorkflow } from './stress-studio-workflow';
+export * from './studio-workspace';
+export * from './workspace-adapters';

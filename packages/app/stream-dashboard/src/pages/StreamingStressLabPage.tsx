@@ -22,15 +22,15 @@ export function StreamingStressLabPage() {
     createdAt: signal.observedAt,
     metadata: { source: 'stream', streamId: signal.streamId, details: signal.details },
   }));
-  const workspaceHook = useStressLabWorkspace(
-    tenant,
+  const workspaceHook = useStressLabWorkspace({
+    tenantId: String(tenant),
     streamId,
-    topology.nodes.map((node, index) => ({
+    runbooks: topology.nodes.map((node, index) => ({
       id: node.id,
       title: `Runbook for ${node.id}`,
       steps: [
         {
-          id: `${node.id}-${index}-step`,
+          commandId: `${node.id}-${index}-step`,
           title: 'assess',
           phase: 'observe',
           estimatedMinutes: 10,
@@ -40,8 +40,8 @@ export function StreamingStressLabPage() {
       ],
       cadence: { weekday: index, windowStartMinute: 90 + index * 10, windowEndMinute: 150 + index * 10 },
     })),
-    recoverySignals,
-  );
+    signals: recoverySignals,
+  });
 
   const planLabel = useMemo(() => (workspaceHook.workspace.plan ? 'plan available' : 'no plan'), [workspaceHook.workspace.plan]);
 

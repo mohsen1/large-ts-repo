@@ -782,6 +782,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -3059,6 +3062,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -5194,6 +5200,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -5420,6 +5429,15 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+
+  packages/shared/stress-lab-runtime:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
 
   packages/shared/type-level:
     dependencies:

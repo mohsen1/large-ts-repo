@@ -17,19 +17,19 @@ const mapTopologyToRunbooks = (nodes: readonly TopologyNode[]) => {
     title: `Runbook ${node.id} (${node.kind})`,
     steps: [
       {
-        id: `${node.id}-step-1`,
+        commandId: `${node.id}-step-1`,
         title: 'Assess',
-        phase: 'observe',
+        phase: 'observe' as const,
         estimatedMinutes: 8 + (index % 5),
         prerequisites: [],
         requiredSignals: [],
       },
       {
-        id: `${node.id}-step-2`,
+        commandId: `${node.id}-step-2`,
         title: 'Recover',
-        phase: 'restore',
+        phase: 'restore' as const,
         estimatedMinutes: 12 + (index % 3),
-        prerequisites: [`${node.id}-step-1` as unknown as any],
+        prerequisites: [`${node.id}-step-1`],
         requiredSignals: [],
       },
     ],
@@ -63,7 +63,12 @@ export function StreamingStressLabOpsPage() {
   const { state } = useStreamDashboard(`${tenant}`, streamId);
   const runbookInputs = useMemo(() => mapTopologyToRunbooks(topologyState.nodes), [topologyState.nodes]);
   const recoverySignals = useMemo(() => mapStreamSignals(String(tenant), state.snapshot.signals), [state.snapshot.signals, tenant]);
-  const workspaceHook = useStressLabWorkspace(tenant, streamId, runbookInputs, recoverySignals);
+  const workspaceHook = useStressLabWorkspace({
+    tenantId: String(tenant),
+    streamId,
+    runbooks: runbookInputs,
+    signals: recoverySignals,
+  });
 
   const analytics = useStressLabAnalytics(workspaceHook.workspace);
   const [activeTarget, setActiveTarget] = useState<string>('all');
