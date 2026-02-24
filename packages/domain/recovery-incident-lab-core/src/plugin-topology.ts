@@ -151,7 +151,7 @@ const buildEdges = (nodes: readonly TopologyNodeConfig[]): readonly TopologyEdge
 };
 
 export const dedupeByRoute = (manifest: PluginManifest): PluginRoute =>
-  withBrand(`${manifest.route}:${manifest.id}`, 'PluginRoute');
+  withBrand(`${manifest.route as string}:${manifest.id}` as `/recovery/${string}`, 'PluginRoute');
 
 export const detectCycles = (nodes: readonly TopologyNodeConfig[]): PluginManifestId[] => {
   const manifests = new Map<TopologyNodeConfig['id'], TopologyNodeConfig>();

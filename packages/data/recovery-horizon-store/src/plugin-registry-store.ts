@@ -1,9 +1,11 @@
 import { withBrand } from '@shared/core';
 import { err, ok, type Result } from '@shared/result';
+import { type JsonValue } from '@shared/type-level';
 import {
-  type JsonValue,
+  createRoute,
   type PluginDependency,
   type PluginKind,
+  type PluginCapabilitySpec,
   type PluginManifest,
   type PluginManifestId,
   type PluginRoute,
@@ -53,12 +55,30 @@ const nowMs = (): string => new Date().toISOString();
 
 const coerceDependencies = (dependencies: readonly PluginDependency[]): PluginDependency[] => [...dependencies];
 
+const buildSeedConfig = (entry: SeedRecord): PluginRecordConfig & PluginCapabilitySpec<PluginKind> =>
+  ({
+    kind: entry.kind,
+    sampling: 0.4,
+    emits: [['metric', `${entry.kind}.${entry.id}`]],
+    rules: [],
+    model: `${entry.kind}-baseline`,
+    confidence: 77,
+    iterations: 3,
+    stages: [...pluginStages],
+    timeoutMs: 500,
+    endpoints: ['http://localhost'],
+    quorum: 1,
+    allowParallel: true,
+    breakOn: [['error', 4]],
+    fallback: 'skip',
+  } as PluginRecordConfig & PluginCapabilitySpec<PluginKind>);
+
 const createSeedManifest = (
   entry: SeedRecord,
 ): PluginRegistryRecord<PluginKind, PluginRecordConfig, string>['manifest'] => {
   const now = nowMs();
   const dependencies: PluginDependency[] = coerceDependencies([]);
-  const route = `/recovery/${entry.kind}/${pluginStages[0]}` as PluginRoute;
+  const route = createRoute(entry.namespace, entry.kind, 'bootstrap');
 
   return {
     id: withBrand(entry.id, 'PluginManifestId'),
@@ -75,22 +95,7 @@ const createSeedManifest = (
     enabled: true,
     runId: withBrand(`${entry.namespace}:${entry.kind}:${now}`, 'PluginRunId'),
     capabilities: [],
-    config: {
-      kind: entry.kind,
-      sampling: 0.4,
-      emits: [['metric', `${entry.kind}.${entry.id}`]],
-      rules: [],
-      model: `${entry.kind}-baseline`,
-      confidence: 77,
-      iterations: 3,
-      stages: [...pluginStages],
-      timeoutMs: 500,
-      endpoints: ['http://localhost'],
-      quorum: 1,
-      allowParallel: true,
-      breakOn: [['error', 4]],
-      fallback: 'skip',
-    },
+    config: buildSeedConfig(entry),
   };
 };
 

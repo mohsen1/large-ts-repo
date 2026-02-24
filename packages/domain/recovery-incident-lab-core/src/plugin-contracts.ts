@@ -11,7 +11,7 @@ export type PluginStage = (typeof pluginStages)[number];
 export type PluginVersion = `${number}.${number}.${number}`;
 export type PluginNamespace = Brand<string, 'PluginNamespace'>;
 export type PluginManifestId = Brand<string, 'PluginManifestId'>;
-export type PluginRoute = Brand<string, 'PluginRoute'>;
+export type PluginRoute = Brand<`/recovery/${string}`, 'PluginRoute'>;
 export type PluginRunId = Brand<string, 'PluginRunId'>;
 export type PluginTag = Brand<string, `plugin-tag:${string}`>;
 export type PluginExecutionState = 'idle' | 'warming' | 'running' | 'suspended' | 'done' | 'failed' | 'stopped';
@@ -201,7 +201,7 @@ const manifestSchema = z.object({
   capabilities: z.array(capabilitySchema).min(1),
 });
 
-const createRoute = (namespace: string, kind: PluginKind, stage: PluginStage): PluginRoute =>
+export const createRoute = (namespace: string, kind: PluginKind, stage: PluginStage): PluginRoute =>
   withBrand(`/recovery/${namespace}/${kind}/${stage}`, 'PluginRoute');
 
 export const buildPluginId = (namespace: string, kind: PluginKind): PluginManifestId =>
