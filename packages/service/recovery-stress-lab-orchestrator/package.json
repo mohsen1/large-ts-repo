@@ -22,6 +22,7 @@
     "@shared/core": "workspace:*",
     "@shared/stress-lab-runtime": "workspace:*",
     "@shared/result": "workspace:*",
-    "@domain/recovery-stress-lab-intelligence": "workspace:*"
+    "@domain/recovery-stress-lab-intelligence": "workspace:*",
+    "zod": "^3.24.0"
   }
 }
