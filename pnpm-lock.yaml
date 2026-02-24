@@ -344,6 +344,9 @@ importers:
       '@data/recovery-operations-store':
         specifier: workspace:*
         version: link:../../data/recovery-operations-store
+      '@data/recovery-ops-orchestration-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-orchestration-lab-store
       '@data/recovery-playbook-store':
         specifier: workspace:*
         version: link:../../data/recovery-playbook-store
@@ -419,6 +422,9 @@ importers:
       '@domain/recovery-operations-models':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-models
+      '@domain/recovery-ops-orchestration-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-lab
       '@domain/recovery-ops-playbook':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-playbook
@@ -5512,9 +5518,15 @@ importers:
 
   packages/service/recovery-ops-orchestration-engine:
     dependencies:
+      '@data/recovery-ops-orchestration-lab-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-orchestration-lab-store
       '@data/recovery-ops-orchestration-store':
         specifier: workspace:*
         version: link:../../data/recovery-ops-orchestration-store
+      '@domain/recovery-ops-orchestration-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-orchestration-lab
       '@domain/recovery-ops-orchestration-surface':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-orchestration-surface
