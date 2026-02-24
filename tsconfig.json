@@ -47,6 +47,9 @@
       "path": "./packages/app/recovery-playbook-orchestrator"
     },
     {
+      "path": "./packages/app/recovery-lab-dashboard"
+    },
+    {
       "path": "./packages/app/recovery-timeline-studio"
     },
     {
@@ -191,6 +194,9 @@
       "path": "./packages/data/recovery-lattice-orchestrator-store"
     },
     {
+      "path": "./packages/data/recovery-stress-lab-orchestration-store"
+    },
+    {
       "path": "./packages/data/recovery-observability"
     },
     {
@@ -252,6 +258,9 @@
     },
     {
       "path": "./packages/data/recovery-simulation-store"
+    },
+    {
+      "path": "./packages/data/recovery-lab-simulation-store"
     },
     {
       "path": "./packages/data/recovery-situational-store"
@@ -548,6 +557,9 @@
       "path": "./packages/domain/recovery-lab-orchestration-core"
     },
     {
+      "path": "./packages/domain/recovery-lab-stress-lab-core"
+    },
+    {
       "path": "./packages/domain/recovery-lattice"
     },
     {
@@ -632,6 +644,9 @@
       "path": "./packages/domain/recovery-scenario-planner"
     },
     {
+      "path": "./packages/domain/recovery-simulation-lab-core"
+    },
+    {
       "path": "./packages/domain/recovery-signal-intelligence"
     },
     {
@@ -687,6 +702,9 @@
     },
     {
       "path": "./packages/domain/telemetry-models"
+    },
+    {
+      "path": "./packages/domain/recovery-intent-graph"
     },
     {
       "path": "./packages/domain/temporal"
@@ -986,6 +1004,9 @@
       "path": "./packages/service/recovery-playbook-engine"
     },
     {
+      "path": "./packages/service/recovery-intent-graph-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-playbook-lab-orchestrator"
     },
     {
@@ -1079,7 +1100,13 @@
       "path": "./packages/service/recovery-orchestration-studio-engine"
     },
     {
+      "path": "./packages/service/recovery-lab-orchestrator"
+    },
+    {
       "path": "./packages/domain/recovery-orchestration-design"
+    },
+    {
+      "path": "./packages/domain/recovery-lab-orchestration-core"
     },
     {
       "path": "./packages/shared/orchestration-kernel"
@@ -1103,6 +1130,12 @@
       "path": "./packages/shared/incident-saga-core"
     },
     {
+      "path": "./packages/shared/typed-orchestration-core"
+    },
+    {
+      "path": "./packages/shared/orchestration-runtime"
+    },
+    {
       "path": "./packages/shared/monads"
     },
     {
@@ -1122,6 +1155,12 @@
     },
     {
       "path": "./packages/shared/type-level"
+    },
+    {
+      "path": "./packages/shared/orchestration-lab-core"
+    },
+    {
+      "path": "./packages/shared/recovery-lab-kernel"
     },
     {
       "path": "./packages/shared/util"

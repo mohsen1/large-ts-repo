@@ -97,6 +97,12 @@
       "path": "../../shared/core/tsconfig.json"
     },
     {
+      "path": "../../shared/orchestration-lab-core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/orchestration-kernel/tsconfig.json"
+    },
+    {
       "path": "../../shared/recovery-orchestration-runtime/tsconfig.json"
     },
     {
@@ -125,6 +131,9 @@
     },
     {
       "path": "./../../data/recovery-readiness-store/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-stress-lab-orchestration-store/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-simulation-metrics/tsconfig.json"
@@ -170,6 +179,9 @@
     },
     {
       "path": "./../../domain/recovery-ops-playbook/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-orchestration-core/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-orchestration-planning/tsconfig.json"
@@ -265,10 +277,19 @@
       "path": "./../../shared/incident-saga-core/tsconfig.json"
     },
     {
+      "path": "../../shared/typed-orchestration-core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/orchestration-runtime/tsconfig.json"
+    },
+    {
       "path": "../../domain/recovery-readiness/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-orchestration-design/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-stress-lab-core/tsconfig.json"
     }
   ]
 }

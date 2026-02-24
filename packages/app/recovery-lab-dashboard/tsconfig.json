@@ -1,0 +1,23 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2023"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    { "path": "./../../domain/recovery-simulation-lab-core/tsconfig.json" },
+    { "path": "./../../data/recovery-lab-simulation-store/tsconfig.json" },
+    { "path": "./../../service/recovery-lab-orchestrator/tsconfig.json" },
+    { "path": "./../../shared/recovery-lab-kernel/tsconfig.json" },
+    { "path": "./../../shared/type-level/tsconfig.json" }
+  ]
+}

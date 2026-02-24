@@ -4,3 +4,6 @@ export * from './iterable';
 export * from './plugin-registry';
 export * from './disposable-scope';
 export * from './manifest-loader';
+export * from './runtime-graph';
+export * from './quantum-registry';
+export * from './quantum-adapter';

@@ -53,6 +53,8 @@ export {
   buildCatalog as buildStressLabPluginCatalog,
 } from './modern-registry';
 export * from './signal-orchestration';
+export * from './orchestration-lattice';
+export * from './registry-orchestration';
 export * from './workflow-designer';
 export * from './orchestrator-session';
 export {
@@ -68,3 +70,6 @@ export {
   mapStageSequence,
   summarizeTraceByPlugin,
 } from './advanced-workflow-adapter';
+export * from './stress-lab-workbench';
+export * from './stress-lab-orchestrator-control';
+export * from './stress-lab-aws-step-functions';

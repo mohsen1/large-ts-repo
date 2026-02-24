@@ -1,0 +1,27 @@
+{
+  "name": "@app/recovery-lab-dashboard",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-simulation-lab-core": "workspace:*",
+    "@data/recovery-lab-simulation-store": "workspace:*",
+    "@service/recovery-lab-orchestrator": "workspace:*",
+    "@shared/recovery-lab-kernel": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

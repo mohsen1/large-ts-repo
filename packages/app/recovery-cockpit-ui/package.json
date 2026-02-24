@@ -22,6 +22,7 @@
     "@data/recovery-cockpit-store": "workspace:*",
     "@data/recovery-cockpit-insights": "workspace:*",
     "@data/recovery-cockpit-analytics": "workspace:*",
+    "@domain/recovery-stress-lab": "workspace:*",
     "@domain/recovery-cockpit-signal-mesh": "workspace:*",
     "@data/recovery-cockpit-signal-mesh-store": "workspace:*",
     "@data/recovery-cockpit-intent-store": "workspace:*",
@@ -39,6 +40,7 @@
     "@service/recovery-cockpit-constellation-orchestrator": "workspace:*",
     "@domain/recovery-cockpit-cognitive-core": "workspace:*",
     "@service/recovery-cockpit-cognitive-orchestrator": "workspace:*",
-    "@data/recovery-cockpit-cognitive-store": "workspace:*"
+    "@data/recovery-cockpit-cognitive-store": "workspace:*",
+    "zod": "^3.24.0"
   }
 }

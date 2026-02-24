@@ -1,0 +1,21 @@
+{
+  "name": "@shared/orchestration-runtime",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src": "./src/index.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@shared/typed-orchestration-core": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}
