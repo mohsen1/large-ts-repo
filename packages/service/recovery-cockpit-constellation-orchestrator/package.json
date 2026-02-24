@@ -1,5 +1,5 @@
 {
-  "name": "@domain/recovery-stress-lab",
+  "name": "@service/recovery-cockpit-constellation-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,11 +14,11 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@shared/core": "workspace:*",
+    "@data/recovery-cockpit-constellation-store": "workspace:*",
+    "@domain/recovery-cockpit-constellation-core": "workspace:*",
+    "@domain/recovery-cockpit-models": "workspace:*",
     "@shared/result": "workspace:*",
-    "@shared/stress-lab-runtime": "workspace:*",
-    "@shared/type-level": "workspace:*",
-    "@domain/recovery-lab-governance": "workspace:*",
-    "zod": "^3.24.0"
+    "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*"
   }
 }

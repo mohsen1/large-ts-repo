@@ -32,6 +32,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "@domain/recovery-cockpit-constellation-core": "workspace:*",
+    "@data/recovery-cockpit-constellation-store": "workspace:*",
+    "@service/recovery-cockpit-constellation-orchestrator": "workspace:*"
   }
 }

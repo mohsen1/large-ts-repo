@@ -206,6 +206,9 @@ importers:
       '@data/recovery-cockpit-analytics':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-analytics
+      '@data/recovery-cockpit-constellation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-constellation-store
       '@data/recovery-cockpit-insights':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-insights
@@ -218,6 +221,9 @@ importers:
       '@data/recovery-cockpit-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-store
+      '@domain/recovery-cockpit-constellation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-constellation-core
       '@domain/recovery-cockpit-intelligence':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-intelligence
@@ -236,6 +242,9 @@ importers:
       '@domain/recovery-operations-cadence':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-cadence
+      '@service/recovery-cockpit-constellation-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-constellation-orchestrator
       '@service/recovery-cockpit-intent-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-intent-orchestrator
@@ -1227,6 +1236,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-cockpit-constellation-store:
+    dependencies:
+      '@domain/recovery-cockpit-constellation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-constellation-core
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/data/recovery-cockpit-insights:
     dependencies:
@@ -2449,6 +2476,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-constellation-core:
+    dependencies:
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-models
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -4390,6 +4432,27 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-cockpit-constellation-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-constellation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-constellation-store
+      '@domain/recovery-cockpit-constellation-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-constellation-core
+      '@domain/recovery-cockpit-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
 
   packages/service/recovery-cockpit-intent-orchestrator:
     dependencies:

@@ -35,3 +35,21 @@ export * from './workspace-adapters';
 export * from './horizon-types';
 export * from './horizon-events';
 export * from './horizon-workflow-model';
+export * from './advanced-workflow-models';
+export * from './advanced-workflow-catalog';
+export * from './advanced-workflow-schema';
+export * from './advanced-workflow-engine';
+export * from './advanced-workflow-audit';
+export {
+  type WorkflowRenderModel,
+  type WorkflowRenderStage,
+  summarizeBySignalClass,
+  toFlatTrace,
+  toRenderModel,
+  toRenderStageRows,
+  toWorkspaceTargetsTuple as toWorkspaceTargetsTupleFromAdapter,
+  renderWorkspaceProfile,
+  mapWorkspaceSignals,
+  mapStageSequence,
+  summarizeTraceByPlugin,
+} from './advanced-workflow-adapter';

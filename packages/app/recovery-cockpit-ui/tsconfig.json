@@ -52,13 +52,21 @@
     },
     {
       "path": "./../../domain/recovery-operations-cadence/tsconfig.json"
-    }
-    ,
+    },
     {
       "path": "./../../domain/recovery-cockpit-signal-mesh/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-cockpit-signal-mesh-store/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-cockpit-constellation-core/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-constellation-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-cockpit-constellation-orchestrator/tsconfig.json"
     }
   ]
 }

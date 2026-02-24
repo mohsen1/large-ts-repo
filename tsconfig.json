@@ -1047,6 +1047,15 @@
     },
     {
       "path": "./packages/service/recovery-fusion-lab-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-constellation-core"
+    },
+    {
+      "path": "./packages/data/recovery-cockpit-constellation-store"
+    },
+    {
+      "path": "./packages/service/recovery-cockpit-constellation-orchestrator"
     }
   ]
 }

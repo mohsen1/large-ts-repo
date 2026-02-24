@@ -1,5 +1,5 @@
 {
-  "name": "@domain/recovery-stress-lab",
+  "name": "@data/recovery-cockpit-constellation-store",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,11 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@shared/core": "workspace:*",
+    "@domain/recovery-cockpit-models": "workspace:*",
+    "@domain/recovery-cockpit-constellation-core": "workspace:*",
     "@shared/result": "workspace:*",
-    "@shared/stress-lab-runtime": "workspace:*",
-    "@shared/type-level": "workspace:*",
-    "@domain/recovery-lab-governance": "workspace:*",
-    "zod": "^3.24.0"
+    "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*"
   }
 }
