@@ -36,5 +36,9 @@
     "@domain/recovery-cockpit-constellation-core": "workspace:*",
     "@data/recovery-cockpit-constellation-store": "workspace:*",
     "@service/recovery-cockpit-constellation-orchestrator": "workspace:*"
+    ,
+    "@domain/recovery-cockpit-cognitive-core": "workspace:*",
+    "@service/recovery-cockpit-cognitive-orchestrator": "workspace:*",
+    "@data/recovery-cockpit-cognitive-store": "workspace:*"
   }
 }

@@ -58,6 +58,14 @@ export * from './components/mesh/SignalMeshTopologyGraph';
 export * from './components/mesh/SignalMeshStatusBoard';
 export * from './components/mesh/SignalMeshCommandConsole';
 export * from './hooks/useSignalMeshOrchestration';
+export * from './hooks/useCognitiveCockpitWorkspace';
+export * from './hooks/useCognitiveCockpitSignals';
+export * from './components/cognitive/CognitiveSignalGrid';
+export * from './components/cognitive/CognitiveSignalTopology';
+export * from './components/cognitive/CognitiveScenarioPanel';
+export * from './components/cognitive/CognitiveWorkflowTimeline';
+export * from './pages/RecoveryCockpitCognitiveControlPage';
+export * from './pages/RecoveryCockpitCognitiveDirectorPage';
 
 export * from './components/constellation/ConstellationControlCenter';
 export * from './components/constellation/ConstellationRunConsole';

@@ -60,6 +60,15 @@
       "path": "./../../data/recovery-cockpit-signal-mesh-store/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-cockpit-cognitive-core/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-cockpit-cognitive-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-cockpit-cognitive-orchestrator/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-cockpit-constellation-core/tsconfig.json"
     },
     {

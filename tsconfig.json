@@ -1056,6 +1056,15 @@
     },
     {
       "path": "./packages/service/recovery-cockpit-constellation-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-cockpit-cognitive-core"
+    },
+    {
+      "path": "./packages/data/recovery-cockpit-cognitive-store"
+    },
+    {
+      "path": "./packages/service/recovery-cockpit-cognitive-orchestrator"
     }
   ]
 }

@@ -206,6 +206,9 @@ importers:
       '@data/recovery-cockpit-analytics':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-analytics
+      '@data/recovery-cockpit-cognitive-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-cognitive-store
       '@data/recovery-cockpit-constellation-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-constellation-store
@@ -221,6 +224,9 @@ importers:
       '@data/recovery-cockpit-store':
         specifier: workspace:*
         version: link:../../data/recovery-cockpit-store
+      '@domain/recovery-cockpit-cognitive-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-cognitive-core
       '@domain/recovery-cockpit-constellation-core':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-constellation-core
@@ -242,6 +248,9 @@ importers:
       '@domain/recovery-operations-cadence':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-cadence
+      '@service/recovery-cockpit-cognitive-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-cockpit-cognitive-orchestrator
       '@service/recovery-cockpit-constellation-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-constellation-orchestrator
@@ -1236,6 +1245,18 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-cockpit-cognitive-store:
+    dependencies:
+      '@domain/recovery-cockpit-cognitive-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-cognitive-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-cockpit-constellation-store:
     dependencies:
@@ -2473,6 +2494,15 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-cognitive-core:
+    dependencies:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -4435,6 +4465,18 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-cockpit-cognitive-orchestrator:
+    dependencies:
+      '@data/recovery-cockpit-cognitive-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-cockpit-cognitive-store
+      '@domain/recovery-cockpit-cognitive-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-cognitive-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-cockpit-constellation-orchestrator:
     dependencies:
