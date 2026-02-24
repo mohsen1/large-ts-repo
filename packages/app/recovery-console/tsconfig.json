@@ -97,6 +97,9 @@
       "path": "../../shared/core/tsconfig.json"
     },
     {
+      "path": "../../shared/orchestration-kernel/tsconfig.json"
+    },
+    {
       "path": "../../shared/recovery-orchestration-runtime/tsconfig.json"
     },
     {
