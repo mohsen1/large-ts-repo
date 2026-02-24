@@ -4,3 +4,7 @@ export * from './cache';
 export * from './adapters';
 export * from './queries';
 export * from './audit';
+export * from './workload-history';
+export * from './insight-snapshot';
+export * from './runbook-metrics';
+export * from './repository-guard';

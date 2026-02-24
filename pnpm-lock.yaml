@@ -2629,6 +2629,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-lab-governance:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-operations-atlas:
     dependencies:
       zod:
@@ -3014,15 +3026,18 @@ importers:
 
   packages/domain/recovery-stress-lab:
     dependencies:
-      '@domain/analytics':
+      '@domain/recovery-lab-governance':
         specifier: workspace:*
-        version: link:../analytics
+        version: link:../recovery-lab-governance
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
-      '@shared/util':
+      '@shared/type-level':
         specifier: workspace:*
-        version: link:../../shared/util
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-timeline:
     dependencies:

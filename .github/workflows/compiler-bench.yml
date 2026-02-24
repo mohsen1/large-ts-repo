@@ -69,8 +69,8 @@ jobs:
             clean_outputs
             start_ms="$(date +%s%3N)"
             set +e
-            bash -lc "$cmd" >"$log_file" 2>&1
-            local rc=$?
+            bash -lc "$cmd" 2>&1 | tee "$log_file"
+            local rc="${PIPESTATUS[0]}"
             set -e
             end_ms="$(date +%s%3N)"
             duration_ms="$((end_ms - start_ms))"

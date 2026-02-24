@@ -6,8 +6,16 @@ import {
   PolicyRule,
   PolicyWindow,
   SeverityBand,
+  type GovernanceContext as ImportedGovernanceContext,
+  type GovernanceTenantId,
 } from '@domain/recovery-lab-governance';
-import { buildReadinessEnvelope, buildEnvelope as buildGovernanceEnvelope, evaluateGovernance, evaluateGovernanceMatrix, topRankedPolicies } from '@domain/recovery-lab-governance';
+import {
+  buildReadinessEnvelope,
+  buildEnvelope as buildGovernanceEnvelope,
+  evaluateGovernance,
+  evaluateGovernanceMatrix,
+  topRankedPolicies,
+} from '@domain/recovery-lab-governance';
 import { CommandRunbook, OrchestrationPlan, RecoverySignal, WorkloadTopology, TenantId } from './models';
 
 export interface StressLabGovernanceContext {
@@ -67,6 +75,9 @@ export const summarizeGovernanceSignals = (tenantId: TenantId, signals: readonly
     uniqueSignals: unique.size,
   };
 };
+
+export { buildReadinessEnvelope, evaluateGovernance, evaluateGovernanceMatrix, topRankedPolicies };
+export type { ImportedGovernanceContext as GovernanceContext, GovernanceTenantId as TenantBrand };
 
 const buildGovernanceSignals = (tenantId: TenantId, signals: readonly RecoverySignal[], band: SeverityBand): readonly GovernanceSignal[] => {
   return signals.map((signal) => ({

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@domain/recovery-stress-lab": "workspace:*",
+    "@data/recovery-incident-lab-store": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*"

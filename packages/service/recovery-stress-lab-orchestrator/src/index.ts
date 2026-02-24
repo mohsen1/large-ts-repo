@@ -15,3 +15,6 @@ export { buildMeshState, publishMeshReport, persistDecision as persistMeshDecisi
 export * from './mesh-intelligence';
 export * from './mesh-operator';
 export * from './mesh-pipeline';
+export * from './orchestration-workflow';
+export * from './policy-routing';
+export * from './incident-surface';

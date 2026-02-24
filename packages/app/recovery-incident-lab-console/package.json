@@ -16,6 +16,7 @@
   "dependencies": {
     "@data/recovery-incident-lab-store": "workspace:*",
     "@domain/recovery-incident-lab-core": "workspace:*",
+    "@service/recovery-stress-lab-orchestrator": "workspace:*",
     "@service/recovery-incident-lab-orchestrator": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",

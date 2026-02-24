@@ -22,3 +22,7 @@ export * from './policy-envelope';
 export * from './workload-forecast';
 export { summarizeGovernanceSignals as summarizeSignals, buildGovernanceDraft } from './governance-overview';
 export * from './governance-overview';
+export * from './orchestration-metrics';
+export * from './governance-matrix';
+export * from './runbook-audit';
+export * from './drill-orchestration';
