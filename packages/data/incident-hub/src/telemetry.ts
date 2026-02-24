@@ -12,7 +12,7 @@ export interface IncidentMetricsSink {
   emit(metric: IncidentTelemetryPoint): Promise<void>;
 }
 
-export const collectMetrics = (incidents: IncidentRecord[]): IncidentTelemetryPoint => {
+export const collectMetrics = (incidents: readonly IncidentRecord[]): IncidentTelemetryPoint => {
   const bySeverity: Record<string, number> = {};
   for (const incident of incidents) {
     bySeverity[incident.triage.severity] = (bySeverity[incident.triage.severity] ?? 0) + 1;

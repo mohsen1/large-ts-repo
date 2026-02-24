@@ -202,3 +202,8 @@ export { CadenceLabOverview } from './features/recovery-cadence-lab/components/C
 export { CadenceTimeline } from './features/recovery-cadence-lab/components/CadenceTimeline';
 export { CadenceRunboard } from './features/recovery-cadence-lab/components/CadenceRunboard';
 export { useRecoveryCadenceLab } from './features/recovery-cadence-lab/hooks/useRecoveryCadenceLab';
+export { useIncidentManagementWorkspace } from './features/incident-management/hooks/useIncidentManagementWorkspace';
+export { IncidentManagementWorkspacePage } from './features/incident-management/pages/IncidentManagementWorkspacePage';
+export { IncidentManagementWorkspacePanel } from './features/incident-management/components/IncidentManagementWorkspacePanel';
+export { IncidentReadinessTimeline } from './features/incident-management/components/IncidentReadinessTimeline';
+export { IncidentReadinessScoreCard } from './features/incident-management/components/IncidentReadinessScoreCard';

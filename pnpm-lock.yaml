@@ -434,9 +434,18 @@ importers:
       '@service/recovery-simulation-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-simulation-orchestrator
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -989,6 +998,15 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/incident-signal-store:
     dependencies:
@@ -2043,6 +2061,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76

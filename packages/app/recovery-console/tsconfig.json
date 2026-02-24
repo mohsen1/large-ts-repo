@@ -46,6 +46,18 @@
       "path": "./../../data/incident-fusion-store/tsconfig.json"
     },
     {
+      "path": "./../../data/incident-hub/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "../../shared/util/tsconfig.json"
+    },
+    {
       "path": "./../../data/recovery-command-control-plane/tsconfig.json"
     },
     {
