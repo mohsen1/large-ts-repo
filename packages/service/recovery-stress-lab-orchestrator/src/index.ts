@@ -24,3 +24,6 @@ export * from './studio-insights';
 export * from './incident-surface';
 export * from './plugin-registry';
 export * from './plugin-orchestration';
+export * from './horizon-plugin-lattice';
+export * from './horizon-execution-engine';
+export * from './horizon-session-monitor';

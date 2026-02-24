@@ -219,3 +219,9 @@ export { FusionMeshCommandQueue } from './features/recovery-fusion-mesh/componen
 export { FusionMeshSignalBoard } from './features/recovery-fusion-mesh/components/FusionMeshSignalBoard';
 export { FusionMeshTopologyPanel } from './features/recovery-fusion-mesh/components/FusionMeshTopologyPanel';
 export { useRecoveryFusionMeshOrchestrator } from './features/recovery-fusion-mesh/hooks/useRecoveryFusionMeshOrchestrator';
+export * from './features/recovery-horizon-lab/hooks/useHorizonLabWorkspace';
+export * from './features/recovery-horizon-lab/hooks/useHorizonLabTimeline';
+export { HorizonLabWorkspaceDeck } from './features/recovery-horizon-lab/components/HorizonLabWorkspaceDeck';
+export { HorizonLabTelemetryPanel } from './features/recovery-horizon-lab/components/HorizonLabTelemetryPanel';
+export { RecoveryHorizonLabWorkspacePage } from './features/recovery-horizon-lab/pages/RecoveryHorizonLabWorkspacePage';
+export { default as DefaultRecoveryHorizonLabWorkspacePage } from './features/recovery-horizon-lab/pages/RecoveryHorizonLabWorkspacePage';

@@ -91,6 +91,8 @@
     "@service/recovery-fabric-cadence-orchestrator": "workspace:*",
     "@domain/recovery-fabric-cadence-core": "workspace:*"
     ,
-    "@domain/recovery-fusion-intelligence": "workspace:*"
+    "@domain/recovery-fusion-intelligence": "workspace:*",
+    "@domain/recovery-stress-lab": "workspace:*",
+    "@service/recovery-stress-lab-orchestrator": "workspace:*"
   }
 }

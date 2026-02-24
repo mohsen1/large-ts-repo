@@ -1335,6 +1335,12 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-lab-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -5353,9 +5359,15 @@ importers:
 
   packages/service/recovery-stress-lab-orchestrator:
     dependencies:
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
       '@data/recovery-incident-lab-store':
         specifier: workspace:*
         version: link:../../data/recovery-incident-lab-store
+      '@domain/recovery-incident-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-incident-lab-core
       '@domain/recovery-stress-lab':
         specifier: workspace:*
         version: link:../../domain/recovery-stress-lab

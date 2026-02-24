@@ -25,8 +25,8 @@ import { buildStudioCatalog, type StudioPluginId } from './stress-studio-registr
 export type StudioPhase = 'seed' | 'normalize' | 'compose' | 'simulate' | 'audit' | 'finalize';
 export type WorkflowNodeKind = `node:${StudioPhase}`;
 
-export type RecursiveTuple<T extends unknown[], N extends number> =
-  N extends 0 ? [] : T extends readonly [infer H, ...infer R] ? [H, ...RecursiveTuple<R, N>] : [];
+export type StudioRecursiveTuple<T extends unknown[], N extends number> =
+  N extends 0 ? [] : T extends readonly [infer H, ...infer R] ? [H, ...StudioRecursiveTuple<R, N>] : [];
 
 export interface WorkflowNode<TInput = unknown, TOutput = unknown> {
   readonly id: `node-${string}`;

@@ -13,3 +13,5 @@ export * from './scenario-events';
 export * from './extension-registry';
 export * from './temporal-series';
 export * from './streamed-events';
+export * from './horizon-incident-projections';
+export * from './horizon-incident-timeseries';

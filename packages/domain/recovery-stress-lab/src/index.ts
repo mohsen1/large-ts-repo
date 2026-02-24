@@ -32,3 +32,6 @@ export * from './stress-studio-telemetry';
 export * from './stress-studio-workflow';
 export * from './studio-workspace';
 export * from './workspace-adapters';
+export * from './horizon-types';
+export * from './horizon-events';
+export * from './horizon-workflow-model';
