@@ -407,6 +407,9 @@ importers:
       '@domain/incident-management':
         specifier: workspace:*
         version: link:../../domain/incident-management
+      '@domain/recovery-automation-orchestrator':
+        specifier: workspace:*
+        version: link:../../domain/recovery-automation-orchestrator
       '@domain/recovery-command-forge':
         specifier: workspace:*
         version: link:../../domain/recovery-command-forge
@@ -2797,6 +2800,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+
+  packages/domain/recovery-automation-orchestrator:
+    dependencies:
+      '@shared/automation-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/automation-orchestration-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
 
   packages/domain/recovery-cadence-orchestration:
     dependencies:
@@ -6721,6 +6736,15 @@ importers:
       '@domain/workflow':
         specifier: workspace:*
         version: link:../../domain/workflow
+
+  packages/shared/automation-orchestration-runtime:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../typed-orchestration-core
 
   packages/shared/aws-adapters:
     dependencies:
