@@ -413,6 +413,9 @@
       "path": "./packages/domain/recovery-cockpit-workloads"
     },
     {
+      "path": "./packages/domain/recovery-cockpit-synthetic-lab"
+    },
+    {
       "path": "./packages/domain/recovery-cockpit-signal-mesh"
     },
     {

@@ -74,3 +74,8 @@ export * from './components/constellation/ConstellationSignalFeed';
 export * from './hooks/useConstellationOrchestrator';
 export * from './hooks/useConstellationRunHistory';
 export * from './pages/RecoveryCockpitConstellationStudioPage';
+export * from './components/synthetic/SyntheticScenarioTable';
+export * from './components/synthetic/SyntheticPlanTimeline';
+export * from './components/synthetic/SyntheticRunGrid';
+export * from './hooks/useSyntheticLabController';
+export * from './pages/synthetic/RecoveryCockpitSyntheticLabPage';

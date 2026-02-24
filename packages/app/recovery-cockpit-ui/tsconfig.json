@@ -45,6 +45,9 @@
       "path": "./../../domain/recovery-cockpit-workloads/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-cockpit-synthetic-lab/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-cockpit-orchestration-core/tsconfig.json"
     },
     {

@@ -242,6 +242,9 @@ importers:
       '@domain/recovery-cockpit-signal-mesh':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-signal-mesh
+      '@domain/recovery-cockpit-synthetic-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-synthetic-lab
       '@domain/recovery-cockpit-workloads':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-workloads
@@ -2575,6 +2578,18 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cockpit-synthetic-lab:
+    dependencies:
+      '@shared/recovery-orchestration-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
