@@ -428,6 +428,9 @@ importers:
       '@data/recovery-synthetic-orchestration-store':
         specifier: workspace:*
         version: link:../../data/recovery-synthetic-orchestration-store
+      '@data/recovery-temporal-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-temporal-store
       '@data/repositories':
         specifier: workspace:*
         version: link:../../data/repositories
@@ -539,6 +542,9 @@ importers:
       '@domain/recovery-synthetic-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-synthetic-orchestration
+      '@domain/recovery-temporal-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-temporal-orchestration
       '@service/continuity-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/continuity-readiness-orchestrator
@@ -641,6 +647,9 @@ importers:
       '@service/recovery-synthetic-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-synthetic-orchestrator
+      '@service/recovery-temporal-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-temporal-orchestrator
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -662,6 +671,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/temporal-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/temporal-ops-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -2328,6 +2340,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/data/recovery-temporal-store:
+    dependencies:
+      '@domain/recovery-temporal-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-temporal-orchestration
+      '@shared/temporal-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/temporal-ops-runtime
 
   packages/data/recovery-timeline-store:
     dependencies:
@@ -4148,6 +4169,15 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-temporal-orchestration:
+    dependencies:
+      '@shared/temporal-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/temporal-ops-runtime
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -6776,6 +6806,18 @@ importers:
         specifier: workspace:*
         version: link:../../shared/type-level
 
+  packages/service/recovery-temporal-orchestrator:
+    dependencies:
+      '@data/recovery-temporal-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-temporal-store
+      '@domain/recovery-temporal-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-temporal-orchestration
+      '@shared/temporal-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/temporal-ops-runtime
+
   packages/service/recovery-timeline-orchestrator:
     dependencies:
       '@data/recovery-timeline-store':
@@ -7153,6 +7195,12 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+
+  packages/shared/temporal-ops-runtime:
+    dependencies:
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/timeline-orchestration-runtime:
     dependencies:

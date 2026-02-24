@@ -304,3 +304,10 @@ export * from './features/recovery-automation-orchestrator/components/Automation
 export * from './features/recovery-automation-orchestrator/components/AutomationPulseTimeline';
 export * from './features/recovery-automation-orchestrator/components/AutomationStatusDeck';
 export * from './features/recovery-automation-orchestrator/types';
+export { RecoveryTemporalStudioPage } from './features/recovery-temporal-studio/pages/RecoveryTemporalStudioPage';
+export { TemporalPlanBoard } from './features/recovery-temporal-studio/components/TemporalPlanBoard';
+export { TemporalTimelineChart } from './features/recovery-temporal-studio/components/TemporalTimelineChart';
+export { TemporalBoardLegend } from './features/recovery-temporal-studio/components/TemporalPlanBoard';
+export { useRecoveryTemporalStudio } from './features/recovery-temporal-studio/hooks/useRecoveryTemporalStudio';
+export * from './features/recovery-temporal-studio/types';
+export * from './features/recovery-temporal-studio/adapter';

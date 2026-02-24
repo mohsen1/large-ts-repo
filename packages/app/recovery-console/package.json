@@ -115,6 +115,10 @@
     "@data/recovery-synthetic-orchestration-store": "workspace:*",
     "@service/recovery-synthetic-orchestrator": "workspace:*",
     "@domain/recovery-stress-lab-intelligence": "workspace:*",
-    "@domain/recovery-orchestration-design": "workspace:*"
+    "@domain/recovery-orchestration-design": "workspace:*",
+    "@data/recovery-temporal-store": "workspace:*",
+    "@domain/recovery-temporal-orchestration": "workspace:*",
+    "@service/recovery-temporal-orchestrator": "workspace:*",
+    "@shared/temporal-ops-runtime": "workspace:*"
   }
 }

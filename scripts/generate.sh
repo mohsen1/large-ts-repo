@@ -213,6 +213,9 @@ ensure_typecheck_clean() {
 commit_iteration() {
   local iteration="$1"
   git add -A
+  if [ -f "$ROOT/pnpm-lock.yaml" ]; then
+    git add "$ROOT/pnpm-lock.yaml"
+  fi
 
   if git diff --cached --quiet --ignore-submodules --; then
     echo "Iteration $iteration made no tracked file changes."

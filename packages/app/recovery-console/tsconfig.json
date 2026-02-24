@@ -283,6 +283,18 @@
       "path": "../../shared/orchestration-runtime/tsconfig.json"
     },
     {
+      "path": "../../shared/temporal-ops-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-temporal-orchestration/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-temporal-store/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-temporal-orchestrator/tsconfig.json"
+    },
+    {
       "path": "../../domain/recovery-readiness/tsconfig.json"
     },
     {

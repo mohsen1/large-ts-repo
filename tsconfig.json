@@ -1220,6 +1220,18 @@
       "path": "./packages/shared/lab-graph-runtime"
     },
     {
+      "path": "./packages/shared/temporal-ops-runtime"
+    },
+    {
+      "path": "./packages/domain/recovery-temporal-orchestration"
+    },
+    {
+      "path": "./packages/data/recovery-temporal-store"
+    },
+    {
+      "path": "./packages/service/recovery-temporal-orchestrator"
+    },
+    {
       "path": "./packages/domain/recovery-chronicle-core"
     },
     {
