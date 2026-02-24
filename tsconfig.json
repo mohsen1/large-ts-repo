@@ -1130,6 +1130,9 @@
       "path": "./packages/domain/recovery-lab-orchestration-core"
     },
     {
+      "path": "./packages/domain/recovery-automation-orchestrator"
+    },
+    {
       "path": "./packages/shared/orchestration-kernel"
     },
     {
@@ -1137,6 +1140,9 @@
     },
     {
       "path": "./packages/shared/codec"
+    },
+    {
+      "path": "./packages/shared/automation-orchestration-runtime"
     },
     {
       "path": "./packages/shared/core"
