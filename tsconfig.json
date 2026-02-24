@@ -938,6 +938,9 @@
       "path": "./packages/shared/stress-lab-runtime"
     },
     {
+      "path": "./packages/shared/horizon-lab-runtime"
+    },
+    {
       "path": "./packages/shared/util"
     },
     {
