@@ -74,3 +74,9 @@ export { HorizonRunSummary } from './features/recovery-horizon-orchestration/com
 export { RecoveryHorizonOpsLabPage } from './features/recovery-horizon-orchestration/pages/RecoveryHorizonOpsLabPage';
 export * from './features/recovery-horizon-orchestration/services/horizonLabPipelineService';
 export * from './features/recovery-horizon-orchestration/types';
+export * from './services/recoveryLabIntelligenceEngineService';
+export * from './hooks/useRecoveryLabIntelligenceWorkspace';
+export * from './components/IntelligenceStrategyBoard';
+export * from './components/IntelligenceSignalStrip';
+export * from './components/IntelligencePolicyTimeline';
+export * from './pages/RecoveryLabIntelligenceStudioPage';

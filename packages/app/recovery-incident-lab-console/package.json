@@ -18,6 +18,7 @@
     "@domain/recovery-incident-lab-core": "workspace:*",
     "@domain/recovery-lab-adaptive-orchestration": "workspace:*",
     "@domain/recovery-horizon-engine": "workspace:*",
+    "@domain/recovery-lab-intelligence-core": "workspace:*",
     "@data/recovery-horizon-store": "workspace:*",
     "@domain/recovery-lab-orchestration-core": "workspace:*",
     "@domain/recovery-lab-console-runtime": "workspace:*",

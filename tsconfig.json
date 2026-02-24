@@ -998,6 +998,9 @@
       "path": "./packages/domain/recovery-lab-governance"
     },
     {
+      "path": "./packages/domain/recovery-lab-intelligence-core"
+    },
+    {
       "path": "./packages/domain/recovery-lab-console-core"
     },
     {
