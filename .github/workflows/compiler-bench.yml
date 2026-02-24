@@ -7,9 +7,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  compile-and-bench:
+  tsc_v5:
     runs-on: ubuntu-latest
     timeout-minutes: 60
+    outputs:
+      compiler: ${{ steps.benchmark.outputs.compiler }}
+      status: ${{ steps.benchmark.outputs.status }}
+      duration_ms: ${{ steps.benchmark.outputs.duration_ms }}
+      duration_s: ${{ steps.benchmark.outputs.duration_s }}
+      command: ${{ steps.benchmark.outputs.command }}
 
     steps:
       - name: Checkout
@@ -48,127 +54,374 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile=false
 
-      - name: Compile and benchmark
+      - name: Run compiler benchmark
+        id: benchmark
         shell: bash
+        env:
+          COMPILER: tsc-v5
+          COMMAND: npx -y -p typescript@5 tsc -b tsconfig.json --pretty false
+          ALLOW_FAILURE: false
+        run: |
+          set -euo pipefail
+
+          BENCH_DIR="$(pwd)/.bench"
+          mkdir -p "$BENCH_DIR"
+          LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
+          start_ms="$(date +%s%3N)"
+          set +e
+          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          rc="${PIPESTATUS[0]}"
+          set -e
+          end_ms="$(date +%s%3N)"
+          duration_ms="$((end_ms - start_ms))"
+          duration_s="$(awk -v ms="$duration_ms" 'BEGIN { printf "%.3f", ms/1000 }')"
+
+          if [ "$rc" -eq 0 ]; then
+            status="PASS"
+          else
+            status="FAIL($rc)"
+          fi
+
+          {
+            echo "compiler=$COMPILER"
+            echo "status=$status"
+            echo "duration_ms=$duration_ms"
+            echo "duration_s=$duration_s"
+            echo "command=$COMMAND"
+          } >> "$GITHUB_OUTPUT"
+
+          if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
+            exit "$rc"
+          fi
+
+  tsc_v6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    outputs:
+      compiler: ${{ steps.benchmark.outputs.compiler }}
+      status: ${{ steps.benchmark.outputs.status }}
+      duration_ms: ${{ steps.benchmark.outputs.duration_ms }}
+      duration_s: ${{ steps.benchmark.outputs.duration_s }}
+      command: ${{ steps.benchmark.outputs.command }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate package manifest JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Validating all package.json files..."
+          fail=0
+
+          while IFS= read -r -d '' file; do
+            if ! node -e "const fs = require('node:fs'); JSON.parse(fs.readFileSync(process.argv[1], 'utf8'))" "$file"; then
+              echo "::error file=$file::Invalid JSON in package.json"
+              fail=1
+            fi
+          done < <(find . -name package.json -print0)
+
+          if [ "$fail" -ne 0 ]; then
+            echo "One or more package.json files are invalid JSON."
+            exit 1
+          fi
+
+          echo "All package.json files are valid JSON."
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Run compiler benchmark
+        id: benchmark
+        shell: bash
+        env:
+          COMPILER: tsc-v6
+          COMMAND: npx -y -p typescript@beta tsc -b tsconfig.json --pretty false
+          ALLOW_FAILURE: false
         run: |
           set -euo pipefail
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
 
-          clean_outputs() {
-            find . -type d -name dist -prune -exec rm -rf {} +
-            find . -type f -name '*.tsbuildinfo' -delete
-          }
+          LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
+          start_ms="$(date +%s%3N)"
+          set +e
+          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          rc="${PIPESTATUS[0]}"
+          set -e
+          end_ms="$(date +%s%3N)"
+          duration_ms="$((end_ms - start_ms))"
+          duration_s="$(awk -v ms="$duration_ms" 'BEGIN { printf "%.3f", ms/1000 }')"
 
-          run_bench() {
-            local name="$1"
-            local cmd="$2"
-            local log_file="${BENCH_DIR}/${name// /_}.log"
-            local start_ms end_ms duration_ms duration_s
-            local status
-            local log_tail=20
-
-            clean_outputs
-            start_ms="$(date +%s%3N)"
-            set +e
-            bash -lc "$cmd" 2>&1 | tee "$log_file"
-            local rc="${PIPESTATUS[0]}"
-            set -e
-            end_ms="$(date +%s%3N)"
-            duration_ms="$((end_ms - start_ms))"
-            duration_s="$(awk -v ms="$duration_ms" 'BEGIN { printf "%.3f", ms/1000 }')"
-
-            if [ "$rc" -eq 0 ]; then
-              status="PASS"
-              echo "Compile/bench pass: $name (${duration_s}s)"
-              echo "Last ${log_tail} lines for $name:"
-              tail -n "$log_tail" "$log_file" || true
-            else
-              status="FAIL($rc)"
-              echo "Compile/bench failed: $name (exit $rc)"
-              echo "Full log for $name:"
-              cat "$log_file"
-            fi
-
-            printf "| %s | %s | %s |\n" "$name" "$status" "$duration_s" >> "$BENCH_DIR/summary.table.md"
-            printf "%s|%s|%s|%s\n" "$name" "$status" "$duration_ms" "$cmd" >> "$BENCH_DIR/results.csv"
-          }
-
-          echo "| Compiler | Status | Duration (s) |" > "$BENCH_DIR/summary.table.md"
-          echo "| --- | --- | ---: |" >> "$BENCH_DIR/summary.table.md"
-          echo "compiler,status,duration_ms,command" > "$BENCH_DIR/results.csv"
-
-          run_bench "tsc v5" "npx -y -p typescript@5 tsc -b tsconfig.json --pretty false"
-          run_bench "tsc v6 beta" "npx -y -p typescript@beta tsc -b tsconfig.json --pretty false"
-          run_bench "tsgo" "npx -y -p @typescript/native-preview tsgo -b tsconfig.json --pretty false"
+          if [ "$rc" -eq 0 ]; then
+            status="PASS"
+          else
+            status="FAIL($rc)"
+          fi
 
           {
-            echo "## Compiler Benchmark"
-            echo
-            cat "$BENCH_DIR/summary.table.md"
-            echo
-            echo "Raw results: \`.bench/results.csv\`"
-            echo
-            echo "Note: benchmark status may show compiler failures while CI still succeeds to preserve timing/report visibility."
-          } >> "$GITHUB_STEP_SUMMARY"
+            echo "compiler=$COMPILER"
+            echo "status=$status"
+            echo "duration_ms=$duration_ms"
+            echo "duration_s=$duration_s"
+            echo "command=$COMMAND"
+          } >> "$GITHUB_OUTPUT"
 
-          if [ ! -s "$BENCH_DIR/summary.table.md" ]; then
-            {
-              echo "| Compiler | Status | Duration (s) |"
-              echo "| --- | --- | ---: |"
-              echo "| no-run | FAIL | 0.000 |"
-            } > "$BENCH_DIR/summary.table.md"
+          if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
+            exit "$rc"
           fi
 
-          if [ ! -s "$BENCH_DIR/results.csv" ]; then
-            {
-              echo "compiler,status,duration_ms,command"
-              echo "no-run,FAIL,0,compile-and-bench"
-            } > "$BENCH_DIR/results.csv"
+  tsgo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    continue-on-error: true
+    outputs:
+      compiler: ${{ steps.benchmark.outputs.compiler }}
+      status: ${{ steps.benchmark.outputs.status }}
+      duration_ms: ${{ steps.benchmark.outputs.duration_ms }}
+      duration_s: ${{ steps.benchmark.outputs.duration_s }}
+      command: ${{ steps.benchmark.outputs.command }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate package manifest JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Validating all package.json files..."
+          fail=0
+
+          while IFS= read -r -d '' file; do
+            if ! node -e "const fs = require('node:fs'); JSON.parse(fs.readFileSync(process.argv[1], 'utf8'))" "$file"; then
+              echo "::error file=$file::Invalid JSON in package.json"
+              fail=1
+            fi
+          done < <(find . -name package.json -print0)
+
+          if [ "$fail" -ne 0 ]; then
+            echo "One or more package.json files are invalid JSON."
+            exit 1
           fi
 
-          if ! find "$BENCH_DIR" -maxdepth 1 -type f -name '*.log' | grep -q .; then
-            : > "$BENCH_DIR/no-output.log"
-            printf "%s\n" "No compiler output logs were produced." > "$BENCH_DIR/no-output.log"
+          echo "All package.json files are valid JSON."
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Run compiler benchmark
+        id: benchmark
+        shell: bash
+        env:
+          COMPILER: tsgo
+          COMMAND: npx -y -p @typescript/native-preview tsgo -b tsconfig.json --pretty false
+          ALLOW_FAILURE: true
+        run: |
+          set -euo pipefail
+
+          BENCH_DIR="$(pwd)/.bench"
+          mkdir -p "$BENCH_DIR"
+
+          LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
+          start_ms="$(date +%s%3N)"
+          set +e
+          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          rc="${PIPESTATUS[0]}"
+          set -e
+          end_ms="$(date +%s%3N)"
+          duration_ms="$((end_ms - start_ms))"
+          duration_s="$(awk -v ms="$duration_ms" 'BEGIN { printf "%.3f", ms/1000 }')"
+
+          if [ "$rc" -eq 0 ]; then
+            status="PASS"
+          else
+            status="FAIL($rc)"
           fi
 
-      - name: Ensure benchmark artifacts exist
-        if: always()
+          {
+            echo "compiler=$COMPILER"
+            echo "status=$status"
+            echo "duration_ms=$duration_ms"
+            echo "duration_s=$duration_s"
+            echo "command=$COMMAND"
+          } >> "$GITHUB_OUTPUT"
+
+          if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
+            exit "$rc"
+          fi
+
+  tsz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    continue-on-error: true
+    outputs:
+      compiler: ${{ steps.benchmark.outputs.compiler }}
+      status: ${{ steps.benchmark.outputs.status }}
+      duration_ms: ${{ steps.benchmark.outputs.duration_ms }}
+      duration_s: ${{ steps.benchmark.outputs.duration_s }}
+      command: ${{ steps.benchmark.outputs.command }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate package manifest JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Validating all package.json files..."
+          fail=0
+
+          while IFS= read -r -d '' file; do
+            if ! node -e "const fs = require('node:fs'); JSON.parse(fs.readFileSync(process.argv[1], 'utf8'))" "$file"; then
+              echo "::error file=$file::Invalid JSON in package.json"
+              fail=1
+            fi
+          done < <(find . -name package.json -print0)
+
+          if [ "$fail" -ne 0 ]; then
+            echo "One or more package.json files are invalid JSON."
+            exit 1
+          fi
+
+          echo "All package.json files are valid JSON."
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Run compiler benchmark
+        id: benchmark
+        shell: bash
+        env:
+          COMPILER: tsz
+          COMMAND: pnpm tsz-typecheck
+          ALLOW_FAILURE: true
+        run: |
+          set -euo pipefail
+
+          BENCH_DIR="$(pwd)/.bench"
+          mkdir -p "$BENCH_DIR"
+
+          LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
+          start_ms="$(date +%s%3N)"
+          set +e
+          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          rc="${PIPESTATUS[0]}"
+          set -e
+          end_ms="$(date +%s%3N)"
+          duration_ms="$((end_ms - start_ms))"
+          duration_s="$(awk -v ms="$duration_ms" 'BEGIN { printf "%.3f", ms/1000 }')"
+
+          if [ "$rc" -eq 0 ]; then
+            status="PASS"
+          else
+            status="FAIL($rc)"
+          fi
+
+          {
+            echo "compiler=$COMPILER"
+            echo "status=$status"
+            echo "duration_ms=$duration_ms"
+            echo "duration_s=$duration_s"
+            echo "command=$COMMAND"
+          } >> "$GITHUB_OUTPUT"
+
+          if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
+            exit "$rc"
+          fi
+
+  summarize:
+    name: summarize
+    runs-on: ubuntu-latest
+    needs: [tsc_v5, tsc_v6, tsgo, tsz]
+    if: always()
+    steps:
+      - name: Print compiler summary
         shell: bash
         run: |
           set -euo pipefail
 
           BENCH_DIR="${{ github.workspace }}/.bench"
-          ARTIFACT_BUNDLE="${{ runner.temp }}/compiler-bench-artifacts.tgz"
           mkdir -p "$BENCH_DIR"
+
+          summary_file="$BENCH_DIR/summary.table.md"
+          results_file="$BENCH_DIR/results.csv"
+
+          {
+            echo "| Compiler | Status | Duration (s) | Command | Allowed to fail |"
+            echo "| --- | --- | ---: | --- | --- |"
+            echo "| tsc v5 | ${{ needs.tsc_v5.outputs.status }} | ${{ needs.tsc_v5.outputs.duration_s }} | \`${{ needs.tsc_v5.outputs.command }}\` | false |"
+            echo "| tsc v6 | ${{ needs.tsc_v6.outputs.status }} | ${{ needs.tsc_v6.outputs.duration_s }} | \`${{ needs.tsc_v6.outputs.command }}\` | false |"
+            echo "| tsgo | ${{ needs.tsgo.outputs.status }} | ${{ needs.tsgo.outputs.duration_s }} | \`${{ needs.tsgo.outputs.command }}\` | true |"
+            echo "| tsz | ${{ needs.tsz.outputs.status }} | ${{ needs.tsz.outputs.duration_s }} | \`${{ needs.tsz.outputs.command }}\` | true |"
+          } > "$summary_file"
+
+          {
+            echo "compiler,status,duration_ms,command,allowed_to_fail"
+            echo "tsc v5,${{ needs.tsc_v5.outputs.status }},${{ needs.tsc_v5.outputs.duration_ms }},\"${{ needs.tsc_v5.outputs.command }}\",false"
+            echo "tsc v6,${{ needs.tsc_v6.outputs.status }},${{ needs.tsc_v6.outputs.duration_ms }},\"${{ needs.tsc_v6.outputs.command }}\",false"
+            echo "tsgo,${{ needs.tsgo.outputs.status }},${{ needs.tsgo.outputs.duration_ms }},\"${{ needs.tsgo.outputs.command }}\",true"
+            echo "tsz,${{ needs.tsz.outputs.status }},${{ needs.tsz.outputs.duration_ms }},\"${{ needs.tsz.outputs.command }}\",true"
+          } > "$results_file"
 
           if [ ! -s "$BENCH_DIR/summary.table.md" ]; then
             {
               echo "| Compiler | Status | Duration (s) |"
               echo "| --- | --- | ---: |"
               echo "| no-run | FAIL | 0.000 |"
-            } > "$BENCH_DIR/summary.table.md"
+            } > "$summary_file"
           fi
 
-          if [ ! -s "$BENCH_DIR/results.csv" ]; then
+          if [ ! -s "$results_file" ]; then
             {
-              echo "compiler,status,duration_ms,command"
-              echo "no-run,FAIL,0,compile-and-bench"
-            } > "$BENCH_DIR/results.csv"
+              echo "compiler,status,duration_ms,command,allowed_to_fail"
+              echo "no-run,FAIL,0,compile-and-bench,false"
+            } > "$results_file"
           fi
 
-          if ! find "$BENCH_DIR" -maxdepth 1 -type f -name '*.log' | grep -q .; then
-            : > "$BENCH_DIR/no-output.log"
-            printf "%s\n" "No compiler output logs were produced." > "$BENCH_DIR/no-output.log"
-          fi
-
-          tar -czf "$ARTIFACT_BUNDLE" -C "$BENCH_DIR" .
+          {
+            echo "## Compiler Benchmark"
+            echo
+            cat "$summary_file"
+            echo
+            echo "Raw results: \`.bench/results.csv\`"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload benchmark artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: compiler-bench-${{ github.run_id }}
-          if-no-files-found: ignore
-          path: ${{ runner.temp }}/compiler-bench-artifacts.tgz
+          path: |
+            .bench/summary.table.md
+            .bench/results.csv
