@@ -449,6 +449,9 @@ importers:
       '@domain/recovery-playbooks':
         specifier: workspace:*
         version: link:../../domain/recovery-playbooks
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
       '@domain/recovery-scenario-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-scenario-orchestration
@@ -5857,6 +5860,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
