@@ -4,12 +4,12 @@ This is a large AI-generated TypeScript monorepo that contains multiple packages
 
 ## Why?
 
-Most very large open source TypeScript monorepos have very custom build systems (e.g. VSCode, Next.js). This monorepo is designed to be a public resource for testing TypeScript compilers and tools on large codebases. Personally I am using this for [`tsz`](https://tsz.dev) which is a TypeScript compiler written in Rust.
+Most very large open source TypeScript monorepos have custom build systems (e.g., VSCode, Next.js). This monorepo is designed to be a public resource for testing TypeScript compilers and tools on large codebases. Personally, I am using this for [`tsz`](https://tsz.dev), which is a TypeScript compiler written in Rust.
 
 
-## How it was generated
+## How was it generated?
 
-This is entirely AI generated using `Codex-5.3-Spark` on a loop.
+This is entirely AI-generated using `Codex-5.3-Spark` on a loop.
 
 See [`generate.sh`](./scripts/generate.sh) for the script that was used to generate this monorepo. 
 
