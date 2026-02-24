@@ -45,6 +45,7 @@
     "@service/recovery-readiness-orchestrator": "workspace:*",
     "@service/recovery-incident-command-orchestrator": "workspace:*",
     "@service/recovery-horizon-orchestrator": "workspace:*",
+    "@domain/recovery-lab-console-core": "workspace:*",
     "@domain/recovery-ops-orchestration-lab": "workspace:*",
     "@service/recovery-coordination-orchestrator": "workspace:*",
     "@data/recovery-ops-orchestration-lab-store": "workspace:*",

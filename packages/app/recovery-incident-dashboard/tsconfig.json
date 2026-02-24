@@ -146,6 +146,9 @@
       "path": "./../../domain/recovery-ops-orchestration-lab/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-lab-console-core/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-incident-scenario-orchestrator/tsconfig.json"
     },
     {
