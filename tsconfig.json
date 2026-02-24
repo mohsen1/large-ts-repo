@@ -53,6 +53,15 @@
       "path": "./packages/app/recovery-playbook-orchestrator"
     },
     {
+      "path": "./packages/domain/recovery-ops-playbook-studio"
+    },
+    {
+      "path": "./packages/data/recovery-ops-playbook-studio-store"
+    },
+    {
+      "path": "./packages/service/recovery-ops-playbook-studio-orchestrator"
+    },
+    {
       "path": "./packages/app/recovery-timeline-studio"
     },
     {
