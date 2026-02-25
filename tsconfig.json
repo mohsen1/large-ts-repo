@@ -1260,6 +1260,12 @@
     },
     {
       "path": "./packages/service/recovery-lab-graph-orchestrator"
+    },
+    {
+      "path": "./packages/shared/chronicle-orchestration-protocol"
+    },
+    {
+      "path": "./packages/domain/recovery-chronicle-lab-core"
     }
   ]
 }

@@ -21,6 +21,9 @@
       "path": "./../../domain/recovery-chronicle-core/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-chronicle-lab-core/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-chronicle-orchestrator/tsconfig.json"
     },
     {

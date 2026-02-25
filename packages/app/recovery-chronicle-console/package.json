@@ -16,6 +16,7 @@
   "dependencies": {
     "@data/recovery-chronicle-store": "workspace:*",
     "@domain/recovery-chronicle-core": "workspace:*",
+    "@domain/recovery-chronicle-lab-core": "workspace:*",
     "@service/recovery-chronicle-orchestrator": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/result": "workspace:*",
