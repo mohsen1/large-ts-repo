@@ -1223,6 +1223,9 @@
       "path": "./packages/shared/typed-orchestration-core"
     },
     {
+      "path": "./packages/shared/recovery-synthesis-runtime"
+    },
+    {
       "path": "./packages/shared/orchestration-runtime"
     },
     {
