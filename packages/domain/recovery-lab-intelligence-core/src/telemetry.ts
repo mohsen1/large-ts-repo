@@ -100,6 +100,7 @@ export interface EventSummary {
   readonly warnings: number;
   readonly errors: number;
   readonly criticial: number;
+  readonly critical: number;
 }
 
 export const summarizeEvents = (events: readonly SignalEvent[]): EventSummary => {
@@ -141,6 +142,7 @@ export const summarizeEvents = (events: readonly SignalEvent[]): EventSummary =>
     warnings,
     errors,
     criticial,
+    critical: criticial,
   };
 };
 

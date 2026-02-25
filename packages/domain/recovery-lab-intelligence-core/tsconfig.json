@@ -19,6 +19,9 @@
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
+      "path": "./../../shared/observability-contracts/tsconfig.json"
+    },
+    {
       "path": "./../../shared/util/tsconfig.json"
     },
     {

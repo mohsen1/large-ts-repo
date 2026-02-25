@@ -18,6 +18,7 @@
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/observability-contracts": "workspace:*",
     "zod": "^3.24.0"
   }
 }

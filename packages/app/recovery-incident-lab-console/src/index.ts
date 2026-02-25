@@ -80,3 +80,7 @@ export * from './components/IntelligenceStrategyBoard';
 export * from './components/IntelligenceSignalStrip';
 export * from './components/IntelligencePolicyTimeline';
 export * from './pages/RecoveryLabIntelligenceStudioPage';
+export * from './hooks/useRecoveryLabIntelligenceStudio';
+export * from './components/RecoveryLabIntelligenceCommandPanel';
+export * from './components/RecoveryLabSignalMatrixPanel';
+export { RecoveryLabIntelligenceCommandStudioPage } from './pages/RecoveryLabIntelligenceCommandStudioPage';
