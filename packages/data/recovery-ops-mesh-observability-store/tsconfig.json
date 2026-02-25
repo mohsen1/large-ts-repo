@@ -4,10 +4,11 @@
     "outDir": "./dist",
     "composite": true,
     "declaration": true,
-    "jsx": "react-jsx",
     "lib": [
       "DOM",
-      "ES2023"
+      "ES2023",
+      "esnext.disposable",
+      "esnext.asynciterable"
     ]
   },
   "include": [
@@ -18,22 +19,13 @@
       "path": "./../../domain/recovery-ops-mesh/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-ops-mesh-engine/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-ops-mesh-observability-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-ops-mesh-observability-store/tsconfig.json"
+      "path": "./../../shared/core/tsconfig.json"
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
-    },
-    {
-      "path": "./../../shared/core/tsconfig.json"
     }
   ]
 }

@@ -16,9 +16,17 @@ import { MeshRuntimeInspector } from './components/MeshRuntimeInspector';
 import { MeshRunOrchestrator } from './components/MeshRunOrchestrator';
 import { MeshOrchestratorPage } from './pages/MeshOrchestratorPage';
 import { MeshControlCenterPage } from './pages/MeshControlCenterPage';
+import { ObservabilityStudioPage } from './pages/ObservabilityStudioPage';
+import { ObservabilityPolicyTimeline } from './components/ObservabilityPolicyTimeline';
+import { ObservabilityStoreInspector } from './components/ObservabilityStoreInspector';
+import { ObservabilityPolicyConsole } from './components/ObservabilityPolicyConsole';
+import { ObservabilitySignalExplorer } from './components/ObservabilitySignalExplorer';
+import { ObservabilityWorkbenchPage } from './pages/ObservabilityWorkbenchPage';
 import { useMeshEngineWorkspace } from './hooks/useMeshWorkspace';
 import { useMeshSignalStream } from './hooks/useMeshSignalStream';
 import { useMeshRuntimeState } from './hooks/useMeshRuntimeState';
+import { useObservabilityWorkspace } from './hooks/useObservabilityWorkspace';
+import { useObservabilityEngine } from './hooks/useObservabilityEngine';
 import type { EngineEnvelope, MeshPlanId, MeshRunId } from '@service/recovery-ops-mesh-engine';
 
 export {
@@ -30,9 +38,17 @@ export {
   MeshRunOrchestrator,
   MeshOrchestratorPage,
   MeshControlCenterPage,
+  ObservabilityStoreInspector,
+  ObservabilityPolicyTimeline,
+  ObservabilityPolicyConsole,
+  ObservabilitySignalExplorer,
+  ObservabilityStudioPage,
+  ObservabilityWorkbenchPage,
   useMeshEngineWorkspace,
+  useObservabilityEngine,
   useMeshSignalStream,
   useMeshRuntimeState,
+  useObservabilityWorkspace,
 };
 export * from './types/meshConsoleTypes';
 export * from './services/meshStudioService';

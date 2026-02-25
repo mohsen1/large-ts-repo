@@ -89,7 +89,13 @@
       "path": "./packages/app/recovery-mesh-console"
     },
     {
+      "path": "./packages/data/recovery-ops-mesh-observability-store"
+    },
+    {
       "path": "./packages/shared/chaos-lab-console-kernel"
+    },
+    {
+      "path": "./packages/service/recovery-ops-mesh-observability-orchestrator"
     },
     {
       "path": "./packages/service/recovery-chaos-lab-console-orchestrator"

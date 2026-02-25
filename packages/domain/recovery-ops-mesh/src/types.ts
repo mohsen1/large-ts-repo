@@ -168,9 +168,15 @@ export type MeshSignalPayloadFor<TKind extends MeshSignalKind> =
   : TKind extends 'alert' ? { readonly severity: MeshPriority; readonly reason: string }
   : { readonly metrics: Record<string, number> };
 
-export type MeshPayloadFor<TKind extends MeshSignalKind> = {
-  readonly kind: TKind;
-  readonly payload: MeshSignalPayloadFor<TKind>;
+export type MeshPayloadFor<TKind extends MeshSignalKind = MeshSignalKind> = {
+  [TSignal in TKind]: {
+    readonly kind: TSignal;
+    readonly payload: MeshSignalPayloadFor<TSignal>;
+  };
+}[TKind];
+
+export type MeshPayloadByKind = {
+  [K in MeshSignalKind as `${K & string}Signal`]: Extract<MeshPayloadFor<K>, { readonly kind: K }>;
 };
 
 export type MeshEventUnion = {

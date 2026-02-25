@@ -5,12 +5,13 @@ import {
   type MeshNodeContract,
   type MeshNodeId,
   type MeshNodeKind,
-  type MeshPayloadFor,
   type MeshPlanId,
+  type MeshRunId,
   type MeshSignalKind,
   type MeshTopology,
   type MeshTopologyPath,
   type MeshId,
+  type MeshPayloadFor,
 } from './types';
 
 const MeshKindSchema = z.enum(['ingest', 'transform', 'emit', 'observer'] as const);
@@ -96,6 +97,7 @@ export const meshRuntimeConfig = {
 
 const asMeshNodeId = (value: string): MeshNodeId => withBrand(value, 'MeshNodeId');
 const asMeshPlanId = (value: string): MeshPlanId => withBrand(value, 'MeshPlanId');
+const asMeshRunId = (value: string): MeshRunId => withBrand(value, 'MeshRunId');
 const asMeshTopologyLinkId = (value: string): MeshTopology['links'][number]['id'] => withBrand(value, 'MeshLinkId');
 
 type ParsedNodeContract = ReturnType<typeof meshNodeContractSchema.parse>;
@@ -216,6 +218,14 @@ export const parsePlanId = (value: unknown): MeshPlanId => {
   return asMeshPlanId(`plan-${String(value)}`);
 };
 
+export const parseRunId = (value: unknown): MeshRunId => {
+  if (typeof value === 'string') {
+    return asMeshRunId(value);
+  }
+
+  return asMeshRunId(`run-${String(value)}`);
+};
+
 export const parseMeshId = <TKind extends 'MeshNode' | 'MeshPlan' | 'MeshLink' | 'MeshRun'>(
   value: unknown,
   kind: TKind,
@@ -225,12 +235,62 @@ export const parseTopologyPath = (value: string): MeshTopologyPath => {
   return (value.length > 0 ? value : 'boot') as MeshTopologyPath;
 };
 
+const isSignalKind = (value: unknown): value is MeshSignalKind => {
+  if (typeof value !== 'string') {
+    return false;
+  }
+  return MeshSignalSchema.safeParse(value).success;
+};
+
 export const parseOrThrowSignal = <TSignal extends MeshSignalKind>(
   signal: TSignal,
   payload: unknown,
 ): MeshPayloadFor<TSignal> => {
   return meshPayloadSchema.parse({ kind: signal, payload }) as MeshPayloadFor<TSignal>;
 };
+
+export const parseMeshSignal = (input: unknown): MeshPayloadFor<MeshSignalKind> => {
+  if (typeof input !== 'object' || input === null) {
+    throw new Error(`mesh-signal:not-object:${String(input)}`);
+  }
+
+  const parsed = meshPayloadSchema.parse(input);
+  return {
+    kind: parsed.kind,
+    payload: parsed.payload,
+  } as MeshPayloadFor<MeshSignalKind>;
+};
+
+export const isMeshSignal = (input: unknown): input is MeshPayloadFor<MeshSignalKind> => {
+  try {
+    if (typeof input !== 'object' || input === null) {
+      return false;
+    }
+    return isSignalKind((input as { kind: unknown }).kind) && meshPayloadSchema.safeParse(input).success;
+  } catch {
+    return false;
+  }
+};
+
+export const isAlertSignal = (
+  input: MeshPayloadFor<MeshSignalKind>,
+): input is Extract<MeshPayloadFor<MeshSignalKind>, { readonly kind: 'alert' }> =>
+  input.kind === 'alert';
+
+export const isTelemetrySignal = (
+  input: MeshPayloadFor<MeshSignalKind>,
+): input is Extract<MeshPayloadFor<MeshSignalKind>, { readonly kind: 'telemetry' }> =>
+  input.kind === 'telemetry';
+
+export const isSnapshotSignal = (
+  input: MeshPayloadFor<MeshSignalKind>,
+): input is Extract<MeshPayloadFor<MeshSignalKind>, { readonly kind: 'snapshot' }> =>
+  input.kind === 'snapshot';
+
+export const isPulseSignal = (
+  input: MeshPayloadFor<MeshSignalKind>,
+): input is Extract<MeshPayloadFor<MeshSignalKind>, { readonly kind: 'pulse' }> =>
+  input.kind === 'pulse';
 
 export const isAlertPayload = (
   payload: MeshPayloadFor<MeshSignalKind>,

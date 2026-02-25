@@ -139,21 +139,26 @@ export const buildFleet = <TSignal extends MeshSignalKind>(
 export const createFallbackAdapter = <TSignal extends MeshSignalKind>(
   signal: TSignal,
   alias: string,
-): FleetAdapter<TSignal> => ({
-  adapter: {
-    adapterId: withBrand(`fallback-${alias}-${randomUUID()}`, 'engine-adapter-id'),
-    capabilities: [signal],
-    displayName: alias,
-    connect: async () => undefined,
-    disconnect: async () => undefined,
-    execute: async (command: any) => [command.signal] as unknown as MeshPayloadFor<any>[],
-    [Symbol.asyncDispose]: async () => undefined,
-  },
-  alias,
-  affinity: [signal],
-  mode: 'warm',
-  active: true,
-});
+): FleetAdapter<TSignal> => {
+  return {
+    adapter: {
+      adapterId: withBrand(`fallback-${alias}-${randomUUID()}`, 'engine-adapter-id'),
+      capabilities: [signal] as readonly MeshSignalKind[],
+      displayName: alias,
+      connect: async () => undefined,
+      disconnect: async () => undefined,
+      execute: async <TSignalLocal extends MeshSignalKind>(
+        command: MeshRuntimeCommand<TSignalLocal>,
+      ): Promise<MeshPayloadFor<TSignalLocal>[]> =>
+        [command.signal as MeshPayloadFor<TSignalLocal>],
+      [Symbol.asyncDispose]: async () => undefined,
+    },
+    alias,
+    affinity: [signal],
+    mode: 'warm',
+    active: true,
+  } as FleetAdapter<TSignal>;
+};
 
 export const executeFleet = async <TSignal extends MeshSignalKind>(
   fleet: MeshAdapterFleet<TSignal>,

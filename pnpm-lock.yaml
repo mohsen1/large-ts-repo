@@ -1103,12 +1103,18 @@ importers:
 
   packages/app/recovery-mesh-console:
     dependencies:
+      '@data/recovery-ops-mesh-observability-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-mesh-observability-store
       '@domain/recovery-ops-mesh':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-mesh
       '@service/recovery-ops-mesh-engine':
         specifier: workspace:*
         version: link:../../service/recovery-ops-mesh-engine
+      '@service/recovery-ops-mesh-observability-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-mesh-observability-orchestrator
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -2223,6 +2229,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-ops-mesh-observability-store:
+    dependencies:
+      '@domain/recovery-ops-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-mesh
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-ops-orchestration-lab-store:
     dependencies:
@@ -6619,6 +6643,30 @@ importers:
       '@domain/recovery-ops-mesh':
         specifier: workspace:*
         version: link:../../domain/recovery-ops-mesh
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-ops-mesh-observability-orchestrator:
+    dependencies:
+      '@data/recovery-ops-mesh-observability-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ops-mesh-observability-store
+      '@domain/recovery-ops-mesh':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ops-mesh
+      '@service/recovery-ops-mesh-engine':
+        specifier: workspace:*
+        version: link:../recovery-ops-mesh-engine
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core

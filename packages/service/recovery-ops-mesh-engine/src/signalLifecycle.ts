@@ -110,7 +110,7 @@ export class MeshLifecycleController {
         topologyId: this.#topology.id,
         runId: withBrand(command.id, 'MeshRunId'),
         plan: this.#topology,
-        signal: command.signal,
+        signal: command.signal as MeshPayloadFor<MeshSignalKind>,
         options: {
           priority: command.priority,
           requireHistory: false,

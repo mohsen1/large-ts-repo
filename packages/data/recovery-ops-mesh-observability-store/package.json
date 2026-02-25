@@ -1,0 +1,23 @@
+{
+  "name": "@data/recovery-ops-mesh-observability-store",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-ops-mesh": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/result": "workspace:*",
+    "zod": "^3.24.0"
+  }
+}

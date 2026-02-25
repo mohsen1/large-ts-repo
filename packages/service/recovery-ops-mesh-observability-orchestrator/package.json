@@ -1,5 +1,5 @@
 {
-  "name": "@app/recovery-mesh-console",
+  "name": "@service/recovery-ops-mesh-observability-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -7,7 +7,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./src": "./src/index.ts",
-    "./*": "./src/*",
+    "./*": "./src/*.ts",
     "./src/*": "./src/*"
   },
   "scripts": {
@@ -15,13 +15,11 @@
   },
   "dependencies": {
     "@domain/recovery-ops-mesh": "workspace:*",
-    "@service/recovery-ops-mesh-engine": "workspace:*",
-    "@service/recovery-ops-mesh-observability-orchestrator": "workspace:*",
     "@data/recovery-ops-mesh-observability-store": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@service/recovery-ops-mesh-engine": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/result": "workspace:*",
     "zod": "^3.24.0"
   }
 }

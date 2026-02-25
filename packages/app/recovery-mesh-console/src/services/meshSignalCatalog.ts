@@ -125,7 +125,7 @@ export const submitCatalogSignal = async <TSignal extends MeshSignalKind>(
   payload: MeshPayloadFor<TSignal>,
 ) => {
   const token = withBrand(`cat-${planId}-${Date.now()}`, 'engine-run-token');
-  return runWithQueue(withBrand(planId, 'MeshPlanId'), token, payload);
+  return runWithQueue(withBrand(planId, 'MeshPlanId'), token, payload as MeshPayloadFor<MeshSignalKind>);
 };
 
 export const toCatalogMap = (state: SignalCatalogState): Readonly<Record<MeshSignalKind, SignalCatalogItem[]>> => {
@@ -163,7 +163,7 @@ export const summarizeCatalog = (items: readonly SignalCatalogItem[]): string =>
     .join('|');
 
 export const catalogItemToCatalogPayload = (item: SignalCatalogItem, value = 1): MeshPayloadFor<MeshSignalKind> =>
-  item.kind === 'snapshot'
+  (item.kind === 'snapshot'
     ? ({
         kind: 'snapshot',
         payload: parseTopology({
@@ -174,9 +174,9 @@ export const catalogItemToCatalogPayload = (item: SignalCatalogItem, value = 1):
           links: [],
           createdAt: Date.now(),
         }),
-      } satisfies MeshPayloadFor<'snapshot'>)
+      } as MeshPayloadFor<'snapshot'>)
     : item.kind === 'alert'
-      ? ({ kind: 'alert', payload: { severity: 'high', reason: item.label } } satisfies MeshPayloadFor<'alert'>)
+      ? ({ kind: 'alert', payload: { severity: 'high', reason: item.label } } as MeshPayloadFor<'alert'>)
       : item.kind === 'telemetry'
-      ? ({ kind: 'telemetry', payload: { metrics: { value } } } satisfies MeshPayloadFor<'telemetry'>)
-      : ({ kind: 'pulse', payload: { value: item.value } } satisfies MeshPayloadFor<'pulse'>);
+        ? ({ kind: 'telemetry', payload: { metrics: { value } } } as MeshPayloadFor<'telemetry'>)
+        : ({ kind: 'pulse', payload: { value: item.value } } as MeshPayloadFor<'pulse'>)) as MeshPayloadFor<MeshSignalKind>;
