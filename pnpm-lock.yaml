@@ -614,6 +614,9 @@ importers:
       '@domain/recovery-incident-saga':
         specifier: workspace:*
         version: link:../../domain/recovery-incident-saga
+      '@domain/recovery-lab-console-labs':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-console-labs
       '@domain/recovery-lab-stress-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-lab-stress-lab-core
@@ -4098,6 +4101,24 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-lab-console-labs:
+    dependencies:
+      '@domain/recovery-lab-console-core':
+        specifier: workspace:*
+        version: link:../recovery-lab-console-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
