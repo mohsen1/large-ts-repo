@@ -1,0 +1,24 @@
+{
+  "name": "@service/recovery-scenario-design-orchestrator",
+  "version": "0.0.1",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-scenario-design": "workspace:*",
+    "@shared/scenario-design-kernel": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/util": "workspace:*",
+    "@aws-sdk/client-eventbridge": "^3.900.0",
+    "zod": "^3.24.0"
+  }
+}

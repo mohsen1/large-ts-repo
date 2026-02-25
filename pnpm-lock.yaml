@@ -926,6 +926,9 @@ importers:
       '@service/recovery-runner':
         specifier: workspace:*
         version: link:../../service/recovery-runner
+      '@service/recovery-scenario-design-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-scenario-design-orchestrator
       '@service/recovery-signal-intelligence-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-signal-intelligence-orchestrator
@@ -4276,6 +4279,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-scenario-design:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-scenario-engine:
     dependencies:
       '@shared/core':
@@ -6961,6 +6976,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-scenario-design-orchestrator:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-scenario-design':
+        specifier: workspace:*
+        version: link:../../domain/recovery-scenario-design
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76

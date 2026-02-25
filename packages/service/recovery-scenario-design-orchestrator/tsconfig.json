@@ -1,0 +1,25 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-scenario-design/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/scenario-design-kernel/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/util/tsconfig.json"
+    }
+  ]
+}

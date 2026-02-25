@@ -173,6 +173,9 @@
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
+      "path": "./../../shared/scenario-design-kernel/tsconfig.json"
+    },
+    {
       "path": "./../../shared/recovery-orchestration-runtime/tsconfig.json"
     },
     {
@@ -180,6 +183,12 @@
     },
     {
       "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-scenario-design-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-scenario-design/tsconfig.json"
     }
   ]
 }

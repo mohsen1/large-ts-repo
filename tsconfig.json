@@ -1211,6 +1211,9 @@
       "path": "./packages/shared/recovery-orchestration-runtime"
     },
     {
+      "path": "./packages/shared/scenario-design-kernel"
+    },
+    {
       "path": "./packages/shared/result"
     },
     {
@@ -1299,6 +1302,12 @@
     },
     {
       "path": "./packages/service/fault-intel-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-scenario-design"
+    },
+    {
+      "path": "./packages/service/recovery-scenario-design-orchestrator"
     }
   ]
 }
