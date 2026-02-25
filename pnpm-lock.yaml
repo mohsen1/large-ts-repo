@@ -641,6 +641,9 @@ importers:
       '@domain/recovery-temporal-orchestration':
         specifier: workspace:*
         version: link:../../domain/recovery-temporal-orchestration
+      '@domain/recovery-workbench-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-workbench-models
       '@service/continuity-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/continuity-readiness-orchestrator
@@ -746,6 +749,9 @@ importers:
       '@service/recovery-temporal-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-temporal-orchestrator
+      '@service/recovery-workbench-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-workbench-orchestrator
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
@@ -767,6 +773,9 @@ importers:
       '@shared/recovery-quantum-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-quantum-runtime
+      '@shared/recovery-workbench-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-workbench-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -4638,6 +4647,15 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-workbench-models:
+    dependencies:
+      '@shared/recovery-workbench-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-workbench-runtime
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-workload-intelligence:
     dependencies:
       '@shared/core':
@@ -7433,6 +7451,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-workbench-orchestrator:
+    dependencies:
+      '@domain/recovery-workbench-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-workbench-models
+      '@shared/recovery-workbench-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-workbench-runtime
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-workflow-orchestrator:
     dependencies:
       '@data/recovery-incident-store':
@@ -7817,6 +7847,12 @@ importers:
         version: link:../util
 
   packages/shared/recovery-quantum-runtime: {}
+
+  packages/shared/recovery-workbench-runtime:
+    dependencies:
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/result:
     dependencies:

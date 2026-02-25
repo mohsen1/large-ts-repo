@@ -1,0 +1,24 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "lib": [
+      "DOM",
+      "ES2023",
+      "ESNext"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/recovery-workbench-models/tsconfig.json"
+    },
+    {
+      "path": "../../shared/recovery-workbench-runtime/tsconfig.json"
+    }
+  ]
+}

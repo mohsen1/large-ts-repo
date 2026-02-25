@@ -315,3 +315,12 @@ export { TemporalBoardLegend } from './features/recovery-temporal-studio/compone
 export { useRecoveryTemporalStudio } from './features/recovery-temporal-studio/hooks/useRecoveryTemporalStudio';
 export * from './features/recovery-temporal-studio/types';
 export * from './features/recovery-temporal-studio/adapter';
+export * from './features/recovery-workbench-orchestration/types';
+export * from './features/recovery-workbench-orchestration/services/workbenchService';
+export { RecoveryWorkbenchOrchestrationPage } from './features/recovery-workbench-orchestration/pages/RecoveryWorkbenchOrchestrationPage';
+export { WorkbenchControlPanel } from './features/recovery-workbench-orchestration/components/WorkbenchControlPanel';
+export { WorkbenchDiagnosticsDeck } from './features/recovery-workbench-orchestration/components/WorkbenchDiagnosticsDeck';
+export { WorkbenchTimelineDeck } from './features/recovery-workbench-orchestration/components/WorkbenchTimelineDeck';
+export { WorkbenchRunSummary } from './features/recovery-workbench-orchestration/components/WorkbenchRunSummary';
+export { WorkbenchTraceTimeline } from './features/recovery-workbench-orchestration/components/WorkbenchTraceTimeline';
+export * from './features/recovery-workbench-orchestration/hooks/useRecoveryWorkbenchOrchestration';

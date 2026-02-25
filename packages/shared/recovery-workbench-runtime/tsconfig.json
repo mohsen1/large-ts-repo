@@ -1,0 +1,16 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "lib": [
+      "ES2023",
+      "ESNext"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": []
+}

@@ -728,6 +728,9 @@
       "path": "./packages/domain/recovery-stress-lab"
     },
     {
+      "path": "./packages/domain/recovery-workbench-models"
+    },
+    {
       "path": "./packages/domain/recovery-stress-lab-intelligence"
     },
     {
@@ -1115,6 +1118,9 @@
       "path": "./packages/service/recovery-situational-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-workbench-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-stability-orchestrator"
     },
     {
@@ -1227,6 +1233,9 @@
     },
     {
       "path": "./packages/shared/recovery-orchestration-runtime"
+    },
+    {
+      "path": "./packages/shared/recovery-workbench-runtime"
     },
     {
       "path": "./packages/shared/scenario-design-kernel"

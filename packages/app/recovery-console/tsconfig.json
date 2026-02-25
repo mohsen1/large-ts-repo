@@ -64,6 +64,15 @@
       "path": "../../service/incident-orchestration/tsconfig.json"
     },
     {
+      "path": "../../domain/recovery-workbench-models/tsconfig.json"
+    },
+    {
+      "path": "../../shared/recovery-workbench-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-workbench-orchestrator/tsconfig.json"
+    },
+    {
       "path": "../../service/recovery-cadence-coordinator/tsconfig.json"
     },
     {
