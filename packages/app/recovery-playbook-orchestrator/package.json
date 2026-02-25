@@ -43,6 +43,8 @@
     "@data/recovery-playbook-store": "workspace:*",
     "@domain/recovery-playbooks": "workspace:*",
     "@shared/result": "workspace:*",
+    "@domain/recovery-playbook-observability-core": "workspace:*",
+    "@service/recovery-playbook-observability-orchestrator": "workspace:*",
     "@domain/recovery-playbook-orchestration-core": "workspace:*",
     "@service/recovery-playbook-automation-engine": "workspace:*",
     "@data/recovery-playbook-automation-store": "workspace:*",

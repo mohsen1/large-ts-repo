@@ -50,6 +50,9 @@
       "path": "./packages/app/recovery-playbook-orchestrator"
     },
     {
+      "path": "./packages/domain/recovery-playbook-observability-core"
+    },
+    {
       "path": "./packages/app/recovery-lab-dashboard"
     },
     {
@@ -1074,6 +1077,9 @@
     },
     {
       "path": "./packages/service/recovery-playbook-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-playbook-observability-orchestrator"
     },
     {
       "path": "./packages/service/recovery-incident-intent-orchestrator"
