@@ -28,6 +28,9 @@
     "@types/react-dom": "^19.0.0",
     "@domain/recovery-lens-observability-models": "workspace:*",
     "@service/recovery-lens-observability-orchestrator": "workspace:*",
-    "@data/recovery-lens-observability-store": "workspace:*"
+    "@data/recovery-lens-observability-store": "workspace:*",
+    "@domain/recovery-ecosystem-orchestrator-core": "workspace:*",
+    "@shared/result": "workspace:*",
+    "zod": "^3.24.0"
   }
 }

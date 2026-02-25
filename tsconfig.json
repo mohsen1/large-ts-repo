@@ -596,6 +596,9 @@
       "path": "./packages/domain/recovery-ecosystem-core"
     },
     {
+      "path": "./packages/domain/recovery-ecosystem-orchestrator-core"
+    },
+    {
       "path": "./packages/domain/recovery-fabric-cadence-core"
     },
     {

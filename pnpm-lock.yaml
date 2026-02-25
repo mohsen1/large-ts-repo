@@ -920,6 +920,9 @@ importers:
       '@domain/recovery-ecosystem-core':
         specifier: workspace:*
         version: link:../../domain/recovery-ecosystem-core
+      '@domain/recovery-ecosystem-orchestrator-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-orchestrator-core
       '@domain/recovery-lens-observability-models':
         specifier: workspace:*
         version: link:../../domain/recovery-lens-observability-models
@@ -932,6 +935,9 @@ importers:
       '@service/recovery-lens-observability-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-lens-observability-orchestrator
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -950,6 +956,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/app/recovery-incident-dashboard:
     dependencies:
@@ -3924,6 +3933,33 @@ importers:
 
   packages/domain/recovery-ecosystem-core:
     dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-ecosystem-orchestrator-core:
+    dependencies:
+      '@domain/recovery-cockpit-orchestration-core':
+        specifier: workspace:*
+        version: link:../recovery-cockpit-orchestration-core
+      '@domain/recovery-ecosystem-core':
+        specifier: workspace:*
+        version: link:../recovery-ecosystem-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/orchestration-lab-core':
+        specifier: workspace:*
+        version: link:../../shared/orchestration-lab-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level

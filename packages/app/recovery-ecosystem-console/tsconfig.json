@@ -46,6 +46,9 @@
     },
     {
       "path": "../../data/recovery-lens-observability-store/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-ecosystem-orchestrator-core/tsconfig.json"
     }
   ]
 }
