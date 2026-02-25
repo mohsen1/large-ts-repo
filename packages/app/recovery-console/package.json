@@ -70,6 +70,7 @@
     "@service/recovery-signal-intelligence-orchestrator": "workspace:*",
     "@data/recovery-signal-intelligence-store": "workspace:*",
     "@domain/recovery-signal-intelligence": "workspace:*",
+    "@domain/recovery-chronicle-orchestrator": "workspace:*",
     "@shared/typed-orchestration-core": "workspace:*",
     "@shared/orchestration-runtime": "workspace:*",
     "@domain/recovery-playbooks": "workspace:*",

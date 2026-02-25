@@ -446,6 +446,9 @@ importers:
       '@domain/recovery-automation-orchestrator':
         specifier: workspace:*
         version: link:../../domain/recovery-automation-orchestrator
+      '@domain/recovery-chronicle-orchestrator':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chronicle-orchestrator
       '@domain/recovery-command-forge':
         specifier: workspace:*
         version: link:../../domain/recovery-command-forge
@@ -2971,6 +2974,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-chronicle-orchestrator:
+    dependencies:
+      '@domain/recovery-chronicle-core':
+        specifier: workspace:*
+        version: link:../recovery-chronicle-core
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level

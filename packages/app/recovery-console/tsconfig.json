@@ -305,6 +305,9 @@
     },
     {
       "path": "./../../domain/recovery-lab-stress-lab-core/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-chronicle-orchestrator/tsconfig.json"
     }
   ]
 }

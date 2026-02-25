@@ -59,6 +59,9 @@
       "path": "./packages/domain/recovery-ops-mesh"
     },
     {
+      "path": "./packages/domain/recovery-chronicle-orchestrator"
+    },
+    {
       "path": "./packages/shared/timeline-orchestration-runtime"
     },
     {
