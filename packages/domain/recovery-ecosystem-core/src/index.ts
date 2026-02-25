@@ -5,3 +5,5 @@ export * from './plugin-contract';
 export * from './topology';
 export * from './registry';
 export * from './utils';
+export * from './command-runtime';
+export * from './policy-workspace';
