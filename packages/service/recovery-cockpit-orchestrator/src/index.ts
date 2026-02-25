@@ -23,3 +23,7 @@ export * from './controlPlane';
 export * from './scenarioFacade';
 export * from './scenarioSignals';
 export * from './readinessWorkload';
+
+export * from './automationCompile';
+export * from './automationRuntime';
+export * from './automationRuntimeSession';

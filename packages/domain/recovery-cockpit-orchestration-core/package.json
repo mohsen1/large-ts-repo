@@ -8,13 +8,14 @@
     ".": "./src/index.ts",
     "./src": "./src/index.ts",
     "./*": "./src/*.ts",
-    "./src/*": "./src/*.ts"
+    "./src/*": "./src/*"
   },
   "scripts": {
     "build": "tsc -b"
   },
   "dependencies": {
     "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "@domain/recovery-cockpit-models": "workspace:*",
     "zod": "^3.24.0"
   }

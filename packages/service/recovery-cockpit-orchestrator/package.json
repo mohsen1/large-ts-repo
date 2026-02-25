@@ -8,7 +8,7 @@
     ".": "./src/index.ts",
     "./src": "./src/index.ts",
     "./*": "./src/*.ts",
-    "./src/*": "./src/*.ts"
+    "./src/*": "./src/*"
   },
   "scripts": {
     "build": "tsc -b"
@@ -22,6 +22,7 @@
     "@data/recovery-cockpit-insights": "workspace:*",
     "@data/recovery-cockpit-store": "workspace:*",
     "@shared/util": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/typed-orchestration-core": "workspace:*"
   }
