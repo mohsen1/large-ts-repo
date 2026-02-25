@@ -1124,9 +1124,15 @@ importers:
       '@shared/recovery-lab-kernel':
         specifier: workspace:*
         version: link:../../shared/recovery-lab-kernel
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -7838,6 +7844,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
 
   packages/shared/temporal-ops-runtime:
     dependencies:
