@@ -331,3 +331,23 @@ export { RecoveryLabControlPanel } from './features/recovery-lab-console-labs/co
 export { RecoveryLabPluginRegistryPanel } from './features/recovery-lab-console-labs/components/RecoveryLabPluginRegistryPanel';
 export { RecoveryLabTimelineChart } from './features/recovery-lab-console-labs/components/RecoveryLabTimelineChart';
 export { RecoveryLabConsoleOrchestrationPage } from './features/recovery-lab-console-labs/pages/RecoveryLabConsoleOrchestrationPage';
+export { RecoveryIntentGraphLabPage } from './features/recovery-intent-graph-lab/pages/RecoveryIntentGraphLabPage';
+export { useRecoveryIntentGraphLab } from './features/recovery-intent-graph-lab/hooks/useRecoveryIntentGraphLab';
+export { IntentGraphCanvas } from './features/recovery-intent-graph-lab/components/IntentGraphCanvas';
+export { IntentPolicyPanel } from './features/recovery-intent-graph-lab/components/IntentPolicyPanel';
+export { IntentSignalFeed } from './features/recovery-intent-graph-lab/components/IntentSignalFeed';
+export {
+  workspaceSummary,
+  normalizeGraph,
+  loadWorkspace,
+  executeGraph,
+  normalizeWorkspaceRoute,
+  listDefaultPlugins,
+  ensureWorkspaceState,
+  pluginTemplates,
+  type ServiceSignal,
+  type ServiceConfig,
+  type WorkspaceSummary,
+} from './features/recovery-intent-graph-lab/services/intentGraphService';
+export * as intentGraphLabTypes from './features/recovery-intent-graph-lab/types';
+export { type IntentLabRoute, type IntentLabWorkspaceState, type IntentRoute, type IntentLabSignalRow } from './features/recovery-intent-graph-lab/types';

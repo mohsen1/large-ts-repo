@@ -830,6 +830,9 @@ importers:
       '@shared/orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/orchestration-runtime
+      '@shared/recovery-intent-graph-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-intent-graph-runtime
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
@@ -8395,6 +8398,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/shared/recovery-intent-graph-runtime:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@shared/recovery-workbench-runtime':
+        specifier: workspace:*
+        version: link:../recovery-workbench-runtime
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/shared/recovery-lab-kernel:
     dependencies:
       '@shared/core':
@@ -8453,6 +8474,9 @@ importers:
 
   packages/shared/recovery-workbench-runtime:
     dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76

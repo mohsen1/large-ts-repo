@@ -328,6 +328,9 @@
       "path": "../../domain/recovery-lab-console-labs/tsconfig.json"
     },
     {
+      "path": "../../shared/recovery-intent-graph-runtime/tsconfig.json"
+    },
+    {
       "path": "../../data/recovery-quantum-store/tsconfig.json"
     }
   ]

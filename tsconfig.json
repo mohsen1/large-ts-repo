@@ -1367,6 +1367,9 @@
       "path": "./packages/shared/monads"
     },
     {
+      "path": "./packages/shared/recovery-intent-graph-runtime"
+    },
+    {
       "path": "./packages/shared/observability-contracts"
     },
     {

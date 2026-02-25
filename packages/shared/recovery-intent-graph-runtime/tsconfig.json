@@ -3,11 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true,
-    "lib": [
-      "ES2023",
-      "ESNext"
-    ]
+    "declaration": true
   },
   "include": [
     "src/**/*"
@@ -15,6 +11,12 @@
   "references": [
     {
       "path": "../type-level/tsconfig.json"
+    },
+    {
+      "path": "../result/tsconfig.json"
+    },
+    {
+      "path": "../recovery-workbench-runtime/tsconfig.json"
     }
   ]
 }

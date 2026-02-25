@@ -1,5 +1,5 @@
 {
-  "name": "@shared/recovery-workbench-runtime",
+  "name": "@shared/recovery-intent-graph-runtime",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -15,6 +15,9 @@
   },
   "dependencies": {
     "@shared/type-level": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/recovery-workbench-runtime": "workspace:*",
+    "@aws-sdk/client-eventbridge": "^3.900.0",
     "zod": "^3.24.0"
   }
 }
