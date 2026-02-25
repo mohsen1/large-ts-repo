@@ -5,3 +5,5 @@ export * from './repository';
 export * from './serializer';
 export * from './audit-ledger';
 export * from './snapshot-index';
+export * from './query-engine';
+export * from './run-metrics';

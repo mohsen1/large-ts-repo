@@ -1,4 +1,4 @@
-import { type NoInfer, type PluginDependency, type PluginLifecycle, type PluginName, type PluginResult } from '@shared/typed-orchestration-core';
+import { type NoInfer, type PluginDependency, type PluginLifecycle, type PluginName } from '@shared/typed-orchestration-core';
 import type { JsonValue } from '@shared/type-level';
 import type { NamespaceTag, PluginId, RunId, TenantId } from './identifiers';
 
@@ -20,7 +20,7 @@ export type PluginOutput<TOutput extends JsonValue = JsonValue> = {
   readonly artifacts: readonly string[];
 };
 
-export type PluginLifecycleResult<TOutput extends JsonValue = JsonValue> = PluginResult<PluginOutput<TOutput>>;
+export type PluginLifecycleResult<TOutput extends JsonValue = JsonValue> = PluginOutput<TOutput>;
 
 export interface EcosystemPlugin<TInput extends JsonValue = JsonValue, TOutput extends JsonValue = JsonValue> {
   readonly name: EcosystemPluginName;

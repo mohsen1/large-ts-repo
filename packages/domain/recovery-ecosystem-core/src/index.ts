@@ -7,3 +7,6 @@ export * from './registry';
 export * from './utils';
 export * from './command-runtime';
 export * from './policy-workspace';
+export * from './namespace-paths';
+export * from './advanced-plugin-lattice';
+export * from './run-metadata';

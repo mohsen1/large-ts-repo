@@ -101,7 +101,7 @@ export type PolicyMap<TPolicies extends readonly PolicyId[]> = {
 };
 
 export type MergePolicies<TLeft extends Record<string, unknown>, TRight extends Record<string, unknown>> = {
-  readonly [K in keyof TLeft | keyof TRight]: K extends keyof TLeft
+  [K in keyof TLeft | keyof TRight]: K extends keyof TLeft
     ? K extends keyof TRight
       ? TLeft[K] & TRight[K]
       : TLeft[K]
