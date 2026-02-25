@@ -3,7 +3,12 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true
+    "declaration": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2023"
+    ]
   },
   "include": [
     "src/**/*"
@@ -20,6 +25,15 @@
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-playbook-orchestration-core/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-playbook-automation-store/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-playbook-automation-engine/tsconfig.json"
     }
   ]
 }

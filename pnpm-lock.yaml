@@ -1115,18 +1115,102 @@ importers:
 
   packages/app/recovery-playbook-orchestrator:
     dependencies:
+      '@data/incident-command-store':
+        specifier: workspace:*
+        version: link:../../data/incident-command-store
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
+      '@data/recovery-playbook-automation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-automation-store
       '@data/recovery-playbook-store':
         specifier: workspace:*
         version: link:../../data/recovery-playbook-store
+      '@data/recovery-readiness-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-readiness-store
+      '@data/recovery-workload-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-workload-store
+      '@domain/adaptive-ops':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops
+      '@domain/adaptive-ops-metrics':
+        specifier: workspace:*
+        version: link:../../domain/adaptive-ops-metrics
+      '@domain/incident-command-models':
+        specifier: workspace:*
+        version: link:../../domain/incident-command-models
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-lattice':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lattice
+      '@domain/recovery-operations-control-plane':
+        specifier: workspace:*
+        version: link:../../domain/recovery-operations-control-plane
+      '@domain/recovery-playbook-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-orchestration-core
       '@domain/recovery-playbooks':
         specifier: workspace:*
         version: link:../../domain/recovery-playbooks
+      '@domain/recovery-readiness':
+        specifier: workspace:*
+        version: link:../../domain/recovery-readiness
+      '@domain/recovery-stress-lab':
+        specifier: workspace:*
+        version: link:../../domain/recovery-stress-lab
+      '@domain/recovery-workload-intelligence':
+        specifier: workspace:*
+        version: link:../../domain/recovery-workload-intelligence
+      '@service/adaptive-ops-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/adaptive-ops-orchestrator
+      '@service/adaptive-ops-runner':
+        specifier: workspace:*
+        version: link:../../service/adaptive-ops-runner
+      '@service/recovery-horizon-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-horizon-orchestrator
+      '@service/recovery-incident-command-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-command-orchestrator
+      '@service/recovery-incident-intent-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-incident-intent-orchestrator
+      '@service/recovery-lattice-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-lattice-orchestrator
+      '@service/recovery-playbook-automation-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-playbook-automation-engine
       '@service/recovery-playbook-engine':
         specifier: workspace:*
         version: link:../../service/recovery-playbook-engine
+      '@service/recovery-readiness-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-readiness-orchestrator
+      '@service/recovery-workload-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-workload-orchestrator
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2193,6 +2277,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-playbook-automation-store:
+    dependencies:
+      '@domain/recovery-playbook-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-orchestration-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-playbook-orchestration-store:
     dependencies:
@@ -4056,6 +4158,21 @@ importers:
 
   packages/domain/recovery-playbook-orchestration:
     dependencies:
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-playbook-orchestration-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -6568,6 +6685,33 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-playbook-automation-engine:
+    dependencies:
+      '@data/recovery-playbook-automation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-automation-store
+      '@domain/recovery-playbook-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-orchestration-core
+      '@service/recovery-playbook-engine':
+        specifier: workspace:*
+        version: link:../recovery-playbook-engine
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76

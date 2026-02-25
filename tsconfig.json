@@ -263,6 +263,9 @@
       "path": "./packages/data/recovery-ops-playbook-studio-store"
     },
     {
+      "path": "./packages/data/recovery-playbook-automation-store"
+    },
+    {
       "path": "./packages/data/recovery-plan-store"
     },
     {
@@ -648,6 +651,9 @@
     },
     {
       "path": "./packages/domain/recovery-playbook-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-playbook-orchestration-core"
     },
     {
       "path": "./packages/domain/recovery-playbooks"
@@ -1044,6 +1050,9 @@
     },
     {
       "path": "./packages/service/recovery-playbook-engine"
+    },
+    {
+      "path": "./packages/service/recovery-playbook-automation-engine"
     },
     {
       "path": "./packages/service/recovery-intent-graph-orchestrator"
