@@ -65,16 +65,23 @@ export function analyzePlan(plan: PlanGraph): PlanDiagnostics {
   };
 }
 
-export function resolveEdges(plan: PlanGraph): readonly StageEdge<string, string>[] {
-  return [...plan.nodes].map((node, index) => {
-    const current = node.id;
-    const next = plan.nodes[index + 1]?.id;
-    return {
-      from: current,
-      to: next ?? current,
+export function resolveEdges(plan: PlanGraph): readonly StageEdge<PlanId, PlanId>[] {
+  const edges = [] as StageEdge<string, string>[];
+  for (let index = 0; index < plan.nodes.length - 1; index += 1) {
+    const node = plan.nodes[index];
+    const next = plan.nodes[index + 1];
+    const from = String(node.id);
+    const to = String(next?.id);
+    if (from === to) {
+      continue;
+    }
+    edges.push({
+      from: from as Brand<string, 'StageEdgeFrom'>,
+      to: to as Brand<string, 'StageEdgeTo'>,
       condition: next ? 'when.next' : undefined,
-    };
-  }).filter((edge) => edge.from !== edge.to);
+    });
+  }
+  return edges as StageEdge<PlanId, PlanId>[];
 }
 
 export async function executePlan<TInput, TOutput>(
@@ -83,9 +90,9 @@ export async function executePlan<TInput, TOutput>(
   context: ScenarioContext,
 ): Promise<{
   output: TOutput;
-  statuses: readonly StagePayload<TInput, TInput, TOutput>[];
+  statuses: readonly StagePayload<ScenarioContext, TInput, TOutput>[];
 }> {
-  const payloads: StagePayload<TInput, TInput, TOutput>[] = [];
+  const payloads: StagePayload<ScenarioContext, TInput, TOutput>[] = [];
   const cursor: { value: unknown } = { value: input };
 
   for (const node of plan.nodes) {
@@ -96,10 +103,10 @@ export async function executePlan<TInput, TOutput>(
     const status: StageStatus = output === undefined ? 'skipped' : 'completed';
     cursor.value = output ?? cursor.value;
     payloads.push({
-      stageId: `payload-${node.id}` as any,
+      stageId: `payload-${node.id}` as StagePayload<ScenarioContext, TInput, TOutput>['stageId'],
       status,
       context,
-      input,
+      input: cursor.value as TInput,
       output: cursor.value as TOutput,
       emittedAt: Date.now(),
     });

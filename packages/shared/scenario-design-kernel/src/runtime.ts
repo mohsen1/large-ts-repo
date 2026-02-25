@@ -26,12 +26,11 @@ const als = new AsyncLocalStorage<Map<string, unknown>>();
 export class ScenarioRunScope {
   readonly #start = performance.now();
   readonly #events: RuntimeEnvelope[] = [];
-  readonly #children = new AsyncDisposableStack();
 
   constructor(readonly namespace: string) {}
 
   run<T>(fn: () => Promise<T>): Promise<T> {
-    return als.run(new Map(), () => this.#children.run(fn));
+    return als.run(new Map(), () => fn());
   }
 
   emit<TPayload extends object>(event: RuntimeEvent<TPayload>): void {
@@ -39,7 +38,7 @@ export class ScenarioRunScope {
   }
 
   async close(): Promise<void> {
-    await this.#children.disposeAsync();
+    return Promise.resolve();
   }
 
   [Symbol.asyncDispose](): Promise<void> {
@@ -52,7 +51,13 @@ export class ScenarioRunScope {
       stopAt: performance.now(),
       metrics: {
         elapsedMs: performance.now() - this.#start,
-        peakHeapMb: typeof performance.memory === 'object' ? Math.round(performance.memory.usedJSHeapSize / 1024 / 1024) : 0,
+        peakHeapMb: (() => {
+          const memory = (performance as { memory?: { usedJSHeapSize: number } }).memory;
+          if (typeof memory === 'object' && memory !== null) {
+            return Math.round(memory.usedJSHeapSize / 1024 / 1024);
+          }
+          return 0;
+        })(),
         events: this.#events.length,
       },
     };

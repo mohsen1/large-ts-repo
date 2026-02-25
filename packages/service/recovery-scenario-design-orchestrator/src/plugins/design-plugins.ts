@@ -13,8 +13,7 @@ import {
   isKnownKind,
   type StageKindToken,
 } from '@shared/scenario-design-kernel';
-import { StageKind, type StageTemplate } from '@domain/recovery-scenario-design';
-import type { OrchestrationRunContext } from '@domain/recovery-scenario-design';
+import { StageKind, type StageTemplate, type OrchestrationRunContext } from '@domain/recovery-scenario-design';
 
 const pluginSchema = z.object({
   id: z.string().min(4),
@@ -24,7 +23,7 @@ const pluginSchema = z.object({
 });
 
 export type KnownStageKind = StageKind;
-export type KnownPlugin = ScenarioPlugin<KnownStageKind, OrchestrationRunContext, unknown>;
+export type KnownPlugin = ScenarioPlugin<KnownStageKind, unknown, unknown>;
 export type KnownPluginRegistry = ScenarioPluginRegistry<readonly KnownPlugin[]>;
 
 interface PluginRecord {
@@ -89,9 +88,8 @@ const knownPlugins: PluginRecord[] = [
 
 const safe = pluginSchema.array().safeParse(knownPlugins);
 
-const catalogReady = await bootstrapCatalog;
-const catalogByKind = new Map<string, StageKindToken<KnownStageKind>>(
-  catalogReady.map((entry) => [entry.kind, entry.token as StageKindToken<KnownStageKind>]),
+const catalogByKindPromise = bootstrapCatalog.then((catalog) =>
+  new Map<string, StageKindToken<KnownStageKind>>(catalog.map((entry) => [entry.kind, entry.token])),
 );
 
 function normalizePluginEntry(raw: PluginRecord): PluginRecord {
@@ -105,7 +103,7 @@ function normalizePluginEntry(raw: PluginRecord): PluginRecord {
   };
 }
 
-export function pluginContextFromRun<TInput>(runId: string, correlation: string, extra: string): PluginContext {
+export function pluginContextFromRun(runId: string, correlation: string, extra: string): PluginContext {
   return {
     runId,
     scenario: correlation,
@@ -113,8 +111,9 @@ export function pluginContextFromRun<TInput>(runId: string, correlation: string,
   };
 }
 
-function toDomainPlugin(input: PluginRecord, context: PluginContext): KnownPlugin {
-  const token = catalogByKind.get(input.kind) ?? 'ingress:v1' as StageKindToken<KnownStageKind>;
+async function toDomainPlugin(input: PluginRecord, context: PluginContext): Promise<KnownPlugin> {
+  const catalogByKind = await catalogByKindPromise;
+  const token = catalogByKind.get(input.kind) ?? ('ingress:v1' as StageKindToken<KnownStageKind>);
   const kindDefinition = isKnownKind(input.kind) ? describeKind(input.kind) : undefined;
   const details = kindDefinition?.requirements.join(',') ?? 'unknown';
 
@@ -136,16 +135,17 @@ function toDomainPlugin(input: PluginRecord, context: PluginContext): KnownPlugi
       hardCutover: false,
       auditOnly: false,
     } as KnownPlugin['config'],
-    execute: async (inputPayload: OrchestrationRunContext, pluginContext: PluginContext) => {
+    execute: async (inputPayload: unknown) => {
       await Promise.resolve();
       const tokenized = token as StageKindToken<KnownStageKind>;
+      const resolved = inputPayload as OrchestrationRunContext<unknown, unknown>;
       return {
-        ...inputPayload,
+        ...resolved,
         metadata: {
           plugin: input.id,
           stageKind: tokenized,
-          scenario: pluginContext.scenario,
-          runId: pluginContext.runId,
+          scenario: context.scenario,
+          runId: context.runId,
         },
       };
     },
@@ -158,11 +158,15 @@ function normalizeToRecord(plugins: readonly PluginRecord[]): readonly PluginRec
     .toSorted((left, right) => left.source.localeCompare(right.source));
 }
 
-export async function loadDesignPlugins(context: PluginContext): Promise<
-  ScenarioPluginRegistry<readonly KnownPlugin[]>
-> {
+export async function loadDesignPlugins(
+  context: PluginContext,
+): Promise<ScenarioPluginRegistry<readonly KnownPlugin[]>> {
+  if (!safe.success) {
+    throw new Error('plugin catalog failed validation');
+  }
+
   const loaded = await Promise.resolve(normalizeToRecord(knownPlugins));
-  const plugins = loaded.map((entry) => toDomainPlugin(entry, context));
+  const plugins = await Promise.all(loaded.map((entry) => toDomainPlugin(entry, context)));
   const registry = new ScenarioPluginRegistry<readonly KnownPlugin[]>(plugins);
   const all = pluginMap(registry);
 
@@ -186,21 +190,22 @@ export async function runPluginsForTemplate<TInput extends object, TOutput>(
 ): Promise<TOutput> {
   const registry = await loadDesignPlugins(context);
   const payload = template.map((stage) => stage.outputShape);
-  const all = [...registry.all()];
 
+  const all = [...registry.all()];
   const pluginsByKind = all.filter((plugin) => template.some((stage) => stage.kind === plugin.kind));
+
   if (pluginsByKind.length === 0) {
-    return (payload as unknown) as TOutput;
+    return (payload[0] as TOutput) ?? (undefined as TOutput);
   }
 
   await using scoped = registry;
   const out = await runPluginSequence(
-    payload[0] as TInput,
+    payload[0] as unknown,
     pluginsByKind as readonly KnownPlugin[],
     {
       runId: context.scenario,
       scenario: context.scenario,
-      clock: context.correlationId.length,
+      clock: BigInt(context.scenario.length),
     },
   );
 

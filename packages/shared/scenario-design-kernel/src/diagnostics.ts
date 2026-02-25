@@ -35,13 +35,15 @@ export class ScenarioDiagnostics<TData = unknown> {
   readonly #events: DiagnosticEvent<TData>[] = [];
   readonly #startAt = Date.now();
 
-  record(event: Omit<DiagnosticEvent<TData>, 'id' | 'time'> & { id?: DiagnosticId }): DiagnosticEvent<TData> {
-    const entry: DiagnosticEvent<TData> = {
+  record<TPayload = TData>(
+    event: Omit<DiagnosticEvent<TPayload>, 'id' | 'time'> & { id?: DiagnosticId },
+  ): DiagnosticEvent<TPayload> {
+    const entry: DiagnosticEvent<TPayload> = {
       ...event,
       id: event.id ?? (`diag-${Date.now()}` as DiagnosticId),
       time: Date.now(),
     };
-    this.#events.push(entry);
+    this.#events.push(entry as unknown as DiagnosticEvent<TData>);
     return entry;
   }
 
@@ -99,15 +101,16 @@ export class ScenarioDiagnostics<TData = unknown> {
 }
 
 export async function collectDiagnostics<TData>(
-  events: Iterable<DiagnosticEvent<TData>>,
+  events: Iterable<DiagnosticEvent<TData>> | ScenarioDiagnostics<TData>,
 ): Promise<DiagnosticEnvelope<TData>> {
+  const source = 'events' in events ? (events as ScenarioDiagnostics<TData>) : events;
   const envelope = {
     runId: `run-${Date.now()}` as DiagnosticId,
     events: [] as DiagnosticEvent<TData>[],
     startedAt: Date.now(),
   };
 
-  for (const event of events) {
+  for (const event of source) {
     envelope.events.push(event);
     await Promise.resolve();
   }

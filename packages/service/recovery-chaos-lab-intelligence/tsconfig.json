@@ -3,12 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "composite": true,
-    "declaration": true,
-    "jsx": "react-jsx",
-    "lib": [
-      "DOM",
-      "ES2023"
-    ]
+    "declaration": true
   },
   "include": [
     "src/**/*"
@@ -21,16 +16,7 @@
       "path": "./../../domain/recovery-chaos-sim-models/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-chaos-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-chaos-lab-intelligence/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-chaos-intelligence-orchestrator/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-chaos-observability/tsconfig.json"
+      "path": "./../../shared/core/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
@@ -40,6 +26,9 @@
     },
     {
       "path": "./../../shared/util/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-chaos-orchestrator/tsconfig.json"
     }
   ]
 }

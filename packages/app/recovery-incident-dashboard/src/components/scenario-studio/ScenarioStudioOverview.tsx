@@ -2,7 +2,6 @@ import { memo, useMemo } from 'react';
 import type { ScenarioTemplate, ScenarioRunSnapshot } from '../../types/scenario-studio';
 import { filterTemplatesByKind } from '../../hooks/scenario-studio/useScenarioPlan';
 import { useScenarioDiagnostics } from '../../hooks/scenario-studio/useScenarioDiagnostics';
-import { useScenarioStudioModel } from '../../services/scenario-studio/scenarioStudioService';
 
 export interface ScenarioStudioOverviewProps {
   readonly templates: readonly ScenarioTemplate[];
@@ -11,9 +10,8 @@ export interface ScenarioStudioOverviewProps {
 
 export const ScenarioStudioOverview = memo(function ScenarioStudioOverview({ templates, runs }: ScenarioStudioOverviewProps) {
   const latest = runs[0];
-  const model = useScenarioStudioModel(templates);
   const { state } = useScenarioDiagnostics(
-    model.templates.map((template) => ({
+    templates.map((template) => ({
       templateId: template.id,
       owner: 'overview',
       mode: 'analysis',
@@ -31,7 +29,7 @@ export const ScenarioStudioOverview = memo(function ScenarioStudioOverview({ tem
     return [...allKinds];
   }, [templates]);
 
-  const analysisTemplates = filterTemplatesByKind(templates, 'analysis' as unknown as keyof typeof kindBuckets);
+  const ingressTemplates = filterTemplatesByKind(templates, 'ingress');
 
   return (
     <section className="scenario-studio-overview">
@@ -59,7 +57,7 @@ export const ScenarioStudioOverview = memo(function ScenarioStudioOverview({ tem
         </div>
       </dl>
       <p>Templates include kinds: {kindBuckets.join(', ')}</p>
-      <p>Analysis set size: {analysisTemplates.length}</p>
+        <p>Ingress templates: {ingressTemplates.length}</p>
       <p>Timeline:
         <ul>
           {state.timeline.slice(0, 8).map((entry) => (

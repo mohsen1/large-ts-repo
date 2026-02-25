@@ -7,8 +7,8 @@ import {
   type StageChainTemplate,
   type StagePlan,
   type StageVerb,
-  type StagePayload,
   type ScenarioContext,
+  type RegistryId,
   runPluginSequence,
 } from '@shared/scenario-design-kernel';
 import { type ScenarioTemplate, type ScenarioStudioInput, type ScenarioRunSnapshot } from '../../types/scenario-studio';
@@ -56,12 +56,6 @@ const envelopeSchema = z.object({
   emittedAt: z.number().int(),
 });
 
-type StageRecord<T> = {
-  readonly id: string;
-  readonly value: T;
-  readonly status: StageStatus;
-};
-
 export const traceDefaults = {
   ownerPrefix: 'studio-owner',
   ownerWindowMs: 15 * 60 * 1000,
@@ -80,8 +74,8 @@ export function buildEngineTemplate<TInput, TOutput>(
 
   const plan: StageChainTemplate<readonly EnginePlan<StageVerb, TInput, TOutput>[]> = (source.length > 0 ? source : [])
     .flatMap((entry) => entry.stages)
-    .filter((item) => isKnownKind(item.id))
-    .map((stage, index) => {
+      .filter((item) => isKnownKind(item.kind))
+      .map((stage, index) => {
       const catalog = stageCatalog[stage.kind as StageVerb];
       const config = (catalog?.requirements.length ?
         {
@@ -101,11 +95,10 @@ export function buildEngineTemplate<TInput, TOutput>(
       return {
         kind: stage.kind as StageVerb,
         id: `engine-${index}` as EnginePlan<StageVerb, TInput, TOutput>['id'],
-        input: null as unknown as TInput,
-        output: null as unknown as TOutput,
+        dependencies: [],
         config: config as StageConfigSchema,
         pluginIds: [catalog?.token as string ?? `fallback:${index}`],
-        execute: async (context) => context,
+        execute: async (context) => context as unknown as TOutput,
       };
     }) as StageChainTemplate<readonly EnginePlan<StageVerb, TInput, TOutput>[]>;
 
@@ -125,13 +118,12 @@ export async function runEngine<TInput, TOutput>(
       pluginIds: [`plugin.${index}`],
     }));
 
-  const stages = plan.map((item, index): StagePayload<ScenarioContext, TInput, TOutput> => {
+  const stagedInputs = plan.map((item, index): TPayload<TInput, TOutput> => {
     const status: StageStatus = index % 2 === 0 ? 'completed' : 'active';
     return {
-      stageId: `${item.id}` as unknown as StagePayload<ScenarioContext, TInput, TOutput>['stageId'],
-      status,
-      context,
       input,
+      output: undefined as unknown as TOutput,
+      status,
       emittedAt: Date.now(),
     };
   });
@@ -139,38 +131,34 @@ export async function runEngine<TInput, TOutput>(
   const output = await runPluginSequence(
     input,
     plan.map((item) => ({
-      id: `engine-plugin-${item.id}` as unknown as string,
+      id: `engine-plugin-${item.id}` as RegistryId,
       label: item.id,
       kind: item.kind,
       config: item.config,
-      execute: async (stageInput) => stageInput,
-    })),
+      execute: async (stageInput: TInput) => stageInput as unknown as TOutput,
+    })) as Parameters<typeof runPluginSequence<TInput, TOutput>>[1],
     {
-      runId: context.scenario,
-      scenario: context.scenario,
-      clock: BigInt(stages.length + input.toString().length),
+      runId: context.runId,
+      scenario: context.traceId as unknown as string,
+      clock: BigInt(stagedInputs.length),
     },
   ) as TOutput;
 
   const result = envelopeSchema.parse({
     input,
     output,
-    status: stages.length ? stages.at(-1)?.status : 'queued',
+    status: stagedInputs.length ? stagedInputs.at(-1)?.status ?? 'queued' : 'queued',
     emittedAt: Date.now(),
   });
-
-  const outputRun: StageRecord<TOutput> = {
-    id: context.runId,
-    value: result.output,
-    status: result.status === 'completed' ? 'completed' : 'active',
-  };
-  void outputRun;
 
   return {
     runId: context.runId,
     output,
-    latencyMs: result.emittedAt - Date.now(),
-    stages: [...stages],
+    latencyMs: Date.now() - result.emittedAt,
+    stages: stagedInputs.map((stage) => ({
+      ...stage,
+      output,
+    })),
   };
 }
 
@@ -215,4 +203,3 @@ export function enrichTemplateDiagnostics<TTemplate extends readonly ScenarioTem
     averageStageCount: Math.round(template.stages.length / designDefaults.stages.length),
   }));
 }
-

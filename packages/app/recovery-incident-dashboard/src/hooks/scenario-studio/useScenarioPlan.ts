@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
 import type { ScenarioTemplate } from '../../types/scenario-studio';
-import { buildEngineTemplate, enrichTemplateDiagnostics, type StageVerb, designDefaults } from '@shared/scenario-design-kernel';
+import { designDefaults, type StageVerb } from '@shared/scenario-design-kernel';
 import { buildEngineTemplate as buildScenarioEngineTemplate } from '../../services/scenario-studio/scenarioStudioEngine';
+import { enrichTemplateDiagnostics } from '../../services/scenario-studio/scenarioStudioEngine';
 
 export interface PlanSummary {
   readonly templateId: string;

@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import type { ScenarioStudioInput, ScenarioRunSnapshot } from '../../types/scenario-studio';
+import type { ScenarioTemplate } from '../../types/scenario-studio';
 import {
   collectDiagnostics,
-  type ScenarioDiagnostics,
-  type StageSample,
+  ScenarioDiagnostics,
 } from '@shared/scenario-design-kernel';
 import { enrichTemplateDiagnostics } from '../../services/scenario-studio/scenarioStudioEngine';
 
@@ -19,6 +19,17 @@ const defaultState: ScenarioDiagnosticsState = {
   timeline: [],
 };
 
+function asFiniteNumber(value: unknown): number {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value;
+  }
+  if (typeof value === 'string') {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+  return 0;
+}
+
 function parseRun(run: ScenarioRunSnapshot): readonly number[] {
   return run.stageStats.map((entry) => entry.latencyMs);
 }
@@ -27,11 +38,15 @@ export function useScenarioDiagnostics(inputs: readonly ScenarioStudioInput[]) {
   const [state, setState] = useState<ScenarioDiagnosticsState>(defaultState);
 
   const metrics = useMemo(() => {
-    const latencies = inputs.flatMap((input) => [input.parameters.stageCount ?? 0, input.parameters.version ?? 0].filter((value) => Number.isFinite(Number(value))));
+    const latencies = inputs.flatMap((input) => {
+      const stageCount = asFiniteNumber(input.parameters.stageCount);
+      const version = asFiniteNumber(input.parameters.version);
+      return [stageCount, version].filter((value) => value >= 0);
+    });
     const templateCount = inputs.length;
     const latestInput = inputs.at(-1);
     const timeline = inputs.map((entry) => `${entry.owner}:${entry.mode}`);
-    const latestErrorCount = Number(!latestInput);
+    const latestErrorCount = latestInput ? 0 : 1;
     const averageLatency = latencies.length === 0 ? 0 : latencies.reduce((acc, next) => acc + Number(next), 0) / latencies.length;
 
     return {
@@ -49,19 +64,9 @@ export function useScenarioDiagnostics(inputs: readonly ScenarioStudioInput[]) {
     }
 
     const envelope = await collectDiagnostics(
-      diagnosticsIterator(
-        diagnostics,
-        (entry) => ({
-          stage: 'audit',
-          elapsedMs: entry.time,
-          metrics: { value: 1 },
-          tags: [entry.type],
-          checkpoint: entry.time,
-        }),
-      ),
+      diagnostics,
     );
-
-    void diagnostics;
+    void envelope;
 
     const resolved = {
       latestErrorCount: envelope.events.filter((entry) => entry.type === 'error').length,
@@ -71,18 +76,6 @@ export function useScenarioDiagnostics(inputs: readonly ScenarioStudioInput[]) {
 
     setState(resolved);
     return resolved;
-  }
-
-  function diagnosticsIterator<TData>(
-    diagnostics: ScenarioDiagnostics<TData>,
-    projector: (entry: { id: string; payload: TData; time: number; type: string }) => StageSample,
-  ): Generator<StageSample> {
-    const source = diagnostics[Symbol.iterator]();
-    return (function* () {
-      for (const entry of source) {
-        yield projector(entry);
-      }
-    })();
   }
 
   return {
@@ -112,6 +105,6 @@ export function summarizeRunSamples(runs: readonly ScenarioRunSnapshot[]) {
   };
 }
 
-export function runDiagnosticsFromTemplates(templates: readonly { id: string; stages: readonly unknown[] }[]) {
+export function runDiagnosticsFromTemplates(templates: readonly ScenarioTemplate[]) {
   return enrichTemplateDiagnostics(templates);
 }

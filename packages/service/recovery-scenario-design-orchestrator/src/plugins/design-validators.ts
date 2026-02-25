@@ -86,10 +86,20 @@ export function inspectValidation(records: StageValidationRecord[]): EventEnvelo
 }
 
 export function validateTemplateList(raw: unknown[]): readonly ValidationReport[] {
-  const bootstrap = raw.map((entry) => ({
-    ...entry,
-    metric: brandMetricKey('list', String(entry.id ?? 'unknown')).slice(0, 32),
-  }));
+  interface NormalizedTemplate {
+    readonly metric: string;
+    readonly id?: unknown;
+    readonly kind?: unknown;
+    readonly inputShape?: unknown;
+    readonly outputShape?: unknown;
+  }
+
+  const bootstrap = raw
+    .filter((entry): entry is Record<string, unknown> => entry !== null && typeof entry === 'object')
+    .map((entry): NormalizedTemplate => ({
+      ...entry,
+      metric: brandMetricKey('list', String(entry.id ?? 'unknown')).slice(0, 32),
+    }));
 
   const checks = ['pre', ...bootstrap.map((entry) => String(entry.metric))];
   const records = toRecord(bootstrap);

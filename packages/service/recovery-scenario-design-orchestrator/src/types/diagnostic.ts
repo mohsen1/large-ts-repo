@@ -44,7 +44,7 @@ export type Expand<T extends object, K extends keyof T = keyof T> = {
     : never;
 };
 
-export function normalizeDiagnosticsMode<T extends DesignDiagnosticsMode>(mode: T): T {
+export function normalizeDiagnosticsMode(mode: DesignDiagnosticsLevel): DesignDiagnosticsLevel {
   if (mode === 'full' || mode === 'minimal' || mode === 'none') {
     return mode;
   }

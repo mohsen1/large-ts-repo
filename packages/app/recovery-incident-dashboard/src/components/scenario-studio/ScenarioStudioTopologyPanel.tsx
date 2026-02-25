@@ -26,6 +26,16 @@ function toNodes(templates: readonly ScenarioTemplate[]): readonly TopologyNode[
 export function ScenarioStudioTopologyPanel({ templates }: ScenarioStudioTopologyPanelProps) {
   const nodes = useMemo(() => toNodes(templates), [templates]);
   const diagnostics = useMemo(() => runDiagnosticsFromTemplates(templates), [templates]);
+  const summaries = useMemo(
+    () =>
+      summarizeTemplates(
+        templates.map((template) => ({
+          templateId: template.id,
+          stages: template.stages,
+        })),
+      ),
+    [templates],
+  );
   const groups = useMemo(
     () => nodes.reduce((acc, node) => {
       const key = node.templateId;
@@ -51,11 +61,11 @@ export function ScenarioStudioTopologyPanel({ templates }: ScenarioStudioTopolog
       </div>
       <div>
         <h4>Topology health</h4>
-        {summaries.map((entry) => (
-          <p key={entry.templateId}>{entry.templateId}:{entry.averageStageCount}</p>
+        {Array.from(summaries.stageBuckets.entries()).map(([templateId, count]) => (
+          <p key={templateId}>{templateId}:{count}</p>
         ))}
         {diagnostics.slice(0, 6).map((metric) => (
-          <p key={metric.templateId}>{metric.templateId} => {metric.averageStageCount}</p>
+          <p key={metric.templateId}>{metric.templateId}{' => '}{metric.averageStageCount}</p>
         ))}
       </div>
       <div>
@@ -70,7 +80,5 @@ export function ScenarioStudioTopologyPanel({ templates }: ScenarioStudioTopolog
     </section>
   );
 }
-
-const summaries = summarizeTemplates([]);
 
 export default ScenarioStudioTopologyPanel;

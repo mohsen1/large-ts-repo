@@ -4,6 +4,7 @@ import {
   mapIterator,
   filterIterator,
   collectDiagnostics,
+  DiagnosticId,
   type StageSample,
 } from '@shared/scenario-design-kernel';
 import type { ScenarioDesignEvent } from '../types';
@@ -17,7 +18,7 @@ export interface TelemetryEnvelope {
 export function buildTelemetryFromEvents(events: readonly ScenarioDesignEvent[]): TelemetryEnvelope {
   const errors = events.filter((entry) => entry.type === 'scenario.failed').length;
   const all = Array.from(
-    mapIterator(events, (event): StageSample => ({
+    mapIterator(events, (event): StageSample<Record<string, number>> => ({
       stage: 'audit',
       elapsedMs: 0,
       metrics: { total: 1 },
@@ -48,18 +49,18 @@ export async function snapshotTelemetry(events: Iterable<ScenarioDesignEvent>): 
       type: entry.type === 'scenario.failed' ? 'error' : entry.type === 'scenario.started' ? 'start' : 'snapshot',
       stage: 'ingress',
       payload: entry,
-      id: `diag-${entry.runId}`,
+      id: `diag-${entry.runId}` as DiagnosticId,
     });
   }
 
-  const envelope = await collectDiagnostics(diagnostics);
+  const envelope = await collectDiagnostics(diagnostics.events);
   const hasErrors = envelope.events.some((entry) => entry.type === 'error');
 
-  const stages = Array.from(diagnosticsIterator(diagnostics), (entry) => entry.type);
+  const stages = Array.from(diagnosticsIterator(diagnostics.events), (entry) => entry.type);
   const samples = Array.from(
     mapIterator(
-      diagnostics,
-      (entry) => ({
+      diagnostics.events,
+      (entry): StageSample<Record<string, number>> => ({
         stage: 'verification',
         elapsedMs: entry.time - envelope.startedAt,
         metrics: { elapsed: 1 },

@@ -83,6 +83,9 @@
       "path": "./packages/app/recovery-chaos-lab"
     },
     {
+      "path": "./packages/domain/recovery-chaos-sim-models"
+    },
+    {
       "path": "./packages/app/recovery-mesh-console"
     },
     {
@@ -90,6 +93,9 @@
     },
     {
       "path": "./packages/service/recovery-chaos-lab-console-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-lab-intelligence"
     },
     {
       "path": "./packages/data/adapters"

@@ -959,6 +959,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/scenario-design-kernel':
+        specifier: workspace:*
+        version: link:../../shared/scenario-design-kernel
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -6988,6 +6991,9 @@ importers:
       '@domain/recovery-scenario-design':
         specifier: workspace:*
         version: link:../../domain/recovery-scenario-design
+      '@shared/scenario-design-kernel':
+        specifier: workspace:*
+        version: link:../../shared/scenario-design-kernel
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -7592,6 +7598,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+
+  packages/shared/scenario-design-kernel:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/stress-lab-runtime:
     dependencies:

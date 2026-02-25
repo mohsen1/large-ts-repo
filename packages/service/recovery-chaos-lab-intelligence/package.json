@@ -1,5 +1,5 @@
 {
-  "name": "@app/recovery-chaos-lab",
+  "name": "@service/recovery-chaos-lab-intelligence",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -17,16 +17,10 @@
     "@domain/recovery-chaos-lab": "workspace:*",
     "@domain/recovery-chaos-sim-models": "workspace:*",
     "@service/recovery-chaos-orchestrator": "workspace:*",
-    "@service/recovery-chaos-lab-intelligence": "workspace:*",
-    "@service/recovery-chaos-intelligence-orchestrator": "workspace:*",
-    "@data/recovery-chaos-observability": "workspace:*",
+    "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
-    "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@shared/util": "workspace:*",
     "zod": "^3.24.0"
   }
 }

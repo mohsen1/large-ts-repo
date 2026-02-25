@@ -1,12 +1,16 @@
 import { z } from 'zod';
 import type { StageVerb, StageKindToken } from './types';
 
+type RawStageCatalogEntry = Omit<StageCategory<StageVerb>, 'token'> & {
+  token: string;
+};
+
 export interface StageCategory<TKind extends StageVerb = StageVerb> {
   readonly kind: TKind;
   readonly token: StageKindToken<TKind>;
   readonly cost: 'low' | 'medium' | 'high';
   readonly latencyP95Ms: number;
-  readonly requirements: readonly readonly string[];
+  readonly requirements: readonly string[];
 }
 
 const stageSchema = z.object({
@@ -17,7 +21,7 @@ const stageSchema = z.object({
   requirements: z.array(z.string()),
 });
 
-const rawCatalog = [
+const rawCatalog: readonly RawStageCatalogEntry[] = [
   {
     kind: 'ingress',
     token: 'ingress:v1',
@@ -74,11 +78,14 @@ const rawCatalog = [
     latencyP95Ms: 30,
     requirements: ['ledger'],
   },
-] as const satisfies readonly StageCategory[];
+];
 
 const catalogSchema = z.array(stageSchema).readonly();
 
-const parsedCatalog = catalogSchema.parse(rawCatalog);
+const parsedCatalog = catalogSchema.parse(rawCatalog).map((entry) => ({
+  ...entry,
+  token: entry.token as StageKindToken<StageVerb>,
+}));
 
 export const stageCatalog = parsedCatalog.reduce((acc, item) => {
   const key = item.kind;
@@ -88,13 +95,9 @@ export const stageCatalog = parsedCatalog.reduce((acc, item) => {
   };
 }, {} as Record<StageVerb, (typeof parsedCatalog)[number]>);
 
-const bootstrapPromise = Promise.resolve([
-  ...Object.values(stageCatalog),
-]).then((items) =>
-  items.map((item) => ({ ...item, token: `${item.token}-${item.kind}` })),
-);
+const bootstrapPromise = Promise.resolve([...Object.values(stageCatalog)]);
 
-export const bootstrapCatalog = await bootstrapPromise;
+export const bootstrapCatalog: Promise<readonly StageCategory<StageVerb>[]> = bootstrapPromise;
 
 export function isKnownKind(kind: string): kind is StageVerb {
   return Object.prototype.hasOwnProperty.call(stageCatalog, kind);
@@ -112,6 +115,6 @@ export const orderedKinds = Object.values(stageCatalog)
     return left - right;
   });
 
-export const catalogRequirements = new Map<StageVerb, readonly string>(
-  Object.entries(stageCatalog).map(([kind, item]) => [kind, item.requirements]),
+export const catalogRequirements = new Map<StageVerb, readonly string[]>(
+  Object.entries(stageCatalog).map(([kind, item]) => [kind as StageVerb, item.requirements]),
 );
