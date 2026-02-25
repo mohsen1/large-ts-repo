@@ -36,6 +36,15 @@
       "path": "../../service/recovery-lens-observability-orchestrator/tsconfig.json"
     },
     {
+      "path": "../../domain/recovery-ecosystem-analytics/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-ecosystem-analytics-store/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-ecosystem-analytics-orchestrator/tsconfig.json"
+    },
+    {
       "path": "../../data/recovery-lens-observability-store/tsconfig.json"
     }
   ]

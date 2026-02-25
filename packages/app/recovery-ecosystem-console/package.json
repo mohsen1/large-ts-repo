@@ -15,8 +15,11 @@
   },
   "dependencies": {
     "@domain/recovery-ecosystem-core": "workspace:*",
+    "@domain/recovery-ecosystem-analytics": "workspace:*",
     "@data/recovery-ecosystem-store": "workspace:*",
+    "@data/recovery-ecosystem-analytics-store": "workspace:*",
     "@service/recovery-ecosystem-orchestrator": "workspace:*",
+    "@service/recovery-ecosystem-analytics-orchestrator": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/typed-orchestration-core": "workspace:*",
     "react": "^19.0.0",

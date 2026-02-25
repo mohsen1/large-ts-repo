@@ -875,18 +875,27 @@ importers:
 
   packages/app/recovery-ecosystem-console:
     dependencies:
+      '@data/recovery-ecosystem-analytics-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ecosystem-analytics-store
       '@data/recovery-ecosystem-store':
         specifier: workspace:*
         version: link:../../data/recovery-ecosystem-store
       '@data/recovery-lens-observability-store':
         specifier: workspace:*
         version: link:../../data/recovery-lens-observability-store
+      '@domain/recovery-ecosystem-analytics':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-analytics
       '@domain/recovery-ecosystem-core':
         specifier: workspace:*
         version: link:../../domain/recovery-ecosystem-core
       '@domain/recovery-lens-observability-models':
         specifier: workspace:*
         version: link:../../domain/recovery-lens-observability-models
+      '@service/recovery-ecosystem-analytics-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-ecosystem-analytics-orchestrator
       '@service/recovery-ecosystem-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-ecosystem-orchestrator
@@ -2103,6 +2112,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/data/recovery-ecosystem-analytics-store:
+    dependencies:
+      '@domain/recovery-ecosystem-analytics':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-analytics
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-ecosystem-store:
     dependencies:
@@ -3756,6 +3777,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-ecosystem-analytics:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -6298,6 +6331,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/service/recovery-ecosystem-analytics-orchestrator:
+    dependencies:
+      '@data/recovery-ecosystem-analytics-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ecosystem-analytics-store
+      '@domain/recovery-ecosystem-analytics':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-analytics
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-ecosystem-orchestrator:
     dependencies:

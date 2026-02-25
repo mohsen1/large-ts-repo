@@ -1352,10 +1352,19 @@
       "path": "./packages/domain/recovery-ecosystem-core"
     },
     {
+      "path": "./packages/domain/recovery-ecosystem-analytics"
+    },
+    {
       "path": "./packages/data/recovery-ecosystem-store"
     },
     {
+      "path": "./packages/data/recovery-ecosystem-analytics-store"
+    },
+    {
       "path": "./packages/service/recovery-ecosystem-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-ecosystem-analytics-orchestrator"
     },
     {
       "path": "./packages/app/recovery-ecosystem-console"
