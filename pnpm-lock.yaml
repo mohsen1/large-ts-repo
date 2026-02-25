@@ -377,6 +377,9 @@ importers:
       '@service/recovery-cockpit-signal-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-cockpit-signal-orchestrator
+      '@service/recovery-orchestration-studio-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-orchestration-studio-engine
       '@shared/mesh-control-plane':
         specifier: workspace:*
         version: link:../../shared/mesh-control-plane
@@ -6460,6 +6463,9 @@ importers:
       '@shared/orchestration-kernel':
         specifier: workspace:*
         version: link:../../shared/orchestration-kernel
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
 
   packages/service/recovery-plan-orchestrator:
     dependencies:
