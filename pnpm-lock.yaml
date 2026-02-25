@@ -249,6 +249,42 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
 
+  packages/app/recovery-cascade-console:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@domain/recovery-cascade-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cascade-orchestration
+      '@shared/cascade-orchestration-kernel':
+        specifier: workspace:*
+        version: link:../../shared/cascade-orchestration-kernel
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/app/recovery-chaos-lab:
     dependencies:
       '@data/recovery-chaos-observability':
@@ -3190,6 +3226,27 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-cascade-orchestration:
+    dependencies:
+      '@aws-sdk/client-eventbridge':
+        specifier: ^3.900.0
+        version: 3.995.0
+      '@shared/cascade-orchestration-kernel':
+        specifier: workspace:*
+        version: link:../../shared/cascade-orchestration-kernel
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -7498,6 +7555,21 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+
+  packages/shared/cascade-orchestration-kernel:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/chaos-lab-console-kernel:
     dependencies:

@@ -1,0 +1,35 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2023"
+    ],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-cascade-orchestration/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/cascade-orchestration-kernel/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

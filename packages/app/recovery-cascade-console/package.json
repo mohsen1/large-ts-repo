@@ -1,0 +1,30 @@
+{
+  "name": "@app/recovery-cascade-console",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./src": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./src/*": "./src/*.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@domain/recovery-cascade-orchestration": "workspace:*",
+    "@shared/cascade-orchestration-kernel": "workspace:*",
+    "@shared/core": "workspace:*",
+    "@shared/result": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.0",
+    "@aws-sdk/client-eventbridge": "^3.900.0"
+  }
+}
