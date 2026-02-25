@@ -20,6 +20,9 @@ import {
 } from '@domain/fault-intel-orchestration';
 import { bootstrappedTemplates } from './bootstrap';
 import { computeSignalDensity } from './telemetry';
+import { buildWorkflowPlan, buildWorkflowDiagnostics } from './advanced-workflow';
+import { createCommandCenter, summarizeHistory } from './command-center';
+import { createDefaultPluginStack, type CampaignPluginStack, type PipelinePlugin } from './pipeline-runtime';
 
 interface RuntimePlugin {
   readonly id: string;
@@ -49,9 +52,19 @@ export interface FaultIntelExecution {
   readonly traceId: string;
 }
 
+export interface AdvancedFaultIntelExecution extends FaultIntelExecution {
+  readonly workflowId: string;
+  readonly workflowPlan: ReturnType<typeof buildWorkflowPlan>;
+  readonly workflowDiagnostics: ReturnType<typeof buildWorkflowDiagnostics>;
+  readonly pluginPipelineScore: number;
+  readonly commandCenterSummary: ReturnType<typeof summarizeHistory<readonly ['intake', 'triage', 'remediation', 'recovery']>>;
+}
+
 export class CampaignExecutor {
   private readonly registry = createSharedRegistry<PluginContext>();
   private readonly store = createFaultIntelStore();
+  private readonly commandCenter = createCommandCenter();
+
   private readonly builtInPlugins: readonly RuntimePlugin[] = [
     {
       id: 'seed',
@@ -132,9 +145,9 @@ export class CampaignExecutor {
     );
     pluginScope.use(this.registry.scope('orchestrator', template.name) as any);
 
-    const finalSignals = createIteratorChain(output)
-      .take(options.signalLimit ?? signals.length)
-      .toArray();
+    const finalSignals = createIteratorChain(output as readonly IncidentSignal[])
+      .toArray()
+      .slice(0, options.signalLimit ?? signals.length);
 
     const runResult: CampaignRunResult = {
       campaign: plan.blueprint,
@@ -158,12 +171,80 @@ export class CampaignExecutor {
       return fail(runRecord.error);
     }
     void runRecord.value;
+
     return ok({
       planId: runResult.planId,
       run: runResult,
       diagnostics: diagnosticBuffer,
       traceId: `trace-${runResult.planId}`,
     });
+  }
+
+  public async executeAdvanced(
+    command: FaultIntelCommand,
+    options: FaultIntelCommandOptions = {},
+  ): Promise<Result<AdvancedFaultIntelExecution, Error>> {
+    const baseExecution = await this.execute(command, options);
+    if (!baseExecution.ok) {
+      return baseExecution;
+    }
+
+    const request = this.normalizeRequest(command);
+    const templateOptions = {
+      enforcePolicy: true,
+      maxSignals: options.signalLimit,
+      includeAllSignals: options.includeSynthetic,
+    };
+
+    const workflowPlan = buildWorkflowPlan(request, baseExecution.value.run.signals as readonly IncidentSignal[], templateOptions);
+    const workflowDiagnostics = buildWorkflowDiagnostics(workflowPlan, baseExecution.value.run);
+    const commandCenterResult = await this.commandCenter.execute(
+      this.commandCenter.createCommand(request, templateOptions),
+      async () => ({
+        ok: true,
+        value: baseExecution.value.run,
+      }),
+    );
+
+    if (!commandCenterResult.ok) {
+      return fail(new Error(commandCenterResult.error));
+    }
+
+    const pluginStack = this.createRuntimePluginStack();
+    const pluginContext: PluginContext = {
+      tenantId: command.tenantId,
+      namespace: 'fault-intel-advanced',
+      tags: new Set(['advanced', 'seed']),
+      timestamp: new Date().toISOString(),
+    };
+    const pluginScore = await pluginStack.execute<readonly string[], number>(
+      baseExecution.value.run.signals.map((signal) => signal.signalId),
+      pluginContext,
+      { minPriority: 1 },
+    );
+
+    if (!pluginScore.ok) {
+      return fail(new Error(pluginScore.error));
+    }
+
+    const commandHistory = this.commandCenter.listHistory();
+    const summary = summarizeHistory(commandHistory);
+
+    return ok({
+      planId: baseExecution.value.planId,
+      run: baseExecution.value.run,
+      diagnostics: baseExecution.value.diagnostics,
+      traceId: baseExecution.value.traceId,
+      workflowId: workflowPlan.workflowId,
+      workflowPlan,
+      workflowDiagnostics,
+      pluginPipelineScore: typeof pluginScore.value === 'number' ? pluginScore.value : 0,
+      commandCenterSummary: summary,
+    });
+  }
+
+  private createRuntimePluginStack(): CampaignPluginStack<readonly PipelinePlugin<any, any>[]> {
+    return createDefaultPluginStack('fault-intel-advanced');
   }
 
   public collectTemplateTransports(route: string): string[] {
@@ -200,16 +281,16 @@ export class CampaignExecutor {
   }
 
   private async runSequential<TOutput>(
-    seed: unknown,
+    _seed: unknown,
     _route: readonly string[],
     plugins: readonly AnyPlugin[],
     diagnostics: PluginInvocation<PluginContext, unknown, unknown>[],
     context: PluginContext,
   ): Promise<TOutput> {
-    let current: unknown = seed;
+    let current: unknown = _seed;
     for (const plugin of plugins) {
       const started = performance.now();
-      const next = await plugin.run(current);
+      const next = await Promise.resolve(plugin.run(current));
       const ended = performance.now();
       diagnostics.push({
         pluginId: plugin.id,
@@ -218,7 +299,9 @@ export class CampaignExecutor {
         output: next,
         elapsedMs: Math.round(ended - started),
       });
-      current = next;
+      if (next !== undefined && next !== null) {
+        current = next;
+      }
     }
     return current as TOutput;
   }
