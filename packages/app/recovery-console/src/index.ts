@@ -324,3 +324,10 @@ export { WorkbenchTimelineDeck } from './features/recovery-workbench-orchestrati
 export { WorkbenchRunSummary } from './features/recovery-workbench-orchestration/components/WorkbenchRunSummary';
 export { WorkbenchTraceTimeline } from './features/recovery-workbench-orchestration/components/WorkbenchTraceTimeline';
 export * from './features/recovery-workbench-orchestration/hooks/useRecoveryWorkbenchOrchestration';
+export * from './features/recovery-lab-console-labs/types';
+export * from './features/recovery-lab-console-labs/services/labConsoleService';
+export { useRecoveryLabConsoleOrchestration } from './features/recovery-lab-console-labs/hooks/useRecoveryLabConsoleOrchestration';
+export { RecoveryLabControlPanel } from './features/recovery-lab-console-labs/components/RecoveryLabControlPanel';
+export { RecoveryLabPluginRegistryPanel } from './features/recovery-lab-console-labs/components/RecoveryLabPluginRegistryPanel';
+export { RecoveryLabTimelineChart } from './features/recovery-lab-console-labs/components/RecoveryLabTimelineChart';
+export { RecoveryLabConsoleOrchestrationPage } from './features/recovery-lab-console-labs/pages/RecoveryLabConsoleOrchestrationPage';

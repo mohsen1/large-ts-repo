@@ -42,6 +42,7 @@
     "@shared/core": "workspace:*",
     "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@domain/recovery-lab-console-labs": "workspace:*",
     "@shared/orchestration-lab-core": "workspace:*",
     "@shared/orchestration-kernel": "workspace:*",
     "@shared/recovery-orchestration-runtime": "workspace:*",

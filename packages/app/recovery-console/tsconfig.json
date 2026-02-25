@@ -325,6 +325,9 @@
       "path": "../../domain/recovery-quantum-orchestration/tsconfig.json"
     },
     {
+      "path": "../../domain/recovery-lab-console-labs/tsconfig.json"
+    },
+    {
       "path": "../../data/recovery-quantum-store/tsconfig.json"
     }
   ]

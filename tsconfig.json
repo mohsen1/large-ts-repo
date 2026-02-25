@@ -1379,6 +1379,9 @@
       "path": "./packages/service/recovery-autonomy-orchestrator"
     },
     {
+      "path": "./packages/domain/recovery-lab-console-labs"
+    },
+    {
       "path": "./packages/app/recovery-autonomy-console"
     },
     {
