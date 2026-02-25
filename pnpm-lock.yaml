@@ -2158,6 +2158,24 @@ importers:
         specifier: workspace:*
         version: link:../../shared/type-level
 
+  packages/data/recovery-ecosystem-analytics-plan-catalog:
+    dependencies:
+      '@data/recovery-ecosystem-analytics-store':
+        specifier: workspace:*
+        version: link:../recovery-ecosystem-analytics-store
+      '@domain/recovery-ecosystem-analytics':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-analytics
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/recovery-ecosystem-analytics-store:
     dependencies:
       '@domain/recovery-ecosystem-analytics':
@@ -3849,6 +3867,9 @@ importers:
 
   packages/domain/recovery-ecosystem-analytics:
     dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -6460,6 +6481,9 @@ importers:
 
   packages/service/recovery-ecosystem-analytics-orchestrator:
     dependencies:
+      '@data/recovery-ecosystem-analytics-plan-catalog':
+        specifier: workspace:*
+        version: link:../../data/recovery-ecosystem-analytics-plan-catalog
       '@data/recovery-ecosystem-analytics-store':
         specifier: workspace:*
         version: link:../../data/recovery-ecosystem-analytics-store
