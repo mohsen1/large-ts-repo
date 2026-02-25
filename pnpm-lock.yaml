@@ -1157,6 +1157,9 @@ importers:
       '@service/recovery-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-lab-orchestrator
+      '@service/recovery-ops-orchestration-engine':
+        specifier: workspace:*
+        version: link:../../service/recovery-ops-orchestration-engine
       '@shared/lab-graph-runtime':
         specifier: workspace:*
         version: link:../../shared/lab-graph-runtime
@@ -4218,6 +4221,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       zod:
         specifier: ^3.24.2
         version: 3.25.76
@@ -6883,9 +6889,15 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/stress-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/stress-lab-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
