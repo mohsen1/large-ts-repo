@@ -22,6 +22,7 @@
     { "path": "./../../data/recovery-lab-digital-twin-store/tsconfig.json" },
     { "path": "./../../service/recovery-lab-orchestrator/tsconfig.json" },
     { "path": "./../../service/recovery-lab-orchestration-studio/tsconfig.json" },
+    { "path": "./../../service/recovery-ops-orchestration-engine/tsconfig.json" },
     { "path": "./../../shared/recovery-lab-kernel/tsconfig.json" },
     { "path": "./../../shared/stress-lab-runtime/tsconfig.json" },
     { "path": "./../../shared/type-level/tsconfig.json" },

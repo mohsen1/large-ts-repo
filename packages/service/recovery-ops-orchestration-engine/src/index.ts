@@ -4,3 +4,6 @@ export * from './insights';
 export * from './plugin-host';
 export * from './strategy-pipeline';
 export * from './orchestrated-lab';
+export * from './adaptive-lab';
+export * from './adaptive-facade';
+export * from './adaptive-observability';

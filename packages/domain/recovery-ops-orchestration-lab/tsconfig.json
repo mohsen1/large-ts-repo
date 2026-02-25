@@ -21,6 +21,9 @@
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/typed-orchestration-core/tsconfig.json"
     }
   ]
 }
