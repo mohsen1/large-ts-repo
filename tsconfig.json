@@ -1371,6 +1371,9 @@
     },
     {
       "path": "./packages/app/recovery-autonomy-console"
+    },
+    {
+      "path": "./packages/shared/quantum-studio-core"
     }
   ]
 }

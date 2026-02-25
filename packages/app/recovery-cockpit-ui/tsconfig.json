@@ -97,6 +97,9 @@
     },
     {
       "path": "./../../shared/ops-orchestration-runtime/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/quantum-studio-core/tsconfig.json"
     }
   ]
 }
