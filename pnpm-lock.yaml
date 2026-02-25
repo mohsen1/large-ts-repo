@@ -4101,6 +4101,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/observability-contracts':
+        specifier: workspace:*
+        version: link:../../shared/observability-contracts
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
