@@ -1205,6 +1205,9 @@ importers:
       '@domain/recovery-operations-control-plane':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-control-plane
+      '@domain/recovery-playbook-observability-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-observability-core
       '@domain/recovery-playbook-orchestration-core':
         specifier: workspace:*
         version: link:../../domain/recovery-playbook-orchestration-core
@@ -1244,6 +1247,9 @@ importers:
       '@service/recovery-playbook-engine':
         specifier: workspace:*
         version: link:../../service/recovery-playbook-engine
+      '@service/recovery-playbook-observability-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-playbook-observability-orchestrator
       '@service/recovery-readiness-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-readiness-orchestrator
@@ -4261,6 +4267,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-playbook-observability-core:
+    dependencies:
+      '@domain/recovery-playbook-orchestration-core':
+        specifier: workspace:*
+        version: link:../recovery-playbook-orchestration-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-playbook-orchestration:
     dependencies:
       zod:
@@ -6928,6 +6952,33 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-playbook-observability-orchestrator:
+    dependencies:
+      '@data/recovery-playbook-automation-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-playbook-automation-store
+      '@domain/recovery-playbook-observability-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-observability-core
+      '@domain/recovery-playbook-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-orchestration-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../../shared/util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
