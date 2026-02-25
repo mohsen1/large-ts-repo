@@ -5,3 +5,6 @@ export * from './types';
 export * from './conductor-registry';
 export * from './conductor-analytics';
 export * from './conductor-workspace';
+export * from './orchestration-suite';
+export * from './suite-scheduler';
+export * from './suite-analytics';

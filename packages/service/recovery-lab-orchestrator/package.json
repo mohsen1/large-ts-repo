@@ -16,6 +16,7 @@
   "dependencies": {
     "@domain/recovery-simulation-lab-core": "workspace:*",
     "@data/recovery-lab-simulation-store": "workspace:*",
+    "@domain/recovery-lab-signal-studio": "workspace:*",
     "@shared/recovery-lab-kernel": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*",

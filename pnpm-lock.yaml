@@ -3702,6 +3702,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-lab-stress-lab-core:
     dependencies:
@@ -6118,6 +6121,9 @@ importers:
       '@data/recovery-lab-simulation-store':
         specifier: workspace:*
         version: link:../../data/recovery-lab-simulation-store
+      '@domain/recovery-lab-signal-studio':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-signal-studio
       '@domain/recovery-simulation-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-simulation-lab-core

@@ -3,3 +3,8 @@ export * from './schema';
 export * from './registry';
 export * from './planner';
 export * from './adapters';
+export * from './advanced-types';
+export * from './iterator-tools';
+export * from './session-registry';
+export * from './orchestrator-plan';
+export * from './adapter-facade';
