@@ -449,6 +449,9 @@ importers:
       '@domain/recovery-cockpit-workloads':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-workloads
+      '@domain/recovery-command-lattice-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-command-lattice-core
       '@domain/recovery-operations-cadence':
         specifier: workspace:*
         version: link:../../domain/recovery-operations-cadence
@@ -479,6 +482,9 @@ importers:
       '@shared/cockpit-studio-core':
         specifier: workspace:*
         version: link:../../shared/cockpit-studio-core
+      '@shared/command-graph-kernel':
+        specifier: workspace:*
+        version: link:../../shared/command-graph-kernel
       '@shared/mesh-control-plane':
         specifier: workspace:*
         version: link:../../shared/mesh-control-plane
@@ -3682,6 +3688,15 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-command-lattice-core:
+    dependencies:
+      '@shared/command-graph-kernel':
+        specifier: workspace:*
+        version: link:../../shared/command-graph-kernel
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -8076,6 +8091,12 @@ importers:
         version: 3.25.76
 
   packages/shared/codec: {}
+
+  packages/shared/command-graph-kernel:
+    dependencies:
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/core:
     devDependencies:

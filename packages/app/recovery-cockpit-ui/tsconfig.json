@@ -103,6 +103,9 @@
     },
     {
       "path": "./../../shared/quantum-studio-core/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-command-lattice-core/tsconfig.json"
     }
   ]
 }

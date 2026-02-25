@@ -48,6 +48,8 @@
     "@data/recovery-cockpit-cognitive-store": "workspace:*",
     "@shared/orchestration-lab-core": "workspace:*",
     "@shared/mesh-control-plane": "workspace:*",
-    "zod": "^3.24.0"
+    "@domain/recovery-command-lattice-core": "workspace:*",
+    "zod": "^3.24.0",
+    "@shared/command-graph-kernel": "workspace:*"
   }
 }
