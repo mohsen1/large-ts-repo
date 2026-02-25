@@ -41,6 +41,9 @@
       "path": "./packages/app/recovery-incident-dashboard"
     },
     {
+      "path": "./packages/shared/recovery-orchestration-surface"
+    },
+    {
       "path": "./packages/app/recovery-incident-dashboard"
     },
     {

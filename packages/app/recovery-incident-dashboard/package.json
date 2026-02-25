@@ -76,6 +76,7 @@
     "@service/recovery-intent-graph-orchestrator": "workspace:*",
     "@service/recovery-chaos-lab-console-orchestrator": "workspace:*",
     "@shared/scenario-design-kernel": "workspace:*",
+    "@shared/recovery-orchestration-surface": "workspace:*",
     "@shared/recovery-orchestration-runtime": "workspace:*",
     "@service/recovery-scenario-design-orchestrator": "workspace:*"
   }

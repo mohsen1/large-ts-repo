@@ -1070,6 +1070,9 @@ importers:
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
+      '@shared/recovery-orchestration-surface':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-surface
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -8010,6 +8013,15 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../util
+
+  packages/shared/recovery-orchestration-surface:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/recovery-quantum-runtime: {}
 
