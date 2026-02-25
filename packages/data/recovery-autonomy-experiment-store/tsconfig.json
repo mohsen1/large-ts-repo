@@ -1,0 +1,29 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true,
+    "lib": [
+      "ES2023",
+      "ESNext"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-autonomy-experiment/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

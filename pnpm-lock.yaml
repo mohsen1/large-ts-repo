@@ -251,12 +251,21 @@ importers:
 
   packages/app/recovery-autonomy-console:
     dependencies:
+      '@data/recovery-autonomy-experiment-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-autonomy-experiment-store
       '@data/recovery-autonomy-store':
         specifier: workspace:*
         version: link:../../data/recovery-autonomy-store
+      '@domain/recovery-autonomy-experiment':
+        specifier: workspace:*
+        version: link:../../domain/recovery-autonomy-experiment
       '@domain/recovery-autonomy-graph':
         specifier: workspace:*
         version: link:../../domain/recovery-autonomy-graph
+      '@service/recovery-autonomy-experiment-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-autonomy-experiment-orchestrator
       '@service/recovery-autonomy-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-autonomy-orchestrator
@@ -1831,6 +1840,24 @@ importers:
         specifier: workspace:*
         version: link:../../domain/recovery-operations-atlas
 
+  packages/data/recovery-autonomy-experiment-store:
+    dependencies:
+      '@domain/recovery-autonomy-experiment':
+        specifier: workspace:*
+        version: link:../../domain/recovery-autonomy-experiment
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/recovery-autonomy-store:
     dependencies:
       '@domain/recovery-autonomy-graph':
@@ -3400,6 +3427,18 @@ importers:
       '@shared/typed-orchestration-core':
         specifier: workspace:*
         version: link:../../shared/typed-orchestration-core
+
+  packages/domain/recovery-autonomy-experiment:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-autonomy-graph:
     dependencies:
@@ -5854,6 +5893,27 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/service/recovery-autonomy-experiment-orchestrator:
+    dependencies:
+      '@data/recovery-autonomy-experiment-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-autonomy-experiment-store
+      '@domain/recovery-autonomy-experiment':
+        specifier: workspace:*
+        version: link:../../domain/recovery-autonomy-experiment
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-autonomy-orchestrator:
     dependencies:

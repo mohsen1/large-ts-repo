@@ -1398,6 +1398,15 @@
     },
     {
       "path": "./packages/service/recovery-lens-observability-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-autonomy-experiment"
+    },
+    {
+      "path": "./packages/data/recovery-autonomy-experiment-store"
+    },
+    {
+      "path": "./packages/service/recovery-autonomy-experiment-orchestrator"
     }
   ]
 }

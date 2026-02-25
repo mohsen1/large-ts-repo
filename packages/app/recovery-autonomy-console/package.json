@@ -14,9 +14,12 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@data/recovery-autonomy-experiment-store": "workspace:*",
     "@domain/recovery-autonomy-graph": "workspace:*",
+    "@domain/recovery-autonomy-experiment": "workspace:*",
     "@data/recovery-autonomy-store": "workspace:*",
     "@service/recovery-autonomy-orchestrator": "workspace:*",
+    "@service/recovery-autonomy-experiment-orchestrator": "workspace:*",
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
     "react": "^19.0.0",

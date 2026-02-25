@@ -4,10 +4,10 @@
     "outDir": "./dist",
     "composite": true,
     "declaration": true,
-    "jsx": "react-jsx",
     "lib": [
-      "DOM",
-      "ES2023"
+      "ES2023",
+      "ESNext",
+      "DOM"
     ]
   },
   "include": [
@@ -15,28 +15,19 @@
   ],
   "references": [
     {
-      "path": "./../../domain/recovery-autonomy-graph/tsconfig.json"
-    },
-    {
-      "path": "./../../data/recovery-autonomy-store/tsconfig.json"
-    },
-    {
-      "path": "./../../service/recovery-autonomy-orchestrator/tsconfig.json"
-    },
-    {
       "path": "./../../domain/recovery-autonomy-experiment/tsconfig.json"
     },
     {
       "path": "./../../data/recovery-autonomy-experiment-store/tsconfig.json"
     },
     {
-      "path": "./../../service/recovery-autonomy-experiment-orchestrator/tsconfig.json"
-    },
-    {
       "path": "./../../shared/core/tsconfig.json"
     },
     {
       "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

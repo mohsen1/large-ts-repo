@@ -1,5 +1,6 @@
 import { createSurfaceRuntime, runBootstrapSurface, type RuntimeSessionResult } from '@shared/recovery-orchestration-surface';
 import { createSurfaceWorkspaceId, type SurfaceWorkspaceId } from '@shared/recovery-orchestration-surface';
+import { type SurfaceContextSchema } from '@shared/recovery-orchestration-surface';
 import type {
   SurfaceWorkspaceDescriptor,
   SurfaceWorkspaceEvent,
@@ -83,7 +84,7 @@ export class SurfaceWorkspaceService {
     status: SurfaceWorkspaceDescriptor['status'],
     event: SurfaceWorkspaceEvent,
   ): SurfaceWorkspaceState {
-    const context = {
+    const context: SurfaceContextSchema = {
       workspaceId: workspace.workspaceId,
       lane: `lane:${workspace.workspaceId}:runtime`,
       stage: 'runtime',
