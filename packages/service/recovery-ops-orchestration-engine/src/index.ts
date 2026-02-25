@@ -7,3 +7,7 @@ export * from './orchestrated-lab';
 export * from './adaptive-lab';
 export * from './adaptive-facade';
 export * from './adaptive-observability';
+export * from './convergence-runtime/types';
+export * from './convergence-runtime/facade';
+export * from './convergence-runtime/runtime';
+export * from './convergence-runtime/telemetry';

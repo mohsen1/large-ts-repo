@@ -62,3 +62,7 @@ export * from './components/adaptive/SimulationControlBar';
 export * from './components/adaptive/SimulationTopologyPanel';
 export * from './components/adaptive/SimulationMetricsPanel';
 export * from './pages/RecoveryLabAdaptiveSimulationPage';
+export * from './pages/ConvergenceStudioCommandCenterPage';
+export * from './components/ConvergenceStudioDashboard';
+export * from './components/ConvergencePlanFlowTimeline';
+export * from './hooks/useConvergenceStudioSession';
