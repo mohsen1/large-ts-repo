@@ -149,18 +149,30 @@ importers:
 
   packages/app/fulfillment-console:
     dependencies:
-      '@data/fulfillment-telemetry-store':
+      '@data/recovery-resilience-store':
         specifier: workspace:*
-        version: link:../../data/fulfillment-telemetry-store
+        version: link:../../data/recovery-resilience-store
       '@domain/fulfillment-orchestration-analytics':
         specifier: workspace:*
         version: link:../../domain/fulfillment-orchestration-analytics
+      '@domain/recovery-resilience-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-resilience-models
       '@service/fulfillment-intelligence-orchestrator':
         specifier: workspace:*
         version: link:../../service/fulfillment-intelligence-orchestrator
       '@service/fulfillment-planner':
         specifier: workspace:*
         version: link:../../service/fulfillment-planner
+      '@service/recovery-resilience-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-resilience-orchestrator
+      '@shared/recovery-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-ops-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -2233,6 +2245,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/data/recovery-resilience-store:
+    dependencies:
+      '@domain/recovery-resilience-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-resilience-models
+      '@shared/recovery-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-ops-runtime
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/data/recovery-risk-store:
     dependencies:
       '@domain/recovery-policy':
@@ -4056,6 +4083,21 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-resilience-models:
+    dependencies:
+      '@shared/recovery-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-ops-runtime
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -6605,6 +6647,24 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/recovery-resilience-orchestrator:
+    dependencies:
+      '@data/recovery-resilience-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-resilience-store
+      '@domain/recovery-resilience-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-resilience-models
+      '@shared/recovery-ops-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-ops-runtime
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/service/recovery-risk-engine:
     dependencies:
       '@data/recovery-policy-store':
@@ -7287,6 +7347,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+
+  packages/shared/recovery-ops-runtime:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/recovery-orchestration-runtime:
     dependencies:

@@ -25,6 +25,21 @@
     },
     {
       "path": "./../../domain/fulfillment-orchestration-analytics/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-resilience-models/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-resilience-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-resilience-store/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/recovery-ops-runtime/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

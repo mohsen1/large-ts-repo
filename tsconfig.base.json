@@ -57,6 +57,12 @@
         "packages/shared/*",
         "packages/shared/*/src"
       ],
+      "@shared/recovery-ops-runtime": [
+        "packages/shared/recovery-ops-runtime/src/index.ts"
+      ],
+      "@shared/recovery-ops-runtime/*": [
+        "packages/shared/recovery-ops-runtime/src/*"
+      ],
       "@shared/type-level": [
         "packages/shared/type-level/src/index.ts"
       ],
@@ -120,6 +126,12 @@
         "packages/data/*",
         "packages/data/*/src"
       ],
+      "@data/recovery-resilience-store": [
+        "packages/data/recovery-resilience-store/src/index.ts"
+      ],
+      "@data/recovery-resilience-store/*": [
+        "packages/data/recovery-resilience-store/src/*"
+      ],
       "@data/recovery-operations-intelligence-store": [
         "packages/data/recovery-operations-intelligence-store/src/index.ts"
       ],
@@ -139,6 +151,12 @@
         "packages/service/*",
         "packages/service/*/src"
       ],
+      "@service/recovery-resilience-orchestrator": [
+        "packages/service/recovery-resilience-orchestrator/src/index.ts"
+      ],
+      "@service/recovery-resilience-orchestrator/*": [
+        "packages/service/recovery-resilience-orchestrator/src/*"
+      ],
       "@service/recovery-operations-intelligence-orchestrator": [
         "packages/service/recovery-operations-intelligence-orchestrator/src/index.ts"
       ],
@@ -154,6 +172,12 @@
       ],
       "@domain/recovery-orchestration": [
         "packages/domain/recovery-orchestration/src/index.ts"
+      ],
+      "@domain/recovery-resilience-models": [
+        "packages/domain/recovery-resilience-models/src/index.ts"
+      ],
+      "@domain/recovery-resilience-models/*": [
+        "packages/domain/recovery-resilience-models/src/*"
       ],
       "@domain/recovery-plan": [
         "packages/domain/recovery-plan/src/index.ts"
