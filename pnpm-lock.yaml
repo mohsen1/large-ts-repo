@@ -467,6 +467,9 @@ importers:
       '@service/recovery-stress-lab-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-stress-lab-orchestrator
+      '@shared/cockpit-studio-core':
+        specifier: workspace:*
+        version: link:../../shared/cockpit-studio-core
       '@shared/mesh-control-plane':
         specifier: workspace:*
         version: link:../../shared/mesh-control-plane
@@ -7975,6 +7978,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/shared/cockpit-studio-core:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../typed-orchestration-core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
