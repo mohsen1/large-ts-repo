@@ -29,6 +29,9 @@
       "path": "./packages/app/recovery-cockpit-ui"
     },
     {
+      "path": "./packages/app/fault-intel-console"
+    },
+    {
       "path": "./packages/app/recovery-console"
     },
     {
@@ -60,6 +63,9 @@
     },
     {
       "path": "./packages/domain/recovery-chronicle-orchestrator"
+    },
+    {
+      "path": "./packages/domain/fault-intel-orchestration"
     },
     {
       "path": "./packages/shared/timeline-orchestration-runtime"
@@ -114,6 +120,9 @@
     },
     {
       "path": "./packages/data/incident-command-store"
+    },
+    {
+      "path": "./packages/data/fault-intel-store"
     },
     {
       "path": "./packages/data/incident-forecast-store"
@@ -1199,6 +1208,9 @@
       "path": "./packages/shared/type-level"
     },
     {
+      "path": "./packages/shared/fault-intel-runtime"
+    },
+    {
       "path": "./packages/shared/orchestration-lab-core"
     },
     {
@@ -1266,6 +1278,9 @@
     },
     {
       "path": "./packages/domain/recovery-chronicle-lab-core"
+    },
+    {
+      "path": "./packages/service/fault-intel-orchestrator"
     }
   ]
 }

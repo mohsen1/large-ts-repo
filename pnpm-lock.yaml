@@ -123,6 +123,30 @@ importers:
         specifier: workspace:*
         version: link:../../shared/protocol
 
+  packages/app/fault-intel-console:
+    dependencies:
+      '@data/fault-intel-store':
+        specifier: workspace:*
+        version: link:../../data/fault-intel-store
+      '@domain/fault-intel-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/fault-intel-orchestration
+      '@service/fault-intel-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/fault-intel-orchestrator
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
   packages/app/fulfillment-console:
     dependencies:
       '@data/fulfillment-telemetry-store':
@@ -1322,6 +1346,24 @@ importers:
       '@shared/validation':
         specifier: workspace:*
         version: link:../../shared/validation
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/fault-intel-store:
+    dependencies:
+      '@data/repositories':
+        specifier: workspace:*
+        version: link:../repositories
+      '@domain/fault-intel-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/fault-intel-orchestration
+      '@shared/fault-intel-runtime':
+        specifier: workspace:*
+        version: link:../../shared/fault-intel-runtime
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -2615,6 +2657,12 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/fault-intel-orchestration:
+    dependencies:
+      '@shared/fault-intel-runtime':
+        specifier: workspace:*
+        version: link:../../shared/fault-intel-runtime
 
   packages/domain/feature-flags: {}
 
@@ -4947,6 +4995,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/service/fault-intel-orchestrator:
+    dependencies:
+      '@data/fault-intel-store':
+        specifier: workspace:*
+        version: link:../../data/fault-intel-store
+      '@domain/fault-intel-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/fault-intel-orchestration
+      '@shared/fault-intel-runtime':
+        specifier: workspace:*
+        version: link:../../shared/fault-intel-runtime
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+
   packages/service/finance:
     dependencies:
       '@domain/billing':
@@ -7092,6 +7155,8 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+
+  packages/shared/fault-intel-runtime: {}
 
   packages/shared/horizon-lab-runtime:
     dependencies:
