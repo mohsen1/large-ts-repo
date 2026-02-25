@@ -8,12 +8,14 @@ import {
 import {
   ScenarioDependencyGraph,
   buildConstraintsFromBlueprint,
-  detectConstraintViolations,
   evaluatePolicySummary,
   evaluateScenarioPolicy,
+} from '@domain/recovery-scenario-lens';
+import {
+  detectConstraintViolations,
   rankPlans,
   scoreCandidate,
-} from '@domain/recovery-scenario-lens';
+} from '@domain/recovery-scenario-lens/risk';
 
 export const runPlanner = (input: OrchestrationInput): PlannerOutput => {
   const graph = new ScenarioDependencyGraph(input.blueprint.commands, input.blueprint.links, input.blueprint.scenarioId);
@@ -26,7 +28,7 @@ export const runPlanner = (input: OrchestrationInput): PlannerOutput => {
   };
 
   const policyEvaluations = evaluateScenarioPolicy(input.profile, input.blueprint, policyContext);
-  const policyScore = evaluatePolicySummary(policyEvaluations);
+const policyScore = evaluatePolicySummary(policyEvaluations);
 
   const baseCandidate = graph.toPlanCandidate(1, input.blueprint.windowMinutes);
   const scoredCandidate = {
@@ -38,7 +40,7 @@ export const runPlanner = (input: OrchestrationInput): PlannerOutput => {
   const candidateSet = rankPlans([scoredCandidate]);
   const constraints = [...buildConstraintsFromBlueprint(input.blueprint, policyContext), ...input.constraints];
   const warnings = [
-    ...detectConstraintViolations(scoredCandidate, constraints).map((violation) => `${violation.constraintId}:${violation.observed}`),
+    ...detectConstraintViolations(scoredCandidate, constraints).map((violation: { readonly constraintId: string; observed: number }) => `${violation.constraintId}:${violation.observed}`),
     ...constraints
       .filter((constraint) => constraint.type === 'region_gate')
       .map((constraint) => `region_gate:${constraint.description}`),

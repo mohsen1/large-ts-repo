@@ -4740,6 +4740,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/recovery-synthesis-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-synthesis-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -7786,6 +7789,9 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/recovery-synthesis-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-synthesis-runtime
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -8279,6 +8285,15 @@ importers:
         version: 3.25.76
 
   packages/shared/recovery-quantum-runtime: {}
+
+  packages/shared/recovery-synthesis-runtime:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/recovery-workbench-runtime:
     dependencies:

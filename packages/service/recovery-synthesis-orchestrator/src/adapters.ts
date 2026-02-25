@@ -25,4 +25,5 @@ export interface OrchestratorAdapterBundle {
 export interface OrchestratorRuntimeSnapshot {
   readonly timestamp: string;
   readonly envelope: OrchestratorEnvelope;
+  readonly currentRun?: OrchestratorEnvelope;
 }

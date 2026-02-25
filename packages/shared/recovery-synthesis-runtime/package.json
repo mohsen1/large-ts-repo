@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-synthesis-orchestrator",
+  "name": "@shared/recovery-synthesis-runtime",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,10 +14,6 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-scenario-lens": "workspace:*",
-    "@shared/recovery-synthesis-runtime": "workspace:*",
-    "@data/query-models": "workspace:*",
-    "@shared/core": "workspace:*",
     "@shared/type-level": "workspace:*",
     "zod": "^3.24.0"
   }

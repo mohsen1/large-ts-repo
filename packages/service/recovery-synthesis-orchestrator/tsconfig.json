@@ -16,6 +16,9 @@
       "path": "./../../shared/core/tsconfig.json"
     },
     {
+      "path": "./../../shared/recovery-synthesis-runtime/tsconfig.json"
+    },
+    {
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {

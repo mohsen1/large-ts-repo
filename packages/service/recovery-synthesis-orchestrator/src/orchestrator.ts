@@ -1,7 +1,7 @@
 import { runPlanner } from './planner';
 import { runSimulation } from './simulator';
 import { asPercent, asMillis, type ScenarioPlan } from '@domain/recovery-scenario-lens';
-import { choosePlan, toScenarioPlan } from '@domain/recovery-scenario-lens';
+import { choosePlan, toScenarioPlan } from '@domain/recovery-scenario-lens/risk';
 import type { OrchestratorAdapterBundle, OrchestratorRuntimeSnapshot } from './adapters';
 import type {
   OrchestrationInput,
@@ -82,6 +82,7 @@ export class RecoverySynthesisOrchestrator {
     return {
       timestamp: new Date().toISOString(),
       envelope: this.state.currentRun,
+      currentRun: this.state.currentRun,
     };
   }
 

@@ -173,6 +173,9 @@
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
+      "path": "./../../shared/recovery-synthesis-runtime/tsconfig.json"
+    },
+    {
       "path": "./../../shared/scenario-design-kernel/tsconfig.json"
     },
     {

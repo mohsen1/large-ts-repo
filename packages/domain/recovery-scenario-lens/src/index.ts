@@ -1,7 +1,17 @@
 export * from './types';
 export * from './graph';
 export * from './policy';
-export * from './risk';
 export * from './timeline';
 export * from './adapters';
 export * from './schema';
+export * from './synthesis-types';
+export * from './synthesis-adapters';
+export * from './synthesis-registry';
+export * from './synthesis-runtime';
+export * from './synthesis-workspace';
+export * from './synthesis-advanced-types';
+export * from './synthesis-constraint-graph';
+export * from './synthesis-event-stream';
+export { choosePlan, detectConstraintViolations, scoreCandidate, toScenarioPlan } from './risk';
+export { rankPlans as rankScenarioCandidates, rankPlans } from './risk';
+export * from './synthesis-workspace-intelligence';
