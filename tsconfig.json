@@ -1356,6 +1356,18 @@
     },
     {
       "path": "./packages/app/recovery-ecosystem-console"
+    },
+    {
+      "path": "./packages/domain/recovery-autonomy-graph"
+    },
+    {
+      "path": "./packages/data/recovery-autonomy-store"
+    },
+    {
+      "path": "./packages/service/recovery-autonomy-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-autonomy-console"
     }
   ]
 }
