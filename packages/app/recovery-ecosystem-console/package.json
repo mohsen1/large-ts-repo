@@ -22,6 +22,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "@domain/recovery-lens-observability-models": "workspace:*",
+    "@service/recovery-lens-observability-orchestrator": "workspace:*",
+    "@data/recovery-lens-observability-store": "workspace:*"
   }
 }

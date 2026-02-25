@@ -28,6 +28,15 @@
     },
     {
       "path": "../../shared/typed-orchestration-core/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-lens-observability-models/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-lens-observability-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-lens-observability-store/tsconfig.json"
     }
   ]
 }

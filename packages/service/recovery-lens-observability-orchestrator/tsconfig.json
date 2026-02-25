@@ -1,0 +1,23 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": ["src/**/*"],
+  "references": [
+    {
+      "path": "../../domain/recovery-lens-observability-models/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-lens-observability-store/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/typed-orchestration-core/tsconfig.json"
+    }
+  ]
+}

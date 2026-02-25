@@ -1374,6 +1374,15 @@
     },
     {
       "path": "./packages/shared/quantum-studio-core"
+    },
+    {
+      "path": "./packages/domain/recovery-lens-observability-models"
+    },
+    {
+      "path": "./packages/data/recovery-lens-observability-store"
+    },
+    {
+      "path": "./packages/service/recovery-lens-observability-orchestrator"
     }
   ]
 }
