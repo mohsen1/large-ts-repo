@@ -182,6 +182,12 @@ export type RecursivePath<T> = T extends string | number | bigint | boolean | sy
 
 export type AsyncReducer<T, A> = (acc: A, value: T, index: number) => Promise<A>;
 
+type BuildTuple<TValue, TLength extends number, TAccumulator extends TValue[] = []> = TAccumulator['length'] extends TLength
+  ? readonly [...TAccumulator]
+  : BuildTuple<TValue, TLength, [...TAccumulator, TValue]>;
+
+export type TupleOf<TValue, TLength extends number> = BuildTuple<TValue, TLength>;
+
 export async function runPipeline<I, O>(
   name: string,
   steps: readonly AsyncMapper<any, any>[],

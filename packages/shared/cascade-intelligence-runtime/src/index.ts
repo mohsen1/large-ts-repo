@@ -1,0 +1,92 @@
+export type {
+  PluginCatalog,
+  PluginMode,
+  PluginSchema,
+  RegistryKey,
+  RegistryMode,
+  RuntimePlugin,
+  RuntimePluginDefinition,
+  RuntimePluginEnvelope,
+  RuntimePluginManifest,
+  RuntimePluginSignal,
+  StageAlias,
+  StagePath,
+  StageSlice,
+} from './manifest.js';
+export type {
+  PluginEnvelope,
+  PluginRegistrySnapshot,
+  PluginRegistryTrace,
+  RuntimeRegistryOptions,
+} from './registry.js';
+export type {
+  StageEdgeWeight,
+  StageLayer,
+  StageTopologyEdge,
+  StageTopologyNode,
+  TopologyIteratorContext,
+} from './topology.js';
+export type {
+  AsyncScopeLease,
+  ScopedHandle,
+  ScopeEvent,
+  ScopeStats,
+  SubscriptionScope,
+  SubscriptionStats,
+} from './scope.js';
+
+export {
+  buildTopologyGraph,
+  buildCatalogFingerprint,
+  buildManifestFingerprint,
+  buildRuntimeManifest,
+  buildStageAlias,
+  buildStageAliases,
+  buildTopologySignature,
+  createPathVector,
+  inferStageAlias,
+  normalizeManifestScope,
+  normalizePluginName,
+  parseRuntimeManifest,
+  projectLayer,
+  projectLayers,
+  toRuntimeManifest,
+  type RuntimeManifest,
+} from './manifest.js';
+export {
+  assertRegistry,
+  createPluginRegistry,
+  createPluginScope,
+  createPluginSignal,
+  createPluginStack,
+  getPluginByName,
+  listRegistryPlugins,
+  mapPluginKinds,
+  projectPluginManifest,
+  registryKey,
+  setRegistryDefault,
+  summarizeRegistry,
+  withPlugins,
+} from './registry.js';
+export {
+  analyzeTopology,
+  chunkTopology,
+  ensureTopology,
+  mapTopologyLayers,
+  normalizeTopologyWeights,
+  pathFromTopology,
+  resolveLayer,
+  runTopology,
+  walkTopology,
+} from './topology.js';
+export {
+  createAsyncScope,
+  createScopeEvents,
+  disposeScope,
+  emitScopeSignal,
+  isScopeClosed,
+  openScope,
+  registerScopeLease,
+  useScopeLease,
+  withScopeAsync,
+} from './scope.js';
