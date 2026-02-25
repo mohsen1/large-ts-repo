@@ -218,6 +218,9 @@
       "path": "./packages/data/recovery-incident-lab-store"
     },
     {
+      "path": "./packages/data/recovery-quantum-store"
+    },
+    {
       "path": "./packages/data/recovery-incident-store"
     },
     {
@@ -1214,6 +1217,9 @@
       "path": "./packages/shared/orchestration-lab-core"
     },
     {
+      "path": "./packages/shared/recovery-quantum-runtime"
+    },
+    {
       "path": "./packages/shared/mesh-control-plane"
     },
     {
@@ -1251,6 +1257,9 @@
     },
     {
       "path": "./packages/domain/recovery-lab-synthetic-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-quantum-orchestration"
     },
     {
       "path": "./packages/data/recovery-chronicle-store"

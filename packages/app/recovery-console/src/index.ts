@@ -285,9 +285,13 @@ export { RunbookWorkloadPanel } from './features/recovery-orchestration-studio/c
 export { eventChannelName, type ReadinessLabDashboardState, type ReadinessLabHeatmapCell } from './features/recovery-readiness-lab/types';
 export { RecoveryQuantumOrchestrationStudioPage } from './features/recovery-quantum-orchestration/pages/RecoveryQuantumOrchestrationStudioPage';
 export { useRecoveryQuantumOrchestration } from './features/recovery-quantum-orchestration/hooks/useRecoveryQuantumOrchestration';
+export { RecoveryQuantumOrchestrationLabPage } from './features/recovery-quantum-orchestration/pages/RecoveryQuantumOrchestrationLabPage';
 export { QuantumOrchestrationControlPanel } from './features/recovery-quantum-orchestration/components/QuantumOrchestrationControlPanel';
 export { QuantumWorkflowCanvas } from './features/recovery-quantum-orchestration/components/QuantumWorkflowCanvas';
 export { QuantumPluginRegistryPanel } from './features/recovery-quantum-orchestration/components/QuantumPluginRegistryPanel';
+export { QuantumSignalGrid } from './features/recovery-quantum-orchestration/components/QuantumSignalGrid';
+export { QuantumPolicyDeck } from './features/recovery-quantum-orchestration/components/QuantumPolicyDeck';
+export { QuantumTimeline } from './features/recovery-quantum-orchestration/components/QuantumTimeline';
 export { runQuantumScenario, buildScenarioSteps, defaultScenarioNode, hasDefaultPlugins } from './features/recovery-quantum-orchestration/services/quantumScenarioEngine';
 export * from './features/recovery-quantum-orchestration/services/quantumAdapterLayer';
 export * from './features/recovery-quantum-orchestration/types';

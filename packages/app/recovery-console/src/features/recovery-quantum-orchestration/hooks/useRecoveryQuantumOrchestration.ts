@@ -1,150 +1,160 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { createScope } from '@shared/orchestration-kernel';
-import { runQuantumScenario, buildScenarioSteps } from '../services/quantumScenarioEngine';
-import { mapSeedToWorkspace, buildWorkloadTimeline } from '../types';
-import type {
-  QuantumWorkspace,
-  QuantumTelemetryPoint,
-  QuantumPluginMetric,
-  QuantumRunState,
-  QuantumExecutionResult,
-  QuantumTimelineEvent,
-} from '../types';
-import { summarizeAdapter, adaptTelemetryToRows, type QuantumAdapterSummary } from '../services/quantumAdapterLayer';
-import type { WorkflowPhase } from '@shared/orchestration-kernel';
+import {
+  assembleRunbookRuntime,
+  type QuantumPlan,
+  type QuantumPolicy,
+  type QuantumRunbook,
+  type QuantumSignal,
+  type QuantumTenantId,
+} from '@domain/recovery-quantum-orchestration';
+import {
+  QuantumRunbookRepository,
+  type QuantumQueryStats,
+} from '@data/recovery-quantum-store';
 
-const PHASES = ['collect', 'plan', 'execute', 'verify', 'close'] as const;
+export interface QuantumFilter {
+  readonly tenant?: QuantumTenantId;
+  readonly severity?: QuantumSignal['severity'];
+  readonly includeIdle?: boolean;
+}
 
-interface WorkspaceSeed {
+export interface QuantumDashboard {
+  readonly id: string;
   readonly tenant: string;
-  readonly runId: string;
-  readonly scenario: string;
-  readonly mode: 'live' | 'simulation' | 'dry-run' | 'postmortem';
-  readonly phases: readonly WorkflowPhase[];
+  readonly status: 'idle' | 'loading' | 'ready' | 'error';
+  readonly policyCount: number;
+  readonly signalCount: number;
 }
 
-const defaultSeed = (tenant: string): WorkspaceSeed => ({
-  tenant,
-  runId: `${tenant}-run-${Date.now()}`,
-  scenario: 'quantum-orchestration',
-  mode: 'simulation',
-  phases: PHASES,
-});
+const emptyRepo = new QuantumRunbookRepository();
 
-export interface QuantumOrchestrationHookState {
-  readonly workspace: QuantumWorkspace;
-  readonly scenarioRun: QuantumExecutionResult | null;
-  readonly runState: QuantumRunState;
-  readonly timeline: readonly QuantumTimelineEvent[];
-  readonly telemetry: readonly QuantumTelemetryPoint[];
-  readonly metricsRows: readonly { readonly index: number; readonly event: string; readonly score: number }[];
-  readonly pluginMetrics: readonly QuantumPluginMetric[];
-  readonly result: QuantumExecutionResult | null;
-  readonly runError: string | null;
-  readonly startRun: () => Promise<void>;
-}
-
-const summaryFromRun = async (input: {
-  workspace: QuantumWorkspace;
-  result: QuantumExecutionResult;
-  telemetry: readonly QuantumTelemetryPoint[];
-  pluginMetrics: readonly QuantumPluginMetric[];
-}): Promise<QuantumAdapterSummary> => {
-  return summarizeAdapter(input.workspace, input.result, input.telemetry, input.pluginMetrics, {
-    mode: 'smoothed',
-    trim: 12,
-  });
-};
-
-export const useRecoveryQuantumOrchestration = (seedOverride?: Partial<WorkspaceSeed>): QuantumOrchestrationHookState => {
-  const seed = useMemo(
-  () => ({
-      ...defaultSeed('tenant-alpha'),
-      ...seedOverride,
-      runId: seedOverride?.runId ?? defaultSeed('tenant-alpha').runId,
-      phases: PHASES,
-    }),
-    [seedOverride],
-  );
-
-  const workspace = useMemo(() => mapSeedToWorkspace(seed), [seed]);
-  const [runState, setRunState] = useState<QuantumRunState>('idle');
-  const [runError, setRunError] = useState<string | null>(null);
-  const [scenarioRun, setScenarioRun] = useState<QuantumExecutionResult | null>(null);
-  const [timeline, setTimeline] = useState<readonly QuantumTimelineEvent[]>(() => buildWorkloadTimeline(workspace));
-  const [telemetry, setTelemetry] = useState<readonly QuantumTelemetryPoint[]>(() => []);
-  const [metricsRows, setMetricsRows] = useState<readonly { readonly index: number; readonly event: string; readonly score: number }[]>([]);
-  const [pluginMetrics, setPluginMetrics] = useState<readonly QuantumPluginMetric[]>([]);
-  const [result, setResult] = useState<QuantumExecutionResult | null>(null);
-  const [steps, setSteps] = useState<readonly { nodeId: string; command: string; expectedMs: number }[]>(() =>
-    buildScenarioSteps(workspace),
-  );
-
-  useEffect(() => {
-    setSteps(buildScenarioSteps(workspace));
-  }, [workspace]);
-
-  const startRun = useCallback(async () => {
-    setRunState('bootstrapping');
-    setRunError(null);
-    setResult(null);
-
-    await using scope = createScope();
-    void scope;
-
-    try {
-      const run = await runQuantumScenario({
-        workspace,
-        mode: seed.mode === 'simulation' || seed.mode === 'dry-run' || seed.mode === 'postmortem' ? 'sim' : 'live',
-        seedTrace: `${workspace.tenant}:${steps.length}`,
-      });
-
-      const summary = await summaryFromRun({
-        workspace,
-        result: run.result,
-        telemetry: run.telemetry,
-        pluginMetrics: run.pluginMetrics,
-      });
-
-      setTimeline((previous) => [...previous, ...buildWorkloadTimeline(workspace, { offset: previous.length })]);
-      setTelemetry(run.telemetry);
-      setMetricsRows(summaryByMode(summary, 'raw'));
-      setPluginMetrics(run.pluginMetrics);
-      setResult(run.result);
-      setScenarioRun(run.result);
-      setRunState(run.result.state);
-    } catch (error) {
-      setRunState('errored');
-      setRunError(error instanceof Error ? error.message : String(error));
-    }
-  }, [workspace, seed.mode, steps.length]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (runState === 'running') {
-        setTimeline((previous) => [...previous, ...buildWorkloadTimeline(workspace, { offset: previous.length })]);
+const buildDashboard = (runbook: QuantumRunbook | undefined, status: QuantumDashboard['status']): QuantumDashboard | undefined =>
+  runbook
+    ? {
+        id: String(runbook.id),
+        tenant: String(runbook.tenant),
+        status,
+        policyCount: runbook.policies.length,
+        signalCount: runbook.signals.length,
       }
-    }, 1200);
-    return () => clearInterval(interval);
-  }, [runState, workspace]);
+    : undefined;
 
+export interface UseRecoveryQuantumOrchestrationReturn {
+  readonly dashboard?: QuantumDashboard;
+  readonly runtimePlan?: QuantumPlan;
+  readonly policies: readonly QuantumPolicy[];
+  readonly signals: readonly QuantumSignal[];
+  readonly loadError: string | undefined;
+  readonly queryStats: QuantumQueryStats | undefined;
+  readonly refresh: () => Promise<void>;
+  readonly refreshSignals: (severity?: QuantumSignal['severity']) => Promise<void>;
+}
+
+const selectRunbook = async (
+  tenant: QuantumTenantId,
+  repository: QuantumRunbookRepository,
+): Promise<{ runbook?: QuantumRunbook; stats?: QuantumQueryStats; error?: string }> => {
+  const result = await repository.query({ tenant, includeIdle: true });
+  if (result.runbooks.length === 0) {
+    return { error: `No runbook found for tenant: ${tenant}` };
+  }
   return {
-    workspace,
-    scenarioRun,
-    runState,
-    timeline,
-    telemetry,
-    metricsRows,
-    pluginMetrics,
-    result,
-    runError,
-    startRun,
+    runbook: result.runbooks[0],
+    stats: result.stats,
   };
 };
 
-const summaryByMode = (summary: QuantumAdapterSummary, mode: 'raw' | 'smoothed' | 'compressed') => {
-  const rows = adaptTelemetryToRows(mode, [], {
-    trim: 25,
-  });
-  return rows;
+const deriveRuntimeState = async (runbook: QuantumRunbook): Promise<{
+  readonly plan: QuantumPlan;
+  readonly tags: readonly string[];
+}> => {
+  const runtime = await assembleRunbookRuntime(runbook);
+  return {
+    plan: runtime.baselinePlan,
+    tags: runtime.details.pluginKeys,
+  };
+};
+
+export const useRecoveryQuantumOrchestration = (tenant: QuantumTenantId): UseRecoveryQuantumOrchestrationReturn => {
+  const [status, setStatus] = useState<QuantumDashboard['status']>('idle');
+  const [queryStats, setQueryStats] = useState<QuantumQueryStats | undefined>(undefined);
+  const [dashboard, setDashboard] = useState<QuantumDashboard | undefined>(undefined);
+  const [runtimePlan, setRuntimePlan] = useState<QuantumPlan | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [seedbook, setSeedbook] = useState<QuantumRunbook | undefined>(undefined);
+  const [repository] = useState(() => emptyRepo);
+
+  const selected = useMemo(() => {
+    const latest = seedbook;
+    if (!latest) {
+      return {
+        id: String(tenant),
+        tenant: String(tenant),
+        status,
+        policyCount: 0,
+        signalCount: 0,
+      } satisfies QuantumDashboard;
+    }
+    const activeDashboard = buildDashboard(latest, status);
+    if (activeDashboard) {
+      return {
+        ...activeDashboard,
+        status,
+      };
+    }
+    return {
+      id: String(tenant),
+      tenant: String(tenant),
+      status,
+      policyCount: 0,
+      signalCount: 0,
+    };
+  }, [seedbook, status, tenant]);
+
+  const refreshSignals = useCallback(
+    async (severity?: QuantumSignal['severity']) => {
+      if (!seedbook) {
+        return;
+      }
+      const filtered = seedbook.signals.filter((signal) => !severity || signal.severity === severity);
+      await repository.save(seedbook);
+      setSeedbook({
+        ...seedbook,
+        signals: filtered,
+      });
+    },
+    [repository, seedbook],
+  );
+
+  const load = useCallback(async () => {
+    setStatus('loading');
+    setError(undefined);
+    const loaded = await selectRunbook(tenant, repository);
+    if (loaded.error || !loaded.runbook) {
+      setStatus('error');
+      setError(loaded.error);
+      return;
+    }
+    setQueryStats(loaded.stats);
+    setSeedbook(loaded.runbook);
+    const runtime = await deriveRuntimeState(loaded.runbook);
+    setRuntimePlan(runtime.plan);
+    setDashboard(buildDashboard(loaded.runbook, 'ready'));
+    setStatus('ready');
+  }, [repository, tenant]);
+
+  useEffect(() => {
+    void load();
+  }, [load]);
+
+  return {
+    dashboard: selected,
+    runtimePlan,
+    policies: seedbook?.policies ?? [],
+    signals: seedbook?.signals ?? [],
+    loadError: error,
+    queryStats,
+    refresh: load,
+    refreshSignals,
+  };
 };

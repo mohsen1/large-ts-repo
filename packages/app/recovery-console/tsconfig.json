@@ -308,6 +308,15 @@
     },
     {
       "path": "../../domain/recovery-chronicle-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../shared/recovery-quantum-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-quantum-orchestration/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-quantum-store/tsconfig.json"
     }
   ]
 }

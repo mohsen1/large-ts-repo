@@ -452,6 +452,9 @@ importers:
       '@data/recovery-playbook-store':
         specifier: workspace:*
         version: link:../../data/recovery-playbook-store
+      '@data/recovery-quantum-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-quantum-store
       '@data/recovery-readiness-store':
         specifier: workspace:*
         version: link:../../data/recovery-readiness-store
@@ -563,6 +566,9 @@ importers:
       '@domain/recovery-playbooks':
         specifier: workspace:*
         version: link:../../domain/recovery-playbooks
+      '@domain/recovery-quantum-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-quantum-orchestration
       '@domain/recovery-readiness':
         specifier: workspace:*
         version: link:../../domain/recovery-readiness
@@ -713,6 +719,9 @@ importers:
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
+      '@shared/recovery-quantum-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-quantum-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -2226,6 +2235,21 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/data/recovery-quantum-store:
+    dependencies:
+      '@domain/recovery-quantum-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-quantum-orchestration
+      '@shared/recovery-quantum-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-quantum-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-readiness-store:
     dependencies:
@@ -4059,6 +4083,15 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-quantum-orchestration:
+    dependencies:
+      '@shared/recovery-quantum-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-quantum-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-readiness:
     dependencies:
@@ -7374,6 +7407,8 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../util
+
+  packages/shared/recovery-quantum-runtime: {}
 
   packages/shared/result:
     dependencies:
