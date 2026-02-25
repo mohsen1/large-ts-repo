@@ -1385,6 +1385,9 @@
       "path": "./packages/shared/quantum-studio-core"
     },
     {
+      "path": "./packages/shared/cockpit-studio-core"
+    },
+    {
       "path": "./packages/domain/recovery-lens-observability-models"
     },
     {

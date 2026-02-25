@@ -75,6 +75,9 @@
       "path": "./../../service/recovery-cockpit-cognitive-orchestrator/tsconfig.json"
     },
     {
+      "path": "./../../shared/cockpit-studio-core/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-cockpit-constellation-core/tsconfig.json"
     },
     {

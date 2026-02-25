@@ -14,6 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@shared/cockpit-studio-core": "workspace:*",
     "@domain/recovery-operations-cadence": "workspace:*",
     "@domain/recovery-cockpit-models": "workspace:*",
     "@domain/recovery-cockpit-intelligence": "workspace:*",
