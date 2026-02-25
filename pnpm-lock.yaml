@@ -1968,6 +1968,9 @@ importers:
       '@domain/recovery-cockpit-models':
         specifier: workspace:*
         version: link:../../domain/recovery-cockpit-models
+      '@domain/recovery-cockpit-orchestration-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-cockpit-orchestration-core
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -3505,6 +3508,9 @@ importers:
       '@domain/recovery-cockpit-models':
         specifier: workspace:*
         version: link:../recovery-cockpit-models
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
@@ -5986,6 +5992,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@shared/typed-orchestration-core':
         specifier: workspace:*
         version: link:../../shared/typed-orchestration-core
