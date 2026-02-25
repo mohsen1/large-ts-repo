@@ -840,6 +840,36 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/app/recovery-ecosystem-console:
+    dependencies:
+      '@data/recovery-ecosystem-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ecosystem-store
+      '@domain/recovery-ecosystem-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-core
+      '@service/recovery-ecosystem-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-ecosystem-orchestrator
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+
   packages/app/recovery-incident-dashboard:
     dependencies:
       '@aws-sdk/client-eventbridge':
@@ -2004,6 +2034,18 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+
+  packages/data/recovery-ecosystem-store:
+    dependencies:
+      '@domain/recovery-ecosystem-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/data/recovery-horizon-store:
     dependencies:
@@ -3612,6 +3654,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-ecosystem-core:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -6100,6 +6154,27 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+
+  packages/service/recovery-ecosystem-orchestrator:
+    dependencies:
+      '@data/recovery-ecosystem-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-ecosystem-store
+      '@domain/recovery-ecosystem-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-ecosystem-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/service/recovery-fabric-cadence-orchestrator:
     dependencies:

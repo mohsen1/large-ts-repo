@@ -1344,6 +1344,18 @@
     },
     {
       "path": "./packages/app/recovery-cascade-console"
+    },
+    {
+      "path": "./packages/domain/recovery-ecosystem-core"
+    },
+    {
+      "path": "./packages/data/recovery-ecosystem-store"
+    },
+    {
+      "path": "./packages/service/recovery-ecosystem-orchestrator"
+    },
+    {
+      "path": "./packages/app/recovery-ecosystem-console"
     }
   ]
 }

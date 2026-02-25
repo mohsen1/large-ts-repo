@@ -69,6 +69,30 @@
     "@shared/type-level/*": [
       "packages/shared/type-level/src/*"
     ],
+    "@domain/recovery-ecosystem-core": [
+      "packages/domain/recovery-ecosystem-core/src/index.ts"
+    ],
+    "@domain/recovery-ecosystem-core/*": [
+      "packages/domain/recovery-ecosystem-core/src/*"
+    ],
+    "@data/recovery-ecosystem-store": [
+      "packages/data/recovery-ecosystem-store/src/index.ts"
+    ],
+    "@data/recovery-ecosystem-store/*": [
+      "packages/data/recovery-ecosystem-store/src/*"
+    ],
+    "@service/recovery-ecosystem-orchestrator": [
+      "packages/service/recovery-ecosystem-orchestrator/src/index.ts"
+    ],
+    "@service/recovery-ecosystem-orchestrator/*": [
+      "packages/service/recovery-ecosystem-orchestrator/src/*"
+    ],
+    "@app/recovery-ecosystem-console": [
+      "packages/app/recovery-ecosystem-console/src/index.ts"
+    ],
+    "@app/recovery-ecosystem-console/*": [
+      "packages/app/recovery-ecosystem-console/src/*"
+    ],
     "@shared/stress-lab-runtime": [
       "packages/shared/stress-lab-runtime/src/index.ts"
     ],
