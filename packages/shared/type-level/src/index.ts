@@ -1,5 +1,8 @@
 export * from './patterns';
 export * from './plugin-registry';
+export * from './variadic-helpers';
+export * from './async-disposable';
+export * from './plugin-bridge';
 
 export type Primitive = string | number | boolean | bigint | symbol | null | undefined;
 export type JsonPrimitive = string | number | boolean | null;

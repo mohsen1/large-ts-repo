@@ -53,6 +53,9 @@ export {
   buildCatalog as buildStressLabPluginCatalog,
 } from './modern-registry';
 export * from './signal-orchestration';
+export * from './signal-orchestration-dsl';
+export * from './signal-orchestration-matrix';
+export * from './signal-orchestration-session';
 export * from './orchestration-lattice';
 export * from './registry-orchestration';
 export * from './workflow-designer';

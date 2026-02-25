@@ -23,6 +23,7 @@
     "@data/recovery-cockpit-insights": "workspace:*",
     "@data/recovery-cockpit-analytics": "workspace:*",
     "@domain/recovery-stress-lab": "workspace:*",
+    "@service/recovery-stress-lab-orchestrator": "workspace:*",
     "@domain/recovery-cockpit-signal-mesh": "workspace:*",
     "@data/recovery-cockpit-signal-mesh-store": "workspace:*",
     "@data/recovery-cockpit-intent-store": "workspace:*",
