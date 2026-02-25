@@ -1,5 +1,5 @@
 {
-  "name": "@service/recovery-ecosystem-analytics-orchestrator",
+  "name": "@data/recovery-ecosystem-analytics-plan-catalog",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,11 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@domain/recovery-ecosystem-analytics": "workspace:*",
     "@data/recovery-ecosystem-analytics-store": "workspace:*",
-    "@data/recovery-ecosystem-analytics-plan-catalog": "workspace:*",
-    "@shared/result": "workspace:*",
+    "@domain/recovery-ecosystem-analytics": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/result": "workspace:*",
     "zod": "^3.24.0"
   }
 }

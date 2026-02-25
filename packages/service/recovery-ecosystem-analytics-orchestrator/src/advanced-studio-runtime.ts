@@ -1,17 +1,24 @@
-import { mapWithIteratorHelpers, type JsonValue } from '@shared/type-level';
-import { ok, fail, type Result } from '@shared/result';
+import { createInMemorySignalAdapter } from './adapters';
+import { runScenarioWithEngine } from './orchestrator';
+import { createPlanCatalogOrchestratorRuntime, type PlanCatalogRuntimeFacade } from './catalog-orchestrator-runtime';
+import type { AnalyzeRequest, OrchestratorDependencies, OrchestratorOptions } from './ports';
+import type { JsonValue } from '@shared/type-level';
+import { catalogPlanFromPhases } from '@data/recovery-ecosystem-analytics-plan-catalog';
 import {
   asNamespace,
+  asPlan,
   asRun,
+  asSession,
   asTenant,
   asWindow,
   type PluginNode,
+  summarizeSignalsByKind,
+  evaluateMetricPoints,
+  type AnalyticsPlanRecord,
   type PluginRunInput,
-  type PluginRunResult,
 } from '@domain/recovery-ecosystem-analytics';
-import { createInMemorySignalAdapter } from './adapters';
-import { runScenarioWithEngine } from './orchestrator';
-import type { AnalyzeRequest, OrchestratorDependencies, OrchestratorOptions } from './ports';
+import { ok, fail, type Result } from '@shared/result';
+import { mapWithIteratorHelpers } from '@shared/type-level';
 
 export interface StudioRuntimePlan {
   readonly route: readonly string[];
@@ -38,6 +45,17 @@ export interface AdvancedStudioService {
 
 type RuntimeTrace = readonly string[];
 type StudioPlugin = PluginNode<string, 'studio', PluginRunInput, PluginRunResult, string>;
+
+interface PluginRunResult {
+  readonly plugin: string;
+  readonly accepted: boolean;
+  readonly signalCount: number;
+  readonly payload: JsonValue;
+  readonly diagnostics: readonly {
+    readonly step: string;
+    readonly latencyMs: number;
+  }[];
+}
 
 const normalizeSignal = (value: string): `signal:${string}` => {
   const normalized = value.toLowerCase().trim();
@@ -80,15 +98,39 @@ const runToInputs = (runId: ReturnType<typeof asRun>, payloads: readonly { kind:
     payload: entry.payload,
   }));
 
+const buildStudioCatalogPlan = (plugins: readonly string[], tenant: string): AnalyticsPlanRecord => {
+  const normalizedTenant = tenant.replace(/^tenant:/, '');
+  const normalizedNamespace = tenant.replace(/^tenant:/, '');
+  const catalogPlan = catalogPlanFromPhases(
+    normalizedTenant || 'studio',
+    normalizedNamespace || 'studio',
+    plugins,
+  );
+  return {
+    ...catalogPlan,
+    planId: asPlan(`studio-${tenant}-${plugins.length}`),
+    window: asWindow(`window:studio-${normalizedTenant || 'studio'}`),
+  };
+};
+
+const seedPluginsFromPayload = (payloads: readonly { kind: string; payload: JsonValue }[], tenant: string): readonly string[] =>
+  payloads.map((entry, index) => `${tenant}:${entry.kind}:${index}`);
+
 export class RecoveryStudioRuntime implements AdvancedStudioService {
   readonly #dependencies: OrchestratorDependencies;
   readonly #options: OrchestratorOptions;
   readonly #stack = new AsyncDisposableStack();
+  readonly #catalogRuntime: PlanCatalogRuntimeFacade;
   #closed = false;
 
   constructor(dependencies: OrchestratorDependencies, options: OrchestratorOptions) {
     this.#dependencies = dependencies;
     this.#options = options;
+    this.#catalogRuntime = createPlanCatalogOrchestratorRuntime(this.#dependencies.store, {
+      tenant: options.tenant,
+      namespace: options.namespace,
+      window: options.window,
+    });
   }
 
   async prepare(seedPlugins: readonly string[]): Promise<Result<StudioRuntimePlan>> {
@@ -115,6 +157,11 @@ export class RecoveryStudioRuntime implements AdvancedStudioService {
     const resolvedTenant = asTenant(tenant);
     const resolvedNamespace = asNamespace(namespace);
     const runId = asRun(`studio-${resolvedTenant}-${Date.now()}`);
+    const catalogPlan = buildStudioCatalogPlan(seedPluginsFromPayload(payloads, tenant), tenant);
+    const catalogBoot = await this.#catalogRuntime.bootstrap([catalogPlan]);
+    if (!catalogBoot.ok) {
+      return catalogBoot;
+    }
     const request: AnalyzeRequest = {
       tenant: resolvedTenant,
       namespace: resolvedNamespace,
@@ -124,7 +171,31 @@ export class RecoveryStudioRuntime implements AdvancedStudioService {
     if (!start.ok) {
       return start;
     }
-
+    const adapter = await createInMemorySignalAdapter();
+    await adapter.store.open({
+      runId: asRun(`studio-adapter-${Date.now()}`),
+      tenant: resolvedTenant,
+      namespace: resolvedNamespace,
+      window: asWindow(`window:${tenant}`),
+      session: asSession(`session:${runId}`),
+    });
+    const byKind = summarizeSignalsByKind(
+      mapWithIteratorHelpers(payloads, (entry, index) => ({
+        kind: normalizeSignal(entry.kind),
+        runId,
+        namespace: resolvedNamespace,
+        at: new Date().toISOString(),
+        payload:
+          typeof entry.payload === 'object' && entry.payload !== null && !Array.isArray(entry.payload)
+            ? ({
+                ...(entry.payload as Record<string, JsonValue>),
+                index,
+              } as JsonValue)
+            : ({ index, value: entry.payload } as JsonValue),
+      })),
+      resolvedTenant,
+    );
+    const baseline = evaluateMetricPoints(payloads.map((entry, index) => ({ value: index + entry.kind.length + 1 })));
     const inputs = runToInputs(runId, payloads);
     const mapped: readonly PluginRunResult[] = mapWithIteratorHelpers(inputs, (entry, index) => ({
       plugin: `plugin:${entry.kind.replace('signal:', '')}` as const,
@@ -134,12 +205,12 @@ export class RecoveryStudioRuntime implements AdvancedStudioService {
       diagnostics: [{ step: `plan:${resolvedTenant}`, latencyMs: index + 1 }],
     }));
     const traces = buildTraces(runId, mapped);
-
+    const diagnostics = mapWithIteratorHelpers(Array.from(Object.keys(byKind)), (entry, index) => `${entry}:${index}`);
     return ok({
       runId: asRun(start.value.runId),
       resultCount: mapped.length,
-      metric: summarizeMetric(mapped),
-      traces,
+      metric: summarizeMetric(mapped) + baseline.score + diagnostics.length,
+      traces: [...traces, ...diagnostics],
     });
   }
 
@@ -149,6 +220,7 @@ export class RecoveryStudioRuntime implements AdvancedStudioService {
     }
     this.#closed = true;
     await this.#stack.disposeAsync();
+    await this.#catalogRuntime.close();
     void asWindow('window:studio');
     return ok(undefined);
   }

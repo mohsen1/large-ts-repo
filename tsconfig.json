@@ -1361,6 +1361,9 @@
       "path": "./packages/data/recovery-ecosystem-store"
     },
     {
+      "path": "./packages/data/recovery-ecosystem-analytics-plan-catalog"
+    },
+    {
       "path": "./packages/data/recovery-ecosystem-analytics-store"
     },
     {

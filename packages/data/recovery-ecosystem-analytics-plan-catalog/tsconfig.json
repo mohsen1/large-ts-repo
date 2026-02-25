@@ -16,13 +16,10 @@
       "path": "../../data/recovery-ecosystem-analytics-store/tsconfig.json"
     },
     {
-      "path": "../../data/recovery-ecosystem-analytics-plan-catalog/tsconfig.json"
+      "path": "../../shared/type-level/tsconfig.json"
     },
     {
       "path": "../../shared/result/tsconfig.json"
-    },
-    {
-      "path": "../../shared/type-level/tsconfig.json"
     }
   ]
 }
