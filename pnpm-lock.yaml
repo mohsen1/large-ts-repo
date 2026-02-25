@@ -476,6 +476,9 @@ importers:
       '@shared/orchestration-lab-core':
         specifier: workspace:*
         version: link:../../shared/orchestration-lab-core
+      '@shared/quantum-studio-core':
+        specifier: workspace:*
+        version: link:../../shared/quantum-studio-core
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
@@ -7977,6 +7980,18 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../core
+
+  packages/shared/quantum-studio-core:
+    dependencies:
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../typed-orchestration-core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/shared/recovery-lab-kernel:
     dependencies:
