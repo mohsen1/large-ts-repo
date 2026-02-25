@@ -260,6 +260,9 @@ importers:
       '@domain/recovery-chronicle-core':
         specifier: workspace:*
         version: link:../../domain/recovery-chronicle-core
+      '@domain/recovery-chronicle-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chronicle-lab-core
       '@service/recovery-chronicle-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-chronicle-orchestrator
@@ -2980,6 +2983,21 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/domain/recovery-chronicle-lab-core:
+    dependencies:
+      '@domain/recovery-chronicle-core':
+        specifier: workspace:*
+        version: link:../recovery-chronicle-core
+      '@shared/chronicle-orchestration-protocol':
+        specifier: workspace:*
+        version: link:../../shared/chronicle-orchestration-protocol
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-chronicle-orchestrator:
     dependencies:
@@ -7042,6 +7060,18 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/shared/chronicle-orchestration-protocol:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
