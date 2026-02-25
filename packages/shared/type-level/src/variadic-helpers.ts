@@ -187,13 +187,26 @@ export const tupleReduce = <T extends readonly unknown[], A>(
 };
 
 const maybeIterator =
-  (globalThis as { readonly Iterator?: { from?: <T>(value: Iterable<T>) => { map<U>(transform: (value: T) => U): { toArray(): U[] } } } })
+  (globalThis as {
+    readonly Iterator?: {
+      from?: <T>(
+        value: Iterable<T>,
+      ) => { map<U>(transform: (value: T, index: number) => U): { toArray(): U[] } };
+    };
+  })
     .Iterator?.from;
 
-export const mapWithIteratorHelpers = <T, R>(input: Iterable<T>, mapper: (value: T) => R): readonly R[] => {
-  return maybeIterator?.(input)
-    ? maybeIterator(input).map(mapper).toArray()
-    : Array.from(input).map(mapper);
+export const mapWithIteratorHelpers = <T, R>(
+  input: Iterable<T>,
+  mapper: (value: T, index: number, total: number) => R,
+): readonly R[] => {
+  const values = Array.from(input) as readonly T[];
+  if (maybeIterator?.(values.values())) {
+    return maybeIterator(values.values())!
+      .map((value: T, index: number) => mapper(value, index, values.length))
+      .toArray();
+  }
+  return values.map((value, index) => mapper(value, index, values.length));
 };
 
 export const normalizeRecordToTuple = <
