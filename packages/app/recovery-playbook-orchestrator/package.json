@@ -48,6 +48,8 @@
     "@domain/recovery-playbook-orchestration-core": "workspace:*",
     "@service/recovery-playbook-automation-engine": "workspace:*",
     "@data/recovery-playbook-automation-store": "workspace:*",
+    "@domain/recovery-playbook-studio-core": "workspace:*",
+    "@shared/playbook-studio-runtime": "workspace:*",
     "zod": "^3.24.0"
   }
 }

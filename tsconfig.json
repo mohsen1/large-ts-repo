@@ -1416,6 +1416,12 @@
     },
     {
       "path": "./packages/domain/recovery-command-lattice-core"
+    },
+    {
+      "path": "./packages/shared/playbook-studio-runtime"
+    },
+    {
+      "path": "./packages/domain/recovery-playbook-studio-core"
     }
   ]
 }

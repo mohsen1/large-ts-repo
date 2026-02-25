@@ -1337,6 +1337,9 @@ importers:
       '@domain/recovery-playbook-orchestration-core':
         specifier: workspace:*
         version: link:../../domain/recovery-playbook-orchestration-core
+      '@domain/recovery-playbook-studio-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-playbook-studio-core
       '@domain/recovery-playbooks':
         specifier: workspace:*
         version: link:../../domain/recovery-playbooks
@@ -1382,6 +1385,9 @@ importers:
       '@service/recovery-workload-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-workload-orchestrator
+      '@shared/playbook-studio-runtime':
+        specifier: workspace:*
+        version: link:../../shared/playbook-studio-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -4602,6 +4608,24 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-playbook-studio-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/playbook-studio-runtime':
+        specifier: workspace:*
+        version: link:../../shared/playbook-studio-runtime
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
@@ -8217,6 +8241,18 @@ importers:
       '@shared/typed-orchestration-core':
         specifier: workspace:*
         version: link:../typed-orchestration-core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/shared/playbook-studio-runtime:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76

@@ -40,6 +40,12 @@
     },
     {
       "path": "./../../service/recovery-playbook-automation-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/playbook-studio-runtime/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-playbook-studio-core/tsconfig.json"
     }
   ]
 }
