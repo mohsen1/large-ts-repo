@@ -14,6 +14,9 @@
       "path": "./packages/app/cli"
     },
     {
+      "path": "./packages/app/fault-intel-console"
+    },
+    {
       "path": "./packages/app/fuzzy-console"
     },
     {
@@ -26,10 +29,19 @@
       "path": "./packages/app/policy-console"
     },
     {
-      "path": "./packages/app/recovery-cockpit-ui"
+      "path": "./packages/app/recovery-autonomy-console"
     },
     {
-      "path": "./packages/app/fault-intel-console"
+      "path": "./packages/app/recovery-cascade-console"
+    },
+    {
+      "path": "./packages/app/recovery-chaos-lab"
+    },
+    {
+      "path": "./packages/app/recovery-chronicle-console"
+    },
+    {
+      "path": "./packages/app/recovery-cockpit-ui"
     },
     {
       "path": "./packages/app/recovery-console"
@@ -38,10 +50,10 @@
       "path": "./packages/app/recovery-drill-observer"
     },
     {
-      "path": "./packages/app/recovery-incident-dashboard"
+      "path": "./packages/app/recovery-ecosystem-console"
     },
     {
-      "path": "./packages/shared/recovery-orchestration-surface"
+      "path": "./packages/app/recovery-incident-dashboard"
     },
     {
       "path": "./packages/app/recovery-incident-dashboard"
@@ -50,31 +62,16 @@
       "path": "./packages/app/recovery-incident-lab-console"
     },
     {
-      "path": "./packages/app/recovery-playbook-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-playbook-observability-core"
-    },
-    {
       "path": "./packages/app/recovery-lab-dashboard"
     },
     {
+      "path": "./packages/app/recovery-mesh-console"
+    },
+    {
+      "path": "./packages/app/recovery-playbook-orchestrator"
+    },
+    {
       "path": "./packages/app/recovery-timeline-studio"
-    },
-    {
-      "path": "./packages/domain/recovery-timeline-orchestration"
-    },
-    {
-      "path": "./packages/domain/recovery-ops-mesh"
-    },
-    {
-      "path": "./packages/domain/recovery-chronicle-orchestrator"
-    },
-    {
-      "path": "./packages/domain/fault-intel-orchestration"
-    },
-    {
-      "path": "./packages/shared/timeline-orchestration-runtime"
     },
     {
       "path": "./packages/app/reporter"
@@ -84,30 +81,6 @@
     },
     {
       "path": "./packages/app/worker"
-    },
-    {
-      "path": "./packages/app/recovery-chaos-lab"
-    },
-    {
-      "path": "./packages/domain/recovery-chaos-sim-models"
-    },
-    {
-      "path": "./packages/app/recovery-mesh-console"
-    },
-    {
-      "path": "./packages/data/recovery-ops-mesh-observability-store"
-    },
-    {
-      "path": "./packages/shared/chaos-lab-console-kernel"
-    },
-    {
-      "path": "./packages/service/recovery-ops-mesh-observability-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-chaos-lab-console-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-chaos-lab-intelligence"
     },
     {
       "path": "./packages/data/adapters"
@@ -134,13 +107,13 @@
       "path": "./packages/data/failure-intelligence-store"
     },
     {
+      "path": "./packages/data/fault-intel-store"
+    },
+    {
       "path": "./packages/data/fulfillment-telemetry-store"
     },
     {
       "path": "./packages/data/incident-command-store"
-    },
-    {
-      "path": "./packages/data/fault-intel-store"
     },
     {
       "path": "./packages/data/incident-forecast-store"
@@ -173,7 +146,22 @@
       "path": "./packages/data/recovery-atlas-store"
     },
     {
+      "path": "./packages/data/recovery-autonomy-experiment-store"
+    },
+    {
+      "path": "./packages/data/recovery-autonomy-store"
+    },
+    {
       "path": "./packages/data/recovery-cadence-event-store"
+    },
+    {
+      "path": "./packages/data/recovery-chaos-observability"
+    },
+    {
+      "path": "./packages/data/recovery-chronicle-graph-store"
+    },
+    {
+      "path": "./packages/data/recovery-chronicle-store"
     },
     {
       "path": "./packages/data/recovery-cockpit-analytics"
@@ -192,9 +180,6 @@
     },
     {
       "path": "./packages/data/recovery-cockpit-signal-mesh-store"
-    },
-    {
-      "path": "./packages/data/recovery-chaos-observability"
     },
     {
       "path": "./packages/data/recovery-cockpit-store"
@@ -224,19 +209,25 @@
       "path": "./packages/data/recovery-drill-store"
     },
     {
-      "path": "./packages/data/recovery-horizon-store"
+      "path": "./packages/data/recovery-ecosystem-analytics-plan-catalog"
     },
     {
-      "path": "./packages/data/recovery-incident-intent-store"
+      "path": "./packages/data/recovery-ecosystem-analytics-store"
+    },
+    {
+      "path": "./packages/data/recovery-ecosystem-store"
+    },
+    {
+      "path": "./packages/data/recovery-horizon-store"
     },
     {
       "path": "./packages/data/recovery-incident-insights-store"
     },
     {
-      "path": "./packages/data/recovery-incident-lab-store"
+      "path": "./packages/data/recovery-incident-intent-store"
     },
     {
-      "path": "./packages/data/recovery-quantum-store"
+      "path": "./packages/data/recovery-incident-lab-store"
     },
     {
       "path": "./packages/data/recovery-incident-store"
@@ -245,10 +236,16 @@
       "path": "./packages/data/recovery-intelligence-store"
     },
     {
+      "path": "./packages/data/recovery-lab-digital-twin-store"
+    },
+    {
+      "path": "./packages/data/recovery-lab-simulation-store"
+    },
+    {
       "path": "./packages/data/recovery-lattice-orchestrator-store"
     },
     {
-      "path": "./packages/data/recovery-stress-lab-orchestration-store"
+      "path": "./packages/data/recovery-lens-observability-store"
     },
     {
       "path": "./packages/data/recovery-observability"
@@ -272,6 +269,9 @@
       "path": "./packages/data/recovery-ops-fabric-store"
     },
     {
+      "path": "./packages/data/recovery-ops-mesh-observability-store"
+    },
+    {
       "path": "./packages/data/recovery-ops-orchestration-lab-store"
     },
     {
@@ -281,10 +281,10 @@
       "path": "./packages/data/recovery-ops-playbook-studio-store"
     },
     {
-      "path": "./packages/data/recovery-playbook-automation-store"
+      "path": "./packages/data/recovery-plan-store"
     },
     {
-      "path": "./packages/data/recovery-plan-store"
+      "path": "./packages/data/recovery-playbook-automation-store"
     },
     {
       "path": "./packages/data/recovery-playbook-orchestration-store"
@@ -294,6 +294,9 @@
     },
     {
       "path": "./packages/data/recovery-policy-store"
+    },
+    {
+      "path": "./packages/data/recovery-quantum-store"
     },
     {
       "path": "./packages/data/recovery-readiness-store"
@@ -317,9 +320,6 @@
       "path": "./packages/data/recovery-simulation-store"
     },
     {
-      "path": "./packages/data/recovery-lab-simulation-store"
-    },
-    {
       "path": "./packages/data/recovery-situational-store"
     },
     {
@@ -329,7 +329,13 @@
       "path": "./packages/data/recovery-strategy-store"
     },
     {
+      "path": "./packages/data/recovery-stress-lab-orchestration-store"
+    },
+    {
       "path": "./packages/data/recovery-synthetic-orchestration-store"
+    },
+    {
+      "path": "./packages/data/recovery-temporal-store"
     },
     {
       "path": "./packages/data/recovery-timeline-store"
@@ -344,10 +350,10 @@
       "path": "./packages/data/repositories"
     },
     {
-      "path": "./packages/data/streaming-dashboard-store"
+      "path": "./packages/data/streaming-command-intelligence-store"
     },
     {
-      "path": "./packages/data/streaming-command-intelligence-store"
+      "path": "./packages/data/streaming-dashboard-store"
     },
     {
       "path": "./packages/data/telemetry-store"
@@ -396,6 +402,9 @@
     },
     {
       "path": "./packages/domain/failure-intelligence"
+    },
+    {
+      "path": "./packages/domain/fault-intel-orchestration"
     },
     {
       "path": "./packages/domain/feature-flags"
@@ -482,7 +491,34 @@
       "path": "./packages/domain/pricing"
     },
     {
+      "path": "./packages/domain/recovery-automation-orchestrator"
+    },
+    {
+      "path": "./packages/domain/recovery-autonomy-experiment"
+    },
+    {
+      "path": "./packages/domain/recovery-autonomy-graph"
+    },
+    {
       "path": "./packages/domain/recovery-cadence-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-cascade-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-chaos-sim-models"
+    },
+    {
+      "path": "./packages/domain/recovery-chronicle-core"
+    },
+    {
+      "path": "./packages/domain/recovery-chronicle-graph-core"
+    },
+    {
+      "path": "./packages/domain/recovery-chronicle-lab-core"
+    },
+    {
+      "path": "./packages/domain/recovery-chronicle-orchestrator"
     },
     {
       "path": "./packages/domain/recovery-cockpit-cognitive-core"
@@ -518,6 +554,9 @@
       "path": "./packages/domain/recovery-command-language"
     },
     {
+      "path": "./packages/domain/recovery-command-lattice-core"
+    },
+    {
       "path": "./packages/domain/recovery-command-network"
     },
     {
@@ -551,6 +590,12 @@
       "path": "./packages/domain/recovery-drill-telemetry"
     },
     {
+      "path": "./packages/domain/recovery-ecosystem-analytics"
+    },
+    {
+      "path": "./packages/domain/recovery-ecosystem-core"
+    },
+    {
       "path": "./packages/domain/recovery-fabric-cadence-core"
     },
     {
@@ -581,6 +626,9 @@
       "path": "./packages/domain/recovery-incident-insights"
     },
     {
+      "path": "./packages/domain/recovery-incident-intent"
+    },
+    {
       "path": "./packages/domain/recovery-incident-lab-core"
     },
     {
@@ -596,10 +644,16 @@
       "path": "./packages/domain/recovery-intelligence"
     },
     {
+      "path": "./packages/domain/recovery-intent-graph"
+    },
+    {
       "path": "./packages/domain/recovery-lab-adaptive-orchestration"
     },
     {
       "path": "./packages/domain/recovery-lab-console-core"
+    },
+    {
+      "path": "./packages/domain/recovery-lab-console-labs"
     },
     {
       "path": "./packages/domain/recovery-lab-console-runtime"
@@ -614,10 +668,22 @@
       "path": "./packages/domain/recovery-lab-orchestration-core"
     },
     {
+      "path": "./packages/domain/recovery-lab-orchestration-core"
+    },
+    {
+      "path": "./packages/domain/recovery-lab-signal-studio"
+    },
+    {
       "path": "./packages/domain/recovery-lab-stress-lab-core"
     },
     {
+      "path": "./packages/domain/recovery-lab-synthetic-orchestration"
+    },
+    {
       "path": "./packages/domain/recovery-lattice"
+    },
+    {
+      "path": "./packages/domain/recovery-lens-observability-models"
     },
     {
       "path": "./packages/domain/recovery-operations-atlas"
@@ -641,6 +707,12 @@
       "path": "./packages/domain/recovery-ops-fabric"
     },
     {
+      "path": "./packages/domain/recovery-ops-mesh"
+    },
+    {
+      "path": "./packages/domain/recovery-ops-orchestration-graph"
+    },
+    {
       "path": "./packages/domain/recovery-ops-orchestration-lab"
     },
     {
@@ -653,10 +725,10 @@
       "path": "./packages/domain/recovery-ops-playbook-studio"
     },
     {
-      "path": "./packages/domain/recovery-ops-orchestration-graph"
+      "path": "./packages/domain/recovery-orchestration"
     },
     {
-      "path": "./packages/domain/recovery-orchestration"
+      "path": "./packages/domain/recovery-orchestration-design"
     },
     {
       "path": "./packages/domain/recovery-orchestration-planning"
@@ -668,16 +740,25 @@
       "path": "./packages/domain/recovery-playbook-lab"
     },
     {
+      "path": "./packages/domain/recovery-playbook-observability-core"
+    },
+    {
       "path": "./packages/domain/recovery-playbook-orchestration"
     },
     {
       "path": "./packages/domain/recovery-playbook-orchestration-core"
     },
     {
+      "path": "./packages/domain/recovery-playbook-studio-core"
+    },
+    {
       "path": "./packages/domain/recovery-playbooks"
     },
     {
       "path": "./packages/domain/recovery-policy"
+    },
+    {
+      "path": "./packages/domain/recovery-quantum-orchestration"
     },
     {
       "path": "./packages/domain/recovery-readiness"
@@ -692,6 +773,9 @@
       "path": "./packages/domain/recovery-risk-strategy"
     },
     {
+      "path": "./packages/domain/recovery-scenario-design"
+    },
+    {
       "path": "./packages/domain/recovery-scenario-engine"
     },
     {
@@ -704,9 +788,6 @@
       "path": "./packages/domain/recovery-scenario-planner"
     },
     {
-      "path": "./packages/domain/recovery-simulation-lab-core"
-    },
-    {
       "path": "./packages/domain/recovery-signal-intelligence"
     },
     {
@@ -714,6 +795,9 @@
     },
     {
       "path": "./packages/domain/recovery-simulation-core"
+    },
+    {
+      "path": "./packages/domain/recovery-simulation-lab-core"
     },
     {
       "path": "./packages/domain/recovery-simulation-lab-models"
@@ -731,16 +815,22 @@
       "path": "./packages/domain/recovery-stress-lab"
     },
     {
-      "path": "./packages/domain/recovery-workbench-models"
-    },
-    {
       "path": "./packages/domain/recovery-stress-lab-intelligence"
     },
     {
       "path": "./packages/domain/recovery-synthetic-orchestration"
     },
     {
+      "path": "./packages/domain/recovery-temporal-orchestration"
+    },
+    {
       "path": "./packages/domain/recovery-timeline"
+    },
+    {
+      "path": "./packages/domain/recovery-timeline-orchestration"
+    },
+    {
+      "path": "./packages/domain/recovery-workbench-models"
     },
     {
       "path": "./packages/domain/recovery-workload-intelligence"
@@ -755,22 +845,16 @@
       "path": "./packages/domain/search-suite"
     },
     {
+      "path": "./packages/domain/streaming-command-intelligence"
+    },
+    {
       "path": "./packages/domain/streaming-engine"
     },
     {
       "path": "./packages/domain/streaming-observability"
     },
     {
-      "path": "./packages/domain/streaming-command-intelligence"
-    },
-    {
       "path": "./packages/domain/telemetry-models"
-    },
-    {
-      "path": "./packages/domain/recovery-intent-graph"
-    },
-    {
-      "path": "./packages/domain/recovery-incident-intent"
     },
     {
       "path": "./packages/domain/temporal"
@@ -899,6 +983,9 @@
       "path": "./packages/service/failure-intelligence-runner"
     },
     {
+      "path": "./packages/service/fault-intel-orchestrator"
+    },
+    {
       "path": "./packages/service/finance"
     },
     {
@@ -941,7 +1028,31 @@
       "path": "./packages/service/recommendation"
     },
     {
+      "path": "./packages/service/recovery-autonomy-experiment-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-autonomy-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-cadence-coordinator"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-intelligence-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-lab-console-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-lab-intelligence"
+    },
+    {
+      "path": "./packages/service/recovery-chaos-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-chronicle-graph-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-chronicle-orchestrator"
     },
     {
       "path": "./packages/service/recovery-cockpit-cognitive-orchestrator"
@@ -995,13 +1106,16 @@
       "path": "./packages/service/recovery-drill-surface-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-ecosystem-analytics-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-ecosystem-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-fabric-cadence-orchestrator"
     },
     {
       "path": "./packages/service/recovery-fabric-controller"
-    },
-    {
-      "path": "./packages/service/recovery-ops-mesh-engine"
     },
     {
       "path": "./packages/service/recovery-fabric-orchestrator"
@@ -1028,6 +1142,9 @@
       "path": "./packages/service/recovery-incident-insight-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-incident-intent-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-incident-lab-orchestrator"
     },
     {
@@ -1043,6 +1160,24 @@
       "path": "./packages/service/recovery-intelligence-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-intent-graph-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-lab-graph-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-lab-orchestration-studio"
+    },
+    {
+      "path": "./packages/service/recovery-lab-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-lattice-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-lens-observability-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-operations-engine"
     },
     {
@@ -1053,6 +1188,15 @@
     },
     {
       "path": "./packages/service/recovery-operations-policy-engine"
+    },
+    {
+      "path": "./packages/service/recovery-ops-graph-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-ops-mesh-engine"
+    },
+    {
+      "path": "./packages/service/recovery-ops-mesh-observability-orchestrator"
     },
     {
       "path": "./packages/service/recovery-ops-orchestration-engine"
@@ -1067,34 +1211,28 @@
       "path": "./packages/service/recovery-orchestration-atlas"
     },
     {
-      "path": "./packages/service/recovery-plan-orchestrator"
+      "path": "./packages/service/recovery-orchestration-studio-engine"
     },
     {
-      "path": "./packages/service/recovery-playbook-engine"
+      "path": "./packages/service/recovery-plan-orchestrator"
     },
     {
       "path": "./packages/service/recovery-playbook-automation-engine"
     },
     {
-      "path": "./packages/service/recovery-intent-graph-orchestrator"
+      "path": "./packages/service/recovery-playbook-engine"
     },
     {
       "path": "./packages/service/recovery-playbook-lab-orchestrator"
     },
     {
-      "path": "./packages/service/recovery-playbook-orchestrator"
-    },
-    {
       "path": "./packages/service/recovery-playbook-observability-orchestrator"
     },
     {
-      "path": "./packages/service/recovery-incident-intent-orchestrator"
+      "path": "./packages/service/recovery-playbook-orchestrator"
     },
     {
       "path": "./packages/service/recovery-policy-engine"
-    },
-    {
-      "path": "./packages/service/recovery-lattice-orchestrator"
     },
     {
       "path": "./packages/service/recovery-readiness-orchestrator"
@@ -1109,6 +1247,9 @@
       "path": "./packages/service/recovery-runner"
     },
     {
+      "path": "./packages/service/recovery-scenario-design-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-scenario-orchestrator"
     },
     {
@@ -1119,9 +1260,6 @@
     },
     {
       "path": "./packages/service/recovery-situational-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-workbench-orchestrator"
     },
     {
       "path": "./packages/service/recovery-stability-orchestrator"
@@ -1139,7 +1277,13 @@
       "path": "./packages/service/recovery-synthetic-orchestrator"
     },
     {
+      "path": "./packages/service/recovery-temporal-orchestrator"
+    },
+    {
       "path": "./packages/service/recovery-timeline-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-workbench-orchestrator"
     },
     {
       "path": "./packages/service/recovery-workflow-orchestrator"
@@ -1154,10 +1298,7 @@
       "path": "./packages/service/reputation"
     },
     {
-      "path": "./packages/service/recovery-chaos-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-chaos-intelligence-orchestrator"
+      "path": "./packages/service/streaming-command-intelligence-orchestrator"
     },
     {
       "path": "./packages/service/streaming-control"
@@ -1166,46 +1307,34 @@
       "path": "./packages/service/streaming-dashboard-orchestrator"
     },
     {
-      "path": "./packages/service/streaming-command-intelligence-orchestrator"
-    },
-    {
       "path": "./packages/service/telemetry"
-    },
-    {
-      "path": "./packages/service/recovery-ops-graph-orchestrator"
     },
     {
       "path": "./packages/service/workflow"
     },
     {
-      "path": "./packages/service/recovery-orchestration-studio-engine"
-    },
-    {
-      "path": "./packages/service/recovery-lab-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-orchestration-design"
-    },
-    {
-      "path": "./packages/shared/ops-orchestration-runtime"
-    },
-    {
-      "path": "./packages/domain/recovery-lab-orchestration-core"
-    },
-    {
-      "path": "./packages/domain/recovery-automation-orchestrator"
-    },
-    {
-      "path": "./packages/shared/orchestration-kernel"
+      "path": "./packages/shared/automation-orchestration-runtime"
     },
     {
       "path": "./packages/shared/aws-adapters"
     },
     {
+      "path": "./packages/shared/cascade-orchestration-kernel"
+    },
+    {
+      "path": "./packages/shared/chaos-lab-console-kernel"
+    },
+    {
+      "path": "./packages/shared/chronicle-orchestration-protocol"
+    },
+    {
+      "path": "./packages/shared/cockpit-studio-core"
+    },
+    {
       "path": "./packages/shared/codec"
     },
     {
-      "path": "./packages/shared/automation-orchestration-runtime"
+      "path": "./packages/shared/command-graph-kernel"
     },
     {
       "path": "./packages/shared/core"
@@ -1214,19 +1343,22 @@
       "path": "./packages/shared/errors"
     },
     {
+      "path": "./packages/shared/fault-intel-runtime"
+    },
+    {
       "path": "./packages/shared/horizon-lab-runtime"
     },
     {
       "path": "./packages/shared/incident-saga-core"
     },
     {
-      "path": "./packages/shared/typed-orchestration-core"
+      "path": "./packages/shared/lab-graph-runtime"
     },
     {
-      "path": "./packages/shared/recovery-synthesis-runtime"
+      "path": "./packages/shared/lab-simulation-kernel"
     },
     {
-      "path": "./packages/shared/orchestration-runtime"
+      "path": "./packages/shared/mesh-control-plane"
     },
     {
       "path": "./packages/shared/monads"
@@ -1235,40 +1367,64 @@
       "path": "./packages/shared/observability-contracts"
     },
     {
-      "path": "./packages/shared/protocol"
+      "path": "./packages/shared/ops-orchestration-runtime"
     },
     {
-      "path": "./packages/shared/recovery-orchestration-runtime"
-    },
-    {
-      "path": "./packages/shared/recovery-workbench-runtime"
-    },
-    {
-      "path": "./packages/shared/scenario-design-kernel"
-    },
-    {
-      "path": "./packages/shared/result"
-    },
-    {
-      "path": "./packages/shared/stress-lab-runtime"
-    },
-    {
-      "path": "./packages/shared/type-level"
-    },
-    {
-      "path": "./packages/shared/fault-intel-runtime"
+      "path": "./packages/shared/orchestration-kernel"
     },
     {
       "path": "./packages/shared/orchestration-lab-core"
     },
     {
-      "path": "./packages/shared/recovery-quantum-runtime"
+      "path": "./packages/shared/orchestration-runtime"
     },
     {
-      "path": "./packages/shared/mesh-control-plane"
+      "path": "./packages/shared/playbook-studio-runtime"
+    },
+    {
+      "path": "./packages/shared/protocol"
+    },
+    {
+      "path": "./packages/shared/quantum-studio-core"
     },
     {
       "path": "./packages/shared/recovery-lab-kernel"
+    },
+    {
+      "path": "./packages/shared/recovery-orchestration-runtime"
+    },
+    {
+      "path": "./packages/shared/recovery-orchestration-surface"
+    },
+    {
+      "path": "./packages/shared/recovery-quantum-runtime"
+    },
+    {
+      "path": "./packages/shared/recovery-synthesis-runtime"
+    },
+    {
+      "path": "./packages/shared/recovery-workbench-runtime"
+    },
+    {
+      "path": "./packages/shared/result"
+    },
+    {
+      "path": "./packages/shared/scenario-design-kernel"
+    },
+    {
+      "path": "./packages/shared/stress-lab-runtime"
+    },
+    {
+      "path": "./packages/shared/temporal-ops-runtime"
+    },
+    {
+      "path": "./packages/shared/timeline-orchestration-runtime"
+    },
+    {
+      "path": "./packages/shared/type-level"
+    },
+    {
+      "path": "./packages/shared/typed-orchestration-core"
     },
     {
       "path": "./packages/shared/util"
@@ -1278,153 +1434,6 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
-    },
-    {
-      "path": "./packages/shared/lab-simulation-kernel"
-    },
-    {
-      "path": "./packages/shared/lab-graph-runtime"
-    },
-    {
-      "path": "./packages/shared/temporal-ops-runtime"
-    },
-    {
-      "path": "./packages/domain/recovery-temporal-orchestration"
-    },
-    {
-      "path": "./packages/data/recovery-temporal-store"
-    },
-    {
-      "path": "./packages/service/recovery-temporal-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-chronicle-core"
-    },
-    {
-      "path": "./packages/domain/recovery-lab-synthetic-orchestration"
-    },
-    {
-      "path": "./packages/domain/recovery-quantum-orchestration"
-    },
-    {
-      "path": "./packages/data/recovery-chronicle-store"
-    },
-    {
-      "path": "./packages/service/recovery-chronicle-orchestrator"
-    },
-    {
-      "path": "./packages/app/recovery-chronicle-console"
-    },
-    {
-      "path": "./packages/domain/recovery-lab-signal-studio"
-    },
-    {
-      "path": "./packages/data/recovery-lab-digital-twin-store"
-    },
-    {
-      "path": "./packages/service/recovery-lab-orchestration-studio"
-    },
-    {
-      "path": "./packages/service/recovery-lab-graph-orchestrator"
-    },
-    {
-      "path": "./packages/shared/chronicle-orchestration-protocol"
-    },
-    {
-      "path": "./packages/domain/recovery-chronicle-lab-core"
-    },
-    {
-      "path": "./packages/service/fault-intel-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-scenario-design"
-    },
-    {
-      "path": "./packages/service/recovery-scenario-design-orchestrator"
-    },
-    {
-      "path": "./packages/shared/cascade-orchestration-kernel"
-    },
-    {
-      "path": "./packages/domain/recovery-cascade-orchestration"
-    },
-    {
-      "path": "./packages/app/recovery-cascade-console"
-    },
-    {
-      "path": "./packages/domain/recovery-ecosystem-core"
-    },
-    {
-      "path": "./packages/domain/recovery-ecosystem-analytics"
-    },
-    {
-      "path": "./packages/data/recovery-ecosystem-store"
-    },
-    {
-      "path": "./packages/data/recovery-ecosystem-analytics-plan-catalog"
-    },
-    {
-      "path": "./packages/data/recovery-ecosystem-analytics-store"
-    },
-    {
-      "path": "./packages/service/recovery-ecosystem-orchestrator"
-    },
-    {
-      "path": "./packages/service/recovery-ecosystem-analytics-orchestrator"
-    },
-    {
-      "path": "./packages/app/recovery-ecosystem-console"
-    },
-    {
-      "path": "./packages/domain/recovery-autonomy-graph"
-    },
-    {
-      "path": "./packages/data/recovery-autonomy-store"
-    },
-    {
-      "path": "./packages/service/recovery-autonomy-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-lab-console-labs"
-    },
-    {
-      "path": "./packages/app/recovery-autonomy-console"
-    },
-    {
-      "path": "./packages/shared/quantum-studio-core"
-    },
-    {
-      "path": "./packages/shared/cockpit-studio-core"
-    },
-    {
-      "path": "./packages/domain/recovery-lens-observability-models"
-    },
-    {
-      "path": "./packages/data/recovery-lens-observability-store"
-    },
-    {
-      "path": "./packages/service/recovery-lens-observability-orchestrator"
-    },
-    {
-      "path": "./packages/domain/recovery-autonomy-experiment"
-    },
-    {
-      "path": "./packages/data/recovery-autonomy-experiment-store"
-    },
-    {
-      "path": "./packages/service/recovery-autonomy-experiment-orchestrator"
-    },
-    {
-      "path": "./packages/shared/command-graph-kernel"
-    },
-    {
-      "path": "./packages/domain/recovery-command-lattice-core"
-    },
-    {
-      "path": "./packages/shared/playbook-studio-runtime"
-    },
-    {
-      "path": "./packages/domain/recovery-playbook-studio-core"
     }
   ]
 }

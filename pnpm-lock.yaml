@@ -371,15 +371,24 @@ importers:
 
   packages/app/recovery-chronicle-console:
     dependencies:
+      '@data/recovery-chronicle-graph-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-chronicle-graph-store
       '@data/recovery-chronicle-store':
         specifier: workspace:*
         version: link:../../data/recovery-chronicle-store
       '@domain/recovery-chronicle-core':
         specifier: workspace:*
         version: link:../../domain/recovery-chronicle-core
+      '@domain/recovery-chronicle-graph-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chronicle-graph-core
       '@domain/recovery-chronicle-lab-core':
         specifier: workspace:*
         version: link:../../domain/recovery-chronicle-lab-core
+      '@service/recovery-chronicle-graph-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-chronicle-graph-orchestrator
       '@service/recovery-chronicle-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-chronicle-orchestrator
@@ -1908,6 +1917,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../../shared/result
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-chronicle-graph-store:
+    dependencies:
+      '@domain/recovery-chronicle-graph-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chronicle-graph-core
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -3547,6 +3574,21 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/domain/recovery-chronicle-graph-core:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -6121,6 +6163,24 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-chronicle-graph-orchestrator:
+    dependencies:
+      '@data/recovery-chronicle-graph-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-chronicle-graph-store
+      '@domain/recovery-chronicle-graph-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-chronicle-graph-core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       zod:
         specifier: ^3.24.0
         version: 3.25.76

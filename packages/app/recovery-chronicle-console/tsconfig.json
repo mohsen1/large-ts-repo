@@ -18,13 +18,22 @@
       "path": "./../../data/recovery-chronicle-store/tsconfig.json"
     },
     {
+      "path": "./../../data/recovery-chronicle-graph-store/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-chronicle-core/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-chronicle-lab-core/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-chronicle-graph-core/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-chronicle-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-chronicle-graph-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"

@@ -56,6 +56,7 @@ export interface MetricContext {
 }
 
 export const emptyMetric = { axis: 'resilience', score: 0, trend: 'flat' } as const;
+export const emptyTimeline = [] as const;
 export const defaultWorkspaceState: ScenarioWorkspaceState = {
   runId: null,
   status: 'idle',

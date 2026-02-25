@@ -1,5 +1,5 @@
 {
-  "name": "@app/recovery-chronicle-console",
+  "name": "@service/recovery-chronicle-graph-orchestrator",
   "version": "0.0.1",
   "private": true,
   "main": "dist/index.js",
@@ -14,18 +14,10 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@data/recovery-chronicle-store": "workspace:*",
-    "@domain/recovery-chronicle-core": "workspace:*",
-    "@domain/recovery-chronicle-lab-core": "workspace:*",
     "@domain/recovery-chronicle-graph-core": "workspace:*",
     "@data/recovery-chronicle-graph-store": "workspace:*",
-    "@service/recovery-chronicle-orchestrator": "workspace:*",
-    "@service/recovery-chronicle-graph-orchestrator": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/result": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "zod": "^3.24.0"
   }
 }
