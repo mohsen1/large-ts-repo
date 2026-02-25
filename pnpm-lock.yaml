@@ -878,12 +878,21 @@ importers:
       '@data/recovery-ecosystem-store':
         specifier: workspace:*
         version: link:../../data/recovery-ecosystem-store
+      '@data/recovery-lens-observability-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lens-observability-store
       '@domain/recovery-ecosystem-core':
         specifier: workspace:*
         version: link:../../domain/recovery-ecosystem-core
+      '@domain/recovery-lens-observability-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lens-observability-models
       '@service/recovery-ecosystem-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-ecosystem-orchestrator
+      '@service/recovery-lens-observability-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-lens-observability-orchestrator
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
@@ -2262,6 +2271,24 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/data/recovery-lens-observability-store:
+    dependencies:
+      '@domain/recovery-lens-observability-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lens-observability-models
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -4146,6 +4173,21 @@ importers:
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
+
+  packages/domain/recovery-lens-observability-models:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../../shared/core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
 
   packages/domain/recovery-operations-atlas:
     dependencies:
@@ -6721,6 +6763,24 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/service/recovery-lens-observability-orchestrator:
+    dependencies:
+      '@data/recovery-lens-observability-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-lens-observability-store
+      '@domain/recovery-lens-observability-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lens-observability-models
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/typed-orchestration-core':
+        specifier: workspace:*
+        version: link:../../shared/typed-orchestration-core
       zod:
         specifier: ^3.24.0
         version: 3.25.76
