@@ -36,7 +36,7 @@ export type CartesianProduct<
   };
 }[number][number];
 
-export type TupleJoin<
+export type JoinedTuple<
   TTuple extends readonly string[],
   TDelimiter extends string,
   TOutput extends string = '',
@@ -45,7 +45,7 @@ export type TupleJoin<
     ? Tail extends readonly string[]
       ? Tail['length'] extends 0
         ? `${TOutput}${Head}`
-        : TupleJoin<Tail, TDelimiter, `${TOutput}${Head}${TDelimiter}`>
+        : JoinedTuple<Tail, TDelimiter, `${TOutput}${Head}${TDelimiter}`>
       : `${TOutput}${Head}`
     : TOutput
   : TOutput;
@@ -116,7 +116,7 @@ export const tupleJoin = <TTuple extends readonly string[], TDelimiter extends s
     }
     output += value;
   }
-  return output as TupleJoin<TTuple, TDelimiter>;
+  return output as JoinedTuple<TTuple, TDelimiter>;
 };
 
 export const asTuple = <TValue>(values: readonly TValue[]): readonly [TValue, ...TValue[]] => {

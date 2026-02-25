@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@shared/core": "workspace:*",
+    "@shared/typed-orchestration-core": "workspace:*",
     "@shared/orchestration-kernel": "workspace:*",
     "@domain/recovery-orchestration-design": "workspace:*"
   }

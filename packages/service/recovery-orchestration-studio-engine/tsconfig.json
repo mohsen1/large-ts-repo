@@ -13,6 +13,9 @@
       "path": "./../../shared/core/tsconfig.json"
     },
     {
+      "path": "./../../shared/typed-orchestration-core/tsconfig.json"
+    },
+    {
       "path": "./../../shared/orchestration-kernel/tsconfig.json"
     },
     {
