@@ -66,12 +66,18 @@
       "@shared/type-level": [
         "packages/shared/type-level/src/index.ts"
       ],
-      "@shared/type-level/*": [
-        "packages/shared/type-level/src/*"
-      ],
-      "@shared/result": [
-        "packages/shared/result/src/index.ts"
-      ],
+    "@shared/type-level/*": [
+      "packages/shared/type-level/src/*"
+    ],
+    "@shared/stress-lab-runtime": [
+      "packages/shared/stress-lab-runtime/src/index.ts"
+    ],
+    "@shared/stress-lab-runtime/*": [
+      "packages/shared/stress-lab-runtime/src/*"
+    ],
+    "@shared/result": [
+      "packages/shared/result/src/index.ts"
+    ],
       "@shared/result/*": [
         "packages/shared/result/src/*"
       ],

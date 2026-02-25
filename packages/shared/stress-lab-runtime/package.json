@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@shared/core": "workspace:*",
-    "@shared/type-level": "workspace:*"
+    "@shared/type-level": "workspace:*",
+    "@shared/util": "workspace:*"
   }
 }

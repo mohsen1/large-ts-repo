@@ -27,6 +27,8 @@
     "@service/recovery-lab-orchestration-studio": "workspace:*",
     "@shared/recovery-lab-kernel": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/stress-lab-runtime": "workspace:*",
+    "@shared/util": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
