@@ -125,6 +125,8 @@
     "@service/recovery-workbench-orchestrator": "workspace:*",
     "@shared/recovery-quantum-runtime": "workspace:*",
     "@domain/recovery-orchestration-design": "workspace:*",
+    "@domain/recovery-orchestration-lab-models": "workspace:*",
+    "@shared/recovery-orchestration-lab-runtime": "workspace:*",
     "@data/recovery-temporal-store": "workspace:*",
     "@domain/recovery-temporal-orchestration": "workspace:*",
     "@service/recovery-temporal-orchestrator": "workspace:*",

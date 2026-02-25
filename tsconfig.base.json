@@ -63,6 +63,9 @@
       "@shared/recovery-ops-runtime/*": [
         "packages/shared/recovery-ops-runtime/src/*"
       ],
+      "@shared/recovery-orchestration-lab-runtime": [
+        "packages/shared/recovery-orchestration-lab-runtime/src/index.ts"
+      ],
       "@shared/type-level": [
         "packages/shared/type-level/src/index.ts"
       ],
@@ -74,6 +77,12 @@
     ],
     "@domain/recovery-ecosystem-core/*": [
       "packages/domain/recovery-ecosystem-core/src/*"
+    ],
+    "@domain/recovery-orchestration-lab-models": [
+      "packages/domain/recovery-orchestration-lab-models/src/index.ts"
+    ],
+    "@domain/recovery-orchestration-lab-models/*": [
+      "packages/domain/recovery-orchestration-lab-models/src/*"
     ],
     "@data/recovery-ecosystem-store": [
       "packages/data/recovery-ecosystem-store/src/index.ts"

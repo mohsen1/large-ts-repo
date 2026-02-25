@@ -115,6 +115,9 @@
       "path": "../../shared/recovery-orchestration-runtime/tsconfig.json"
     },
     {
+      "path": "../../shared/recovery-orchestration-lab-runtime/tsconfig.json"
+    },
+    {
       "path": "../../shared/result/tsconfig.json"
     },
     {
@@ -305,6 +308,9 @@
     },
     {
       "path": "../../domain/recovery-readiness/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-orchestration-lab-models/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-orchestration-design/tsconfig.json"

@@ -866,6 +866,9 @@
       "path": "./packages/domain/workflow"
     },
     {
+      "path": "./packages/domain/recovery-orchestration-lab-models"
+    },
+    {
       "path": "./packages/infrastructure/aws-ops"
     },
     {
@@ -1416,6 +1419,9 @@
     },
     {
       "path": "./packages/shared/scenario-design-kernel"
+    },
+    {
+      "path": "./packages/shared/recovery-orchestration-lab-runtime"
     },
     {
       "path": "./packages/shared/stress-lab-runtime"

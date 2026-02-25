@@ -662,6 +662,9 @@ importers:
       '@domain/recovery-orchestration-design':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-design
+      '@domain/recovery-orchestration-lab-models':
+        specifier: workspace:*
+        version: link:../../domain/recovery-orchestration-lab-models
       '@domain/recovery-orchestration-planning':
         specifier: workspace:*
         version: link:../../domain/recovery-orchestration-planning
@@ -833,6 +836,9 @@ importers:
       '@shared/recovery-intent-graph-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-intent-graph-runtime
+      '@shared/recovery-orchestration-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-lab-runtime
       '@shared/recovery-orchestration-runtime':
         specifier: workspace:*
         version: link:../../shared/recovery-orchestration-runtime
@@ -4633,6 +4639,21 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-orchestration-lab-models:
+    dependencies:
+      '@shared/recovery-orchestration-lab-runtime':
+        specifier: workspace:*
+        version: link:../../shared/recovery-orchestration-lab-runtime
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-orchestration-planning:
     dependencies:
       '@shared/core':
@@ -8426,6 +8447,18 @@ importers:
         version: link:../type-level
 
   packages/shared/recovery-ops-runtime:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/shared/recovery-orchestration-lab-runtime:
     dependencies:
       '@shared/result':
         specifier: workspace:*

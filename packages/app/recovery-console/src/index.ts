@@ -351,3 +351,12 @@ export {
 } from './features/recovery-intent-graph-lab/services/intentGraphService';
 export * as intentGraphLabTypes from './features/recovery-intent-graph-lab/types';
 export { type IntentLabRoute, type IntentLabWorkspaceState, type IntentRoute, type IntentLabSignalRow } from './features/recovery-intent-graph-lab/types';
+export { RecoveryLabOrchestrationWorkspacePage } from './features/recovery-lab-orchestration-workspace/pages/RecoveryLabOrchestrationWorkspacePage';
+export { LabSignalBadge } from './features/recovery-lab-orchestration-workspace/components/LabSignalBadge';
+export { LabTimeline } from './features/recovery-lab-orchestration-workspace/components/LabTimeline';
+export { LabCommandLane } from './features/recovery-lab-orchestration-workspace/components/LabCommandLane';
+export { LabControlDeck } from './features/recovery-lab-orchestration-workspace/components/LabControlDeck';
+export { useLabWorkspace } from './features/recovery-lab-orchestration-workspace/hooks/useLabWorkspace';
+export { useLaneDashboard, laneTrend } from './features/recovery-lab-orchestration-workspace/hooks/useLaneDashboard';
+export { runEngine } from './features/recovery-lab-orchestration-workspace/services/recoveryLabEngine';
+export { listCatalog, loadCatalog, resolveWorkspace, previewPlan } from './features/recovery-lab-orchestration-workspace/services/labCatalogService';
