@@ -41,6 +41,38 @@ export * from './advanced-workflow-schema';
 export * from './advanced-workflow-engine';
 export * from './advanced-workflow-audit';
 export * from './intelligence-workspace';
+  export {
+    type CampaignPhase,
+    type CampaignPlugin,
+    type CampaignSeed,
+    type CampaignPlanOptions,
+    type CampaignPlanResult,
+    type CampaignContextState,
+    type CampaignWorkspace,
+    type CampaignWorkspaceState,
+    type CampaignPlanResult as CampaignPlanResultAlias,
+    type CampaignTuple,
+    buildCampaignPlan,
+    runCampaignForecast,
+    ensureCampaignWorkspace,
+    runCampaignWorkspace,
+    planWithWindowLimit,
+    listCampaignCatalog,
+    buildCampaignTuple,
+  } from './campaign-control';
+export * from './stress-studio-registry';
+export * from './stress-studio-telemetry';
+export * from './stress-studio-workflow';
+export * from './workspace-adapters';
+export * from './horizon-types';
+export * from './horizon-events';
+export * from './horizon-workflow-model';
+export * from './advanced-workflow-models';
+export * from './advanced-workflow-catalog';
+export * from './advanced-workflow-schema';
+export * from './advanced-workflow-engine';
+export * from './advanced-workflow-audit';
+export * from './intelligence-workspace';
 export {
   type PluginManifestShape,
   type PluginCatalogKind,
@@ -50,7 +82,7 @@ export {
   type RegistryEvent,
   type StressLabPlugin,
   StressLabPluginRegistry,
-  buildCatalog as buildStressLabPluginCatalog,
+  buildCampaignRegistry,
 } from './modern-registry';
 export * from './signal-orchestration';
 export * from './signal-orchestration-dsl';
@@ -68,10 +100,10 @@ export {
   toRenderModel,
   toRenderStageRows,
   toWorkspaceTargetsTuple as toWorkspaceTargetsTupleFromAdapter,
-  renderWorkspaceProfile,
   mapWorkspaceSignals,
   mapStageSequence,
   summarizeTraceByPlugin,
+  renderWorkspaceProfile,
 } from './advanced-workflow-adapter';
 export * from './stress-lab-workbench';
 export * from './stress-lab-orchestrator-control';

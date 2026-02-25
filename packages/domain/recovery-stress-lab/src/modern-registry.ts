@@ -219,3 +219,10 @@ export const buildCatalog = <TCatalog extends readonly StressLabPlugin[]>(
 ): StressLabPluginRegistry<TCatalog> => {
   return new StressLabPluginRegistry(tenantId, plugins);
 };
+
+export const buildCampaignRegistry = <TCatalog extends readonly StressLabPlugin[]>(
+  tenantId: TenantId,
+  plugins: NoInfer<TCatalog>,
+): StressLabPluginRegistry<TCatalog> => {
+  return buildCatalog(tenantId, plugins);
+};
