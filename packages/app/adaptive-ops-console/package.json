@@ -40,6 +40,7 @@
     "@domain/recovery-lattice": "workspace:*",
     "@domain/recovery-lab-stress-lab-core": "workspace:*",
     "@domain/recovery-lab-synthetic-orchestration": "workspace:*",
+    "@shared/type-level": "workspace:*",
     "@service/recovery-incident-intent-orchestrator": "workspace:*"
     ,
     "@service/recovery-horizon-observability-orchestrator": "workspace:*"

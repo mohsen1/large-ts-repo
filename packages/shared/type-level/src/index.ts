@@ -26,6 +26,7 @@ export * as stressIntersectionGrid from './stress-intersection-grid';
 export * as stressMappedRecursionWorkbench from './stress-mapped-recursion-workbench';
 export * as stressRecursiveCascade from './stress-recursive-cascade';
 export * as stressConstraintSolverLab from './stress-constraint-solver-lab';
+export * as stressTsStressHarness from './stress-ts-stress-harness';
 export * as stressBinaryChains from './stress-binary-chains';
 export * as stressGenericInstantiationLab from './stress-generic-instantiation-lab';
 export * as stressPatternLabs from './stress-pattern-labs';

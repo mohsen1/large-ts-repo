@@ -106,11 +106,15 @@ export { PlaybookTelemetryPanel } from './components/playbook/PlaybookTelemetryP
 export { useAdaptiveOpsPlaybook } from './hooks/useAdaptiveOpsPlaybook';
 export { createPlaybookEngine } from './services/playbookEngine';
 export { RecoveryStressLabStudioPage } from './pages/RecoveryStressLabStudioPage';
+export { TypeCompilerWorkbenchPage } from './pages/TypeCompilerWorkbenchPage';
 export { StressLabRunDeck } from './components/stress-lab/StressLabRunDeck';
 export { StressLabPolicyPanel } from './components/stress-lab/StressLabPolicyPanel';
 export { StressLabEventFeed } from './components/stress-lab/StressLabEventFeed';
 export { StressLabScenarioPanel } from './components/stress-lab/StressLabScenarioPanel';
 export { TypeLevelStressPanel } from './components/stress-lab/TypeLevelStressPanel';
+export { TypeCompilerOverviewPanel } from './components/stress-lab/TypeCompilerOverviewPanel';
+export { TypeCompilerRouteMap } from './components/stress-lab/TypeCompilerRouteMap';
+export { useTypeCompilerWorkbench } from './hooks/useTypeCompilerWorkbench';
 export { StressLabSolverInspector } from './components/stress-lab/StressLabSolverInspector';
 export { StressLabRouteDashboard } from './components/stress-lab/StressLabRouteDashboard';
 export { useStressLabDiagnostics } from './hooks/useStressLabDiagnostics';

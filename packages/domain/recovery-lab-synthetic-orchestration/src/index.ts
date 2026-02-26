@@ -4,3 +4,7 @@ export * from './planner.js';
 export * from './workflow.js';
 export * from './stress-planner';
 export * from './stress-schemas';
+export * from './compiler-type-level-lab';
+export * from './compiler-control-flow-lab';
+export * from './compiler-generic-lab';
+export * from './compiler-runtime-lab';

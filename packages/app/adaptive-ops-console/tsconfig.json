@@ -78,6 +78,9 @@
       "path": "./../../domain/recovery-lab-synthetic-orchestration/tsconfig.json"
     },
     {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-lattice-orchestrator/tsconfig.json"
     },
     {
