@@ -409,3 +409,10 @@ export * as stressBranchSagaControl from '@shared/type-level/stress-branch-saga-
 export * as stressBinaryExpressionSigil from '@shared/type-level/stress-binary-expression-sigil';
 export * as stressGenericInstantiatorMatrix from '@shared/type-level/stress-generic-instantiator-matrix';
 export * as stressSolverConstraintsWeb from '@shared/type-level/stress-solver-constraints-web';
+export * as stressHubConsoleUnion from './stress-hub-console-union';
+export type {
+  HubConsoleRouteUnion,
+  HubRouteResolver as HubConsoleRouteResolver,
+  HubConsoleTemplateUnion,
+} from './stress-hub-console-union';
+export { buildHubManifest, hubConsoleManifest, mapHubRouteCatalog, routeBundleSummary } from './stress-hub-console-union';

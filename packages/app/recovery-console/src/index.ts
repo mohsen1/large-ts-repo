@@ -378,3 +378,6 @@ export { useRecoveryTypeStressWorkspace } from './features/recovery-type-stress/
 export { TypeStressWorkspacePanel } from './features/recovery-type-stress/components/TypeStressWorkspacePanel';
 export { TypeStressRouteMatrix } from './features/recovery-type-stress/components/TypeStressRouteMatrix';
 export { RecoveryTypeStressWorkbenchPage } from './pages/RecoveryTypeStressWorkbenchPage';
+export { useTypeStressAtlas, type UseTypeStressAtlasOptions, useTypeStressAtlasDiagnostics, getAtlasRouteDiagnostics } from './hooks/useTypeStressAtlas';
+export { RecoveryTscStressAtlasPanel } from './components/RecoveryTscStressAtlasPanel';
+export { RecoveryTscStressAtlasPage as default, RecoveryTscStressAtlasPage } from './pages/RecoveryTscStressAtlasPage';

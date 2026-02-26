@@ -620,8 +620,31 @@ export * as stressHyperChain from './stress-hyper-chain';
 export * as stressDisjointBridge from './stress-disjoint-bridge';
 export * as stressTemplateKeyLattice from './stress-template-key-lattice';
 export * as stressRecursiveTupleFabrik from './stress-recursive-tuple-fabrik';
-export * as stressTemplateRouteGrammar from './stress-template-route-grammar';
 export * as stressBranchSagaControl from './stress-branch-saga-control';
 export * as stressBinaryExpressionSigil from './stress-binary-expression-sigil';
 export * as stressGenericInstantiatorMatrix from './stress-generic-instantiator-matrix';
 export * as stressSolverConstraintsWeb from './stress-solver-constraints-web';
+export * as stressConditionalOrchestrationAtlas from './stress-conditional-orchestration-atlas';
+export * as stressHierarchyDepthOrbit from './stress-hierarchy-depth-orbit';
+export * as stressDisjointIntersectionGrid from './stress-disjoint-intersection-grid';
+export * as stressMappedTemplateRouteLattice from './stress-mapped-template-route-lattice';
+export * as stressRecursiveTupleFabric from './stress-recursive-tuple-fabric';
+export * as stressTemplateRouteGrammar from './stress-template-route-grammar';
+export * as stressControlflowBranchGalaxy from './stress-controlflow-branch-galaxy';
+export * as stressBinaryExpressionSpectrum from './stress-binary-expression-spectrum';
+export * as stressConstraintConflictMatrix from './stress-constraint-conflict-matrix';
+export * as stressGenericInstantiationGuild from './stress-generic-instantiation-guild';
+export {
+  AtlasCatalogLookup,
+  AtlasChainResult,
+  AtlasRoute,
+  AtlasRouteUnion,
+  atlasCatalogLookup,
+  atlasRoutes,
+  atlasRouteCatalog,
+  routeValueProjection,
+  resolveAtlasRoute,
+  resolveFromValue,
+  RouteValueProjection,
+  hydrateAtlasChain,
+} from './stress-conditional-orchestration-atlas';
