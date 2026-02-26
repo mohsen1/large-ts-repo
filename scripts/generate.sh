@@ -114,13 +114,85 @@ Your job:
 EOF
 
 read -r -d '' PROMPT <<'EOF' || true
-Continue improving this synthetic TypeScript monorepo to stress tsz with very modern and advanced TypeScript/JavaScript features.
+Continue improving this synthetic TypeScript monorepo to stress the TypeScript compiler (tsc) with patterns that maximize checker, solver, and binder workload.
 
 Execution style:
 - Write code directly. Do not provide plans, long explanations, or analysis in the final response.
 - Optimize for speed and volume while preserving correctness.
 
-Hard constraints:
+=== COMPILER-STRESSING PATTERNS (PRIORITY) ===
+
+Generate code that specifically targets these heavy compiler workloads, drawn from real tsz/tsgo benchmark categories:
+
+A. Conditional types with large union discrimination (20-50+ union members):
+   - Deeply nested `extends ? : ` chains that force the checker to evaluate many branches.
+   - Distributive conditional types over large unions (e.g. `type Resolve<T> = T extends SomeUnion ? ... : ...`).
+   - Chained conditional type resolution where the output of one feeds the input of another.
+
+B. Deep subtype hierarchies (depth 30-90):
+   - Interfaces extending interfaces in long chains (A extends B extends C extends ... up to 30+ deep).
+   - Class hierarchies with generic parameters that vary at each level.
+   - Structural compatibility checks forcing the checker to walk deep prototype chains.
+
+C. Intersection types at scale (15-45 members):
+   - Types that are intersections of many object types: `A & B & C & D & ... & Z`.
+   - Generic functions that return intersections built from mapped input types.
+   - Intersection collapse scenarios where the compiler must flatten and reconcile overlapping keys.
+
+D. Mapped types with complex template keys:
+   - `{ [K in keyof T as TemplateExpression<K>]: TransformedValue<T[K]> }` patterns.
+   - Key remapping with `as` clauses that involve template literal transformations.
+   - Nested mapped types (mapped type within a mapped type).
+   - Homomorphic mapped types over generic parameters that preserve modifiers.
+
+E. Recursive generics (depth 15-45):
+   - Recursive type aliases: `type Deep<T, N extends number> = N extends 0 ? T : Deep<Wrap<T>, Decrement<N>>`.
+   - Recursive tuple builders: `type BuildTuple<N, T extends unknown[] = []> = T['length'] extends N ? T : BuildTuple<N, [...T, unknown]>`.
+   - Mutual recursion between two or more type aliases.
+   - Recursive conditional types that accumulate results in tuple type parameters.
+
+F. Template literal types with nested complexity:
+   - Template literal types built from unions: `type Routes = \`/\${Entity}/\${Action}/\${Id}\``.
+   - Pattern matching with template literal inference: `T extends \`\${infer A}-\${infer B}\` ? ...`.
+   - Combinations of template literals with mapped types to generate API route types or event name types.
+
+G. Control flow graph stress (50-150 branches):
+   - Functions with many `if/else if/else` branches or large `switch` statements (30-50+ cases).
+   - Type narrowing across many branches using discriminated unions.
+   - Complex truthiness narrowing and type guard chains.
+   - Nested control flow: loops inside conditionals inside try/catch, each with type narrowing.
+
+H. Binary expression type stress:
+   - Long chains of `&&` and `||` with different typed operands forcing progressive narrowing.
+   - Arithmetic on numeric literal types using recursive tuple helpers.
+   - String concatenation chains that produce template literal types.
+
+I. Constraint conflict resolution:
+   - Generic functions with multiple type parameters that have interdependent constraints.
+   - `extends` clauses that reference other type parameters: `<A extends B, B extends C, C extends Record<string, A>>`.
+   - Conditional types inside generic constraints creating circular-ish resolution paths.
+   - Overloaded function signatures (5-10+ overloads) with complex generic constraints.
+
+J. Generic function instantiation at scale:
+   - Generic functions called with many different type argument combinations in the same file.
+   - Higher-order generic functions: functions that accept and return other generic functions.
+   - Generic class factories with many type parameters.
+   - Inference from complex object literal arguments with many properties.
+
+K. Solver stress patterns:
+   - Variance annotations (`in`, `out`, `in out`) on generic type parameters with non-trivial checking.
+   - `satisfies` expressions on complex object literals against mapped/conditional types.
+   - `NoInfer<T>` in function signatures that force specific inference behavior.
+   - Branded/nominal types with complex type guards and assertion functions.
+
+L. Real-world utility type complexity:
+   - Deep `Readonly<T>`, `Required<T>`, `Partial<T>` nesting and composition.
+   - `Pick`/`Omit` chains across intersection types.
+   - Discriminated union to lookup-map transformations and back.
+   - Path-based deep property access types: `type DeepGet<T, P extends string> = ...`.
+
+=== HARD CONSTRAINTS ===
+
 1. Keep code hand-authored quality and realistic module boundaries.
 2. Grow project-reference hierarchy depth and inter-package dependencies.
 3. Keep .gitignore safe: never commit dist/, node_modules/, generated JS outputs.
@@ -135,7 +207,7 @@ Hard constraints:
 10. When introducing external imports, add them to the correct package.json dependency section and ensure install succeeds with `pnpm install --frozen-lockfile=false`.
 11. Keep every changed package.json file valid JSON (no trailing commas/comments).
 12. Do not add/modify code-generation scripts, shell scripts, node scripts, or one-off generators for this task.
-13. Before finishing, run `pnpm exec tsc -b tsconfig.json --pretty false` and `pnpm build`; if either fails, fix errors and rerun until both are clean.
+13. `tsc -b` MUST pass: run `pnpm exec tsc -b tsconfig.json --pretty false` after every change. This is a hard gate — do NOT finish or claim success unless it exits with code 0. Also run `pnpm build` and ensure it passes. If either fails, fix all errors and rerun both until clean.
 14. In every iteration, add React code too: at least 200 net-new lines of `.tsx` across at least 3 files (components/hooks/pages), with typed props/state and valid imports.
 15. When introducing or expanding React code, ensure required dependencies/types are present in the correct package.json files (e.g. react, react-dom, @types/react, @types/react-dom when needed).
 16. Add at least 900 net-new lines of TypeScript total per iteration across at least 8 new or expanded `.ts`/`.tsx` files.
@@ -144,8 +216,18 @@ Hard constraints:
 19. Make a clean git commit for this iteration with a clear message, and always include `pnpm-lock.yaml` in the commit whenever it changed.
 20. Do not use apply_patch via exec_command.
 
+=== DISTRIBUTION GUIDANCE ===
+
+Each iteration should include AT LEAST 4 of the patterns A-L above. Spread coverage across iterations so all patterns get exercised. Aim for:
+- At least 1 file dedicated to pure type-level computation (conditional/mapped/recursive types).
+- At least 1 file with deep class/interface hierarchies or intersection stress.
+- At least 1 file with large control-flow graphs (switch/if chains with narrowing).
+- At least 1 file with generic function instantiation at scale or overloaded signatures.
+- Weave template literal types, branded types, and `satisfies` throughout all files naturally.
+
 Execution target:
 - Increase total TypeScript LOC significantly each iteration (minimum 900 net-new TS LOC).
+- Maximize type-checker workload per line of code — prefer patterns that are expensive to check over simple value-level code.
 - Preserve repository usability and consistency for tsz stress testing.
 EOF
 
@@ -245,10 +327,15 @@ for i in $(seq 0 "$COUNT"); do
       --config model_reasoning_effort=medium \
       "$PROMPT"
   install_deps_if_needed
-  echo "Verifying strict compile gate (pnpm exec tsc -b tsconfig.json --pretty false + pnpm build) after iteration $i..."
+  echo "Verifying strict compile gate (tsc -b + pnpm build) after iteration $i..."
   ensure_repo_clean
   commit_iteration "$i"
-  echo "Iteration $i complete: all TypeScript checks are clean and no tsc errors remain."
+  echo "Post-commit tsc -b gate for iteration $i..."
+  if ! run_typecheck; then
+    echo "error: tsc -b failed after commit for iteration $i. Aborting." >&2
+    exit 1
+  fi
+  echo "Iteration $i complete: tsc -b passes, no type errors remain."
 done
 
 echo ""
