@@ -8,3 +8,5 @@ export * from './compiler-type-level-lab';
 export * from './compiler-control-flow-lab';
 export * from './compiler-generic-lab';
 export * from './compiler-runtime-lab';
+export * from './compiler-workflow-control-lab';
+export * from './compiler-generic-instantiation-grid';

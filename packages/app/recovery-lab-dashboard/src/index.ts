@@ -65,4 +65,8 @@ export * from './pages/RecoveryLabAdaptiveSimulationPage';
 export * from './pages/ConvergenceStudioCommandCenterPage';
 export * from './components/ConvergenceStudioDashboard';
 export * from './components/ConvergencePlanFlowTimeline';
+export * from './components/stress/StressTypeSolverPanel';
+export * from './components/stress/RouteDisciplineMatrix';
+export * from './hooks/useStressTypeSolver';
+export * from './pages/RecoveryStressTypeOpsPage';
 export * from './hooks/useConvergenceStudioSession';
