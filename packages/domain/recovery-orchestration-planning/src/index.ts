@@ -2,6 +2,8 @@ export * from './types';
 export * from './graph';
 export * from './policy';
 export * from './simulator';
+export * from './stress-lab-orchestration';
+export * from './stress-lab-router';
 export * from './adapters';
 export * from './validators';
 export * from './incident-models';

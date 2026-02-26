@@ -872,6 +872,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/type-level-hub':
+        specifier: workspace:*
+        version: link:../../shared/type-level-hub
       '@shared/typed-orchestration-core':
         specifier: workspace:*
         version: link:../../shared/typed-orchestration-core
@@ -4704,6 +4707,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/type-level-hub':
+        specifier: workspace:*
+        version: link:../../shared/type-level-hub
       zod:
         specifier: ^3.24.0
         version: 3.25.76
@@ -8624,6 +8630,24 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
+  packages/shared/type-level-hub:
+    dependencies:
+      '@shared/core':
+        specifier: workspace:*
+        version: link:../core
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
       '@shared/util':
         specifier: workspace:*
         version: link:../util

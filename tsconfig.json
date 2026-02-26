@@ -1439,6 +1439,9 @@
       "path": "./packages/shared/timeline-orchestration-runtime"
     },
     {
+      "path": "./packages/shared/type-level-hub"
+    },
+    {
       "path": "./packages/shared/type-level"
     },
     {

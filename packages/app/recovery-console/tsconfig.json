@@ -121,6 +121,9 @@
       "path": "../../shared/result/tsconfig.json"
     },
     {
+      "path": "../../shared/type-level-hub/tsconfig.json"
+    },
+    {
       "path": "../../shared/result/tsconfig.json"
     },
     {
