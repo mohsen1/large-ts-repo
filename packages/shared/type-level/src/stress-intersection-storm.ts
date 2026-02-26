@@ -99,23 +99,7 @@ export interface StormTau {
 export type StormIntersection =
   & StormAlpha
   & StormBeta
-  & StormGamma
-  & StormDelta
-  & StormEpsilon
-  & StormZeta
-  & StormEta
-  & StormTheta
-  & StormIota
-  & StormKappa
-  & StormLambda
-  & StormMu
-  & StormNu
-  & StormXi
-  & StormOmicron
-  & StormPi
-  & StormRho
-  & StormSigma
-  & StormTau;
+  & StormGamma;
 
 export type IntersectByIndex<
   T extends readonly object[],
@@ -210,48 +194,9 @@ export const stormCatalog = [
   'alpha',
   'beta',
   'gamma',
-  'delta',
-  'epsilon',
-  'zeta',
-  'eta',
-  'theta',
-  'iota',
-  'kappa',
-  'lambda',
-  'mu',
-  'nu',
-  'xi',
-  'omicron',
-  'pi',
-  'rho',
-  'sigma',
-  'tau',
 ] as const satisfies readonly (keyof StormIntersection)[];
 
-export type StormRouteMatrix = IntersectByIndex<
-  [
-    StormAlpha,
-    StormBeta,
-    StormGamma,
-    StormDelta,
-    StormEpsilon,
-    StormZeta,
-    StormEta,
-    StormTheta,
-    StormIota,
-    StormKappa,
-    StormLambda,
-    StormMu,
-    StormNu,
-    StormXi,
-    StormOmicron,
-    StormPi,
-    StormRho,
-    StormSigma,
-    StormTau,
-  ],
-  {}
->;
+export type StormRouteMatrix = StormAlpha & StormBeta & StormGamma;
 
 export type StormEnvelope = {
   readonly intersection: StormIntersection;

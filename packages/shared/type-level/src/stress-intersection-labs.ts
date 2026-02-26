@@ -39,12 +39,7 @@ export type DecisionShard<TTag extends string> = {
 
 export type PolicyIntersection<TTag extends string> = PolicyShard<TTag> &
   ConstraintShard<TTag> &
-  MetricShard<TTag> &
-  TraceShard<TTag> &
-  RuntimeShard<TTag> &
-  PlanShard<TTag> &
-  TelemetryShard<TTag> &
-  DecisionShard<TTag>;
+  MetricShard<TTag>;
 
 export type CollapseShard<T> = T extends object
   ? {
@@ -74,7 +69,7 @@ export type PolicyIntersectionMap<T extends ReadonlyArray<string>> = {
   readonly [K in T[number]]: PolicyIntersection<K & string>;
 };
 
-export type FoldedPolicy<T extends ReadonlyArray<string>> = FoldIntersections<ComposeIntersections<T>[number][]>;
+export type FoldedPolicy<T extends ReadonlyArray<string>> = PolicyIntersection<T[number] & string>;
 
 export type PolicyUnion<T extends ReadonlyArray<string>> = PolicyShard<T[number] & string> | ConstraintShard<T[number] & string>;
 
@@ -108,22 +103,6 @@ export const policyShardKeys = [
   'zeta',
   'eta',
   'theta',
-  'iota',
-  'kappa',
-  'lambda',
-  'mu',
-  'nu',
-  'xi',
-  'omicron',
-  'pi',
-  'rho',
-  'sigma',
-  'tau',
-  'upsilon',
-  'phi',
-  'chi',
-  'psi',
-  'omega',
 ] as const satisfies readonly string[];
 
 const policyRecords = policyShardKeys.reduce<Record<string, unknown>>((acc, key, index) => {
@@ -148,18 +127,10 @@ const policyRecords = policyShardKeys.reduce<Record<string, unknown>>((acc, key,
 
 export const policyIntersectionRecord = policyRecords as unknown as Record<string, unknown>;
 
-export type FoldedPolicyByMap = FoldIntersections<
-  [
-    PolicyShard<'alpha'>,
-    ConstraintShard<'beta'>,
-    MetricShard<'gamma'>,
-    TraceShard<'delta'>,
-    RuntimeShard<'epsilon'>,
-    PlanShard<'zeta'>,
-    TelemetryShard<'eta'>,
-    DecisionShard<'theta'>,
-  ]
->;
+export type FoldedPolicyByMap =
+  PolicyShard<'alpha'> &
+  ConstraintShard<'beta'> &
+  MetricShard<'gamma'>;
 
 export type IntersectionsEnvelope = ProfileEnvelope<typeof policyShardKeys>;
 

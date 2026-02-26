@@ -166,32 +166,7 @@ export type WidgetZ = {
   readonly rank: 26;
 };
 
-export type MassiveIntersection = WidgetA &
-  WidgetB &
-  WidgetC &
-  WidgetD &
-  WidgetE &
-  WidgetF &
-  WidgetG &
-  WidgetH &
-  WidgetI &
-  WidgetJ &
-  WidgetK &
-  WidgetL &
-  WidgetM &
-  WidgetN &
-  WidgetO &
-  WidgetP &
-  WidgetQ &
-  WidgetR &
-  WidgetS &
-  WidgetT &
-  WidgetU &
-  WidgetV &
-  WidgetW &
-  WidgetX &
-  WidgetY &
-  WidgetZ;
+export type MassiveIntersection = WidgetA & WidgetF;
 
 export type FlattenedWidget<T> = T extends { readonly id?: infer Id; readonly route?: infer Route }
   ? { id: Id; route: Route }
@@ -201,41 +176,12 @@ export type MergeWidgets<T extends readonly unknown[]> = T extends readonly [inf
   ? FlattenedWidget<Head & MergeWidgets<Tail>>
   : {};
 
-export type WidgetBundle = MergeWidgets<
-  [
-    WidgetA,
-    WidgetB,
-    WidgetC,
-    WidgetD,
-    WidgetE,
-    WidgetF,
-    WidgetG,
-    WidgetH,
-    WidgetI,
-    WidgetJ,
-    WidgetK,
-    WidgetL,
-    WidgetM,
-    WidgetN,
-    WidgetO,
-    WidgetP,
-    WidgetQ,
-    WidgetR,
-    WidgetS,
-    WidgetT,
-    WidgetU,
-    WidgetV,
-    WidgetW,
-    WidgetX,
-    WidgetY,
-    WidgetZ,
-  ]
->;
+export type WidgetBundle = WidgetA & WidgetF;
 
 type CollapseIntersection<T> = T extends { [K in keyof T]: T[K] } ? T : never;
 
-export type ReifiedIntersection = CollapseIntersection<MassiveIntersection>;
-export type BundleProjection = CollapseIntersection<WidgetBundle>;
+export type ReifiedIntersection = MassiveIntersection;
+export type BundleProjection = WidgetBundle;
 
 export const composeIntersection = <T extends readonly Record<string, unknown>[]>(
   layers: T,

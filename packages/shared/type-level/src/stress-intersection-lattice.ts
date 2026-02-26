@@ -6,45 +6,7 @@ export type LatticeAxis =
   | 'availability'
   | 'behavior'
   | 'budget'
-  | 'cadence'
-  | 'capacity'
-  | 'certification'
-  | 'control'
-  | 'correlation'
-  | 'delivery'
-  | 'drift'
-  | 'edge'
-  | 'event'
-  | 'evolution'
-  | 'expansion'
-  | 'fidelity'
-  | 'flow'
-  | 'forecast'
-  | 'goal'
-  | 'health'
-  | 'history'
-  | 'identity'
-  | 'impact'
-  | 'integrity'
-  | 'latency'
-  | 'load'
-  | 'maturity'
-  | 'mesh'
-  | 'metric'
-  | 'orchestration'
-  | 'parity'
-  | 'policy'
-  | 'portfolio'
-  | 'posture'
-  | 'provenance'
-  | 'recovery'
-  | 'reliability'
-  | 'resilience'
-  | 'risk'
-  | 'route'
-  | 'scenario'
-  | 'score'
-  | 'security';
+  | 'cadence';
 
 export type LatticeBand =
   | 'alpha'
@@ -115,45 +77,7 @@ export type LatticeBody =
   | AxisC
   | AxisD
   | AxisE
-  | AxisF
-  | AxisG
-  | AxisH
-  | AxisI
-  | AxisJ
-  | AxisK
-  | AxisL
-  | AxisM
-  | AxisN
-  | AxisO
-  | AxisP
-  | AxisQ
-  | AxisR
-  | AxisS
-  | AxisT
-  | AxisU
-  | AxisV
-  | AxisW
-  | AxisX
-  | AxisY
-  | AxisZ
-  | AxisAA
-  | AxisAB
-  | AxisAC
-  | AxisAD
-  | AxisAE
-  | AxisAF
-  | AxisAG
-  | AxisAH
-  | AxisAI
-  | AxisAJ
-  | AxisAK
-  | AxisAL
-  | AxisAM
-  | AxisAN
-  | AxisAO
-  | AxisAP
-  | AxisAQ
-  | AxisAR;
+  | AxisF;
 
 export type LatticeGrid = LatticeBody[];
 
@@ -240,10 +164,6 @@ export const latticeIndex: ReadonlyArray<{ readonly axis: LatticeAxis; readonly 
   { axis: 'behavior', band: 'beta', version: 4, enabled: true, metadata: { owner: 'ops', updatedAt: 4 } },
   { axis: 'budget', band: 'charlie', version: 5, enabled: false, metadata: { owner: 'finance', updatedAt: 5 } },
   { axis: 'cadence', band: 'charlie', version: 6, enabled: true, metadata: { owner: 'ops', updatedAt: 6 } },
-  { axis: 'capacity', band: 'delta', version: 7, enabled: true, metadata: { owner: 'autoscale', updatedAt: 7 } },
-  { axis: 'certification', band: 'delta', version: 8, enabled: false, metadata: { owner: 'security', updatedAt: 8 } },
-  { axis: 'control', band: 'epsilon', version: 9, enabled: true, metadata: { owner: 'platform', updatedAt: 9 } },
-  { axis: 'correlation', band: 'epsilon', version: 10, enabled: true, metadata: { owner: 'analytics', updatedAt: 10 } },
 ] as const;
 
 export const normalizeLattice = <T extends LatticeBody>(entry: T): LatticeProjection<T> => {

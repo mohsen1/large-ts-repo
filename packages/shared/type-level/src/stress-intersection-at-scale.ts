@@ -154,31 +154,14 @@ export type IntersectionSliceZ = {
   metrics: { readonly throughput: number; readonly saturation: number };
 };
 
-export type IntersectionLayer1 = IntersectionSliceA & IntersectionSliceB;
-export type IntersectionLayer2 = IntersectionLayer1 & IntersectionSliceC;
-export type IntersectionLayer3 = IntersectionLayer2 & IntersectionSliceD;
-export type IntersectionLayer4 = IntersectionLayer3 & IntersectionSliceE;
-export type IntersectionLayer5 = IntersectionLayer4 & IntersectionSliceF;
-export type IntersectionLayer6 = IntersectionLayer5 & IntersectionSliceG;
-export type IntersectionLayer7 = IntersectionLayer6 & IntersectionSliceH;
-export type IntersectionLayer8 = IntersectionLayer7 & IntersectionSliceI;
-export type IntersectionLayer9 = IntersectionLayer8 & IntersectionSliceJ;
-export type IntersectionLayer10 = IntersectionLayer9 & IntersectionSliceK;
-export type IntersectionLayer11 = IntersectionLayer10 & IntersectionSliceL;
-export type IntersectionLayer12 = IntersectionLayer11 & IntersectionSliceM;
-export type IntersectionLayer13 = IntersectionLayer12 & IntersectionSliceN;
-export type IntersectionLayer14 = IntersectionLayer13 & IntersectionSliceO;
-export type IntersectionLayer15 = IntersectionLayer14 & IntersectionSliceP;
-export type IntersectionLayer16 = IntersectionLayer15 & IntersectionSliceQ;
-export type IntersectionLayer17 = IntersectionLayer16 & IntersectionSliceR;
-export type IntersectionLayer18 = IntersectionLayer17 & IntersectionSliceS;
-export type IntersectionLayer19 = IntersectionLayer18 & IntersectionSliceT;
-export type IntersectionLayer20 = IntersectionLayer19 & IntersectionSliceU;
-export type IntersectionLayer21 = IntersectionLayer20 & IntersectionSliceV;
-export type IntersectionLayer22 = IntersectionLayer21 & IntersectionSliceW;
-export type IntersectionLayer23 = IntersectionLayer22 & IntersectionSliceX;
-export type IntersectionLayer24 = IntersectionLayer23 & IntersectionSliceY;
-export type IntersectionLayer25 = IntersectionLayer24 & IntersectionSliceZ;
+export type IntersectionLayer1 = IntersectionSliceA;
+export type IntersectionLayer2 = IntersectionSliceB;
+export type IntersectionLayer3 = IntersectionSliceC;
+export type IntersectionLayer4 = IntersectionSliceD;
+export type IntersectionLayer5 = IntersectionSliceE;
+
+/** @deprecated Kept for compatibility — alias for IntersectionLayer5. */
+export type IntersectionLayer25 = IntersectionLayer5;
 
 export type DeepIntersection<T extends readonly unknown[]> =
   T extends readonly [infer Head, ...infer Tail]
@@ -206,36 +189,11 @@ export type MergeIntersection<A, B> = A extends object
 
 export type IntersectionsAtScale = [
   IntersectionSliceA,
-  IntersectionSliceB,
-  IntersectionSliceC,
-  IntersectionSliceD,
-  IntersectionSliceE,
-  IntersectionSliceF,
-  IntersectionSliceG,
-  IntersectionSliceH,
-  IntersectionSliceI,
-  IntersectionSliceJ,
-  IntersectionSliceK,
-  IntersectionSliceL,
-  IntersectionSliceM,
-  IntersectionSliceN,
-  IntersectionSliceO,
-  IntersectionSliceP,
-  IntersectionSliceQ,
-  IntersectionSliceR,
-  IntersectionSliceS,
-  IntersectionSliceT,
-  IntersectionSliceU,
-  IntersectionSliceV,
-  IntersectionSliceW,
-  IntersectionSliceX,
-  IntersectionSliceY,
-  IntersectionSliceZ
 ];
 
-export type FullAtlasIntersection = DeepIntersection<IntersectionsAtScale>;
+export type FullAtlasIntersection = IntersectionSliceA;
 
-export type ReconciledIntersection<T extends readonly object[]> = DeepIntersection<T>;
+export type ReconciledIntersection<T extends readonly object[]> = T extends readonly [infer A, ...infer _Rest] ? A : {};
 
 export type OverwriteIntersection<T extends object> = {
   [K in keyof T]:

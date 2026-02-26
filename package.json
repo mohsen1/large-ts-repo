@@ -9,7 +9,12 @@
     "count": "bash scripts/count.sh",
     "typecheck": "pnpm exec tsc -b tsconfig.json --pretty false",
     "typecheck:full": "pnpm exec tsc -b tsconfig.json --force --pretty false",
-    "tsz-typecheck": "if command -v tsz >/dev/null 2>&1; then tsz --project tsconfig.json; else pnpm dlx @mohsen-azimi/tsz-dev --project tsconfig.json; fi"
+    "typecheck:v6": "npx -y -p typescript@beta tsc -p tsconfig.json --pretty false --ignoreDeprecations 6.0",
+    "typecheck:tsgo": "npx -y -p @typescript/native-preview tsgo -b tsconfig.json --pretty false",
+    "tsz-typecheck": "if command -v tsz >/dev/null 2>&1; then tsz --project tsconfig.json; else pnpm dlx @mohsen-azimi/tsz-dev --project tsconfig.json; fi",
+    "clean:buildinfo": "find . -type f -name '*.tsbuildinfo' -delete",
+    "clean:dist": "find . -type d -name dist -not -path '*/node_modules/*' -prune -exec rm -rf {} +",
+    "clean": "pnpm clean:dist && pnpm clean:buildinfo"
   },
   "devDependencies": {
     "@types/node": "^25.3.0",

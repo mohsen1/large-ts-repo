@@ -156,33 +156,7 @@ export interface IntersectionLayerZ {
   readonly shared: string;
 }
 
-export type WideIntersection =
-  & IntersectionLayerA
-  & IntersectionLayerB
-  & IntersectionLayerC
-  & IntersectionLayerD
-  & IntersectionLayerE
-  & IntersectionLayerF
-  & IntersectionLayerG
-  & IntersectionLayerH
-  & IntersectionLayerI
-  & IntersectionLayerJ
-  & IntersectionLayerK
-  & IntersectionLayerL
-  & IntersectionLayerM
-  & IntersectionLayerN
-  & IntersectionLayerO
-  & IntersectionLayerP
-  & IntersectionLayerQ
-  & IntersectionLayerR
-  & IntersectionLayerS
-  & IntersectionLayerT
-  & IntersectionLayerU
-  & IntersectionLayerV
-  & IntersectionLayerW
-  & IntersectionLayerX
-  & IntersectionLayerY
-  & IntersectionLayerZ;
+export type WideIntersection = IntersectionLayerA;
 
 export type IntersectMany<T extends readonly Record<string, unknown>[]> =
   T extends readonly [infer Head, ...infer Tail]

@@ -59,19 +59,19 @@ jobs:
         shell: bash
         env:
           COMPILER: tsc-v5
-          COMMAND: npx -y -p typescript@5 tsc -b tsconfig.json --pretty false
+          NPM_SCRIPT: typecheck:full
           ALLOW_FAILURE: false
         run: |
           set -euo pipefail
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
-          find . -type d -name dist -prune -exec rm -rf {} +
-          find . -type f -name '*.tsbuildinfo' -delete
+          pnpm clean
+
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
           set +e
-          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          pnpm "$NPM_SCRIPT" 2>&1 | tee "$LOG_FILE"
           rc="${PIPESTATUS[0]}"
           set -e
           end_ms="$(date +%s%3N)"
@@ -89,7 +89,7 @@ jobs:
             echo "status=$status"
             echo "duration_ms=$duration_ms"
             echo "duration_s=$duration_s"
-            echo "command=$COMMAND"
+            echo "command=pnpm $NPM_SCRIPT"
           } >> "$GITHUB_OUTPUT"
 
           if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
@@ -148,20 +148,19 @@ jobs:
         shell: bash
         env:
           COMPILER: tsc-v6
-          COMMAND: npx -y -p typescript@beta tsc -p tsconfig.json --pretty false --ignoreDeprecations 6.0
+          NPM_SCRIPT: typecheck:v6
           ALLOW_FAILURE: false
         run: |
           set -euo pipefail
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
-          find . -type d -name dist -prune -exec rm -rf {} +
-          find . -type f -name '*.tsbuildinfo' -delete
+          pnpm clean
 
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
           set +e
-          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          pnpm "$NPM_SCRIPT" 2>&1 | tee "$LOG_FILE"
           rc="${PIPESTATUS[0]}"
           set -e
           end_ms="$(date +%s%3N)"
@@ -179,7 +178,7 @@ jobs:
             echo "status=$status"
             echo "duration_ms=$duration_ms"
             echo "duration_s=$duration_s"
-            echo "command=$COMMAND"
+            echo "command=pnpm $NPM_SCRIPT"
           } >> "$GITHUB_OUTPUT"
 
           if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
@@ -239,20 +238,19 @@ jobs:
         shell: bash
         env:
           COMPILER: tsgo
-          COMMAND: npx -y -p @typescript/native-preview tsgo -b tsconfig.json --pretty false
+          NPM_SCRIPT: typecheck:tsgo
           ALLOW_FAILURE: true
         run: |
           set -euo pipefail
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
-          find . -type d -name dist -prune -exec rm -rf {} +
-          find . -type f -name '*.tsbuildinfo' -delete
+          pnpm clean
 
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
           set +e
-          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          pnpm "$NPM_SCRIPT" 2>&1 | tee "$LOG_FILE"
           rc="${PIPESTATUS[0]}"
           set -e
           end_ms="$(date +%s%3N)"
@@ -270,7 +268,7 @@ jobs:
             echo "status=$status"
             echo "duration_ms=$duration_ms"
             echo "duration_s=$duration_s"
-            echo "command=$COMMAND"
+            echo "command=pnpm $NPM_SCRIPT"
           } >> "$GITHUB_OUTPUT"
 
           if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
@@ -330,20 +328,19 @@ jobs:
         shell: bash
         env:
           COMPILER: tsz
-          COMMAND: pnpm tsz-typecheck
+          NPM_SCRIPT: tsz-typecheck
           ALLOW_FAILURE: true
         run: |
           set -euo pipefail
 
           BENCH_DIR="$(pwd)/.bench"
           mkdir -p "$BENCH_DIR"
-          find . -type d -name dist -prune -exec rm -rf {} +
-          find . -type f -name '*.tsbuildinfo' -delete
+          pnpm clean
 
           LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
           start_ms="$(date +%s%3N)"
           set +e
-          bash -lc "$COMMAND" 2>&1 | tee "$LOG_FILE"
+          pnpm "$NPM_SCRIPT" 2>&1 | tee "$LOG_FILE"
           rc="${PIPESTATUS[0]}"
           set -e
           end_ms="$(date +%s%3N)"
@@ -361,7 +358,7 @@ jobs:
             echo "status=$status"
             echo "duration_ms=$duration_ms"
             echo "duration_s=$duration_s"
-            echo "command=$COMMAND"
+            echo "command=pnpm $NPM_SCRIPT"
           } >> "$GITHUB_OUTPUT"
 
           if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
@@ -448,13 +445,13 @@ jobs:
           fi
 
           if [ -z "$tsc_v5_command" ]; then
-            tsc_v5_command="npx -y -p typescript@5 tsc -b tsconfig.json --pretty false"
+            tsc_v5_command="pnpm typecheck:full"
           fi
           if [ -z "$tsc_v6_command" ]; then
-            tsc_v6_command="npx -y -p typescript@beta tsc -b tsconfig.json --pretty false"
+            tsc_v6_command="pnpm typecheck:v6"
           fi
           if [ -z "$tsgo_command" ]; then
-            tsgo_command="npx -y -p @typescript/native-preview tsgo -b tsconfig.json --pretty false"
+            tsgo_command="pnpm typecheck:tsgo"
           fi
           if [ -z "$tsz_command" ]; then
             tsz_command="pnpm tsz-typecheck"

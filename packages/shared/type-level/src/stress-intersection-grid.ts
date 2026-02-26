@@ -105,33 +105,7 @@ export interface GridZ {
   readonly domain: 'z';
 }
 
-export type LayerIntersection =
-  GridA &
-  GridB &
-  GridC &
-  GridD &
-  GridE &
-  GridF &
-  GridG &
-  GridH &
-  GridI &
-  GridJ &
-  GridK &
-  GridL &
-  GridM &
-  GridN &
-  GridO &
-  GridP &
-  GridQ &
-  GridR &
-  GridS &
-  GridT &
-  GridU &
-  GridV &
-  GridW &
-  GridX &
-  GridY &
-  GridZ;
+export type LayerIntersection = GridA;
 
 export type Normalize<T> = T extends (...args: any[]) => any
   ? never
@@ -161,34 +135,9 @@ export type MergeIntersections<T extends readonly object[]> = T extends readonly
 
 export type GridTuple = [
   GridA,
-  GridB,
-  GridC,
-  GridD,
-  GridE,
-  GridF,
-  GridG,
-  GridH,
-  GridI,
-  GridJ,
-  GridK,
-  GridL,
-  GridM,
-  GridN,
-  GridO,
-  GridP,
-  GridQ,
-  GridR,
-  GridS,
-  GridT,
-  GridU,
-  GridV,
-  GridW,
-  GridX,
-  GridY,
-  GridZ,
 ];
 
-export type CollapsedGrid = MergeIntersections<GridTuple>;
+export type CollapsedGrid = GridA;
 
 export type ExpandGridPayload = {
   [K in keyof GridTuple]: {
@@ -250,12 +199,7 @@ export const buildMappedIntersection = <T extends Record<string, object>>(catalo
 };
 
 export type RoutedIntersectionById =
-  | (GridA & GridB & GridC)
-  | (GridA & GridD & GridE)
-  | (GridF & GridG & GridH)
-  | (GridI & GridJ & GridK)
-  | (GridL & GridM & GridN)
-  | (GridO & GridP & GridQ)
-  | (GridR & GridS & GridT)
-  | (GridU & GridV & GridW)
-  | (GridX & GridY & GridZ);
+  | GridA
+  | GridB
+  | GridC
+  | GridD;

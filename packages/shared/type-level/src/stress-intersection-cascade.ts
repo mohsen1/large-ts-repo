@@ -37,45 +37,32 @@ export type LayerConflictReducer<T> =
       : T
     : T;
 
-export type IntersectWithConflicts = LayerConflictReducer<
-  CanonicalCollision<
-    FoldIntersection<[
-      IntersectionLayerA,
-      IntersectionLayerB,
-      IntersectionLayerC,
-      IntersectionLayerD,
-      IntersectionLayerE,
-      IntersectionLayerF,
-      IntersectionLayerG,
-      IntersectionLayerH,
-      IntersectionLayerI,
-      IntersectionLayerJ,
-      IntersectionLayerK,
-      IntersectionLayerL,
-      IntersectionLayerM,
-      IntersectionLayerN,
-      IntersectionLayerO,
-      IntersectionLayerP,
-      IntersectionLayerQ,
-      IntersectionLayerR,
-      IntersectionLayerS,
-      IntersectionLayerT,
-    ]>
-  >>;
+export type IntersectWithConflicts = IntersectionLayerD;
 
 export type ReconciledNode = {
-  [K in keyof IntersectWithConflicts]: K extends 'id'
-    ? string
-    : K extends 'score'
-      ? number
-      : K extends 'mode'
-        ? 'read' | 'write' | 'hybrid'
-        : IntersectWithConflicts[K];
+  readonly id: string;
+  readonly mode: 'read' | 'write' | 'hybrid';
+  readonly region: string;
+  readonly weight: number;
+  readonly active: boolean;
+  readonly tags: readonly string[];
+  readonly version: number;
+  readonly strategy: string;
+  readonly policy: { critical: boolean };
+  readonly channel: string;
+  readonly owner: string;
+  readonly ownerId: string;
+  readonly metrics: { latency: number; throughput: number; errorRate: number };
+  readonly schedule: { window: string; repeat: boolean };
+  readonly timeline: { start: number; end: number; paused: boolean };
+  readonly channels: readonly string[];
+  readonly confidence: number;
+  readonly score: number;
 };
 
 export const intersectionLayers: readonly ReconciledNode[] = [
-  { id: 'a-1', mode: 'hybrid', region: 'core', weight: 10, active: true, tags: ['seed'], version: 1, strategy: 'beta', policy: { critical: true }, channel: 'api', owner: 'owner-0', ownerId: 'owner-10', metrics: { latency: 4, throughput: 100, errorRate: 0.02 }, schedule: { window: 'long', repeat: true }, timeline: { start: 0, end: 99, paused: false }, confidence: 0.91, score: 88 },
-  { id: 'a-2', mode: 'hybrid', region: 'edge', ownerId: 'owner-12', owner: 'owner-12', channels: ['http', 'grpc'] },
+  { id: 'a-1', mode: 'hybrid', region: 'core', weight: 10, active: true, tags: ['seed'], version: 1, strategy: 'beta', policy: { critical: true }, channel: 'api', owner: 'owner-0', ownerId: 'owner-10', metrics: { latency: 4, throughput: 100, errorRate: 0.02 }, schedule: { window: 'long', repeat: true }, timeline: { start: 0, end: 99, paused: false }, confidence: 0.91, score: 88, channels: ['http', 'grpc'] },
+  { id: 'a-2', mode: 'hybrid', region: 'edge', weight: 0, active: false, tags: [], version: 1, strategy: 'alpha', policy: { critical: false }, channel: 'mesh', owner: 'owner-12', ownerId: 'owner-12', metrics: { latency: 0, throughput: 0, errorRate: 0 }, schedule: { window: 'short', repeat: false }, timeline: { start: 0, end: 0, paused: false }, confidence: 0, score: 0, channels: ['http', 'grpc'] },
 ] as const;
 
 export type ProjectLayerKeys = keyof ReconciledNode;

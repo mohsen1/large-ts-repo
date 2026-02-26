@@ -36,31 +36,7 @@ export interface SegmentZ { readonly segmentZ: 'z'; readonly zone: string; }
 export type FusionStack =
   & AtlasMeta
   & SegmentA
-  & SegmentB
-  & SegmentC
-  & SegmentD
-  & SegmentE
-  & SegmentF
-  & SegmentG
-  & SegmentH
-  & SegmentI
-  & SegmentJ
-  & SegmentK
-  & SegmentL
-  & SegmentM
-  & SegmentN
-  & SegmentO
-  & SegmentP
-  & SegmentQ
-  & SegmentR
-  & SegmentS
-  & SegmentT
-  & SegmentU
-  & SegmentV
-  & SegmentW
-  & SegmentX
-  & SegmentY
-  & SegmentZ;
+  & SegmentB;
 
 export type NarrowedIntersection<T extends object> = T & {
   readonly meta: AtlasMeta;
@@ -80,27 +56,7 @@ export type SegmentUnion =
   | SegmentC
   | SegmentD
   | SegmentE
-  | SegmentF
-  | SegmentG
-  | SegmentH
-  | SegmentI
-  | SegmentJ
-  | SegmentK
-  | SegmentL
-  | SegmentM
-  | SegmentN
-  | SegmentO
-  | SegmentP
-  | SegmentQ
-  | SegmentR
-  | SegmentS
-  | SegmentT
-  | SegmentU
-  | SegmentV
-  | SegmentW
-  | SegmentX
-  | SegmentY
-  | SegmentZ;
+  | SegmentF;
 
 export type IntersectionCollapse<K extends readonly SegmentUnion[]> = K extends readonly [infer H, ...infer Rest]
   ? H extends SegmentUnion
@@ -108,34 +64,7 @@ export type IntersectionCollapse<K extends readonly SegmentUnion[]> = K extends 
     : never
   : {};
 
-export type FullFusion = IntersectionCollapse<[
-  SegmentA,
-  SegmentB,
-  SegmentC,
-  SegmentD,
-  SegmentE,
-  SegmentF,
-  SegmentG,
-  SegmentH,
-  SegmentI,
-  SegmentJ,
-  SegmentK,
-  SegmentL,
-  SegmentM,
-  SegmentN,
-  SegmentO,
-  SegmentP,
-  SegmentQ,
-  SegmentR,
-  SegmentS,
-  SegmentT,
-  SegmentU,
-  SegmentV,
-  SegmentW,
-  SegmentX,
-  SegmentY,
-  SegmentZ,
-]> & AtlasMeta;
+export type FullFusion = SegmentA & SegmentB & AtlasMeta;
 
 export type OverlapResolution<T extends SegmentUnion> = ExpandSegment<T>;
 
@@ -146,26 +75,6 @@ export type OverlapLookup = {
   readonly d: OverlapResolution<SegmentD>;
   readonly e: OverlapResolution<SegmentE>;
   readonly f: OverlapResolution<SegmentF>;
-  readonly g: OverlapResolution<SegmentG>;
-  readonly h: OverlapResolution<SegmentH>;
-  readonly i: OverlapResolution<SegmentI>;
-  readonly j: OverlapResolution<SegmentJ>;
-  readonly k: OverlapResolution<SegmentK>;
-  readonly l: OverlapResolution<SegmentL>;
-  readonly m: OverlapResolution<SegmentM>;
-  readonly n: OverlapResolution<SegmentN>;
-  readonly o: OverlapResolution<SegmentO>;
-  readonly p: OverlapResolution<SegmentP>;
-  readonly q: OverlapResolution<SegmentQ>;
-  readonly r: OverlapResolution<SegmentR>;
-  readonly s: OverlapResolution<SegmentS>;
-  readonly t: OverlapResolution<SegmentT>;
-  readonly u: OverlapResolution<SegmentU>;
-  readonly v: OverlapResolution<SegmentV>;
-  readonly w: OverlapResolution<SegmentW>;
-  readonly x: OverlapResolution<SegmentX>;
-  readonly y: OverlapResolution<SegmentY>;
-  readonly z: OverlapResolution<SegmentZ>;
 };
 
 export const catalogBase: AtlasMeta = {
@@ -180,26 +89,6 @@ export const collisionMatrix: IntersectionIndex<[
   'segmentD',
   'segmentE',
   'segmentF',
-  'segmentG',
-  'segmentH',
-  'segmentI',
-  'segmentJ',
-  'segmentK',
-  'segmentL',
-  'segmentM',
-  'segmentN',
-  'segmentO',
-  'segmentP',
-  'segmentQ',
-  'segmentR',
-  'segmentS',
-  'segmentT',
-  'segmentU',
-  'segmentV',
-  'segmentW',
-  'segmentX',
-  'segmentY',
-  'segmentZ',
 ]> = {
   segmentA: 'segmentA',
   segmentB: 'segmentB',
@@ -207,26 +96,6 @@ export const collisionMatrix: IntersectionIndex<[
   segmentD: 'segmentD',
   segmentE: 'segmentE',
   segmentF: 'segmentF',
-  segmentG: 'segmentG',
-  segmentH: 'segmentH',
-  segmentI: 'segmentI',
-  segmentJ: 'segmentJ',
-  segmentK: 'segmentK',
-  segmentL: 'segmentL',
-  segmentM: 'segmentM',
-  segmentN: 'segmentN',
-  segmentO: 'segmentO',
-  segmentP: 'segmentP',
-  segmentQ: 'segmentQ',
-  segmentR: 'segmentR',
-  segmentS: 'segmentS',
-  segmentT: 'segmentT',
-  segmentU: 'segmentU',
-  segmentV: 'segmentV',
-  segmentW: 'segmentW',
-  segmentX: 'segmentX',
-  segmentY: 'segmentY',
-  segmentZ: 'segmentZ',
 };
 
 export const buildFusion = (input: Partial<FullFusion>): FullFusion => {
@@ -244,46 +113,6 @@ export const buildFusion = (input: Partial<FullFusion>): FullFusion => {
     deadlineMs: 0,
     segmentF: 'f',
     tags: [],
-    segmentG: 'g',
-    labels: [],
-    segmentH: 'h',
-    region: 'global',
-    segmentI: 'i',
-    score: 0,
-    segmentJ: 'j',
-    owner: '',
-    segmentK: 'k',
-    source: '',
-    segmentL: 'l',
-    checksum: '',
-    segmentM: 'm',
-    latency: 0,
-    segmentN: 'n',
-    timeoutMs: 0,
-    segmentO: 'o',
-    correlationId: '',
-    segmentP: 'p',
-    status: 'idle',
-    segmentQ: 'q',
-    priority: 'low',
-    segmentR: 'r',
-    runbookId: '',
-    segmentS: 's',
-    signalDensity: 0,
-    segmentT: 't',
-    trend: [],
-    segmentU: 'u',
-    urgency: 0,
-    segmentV: 'v',
-    evidence: [],
-    segmentW: 'w',
-    warnings: [],
-    segmentX: 'x',
-    xray: false,
-    segmentY: 'y',
-    yield: 0,
-    segmentZ: 'z',
-    zone: '',
     ...input,
   } as FullFusion;
 };

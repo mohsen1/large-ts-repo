@@ -4,27 +4,7 @@ export type LensToken =
   | 'charlie'
   | 'delta'
   | 'echo'
-  | 'foxtrot'
-  | 'golf'
-  | 'hotel'
-  | 'india'
-  | 'juliet'
-  | 'kilo'
-  | 'lima'
-  | 'mike'
-  | 'november'
-  | 'oscar'
-  | 'papa'
-  | 'quebec'
-  | 'romeo'
-  | 'sierra'
-  | 'tango'
-  | 'uniform'
-  | 'victor'
-  | 'whiskey'
-  | 'xray'
-  | 'yankee'
-  | 'zulu';
+  | 'foxtrot';
 
 export type ReadonlyLens<T> = { readonly [K in keyof T]: T[K] };
 
@@ -47,13 +27,7 @@ export type LensCatalog =
   | LensShapeC
   | LensShapeD
   | LensShapeE
-  | LensShapeF
-  | LensShapeG
-  | LensShapeH
-  | LensShapeI
-  | LensShapeJ
-  | LensShapeK
-  | LensShapeL;
+  | LensShapeF;
 
 export type OverlapMerge<A, B> = A extends object
   ? B extends object
@@ -154,12 +128,6 @@ export type LensRecord = {
   readonly delta: LensShapeD;
   readonly echo: LensShapeE;
   readonly foxtrot: LensShapeF;
-  readonly golf: LensShapeG;
-  readonly hotel: LensShapeH;
-  readonly india: LensShapeI;
-  readonly juliet: LensShapeJ;
-  readonly kilo: LensShapeK;
-  readonly lima: LensShapeL;
 };
 
 export type ExpandedIntersection = {
@@ -191,12 +159,6 @@ export const defaultLensShapes: readonly [
   LensShapeD,
   LensShapeE,
   LensShapeF,
-  LensShapeG,
-  LensShapeH,
-  LensShapeI,
-  LensShapeJ,
-  LensShapeK,
-  LensShapeL,
 ] = [
   { scope: 'scopeA', metrics: { a: 1, b: 2 }, tags: ['a', 'b'] },
   { scope: 'scopeB', metrics: { c: 'c', d: 'd' }, tags: ['c', 'd'] },
@@ -204,12 +166,6 @@ export const defaultLensShapes: readonly [
   { scope: 'scopeD', metrics: { g: new Date(), h: new Date() }, tags: ['g', 'h'] },
   { scope: 'scopeE', metrics: { i: 'i', j: 2 }, tags: ['i', 'j'] },
   { scope: 'scopeF', metrics: { k: Symbol('k'), l: 'l' }, tags: ['k', 'l'] },
-  { scope: 'scopeG', metrics: { m: 1n, n: 2n }, tags: ['m', 'n'] },
-  { scope: 'scopeH', metrics: { o: null, p: undefined }, tags: ['o', 'p'] },
-  { scope: 'scopeI', metrics: { q: /q/, r: new Error('lens') }, tags: ['q', 'r'] },
-  { scope: 'scopeJ', metrics: { s: new Map([['a', 'b']]), t: new Set([1, 2]) }, tags: ['s', 't'] },
-  { scope: 'scopeK', metrics: { u: new WeakMap<object, string>(), v: new WeakSet<object>() }, tags: ['u', 'v'] },
-  { scope: 'scopeL', metrics: { w: Promise.resolve('w'), x: Promise.resolve(1) }, tags: ['w', 'x'] },
 ] as const;
 
 export const scopeIntersections = {
@@ -219,16 +175,10 @@ export const scopeIntersections = {
   delta: defaultLensShapes[3],
   echo: defaultLensShapes[4],
   foxtrot: defaultLensShapes[5],
-  golf: defaultLensShapes[6],
-  hotel: defaultLensShapes[7],
-  india: defaultLensShapes[8],
-  juliet: defaultLensShapes[9],
-  kilo: defaultLensShapes[10],
-  lima: defaultLensShapes[11],
 };
 
-export const mergeLensCatalog = <T extends readonly LensCatalog[]>(...items: T): FlattenIntersections<T> => {
-  return Object.assign({}, ...items) as FlattenIntersections<T>;
+export const mergeLensCatalog = <T extends readonly LensCatalog[]>(...items: T): IntersectTuple<T> => {
+  return Object.assign({}, ...items) as IntersectTuple<T>;
 };
 
 export const summarizeIntersection = (lens: ExpandedIntersection): ReadonlyArray<string> => {

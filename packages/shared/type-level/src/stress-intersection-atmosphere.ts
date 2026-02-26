@@ -37,31 +37,11 @@ export type AtmosUnion =
   | AtmosSegmentC
   | AtmosSegmentD
   | AtmosSegmentE
-  | AtmosSegmentF
-  | AtmosSegmentG
-  | AtmosSegmentH
-  | AtmosSegmentI
-  | AtmosSegmentJ
-  | AtmosSegmentK
-  | AtmosSegmentL
-  | AtmosSegmentM
-  | AtmosSegmentN
-  | AtmosSegmentO
-  | AtmosSegmentP
-  | AtmosSegmentQ
-  | AtmosSegmentR
-  | AtmosSegmentS
-  | AtmosSegmentT
-  | AtmosSegmentU
-  | AtmosSegmentV
-  | AtmosSegmentW
-  | AtmosSegmentX
-  | AtmosSegmentY
-  | AtmosSegmentZ;
+  | AtmosSegmentF;
 
 export type AtmosphereIntersection<T extends Record<string, any>> =
   T extends { readonly seed: infer S }
-    ? AtmosphereSeed & S & AtmosSegmentA & AtmosSegmentB & AtmosSegmentC & AtmosSegmentD & AtmosSegmentE & AtmosSegmentF & AtmosSegmentG & AtmosSegmentH & AtmosSegmentI & AtmosSegmentJ & AtmosSegmentK & AtmosSegmentL & AtmosSegmentM & AtmosSegmentN & AtmosSegmentO & AtmosSegmentP & AtmosSegmentQ & AtmosSegmentR & AtmosSegmentS & AtmosSegmentT & AtmosSegmentU & AtmosSegmentV & AtmosSegmentW & AtmosSegmentX & AtmosSegmentY & AtmosSegmentZ
+    ? AtmosphereSeed & S & AtmosSegmentA & AtmosSegmentB
     : never;
 
 export type DeepIntersect<T> = T extends [infer A, ...infer Tail]

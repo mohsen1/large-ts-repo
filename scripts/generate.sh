@@ -134,10 +134,10 @@ B. Deep subtype hierarchies (depth 30-90):
    - Class hierarchies with generic parameters that vary at each level.
    - Structural compatibility checks forcing the checker to walk deep prototype chains.
 
-C. Intersection types at scale (15-45 members):
-   - Types that are intersections of many object types: `A & B & C & D & ... & Z`.
+C. Intersection types (MAX 3 members per `&` chain, NO overlapping keys):
+   - Types that are intersections of object types with DISJOINT keys only: `A & B & C` where A, B, C share no property names.
    - Generic functions that return intersections built from mapped input types.
-   - Intersection collapse scenarios where the compiler must flatten and reconcile overlapping keys.
+   - NEVER create intersection types where two or more members define the same property name with different types — this causes exponential type cache growth and crashes tsc with `RangeError: Map maximum size exceeded`.
 
 D. Mapped types with complex template keys:
    - `{ [K in keyof T as TemplateExpression<K>]: TransformedValue<T[K]> }` patterns.
@@ -145,7 +145,7 @@ D. Mapped types with complex template keys:
    - Nested mapped types (mapped type within a mapped type).
    - Homomorphic mapped types over generic parameters that preserve modifiers.
 
-E. Recursive generics (depth 15-45):
+E. Recursive generics (depth 15-30, NEVER applied to intersection types):
    - Recursive type aliases: `type Deep<T, N extends number> = N extends 0 ? T : Deep<Wrap<T>, Decrement<N>>`.
    - Recursive tuple builders: `type BuildTuple<N, T extends unknown[] = []> = T['length'] extends N ? T : BuildTuple<N, [...T, unknown]>`.
    - Mutual recursion between two or more type aliases.
@@ -231,6 +231,32 @@ Structure the dependency graph to minimize the effectiveness of tsbuildinfo incr
 5. Type-level re-exports: Have mid-tier packages re-export and augment types from shared packages, then have leaf packages consume those augmented re-exports. This creates multi-hop invalidation paths.
 
 6. Maximize fan-out from shared packages: Aim for shared utility packages to be referenced by 10+ other packages. Each iteration, add or modify at least one type export in a high-fan-out shared package to force widespread cache misses.
+
+=== INTERSECTION TYPE SAFETY (CRITICAL — tsc WILL CRASH IF VIOLATED) ===
+
+TypeScript's internal intersection type cache (a V8 Map) has a hard limit of ~16.7M entries.
+When exceeded, tsc crashes with `RangeError: Map maximum size exceeded` at `getIntersectionType`.
+This repo has ~488 composite projects and ~282 packages depend on @shared/type-level, so
+intersection types are amplified massively. Follow these rules WITHOUT EXCEPTION:
+
+1. MAX 3 members per intersection `&` chain. Never write `A & B & C & D` or longer.
+2. NO overlapping property names across intersection members. Every member in an `&` chain
+   must have completely disjoint keys. Conflicting properties (same key, different type)
+   cause exponential type cache growth.
+3. NO recursive type aliases that fold/collapse tuples into intersections. Patterns like
+   `type Fold<T> = T extends [infer H, ...infer R] ? H & Fold<R> : {}` create N intermediate
+   intersection types per invocation. Use direct `&` instead.
+4. NO mapped/conditional types applied to intersection results. Types like
+   `{ [K in keyof (A & B & C)]: ... }` force tsc to resolve every property of the intersection,
+   each creating additional cached intersection types.
+5. NO union-to-intersection conversions (`UnionToIntersection<LargeUnion>`) on unions > 6 members.
+6. NO value-level code typed as complex intersection types. Use plain interface/type literals
+   for const arrays and function return types instead of computed intersection types.
+7. Keep union types fed into intersection-producing generics to MAX 6 members.
+8. When creating "stress intersection" files, use interfaces with UNIQUE keys per interface.
+   Example: `interface A { readonly a: number }` and `interface B { readonly b: string }`
+   are safe to intersect. `interface A { readonly x: number }` and `interface B { readonly x: string }`
+   are NOT — they create a property conflict.
 
 === DISTRIBUTION GUIDANCE ===
 
