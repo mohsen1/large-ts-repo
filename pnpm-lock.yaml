@@ -98,6 +98,9 @@ importers:
       '@shared/type-level-fabric':
         specifier: workspace:*
         version: link:../../shared/type-level-fabric
+      '@shared/type-level-hub':
+        specifier: workspace:*
+        version: link:../../shared/type-level-hub
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
