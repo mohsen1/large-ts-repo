@@ -38,6 +38,35 @@ export * from './stress-binary-chains';
 export * from './stress-generic-instantiation-lab';
 export type { OrbitDomain, OrbitAction, OrbitRoute, OrbitStatus, OrbitPhase, OrbitCommandPlan } from './stress-conditional-orbit';
 export type { NestedMap } from './stress-mapped-recursion-workbench';
+export { flowBranches, evaluateFlow, findBranchesAbove, type FlowBranch, type BranchEvent, type BranchContext } from './stress-controlflow-lab';
+export {
+  type RoutePattern as NetworkRoutePattern,
+  type RouteParts as NetworkRouteParts,
+  type ParsedRoute as NetworkParsedRoute,
+  type RouteMap as NetworkRouteMap,
+  type RouteProjection as NetworkRouteProjection,
+  type RouteInputByDomain as NetworkRouteInputByDomain,
+  routeHandlers,
+  generatedRoutes as networkRouteCatalog,
+  routeIndex,
+  nestedRouteCatalog,
+  routeInputCatalog,
+  routeMatcher,
+  parseRoute,
+  type RouteMatcher as NetworkRouteMatcher,
+  matchRoute,
+} from './stress-route-network';
+export {
+  type StressRoute,
+  type ResolveRoute,
+  type RouteCatalog,
+  type CatalogResolution,
+  stressRouteCatalog as stressConditionalRouteCatalog,
+  resolveCatalog,
+  signatures,
+  routeLookup as stressConditionalRouteLookup,
+  routePipeline,
+} from './stress-conditional-constellation';
 
 export {
   type RecoveryVerb,
@@ -292,3 +321,10 @@ export {
   fromIterable,
   mapByIndex,
 } from './composition-labs';
+export * as stressInterfaceCascade from './stress-interface-cascade';
+export * as stressIntersectionCascade from './stress-intersection-cascade';
+export * as stressTemplateCosmos from './stress-template-cosmos';
+export * as stressRecursiveLattices from './stress-recursive-lattices';
+export * as stressRouteNetwork from './stress-route-network';
+export * as stressControlflowLab from './stress-controlflow-lab';
+export * as stressConstraintOrchestrator from './stress-constraint-orchestrator';
