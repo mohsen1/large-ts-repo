@@ -10,3 +10,7 @@ export * from './compiler-generic-lab';
 export * from './compiler-runtime-lab';
 export * from './compiler-workflow-control-lab';
 export * from './compiler-generic-instantiation-grid';
+export * from './compiler-constraint-forge';
+export * from './compiler-control-matrix';
+export * from './compiler-generic-factory';
+export * from './compiler-route-arena';

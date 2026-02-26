@@ -423,5 +423,8 @@ export * as stressHierarchyCascade from './stress-hierarchy-cascade';
 export * as stressIntersectionAtScale from './stress-intersection-at-scale';
 export * as stressMappedTemplateRecursion from './stress-mapped-template-recursion';
 export * as stressRecursiveConstraintNet from './stress-recursive-constraint-net';
+export * as stressSyntheticAtlas from './stress-synthetic-atlas';
+export * as stressSolverHub from './stress-solver-hub';
+export * as stressBinaryControlWork from './stress-binary-controlwork';
 export { buildConstraintChain, solveWithConstraint } from './stress-recursive-constraint-net';
 export type { ConstraintChain as ConstrainChain, ConstraintChain } from './stress-recursive-constraint-net';

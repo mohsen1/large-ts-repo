@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@shared/type-level": "workspace:*",
-    "@shared/lab-graph-runtime": "workspace:*"
+    "@shared/lab-graph-runtime": "workspace:*",
+    "zod": "^3.24.0"
   }
 }
