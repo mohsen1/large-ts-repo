@@ -81,6 +81,9 @@
       "path": "./../../shared/type-level/tsconfig.json"
     },
     {
+      "path": "./../../shared/type-level-fabric/tsconfig.json"
+    },
+    {
       "path": "./../../service/recovery-lattice-orchestrator/tsconfig.json"
     },
     {

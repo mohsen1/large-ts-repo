@@ -1,7 +1,8 @@
 {
-  "name": "@shared/type-level",
+  "name": "@shared/type-level-fabric",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -14,9 +15,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "zod": "^3.24.0",
     "@shared/util": "workspace:*",
-    "@shared/result": "workspace:*",
-    "@shared/type-level-fabric": "workspace:*"
+    "@shared/result": "workspace:*"
   }
 }

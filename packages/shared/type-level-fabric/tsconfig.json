@@ -14,9 +14,6 @@
     },
     {
       "path": "../result/tsconfig.json"
-    },
-    {
-      "path": "../type-level-fabric/tsconfig.json"
     }
   ]
 }

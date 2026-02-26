@@ -149,3 +149,6 @@ export { useTypeSolverStressLab } from './hooks/useTypeSolverStressLab';
 export { TypeSolverAtlasCanvas } from './components/stress-lab/TypeSolverAtlasCanvas';
 export { TypeSolverDecisionMatrix } from './components/stress-lab/TypeSolverDecisionMatrix';
 export { TypeSolverStressWorkbenchPage } from './pages/TypeSolverStressWorkbenchPage';
+export { TypeLevelStressConductorPage } from './pages/TypeLevelStressConductorPage';
+export { TypeLevelConductorPanel } from './components/stress-lab/TypeLevelConductorPanel';
+export { useTypeLevelStressConductor } from './hooks/useTypeLevelStressConductor';

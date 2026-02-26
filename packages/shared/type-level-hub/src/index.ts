@@ -276,3 +276,4 @@ export * as typeLevelHubDispatchGrid from './type-level-hub-dispatch-grid';
 export * as stressHubComposition from './stress-hub-composition';
 export * as typeLevelComposition from '@shared/type-level-composition';
 export * from './type-level-stress-constructor';
+export * as typeLevelFabric from '@shared/type-level-fabric';

@@ -567,3 +567,5 @@ export * as stressRecursiveBroker from './stress-recursive-broker';
 export * as stressTemplateRouteCommand from './stress-template-route-command';
 export * as stressControlflowSwitchyard from './stress-controlflow-switchyard';
 export * as stressBinaryExpressionArena from './stress-binary-expression-arena';
+export * as stressFabricAtlas from './stress-fabric-atlas';
+export * as typeLevelFabric from '@shared/type-level-fabric';

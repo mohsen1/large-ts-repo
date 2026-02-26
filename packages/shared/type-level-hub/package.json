@@ -18,6 +18,7 @@
     "@shared/type-level-composition": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/type-level-fabric": "workspace:*",
     "@shared/util": "workspace:*",
     "zod": "^3.24.0"
   }
