@@ -10,3 +10,5 @@ export * from './telemetry';
 export * from './workspace';
 export * from './class-hierarchies';
 export * from './dispatch-control';
+export * from './branching-workflow';
+export * from './generic-instantiations';

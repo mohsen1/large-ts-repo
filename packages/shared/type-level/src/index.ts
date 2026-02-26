@@ -3,8 +3,52 @@ export * from './plugin-registry';
 export * from './variadic-helpers';
 export * from './async-disposable';
 export * from './plugin-bridge';
+export * from './mapped-recursion';
+export * from './intersections';
+export * from './route-templates';
+export * from './solver-constraints';
 export * from './stress-types';
 export * from './stress-runtime';
+export * as stressConditionalGraph from './stress-conditional-graph';
+export * as stressHierarchy from './stress-hierarchy';
+export * as stressIntersections from './stress-intersections';
+export * as stressTemplateRoutes from './stress-template-routes';
+export * as stressControlflow from './stress-controlflow';
+export * as stressGenericSolver from './stress-generic-solver';
+export * as stressTypeLabs from './stress-type-level-labs';
+export * as stressClassChains from './stress-class-hierarchies';
+export * as stressIntersectionLabs from './stress-intersection-labs';
+export * as stressTemplateWorkflows from './stress-template-workflows';
+export * as stressRecursionPipelines from './stress-recursion-pipelines';
+
+export {
+  type RecoveryVerb,
+  type RecoveryDomain,
+  type RecoverySeverity,
+  type RecoveryId,
+  type RecoveryCommand,
+  type StageTransition,
+  type ParsedRecoveryCommand,
+  type ResolveCommand,
+  type StageChain,
+  type CommandChain,
+  type CommandProfile,
+  type CatalogCommands,
+  type CommandCatalog,
+  type ResolveTuple,
+  type ResolveUnion,
+  type StageTransitionCatalog,
+  type RouteConstraintSet,
+  commandCatalog,
+  type StageByActionOutput,
+  type DecDepth,
+  type FiniteDepth,
+  parseRecoveryCommand,
+  resolveRecoveryCommand,
+  commandEnvelope,
+  catalogProfile,
+  routeConstraintSet,
+} from './advanced-conditional';
 
 export type Primitive = string | number | boolean | bigint | symbol | null | undefined;
 export type JsonPrimitive = string | number | boolean | null;

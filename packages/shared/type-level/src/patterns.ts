@@ -202,5 +202,9 @@ export function isResult<T, E>(value: Result<T, E>): value is { ok: true; value:
 }
 
 export function unwrapResult<T, E>(value: Result<T, E>, fallback: (error: E) => T): T {
-  return value.ok ? value.value : fallback(value.error);
+  if (isResult(value)) {
+    return value.value;
+  }
+
+  return fallback(value.error);
 }

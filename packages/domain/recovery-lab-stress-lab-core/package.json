@@ -14,6 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@shared/type-level": "workspace:*",
     "@domain/recovery-lab-synthetic-orchestration": "workspace:*",
     "@shared/orchestration-lab-core": "workspace:*"
   }

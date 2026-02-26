@@ -75,7 +75,7 @@ export type SchemaPath<TSchema extends Record<string, object>> = {
 };
 
 export type CommandRegistry<T extends readonly StressCommand[]> = SchemaByCommand<T> & {
-  readonly routeMap: Readonly<Record<ResolveCommand<T[number]>['category'] & string, string>>;
+  readonly routeMap: Readonly<Record<string, string>>;
 };
 
 type ConstraintMap<T extends ReadonlyArray<{ readonly domain: string; readonly signal: string; readonly checksum: string }>> = {
