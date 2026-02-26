@@ -48,3 +48,7 @@ export * as compilerOrchestratorGrid from './compiler-orchestrator-grid';
 export * from './compiler-stress-matrix';
 export * from './compiler-stress-hub-lab';
 export * as compilerControlflowLabyrinth from './compiler-controlflow-labyrinth';
+export * from './compiler-type-level-atlas';
+export * from './compiler-control-hub';
+export * from './compiler-instantiation-galaxy';
+export * from './compiler-hub-dispatcher';

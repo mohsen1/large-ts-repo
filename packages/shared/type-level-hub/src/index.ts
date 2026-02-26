@@ -258,5 +258,6 @@ export * as stressConstraintOrchestrationGrid from '@shared/type-level/stress-co
 export * as stressGenericInstantiationAtlas from '@shared/type-level/stress-generic-instantiation-atlas';
 export * as stressControlflowGalaxy from '@shared/type-level/stress-controlflow-galaxy';
 export * as stressModernRuntimeGuards from '@shared/type-level/stress-modern-runtime-guards';
+export * as typeLevelHubDispatchGrid from './type-level-hub-dispatch-grid';
 export * as stressHubComposition from './stress-hub-composition';
 export * as typeLevelComposition from '@shared/type-level-composition';

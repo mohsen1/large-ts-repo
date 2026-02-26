@@ -137,3 +137,6 @@ export { HorizonObservabilityDashboard } from './components/horizon-observabilit
 export { HorizonObservabilitySignalHeatmap } from './components/horizon-observability/HorizonObservabilitySignalHeatmap';
 export { HorizonObservabilityPulseStrip } from './components/horizon-observability/HorizonObservabilityPulseStrip';
 export { useHorizonObservability } from './hooks/useHorizonObservability';
+export { TypeCompilerAtlasPanel } from './components/stress-lab/TypeCompilerAtlasPanel';
+export { TypeCompilerOrbitPanel } from './components/stress-lab/TypeCompilerOrbitPanel';
+export { TypeCompilerAtlasWorkbenchPage } from './pages/TypeCompilerAtlasWorkbenchPage';
