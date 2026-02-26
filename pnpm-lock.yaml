@@ -875,6 +875,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/type-level-composition':
+        specifier: workspace:*
+        version: link:../../shared/type-level-composition
       '@shared/type-level-hub':
         specifier: workspace:*
         version: link:../../shared/type-level-hub
@@ -8649,6 +8652,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/shared/type-level-composition:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../type-level
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
+
   packages/shared/type-level-hub:
     dependencies:
       '@shared/core':
@@ -8660,6 +8675,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../type-level
+      '@shared/type-level-composition':
+        specifier: workspace:*
+        version: link:../type-level-composition
       '@shared/util':
         specifier: workspace:*
         version: link:../util
