@@ -1,4 +1,4 @@
-import type { RouteTemplate, FacetCatalog, FacetToken, RouteFacet } from '@shared/type-level-hub';
+import type { FacetCatalog, FacetToken, RouteFacet } from '@shared/type-level-hub';
 import { type NoInfer } from '@shared/type-level';
 
 export type MeshArea = 'fabric' | 'signal' | 'policy' | 'timeline' | 'continuity';
@@ -120,7 +120,17 @@ export const createMeshEnvelope = <const T extends MeshRouteCatalog>(
   };
 };
 
-export type RouteLookupResult<T extends MeshRouteCatalog> = RouteTemplate<T[keyof T & string]>;
+export type RouteTemplateParts<T extends string> = T extends `/${infer Domain}/${infer Action}/${infer Route}`
+  ? {
+      readonly domain: Domain;
+      readonly action: Action;
+      readonly route: Route;
+    }
+  : never;
+
+export type RouteLookupResult<T extends MeshRouteCatalog, K extends keyof T & string = keyof T & string> = T[K] extends string
+  ? RouteTemplateParts<T[K]>
+  : never;
 
 export type MeshSignalBoard<T extends MeshRouteCatalog> = ReadonlyArray<{
   readonly id: keyof T & string;

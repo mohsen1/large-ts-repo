@@ -1,4 +1,5 @@
 export * from './patterns';
+export type { NoInfer, RecursivePath } from './patterns';
 export * from './plugin-registry';
 export * from './variadic-helpers';
 export * from './async-disposable';

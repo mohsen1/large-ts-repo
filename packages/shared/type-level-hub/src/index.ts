@@ -22,7 +22,6 @@ export type {
   TypeHubRouteVerb,
   TypeHubVerb,
   TypeHubVerbToken,
-  RouteTemplate,
   RouteTemplate as HubRouteTemplate,
 } from './type-level-surface';
 
@@ -103,7 +102,7 @@ export type {
   GalaxyCatalog,
   GalaxyDispatch,
   GalaxyRoute,
-  ResolveDispatch,
+  ResolveDispatch as GalaxyResolveDispatch,
   RouteCatalog,
   RouteCatalogEntries,
   RouteMap,
@@ -146,7 +145,7 @@ export type {
   StageMode,
   StagePayload,
   StageResult,
-  StageState,
+  StageState as StageAccumulatorState,
   StageResolver,
 } from '@shared/type-level/stress-overload-generic-factory';
 
@@ -197,7 +196,7 @@ export { evaluateFlowGraph } from '@shared/type-level/stress-controlflow-branch-
 export type { BranchResult } from '@shared/type-level/stress-controlflow-branch-arena';
 export type { BuildArithmeticChain, BinaryExpression, StringTemplateChain, ParseEventCode } from '@shared/type-level/stress-binary-expression-knot';
 export type {
-  SolverFactory,
+  SolverFactory as MatrixSolverFactory,
   createSolverInvocationMatrix,
   SolverBrand,
   BrandedSolverResult,
@@ -233,9 +232,9 @@ export type {
 } from '@shared/type-level/stress-binary-expression-lane';
 export type {
   SolverContract,
-  SolverFactory as InstantiationSolverFactory,
+  SolverFactory as HubInstantiationSolverFactory,
   SolverResult as InstantiationSolverResult,
-  SolverRegistry,
+  SolverRegistry as HubSolverRegistry,
   createSolverFactory,
   composeSolverPipeline,
 } from '@shared/type-level/stress-instantiation-hub';
@@ -277,3 +276,72 @@ export * as stressHubComposition from './stress-hub-composition';
 export * as typeLevelComposition from '@shared/type-level-composition';
 export * from './type-level-stress-constructor';
 export * as typeLevelFabric from '@shared/type-level-fabric';
+export * as stressConditionalDispatchGrid from '@shared/type-level/stress-conditional-dispatch-grid';
+export * as stressDeepSubtypeEscalation from '@shared/type-level/stress-deep-subtype-escalation';
+export * as stressDisjointIntersectionForge from '@shared/type-level/stress-disjoint-intersection-forge';
+export * as stressTemplateRemapConstellation from '@shared/type-level/stress-template-remap-constellation';
+export * as stressRecursiveCascadeLattice from '@shared/type-level/stress-recursive-cascade-lattice';
+export * as stressTemplateRouteMatrix from '@shared/type-level/stress-template-route-matrix';
+export * as stressControlflowSwitchyard from '@shared/type-level/stress-controlflow-switchyard';
+export * as stressBinaryExpressionGalaxy from '@shared/type-level/stress-binary-expression-galaxy';
+export * as stressGenericInstantiationAtScale from '@shared/type-level/stress-generic-instantiation-at-scale';
+export type {
+  ResolveDispatch,
+  DispatchUnion,
+  DispatchResultSet,
+  DispatchFeed,
+  DispatchChain,
+  DispatchCatalog,
+} from '@shared/type-level/stress-conditional-dispatch-grid';
+export type {
+  CarrierLayer20,
+  DeepCarrierDepth,
+  DeepSubtypeMatrix,
+  DepthCarrier40,
+} from '@shared/type-level/stress-deep-subtype-escalation';
+export type {
+  DispatchMapProfile,
+  ComposeDisjoint,
+  IntersectedPayload,
+  MapByPolicy,
+} from '@shared/type-level/stress-disjoint-intersection-forge';
+export type {
+  TemplateMatrix,
+  TemplateProjection,
+  TemplateMap,
+  RouteTemplateCatalog,
+} from '@shared/type-level/stress-template-remap-constellation';
+export type {
+  RouteTemplate,
+  RouteDispatch,
+  RouteDispatchMatrix,
+  RouteResolver,
+  RouteMatch,
+} from '@shared/type-level/stress-template-route-matrix';
+export type {
+  StageEvent,
+  StageState,
+  StageRouter,
+  FlowBranch,
+  BranchEnvelope,
+  StageResultByKind,
+} from '@shared/type-level/stress-controlflow-switchyard';
+export type {
+  BinaryExprResult,
+  ChainTemplate,
+  EvaluateBinary,
+  ParsedBooleanExpressionSet,
+  EvaluatedExpressionSet,
+  BuildBoolTuple,
+  boolTuple,
+} from '@shared/type-level/stress-binary-expression-galaxy';
+export type {
+  SolverFactory,
+  SolverRegistry,
+  SolverConstraint,
+  SolverAdapter,
+  ConstraintUnion,
+  SolverSelection,
+  BrandedId,
+  BrandedTag,
+} from '@shared/type-level/stress-generic-instantiation-at-scale';
