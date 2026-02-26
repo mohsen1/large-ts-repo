@@ -20,6 +20,15 @@ export * from './route-templates';
 export * from './solver-constraints';
 export * from './stress-types';
 export * from './stress-runtime';
+export * as stressConditionalConvergence from './stress-conditional-convergence';
+export * as stressSubtypeChainCascade from './stress-subtype-chain-cascade';
+export * as stressMappedRouteMatrices from './stress-mapped-route-matrices';
+export * as stressRecursiveMutualLattice from './stress-recursive-mutual-lattice';
+export * as stressTemplateRouteConstellations from './stress-template-route-constellations';
+export * as stressControlflowBranchArenaExtended from './stress-controlflow-branch-arena-extended';
+export * as stressBinaryLiteralArithmetic from './stress-binary-literal-arithmetic';
+export * as stressGenericInstantiationArsenal from './stress-generic-instantiation-arsenal';
+export * as stressSolverConflictSimulator from './stress-solver-conflict-simulator';
 export * as stressConditionalGraph from './stress-conditional-graph';
 export * as stressHierarchy from './stress-hierarchy';
 export * as stressIntersections from './stress-intersections';
@@ -43,7 +52,19 @@ export * as stressRecursiveSynthesis from './stress-recursive-synthesis';
 export * as stressControlflowSaga from './stress-controlflow-saga';
 export * as stressSolverConstraintsHalo from './stress-solver-constraints-halo';
 export * as stressHydra from './stress-hydra-conditional-lattice';
-export * from './stress-binary-chains';
+export * as stressBinaryChains from './stress-binary-chains';
+export {
+  analyzeSignalCatalog,
+  signalPriority,
+  signalRouteCatalog,
+  signalTruthProfile,
+  type SignalCatalogUnion,
+  type SignalDomain,
+  type SignalMode,
+  type SignalState,
+  type SignalVerb,
+  signalChainSignature,
+} from './stress-binary-chains';
 export * from './stress-generic-instantiation-lab';
 export type { OrbitDomain, OrbitAction, OrbitRoute } from './stress-conditional-orbit';
 export type { NestedMap } from './stress-mapped-recursion-workbench';
@@ -511,3 +532,12 @@ export * as stressRecursiveSignalWorkflows from './stress-recursive-signal-workf
 export * as stressInteropConstraintOrchestration from './stress-interop-constraint-orchestration';
 export * as stressControlflowVoltage from './stress-controlflow-voltage';
 export * from './stress-subtype-hierarchy-core';
+export * as stressConditionalFusionMatrix from './stress-conditional-fusion-matrix';
+export * as stressHierarchyDepthShip from './stress-hierarchy-depth-ship';
+export * as stressDisjointMappedPorts from './stress-disjoint-mapped-ports';
+export * as stressTemplateRouteLabyrinth from './stress-template-route-labyrinth';
+export * as stressRecursiveRuntimeLattice from './stress-recursive-runtime-lattice';
+export * as stressConstraintOrchestrationGrid from './stress-constraint-orchestration-grid';
+export * as stressGenericInstantiationAtlas from './stress-generic-instantiation-atlas';
+export * as stressControlflowGalaxy from './stress-controlflow-galaxy';
+export * as stressModernRuntimeGuards from './stress-modern-runtime-guards';

@@ -75,7 +75,7 @@ export const StressBinaryFlowPanel: FC<BinaryPanelProps> = ({ compact = false })
   );
 
   const signatures = useMemo(() => {
-    const values = payload.routes.map((route, index) => {
+    const values = payload.routes.map((route: SignalCatalogUnion, index: number) => {
       const typedRoute: SignalCatalogUnion = route;
       const signature = signalChainSignature(typedRoute, mode, mode);
       const parts = typedRoute.split('/');
@@ -100,32 +100,36 @@ export const StressBinaryFlowPanel: FC<BinaryPanelProps> = ({ compact = false })
   }, [mode, payload.routes]);
 
   const bucketed = useMemo<Record<'critical' | 'high' | 'normal', SignalRouteBucket[]>>(() => {
-    const base = signalTruthProfile.map((expr) => expr.includes('1'));
-    const severity = base.reduce((acc, truth, index) => {
-      const weight = index + (truth ? 1 : 0) * 17;
-      if (weight >= 12) {
-        acc.critical.push(signatures[index % signatures.length] as SignalRouteBucket);
-      } else if (weight >= 6) {
-        acc.high.push(signatures[index % signatures.length] as SignalRouteBucket);
-      } else {
-        acc.normal.push(signatures[index % signatures.length] as SignalRouteBucket);
-      }
-      return acc;
-    }, {
+    const base = signalTruthProfile.map((expr: string) => expr.includes('1'));
+    const severity = base.reduce(
+      (acc, truth: boolean, index: number) => {
+        const weight = index + (truth ? 1 : 0) * 17;
+        if (weight >= 12) {
+          acc.critical.push(signatures[index % signatures.length] as SignalRouteBucket);
+        } else if (weight >= 6) {
+          acc.high.push(signatures[index % signatures.length] as SignalRouteBucket);
+        } else {
+          acc.normal.push(signatures[index % signatures.length] as SignalRouteBucket);
+        }
+        return acc;
+      },
+      {
       critical: [],
       high: [],
       normal: [],
-    } as Record<'critical' | 'high' | 'normal', SignalRouteBucket[]>);
+      } as Record<'critical' | 'high' | 'normal', SignalRouteBucket[]>,
+    );
     return severity;
   }, [signatures]);
 
-  const filtered = signatures.filter((entry) => {
+  const filtered = signatures.filter((entry: SignalRouteBucket) => {
     const passActive = active ? payload.active.includes(entry.route) : true;
     const passScore = entry.score >= minScore;
     return passActive && passScore;
   });
 
-  const summary = filtered.reduce((acc, entry) => {
+  const summary = filtered.reduce(
+    (acc, entry: SignalRouteBucket) => {
     if (entry.score > 60) {
       acc.hot += 1;
     } else if (entry.score > 30) {
@@ -134,7 +138,9 @@ export const StressBinaryFlowPanel: FC<BinaryPanelProps> = ({ compact = false })
       acc.cool += 1;
     }
     return acc;
-  }, { hot: 0, warm: 0, cool: 0 });
+    },
+    { hot: 0, warm: 0, cool: 0 },
+  );
 
   return (
     <section style={{ border: '1px solid #2f3650', borderRadius: 12, padding: 12 }}>
