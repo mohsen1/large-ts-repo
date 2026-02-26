@@ -1,8 +1,8 @@
 # Project Graph
 
-Generated from TypeScript project references in `tsconfig.json` on `2026-02-25T07:05:18.559Z`.
+Generated from TypeScript project references in `tsconfig.json` on `2026-02-26T00:32:05.209Z`.
 
-- Projects: **423**
+- Projects: **488**
 
 ## Reference Tree
 
@@ -32,6 +32,7 @@ root tsconfig.json
 │ ├─┬ domain/adaptive-ops-metrics
 │ │ └─┬ domain/adaptive-ops
 │ │   └── shared/observability-contracts
+│ ├── domain/recovery-horizon-observability
 │ ├── domain/recovery-lattice
 │ ├─┬ domain/recovery-operations-control-plane
 │ │ └─┬ domain/recovery-operations-models
@@ -42,10 +43,11 @@ root tsconfig.json
 │ │ │ └── data/repositories
 │ │ └─┬ service/adaptive-ops-runner
 │ │   └── infrastructure/incident-connectors
-│ ├─┬ service/recovery-horizon-orchestrator
-│ │ └─┬ infrastructure/recovery-scenario-orchestration-adapters
-│ │   ├── domain/recovery-scenario-engine
-│ │   └── shared/zod-adapters
+│ ├─┬ service/recovery-horizon-observability-orchestrator
+│ │ └─┬ service/recovery-horizon-orchestrator
+│ │   └─┬ infrastructure/recovery-scenario-orchestration-adapters
+│ │     ├── domain/recovery-scenario-engine
+│ │     └── shared/zod-adapters
 │ ├─┬ service/recovery-incident-command-orchestrator
 │ │ ├── domain/incident-command-core
 │ │ ├─┬ platform/messaging
@@ -62,6 +64,11 @@ root tsconfig.json
 ├── app/admin-portal
 ├── app/api-gateway
 ├── app/cli
+├─┬ app/fault-intel-console
+│ ├─┬ data/fault-intel-store
+│ │ └─┬ domain/fault-intel-orchestration
+│ │   └── shared/fault-intel-runtime
+│ └── service/fault-intel-orchestrator
 ├─┬ app/fuzzy-console
 │ └─┬ service/fuzzy-router
 │   └── domain/fuzzy
@@ -84,19 +91,37 @@ root tsconfig.json
 │ ├─┬ platform/security
 │ │ └── shared/aws-adapters
 │ └── service/policy-orchestration-engine
+├─┬ app/recovery-autonomy-console
+│ ├─┬ data/recovery-autonomy-experiment-store
+│ │ └── domain/recovery-autonomy-experiment
+│ ├─┬ data/recovery-autonomy-store
+│ │ └── domain/recovery-autonomy-graph
+│ ├── service/recovery-autonomy-experiment-orchestrator
+│ └── service/recovery-autonomy-orchestrator
+├─┬ app/recovery-cascade-console
+│ └─┬ domain/recovery-cascade-orchestration
+│   └── shared/cascade-orchestration-kernel
 ├─┬ app/recovery-chaos-lab
 │ ├─┬ data/recovery-chaos-observability
 │ │ └── domain/recovery-chaos-lab
-│ └─┬ service/recovery-chaos-intelligence-orchestrator
-│   └── service/recovery-chaos-orchestrator
+│ ├── domain/recovery-chaos-sim-models
+│ ├─┬ service/recovery-chaos-intelligence-orchestrator
+│ │ └── service/recovery-chaos-orchestrator
+│ └── service/recovery-chaos-lab-intelligence
 ├─┬ app/recovery-chronicle-console
+│ ├─┬ data/recovery-chronicle-graph-store
+│ │ └── domain/recovery-chronicle-graph-core
 │ ├─┬ data/recovery-chronicle-store
 │ │ └── domain/recovery-chronicle-core
+│ ├─┬ domain/recovery-chronicle-lab-core
+│ │ └── shared/chronicle-orchestration-protocol
+│ ├── service/recovery-chronicle-graph-orchestrator
 │ └── service/recovery-chronicle-orchestrator
 ├─┬ app/recovery-cockpit-ui
 │ ├─┬ data/recovery-cockpit-analytics
 │ │ ├─┬ data/recovery-cockpit-store
-│ │ │ └── domain/recovery-cockpit-models
+│ │ │ ├── domain/recovery-cockpit-models
+│ │ │ └── domain/recovery-cockpit-orchestration-core
 │ │ └─┬ domain/recovery-cockpit-intelligence
 │ │   └── domain/recovery-cockpit-workloads
 │ ├─┬ data/recovery-cockpit-cognitive-store
@@ -104,12 +129,13 @@ root tsconfig.json
 │ ├─┬ data/recovery-cockpit-constellation-store
 │ │ └── domain/recovery-cockpit-constellation-core
 │ ├── data/recovery-cockpit-insights
-│ ├─┬ data/recovery-cockpit-intent-store
-│ │ └── domain/recovery-cockpit-orchestration-core
+│ ├── data/recovery-cockpit-intent-store
 │ ├─┬ data/recovery-cockpit-signal-mesh-store
 │ │ └── domain/recovery-cockpit-signal-mesh
 │ ├─┬ domain/recovery-cockpit-synthetic-lab
 │ │ └── shared/recovery-orchestration-runtime
+│ ├─┬ domain/recovery-command-lattice-core
+│ │ └── shared/command-graph-kernel
 │ ├── domain/recovery-operations-cadence
 │ ├── service/recovery-cockpit-cognitive-orchestrator
 │ ├── service/recovery-cockpit-constellation-orchestrator
@@ -117,9 +143,19 @@ root tsconfig.json
 │ ├─┬ service/recovery-cockpit-orchestrator
 │ │ └── shared/typed-orchestration-core
 │ ├── service/recovery-cockpit-signal-orchestrator
+│ ├─┬ service/recovery-orchestration-studio-engine
+│ │ └─┬ domain/recovery-orchestration-design
+│ │   ├── shared/orchestration-kernel
+│ │   └── shared/recovery-lab-kernel
+│ ├─┬ service/recovery-stress-lab-orchestrator
+│ │ ├─┬ data/recovery-incident-lab-store
+│ │ │ └── domain/recovery-lab-orchestration-core
+│ │ └── data/recovery-stress-lab-orchestration-store
+│ ├── shared/cockpit-studio-core
 │ ├─┬ shared/mesh-control-plane
 │ │ └── shared/orchestration-lab-core
-│ └── shared/ops-orchestration-runtime
+│ ├── shared/ops-orchestration-runtime
+│ └── shared/quantum-studio-core
 ├─┬ app/recovery-console
 │ ├─┬ data/continuity-readiness-store
 │ │ └── domain/recovery-continuity-readiness
@@ -136,11 +172,13 @@ root tsconfig.json
 │ │ └── domain/recovery-ops-orchestration-lab
 │ ├─┬ data/recovery-playbook-store
 │ │ └── domain/recovery-playbooks
+│ ├─┬ data/recovery-quantum-store
+│ │ └─┬ domain/recovery-quantum-orchestration
+│ │   └── shared/recovery-quantum-runtime
 │ ├─┬ data/recovery-simulation-metrics
 │ │ └── domain/recovery-simulation-planning
 │ ├─┬ data/recovery-simulation-store
 │ │ └── domain/recovery-simulation-core
-│ ├── data/recovery-stress-lab-orchestration-store
 │ ├─┬ data/recovery-synthetic-orchestration-store
 │ │ └── domain/recovery-synthetic-orchestration
 │ ├─┬ data/recovery-temporal-store
@@ -148,6 +186,7 @@ root tsconfig.json
 │ │   └── shared/temporal-ops-runtime
 │ ├─┬ domain/recovery-automation-orchestrator
 │ │ └── shared/automation-orchestration-runtime
+│ ├── domain/recovery-chronicle-orchestrator
 │ ├── domain/recovery-command-forge
 │ ├── domain/recovery-command-orchestration
 │ ├── domain/recovery-command-studio
@@ -159,15 +198,17 @@ root tsconfig.json
 │ │ └── domain/risk
 │ ├─┬ domain/recovery-incident-saga
 │ │ └── shared/incident-saga-core
-│ ├── domain/recovery-lab-orchestration-core
+│ ├─┬ domain/recovery-lab-console-labs
+│ │ └── domain/recovery-lab-console-core
 │ ├── domain/recovery-lab-stress-lab-core
 │ ├── domain/recovery-ops-playbook
-│ ├─┬ domain/recovery-orchestration-design
-│ │ ├── shared/orchestration-kernel
-│ │ └── shared/recovery-lab-kernel
+│ ├─┬ domain/recovery-orchestration-lab-models
+│ │ └── shared/recovery-orchestration-lab-runtime
 │ ├── domain/recovery-orchestration-planning
 │ ├── domain/recovery-scenario-orchestration
 │ ├── domain/recovery-simulation-lab-models
+│ ├─┬ domain/recovery-workbench-models
+│ │ └── shared/recovery-workbench-runtime
 │ ├── service/continuity-readiness-orchestrator
 │ ├── service/incident-fusion-orchestrator
 │ ├─┬ service/incident-orchestration
@@ -220,7 +261,6 @@ root tsconfig.json
 │ │   └── domain/recovery-ops-orchestration-surface
 │ ├── service/recovery-ops-playbook-orchestrator
 │ ├── service/recovery-orchestration-atlas
-│ ├── service/recovery-orchestration-studio-engine
 │ ├── service/recovery-playbook-engine
 │ ├─┬ service/recovery-playbook-lab-orchestrator
 │ │ └── domain/recovery-playbook-lab
@@ -264,11 +304,11 @@ root tsconfig.json
 │ │ └─┬ data/recovery-signal-orchestration-store
 │ │   └── domain/recovery-signal-orchestration-models
 │ ├── service/recovery-simulation-orchestrator
-│ ├─┬ service/recovery-stress-lab-orchestrator
-│ │ └── data/recovery-incident-lab-store
 │ ├── service/recovery-synthetic-orchestrator
 │ ├── service/recovery-temporal-orchestrator
-│ └── shared/orchestration-runtime
+│ ├── service/recovery-workbench-orchestrator
+│ ├── shared/orchestration-runtime
+│ └── shared/recovery-intent-graph-runtime
 ├─┬ app/recovery-drill-observer
 │ ├─┬ data/recovery-drill-lab-store
 │ │ └── domain/recovery-drill-lab
@@ -278,6 +318,18 @@ root tsconfig.json
 │ │ │ └── domain/recovery-drill-telemetry
 │ │ └── infrastructure/recovery-drill-archive
 │ └── service/recovery-drill-surface-orchestrator
+├─┬ app/recovery-ecosystem-console
+│ ├─┬ data/recovery-ecosystem-analytics-store
+│ │ └── domain/recovery-ecosystem-analytics
+│ ├─┬ data/recovery-ecosystem-store
+│ │ └── domain/recovery-ecosystem-core
+│ ├─┬ data/recovery-lens-observability-store
+│ │ └── domain/recovery-lens-observability-models
+│ ├── domain/recovery-ecosystem-orchestrator-core
+│ ├─┬ service/recovery-ecosystem-analytics-orchestrator
+│ │ └── data/recovery-ecosystem-analytics-plan-catalog
+│ ├── service/recovery-ecosystem-orchestrator
+│ └── service/recovery-lens-observability-orchestrator
 ├─┬ app/recovery-incident-dashboard
 │ ├─┬ data/incident-signal-store
 │ │ └── domain/incident-signal-intelligence
@@ -289,9 +341,9 @@ root tsconfig.json
 │ ├── domain/recovery-command-network
 │ ├── domain/recovery-horizon-studio-core
 │ ├── domain/recovery-incident-analytics
-│ ├── domain/recovery-lab-console-core
+│ ├── domain/recovery-scenario-design
 │ ├─┬ domain/recovery-scenario-lens
-│ │ └── data/query-models
+│ │ └── shared/recovery-synthesis-runtime
 │ ├── infrastructure/recovery-scenario-gateway
 │ ├─┬ service/recovery-chaos-lab-console-orchestrator
 │ │ └── shared/chaos-lab-console-kernel
@@ -301,11 +353,15 @@ root tsconfig.json
 │ ├── service/recovery-incident-scenario-orchestrator
 │ ├─┬ service/recovery-intent-graph-orchestrator
 │ │ └── domain/recovery-intent-graph
+│ ├─┬ service/recovery-scenario-design-orchestrator
+│ │ └── shared/scenario-design-kernel
 │ ├── service/recovery-situational-orchestrator
 │ ├── service/recovery-stability-orchestrator
 │ ├── service/recovery-strategy-orchestrator
-│ ├── service/recovery-synthesis-orchestrator
-│ └── service/recovery-workflow-orchestrator
+│ ├─┬ service/recovery-synthesis-orchestrator
+│ │ └── data/query-models
+│ ├── service/recovery-workflow-orchestrator
+│ └── shared/recovery-orchestration-surface
 ├─┬ app/recovery-incident-lab-console
 │ ├── domain/recovery-lab-adaptive-orchestration
 │ ├── domain/recovery-lab-console-runtime
@@ -323,9 +379,18 @@ root tsconfig.json
 │ ├── service/recovery-lab-orchestration-studio
 │ └── service/recovery-lab-orchestrator
 ├─┬ app/recovery-mesh-console
-│ ├── domain/recovery-ops-mesh
-│ └── service/recovery-ops-mesh-engine
-├── app/recovery-playbook-orchestrator
+│ ├─┬ data/recovery-ops-mesh-observability-store
+│ │ └── domain/recovery-ops-mesh
+│ ├── service/recovery-ops-mesh-engine
+│ └── service/recovery-ops-mesh-observability-orchestrator
+├─┬ app/recovery-playbook-orchestrator
+│ ├─┬ data/recovery-playbook-automation-store
+│ │ └── domain/recovery-playbook-orchestration-core
+│ ├── domain/recovery-playbook-observability-core
+│ ├─┬ domain/recovery-playbook-studio-core
+│ │ └── shared/playbook-studio-runtime
+│ ├── service/recovery-playbook-automation-engine
+│ └── service/recovery-playbook-observability-orchestrator
 ├─┬ app/recovery-timeline-studio
 │ ├─┬ data/recovery-ops-playbook-studio-store
 │ │ └── domain/recovery-ops-playbook-studio
