@@ -7,95 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  tsc_v5:
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    outputs:
-      compiler: ${{ steps.benchmark.outputs.compiler }}
-      status: ${{ steps.benchmark.outputs.status }}
-      duration_ms: ${{ steps.benchmark.outputs.duration_ms }}
-      duration_s: ${{ steps.benchmark.outputs.duration_s }}
-      command: ${{ steps.benchmark.outputs.command }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Validate package manifest JSON
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          echo "Validating all package.json files..."
-          fail=0
-
-          while IFS= read -r -d '' file; do
-            if ! node -e "const fs = require('node:fs'); JSON.parse(fs.readFileSync(process.argv[1], 'utf8'))" "$file"; then
-              echo "::error file=$file::Invalid JSON in package.json"
-              fail=1
-            fi
-          done < <(find . -name package.json -print0)
-
-          if [ "$fail" -ne 0 ]; then
-            echo "One or more package.json files are invalid JSON."
-            exit 1
-          fi
-
-          echo "All package.json files are valid JSON."
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile=false
-
-      - name: Run compiler benchmark
-        id: benchmark
-        shell: bash
-        env:
-          COMPILER: tsc-v5
-          NPM_SCRIPT: typecheck:full
-          ALLOW_FAILURE: false
-        run: |
-          set -euo pipefail
-
-          BENCH_DIR="$(pwd)/.bench"
-          mkdir -p "$BENCH_DIR"
-          pnpm clean
-
-          LOG_FILE="${BENCH_DIR}/${COMPILER// /_}.log"
-          start_ms="$(date +%s%3N)"
-          set +e
-          pnpm "$NPM_SCRIPT" 2>&1 | tee "$LOG_FILE"
-          rc="${PIPESTATUS[0]}"
-          set -e
-          end_ms="$(date +%s%3N)"
-          duration_ms="$((end_ms - start_ms))"
-          duration_s="$(awk -v ms="$duration_ms" 'BEGIN { printf "%.3f", ms/1000 }')"
-
-          if [ "$rc" -eq 0 ]; then
-            status="PASS"
-          else
-            status="FAIL($rc)"
-          fi
-
-          {
-            echo "compiler=$COMPILER"
-            echo "status=$status"
-            echo "duration_ms=$duration_ms"
-            echo "duration_s=$duration_s"
-            echo "command=pnpm $NPM_SCRIPT"
-          } >> "$GITHUB_OUTPUT"
-
-          if [ "$rc" -ne 0 ] && [ "$ALLOW_FAILURE" != "true" ]; then
-            exit "$rc"
-          fi
-
   tsc_v6:
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -368,7 +279,7 @@ jobs:
   summarize:
     name: summarize
     runs-on: ubuntu-latest
-    needs: [tsc_v5, tsc_v6, tsgo, tsz]
+    needs: [tsc_v6, tsgo, tsz]
     if: always()
     steps:
       - name: Checkout
@@ -385,29 +296,22 @@ jobs:
           summary_file="$BENCH_DIR/summary.table.md"
           results_file="$BENCH_DIR/results.csv"
 
-          tsc_v5_status="${{ needs.tsc_v5.outputs.status }}"
           tsc_v6_status="${{ needs.tsc_v6.outputs.status }}"
           tsgo_status="${{ needs.tsgo.outputs.status }}"
           tsz_status="${{ needs.tsz.outputs.status }}"
 
-          tsc_v5_duration="${{ needs.tsc_v5.outputs.duration_s }}"
           tsc_v6_duration="${{ needs.tsc_v6.outputs.duration_s }}"
           tsgo_duration="${{ needs.tsgo.outputs.duration_s }}"
           tsz_duration="${{ needs.tsz.outputs.duration_s }}"
 
-          tsc_v5_duration_ms="${{ needs.tsc_v5.outputs.duration_ms }}"
           tsc_v6_duration_ms="${{ needs.tsc_v6.outputs.duration_ms }}"
           tsgo_duration_ms="${{ needs.tsgo.outputs.duration_ms }}"
           tsz_duration_ms="${{ needs.tsz.outputs.duration_ms }}"
 
-          tsc_v5_command="${{ needs.tsc_v5.outputs.command }}"
           tsc_v6_command="${{ needs.tsc_v6.outputs.command }}"
           tsgo_command="${{ needs.tsgo.outputs.command }}"
           tsz_command="${{ needs.tsz.outputs.command }}"
 
-          if [ -z "$tsc_v5_status" ]; then
-            tsc_v5_status="FAIL"
-          fi
           if [ -z "$tsc_v6_status" ]; then
             tsc_v6_status="FAIL"
           fi
@@ -418,9 +322,6 @@ jobs:
             tsz_status="FAIL"
           fi
 
-          if [ -z "$tsc_v5_duration" ]; then
-            tsc_v5_duration="0.000"
-          fi
           if [ -z "$tsc_v6_duration" ]; then
             tsc_v6_duration="0.000"
           fi
@@ -431,9 +332,6 @@ jobs:
             tsz_duration="0.000"
           fi
 
-          if [ -z "$tsc_v5_duration_ms" ]; then
-            tsc_v5_duration_ms="0"
-          fi
           if [ -z "$tsc_v6_duration_ms" ]; then
             tsc_v6_duration_ms="0"
           fi
@@ -444,9 +342,6 @@ jobs:
             tsz_duration_ms="0"
           fi
 
-          if [ -z "$tsc_v5_command" ]; then
-            tsc_v5_command="pnpm typecheck:full"
-          fi
           if [ -z "$tsc_v6_command" ]; then
             tsc_v6_command="pnpm typecheck:v6"
           fi
@@ -460,7 +355,6 @@ jobs:
           {
             echo "| Compiler | Status | Duration (s) | Command | Allowed to fail |"
             echo "| --- | --- | ---: | --- | --- |"
-            echo "| tsc v5 | $tsc_v5_status | $tsc_v5_duration | \`$tsc_v5_command\` | false |"
             echo "| tsc v6 | $tsc_v6_status | $tsc_v6_duration | \`$tsc_v6_command\` | false |"
             echo "| tsgo | $tsgo_status | $tsgo_duration | \`$tsgo_command\` | true |"
             echo "| tsz | $tsz_status | $tsz_duration | \`$tsz_command\` | true |"
@@ -468,7 +362,6 @@ jobs:
 
           {
             echo "compiler,status,duration_ms,command,allowed_to_fail"
-            echo "tsc v5,$tsc_v5_status,$tsc_v5_duration_ms,\"$tsc_v5_command\",false"
             echo "tsc v6,$tsc_v6_status,$tsc_v6_duration_ms,\"$tsc_v6_command\",false"
             echo "tsgo,$tsgo_status,$tsgo_duration_ms,\"$tsgo_command\",true"
             echo "tsz,$tsz_status,$tsz_duration_ms,\"$tsz_command\",true"
