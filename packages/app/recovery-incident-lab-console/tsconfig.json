@@ -4,6 +4,11 @@
     "outDir": "./dist",
     "composite": true,
     "declaration": true,
+    "types": [
+      "node",
+      "react",
+      "react-dom"
+    ],
     "jsx": "react-jsx",
     "lib": [
       "DOM",
@@ -55,6 +60,12 @@
     },
     {
       "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level-hub/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-synthetic-orchestration/tsconfig.json"
     },
     {
       "path": "./../../shared/stress-lab-runtime/tsconfig.json"

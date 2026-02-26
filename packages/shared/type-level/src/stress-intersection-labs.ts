@@ -134,7 +134,7 @@ export type FoldedPolicyByMap =
 
 export type IntersectionsEnvelope = ProfileEnvelope<typeof policyShardKeys>;
 
-export const policyIntersectionFixture: IntersectionsEnvelope = {
+export const policyIntersectionFixture = {
   shards: (() => {
     const shardMap = policyShardKeys.reduce((acc, key) => {
     acc[key as keyof PolicyIntersectionMap<typeof policyShardKeys>] = {
@@ -167,4 +167,4 @@ export const policyIntersectionFixture: IntersectionsEnvelope = {
     [`policy:alpha:enabled`]: true,
   } as unknown as IntersectionQuery<typeof policyShardKeys>,
   folded: {} as unknown as { readonly active: typeof policyShardKeys[number] | 'global' },
-};
+} as IntersectionsEnvelope;

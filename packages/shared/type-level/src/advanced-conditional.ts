@@ -211,7 +211,7 @@ export type StageTransitionEdge<T extends RecoveryVerb> = {
 export type StageTransitionCatalog = readonly StageTransitionEdge<RecoveryVerb>[];
 
 export type CommandSetMap<T extends readonly RecoveryCommand[]> = {
-  readonly [K in T[number] as K extends RecoveryCommand ? string : never]: ResolveCommand<K & RecoveryCommand>;
+  readonly [K in T[number]]: ResolveCommand<K>;
 };
 
 export type StageByActionOutput<TAction extends RecoveryVerb> = { readonly head: TAction; readonly next: StageTransition[TAction] };
@@ -258,10 +258,10 @@ export const commandCatalog = [
   'policy-enforce:policy:info:id-39',
   'load-shed:dashboard:medium:id-40',
   'audit-trace:trace:critical:id-41',
- ] as unknown as readonly RecoveryCommand[];
+ ] as const;
 
-export type CommandCatalog = readonly string[];
-export type CatalogCommands = string;
+export type CatalogCommands = (typeof commandCatalog)[number];
+export type CommandCatalog = readonly CatalogCommands[];
 
 export const parseRecoveryCommand = <T extends RecoveryCommand>(value: T): ParsedRecoveryCommand<T> => {
   const [action, domain, severity, id] = value.split(':') as [RecoveryVerb, RecoveryDomain, RecoverySeverity, RecoveryId];
@@ -331,7 +331,7 @@ export const commandEnvelope = commandCatalog.map((command) => {
   };
 }) as unknown as readonly CommandChain<CatalogCommands>[];
 
-export type RouteConstraintSet = Readonly<Record<CatalogCommands, ResolveCommand<RecoveryCommand>>>;
+export type RouteConstraintSet = Readonly<Record<CatalogCommands, ResolveCommand<CatalogCommands>>>;
 
 const routeConstraintSeed: { [K in CatalogCommands]?: ResolveCommand<RecoveryCommand> } = {};
 for (const command of commandCatalog) {

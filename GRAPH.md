@@ -1,8 +1,8 @@
 # Project Graph
 
-Generated from TypeScript project references in `tsconfig.json` on `2026-02-26T00:32:05.209Z`.
+Generated from TypeScript project references in `tsconfig.json` on `2026-02-26T05:56:00.928Z`.
 
-- Projects: **488**
+- Projects: **489**
 
 ## Reference Tree
 
@@ -10,11 +10,11 @@ Generated from TypeScript project references in `tsconfig.json` on `2026-02-26T0
 root tsconfig.json
 ├─┬ app/adaptive-ops-console
 │ ├─┬ data/incident-command-store
-│ │ ├─┬ domain/incident-command-models
-│ │ │ ├── shared/core
-│ │ │ ├── shared/type-level
-│ │ │ └── shared/util
-│ │ └── shared/result
+│ │ └─┬ domain/incident-command-models
+│ │   ├── shared/core
+│ │   └─┬ shared/type-level
+│ │     ├── shared/result
+│ │     └── shared/util
 │ ├─┬ data/recovery-horizon-store
 │ │ ├─┬ domain/recovery-horizon-engine
 │ │ │ └── shared/horizon-lab-runtime
@@ -33,6 +33,11 @@ root tsconfig.json
 │ │ └─┬ domain/adaptive-ops
 │ │   └── shared/observability-contracts
 │ ├── domain/recovery-horizon-observability
+│ ├─┬ domain/recovery-lab-stress-lab-core
+│ │ ├─┬ domain/recovery-lab-synthetic-orchestration
+│ │ │ ├── shared/lab-graph-runtime
+│ │ │ └── shared/type-level-hub
+│ │ └── shared/orchestration-lab-core
 │ ├── domain/recovery-lattice
 │ ├─┬ domain/recovery-operations-control-plane
 │ │ └─┬ domain/recovery-operations-models
@@ -152,8 +157,7 @@ root tsconfig.json
 │ │ │ └── domain/recovery-lab-orchestration-core
 │ │ └── data/recovery-stress-lab-orchestration-store
 │ ├── shared/cockpit-studio-core
-│ ├─┬ shared/mesh-control-plane
-│ │ └── shared/orchestration-lab-core
+│ ├── shared/mesh-control-plane
 │ ├── shared/ops-orchestration-runtime
 │ └── shared/quantum-studio-core
 ├─┬ app/recovery-console
@@ -200,7 +204,6 @@ root tsconfig.json
 │ │ └── shared/incident-saga-core
 │ ├─┬ domain/recovery-lab-console-labs
 │ │ └── domain/recovery-lab-console-core
-│ ├── domain/recovery-lab-stress-lab-core
 │ ├── domain/recovery-ops-playbook
 │ ├─┬ domain/recovery-orchestration-lab-models
 │ │ └── shared/recovery-orchestration-lab-runtime
@@ -373,8 +376,6 @@ root tsconfig.json
 │ │   └── shared/lab-simulation-kernel
 │ ├─┬ data/recovery-lab-simulation-store
 │ │ └── domain/recovery-simulation-lab-core
-│ ├─┬ domain/recovery-lab-synthetic-orchestration
-│ │ └── shared/lab-graph-runtime
 │ ├── service/recovery-lab-graph-orchestrator
 │ ├── service/recovery-lab-orchestration-studio
 │ └── service/recovery-lab-orchestrator

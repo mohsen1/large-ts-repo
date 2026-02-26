@@ -32,14 +32,18 @@
       "@data/adaptive-ops-store": [
         "packages/data/adaptive-ops-store/src/index.ts"
       ],
-    "@infrastructure/incident-connectors": [
-      "packages/infrastructure/incident-connectors/src/index.ts"
-    ],
+      "@infrastructure/incident-connectors": [
+        "packages/infrastructure/incident-connectors/src/index.ts"
+      ],
     "@infrastructure/incident-forecasting-connectors": [
       "packages/infrastructure/incident-forecasting-connectors/src/index.ts"
     ],
     "@infrastructure/incident-notifications": [
       "packages/infrastructure/incident-notifications/src/index.ts"
+    ],
+    "@infrastructure/*": [
+      "packages/infrastructure/*",
+      "packages/infrastructure/*/src"
     ],
     "@service/adaptive-ops-runner": [
       "packages/service/adaptive-ops-runner/src/index.ts"

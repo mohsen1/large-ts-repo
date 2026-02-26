@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "packages/shared/type-level/dist",
+    "composite": false,
+    "declaration": false
+  },
+  "include": ["packages/shared/type-level/src/**/*.ts", "!packages/shared/type-level/src/**/*stress*"]
+}

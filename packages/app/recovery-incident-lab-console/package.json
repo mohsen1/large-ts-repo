@@ -29,6 +29,8 @@
     "@shared/core": "workspace:*",
     "@shared/result": "workspace:*",
     "@shared/stress-lab-runtime": "workspace:*",
+    "@shared/type-level": "workspace:*",
+    "@shared/type-level-hub": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",

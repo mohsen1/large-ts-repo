@@ -76,7 +76,7 @@ export const routeToken = <const T extends string>(value: T): HubBrand<T> =>
 export const createRouteEnvelope = <T extends HubCatalogInput>(
   catalog: NoInfer<T>,
 ): HubRouteEnvelope<T> => {
-  const projection = Object.entries(catalog).reduce<HubCatalogByScope<T>[]>(
+  const projection = (Object.entries(catalog) as Array<[Extract<keyof T, string>, string]>).reduce<HubCatalogByScope<T>[]>(
     (acc, [scope, route]) => [
       ...acc,
       {
@@ -89,7 +89,7 @@ export const createRouteEnvelope = <T extends HubCatalogInput>(
             : route.startsWith('/simulate')
               ? 'simulate'
               : 'archive',
-      } as HubCatalogByScope<T>,
+      } as unknown as HubCatalogByScope<T>,
     ],
     [],
   );
@@ -97,7 +97,7 @@ export const createRouteEnvelope = <T extends HubCatalogInput>(
   return {
     version: routeToken('v1'),
     routes: Object.fromEntries(
-      Object.entries(catalog).map(([key, value]) => [
+      (Object.entries(catalog) as Array<[Extract<keyof T, string>, string]>).map(([key, value]) => [
         `${key}:${value}` as string,
         {
           kind: value.includes('/start/')

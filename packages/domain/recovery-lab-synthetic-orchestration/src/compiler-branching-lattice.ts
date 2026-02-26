@@ -58,7 +58,7 @@ export type MappedTemplateRemap<T extends Record<string, unknown>> = {
       : T[K];
 };
 
-export type Branded<T, B extends string> = T & { readonly __brand: B };
+export type LatticeBrand<T, B extends string> = T & { readonly __brand: B };
 
 export interface ControlContext<TMode extends string = string> {
   readonly mode: TMode;
@@ -67,8 +67,8 @@ export interface ControlContext<TMode extends string = string> {
   readonly signal: boolean;
 }
 
-export type BranchInput = Branded<string, 'BranchInput'>;
-export type BranchOutput = Branded<string, 'BranchOutput'>;
+export type BranchInput = LatticeBrand<string, 'BranchInput'>;
+export type BranchOutput = LatticeBrand<string, 'BranchOutput'>;
 export type BranchSolver<TInput extends string, TOutput extends string> = {
   readonly input: TInput;
   readonly output: TOutput;

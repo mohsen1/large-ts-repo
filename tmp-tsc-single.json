@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "files": ["packages/shared/type-level/src/stress-conditional-dispatch-galaxy.ts"],
+  "references": []
+}

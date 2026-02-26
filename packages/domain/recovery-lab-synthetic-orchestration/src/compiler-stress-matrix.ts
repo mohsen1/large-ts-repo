@@ -126,7 +126,7 @@ const resolveEnvelope = (seed: StressSeed): StressTrace =>
     const parsed = parseHyperRoute(route);
     return {
       route,
-      action: parsed.parsed.label,
+      action: parsed.parsed.verb,
       severity: parsed.parsed.severity,
     };
   });
@@ -153,28 +153,40 @@ const buildFlowInputs = (routes: StressSeed): FlowInput[] =>
 
 const buildStormRecord = (routes: StressSeed) => {
   const intersections = mergeIntersectionChain(
-    routes.map((route) => ({
-      alpha: route.length,
-      beta: route,
-      gamma: route.length % 2 === 0,
-      delta: [route],
-      epsilon: { id: route, weight: route.length },
-      zeta: { [route]: route.length },
-      eta: [{ state: route, rank: route.length }],
-      theta: new Map([[route, route]]),
-      iota: Symbol(route),
-      kappa: BigInt(route.length),
-      lambda: { value: route.length, unit: 'ms' },
-      mu: [[route, route.length]],
-      nu: new Set([route]),
-      xi: { key: 'route', value: route },
-      omicron: { domain: route.split(':')[0], verb: route.split(':')[1], severity: route.split(':')[2] },
-      pi: route.length,
-      profile: { profileId: `${route.length}`, version: route.length },
-      rho: { route, score: route.length },
-      sigma: [route],
-      tau: Promise.resolve(route),
-    }) as StormIntersection),
+    routes.map((route) => {
+      const parsed = parseHyperRoute(route);
+      return {
+        alpha: route.length,
+        beta: route,
+        gamma: route.length % 2 === 0,
+        delta: [route],
+        epsilon: { id: route, weight: route.length },
+        zeta: { [route]: route.length },
+        eta: [{ state: route, rank: route.length }],
+        theta: new Map([[route, route]]),
+        iota: Symbol(route),
+        kappa: BigInt(route.length),
+        lambda: { value: route.length, unit: 'ms' },
+        mu: [[route, route.length]],
+        nu: new Set([route]),
+        xi: { key: route, value: route },
+        omicron: { domain: parsed.parsed.domain, verb: parsed.parsed.verb, severity: parsed.parsed.severity },
+        pi: route.length,
+        profile: { profileId: `${route.length}`, version: route.length },
+        rho: { route, score: route.length },
+        sigma: [route],
+        flags: ['default'],
+        meta: { tags: [route] },
+        severity:
+          parsed.parsed.severity === 'critical' || parsed.parsed.severity === 'high'
+            ? 'high'
+            : parsed.parsed.severity === 'medium'
+              ? 'medium'
+              : 'low',
+        tau: Promise.resolve(route),
+        scope: `scope-${parsed.parsed.domain}`,
+      } as unknown as StormIntersection;
+    }),
   );
   return buildStormEnvelope(intersections);
 };

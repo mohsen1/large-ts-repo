@@ -1,4 +1,4 @@
-import type { Brand } from './index';
+type Brand<T, K extends string> = T & { readonly __brand: K };
 
 export type NoInfer<T> = [T][T extends never ? 1 : 0];
 

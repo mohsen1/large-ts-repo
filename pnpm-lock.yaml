@@ -1235,6 +1235,12 @@ importers:
       '@shared/stress-lab-runtime':
         specifier: workspace:*
         version: link:../../shared/stress-lab-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      '@shared/type-level-hub':
+        specifier: workspace:*
+        version: link:../../shared/type-level-hub
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -4428,6 +4434,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/type-level-hub':
+        specifier: workspace:*
+        version: link:../../shared/type-level-hub
       zod:
         specifier: ^3.24.0
         version: 3.25.76

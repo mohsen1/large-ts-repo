@@ -433,11 +433,13 @@ export const routeBranchCatalog = stressRouteSamples.map((route) => {
 }) as unknown as RouteBranchCatalog<DomainRouteTuple>;
 
 export type DeepRouteDecision<T extends string> =
-  T extends DomainRoute
-    ? RouteDecision<T> & { readonly route: T; readonly fallback: RouteRewrite<T>; readonly branches: RouteValidationBranch<T>[] }
-    : RouteDecision<T>;
+  RouteDecision<T> & {
+    readonly route: T;
+    readonly fallback: RouteRewrite<T>;
+    readonly branches: RouteValidationBranch<T>[];
+  };
 
-export const routeDecisionMatrix = routePreviews.map((preview): DeepRouteDecision<typeof preview.route> => {
+export const routeDecisionMatrix = routePreviews.map((preview) => {
   const tokens = preview.route.split('/').filter(Boolean);
   const branches = tokens
     .map((token) => ({
@@ -462,8 +464,8 @@ export const routeDecisionMatrix = routePreviews.map((preview): DeepRouteDecisio
     depth: preview.route.length,
     entity,
     reason: routed.kind === 'routed' ? undefined : routed.kind,
-  } as DeepRouteDecision<typeof preview.route>;
-});
+  } as unknown as DeepRouteDecision<DomainRoute>;
+}) as ReadonlyArray<DeepRouteDecision<DomainRoute>>;
 
 export const routeDepthSignatures = stressRouteSamples.map((route) => {
   const cascade = new Array(25).fill(route) as unknown as RouteCascade<typeof route, 24>;

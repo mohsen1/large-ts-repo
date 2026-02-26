@@ -154,7 +154,7 @@ export interface IntersectedAggregate {
   readonly timeoutMs: number;
   readonly payload: { readonly id: string; readonly score: number };
   readonly active: boolean;
-  readonly owner: { readonly team: string; readonly level: number };
+  readonly owner: { readonly team: string; readonly level: number; readonly zone?: string };
   readonly meta: { readonly source: string; readonly confidence: number; readonly tags: readonly string[] };
   readonly policy: { readonly mode: string; readonly windows: number; readonly expiresAt: string };
   readonly metrics: Record<string, number>;
