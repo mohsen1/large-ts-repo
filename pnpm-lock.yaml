@@ -95,6 +95,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/type-level-fabric':
+        specifier: workspace:*
+        version: link:../../shared/type-level-fabric
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -8645,6 +8648,9 @@ importers:
       '@shared/result':
         specifier: workspace:*
         version: link:../result
+      '@shared/type-level-fabric':
+        specifier: workspace:*
+        version: link:../type-level-fabric
       '@shared/util':
         specifier: workspace:*
         version: link:../util
@@ -8664,6 +8670,15 @@ importers:
         specifier: workspace:*
         version: link:../util
 
+  packages/shared/type-level-fabric:
+    dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
+
   packages/shared/type-level-hub:
     dependencies:
       '@shared/core':
@@ -8678,6 +8693,9 @@ importers:
       '@shared/type-level-composition':
         specifier: workspace:*
         version: link:../type-level-composition
+      '@shared/type-level-fabric':
+        specifier: workspace:*
+        version: link:../type-level-fabric
       '@shared/util':
         specifier: workspace:*
         version: link:../util
