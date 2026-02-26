@@ -196,7 +196,13 @@ export type { RouteTokens, RouteResolution, DistilledCatalog, CascadeRoute } fro
 export { evaluateFlowGraph } from '@shared/type-level/stress-controlflow-branch-arena';
 export type { BranchResult } from '@shared/type-level/stress-controlflow-branch-arena';
 export type { BuildArithmeticChain, BinaryExpression, StringTemplateChain, ParseEventCode } from '@shared/type-level/stress-binary-expression-knot';
-export type { SolverFactory, SolverResult, createSolverInvocationMatrix, SolverBrand, BrandedSolverResult } from '@shared/type-level/stress-generic-instantiation-matrix';
+export type {
+  SolverFactory,
+  createSolverInvocationMatrix,
+  SolverBrand,
+  BrandedSolverResult,
+  SolverResult as InstantiationMatrixSolverResult,
+} from '@shared/type-level/stress-generic-instantiation-matrix';
 export type {
   RouteEnvelope,
   RouteParts,
@@ -258,6 +264,15 @@ export * as stressConstraintOrchestrationGrid from '@shared/type-level/stress-co
 export * as stressGenericInstantiationAtlas from '@shared/type-level/stress-generic-instantiation-atlas';
 export * as stressControlflowGalaxy from '@shared/type-level/stress-controlflow-galaxy';
 export * as stressModernRuntimeGuards from '@shared/type-level/stress-modern-runtime-guards';
+export type {
+  SolverMode,
+  SolverVerb,
+  SolverBenchmarkEntry,
+  SolverResult,
+  SolverRunRecord,
+} from '@shared/type-level/stress-generic-solver-orchestrator';
+export { solve, runSolverBenchmark, runSolverFabric, buildSolverCatalog, profileSolverMatrix } from '@shared/type-level/stress-generic-solver-orchestrator';
 export * as typeLevelHubDispatchGrid from './type-level-hub-dispatch-grid';
 export * as stressHubComposition from './stress-hub-composition';
 export * as typeLevelComposition from '@shared/type-level-composition';
+export * from './type-level-stress-constructor';
