@@ -360,3 +360,7 @@ export { useLabWorkspace } from './features/recovery-lab-orchestration-workspace
 export { useLaneDashboard, laneTrend } from './features/recovery-lab-orchestration-workspace/hooks/useLaneDashboard';
 export { runEngine } from './features/recovery-lab-orchestration-workspace/services/recoveryLabEngine';
 export { listCatalog, loadCatalog, resolveWorkspace, previewPlan } from './features/recovery-lab-orchestration-workspace/services/labCatalogService';
+export { RecoveryStressControlStudioPage } from './features/recovery-stress-control-studio/pages/RecoveryStressControlStudioPage';
+export { StressControlStudioBoard } from './features/recovery-stress-control-studio/components/StressControlStudioBoard';
+export { useStressControlStudio } from './features/recovery-stress-control-studio/hooks/useStressControlStudio';
+export * from './features/recovery-stress-control-studio/types';
