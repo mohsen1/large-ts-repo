@@ -8,3 +8,5 @@ export * from './registry';
 export * from './orchestrator';
 export * from './telemetry';
 export * from './workspace';
+export * from './class-hierarchies';
+export * from './dispatch-control';

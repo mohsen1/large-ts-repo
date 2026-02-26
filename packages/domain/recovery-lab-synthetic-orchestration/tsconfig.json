@@ -15,6 +15,9 @@
   "references": [
     {
       "path": "./../../shared/lab-graph-runtime/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
     }
   ]
 }

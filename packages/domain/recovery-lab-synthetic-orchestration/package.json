@@ -14,6 +14,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
+    "@shared/type-level": "workspace:*",
     "@shared/lab-graph-runtime": "workspace:*"
   }
 }

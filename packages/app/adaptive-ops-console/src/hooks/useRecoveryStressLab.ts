@@ -18,6 +18,7 @@ export interface StressLabHookState {
   readonly loading: boolean;
   readonly error: string | null;
   readonly lastOutcome: StressLabRunOutcome | null;
+  readonly topology: WorkloadTopology;
 }
 
 export interface StressLabHookInput {
@@ -83,6 +84,7 @@ export const useRecoveryStressLab = (
     loading: false,
     error: null,
     lastOutcome: null,
+    topology: emptyTopology,
   });
   const [client, setClient] = useState<RecoveryLabClientHandle | null>(null);
 
@@ -122,11 +124,13 @@ export const useRecoveryStressLab = (
         };
 
         const result = await client.client.runWithMetadata(nextInput);
+        const nextTopology = nextInput.topology;
         setReadyState({
           ready: true,
           loading: false,
           error: null,
           lastOutcome: result,
+          topology: nextTopology,
         });
       } catch (error) {
         setReadyState((current) => ({
@@ -150,6 +154,16 @@ export const useRecoveryStressLab = (
     if (!report) return [] as string[];
     return report.report.warnings;
   }, [readyState.lastOutcome]);
+
+  const state = useMemo(
+    () => ({
+      ...readyState,
+      topology: inputTopologyFromState(readyState.topology, topology),
+    }),
+    [readyState, topology],
+  );
+
+  const inputTopologyFromState = (seedTopology: WorkloadTopology, fallback: WorkloadTopology): WorkloadTopology => fallback.tenantId === seedTopology.tenantId ? seedTopology : fallback;
 
   const updateTopology = useCallback((nextTopology: WorkloadTopology) => {
     setTopology(nextTopology);
@@ -175,7 +189,7 @@ export const useRecoveryStressLab = (
   }, []);
 
   return {
-    state: readyState,
+    state,
     runOnce,
     updateTopology,
     updateSignals,

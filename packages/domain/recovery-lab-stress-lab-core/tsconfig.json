@@ -11,6 +11,9 @@
   "references": [
     {
       "path": "./../../shared/orchestration-lab-core/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-lab-synthetic-orchestration/tsconfig.json"
     }
   ]
 }

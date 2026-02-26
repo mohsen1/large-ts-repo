@@ -109,6 +109,12 @@ export { RecoveryStressLabStudioPage } from './pages/RecoveryStressLabStudioPage
 export { StressLabRunDeck } from './components/stress-lab/StressLabRunDeck';
 export { StressLabPolicyPanel } from './components/stress-lab/StressLabPolicyPanel';
 export { StressLabEventFeed } from './components/stress-lab/StressLabEventFeed';
+export { StressLabScenarioPanel } from './components/stress-lab/StressLabScenarioPanel';
+export { TypeLevelStressPanel } from './components/stress-lab/TypeLevelStressPanel';
+export { StressLabSolverInspector } from './components/stress-lab/StressLabSolverInspector';
+export { StressLabRouteDashboard } from './components/stress-lab/StressLabRouteDashboard';
+export { useStressLabDiagnostics } from './hooks/useStressLabDiagnostics';
+export { StressLabControlCenterPage } from './pages/StressLabControlCenterPage';
 export { useRecoveryStressLab } from './hooks/useRecoveryStressLab';
 export { createRecoveryStressLabClient } from './services/recoveryStressLabClient';
 export { RecoveryLatticeStudioPage } from './pages/RecoveryLatticeStudioPage';
