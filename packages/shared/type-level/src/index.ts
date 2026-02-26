@@ -55,6 +55,23 @@ export * as stressSolverConstraintsHalo from './stress-solver-constraints-halo';
 export * as stressHydra from './stress-hydra-conditional-lattice';
 export * as stressBinaryChains from './stress-binary-chains';
 export {
+  resolveOrbitalProfile,
+  buildOrbitalCatalog,
+  orbitalRoutes,
+  orbitalCatalogSeed,
+  type OrbitalRoute,
+  type OrbitalDomain,
+  type OrbitalAction,
+  type OrbitalPhase,
+  type OrbitalResource,
+  type RouteUnion,
+  type RouteCriticality,
+  type OrchestrateRoute,
+  type RouteResolutionUnion as OrbitalRouteResolutionUnion,
+  type RouteEnvelope as OrbitalRouteEnvelope,
+  type ResolveRoute as ResolveOrbitalRoute,
+} from './stress-orbital-conditional-lattice';
+export {
   analyzeSignalCatalog,
   signalPriority,
   signalRouteCatalog,
@@ -598,3 +615,13 @@ export * as stressBinaryExpressionForge from './stress-binary-expression-forge';
 export * as stressConstraintGarden from './stress-constraint-garden';
 export * as stressInteropGenericFactory from './stress-interop-generic-factory';
 export * as stressModernDisposableTopology from './stress-modern-disposable-topology';
+export * as stressOrbitalConditionalLattice from './stress-orbital-conditional-lattice';
+export * as stressHyperChain from './stress-hyper-chain';
+export * as stressDisjointBridge from './stress-disjoint-bridge';
+export * as stressTemplateKeyLattice from './stress-template-key-lattice';
+export * as stressRecursiveTupleFabrik from './stress-recursive-tuple-fabrik';
+export * as stressTemplateRouteGrammar from './stress-template-route-grammar';
+export * as stressBranchSagaControl from './stress-branch-saga-control';
+export * as stressBinaryExpressionSigil from './stress-binary-expression-sigil';
+export * as stressGenericInstantiatorMatrix from './stress-generic-instantiator-matrix';
+export * as stressSolverConstraintsWeb from './stress-solver-constraints-web';
