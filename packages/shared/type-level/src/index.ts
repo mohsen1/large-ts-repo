@@ -20,6 +20,18 @@ export * as stressClassChains from './stress-class-hierarchies';
 export * as stressIntersectionLabs from './stress-intersection-labs';
 export * as stressTemplateWorkflows from './stress-template-workflows';
 export * as stressRecursionPipelines from './stress-recursion-pipelines';
+export * as stressConditionalOrbit from './stress-conditional-orbit';
+export * as stressHierarchyMatrix from './stress-hierarchy-matrix';
+export * as stressIntersectionGrid from './stress-intersection-grid';
+export * as stressMappedRecursionWorkbench from './stress-mapped-recursion-workbench';
+export * as stressRecursiveCascade from './stress-recursive-cascade';
+export * as stressConstraintSolverLab from './stress-constraint-solver-lab';
+export * as stressBinaryChains from './stress-binary-chains';
+export * as stressGenericInstantiationLab from './stress-generic-instantiation-lab';
+export * from './stress-binary-chains';
+export * from './stress-generic-instantiation-lab';
+export type { OrbitDomain, OrbitAction, OrbitRoute, OrbitStatus, OrbitPhase, OrbitCommandPlan } from './stress-conditional-orbit';
+export type { NestedMap } from './stress-mapped-recursion-workbench';
 
 export {
   type RecoveryVerb,

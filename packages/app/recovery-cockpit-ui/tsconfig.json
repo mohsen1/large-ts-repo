@@ -45,6 +45,9 @@
       "path": "./../../shared/util/tsconfig.json"
     },
     {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-cockpit-workloads/tsconfig.json"
     },
     {
