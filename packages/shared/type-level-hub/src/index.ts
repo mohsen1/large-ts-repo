@@ -383,3 +383,19 @@ export * as stressOrionDeepRecursionGrid from '@shared/type-level/stress-orion-d
 export * as stressOrionConstraintBraid from '@shared/type-level/stress-orion-constraint-braid';
 export * as stressOrionRuntimeRegistry from '@shared/type-level/stress-orion-runtime-registry';
 export * as stressHubSynthesisLattice from './stress-hub-synthesis-lattice';
+export * as stressHubOrionOrchestrator from './stress-hub-orion-orchestrator';
+export {
+  type HubOrionDomain,
+  type HubOrionVerb,
+  type HubOrionPolicy,
+  type HubOrionEnvelope,
+  type HubOrionDiscriminant,
+  type HubOrionResolve,
+  type HubOrionDispatch,
+  type HubOrionTuple,
+  type HubOrionUnion,
+  type HubOrionResolutionSet,
+  type HubOrionTemplate,
+  hubOrionSeed,
+  hubOrionRegistry,
+} from './stress-hub-orion-orchestrator';

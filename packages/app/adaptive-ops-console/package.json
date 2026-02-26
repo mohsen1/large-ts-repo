@@ -42,8 +42,8 @@
     "@domain/recovery-lab-synthetic-orchestration": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/type-level-fabric": "workspace:*",
-    "@service/recovery-incident-intent-orchestrator": "workspace:*"
-    ,
+    "@shared/type-level-hub": "workspace:*",
+    "@service/recovery-incident-intent-orchestrator": "workspace:*",
     "@service/recovery-horizon-observability-orchestrator": "workspace:*"
   }
 }
