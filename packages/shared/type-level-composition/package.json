@@ -1,7 +1,8 @@
 {
-  "name": "@shared/type-level-hub",
+  "name": "@shared/type-level-composition",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
@@ -14,11 +15,8 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@shared/core": "workspace:*",
-    "@shared/type-level-composition": "workspace:*",
-    "@shared/result": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/util": "workspace:*",
-    "zod": "^3.24.0"
+    "@shared/result": "workspace:*"
   }
 }

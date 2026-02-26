@@ -10,9 +10,6 @@
   ],
   "references": [
     {
-      "path": "../type-level-composition/tsconfig.json"
-    },
-    {
       "path": "../type-level/tsconfig.json"
     },
     {
@@ -20,9 +17,6 @@
     },
     {
       "path": "../result/tsconfig.json"
-    },
-    {
-      "path": "../core/tsconfig.json"
     }
   ]
 }

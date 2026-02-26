@@ -43,6 +43,7 @@
     "@shared/util": "workspace:*",
     "@shared/type-level": "workspace:*",
     "@shared/type-level-hub": "workspace:*",
+    "@shared/type-level-composition": "workspace:*",
     "@shared/recovery-intent-graph-runtime": "workspace:*",
     "@domain/recovery-lab-console-labs": "workspace:*",
     "@shared/orchestration-lab-core": "workspace:*",

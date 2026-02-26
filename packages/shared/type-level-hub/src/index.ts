@@ -241,3 +241,4 @@ export * as stressRecursiveCascade from '@shared/type-level/stress-recursive-cas
 export * as stressBinaryExpressionLane from '@shared/type-level/stress-binary-expression-lane';
 export * as stressInstantiationHub from '@shared/type-level/stress-instantiation-hub';
 export * as stressHubComposition from './stress-hub-composition';
+export * as typeLevelComposition from '@shared/type-level-composition';
