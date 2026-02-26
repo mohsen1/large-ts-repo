@@ -44,6 +44,12 @@ importers:
       '@domain/recovery-horizon-engine':
         specifier: workspace:*
         version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-lab-stress-lab-core':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-stress-lab-core
+      '@domain/recovery-lab-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../../domain/recovery-lab-synthetic-orchestration
       '@domain/recovery-lattice':
         specifier: workspace:*
         version: link:../../domain/recovery-lattice
@@ -4392,6 +4398,9 @@ importers:
 
   packages/domain/recovery-lab-stress-lab-core:
     dependencies:
+      '@domain/recovery-lab-synthetic-orchestration':
+        specifier: workspace:*
+        version: link:../recovery-lab-synthetic-orchestration
       '@shared/orchestration-lab-core':
         specifier: workspace:*
         version: link:../../shared/orchestration-lab-core
@@ -4401,6 +4410,9 @@ importers:
       '@shared/lab-graph-runtime':
         specifier: workspace:*
         version: link:../../shared/lab-graph-runtime
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-lattice:
     dependencies:
