@@ -25,6 +25,7 @@ export * as stressConditionalOrbit from './stress-conditional-orbit';
 export * as stressHierarchyMatrix from './stress-hierarchy-matrix';
 export * as stressMappedRecursionWorkbench from './stress-mapped-recursion-workbench';
 export * as stressTsStressHarness from './stress-ts-stress-harness';
+export * as stressHydra from './stress-hydra-conditional-lattice';
 export * from './stress-binary-chains';
 export * from './stress-generic-instantiation-lab';
 export type { OrbitDomain, OrbitAction, OrbitRoute, OrbitStatus, OrbitPhase, OrbitCommandPlan } from './stress-conditional-orbit';
@@ -427,7 +428,6 @@ export {
 
 export * as stressConditionalDepthGrid from './stress-conditional-depth-grid';
 export * as stressHierarchyCascade from './stress-hierarchy-cascade';
-export * as stressIntersectionAtScale from './stress-intersection-at-scale';
 export * as stressMappedTemplateRecursion from './stress-mapped-template-recursion';
 export * as stressRecursiveConstraintNet from './stress-recursive-constraint-net';
 export * as stressSyntheticAtlas from './stress-synthetic-atlas';
@@ -452,3 +452,9 @@ export * as stressGenericInstantiationGalaxy from './stress-generic-instantiatio
 export * as stressControlGrid from './stress-control-grid';
 export * as stressFabricTypeGraph from './stress-fabric-typegraph';
 export * as stressPluginHub from './stress-plugin-hub';
+export * as stressConditionalDistributionGrid from './stress-conditional-distribution-grid';
+export * as stressSubtypeHierarchyChain from './stress-subtype-hierarchy-chain';
+export * as stressMappedTemplateMatrix from './stress-mapped-template-matrix';
+export * as stressRecursiveConstraintLattice from './stress-recursive-constraint-lattice';
+export * as stressInstantiationOverloadHub from './stress-instantiation-overload-hub';
+export { buildStressHubEnvelope, createStressHubScope, collectStressHubProfiles, runStressHubSession, type StressHubCatalog, type StressHubEnvelope, type StressHubRouteProfile, type StressHubScope, withStressRouteTuple } from './type-level-stress-hub';

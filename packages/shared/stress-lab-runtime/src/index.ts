@@ -48,6 +48,17 @@ export {
   MapByKind,
   NoInfer,
 } from './advanced-lab-core';
+export {
+  buildStressHubEnvelope,
+  createStressHubScope,
+  collectStressHubProfiles,
+  runStressHubSession,
+  type StressHubCatalog,
+  type StressHubEnvelope,
+  type StressHubRouteProfile,
+  type StressHubScope,
+  withStressRouteTuple,
+} from './type-level-stress-hub';
 export type {
   BrandId,
   NoInfer as BrandNoInfer,

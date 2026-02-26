@@ -41,3 +41,5 @@ export * from './intelligence-orchestration';
 export * from './intelligence-registry';
 export * from './orchestration-console';
 export * from './portfolio-coordinator';
+export * from './stress-lab-type-factory';
+export * from './stress-lab-orchestration-runtime';

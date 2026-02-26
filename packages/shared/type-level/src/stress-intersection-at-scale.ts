@@ -1,297 +1,281 @@
-export type IntersectionLayerA = {
-  readonly axis: string;
-  readonly region: string;
-  readonly mode?: string;
-  readonly weight: number;
+export type IntersectionSliceA = {
+  kind: 'atlas';
+  identity: { readonly id: string; readonly tenant: string };
+  metrics: { readonly latency: number };
 };
 
-export type IntersectionLayerB = {
-  readonly axis: string;
-  readonly region: string;
-  readonly tags: readonly string[];
-  readonly mode?: 'batch';
+export type IntersectionSliceB = {
+  kind: 'atlas';
+  identity: { readonly region: string; readonly owner: string };
+  scope: 'disaster';
 };
 
-export type IntersectionLayerC = {
-  readonly axis: string;
-  readonly region: string;
-  readonly retries: number;
-  readonly weight: number;
+export type IntersectionSliceC = {
+  kind: 'fabric';
+  policy: { readonly id: number; readonly level: 'strict' | 'loose' };
+  identity: { readonly owner: string; readonly zone: string };
 };
 
-export type IntersectionLayerD = {
-  readonly axis: string;
-  readonly schedule: readonly string[];
-  readonly active: boolean;
-  readonly timeoutMs: number;
+export type IntersectionSliceD = {
+  kind: 'fabric';
+  policy: { readonly region: string; readonly labels: readonly string[] };
+  trace: { readonly path: readonly string[] };
 };
 
-export type IntersectionLayerE = {
-  readonly axis: string;
-  readonly region: string;
-  readonly tags: readonly string[];
-  readonly namespace: string;
+export type IntersectionSliceE = {
+  kind: 'mesh';
+  topology: { readonly nodes: number; readonly edges: number };
+  trace: { readonly hops: number };
 };
 
-export type IntersectionLayerF = {
-  readonly axis: string;
-  readonly active: boolean;
-  readonly state: string;
+export type IntersectionSliceF = {
+  kind: 'mesh';
+  topology: { readonly edges: string[] };
+  route: { readonly ingress: string; readonly egress: string };
 };
 
-export type IntersectionLayerG = {
-  readonly axis: string;
-  readonly trace: string;
-  readonly attempts: number;
+export type IntersectionSliceG = {
+  kind: 'signal';
+  signal: { readonly level: number; readonly noise: number };
+  route: { readonly shard: string; readonly version: number };
 };
 
-export type IntersectionLayerH = {
-  readonly axis: string;
-  readonly queue: readonly string[];
-  readonly timeoutMs: number;
+export type IntersectionSliceH = {
+  kind: 'signal';
+  signal: { readonly ttlMs: number; readonly jitter: number };
+  quality: { readonly score: number; readonly trend: 'up' | 'down' };
 };
 
-export type IntersectionLayerI = {
-  readonly axis: string;
-  readonly version: number;
+export type IntersectionSliceI = {
+  kind: 'policy';
+  policy: { readonly draft: boolean; readonly revision: number };
+  quality: { readonly owner: string };
 };
 
-export type IntersectionLayerJ = {
-  readonly axis: string;
-  readonly version: number;
-  readonly namespace: string;
+export type IntersectionSliceJ = {
+  kind: 'policy';
+  policy: { readonly status: 'review' | 'active'; readonly updatedBy: string };
+  routing: { readonly target: string };
 };
 
-export type IntersectionLayerK = {
-  readonly axis: string;
-  readonly owner: string;
-  readonly route: string;
-  readonly mode?: string;
+export type IntersectionSliceK = {
+  kind: 'incident';
+  incident: { readonly code: string; readonly severity: 0 | 1 | 2 | 3 | 4 | 5 };
+  impact: { readonly level: 'high' | 'low'; readonly services: readonly string[] };
 };
 
-export type IntersectionLayerL = {
-  readonly axis: string;
-  readonly policy: `p-${number}`;
-  readonly weight: number;
+export type IntersectionSliceL = {
+  kind: 'incident';
+  incident: { readonly impactScope: readonly string[]; readonly owner: string };
+  evidence: { readonly source: string; readonly confidence: number };
 };
 
-export type IntersectionLayerM = {
-  readonly axis: string;
-  readonly metadata: Record<string, unknown>;
-  readonly state: string;
+export type IntersectionSliceM = {
+  kind: 'timeline';
+  timeline: { readonly createdAt: number; readonly closedAt?: number };
+  audit: { readonly user: string; readonly checksum: string };
 };
 
-export type IntersectionLayerN = {
-  readonly axis: string;
-  readonly enabled: boolean;
-  readonly depth: number;
+export type IntersectionSliceN = {
+  kind: 'timeline';
+  timeline: { readonly status: string };
+  audit: { readonly approved: boolean; readonly reason: string };
 };
 
-export type IntersectionLayerO = {
-  readonly axis: string;
-  readonly signal: string;
-  readonly timestamp: string;
+export type IntersectionSliceO = {
+  kind: 'quantum';
+  quantum: { readonly branch: string; readonly certainty: number };
+  simulation: { readonly scenario: string; readonly score: number };
 };
 
-export type IntersectionLayerP = {
-  readonly axis: string;
-  readonly priority: 0 | 1 | 2 | 3 | 4 | 5;
-  readonly route: string;
+export type IntersectionSliceP = {
+  kind: 'quantum';
+  quantum: { readonly branch: number; readonly certainty: string };
+  simulation: { readonly version: string; readonly latency: number };
 };
 
-export type IntersectionLayerQ = {
-  readonly axis: string;
-  readonly quorum: number;
-  readonly weight: number;
+export type IntersectionSliceQ = {
+  kind: 'cadence';
+  cadence: { readonly rate: number; readonly windowMs: number };
+  policy: { readonly retry: number };
 };
 
-export type IntersectionLayerR = {
-  readonly axis: string;
-  readonly route: string;
-  readonly depth: number;
-  readonly region: string;
+export type IntersectionSliceR = {
+  kind: 'cadence';
+  cadence: { readonly jitter: number; readonly windowMs: string };
+  telemetry: { readonly sampleRate: number };
 };
 
-export type IntersectionLayerS = {
-  readonly axis: string;
-  readonly signature: `sig-${string}`;
-  readonly namespace: string;
+export type IntersectionSliceS = {
+  kind: 'workflow';
+  workflow: { readonly stage: string; readonly attempts: number };
+  audit: { readonly correlation: string };
 };
 
-export type IntersectionLayerT = {
-  readonly axis: string;
-  readonly tags: readonly [string, string, string];
+export type IntersectionSliceT = {
+  kind: 'workflow';
+  workflow: { readonly id: string; readonly tags: readonly string[] };
+  execution: { readonly elapsedMs: number; readonly retries: number };
 };
 
-export type IntersectionLayerU = {
-  readonly axis: string;
-  readonly unit: 'ms';
-  readonly retries: number;
+export type IntersectionSliceU = {
+  kind: 'ops';
+  ops: { readonly owner: string; readonly team: string };
+  execution: { readonly startedAt: number; readonly endedAt: number };
 };
 
-export type IntersectionLayerV = {
-  readonly axis: string;
-  readonly valid: boolean;
-  readonly mode?: string;
+export type IntersectionSliceV = {
+  kind: 'ops';
+  ops: { readonly runbook: string; readonly status: string };
+  quality: { readonly score: number; readonly stability: number };
 };
 
-export type IntersectionLayerW = {
-  readonly axis: string;
-  readonly weight: number;
-  readonly window: `${number}-${number}`;
-  readonly policy: string;
+export type IntersectionSliceW = {
+  kind: 'recovery';
+  recovery: { readonly objective: string; readonly timeout: number };
+  policy: { readonly mandatory: boolean };
 };
 
-export type IntersectionLayerX = {
-  readonly axis: string;
-  readonly xid: string;
-  readonly queue: readonly string[];
+export type IntersectionSliceX = {
+  kind: 'recovery';
+  recovery: { readonly strategy: string; readonly constraints: readonly string[] };
+  telemetry: { readonly signal: string; readonly confidence: number };
 };
 
-export type IntersectionLayerY = {
-  readonly axis: string;
-  readonly payload: unknown;
-  readonly tags: readonly string[];
+export type IntersectionSliceY = {
+  kind: 'dashboard';
+  dashboard: { readonly widgets: number; readonly mode: 'compact' | 'expanded' };
+  identity: { readonly owner: string };
 };
 
-export type IntersectionLayerZ = {
-  readonly axis: string;
-  readonly zone: string;
-  readonly state: string;
-  readonly mode?: string;
+export type IntersectionSliceZ = {
+  kind: 'dashboard';
+  dashboard: { readonly theme: string; readonly grid: { rows: number; cols: number } };
+  metrics: { readonly throughput: number; readonly saturation: number };
 };
 
-export type RecoveryWideIntersection =
-  & IntersectionLayerA
-  & IntersectionLayerB
-  & IntersectionLayerC
-  & IntersectionLayerD
-  & IntersectionLayerE
-  & IntersectionLayerF
-  & IntersectionLayerG
-  & IntersectionLayerH
-  & IntersectionLayerI
-  & IntersectionLayerJ
-  & IntersectionLayerK
-  & IntersectionLayerL
-  & IntersectionLayerM
-  & IntersectionLayerN
-  & IntersectionLayerO
-  & IntersectionLayerP
-  & IntersectionLayerQ
-  & IntersectionLayerR
-  & IntersectionLayerS
-  & IntersectionLayerT
-  & IntersectionLayerU
-  & IntersectionLayerV
-  & IntersectionLayerW
-  & IntersectionLayerX
-  & IntersectionLayerY
-  & IntersectionLayerZ;
+export type IntersectionLayer1 = IntersectionSliceA & IntersectionSliceB;
+export type IntersectionLayer2 = IntersectionLayer1 & IntersectionSliceC;
+export type IntersectionLayer3 = IntersectionLayer2 & IntersectionSliceD;
+export type IntersectionLayer4 = IntersectionLayer3 & IntersectionSliceE;
+export type IntersectionLayer5 = IntersectionLayer4 & IntersectionSliceF;
+export type IntersectionLayer6 = IntersectionLayer5 & IntersectionSliceG;
+export type IntersectionLayer7 = IntersectionLayer6 & IntersectionSliceH;
+export type IntersectionLayer8 = IntersectionLayer7 & IntersectionSliceI;
+export type IntersectionLayer9 = IntersectionLayer8 & IntersectionSliceJ;
+export type IntersectionLayer10 = IntersectionLayer9 & IntersectionSliceK;
+export type IntersectionLayer11 = IntersectionLayer10 & IntersectionSliceL;
+export type IntersectionLayer12 = IntersectionLayer11 & IntersectionSliceM;
+export type IntersectionLayer13 = IntersectionLayer12 & IntersectionSliceN;
+export type IntersectionLayer14 = IntersectionLayer13 & IntersectionSliceO;
+export type IntersectionLayer15 = IntersectionLayer14 & IntersectionSliceP;
+export type IntersectionLayer16 = IntersectionLayer15 & IntersectionSliceQ;
+export type IntersectionLayer17 = IntersectionLayer16 & IntersectionSliceR;
+export type IntersectionLayer18 = IntersectionLayer17 & IntersectionSliceS;
+export type IntersectionLayer19 = IntersectionLayer18 & IntersectionSliceT;
+export type IntersectionLayer20 = IntersectionLayer19 & IntersectionSliceU;
+export type IntersectionLayer21 = IntersectionLayer20 & IntersectionSliceV;
+export type IntersectionLayer22 = IntersectionLayer21 & IntersectionSliceW;
+export type IntersectionLayer23 = IntersectionLayer22 & IntersectionSliceX;
+export type IntersectionLayer24 = IntersectionLayer23 & IntersectionSliceY;
+export type IntersectionLayer25 = IntersectionLayer24 & IntersectionSliceZ;
 
-export type UnionToIntersection<T> = (T extends any ? (value: T) => void : never) extends (value: infer I) => void ? I : never;
-export type FlattenIntersection<T> = { [K in keyof T]: T[K] };
-
-export type MergeIntersection<T> = UnionToIntersection<
-  {
-    [K in keyof T]: { [P in K]: T[K] };
-  }[keyof T]
->;
-
-export type IntersectionAccumulator<T extends readonly object[], TAcc = unknown> =
+export type DeepIntersection<T extends readonly unknown[]> =
   T extends readonly [infer Head, ...infer Tail]
     ? Head extends object
-      ? Tail extends readonly object[]
-        ? IntersectionAccumulator<Tail, MergeIntersection<[TAcc, Head]>>
-        : MergeIntersection<[TAcc, Head]>
-      : TAcc
-    : TAcc;
+      ? Tail extends readonly unknown[]
+        ? MergeIntersection<Head, DeepIntersection<Tail>>
+        : Head
+      : never
+    : {};
 
-export const buildIntersection = <T extends readonly object[], TAcc>(
-  ...segments: T
-): IntersectionAccumulator<T, TAcc> => {
-  const out = segments.reduce<Record<string, unknown>>((acc, segment) => ({ ...acc, ...segment }), {});
-  return out as IntersectionAccumulator<T, TAcc>;
+export type MergeIntersection<A, B> = A extends object
+  ? B extends object
+    ? {
+        [K in keyof A | keyof B]:
+          K extends keyof A
+            ? K extends keyof B
+              ? B[K] | A[K]
+              : A[K]
+            : K extends keyof B
+              ? B[K]
+              : never
+      }
+    : A
+  : B;
+
+export type IntersectionsAtScale = [
+  IntersectionSliceA,
+  IntersectionSliceB,
+  IntersectionSliceC,
+  IntersectionSliceD,
+  IntersectionSliceE,
+  IntersectionSliceF,
+  IntersectionSliceG,
+  IntersectionSliceH,
+  IntersectionSliceI,
+  IntersectionSliceJ,
+  IntersectionSliceK,
+  IntersectionSliceL,
+  IntersectionSliceM,
+  IntersectionSliceN,
+  IntersectionSliceO,
+  IntersectionSliceP,
+  IntersectionSliceQ,
+  IntersectionSliceR,
+  IntersectionSliceS,
+  IntersectionSliceT,
+  IntersectionSliceU,
+  IntersectionSliceV,
+  IntersectionSliceW,
+  IntersectionSliceX,
+  IntersectionSliceY,
+  IntersectionSliceZ
+];
+
+export type FullAtlasIntersection = DeepIntersection<IntersectionsAtScale>;
+
+export type ReconciledIntersection<T extends readonly object[]> = DeepIntersection<T>;
+
+export type OverwriteIntersection<T extends object> = {
+  [K in keyof T]:
+    T[K] extends (...args: any[]) => any ? T[K]
+    : T[K] extends object ? { [J in keyof T[K]]: T[K][J] }
+    : T[K];
 };
 
-export type SharedKeys<T extends object> = UnionToIntersection<
-  {
-    [K in keyof T]: { readonly [P in K]: T[K] };
-  }[keyof T]
->;
+export type FlattenIntersection<T> = T extends infer U ? U : never;
 
-export type ComposeIntersections<T extends readonly object[]> = {
-  readonly flattened: MergeIntersection<T[number]>;
-  readonly shared: SharedKeys<T[number]>;
-  readonly merged: T extends readonly [] ? false : true;
-};
-
-export const assembleIntersectionMatrix = <const T extends readonly object[]>(
-  matrix: T,
-): ComposeIntersections<T> => {
-  const out = matrix.reduce<Record<string, unknown>>((acc, row) => ({ ...acc, ...row }), {});
-  return {
-    flattened: out as MergeIntersection<T[number]>,
-    shared: out as SharedKeys<T[number]>,
-    merged: (matrix.length > 0) as T extends readonly [] ? false : true,
+export type BuildIntersectionMatrix<T> = {
+  [K in keyof T]: {
+    readonly original: T[K];
+    readonly reconciled: FlattenIntersection<T[K]>;
   };
 };
 
-export type ScopedIntersection<T extends object, K extends PropertyKey> = K extends keyof T ? T[K] : never;
+export const resolveAtlasIntersection = <TLeft extends object, TRight extends object>(
+  left: TLeft,
+  right: TRight,
+): MergeIntersection<TLeft, TRight> => ({
+  ...left,
+  ...right,
+} as MergeIntersection<TLeft, TRight>);
 
-export const reshape = <T extends Record<string, unknown>, K extends keyof T>(
-  value: T,
-  key: K,
-): ScopedIntersection<T, K> => value[key] as ScopedIntersection<T, K>;
+export const resolveAtlasIntersectionPack = <TSource extends readonly object[]>(
+  ...sources: [...TSource]
+): ReconciledIntersection<TSource> => {
+  const accumulated = {} as ReconciledIntersection<TSource>;
+  for (const source of sources) {
+    Object.assign(accumulated, source as object);
+  }
+  return accumulated;
+};
 
-export const intersectionSummary = (value: RecoveryWideIntersection) => ({
-  axisSignature: [
-    value.axis,
-    value.region,
-    value.mode ?? value.state ?? value.active ?? value['axis'],
-  ]
-    .filter((segment): segment is string => typeof segment === 'string')
-    .join('|'),
-  weight: value.weight ?? value['retries'] ?? 0,
-  mode: value.mode ?? 'derive',
-  valid: value.active ?? true,
-});
-
-export const intersectionCatalog = assembleIntersectionMatrix([
-  { axis: 'A', region: 'us-east-1', mode: 'read', weight: 1 },
-  { axis: 'B', region: 'eu-west', tags: ['primary'], weight: 2 },
-  { axis: 'C', region: 'apac', retries: 3, weight: 5 },
-  { axis: 'D', schedule: ['warmup', 'scale'], active: true, timeoutMs: 300 },
-  { axis: 'E', region: 'us-west', tags: ['primary', 'critical'], namespace: 'main' },
-  { axis: 'F', active: true, state: 'running' },
-  { axis: 'G', trace: 't-1', attempts: 4 },
-  { axis: 'H', queue: ['q1', 'q2'], timeoutMs: 500 },
-  { axis: 'I', version: 1 },
-  { axis: 'J', version: 3, namespace: 'main' },
-  { axis: 'K', owner: 'ops', route: '/orchestrate/recover', mode: 'critical' },
-  { axis: 'L', policy: 'p-77', weight: 11 },
-  { axis: 'M', metadata: { tier: 'critical' }, state: 'active' },
-  { axis: 'N', enabled: true, depth: 4 },
-  { axis: 'O', signal: 'go', timestamp: '2026-01-01T00:00:00Z' },
-  { axis: 'P', priority: 4, route: '/dispatch' },
-  { axis: 'Q', quorum: 3, weight: 6 },
-  { axis: 'R', route: '/orchestrate/recover', depth: 5, region: 'us-central' },
-  { axis: 'S', signature: 'sig-alpha', namespace: 'ops' },
-  { axis: 'T', tags: ['a', 'b', 'c'] },
-  { axis: 'U', unit: 'ms', retries: 1 },
-  { axis: 'V', valid: true, mode: 'observed' },
-  { axis: 'W', weight: 13, window: '1-3', policy: 'adaptive' },
-  { axis: 'X', xid: 'x-id', queue: ['ingest', 'drain'] },
-  { axis: 'Y', payload: { version: 1 }, tags: ['history'] },
-  { axis: 'Z', zone: 'us', state: 'ok' },
-] as const) as unknown as RecoveryWideIntersection;
-
-export const intersectionCatalogEntries = {
-  section: [
-    intersectionCatalog.axis,
-    intersectionCatalog.state ?? 'derived',
-    intersectionCatalog.mode ?? 'derived',
-  ],
-  valid: intersectionSummary(intersectionCatalog),
-  payload: reshape(intersectionCatalog, 'tags'),
-} as const;
+export const summarizeIntersection = (samples: readonly FullAtlasIntersection[]): ReadonlyArray<{ key: string; count: number }> => {
+  const counts = new Map<string, number>();
+  for (const sample of samples) {
+    const kind = sample.kind;
+    counts.set(kind, (counts.get(kind) ?? 0) + 1);
+  }
+  return [...counts.entries()].map(([key, count]) => ({ key, count }));
+};
