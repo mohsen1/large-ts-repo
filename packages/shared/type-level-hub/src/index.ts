@@ -240,3 +240,4 @@ export * as stressTemplateRemap from '@shared/type-level/stress-template-remap';
 export * as stressRecursiveCascade from '@shared/type-level/stress-recursive-cascade';
 export * as stressBinaryExpressionLane from '@shared/type-level/stress-binary-expression-lane';
 export * as stressInstantiationHub from '@shared/type-level/stress-instantiation-hub';
+export * as stressHubComposition from './stress-hub-composition';

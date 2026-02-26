@@ -361,6 +361,11 @@ export { useLaneDashboard, laneTrend } from './features/recovery-lab-orchestrati
 export { runEngine } from './features/recovery-lab-orchestration-workspace/services/recoveryLabEngine';
 export { listCatalog, loadCatalog, resolveWorkspace, previewPlan } from './features/recovery-lab-orchestration-workspace/services/labCatalogService';
 export { RecoveryStressControlStudioPage } from './features/recovery-stress-control-studio/pages/RecoveryStressControlStudioPage';
+export { RecoveryStressCommandStudioPage } from './features/recovery-stress-command-studio/pages/RecoveryStressCommandStudioPage';
+export { StressCommandDashboard } from './features/recovery-stress-command-studio/components/StressCommandDashboard';
+export { StressRouteCatalogGrid } from './features/recovery-stress-command-studio/components/StressRouteCatalogGrid';
+export { StressCommandTimeline } from './features/recovery-stress-command-studio/components/StressCommandTimeline';
+export { useRecoveryStressCommandStudio } from './features/recovery-stress-command-studio/hooks/useRecoveryStressCommandStudio';
 export { StressControlStudioBoard } from './features/recovery-stress-control-studio/components/StressControlStudioBoard';
 export { useStressControlStudio } from './features/recovery-stress-control-studio/hooks/useStressControlStudio';
 export * from './features/recovery-stress-control-studio/types';
