@@ -5,6 +5,7 @@ export * from './async-disposable';
 export * from './plugin-bridge';
 export * from './mapped-recursion';
 export * from './intersections';
+export * from './stress-template-route-fabric';
 export * from './route-templates';
 export * from './solver-constraints';
 export * from './stress-types';
@@ -325,6 +326,13 @@ export * as stressMappedTemplateKits from './stress-mapped-template-kits';
 export * as stressRecursiveAccumulator from './stress-recursive-accumulator';
 export * as stressConstraintOrchestrationLab from './stress-constraint-orchestration-lab';
 export * as stressControlGraph from './stress-control-graph';
+export * as stressHyperUnion from './stress-hyper-union';
+export * as stressHierarchyLatticeCascade from './stress-hierarchy-lattice-cascade';
+export * as stressIntersectionStorm from './stress-intersection-storm';
+export * as stressTemplateRouteFabric from './stress-template-route-fabric';
+export * as stressRecursionGrid from './stress-recursion-grid';
+export * as stressFlowLabyrinth from './stress-flow-labyrinth';
+export * as stressGenericInstantiationForge from './stress-generic-instantiation-forge';
 
 export {
   type ResolveSignalChain,
@@ -442,3 +450,5 @@ export * as stressTemplateRouteParser from './stress-template-route-parser';
 export * as stressBinaryExpressionLattice from './stress-binary-expression-lattice';
 export * as stressGenericInstantiationGalaxy from './stress-generic-instantiation-galaxy';
 export * as stressControlGrid from './stress-control-grid';
+export * as stressFabricTypeGraph from './stress-fabric-typegraph';
+export * as stressPluginHub from './stress-plugin-hub';
