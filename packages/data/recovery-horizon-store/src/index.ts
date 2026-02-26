@@ -5,3 +5,5 @@ export * from './repository.js';
 export * from './plugin-registry-store.js';
 export * from './plugin-catalog-seeds.js';
 export * from './analytics.js';
+
+export * from './synthetic-metrics.js';

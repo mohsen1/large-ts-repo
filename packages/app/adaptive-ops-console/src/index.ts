@@ -122,3 +122,8 @@ export { LatticeScenarioMatrix } from './components/lattice/LatticeScenarioMatri
 export { LatticeEventStream } from './components/lattice/LatticeEventStream';
 export { useLatticeStudio } from './hooks/useLatticeStudio';
 export { useLatticeCommand } from './hooks/useLatticeCommand';
+export { HorizonObservabilityStudioPage } from './pages/HorizonObservabilityStudioPage';
+export { HorizonObservabilityDashboard } from './components/horizon-observability/HorizonObservabilityDashboard';
+export { HorizonObservabilitySignalHeatmap } from './components/horizon-observability/HorizonObservabilitySignalHeatmap';
+export { HorizonObservabilityPulseStrip } from './components/horizon-observability/HorizonObservabilityPulseStrip';
+export { useHorizonObservability } from './hooks/useHorizonObservability';

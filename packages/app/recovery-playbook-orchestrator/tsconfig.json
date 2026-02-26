@@ -46,6 +46,12 @@
     },
     {
       "path": "./../../domain/recovery-playbook-studio-core/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
     }
   ]
 }

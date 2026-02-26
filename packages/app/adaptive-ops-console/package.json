@@ -39,5 +39,7 @@
     "@service/recovery-lattice-orchestrator": "workspace:*",
     "@domain/recovery-lattice": "workspace:*",
     "@service/recovery-incident-intent-orchestrator": "workspace:*"
+    ,
+    "@service/recovery-horizon-observability-orchestrator": "workspace:*"
   }
 }

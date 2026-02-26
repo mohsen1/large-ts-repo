@@ -1,0 +1,31 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "./../../domain/recovery-horizon-observability/tsconfig.json"
+    },
+    {
+      "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
+    },
+    {
+      "path": "./../../data/recovery-horizon-store/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/result/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-horizon-orchestrator/tsconfig.json"
+    }
+  ]
+}

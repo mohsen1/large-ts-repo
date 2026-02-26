@@ -65,6 +65,9 @@ importers:
       '@service/adaptive-ops-runner':
         specifier: workspace:*
         version: link:../../service/adaptive-ops-runner
+      '@service/recovery-horizon-observability-orchestrator':
+        specifier: workspace:*
+        version: link:../../service/recovery-horizon-observability-orchestrator
       '@service/recovery-horizon-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-horizon-orchestrator
@@ -4075,6 +4078,18 @@ importers:
         specifier: ^3.24.0
         version: 3.25.76
 
+  packages/domain/recovery-horizon-observability:
+    dependencies:
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../recovery-horizon-engine
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
+      zod:
+        specifier: ^3.24.0
+        version: 3.25.76
+
   packages/domain/recovery-horizon-studio-core:
     dependencies:
       '@domain/recovery-horizon-engine':
@@ -6748,6 +6763,24 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/service/recovery-horizon-observability-orchestrator:
+    dependencies:
+      '@data/recovery-horizon-store':
+        specifier: workspace:*
+        version: link:../../data/recovery-horizon-store
+      '@domain/recovery-horizon-engine':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-engine
+      '@domain/recovery-horizon-observability':
+        specifier: workspace:*
+        version: link:../../domain/recovery-horizon-observability
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../../shared/result
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/service/recovery-horizon-orchestrator:
     dependencies:

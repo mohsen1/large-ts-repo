@@ -66,10 +66,16 @@
       "path": "./../../domain/recovery-horizon-engine/tsconfig.json"
     },
     {
+      "path": "./../../domain/recovery-horizon-observability/tsconfig.json"
+    },
+    {
       "path": "./../../domain/recovery-stress-lab/tsconfig.json"
     },
     {
       "path": "./../../service/recovery-lattice-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "./../../service/recovery-horizon-observability-orchestrator/tsconfig.json"
     },
     {
       "path": "./../../domain/recovery-lattice/tsconfig.json"

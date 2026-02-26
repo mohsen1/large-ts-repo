@@ -617,6 +617,9 @@
       "path": "./packages/domain/recovery-horizon-engine"
     },
     {
+      "path": "./packages/domain/recovery-horizon-observability"
+    },
+    {
       "path": "./packages/domain/recovery-horizon-studio-core"
     },
     {
@@ -1134,6 +1137,9 @@
     },
     {
       "path": "./packages/service/recovery-horizon-orchestrator"
+    },
+    {
+      "path": "./packages/service/recovery-horizon-observability-orchestrator"
     },
     {
       "path": "./packages/service/recovery-incident-analytics-orchestrator"

@@ -13,3 +13,6 @@ export * from './plugin-network.js';
 export * from './horizon-constraints.js';
 export * from './signal-payloads.js';
 export * from './saga-orchestrator.js';
+export type { StageRoute as GraphLifecycleStageRoute } from './graph-lifecycle.js';
+export { StageRoute as PluginGraphRoute } from './graph-lifecycle.js';
+export * from './synthetic-graph.js';

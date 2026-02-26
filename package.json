@@ -8,6 +8,7 @@
     "count-ts-lines": "bash scripts/count.sh",
     "count": "bash scripts/count.sh",
     "typecheck": "pnpm exec tsc -b tsconfig.json --pretty false",
+    "typecheck:full": "pnpm exec tsc -b tsconfig.json --force --pretty false",
     "tsz-typecheck": "if command -v tsz >/dev/null 2>&1; then tsz --project tsconfig.json; else pnpm dlx @mohsen-azimi/tsz-dev --project tsconfig.json; fi"
   },
   "devDependencies": {

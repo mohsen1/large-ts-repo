@@ -8,3 +8,5 @@ export * from './lab-inspector.js';
 export * from './lab-stream.js';
 export * from './horizon-mesh.js';
 export * from './horizon-analytics.js';
+
+export * from './synthetic-orchestrator';
