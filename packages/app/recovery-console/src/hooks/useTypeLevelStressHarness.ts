@@ -90,7 +90,7 @@ export const useTypeLevelStressHarness = ({ tenantId, mode, maxBranches = 16 }: 
 
   const matrix = useMemo<RouteDispatchMatrix>(() => {
     const matrixInput = routeTemplates.map((entry) => resolveRouteDispatch(entry));
-    const index = matrixInput.reduce((acc, item) => {
+    const index = matrixInput.reduce<RouteDispatchMatrix['index']>((acc, item) => {
       const key = `${item.envelope.domain}::${item.envelope.action}`;
       return {
         ...acc,

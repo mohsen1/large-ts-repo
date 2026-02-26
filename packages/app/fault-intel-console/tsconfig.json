@@ -22,6 +22,9 @@
     },
     {
       "path": "./../../data/fault-intel-store/tsconfig.json"
+    },
+    {
+      "path": "./../../shared/type-level-hub/tsconfig.json"
     }
   ]
 }

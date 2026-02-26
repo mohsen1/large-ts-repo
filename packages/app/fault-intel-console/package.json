@@ -17,6 +17,7 @@
     "@service/fault-intel-orchestrator": "workspace:*",
     "@data/fault-intel-store": "workspace:*",
     "@domain/fault-intel-orchestration": "workspace:*",
+    "@shared/type-level-hub": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",

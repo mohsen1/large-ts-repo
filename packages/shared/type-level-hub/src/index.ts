@@ -82,6 +82,20 @@ export type {
 
 export const hubRuntimeTag = 'type-level-hub';
 
+export {
+  createHubLayerUnion,
+  createHubEnvelope,
+  normalizeHubSeed,
+  type HubLayerSeed,
+  type HubEnvelope,
+  type HubProjection,
+  type HubPayloadTuple,
+  type HubLayerUnion,
+  type HubMode,
+  type HubStatus,
+  type HubNode,
+} from './stress-hub-synthesis-lattice';
+
 export type {
   BranchAction,
   BranchEvent,
@@ -321,11 +335,18 @@ export type {
   RouteTemplateCatalog,
 } from '@shared/type-level/stress-template-remap-constellation';
 export type {
-  RouteTemplate,
-  RouteDispatch,
-  RouteDispatchMatrix,
-  RouteResolver,
-  RouteMatch,
+  RouteEntity,
+  RouteToken,
+  RouteCatalogItem,
+  RouteUnion,
+  ParsedRoute,
+  RouteProjection,
+  RouteSignatureMatrix,
+  RouteMapByEntity,
+  RouteAction,
+  RouteVerb,
+  RoutedTuples,
+  RouteToken as LegacyRouteToken,
 } from '@shared/type-level/stress-template-route-matrix';
 export type {
   StageEvent,
@@ -361,3 +382,4 @@ export * as stressOrionTemplateFabric from '@shared/type-level/stress-orion-temp
 export * as stressOrionDeepRecursionGrid from '@shared/type-level/stress-orion-deep-recursion-grid';
 export * as stressOrionConstraintBraid from '@shared/type-level/stress-orion-constraint-braid';
 export * as stressOrionRuntimeRegistry from '@shared/type-level/stress-orion-runtime-registry';
+export * as stressHubSynthesisLattice from './stress-hub-synthesis-lattice';
