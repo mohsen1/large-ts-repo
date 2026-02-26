@@ -1,212 +1,254 @@
-import type { Brand, NoInfer } from '@shared/type-level';
-import { routeEnvelopeMap, stressRouteCatalog, type RouteCatalogUnion } from '@shared/type-level/stress-orchestrator-mesh';
 import {
-  routeDomainUnion,
-  type ParseRouteTemplate,
-  type RouteDomainCatalog,
-  type RouteTemplateUnion,
-} from '@shared/type-level/stress-template-map-recursion';
+  type BranchFrame as VoltageBranchFrame,
+  type BranchResult as VoltageBranchResult,
+  type BranchSignal as VoltageBranchSignal,
+  evaluateBranches,
+} from '@shared/type-level/stress-controlflow-voltage';
 
-export type HubConstraint =
-  | 'discover'
-  | 'route'
-  | 'drill'
-  | 'synthesize'
-  | 'observe'
-  | 'validate'
-  | 'audit';
+import {
+  type LayerUnion,
+  type LayerPath,
+  buildClassChain,
+  baselinePath,
+} from '@shared/type-level/stress-subtype-hierarchy-core';
 
-type HubRoute = RouteTemplateUnion | RouteCatalogUnion;
+import {
+  type EventUnion,
+  type EventMapEnvelope,
+  type EventTemplateMap,
+  eventProfiles,
+  eventTemplates,
+} from '@shared/type-level/stress-template-event-protocol';
 
-export type HubEntry<T extends string, R extends HubRoute> = Readonly<{
-  readonly id: Brand<T, 'hub-entry-id'>;
-  readonly route: R;
-  readonly payload: ParseRouteTemplate<R>;
-  readonly allowed: readonly HubConstraint[];
-  readonly active: boolean;
-}>;
+import {
+  type NexusRouteUnion,
+  type RouteChain,
+  buildNexusProfile,
+  routeSeeds,
+} from '@shared/type-level/stress-nexus-conditional-galaxy';
 
-export type HubSignature<T extends readonly HubConstraint[]> = {
-  readonly primary: T[number];
-  readonly fallback: T[number];
-  readonly constraints: T;
-  readonly length: T['length'];
+import {
+  type BuildSolverTree,
+  type SignalUnion,
+  buildSolverStack,
+  describeSignalFlow,
+  makeSolverTree,
+  wrapFlow,
+} from '@shared/type-level/stress-recursive-signal-workflows';
+
+import {
+  type ConstraintChain,
+  type ConstraintMap,
+  type Domain,
+  type Stage,
+  type Severity,
+  type ResolveConstraint,
+  type SolverInput,
+  OverloadedSolver,
+  resolveConstraint,
+  solveConstraintChain,
+  overloadedSolver,
+  type InferenceResult,
+} from '@shared/type-level/stress-interop-constraint-orchestration';
+
+export type StressHubBranchFrame = VoltageBranchFrame;
+export type StressHubBranchSignal = VoltageBranchSignal;
+export type StressHubLayer = LayerUnion;
+export type StressHubLayerPath = LayerPath;
+export type StressHubNexusRoute = NexusRouteUnion;
+export type StressHubNexusChain = RouteChain<StressHubNexusRoute>;
+export type StressHubEvent = EventUnion;
+export type StressHubEventMap = EventMapEnvelope<readonly EventUnion[], 'hub'>;
+export type StressHubSignal = SignalUnion;
+
+type ConstraintEnvelopeResult = ResolveConstraint<SolverInput<'incident', 'analyze', string, 'high'>>;
+
+export type StressHubSolverTree<Name extends string, Depth extends 4 | 8 | 16> = BuildSolverTree<Name, Depth>;
+
+export const hubLayerPath: StressHubLayerPath = buildClassChain({
+  marker: 'L00',
+  checksum: 200,
+  source: 'hub',
+});
+
+export const hubNexusSeed = routeSeeds as readonly StressHubNexusRoute[];
+export const hubNexusProfile = buildNexusProfile(hubNexusSeed);
+
+export const hubBranchProfiles = hubNexusSeed.map((route, index) => ({
+  signal: `signal_${String(index).padStart(2, '0')}` as VoltageBranchSignal,
+  severity: 'normal' as const,
+  score: 30 + index,
+  route,
+}));
+
+export const hubBranchOutcomes = evaluateBranches(hubBranchProfiles.map((entry) => entry.signal));
+
+export const hubLayerDepth = hubNexusProfile.domains;
+export const hubEventProfiles = eventProfiles as StressHubEventMap;
+export const hubEventTemplates: EventTemplateMap<readonly EventUnion[]> = eventTemplates;
+
+export const hubClassChain = buildClassChain({
+  marker: 'L00',
+  checksum: 99,
+  source: 'hub-chain',
+}).edges.map((edge, index) => ({
+  name: `class-${index}`,
+  marker: edge.payload.marker,
+  checksum: edge.payload.checksum,
+  route: hubNexusSeed[index % hubNexusSeed.length],
+})) as readonly { readonly name: string; readonly marker: string; readonly checksum: number; readonly route: string }[];
+
+const mapLayer = (path: StressHubLayerPath): string =>
+  `${path.edges.map((edge) => edge.marker).join('→')}@${path.terminal.marker}`;
+
+const mapSignal = (signal: SignalUnion): string => `signal:${signal}`;
+
+type SolverMap = [
+  ConstraintMap<[SolverInput<'incident', 'analyze', string, Severity>]>[0],
+  ConstraintMap<[SolverInput<'recovery', 'execute', string, Severity>]>[0],
+  ConstraintMap<[SolverInput<'ops', 'dispatch', string, Severity>]>[0],
+  ConstraintMap<[SolverInput<'signal', 'close', string, Severity>]>[0],
+];
+
+const toMapEntry = (input: SolverInput<Domain, Stage, string, Severity>): SolverMap[number] => {
+  const route = resolveConstraint(input);
+  const key = `${input.domain}:${input.stage}:${input.id}`;
+  return {
+    key,
+    route: `${input.domain}-${input.stage}-${input.id}`,
+    routeProfile: {
+      domain: input.domain,
+      route: `${input.domain}-${input.stage}-${input.id}`,
+      active: input.severity === 'critical' || input.severity === 'high',
+      checksum: `${input.domain}-${input.stage}`,
+    },
+    severity: input.severity,
+  } as unknown as SolverMap[number];
 };
 
-export type HubScopeCatalog<TEntries extends readonly HubRouteEntry[]> = {
-  readonly scopes: ReadonlyMap<Brand<string, 'hub-scope'>, TEntries[number]>;
-  readonly keys: readonly (HubRoute | string)[];
-  readonly constraints: readonly HubConstraint[];
-};
+const toIncidentMapEntry = (input: SolverInput<'incident', 'analyze', string, Severity>): SolverMap[0] =>
+  toMapEntry(input) as SolverMap[0];
 
-export interface HubRouteEntry {
-  readonly route: HubRoute;
-  readonly scope: Brand<string, 'hub-scope'>;
-  readonly domain: (typeof routeDomainUnion)[number];
-  readonly signature: string;
-  readonly identity: ReturnType<typeof parseRouteForHub>;
-  readonly tags: readonly string[];
+const toRecoveryMapEntry = (input: SolverInput<'recovery', 'execute', string, Severity>): SolverMap[1] =>
+  toMapEntry(input) as SolverMap[1];
+
+const toOpsMapEntry = (input: SolverInput<'ops', 'dispatch', string, Severity>): SolverMap[2] =>
+  toMapEntry(input) as SolverMap[2];
+
+const toSignalMapEntry = (input: SolverInput<'signal', 'close', string, Severity>): SolverMap[3] =>
+  toMapEntry(input) as SolverMap[3];
+
+export interface HubConstraintEnvelope {
+  readonly solved: boolean;
+  readonly constraint: ConstraintChain<'incident', SolverInput<'incident', 'analyze', string>, SolverInput<'incident', 'analyze', string>>;
+  readonly route: ConstraintEnvelopeResult;
+  readonly traces: VoltageBranchResult[];
+  readonly solver: ReturnType<OverloadedSolver>;
+  readonly maps: SolverMap;
 }
 
-const makeHubEntry = (route: HubRoute): HubRouteEntry => {
-  const [_, domain, verb, mode, severity] = route.split('/');
-  const identity = parseRouteForHub(route);
-  const scope = `${domain}-${verb}` as Brand<string, 'hub-scope'>;
+export const runConstraintHub = <T extends 'strict' | 'relaxed' | 'diagnostic' | 'batch' | 'replay'>(
+  mode: T,
+): HubConstraintEnvelope => {
+  const payload = {
+    domain: 'incident',
+    stage: 'analyze',
+    id: `incident-${mode}-${Math.random().toString(36).slice(2)}`,
+    severity: 'high',
+  } satisfies SolverInput<'incident', 'analyze', string>;
+
+  const traceMode =
+    mode === 'strict'
+      ? ({ mode: 'strict', priority: 2, checkpoint: 'checkpoint-01' } as const)
+      : mode === 'diagnostic'
+        ? ({ mode: 'diagnostic', trace: ['trace', mode] as const, latency: '50ms' } as const)
+        : mode === 'batch'
+          ? ({ mode: 'batch', batchSize: 8, drain: true } as const)
+      : mode === 'replay'
+        ? ({
+            mode: 'replay',
+            timestamp: '2026-02-26T12:00:00Z',
+            delta: 120,
+          } as const)
+        : ({ mode: 'relaxed', window: 12, retry: true } as const);
+
+  const traced = solveConstraintChain({
+    mode: traceMode,
+    payload,
+  });
+  const solverChain = resolveConstraint(payload);
+  const solver = overloadedSolver(payload);
+
+  const constraint: HubConstraintEnvelope['constraint'] = {
+    anchor: 'incident',
+    first: solverChain,
+    second: solverChain,
+    complete: true,
+  };
 
   return {
-    route,
-    scope,
-    domain: domain as (typeof routeDomainUnion)[number],
-    signature: `sig:${route}`,
-    identity,
-    tags: [domain, verb, mode, severity],
+    solved: true,
+    constraint,
+    route: solverChain,
+    traces: traced.map((entry) => ({
+      id: `signal_${entry.mode === 'strict' ? '50' : '00'}` as VoltageBranchSignal,
+      lane: entry.satisfied ? 'alpha' : 'beta',
+      cost: entry.mode === 'strict' ? 9 : 5,
+      active: entry.satisfied,
+      notes: ['solver', entry.mode],
+    })),
+    solver,
+    maps: [
+      toIncidentMapEntry(payload),
+      toRecoveryMapEntry({
+        ...payload,
+        domain: 'recovery',
+        stage: 'execute',
+        id: `${payload.id}-resolve`,
+        severity: 'critical',
+      }),
+      toOpsMapEntry({
+        ...payload,
+        domain: 'ops',
+        stage: 'dispatch',
+        id: `${payload.id}-dispatch`,
+        severity: 'low',
+      }),
+      toSignalMapEntry({
+        ...payload,
+        domain: 'signal',
+        stage: 'close',
+        id: `${payload.id}-close`,
+        severity: 'medium',
+      }),
+    ],
   };
 };
 
-const makeEntryMap = (routes: readonly HubRoute[]) => {
-  const map = new Map<Brand<string, 'hub-scope'>, HubRouteEntry>();
-  for (const route of routes) {
-    const entry = makeHubEntry(route);
-    map.set(entry.scope, entry);
-  }
-  return map;
-};
-
-export const hubConstraintMap: ReadonlyMap<string, HubSignature<readonly HubConstraint[]>> = new Map([
-  ['discover', { primary: 'discover', fallback: 'route', constraints: ['discover', 'route', 'observe'], length: 3 }],
-  ['drill', { primary: 'drill', fallback: 'synthesize', constraints: ['drill', 'synthesize', 'validate'], length: 3 }],
-  ['observe', { primary: 'observe', fallback: 'validate', constraints: ['observe', 'validate', 'audit'], length: 3 }],
-]);
-
-export const buildHubCatalog = (routes: readonly HubRoute[] = stressRouteCatalog): HubScopeCatalog<readonly HubRouteEntry[]> => {
-  const map = makeEntryMap(routes);
-  const keys: readonly (HubRoute | string)[] = Array.from(map.values()).map((entry) => `${entry.scope}:${entry.route}`);
-  const constraints: HubConstraint[] = Array.from(hubConstraintMap.values()).flatMap((entry) => entry.constraints);
-
+export const buildHubFlow = <Name extends string>(name: Name, depth: 4 | 8 | 16) => {
+  const signalSeed = mapSignal('observe');
+  const wrapped = wrapFlow('observe');
+  const chain = makeSolverTree(`${name}::${signalSeed}`, depth);
+  const catalog = buildSolverStack(name, depth);
+  const solved = solveConstraintChain({
+    mode: { mode: 'batch', batchSize: 12, drain: false },
+    payload: { domain: 'policy', stage: 'verify', id: `${name}-verify`, severity: 'medium' },
+  });
+  const routeChain = describeSignalFlow('observe', depth);
   return {
-    scopes: map,
-    keys,
-    constraints,
-  };
-};
-
-export const hubCatalog = buildHubCatalog(stressRouteCatalog);
-
-export type HubRouteProjection = {
-  readonly scope: Brand<string, 'hub-scope'>;
-  readonly route: HubRoute;
-  readonly profile: ReturnType<typeof parseRouteForHub>;
-};
-
-export const collectHubProjections = (
-  catalog: HubScopeCatalog<readonly HubRouteEntry[]>,
-): readonly HubRouteProjection[] => {
-  const result: HubRouteProjection[] = [];
-  for (const [scope, entry] of catalog.scopes) {
-    result.push({
-      scope,
-      route: entry.route,
-      profile: entry.identity,
-    });
-  }
-  return result;
-};
-
-export const hubProjections = collectHubProjections(hubCatalog);
-
-export const assertNoOverlap = (left: readonly HubRouteEntry[], right: readonly HubRouteEntry[]) => {
-  const overlap = left.filter((candidate) => right.some((entry) => entry.route === candidate.route));
-  if (overlap.length > 0) {
-    const message = `overlapping routes: ${overlap.map((route) => route.route).join(', ')}`;
-    throw new Error(message);
-  }
-};
-
-export const withHubCatalog = async <TResult>(
-  routes: readonly HubRoute[],
-  handler: (entries: readonly HubRouteProjection[]) => Promise<TResult>,
-): Promise<TResult> => {
-  const catalog = buildHubCatalog(routes);
-  const projections = collectHubProjections(catalog);
-
-  await using scope = {
-    [Symbol.asyncDispose]: async () => {
-      await Promise.resolve();
+    path: mapLayer(hubLayerPath),
+    profile: hubNexusProfile,
+    outcomes: hubBranchOutcomes,
+    solver: {
+      wrapped,
+      chain,
+      catalog,
+      solved,
+      routeChain,
     },
-  };
-
-  return handler(projections);
+  } as const;
 };
 
-export const runHubProjection = () => {
-  const projections = hubProjections;
-  const domainCatalog = routeDomainUnion.reduce((acc, domain) => {
-    const route = `${domain}/dispatch/live/high` as const;
-    const entry = {
-      domain,
-      route,
-      aliases: { short: `${domain}-alias`, canonical: `/${domain}/` },
-    };
-    (acc as Record<string, typeof entry>)[domain] = entry as typeof entry;
-    return acc;
-  }, {} as Partial<RouteDomainCatalog> as RouteDomainCatalog);
-
-  return {
-    projectionCount: projections.length,
-    constraints: hubConstraintMap.size,
-    domainCatalog,
-  };
-};
-
-export const typedCatalog = runHubProjection();
-
-const allEntries: HubRouteEntry[] = Array.from(hubCatalog.scopes.values());
-const firstHalf = allEntries.slice(0, allEntries.length / 2);
-const secondHalf = allEntries.slice(allEntries.length / 2);
-
-assertNoOverlap(firstHalf, secondHalf);
-
-export const projectedRouteSignatures = Array.from(routeEnvelopeMap.values()).map(
-  (entry) => `${entry.resolved.normalized}-${entry.resolved.parse.entity}` as Brand<string, 'route-signature'>,
-);
-
-const identityMatches = projectedRouteSignatures.map(
-  (signature) => signature.startsWith('a') || signature.includes('/'),
-);
-
-export type HubDiscriminator<T extends Brand<string, 'hub-scope'>> = T extends `_${string}`
-  ? 'private'
-  : T extends `${string}-audit`
-    ? 'auditor'
-    : 'public';
-
-export const scopeBuckets = hubProjections.reduce(
-  (acc, projection) => {
-    const bucket = projection.route.includes('live') ? 'live' : 'sim';
-    acc[bucket] ??= [];
-    acc[bucket].push(projection);
-    return acc;
-  },
-  {} as { [bucket: string]: HubRouteProjection[] },
-);
-
-const validateConstraint = <T extends HubConstraint>(input: NoInfer<T>): HubRoute[] => {
-  const item = hubConstraintMap.get(input as string);
-  if (!item) {
-    return [];
-  }
-  return [...stressRouteCatalog] as HubRoute[];
-};
-
-export const constraintsForDiscover = validateConstraint('discover');
-export const constraintsForDrill = validateConstraint('drill');
-
-const parseRouteForHub = <T extends HubRoute>(route: T): ParseRouteTemplate<T> => {
-  const [_, domain, verb, mode, severity] = route.split('/') as [string, string, string, string, string];
-  return {
-    domain,
-    verb,
-    mode,
-    severity,
-  } as ParseRouteTemplate<T>;
-};
+export type HubConstraintProfile = ReturnType<typeof runConstraintHub>;
+export type HubBundle = ReturnType<typeof buildHubFlow>;
+export const baselineHubLayer = baselinePath;

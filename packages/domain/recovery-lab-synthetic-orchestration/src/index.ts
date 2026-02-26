@@ -46,4 +46,5 @@ export * from './compiler-type-level-windchamber';
 export * as compilerInferenceGrid from './compiler-inference-grid';
 export * as compilerOrchestratorGrid from './compiler-orchestrator-grid';
 export * from './compiler-stress-matrix';
+export * from './compiler-stress-hub-lab';
 export * as compilerControlflowLabyrinth from './compiler-controlflow-labyrinth';

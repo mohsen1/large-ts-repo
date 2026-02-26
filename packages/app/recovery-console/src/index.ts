@@ -369,3 +369,6 @@ export { useRecoveryStressCommandStudio } from './features/recovery-stress-comma
 export { StressControlStudioBoard } from './features/recovery-stress-control-studio/components/StressControlStudioBoard';
 export { useStressControlStudio } from './features/recovery-stress-control-studio/hooks/useStressControlStudio';
 export * from './features/recovery-stress-control-studio/types';
+export { StressHubTopologyCanvas } from './features/recovery-synthetic-stress-hub/components/StressHubTopologyCanvas';
+export { RecoveryStressHubLabPage } from './features/recovery-synthetic-stress-hub/pages/RecoveryStressHubLabPage';
+export { useRecoveryStressHubWorkflow } from './features/recovery-synthetic-stress-hub/hooks/useRecoveryStressHubWorkflow';
