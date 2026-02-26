@@ -1,7 +1,6 @@
 import {
   type BranchState,
   parseRoute,
-  type RouteEnvelope,
   type ControlRoute,
   type BranchSeed,
   type BranchPlan,
@@ -41,7 +40,7 @@ const baseSeed: BranchSeed = {
   severity: 'high',
 };
 
-type WorkbenchRouteEnvelope = RouteEnvelope<ControlCatalogEntries>;
+type WorkbenchRouteEnvelope = ReturnType<typeof parseRoute>;
 
 export const useRecoveryLabTypeStressNavigator = () => {
   const [selected, setSelected] = useState(0);

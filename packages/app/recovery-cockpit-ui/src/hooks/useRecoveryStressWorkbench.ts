@@ -12,9 +12,7 @@ import {
 } from '../services/recoveryCockpitStressWorkloadService';
 import type { NestedMap } from '@shared/type-level';
 import type {
-  OrbitAction,
   OrbitRoute,
-  OrbitCommandPlan,
 } from '@shared/type-level';
 
 export type StressScenarioState = 'idle' | 'warming' | 'active' | 'exhausted';
@@ -103,7 +101,7 @@ type RouteClassify<T extends StressEvent> = T extends 'bootstrap'
                                         ? 'release'
                                         : 'generic';
 
-const classifyAction = (action: OrbitAction): RouteEvent => {
+const classifyAction = (action: string): RouteEvent => {
   const event: StressEvent =
     action === 'bootstrap'
       ? 'bootstrap'
@@ -132,9 +130,9 @@ const classifyAction = (action: OrbitAction): RouteEvent => {
       : action === 'secure'
         ? 'secure'
       : action === 'capture'
-        ? 'capture'
-        : action === 'commit'
-          ? 'commit'
+      ? 'capture'
+      : action === 'commit'
+        ? 'commit'
                                   : action === 'verify'
                                     ? 'verify'
                                     : action === 'gather'
@@ -145,7 +143,15 @@ const classifyAction = (action: OrbitAction): RouteEvent => {
                                           ? 'deploy'
                                           : action === 'drain'
                                             ? 'drain'
-                                            : 'commit';
+                                            : action === 'align'
+                                              ? 'align'
+                                              : action === 'scale'
+                                                ? 'scale'
+                                                : action === 'secure'
+                                                  ? 'secure'
+                                                  : action === 'visualize'
+                                                    ? 'visualize'
+                                                    : 'commit';
 
   return {
     route: `/agent/${action}/active/alpha/agent-${action}-1` as OrbitRoute,
@@ -199,7 +205,7 @@ export const useRecoveryStressWorkbench = (tenantId: string) => {
     };
   }, [input]);
 
-  const routeEvents = useMemo<RouteEvent[]>(() => warmRouteCatalog.map((entry) => classifyAction(entry.route.split('/')[2] as OrbitAction)), [input]);
+  const routeEvents = useMemo<RouteEvent[]>(() => warmRouteCatalog.map((entry) => classifyAction(entry.route.split('/')[2] ?? 'simulate')), [input]);
   const routeSnapshot = useMemo<RouteEvent[]>(() => {
     const sorted = [...routeEvents].sort((left, right) => {
       const leftWeight = normalizeEventWeight(left);

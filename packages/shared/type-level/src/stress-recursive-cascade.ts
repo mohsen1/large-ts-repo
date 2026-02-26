@@ -1,257 +1,166 @@
-import type { NoInferAdvanced } from './composition-labs';
+export type NoInfer<T> = [T][T extends any ? 0 : never];
 
-export type BuildTuple<T, N extends number, TAcc extends readonly T[] = []> = N extends TAcc['length']
+export type BuildTuple<T, N extends number, TAcc extends T[] = []> = TAcc['length'] extends N
   ? TAcc
-  : BuildTuple<T, N, readonly [...TAcc, T]>;
+  : BuildTuple<T, N, [...TAcc, T]>;
 
-export type TupleLength<T extends readonly unknown[]> = T['length'];
+export type Head<T extends readonly unknown[]> = T extends readonly [infer H, ...unknown[]] ? H : never;
+export type Tail<T extends readonly unknown[]> = T extends readonly [unknown, ...infer Rest] ? Rest : [];
 
-export type Decrement<N extends number> = BuildTuple<unknown, N> extends readonly [infer _First, ...infer Rest]
-  ? Rest['length']
-  : never;
+export type Decrement<N extends number> =
+  BuildTuple<unknown, N> extends [...infer Left, unknown]
+    ? Left['length']
+    : 0;
 
-type DepthLane =
-  | 0
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20
-  | 21
-  | 22
-  | 23
-  | 24
-  | 25
-  | 26
-  | 27
-  | 28
-  | 29
-  | 30;
+export type Increment<N extends number> =
+  BuildTuple<unknown, N> extends infer U extends unknown[]
+    ? [...U, unknown]['length']
+    : never;
 
-type DepthPrev = {
-  0: never;
-  1: 0;
-  2: 1;
-  3: 2;
-  4: 3;
-  5: 4;
-  6: 5;
-  7: 6;
-  8: 7;
-  9: 8;
-  10: 9;
-  11: 10;
-  12: 11;
-  13: 12;
-  14: 13;
-  15: 14;
-  16: 15;
-  17: 16;
-  18: 17;
-  19: 18;
-  20: 19;
-  21: 20;
-  22: 21;
-  23: 22;
-  24: 23;
-  25: 24;
-  26: 25;
-  27: 26;
-  28: 27;
-  29: 28;
-  30: 29;
+export type Add<A extends number, B extends number> = [...BuildTuple<unknown, A>, ...BuildTuple<unknown, B>]['length'];
+
+export type Multiply<A extends number, B extends number, Acc extends unknown[] = []> =
+  B extends 0 ? Acc['length'] : Multiply<A, Decrement<B>, [...BuildTuple<unknown, A>, ...Acc]>;
+
+export type FoldTuple<T extends readonly unknown[], Acc> =
+  T extends readonly [infer H, ...infer Rest]
+    ? FoldTuple<Rest, [Acc, H]>
+    : Acc;
+
+export type Stringify<N extends number> = `${N}`;
+
+export type Rehydrate<T extends readonly unknown[], Acc extends string = ''> =
+  T extends readonly [infer Head, ...infer Tail]
+    ? Rehydrate<Tail, `${Acc}${Head & string}-`>
+    : Acc;
+
+export type NormalizeLiteral<T> = T extends string | number | boolean ? `${T}` : 'complex';
+
+export type DeepRecursive<T, D extends number> =
+  D extends 0
+    ? T
+    : T extends readonly (infer U)[]
+      ? { readonly values: readonly DeepRecursive<U, Decrement<D>>[] }
+      : T extends Record<string, infer U>
+        ? { readonly [K in keyof T]: { readonly key: K; readonly value: DeepRecursive<U, Decrement<D>> } }
+        : T;
+
+export type SolverCatalog =
+  | { readonly kind: 'leaf'; readonly level: 0 }
+  | { readonly kind: 'branch'; readonly level: number; readonly left: SolverCatalog; readonly right: SolverCatalog };
+
+export type PushCatalog<T extends SolverCatalog, D extends number> =
+  D extends 0
+    ? T
+    : { readonly kind: 'branch'; readonly level: D; readonly left: PushCatalog<T, Decrement<D>>; readonly right: PushCatalog<T, Decrement<D>> };
+
+export type SolverPath<T extends SolverCatalog> = T extends { kind: 'leaf'; level: infer L }
+  ? ['leaf', L]
+  : T extends { kind: 'branch'; level: infer L; left: infer LBranch; right: infer RBranch }
+    ? [
+        ...(LBranch extends SolverCatalog ? SolverPath<LBranch> : never),
+        'branch',
+        L,
+        ...(RBranch extends SolverCatalog ? SolverPath<RBranch> : never),
+      ]
+    : never;
+
+export type CascadeResult<T extends SolverCatalog> = T extends { kind: 'leaf' }
+  ? readonly ['complete']
+  : T extends { kind: 'branch'; left: infer L; right: infer R }
+    ? L extends SolverCatalog
+      ? R extends SolverCatalog
+        ? [...CascadeResult<L>, ...CascadeResult<R>]
+        : never
+      : never
+    : never;
+
+export interface RecursionConfig {
+  readonly namespace: string;
+  readonly levels: number;
+  readonly seed: string;
+}
+
+export type RecursiveMap<TInput, D extends number, Acc extends unknown[] = []> =
+  D extends 0
+    ? Acc
+    : TInput extends readonly [infer H, ...infer R]
+      ? RecursiveMap<R, Decrement<D>, [...Acc, H]>
+      : RecursiveMap<[], 0, Acc>;
+
+export type ReverseRecursive<T extends readonly unknown[]> = T extends readonly [infer H, ...infer Rest]
+  ? [...ReverseRecursive<Rest>, H]
+  : [];
+
+export type NormalizeRecursiveInput<T extends readonly unknown[], D extends number> = T extends readonly []
+  ? 'empty'
+  : D extends 0
+    ? 'depth'
+    : Head<T> extends readonly unknown[]
+      ? 'array'
+      : Head<T> extends string
+        ? `str:${NormalizeLiteral<Head<T>>}`
+        : 'other';
+
+export type MutualA<T, D extends number> =
+  D extends 0
+    ? { done: true }
+    : T extends readonly [infer Head, ...infer Rest]
+      ? { head: Head; next: MutualB<Rest, Decrement<D>> }
+      : { none: true };
+
+export type MutualB<T, D extends number> =
+  D extends 0
+    ? { done: true }
+    : T extends readonly [infer Head, ...infer Rest]
+      ? { branch: Head; next: MutualA<Rest, Decrement<D>> }
+      : { none: true };
+
+export type MutualDepth<T> = MutualA<T, 12>;
+
+export type RouteStateTuple = readonly [string, string, string, string?];
+
+export const compileTuple = <T extends number>(depth: T): BuildTuple<string, T> => {
+  return Array.from({ length: depth }, (_, index) => `n${index}`) as BuildTuple<string, T>;
 };
 
-type BoundedDecrement<N extends DepthLane> = DepthPrev[N];
+export const solveRecursiveCatalog = <T extends SolverCatalog, D extends number>(
+  depth: D,
+  initial: T,
+): PushCatalog<T, D> => {
+  const seed: PushCatalog<T, D> =
+    depth === 0
+      ? (initial as PushCatalog<T, D>)
+      : ({
+          kind: 'branch',
+          level: depth,
+          left: solveRecursiveCatalog(depth - 1, initial) as PushCatalog<T, Decrement<D>>,
+          right: solveRecursiveCatalog(depth - 1, initial) as PushCatalog<T, Decrement<D>>,
+        } as PushCatalog<T, D>);
 
-export type Repeat<T, N extends number, TAcc extends readonly T[] = []> = N extends 0
-  ? TAcc
-  : Repeat<T, Decrement<N>, readonly [...TAcc, T]>;
-
-export type TreeNode<TValue> = {
-  readonly value: TValue;
-  readonly children: readonly Tree<TValue>[];
+  return seed;
 };
 
-export type Tree<TValue> = TreeNode<TValue> | TValue;
-
-export type ExpandTree<T extends Tree<unknown>> = T extends TreeNode<infer TValue>
-  ? { value: TValue; children: readonly ExpandTree<T['children'][number]>[] }
-  : T;
-
-export type Wrap<T> = {
-  readonly wrapped: true;
-  readonly value: T;
-};
-
-export type Unwrap<T> = T extends { readonly wrapped: true; readonly value: infer V } ? V : T;
-
-export type Nest<T, N extends number> = N extends 0 ? T : Nest<Wrap<T>, Decrement<N>>;
-export type FlattenNest<T> = T extends Wrap<infer U> ? FlattenNest<U> : T;
-
-export type ResolveNest<T, N extends number> = FlattenNest<Nest<T, N>>;
-
-export type BuildPath<
-  TPrefix extends string,
-  TDepth extends DepthLane,
-  TAcc extends string = TPrefix,
-> = TDepth extends 0
-  ? TAcc
-  : BuildPath<`${TPrefix}/${TDepth}`, BoundedDecrement<TDepth>, `${TAcc}/${TDepth}`>;
-
-export type PathTokenize<T extends string> = T extends `${infer Head}/${infer Rest}`
-  ? readonly [Head, ...PathTokenize<Rest>]
-  : readonly [T];
-
-export type PathReduce<
-  TTokens extends readonly string[],
-  TAcc extends string = '',
-> = TTokens extends readonly [infer Head, ...infer Rest]
-  ? Head extends string
-    ? Rest extends readonly string[]
-      ? PathReduce<Rest, `${TAcc}${TAcc extends '' ? '' : '.'}${Head}`>
-      : TAcc
-    : TAcc
-  : TAcc;
-
-export type ParsePath<T extends string> = PathReduce<PathTokenize<T>>;
-
-export type ReverseTokens<T extends readonly string[]> = T extends readonly [infer Head, ...infer Rest]
-  ? readonly [...ReverseTokens<Rest extends readonly string[] ? Rest : []>, Head & string]
-  : readonly [];
-
-export type MergeTokens<
-  A extends readonly string[],
-  B extends readonly string[],
-> = A extends readonly [infer AH, ...infer AR]
-  ? B extends readonly [infer BH, ...infer BR]
-    ? readonly [AH & string, BH & string, ...MergeTokens<AR extends readonly string[] ? AR : [], BR extends readonly string[] ? BR : []>]
-    : readonly [AH & string, ...MergeTokens<AR extends readonly string[] ? AR : [], []>]
-  : B extends readonly [infer BH, ...infer BR]
-    ? readonly [BH & string, ...MergeTokens<[], BR extends readonly string[] ? BR : []>]
-    : readonly [];
-
-type ReversedPath<T extends string> = T extends `${infer Left}/${infer Right}` ? `${Right}/${Left}` : T;
-
-export type RecursiveSolver<T extends string, TDepth extends DepthLane> = TDepth extends 0
-  ? ParsePath<T>
-  : ParsePath<ReversedPath<T>>;
-
-export type MutualA<T, N extends DepthLane> = N extends 0
-  ? { mode: 'leaf'; value: T }
-  : MutualB<Wrap<T>, BoundedDecrement<N>>;
-
-export type MutualB<T, N extends DepthLane> = N extends 0
-  ? { mode: 'base'; value: T }
-  : MutualA<Unwrap<T>, BoundedDecrement<N>>;
-
-export type RecursiveTuple<T extends readonly unknown[], N extends DepthLane> = N extends 0
-  ? T
-  : RecursiveTuple<readonly [...T, ...T], BoundedDecrement<N>>;
-
-export type RecursiveValue<
-  T extends object,
-  N extends DepthLane,
-  Acc extends readonly unknown[] = readonly [],
-> = N extends 0
-  ? { readonly value: T; readonly chain: Acc }
-  : RecursiveValue<{ readonly value: T }, BoundedDecrement<N>, readonly [...Acc, N]>;
-
-export const buildCascade = <T extends object, N extends DepthLane>(
-  value: T,
-  depth: N,
-): RecursiveValue<T, N> => {
-  const payload = { value, chain: [] } as unknown as RecursiveValue<T, N>;
-  void depth;
-  return payload;
-};
-
-export const repeatTokens = <T extends string>(base: T, depth: number): string[] => {
-  let current = base as string;
-  const out = ['seed'];
-  for (let index = 0; index < depth; index += 1) {
-    current = `${current}/${String(index)}`;
-    out.push(current);
-  }
-  return out;
-};
-
-export const expandTupleRecursively = (base: number, rounds: number): unknown[] => {
-  let values = [base];
-  for (let round = 0; round < rounds; round += 1) {
-    values = values.concat(values.map((entry, index) => entry + index + round));
-  }
-  return values;
-};
-
-export type DeepSolverInput<T extends object, N extends DepthLane> = N extends 0
-  ? T
-  : DeepSolverInput<MutualA<T, N>, BoundedDecrement<N>>;
-
-export type DeepSolverOutput<T extends object, N extends DepthLane> = DeepSolverInput<T, N> extends infer R
-  ? {
-      readonly ok: true;
-      readonly result: R;
-      readonly depth: N;
+export const flattenCatalog = <T extends SolverCatalog>(tree: T): CascadeResult<T> => {
+  const walk = (node: SolverCatalog): readonly string[] => {
+    if (node.kind === 'leaf') {
+      return ['complete'];
     }
-  : never;
 
-export type RouteBranch<N extends DepthLane> = BuildPath<'/orchestrate', N>;
+    return [...walk(node.left), ...walk(node.right)];
+  };
 
-export const nestedSolver = <T extends object>(value: T): DeepSolverOutput<T, 4> => {
-  const resolved = { ok: true, result: value, depth: 4 as 4 } as DeepSolverOutput<T, 4>;
-  return resolved;
+  return walk(tree) as CascadeResult<T>;
 };
 
-export type BuildBundle<
-  T,
-  TDepth extends DepthLane,
-  TPaths extends readonly string[] = [],
-> = TDepth extends 0
-  ? { value: T; paths: TPaths }
-  : BuildBundle<MutualA<T, TDepth>, BoundedDecrement<TDepth>, readonly [...TPaths, `depth-${TDepth}`]>;
+export const resolveRecursiveCatalog = <T extends readonly unknown[]>(input: T, depth: number) => {
+  const build = (value: readonly unknown[], remaining: number): readonly unknown[] => {
+    if (remaining <= 0 || value.length === 0) {
+      return value;
+    }
+    const [head, ...rest] = value as readonly unknown[];
+    return [head, ...build(rest, remaining - 1)];
+  };
 
-export const composeCascade = <T, N extends DepthLane>(seed: T, depth: N): BuildBundle<T, N> =>
-  ({
-    value: seed,
-    paths: repeatTokens('root', Number(depth)),
-  }) as BuildBundle<T, N>;
-
-export type RecursiveMatrix<
-  T extends readonly unknown[],
-  Ctx extends DepthLane,
-> = Ctx extends 0 ? T : RecursiveMatrix<readonly [...T, ...T], BoundedDecrement<Ctx>>;
-
-export type CascadeIndex<T extends readonly unknown[], N extends DepthLane> = {
-  readonly values: RecursiveMatrix<T, N>;
-  readonly cursor: N;
-  readonly head: T[number] | undefined;
+  return build(input, depth) as readonly unknown[];
 };
-
-export const matrixCascade = <T extends readonly unknown[], N extends DepthLane>(
-  values: T,
-  depth: N,
-): CascadeIndex<T, N> => ({
-  values: values as RecursiveMatrix<T, N>,
-  cursor: depth,
-  head: values[0] as T[number] | undefined,
-});
-
-export type NoInferMatrix = NoInferAdvanced<readonly unknown[]>;
-
-export type RecursionGraph<T extends NoInferMatrix, N extends DepthLane> = RecursiveMatrix<T, N>;

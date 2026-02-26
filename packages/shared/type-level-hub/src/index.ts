@@ -119,8 +119,8 @@ export type {
   ControlSeverity,
   ControlVerb,
   ControlRouteCatalog,
-  RouteParts,
-  RouteEnvelope,
+  RouteParts as ControlRouteParts,
+  RouteEnvelope as ControlRouteEnvelope,
 } from '@shared/type-level/stress-template-control-plane';
 export type { IntersectedAggregate, IntersectionMap } from '@shared/type-level/stress-intersection-voltage';
 export type {
@@ -188,8 +188,55 @@ export type { DeepLayerChain, LayerTrace } from '@shared/type-level/stress-deep-
 export type { IntersectionBundleA, IntersectionBundleB, IntersectionUnion, ComposeBlueprint } from '@shared/type-level/stress-safe-intersection-blueprint';
 export type { NestedTemplateRemap, TemplateRemap, EventRouteCatalog } from '@shared/type-level/stress-mapped-template-fabric';
 export type { BuildTuple, Decrement, Add, Multiply, RecursiveCatalog } from '@shared/type-level/stress-recursive-fabric-core';
+export type {
+  BuildTuple as RecursiveTuple,
+  Decrement as RecursiveDecrement,
+} from '@shared/type-level/stress-recursive-fabric-core';
 export type { RouteTokens, RouteResolution, DistilledCatalog, CascadeRoute } from '@shared/type-level/stress-template-route-cascade';
 export { evaluateFlowGraph } from '@shared/type-level/stress-controlflow-branch-arena';
 export type { BranchResult } from '@shared/type-level/stress-controlflow-branch-arena';
 export type { BuildArithmeticChain, BinaryExpression, StringTemplateChain, ParseEventCode } from '@shared/type-level/stress-binary-expression-knot';
 export type { SolverFactory, SolverResult, createSolverInvocationMatrix, SolverBrand, BrandedSolverResult } from '@shared/type-level/stress-generic-instantiation-matrix';
+export type {
+  RouteEnvelope,
+  RouteParts,
+  OrbitRoute,
+  OrbitDomain,
+  OrbitScope,
+  OrbitAction,
+} from '@shared/type-level/stress-conditional-orbit';
+export type {
+  DistinctShardBundle,
+  BundleByKind,
+  OrbitBundle,
+  BundleProfile,
+  ShardUnion,
+} from '@shared/type-level/stress-disjoint-intersections';
+export type {
+  BuildTuple as CascadeBuildTuple,
+  Decrement as CascadeDecrement,
+  DeepRecursive,
+  RouteStateTuple,
+} from '@shared/type-level/stress-recursive-cascade';
+export type {
+  EvaluateNumeric,
+  ExpressionCatalog,
+  RouteExpression,
+  ExpressionRoute,
+  PathToLabel,
+} from '@shared/type-level/stress-binary-expression-lane';
+export type {
+  SolverContract,
+  SolverFactory as InstantiationSolverFactory,
+  SolverResult as InstantiationSolverResult,
+  SolverRegistry,
+  createSolverFactory,
+  composeSolverPipeline,
+} from '@shared/type-level/stress-instantiation-hub';
+export * as stressConditionalOrbit from '@shared/type-level/stress-conditional-orbit';
+export * as stressSubtypeDepth from '@shared/type-level/stress-subtype-depth';
+export * as stressDisjointIntersections from '@shared/type-level/stress-disjoint-intersections';
+export * as stressTemplateRemap from '@shared/type-level/stress-template-remap';
+export * as stressRecursiveCascade from '@shared/type-level/stress-recursive-cascade';
+export * as stressBinaryExpressionLane from '@shared/type-level/stress-binary-expression-lane';
+export * as stressInstantiationHub from '@shared/type-level/stress-instantiation-hub';
