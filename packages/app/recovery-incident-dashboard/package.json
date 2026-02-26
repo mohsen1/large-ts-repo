@@ -67,6 +67,7 @@
     "@data/recovery-strategy-store": "workspace:*",
     "@domain/recovery-command-network": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/type-level-hub": "workspace:*",
     "@domain/recovery-scenario-orchestration": "workspace:*",
     "@service/recovery-incident-scenario-orchestrator": "workspace:*",
     "@infrastructure/recovery-scenario-gateway": "workspace:*",

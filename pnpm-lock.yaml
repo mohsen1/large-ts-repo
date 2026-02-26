@@ -1178,6 +1178,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/type-level-hub':
+        specifier: workspace:*
+        version: link:../../shared/type-level-hub
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14

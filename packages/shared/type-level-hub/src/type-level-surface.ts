@@ -37,7 +37,7 @@ export type HubCatalogByScope<T extends HubCatalogInput> = {
     : never;
 }[keyof T];
 
-export type HubRouteEnvelope<T extends HubCatalogInput> = {
+export type HubRouteEnvelope<T extends HubCatalogInput = HubCatalogInput> = {
   readonly version: HubBrand<'v1'>;
   readonly routes: DeepReadonly<HubRouteMap<keyof T & string>>;
   readonly projection: readonly HubCatalogByScope<T>[];

@@ -16,7 +16,6 @@ export type {
   HubCatalogLookup,
   HubEnvelopeLookup,
   HubRouteCell,
-  HubRouteEnvelope,
   HubRouteMap,
   HubTemplateRoute,
   TypeHubRouteVerb,
@@ -245,6 +244,16 @@ export * as stressTemplateRemap from '@shared/type-level/stress-template-remap';
 export * as stressRecursiveCascade from '@shared/type-level/stress-recursive-cascade';
 export * as stressConditionalConvergence from '@shared/type-level/stress-conditional-convergence';
 export * as stressSubtypeChainCascade from '@shared/type-level/stress-subtype-chain-cascade';
+export * as stressOrionHubLattice from './stress-orion-hub-lattice';
+export type {
+  HubResolver,
+  HubResolution,
+  HubCatalogByCommand,
+  HubSolver,
+  HubDecision,
+  HubNodeEnvelope,
+  HubRouteEnvelope,
+} from './stress-orion-hub-lattice';
 export * as stressMappedRouteMatrices from '@shared/type-level/stress-mapped-route-matrices';
 export * as stressRecursiveMutualLattice from '@shared/type-level/stress-recursive-mutual-lattice';
 export * as stressTemplateRouteConstellations from '@shared/type-level/stress-template-route-constellations';
@@ -345,3 +354,10 @@ export type {
   BrandedId,
   BrandedTag,
 } from '@shared/type-level/stress-generic-instantiation-at-scale';
+
+export * as stressOrionCompositeControlflow from '@shared/type-level/stress-orion-composite-controlflow';
+export * as stressOrionGenericInstantiationOrbit from '@shared/type-level/stress-orion-generic-instantiation-orbit';
+export * as stressOrionTemplateFabric from '@shared/type-level/stress-orion-template-fabric';
+export * as stressOrionDeepRecursionGrid from '@shared/type-level/stress-orion-deep-recursion-grid';
+export * as stressOrionConstraintBraid from '@shared/type-level/stress-orion-constraint-braid';
+export * as stressOrionRuntimeRegistry from '@shared/type-level/stress-orion-runtime-registry';
