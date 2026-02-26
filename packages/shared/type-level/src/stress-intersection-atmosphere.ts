@@ -1,246 +1,207 @@
-export interface JunctionA {
-  readonly nodeId: `node-a`;
-  readonly nodeType: 'source';
-  readonly resource: number;
-}
-export interface JunctionB {
-  readonly nodeId: `node-b`;
-  readonly nodeType: 'validator';
-  readonly resource: number;
-}
-export interface JunctionC {
-  readonly nodeId: `node-c`;
-  readonly nodeType: 'planner';
-  readonly resource: number;
-}
-export interface JunctionD {
-  readonly nodeId: `node-d`;
-  readonly nodeType: 'planner';
-  readonly resource: number;
-  readonly shared: { readonly key: 'D'; readonly active: true };
-}
-export interface JunctionE {
-  readonly nodeId: `node-e`;
-  readonly nodeType: 'executor';
-  readonly shared: { readonly key: 'E'; readonly active: false };
-}
-export interface JunctionF {
-  readonly nodeId: `node-f`;
-  readonly nodeType: 'observer';
-  readonly shared: { readonly key: 'E'; readonly active: false };
-}
-export interface JunctionG {
-  readonly nodeId: `node-g`;
-  readonly nodeType: 'executor';
-  readonly resource: number;
-}
-export interface JunctionH {
-  readonly nodeId: `node-h`;
-  readonly nodeType: 'signal';
-  readonly shared: { readonly key: 'H'; readonly active: true };
-}
-export interface JunctionI {
-  readonly nodeId: `node-i`;
-  readonly nodeType: 'signal';
-  readonly shared: { readonly key: 'I'; readonly active: true };
-}
-export interface JunctionJ {
-  readonly nodeId: `node-j`;
-  readonly nodeType: 'coordinator';
-  readonly throttle: number;
-}
-export interface JunctionK {
-  readonly nodeId: `node-k`;
-  readonly nodeType: 'coordinator';
-  readonly throttle: number;
-}
-export interface JunctionL {
-  readonly nodeId: `node-l`;
-  readonly nodeType: 'introspector';
-  readonly throttle: number;
-}
-export interface JunctionM {
-  readonly nodeId: `node-m`;
-  readonly nodeType: 'introspector';
-  readonly auditId: `A-${string}`;
-}
-export interface JunctionN {
-  readonly nodeId: `node-n`;
-  readonly nodeType: 'policy';
-  readonly auditId: `A-${string}`;
-}
-export interface JunctionO {
-  readonly nodeId: `node-o`;
-  readonly nodeType: 'policy';
-  readonly auditId: `A-${string}`;
-}
-export interface JunctionP {
-  readonly nodeId: `node-p`;
-  readonly nodeType: 'bridge';
-}
-export interface JunctionQ {
-  readonly nodeId: `node-q`;
-  readonly nodeType: 'bridge';
-  readonly lane: `lane-${number}`;
-}
-export interface JunctionR {
-  readonly nodeId: `node-r`;
-  readonly nodeType: 'bridge';
-  readonly lane: `lane-${number}`;
-}
-export interface JunctionS {
-  readonly nodeId: `node-s`;
-  readonly nodeType: 'inspector';
-  readonly lane: `lane-${number}`;
-}
-export interface JunctionT {
-  readonly nodeId: `node-t`;
-  readonly nodeType: 'inspector';
-  readonly confidence: number;
-}
-export interface JunctionU {
-  readonly nodeId: `node-u`;
-  readonly nodeType: 'inspector';
-  readonly confidence: number;
-}
-export interface JunctionV {
-  readonly nodeId: `node-v`;
-  readonly nodeType: 'ledger';
-}
-export interface JunctionW {
-  readonly nodeId: `node-w`;
-  readonly nodeType: 'ledger';
-  readonly ledgerTag: `L-${number}`;
-}
-export interface JunctionX {
-  readonly nodeId: `node-x`;
-  readonly nodeType: 'ledger';
-  readonly ledgerTag: `L-${number}`;
-}
-export interface JunctionY {
-  readonly nodeId: `node-y`;
-  readonly nodeType: 'scheduler';
-  readonly sequence: readonly number[];
-}
-export interface JunctionZ {
-  readonly nodeId: `node-z`;
-  readonly nodeType: 'scheduler';
-  readonly sequence: readonly number[];
-}
-export interface JunctionAA {
-  readonly nodeId: `node-aa`;
-  readonly nodeType: 'scheduler';
-  readonly sequence: readonly number[];
-}
-export interface JunctionAB {
-  readonly nodeId: `node-ab`;
-  readonly nodeType: 'telemetry';
-  readonly sequence: readonly number[];
-}
-export interface JunctionAC {
-  readonly nodeId: `node-ac`;
-  readonly nodeType: 'telemetry';
-}
-export interface JunctionAD {
-  readonly nodeId: `node-ad`;
-  readonly nodeType: 'telemetry';
-}
-export interface JunctionAE {
-  readonly nodeId: `node-ae`;
-  readonly nodeType: 'command';
-}
-export interface JunctionAF {
-  readonly nodeId: `node-af`;
-  readonly nodeType: 'command';
-  readonly commandId: `cmd-${string}`;
-}
-export interface JunctionAG {
-  readonly nodeId: `node-ag`;
-  readonly nodeType: 'command';
-  readonly commandId: `cmd-${string}`;
-}
-export interface JunctionAH {
-  readonly nodeId: `node-ah`;
-  readonly nodeType: 'auditor';
-  readonly commandId: `cmd-${string}`;
+export interface AtmosphereSeed {
+  readonly name: string;
+  readonly baseline: number;
 }
 
-export type LatticeIntersection =
-  & JunctionA
-  & JunctionB
-  & JunctionC
-  & JunctionD
-  & JunctionE
-  & JunctionF
-  & JunctionG
-  & JunctionH
-  & JunctionI
-  & JunctionJ
-  & JunctionK
-  & JunctionL
-  & JunctionM
-  & JunctionN
-  & JunctionO
-  & JunctionP
-  & JunctionQ
-  & JunctionR
-  & JunctionS
-  & JunctionT
-  & JunctionU
-  & JunctionV
-  & JunctionW
-  & JunctionX
-  & JunctionY
-  & JunctionZ
-  & JunctionAA
-  & JunctionAB
-  & JunctionAC
-  & JunctionAD
-  & JunctionAE
-  & JunctionAF
-  & JunctionAG
-  & JunctionAH;
+export type AtmosSegmentA = { readonly a: 'A'; readonly priority: 1 };
+export type AtmosSegmentB = { readonly b: 'B'; readonly flags: readonly ['monitor', 'trace'] };
+export type AtmosSegmentC = { readonly c: 'C'; readonly ratio: number };
+export type AtmosSegmentD = { readonly d: 'D'; readonly enabled: true };
+export type AtmosSegmentE = { readonly e: 'E'; readonly owner: `owner-${string}` };
+export type AtmosSegmentF = { readonly f: 'F'; readonly labels: readonly string[] };
+export type AtmosSegmentG = { readonly g: 'G'; readonly version: `${number}.${number}` };
+export type AtmosSegmentH = { readonly h: 'H'; readonly tags: ReadonlyArray<string> };
+export type AtmosSegmentI = { readonly i: 'I'; readonly zone: 'inner' | 'outer' };
+export type AtmosSegmentJ = { readonly j: 'J'; readonly score: number };
+export type AtmosSegmentK = { readonly k: 'K'; readonly latencyMs: number };
+export type AtmosSegmentL = { readonly l: 'L'; readonly capacity: number };
+export type AtmosSegmentM = { readonly m: 'M'; readonly checksum: number };
+export type AtmosSegmentN = { readonly n: 'N'; readonly policy: 'strict' | 'relaxed' };
+export type AtmosSegmentO = { readonly o: 'O'; readonly route: `/${string}` };
+export type AtmosSegmentP = { readonly p: 'P'; readonly attempts: number };
+export type AtmosSegmentQ = { readonly q: 'Q'; readonly correlation: `corr-${string}` };
+export type AtmosSegmentR = { readonly r: 'R'; readonly shards: readonly number[] };
+export type AtmosSegmentS = { readonly s: 'S'; readonly mutable: false };
+export type AtmosSegmentT = { readonly t: 'T'; readonly ttl: bigint };
 
-export type ExtractIntersection<Target extends Record<string, unknown>> = {
-  [K in keyof Target as K extends `node-${string}` ? K : never]: Target[K];
+export type AtmosSegmentU = { readonly u: 'U'; readonly enabled: false };
+export type AtmosSegmentV = { readonly v: 'V'; readonly depth: 12 };
+export type AtmosSegmentW = { readonly w: 'W'; readonly level: 'high' | 'mid' | 'low' };
+export type AtmosSegmentX = { readonly x: 'X'; readonly stream: 'alpha' | 'beta' };
+export type AtmosSegmentY = { readonly y: 'Y'; readonly budget: number };
+export type AtmosSegmentZ = { readonly z: 'Z'; readonly locked: boolean };
+
+export type AtmosUnion =
+  | AtmosSegmentA
+  | AtmosSegmentB
+  | AtmosSegmentC
+  | AtmosSegmentD
+  | AtmosSegmentE
+  | AtmosSegmentF
+  | AtmosSegmentG
+  | AtmosSegmentH
+  | AtmosSegmentI
+  | AtmosSegmentJ
+  | AtmosSegmentK
+  | AtmosSegmentL
+  | AtmosSegmentM
+  | AtmosSegmentN
+  | AtmosSegmentO
+  | AtmosSegmentP
+  | AtmosSegmentQ
+  | AtmosSegmentR
+  | AtmosSegmentS
+  | AtmosSegmentT
+  | AtmosSegmentU
+  | AtmosSegmentV
+  | AtmosSegmentW
+  | AtmosSegmentX
+  | AtmosSegmentY
+  | AtmosSegmentZ;
+
+export type AtmosphereIntersection<T extends Record<string, any>> =
+  T extends { readonly seed: infer S }
+    ? AtmosphereSeed & S & AtmosSegmentA & AtmosSegmentB & AtmosSegmentC & AtmosSegmentD & AtmosSegmentE & AtmosSegmentF & AtmosSegmentG & AtmosSegmentH & AtmosSegmentI & AtmosSegmentJ & AtmosSegmentK & AtmosSegmentL & AtmosSegmentM & AtmosSegmentN & AtmosSegmentO & AtmosSegmentP & AtmosSegmentQ & AtmosSegmentR & AtmosSegmentS & AtmosSegmentT & AtmosSegmentU & AtmosSegmentV & AtmosSegmentW & AtmosSegmentX & AtmosSegmentY & AtmosSegmentZ
+    : never;
+
+export type DeepIntersect<T> = T extends [infer A, ...infer Tail]
+  ? A & DeepIntersect<Tail>
+  : Record<string, never>;
+
+export type FlattenIntersections<T> = T extends AtmosphereIntersection<T & Record<string, unknown>>
+  ? T
+  : T;
+
+export type AtlasLayer = {
+  readonly id: string;
+  readonly payload: number;
 };
 
-export type MergeOverlap<TLeft extends object, TRight extends object> = Omit<TLeft, keyof TRight> & TRight;
+export type AtlasAtlas<T extends readonly AtlasLayer[]> = T extends readonly [infer H, ...infer Tail]
+  ? H extends AtlasLayer
+    ? AtlasLayer & AtlasAtlas<Extract<Tail, readonly AtlasLayer[]>>
+    : AtmosphereSeed
+  : AtmosphereSeed;
 
-export type DeepIntersection<Targets extends readonly object[]> =
-  Targets extends readonly [infer Head, ...infer Tail]
-    ? Head extends object
-      ? Tail extends readonly object[]
-        ? MergeOverlap<Head, DeepIntersection<Tail>>
-        : Head
-      : never
-    : {};
-
-export type MappedIntersection<TInput extends Record<string, object>> = {
-  [K in keyof TInput]:
-    TInput[K] extends infer TV
-      ? TV & {
-          readonly source: K;
-          readonly alias: `${Extract<K, string>}-alias`;
-          readonly rank: number;
-        }
-      : never;
+export type RemapWithBrandedKeys<T extends Record<string, unknown>> = {
+  [K in keyof T as BrandKey<K & string>]: T[K];
 };
 
-export const composeIntersection = <TInput extends readonly Record<string, object>[]>(
-  input: TInput,
-): DeepIntersection<TInput> => {
-  let result = {} as Record<string, unknown>;
-  for (const current of input) {
-    result = { ...result, ...current };
-  }
-  return result as DeepIntersection<TInput>;
+export type BrandKey<K extends string> = K extends `${infer Head}-${infer Tail}`
+  ? `${Head}::${Tail}`
+  : `${K}::segment`;
+
+export type AtmosMapped<T extends Record<string, number | string>> = {
+  [K in keyof T as `${K & string}`]: {
+    readonly cell: K;
+    readonly value: T[K];
+    readonly token: BrandKey<K & string>;
+  };
 };
 
-export const resolveIntersectionOverlap = <TInput extends Record<string, object>>(
-  left: TInput,
-  right: TInput,
-): MergeOverlap<TInput, TInput> => ({
-  ...left,
-  ...right,
-});
+export type InterleaveIntersections<T extends readonly Record<string, unknown>[]> =
+  T extends readonly [infer First, ...infer Rest]
+    ? First extends Record<string, unknown>
+      ? AtmosphereSeed & First & InterleaveIntersections<Extract<Rest, readonly Record<string, unknown>[]>>
+      : InterleaveIntersections<Extract<Rest, readonly Record<string, unknown>[]>>
+    : AtmosphereSeed;
+
+export type CombineLayeredIntersections<T extends readonly Record<string, unknown>[]> = DeepIntersect<
+  T extends readonly [infer A, ...infer Tail]
+    ? A extends Record<string, unknown>
+      ? [A, ...Extract<Tail, readonly Record<string, unknown>[]>]
+      : readonly Record<string, unknown>[
+        ]
+    : readonly []
+>;
+
+export const atlasLayers = [
+  { id: 'alpha', payload: 11 },
+  { id: 'beta', payload: 13 },
+  { id: 'gamma', payload: 17 },
+] as const satisfies readonly AtlasLayer[];
+
+export const atmosphereEnvelope = <const T extends ReadonlyArray<AtlasLayer>>(
+  layers: T,
+): InterleaveIntersections<[{ readonly seed: AtmosphereSeed; readonly stage: 'origin' }, ...{ [K in keyof T]: { [P in T[K]['id']]: T[K] } }]> => {
+  const entries = Object.fromEntries(
+    layers.map((layer) => [layer.id, layer.payload]),
+  ) as Record<string, number>;
+
+  return {
+    seed: {
+      name: 'stress-atmosphere',
+      baseline: layers.length,
+    },
+    stage: 'origin',
+    ...entries,
+  } as never;
+};
+
+export const normalizeSegments = <T extends Record<string, unknown>>(payload: T): AtmosphereIntersection<T> => {
+  const merged = {
+    name: 'atlas',
+    baseline: 1,
+    ...payload,
+    a: 'A',
+    b: 'B',
+    c: 'C',
+    d: 'D',
+    e: 'E',
+    f: 'F',
+    g: 'G',
+    h: 'H',
+    i: 'I',
+    j: 'J',
+    k: 'K',
+    l: 'L',
+    m: 'M',
+    n: 'N',
+    o: 'O',
+    p: 'P',
+    q: 'Q',
+    r: 'R',
+    s: 'S',
+    t: 'T',
+    u: 'U',
+    v: 'V',
+    w: 'W',
+    x: 'X',
+    y: 'Y',
+    z: 'Z',
+    flags: ['monitor', 'trace'],
+    ratio: 1.618,
+    enabled: true,
+    owner: 'owner-default',
+    labels: ['primary'],
+    version: '1.0',
+    tags: ['alpha'],
+    zone: 'inner',
+    score: 100,
+    latencyMs: 3,
+    capacity: 256,
+    checksum: 2025,
+    policy: 'strict',
+    route: '/stress/atlas',
+    attempts: 2,
+    correlation: 'corr-primary',
+    shards: [1, 2, 3],
+    mutable: false,
+    ttl: BigInt(42),
+    depth: 12,
+    level: 'high',
+    stream: 'alpha',
+    budget: 999,
+    locked: false,
+  };
+
+  return merged as unknown as AtmosphereIntersection<T>;
+};
+
+export const accumulateIntersections = <T extends readonly Record<string, unknown>[]>(
+  layers: T,
+): InterleaveIntersections<[{ readonly seed: AtmosphereSeed }, ...T]> => {
+  const seed: { seed: AtmosphereSeed } = { seed: { name: 'interleave', baseline: layers.length } };
+  const merged = Object.assign(seed, ...layers.map((layer) => layer));
+  return merged as InterleaveIntersections<[{ readonly seed: AtmosphereSeed }, ...T]>;
+};

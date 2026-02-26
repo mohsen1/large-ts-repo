@@ -39,6 +39,22 @@ export {
   segmentBag,
   routeKeySet,
 } from './route-mesh-fabrics';
+export {
+  type AtlasSession,
+  type AtlasEnvelope,
+  type AtlasChain,
+  type AtlasRoute,
+  type AtlasRegistryInput,
+  toAtlasRoute,
+  atlasManifest,
+  parseAtlasRoute,
+  buildAtlasIndex,
+  runAtlasPipeline,
+  createAtlasState,
+  routeFromParts,
+  bundleAtlas,
+  dispatchAtlasPayload,
+} from './type-level-stress-atlas';
 
 export {
   type AdapterInvocation,

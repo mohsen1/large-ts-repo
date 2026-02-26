@@ -149,3 +149,6 @@ export * from './components/stress/StressInstantiationWorkbench';
 export * from './pages/RecoveryCockpitTypeLevelStressPage';
 export * from './pages/RecoveryCockpitTypeLevelStressMatrixPage';
 export * from './services/recoveryCockpitStressWorkloadService';
+export * from './hooks/useTypeStressAtlas';
+export * from './components/stress/TypeStressAtlasBoard';
+export * from './pages/RecoveryCockpitTypeStressAtlasPage';

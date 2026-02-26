@@ -36,6 +36,7 @@
     "@shared/quantum-studio-core": "workspace:*",
     "@service/recovery-orchestration-studio-engine": "workspace:*",
     "@shared/type-level": "workspace:*",
+    "@shared/type-level-hub": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
