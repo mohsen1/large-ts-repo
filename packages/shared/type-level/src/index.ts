@@ -24,16 +24,7 @@ export * as stressConditionalOrbit from './stress-conditional-orbit';
 export * as stressHierarchyMatrix from './stress-hierarchy-matrix';
 export * as stressIntersectionGrid from './stress-intersection-grid';
 export * as stressMappedRecursionWorkbench from './stress-mapped-recursion-workbench';
-export * as stressRecursiveCascade from './stress-recursive-cascade';
-export * as stressConstraintSolverLab from './stress-constraint-solver-lab';
 export * as stressTsStressHarness from './stress-ts-stress-harness';
-export * as stressBinaryChains from './stress-binary-chains';
-export * as stressGenericInstantiationLab from './stress-generic-instantiation-lab';
-export * as stressPatternLabs from './stress-pattern-labs';
-export * as recursiveWorkbench from './recursive-workbench';
-export * as routeCommandFabric from './route-command-fabric';
-export * as solverOverloadLab from './solver-overload-lab';
-export * as stressClassCascade from './class-chain-cascade';
 export * from './stress-binary-chains';
 export * from './stress-generic-instantiation-lab';
 export type { OrbitDomain, OrbitAction, OrbitRoute, OrbitStatus, OrbitPhase, OrbitCommandPlan } from './stress-conditional-orbit';
@@ -328,3 +319,101 @@ export * as stressRecursiveLattices from './stress-recursive-lattices';
 export * as stressRouteNetwork from './stress-route-network';
 export * as stressControlflowLab from './stress-controlflow-lab';
 export * as stressConstraintOrchestrator from './stress-constraint-orchestrator';
+export * as stressConditionalLattice from './stress-conditional-lattice';
+export * as stressHierarchyLattice from './stress-hierarchy-lattice';
+export * as stressIntersectionLens from './stress-intersection-lens';
+export * as stressMappedTemplateKits from './stress-mapped-template-kits';
+export * as stressRecursiveAccumulator from './stress-recursive-accumulator';
+export * as stressConstraintOrchestrationLab from './stress-constraint-orchestration-lab';
+export * as stressControlGraph from './stress-control-graph';
+
+export {
+  type ResolveSignalChain,
+  type RoutePlan,
+  type DomainAction,
+  type DomainToken,
+  type DomainMetadata,
+  type DomainActionToken,
+  domainCatalog,
+  actionCatalog,
+  domainActionCatalog,
+  resolveRouteSignals,
+} from './stress-conditional-lattice';
+
+export {
+  type LayerAtom,
+  type DeepLayerChain,
+  type LayerChainClass,
+  runChain,
+  LayerOne,
+  LayerTwo,
+  LayerThree,
+  LayerFour,
+  LayerFive,
+  LayerSix,
+  LayerSeven,
+  LayerEight,
+  LayerNine,
+  LayerTen,
+} from './stress-hierarchy-lattice';
+
+export {
+  type LensCatalog,
+  type LensRecord,
+  type LensToken,
+  type ExpandedIntersection,
+  type BuildIntersections,
+  mergeLensCatalog,
+  summarizeIntersection,
+  scopeIntersections,
+  defaultLensShapes,
+} from './stress-intersection-lens';
+
+export {
+  type ToPascal,
+  type TemplateSeed,
+  type MappedValueTransform,
+  type EventMap,
+  type RouteEnvelope,
+  templateCatalog,
+  templateIndex,
+  routeTransforms as templateRouteTransforms,
+  routeTransforms,
+} from './stress-mapped-template-kits';
+
+export {
+  type RecursiveObject,
+  type ResolveSolver,
+  type SolveRec,
+  buildTuple,
+  recursiveTransform,
+  resolveMutual,
+  deepCatalog,
+  constrainSolver,
+} from './stress-recursive-accumulator';
+
+export {
+  type ConstraintSet,
+  type ConstraintTuple,
+  solve,
+  adaptSolver,
+  assertSolver,
+  constraintSuite,
+  solverTrace,
+  satisfiesSolver,
+  emitNominalEvent,
+  isNominalEvent,
+  ConstraintMatrix,
+} from './stress-constraint-orchestration-lab';
+
+export {
+  type FlowEventCode,
+  type FlowTraceEvent,
+  type FlowBranchResult,
+  type StepPhase,
+  createBranchEvent,
+  branchRouter,
+  walkFlow,
+  branchFallback,
+  phaseMap,
+} from './stress-control-graph';
