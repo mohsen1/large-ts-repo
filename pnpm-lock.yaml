@@ -4404,6 +4404,9 @@ importers:
       '@shared/orchestration-lab-core':
         specifier: workspace:*
         version: link:../../shared/orchestration-lab-core
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
 
   packages/domain/recovery-lab-synthetic-orchestration:
     dependencies:
