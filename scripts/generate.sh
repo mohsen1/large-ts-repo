@@ -216,6 +216,22 @@ L. Real-world utility type complexity:
 19. Make a clean git commit for this iteration with a clear message, and always include `pnpm-lock.yaml` in the commit whenever it changed.
 20. Do not use apply_patch via exec_command.
 
+=== CACHE INVALIDATION STRATEGY ===
+
+Structure the dependency graph to minimize the effectiveness of tsbuildinfo incremental caching:
+
+1. Shared foundation packages: Create and expand shared/utility packages (e.g. `@shared/type-level`, `@shared/result`, `@shared/common-types`) that are imported by MANY downstream packages. Every iteration should touch or expand type exports in these widely-depended-on packages, forcing cache invalidation across the entire downstream graph.
+
+2. Hub packages: Build packages that re-export types from many other packages, creating wide dependency fan-out. When a hub package changes, every consumer must be rechecked.
+
+3. Deep reference chains: Grow the project-reference chain depth (A references B references C references D...). A change at the root of a deep chain invalidates every package along the chain.
+
+4. Cross-cutting type definitions: Place core branded types, discriminated unions, and utility types in shared packages that are used pervasively. Evolve these types each iteration (add union members, extend interfaces, add new generic parameters with defaults) so downstream packages are forced to re-validate.
+
+5. Type-level re-exports: Have mid-tier packages re-export and augment types from shared packages, then have leaf packages consume those augmented re-exports. This creates multi-hop invalidation paths.
+
+6. Maximize fan-out from shared packages: Aim for shared utility packages to be referenced by 10+ other packages. Each iteration, add or modify at least one type export in a high-fan-out shared package to force widespread cache misses.
+
 === DISTRIBUTION GUIDANCE ===
 
 Each iteration should include AT LEAST 4 of the patterns A-L above. Spread coverage across iterations so all patterns get exercised. Aim for:
@@ -224,10 +240,12 @@ Each iteration should include AT LEAST 4 of the patterns A-L above. Spread cover
 - At least 1 file with large control-flow graphs (switch/if chains with narrowing).
 - At least 1 file with generic function instantiation at scale or overloaded signatures.
 - Weave template literal types, branded types, and `satisfies` throughout all files naturally.
+- EVERY iteration must touch at least one high-fan-out shared package to trigger broad cache invalidation.
 
 Execution target:
 - Increase total TypeScript LOC significantly each iteration (minimum 900 net-new TS LOC).
 - Maximize type-checker workload per line of code — prefer patterns that are expensive to check over simple value-level code.
+- Structure dependencies so that tsbuildinfo caching provides minimal benefit — maximize cache invalidation surface.
 - Preserve repository usability and consistency for tsz stress testing.
 EOF
 
