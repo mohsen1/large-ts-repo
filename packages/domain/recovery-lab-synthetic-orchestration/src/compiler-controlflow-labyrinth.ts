@@ -142,7 +142,7 @@ export const dispatchFlow = (
   mode: FlowMode = 'probe',
 ): {
   readonly result: FlowResult;
-  readonly dispatch: { readonly output: string; readonly trace: readonly string[]; readonly score: number };
+  readonly dispatch: { readonly mode: FlowMode; readonly output: boolean; readonly payload: { readonly ok: boolean; readonly route: string }; readonly trace: readonly string[] };
 } => {
   const base = compileFlowRun([route], mode)[0] as FlowResult;
   const parsed = parseHyperRoute(route);
