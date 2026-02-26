@@ -70,3 +70,7 @@ export * from './components/stress/RouteDisciplineMatrix';
 export * from './hooks/useStressTypeSolver';
 export * from './pages/RecoveryStressTypeOpsPage';
 export * from './hooks/useConvergenceStudioSession';
+export * from './components/stress/ConstraintConflictMatrix';
+export * from './components/stress/TypeLevelHarnessPanel';
+export * from './hooks/useStressControlFabric';
+export * from './pages/RecoveryStressControlWorkbenchPage';

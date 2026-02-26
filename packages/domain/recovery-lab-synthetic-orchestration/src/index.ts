@@ -14,3 +14,6 @@ export * from './compiler-constraint-forge';
 export * from './compiler-control-matrix';
 export * from './compiler-generic-factory';
 export * from './compiler-route-arena';
+export * from './compiler-control-lab';
+export * as compilerInferenceGrid from './compiler-inference-grid';
+export * as compilerOrchestratorGrid from './compiler-orchestrator-grid';
