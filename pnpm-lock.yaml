@@ -8618,6 +8618,12 @@ importers:
 
   packages/shared/type-level:
     dependencies:
+      '@shared/result':
+        specifier: workspace:*
+        version: link:../result
+      '@shared/util':
+        specifier: workspace:*
+        version: link:../util
       zod:
         specifier: ^3.24.0
         version: 3.25.76
