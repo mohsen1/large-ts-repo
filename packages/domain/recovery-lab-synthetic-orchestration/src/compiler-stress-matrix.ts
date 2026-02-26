@@ -214,7 +214,7 @@ const buildHierarchy = (routes: StressSeed) => {
 export const buildStressEnvelope = <TMode extends StressMode>(
   routes: StressSeed = stressSeedRoutes,
   mode: TMode = 'preview' as TMode,
-): StressEnvelope<typeof routes, TMode> => {
+): StressEnvelope<StressSeed, TMode> => {
   const normalized = routes;
   const parsed = resolveRouteGrid(routes);
   const cascades = buildRouteCascade(routes, 12);

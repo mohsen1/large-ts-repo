@@ -83,7 +83,7 @@ const createFactory = (route: string, mode: FlowMode): SolverAdapter<FlowMode, {
   return next as SolverAdapter<FlowMode, { readonly ok: boolean; readonly route: string }>;
 };
 
-export const compileFlowRun = (seed: readonly HyperRoute[], mode: FlowMode = defaultMode): FlowResult[] => {
+export const compileFlowRun = (seed: readonly HyperRoute[], mode: FlowMode = defaultMode): readonly FlowResult[] => {
   const parsed = resolveRouteGrid(seed);
   const cascades = buildRouteCascade(seed, 8);
   const results: FlowResult[] = [];
@@ -128,7 +128,7 @@ export const compileFlowRun = (seed: readonly HyperRoute[], mode: FlowMode = def
   return results;
 };
 
-export const summarizeFlow = (results: readonly FlowResult[]) => {
+export const summarizeFlow = (results: readonly FlowResult[]): Record<string, number> => {
   return results.reduce<Record<string, number>>((acc, result) => {
     const key = `${result.summary.outcome}-${result.summary.branch}`;
     acc[key] = (acc[key] ?? 0) + result.summary.score;
@@ -142,7 +142,7 @@ export const dispatchFlow = (
   mode: FlowMode = 'probe',
 ): {
   readonly result: FlowResult;
-  readonly dispatch: SolverOutput<FlowMode, { readonly ok: boolean; readonly route: string }>;
+  readonly dispatch: { readonly output: string; readonly trace: readonly string[]; readonly score: number };
 } => {
   const base = compileFlowRun([route], mode)[0] as FlowResult;
   const parsed = parseHyperRoute(route);
@@ -175,7 +175,13 @@ export const buildDispatchBuckets = (routes: readonly HyperRoute[]): DispatchTra
   return buckets;
 };
 
-export const runFlowScenario = (routes: readonly HyperRoute[] = flowMatrixSeeds) => {
+export const runFlowScenario = (routes: readonly HyperRoute[] = flowMatrixSeeds): {
+  readonly summary: Record<string, number>;
+  readonly compiled: readonly FlowResult[];
+  readonly topBranches: string[];
+  readonly templateRows: readonly string[];
+  readonly hierarchy: { readonly stage: number; readonly marker: string; readonly tag: string };
+} => {
   const compiled = compileFlowRun(routes, 'probe');
   const summary = summarizeFlow(compiled);
   const buckets = buildDispatchBuckets(routes);

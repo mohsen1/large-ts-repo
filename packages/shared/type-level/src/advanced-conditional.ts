@@ -337,7 +337,7 @@ const routeConstraintSeed: { [K in CatalogCommands]?: ResolveCommand<RecoveryCom
 for (const command of commandCatalog) {
   routeConstraintSeed[command] = resolveRecoveryCommand(command);
 }
-export const routeConstraintSet = routeConstraintSeed as RouteConstraintSet;
+export const routeConstraintSet: RouteConstraintSet = routeConstraintSeed as RouteConstraintSet;
 
 type MutableCommandVerbMap = { [Verb in RecoveryVerb]: RecoveryCommand[] };
 export const commandMapByVerb = commandCatalog.reduce<MutableCommandVerbMap>((acc, command) => {
