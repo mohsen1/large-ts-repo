@@ -521,6 +521,9 @@ importers:
       '@shared/type-level':
         specifier: workspace:*
         version: link:../../shared/type-level
+      '@shared/type-level-hub':
+        specifier: workspace:*
+        version: link:../../shared/type-level-hub
       '@shared/util':
         specifier: workspace:*
         version: link:../../shared/util
