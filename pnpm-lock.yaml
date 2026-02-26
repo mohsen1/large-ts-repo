@@ -92,6 +92,9 @@ importers:
       '@service/recovery-workload-orchestrator':
         specifier: workspace:*
         version: link:../../service/recovery-workload-orchestrator
+      '@shared/type-level':
+        specifier: workspace:*
+        version: link:../../shared/type-level
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
