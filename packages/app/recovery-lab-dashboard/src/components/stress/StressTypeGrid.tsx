@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { evaluateFlow, findBranchesAbove, flowBranches, type FlowBranch } from '@shared/type-level';
+import { evaluateFlow, findBranchesAbove, flowBranches } from '@shared/type-level/stress-controlflow-lab';
+import type { FlowBranch } from '@shared/type-level/stress-controlflow-lab';
 
 type StressTypeGridProps = {
   readonly filterMode: 'strict' | 'relaxed' | 'dry-run';

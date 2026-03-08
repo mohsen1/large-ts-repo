@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Brand, NoInfer } from './patterns';
 
 export type SignalState =

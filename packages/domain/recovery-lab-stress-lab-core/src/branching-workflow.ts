@@ -1,11 +1,6 @@
-import type { NoInfer } from '@shared/type-level';
-import type {
-  Brand,
-  DeepInterfaceChain,
-  DeepNest,
-  Prettify,
-} from '@shared/type-level';
 import { mapWithIteratorHelpers } from '@shared/type-level';
+import type { NoInfer, Brand, Prettify } from '@shared/type-level';
+import type { DeepInterfaceChain, DeepNest } from '@shared/type-level/stress-types';
 
 export type StressEventType =
   | 'policyMismatch'

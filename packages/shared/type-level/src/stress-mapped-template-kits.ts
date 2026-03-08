@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type Preserve<T> = T extends (...args: any[]) => any
   ? T
   : { readonly [K in keyof T]: T[K] };

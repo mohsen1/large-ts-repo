@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
-import { branchRouter, createBranchEvent, walkFlow } from '@shared/type-level';
+import { branchRouter, createBranchEvent, walkFlow } from '@shared/type-level/stress-control-graph';
+
 import {
   type DomainMetadata,
   type DomainToken,

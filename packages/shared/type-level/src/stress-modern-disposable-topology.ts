@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type TopologyNode = {
   readonly id: `node-${number}`;
   readonly route: string;

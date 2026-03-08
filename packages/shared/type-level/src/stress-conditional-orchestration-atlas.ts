@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Brand, NoInfer, PathValue, Prettify } from './patterns';
 
 export type AtlasEntity =

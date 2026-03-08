@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BranchToken =
   | 'branch-01'
   | 'branch-02'

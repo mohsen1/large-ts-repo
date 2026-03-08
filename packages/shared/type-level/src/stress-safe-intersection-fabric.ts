@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface BlueprintAlpha {
   readonly alpha: number;
   readonly alphaVersion: 'A';

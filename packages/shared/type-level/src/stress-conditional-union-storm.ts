@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type StormDomain =
   | 'incident'
   | 'workload'

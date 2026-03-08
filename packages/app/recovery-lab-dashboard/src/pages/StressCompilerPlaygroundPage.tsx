@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { StressControlFlowPanel } from '../components/stress/StressControlFlowPanel';
 import { StressTypeGrid } from '../components/stress/StressTypeGrid';
-import { routeHandlers, parseRoute, type NetworkRoutePattern, type NetworkRouteParts } from '@shared/type-level';
-import { mapSolverRoutes } from '@shared/type-level';
+import { parseRoute, routeHandlers } from '@shared/type-level/stress-route-network';
+import type { NetworkRoutePattern, NetworkRouteParts } from '@shared/type-level/stress-route-network';
+import { mapSolverRoutes } from '@shared/type-level/stress-runtime';
 
 type PlaygroundMode = 'strict' | 'relaxed' | 'dry-run';
 
@@ -29,7 +30,7 @@ export const StressCompilerPlaygroundPage = () => {
     for (const route of routeSamples) {
       rows.push({
         route,
-        parsed: parseRoute(route) as NetworkRouteParts<NetworkRoutePattern>,
+        parsed: parseRoute(route),
       });
     }
     return rows;

@@ -1,10 +1,6 @@
-import {
-  atlasCatalogLookup,
-  type AtlasChainResult,
-  type AtlasCatalogLookup,
-  type AtlasRoute,
-  type AtlasRouteUnion,
-} from '@shared/type-level';
+import { atlasCatalogLookup } from '@shared/type-level/stress-conditional-orchestration-atlas';
+import type { AtlasChainResult, AtlasCatalogLookup, AtlasRoute, AtlasRouteUnion } from '@shared/type-level/stress-conditional-orchestration-atlas';
+
 import { type RouteTemplate } from '@shared/type-level/stress-template-route-grammar';
 import { type RouteValueProjection } from '@shared/type-level/stress-conditional-orchestration-atlas';
 

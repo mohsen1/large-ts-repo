@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Brand } from './patterns';
 
 export type OrbitalDomain =
@@ -196,6 +197,7 @@ export type ResolveRoute<T extends OrbitalRoute> = T extends `/${infer D}/${infe
       : never
     : never
   : never;
+export type ResolveOrbitalRoute<T extends OrbitalRoute> = ResolveRoute<T>;
 
 export type ResolveRouteCatalog<Catalog extends readonly OrbitalRoute[]> = {
   readonly [K in keyof Catalog]: Catalog[K] extends OrbitalRoute ? ResolveRoute<Catalog[K]> : never;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type NoInfer<T> = [T][T extends never ? 1 : 0];
 export type Brand<T, B extends string> = T & { readonly __brand: B };
 

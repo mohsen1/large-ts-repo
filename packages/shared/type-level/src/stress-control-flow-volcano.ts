@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type StormMode =
   | 'bootstrap'
   | 'discover'

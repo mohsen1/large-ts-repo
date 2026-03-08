@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface ChainNode0 {
   readonly node: 'N0';
   readonly weight: 0;

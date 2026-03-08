@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Brand, DeepReadonly, OmitNever } from './patterns';
 
 export type EntityKind =

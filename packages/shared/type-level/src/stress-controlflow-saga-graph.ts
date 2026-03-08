@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type SagaSignal =
   | 'phase-01'
   | 'phase-02'

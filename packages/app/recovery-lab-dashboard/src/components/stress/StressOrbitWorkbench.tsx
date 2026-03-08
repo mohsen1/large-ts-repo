@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { stressSeedRoutes, buildStressEnvelope } from '@domain/recovery-lab-synthetic-orchestration';
-import { mapTemplateWithTemplateLiteral, rawRouteTemplateSource } from '@shared/type-level';
+import { mapTemplateWithTemplateLiteral, rawRouteTemplateSource } from '@shared/type-level/stress-template-route-fabric';
 import type { HyperRoute } from '@shared/type-level/stress-hyper-union';
 
 type OrbitMode = 'preview' | 'probe' | 'recover' | 'audit';

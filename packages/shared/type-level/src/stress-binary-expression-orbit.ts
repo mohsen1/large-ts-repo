@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type Nat = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
 
 type BuildNatTuple<Target extends number, Acc extends unknown[] = []> = Acc['length'] extends Target

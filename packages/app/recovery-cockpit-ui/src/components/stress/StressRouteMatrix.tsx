@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import type { OrbitRoute, OrbitAction } from '@shared/type-level';
+import type { OrbitRoute, OrbitAction } from '@shared/type-level/stress-conditional-orbit';
 import { warmRouteCatalog } from '../../services/recoveryCockpitStressWorkloadService';
 
 type MatrixBucket = {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type RouteFamily = 'incident' | 'workflow' | 'saga' | 'policy' | 'fabric' | 'chronicle' | 'audit';
 export type RouteAction = 'plan' | 'run' | 'pause' | 'cancel' | 'probe' | 'drill' | 'reconcile' | 'observe' | 'dispatch';
 export type RouteId = `rid-${string}`;

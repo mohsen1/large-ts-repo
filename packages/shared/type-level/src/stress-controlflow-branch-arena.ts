@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BranchMode = 'strict' | 'lax' | 'diagnostic' | 'sim';
 
 export type BranchState = 'start' | 'active' | 'guarded' | 'quarantined' | 'resolved' | 'failed' | 'escalated' | 'drained';

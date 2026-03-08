@@ -1,9 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-
-import {
-  stressTemplateWorkflows,
-  stressTypeLabs,
-} from '@shared/type-level';
+import * as stressTemplateWorkflows from '@shared/type-level/stress-template-workflows';
+import * as stressTypeLabs from '@shared/type-level/stress-type-level-labs';
 
 type TemplateRow = {
   readonly action: string;
@@ -75,7 +72,7 @@ export const useStressTemplateCatalog = (): ViewModel => {
       };
     });
 
-  return {
+    return {
       sections: Object.keys(stressTemplateWorkflows.routeEntities),
       total: catalog.length,
       catalog,

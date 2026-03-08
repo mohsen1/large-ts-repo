@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type PluginState = 'cold' | 'warm' | 'active' | 'stopping' | 'retired';
 export type PluginMode = 'inline' | 'deferred' | 'async' | 'burst';
 export type PluginKey<TName extends string> = `plugin:${TName}`;

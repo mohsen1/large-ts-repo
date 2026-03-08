@@ -1,16 +1,6 @@
 import { type FC, useMemo, useState } from 'react';
-import {
-  analyzeSignalCatalog,
-  signalPriority,
-  signalRouteCatalog,
-  signalTruthProfile,
-  type SignalCatalogUnion,
-  type SignalDomain,
-  type SignalMode,
-  type SignalState,
-  type SignalVerb,
-  signalChainSignature,
-} from '@shared/type-level';
+import { analyzeSignalCatalog, signalPriority, signalRouteCatalog, signalTruthProfile, signalChainSignature } from '@shared/type-level/stress-binary-chains';
+import type { SignalCatalogUnion, SignalDomain, SignalMode, SignalState, SignalVerb } from '@shared/type-level/stress-binary-chains';
 
 type SignalRouteBucket = {
   readonly route: SignalCatalogUnion;

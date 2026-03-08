@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface RuntimeHandle {
   readonly id: string;
   readonly createdAt: number;

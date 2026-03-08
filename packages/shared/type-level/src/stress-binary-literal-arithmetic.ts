@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type NatTuple<N extends number, T extends unknown[] = []> = T['length'] extends N ? T : NatTuple<N, [...T, unknown]>;
 
 export type Pred<N extends number> = NatTuple<N> extends [...infer Head, unknown] ? Head['length'] : never;

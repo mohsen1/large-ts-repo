@@ -1,4 +1,6 @@
-import { type OrbitalRoute, resolveOrbitalProfile } from '@shared/type-level';
+import { resolveOrbitalProfile } from '@shared/type-level/stress-orbital-conditional-lattice';
+import type { OrbitalRoute } from '@shared/type-level/stress-orbital-conditional-lattice';
+
 import { stressBranchSagaControl, stressDisjointBridge } from '@shared/type-level-hub';
 import type { TypeStressFilter, TypeStressKind, TypeStressRecord, TypeStressWorkspaceState, TypeWorklet } from './types';
 

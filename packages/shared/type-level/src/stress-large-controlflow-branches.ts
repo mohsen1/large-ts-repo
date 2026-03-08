@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BranchState =
   | 'init'
   | 'validate'

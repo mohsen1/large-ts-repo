@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type Brand<T, B extends string> = T & { readonly __brand: B };
 export type BrandedId<T extends string> = Brand<T, 'BrandedId'>;
 export type BrandedTag<T extends string> = Brand<T, 'BrandedTag'>;

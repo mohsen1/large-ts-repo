@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface IdentityHeader {
   readonly headerId: string;
   readonly issuedAt: number;

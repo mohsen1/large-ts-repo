@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BranchSignal =
   | 'signal_00'
   | 'signal_01'

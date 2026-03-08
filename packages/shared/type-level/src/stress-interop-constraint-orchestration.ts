@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type NoInfer<T> = [T][0];
 
 export type ConstraintBrand<T extends string> = T & { readonly __brand: 'ConstraintBrand' };

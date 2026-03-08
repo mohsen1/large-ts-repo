@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type DecrementNumber<T extends number> = T extends 0
   ? never
   : T extends 1

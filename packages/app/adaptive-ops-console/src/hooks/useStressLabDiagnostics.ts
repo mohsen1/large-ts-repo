@@ -1,7 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
 import type { Result } from '@shared/result';
 import { classifyDispatch, dispatchWorkflow, type DispatchContext, dispatchReportDefaults } from '@domain/recovery-lab-stress-lab-core';
-import type { StressCommand, StressVerb, StressDomain, StressSeverity } from '@shared/type-level';
+import type { StressCommand, StressVerb, StressDomain, StressSeverity } from '@shared/type-level/stress-types';
+
 import { evaluateDispatch } from '@domain/recovery-lab-stress-lab-core';
 
 type Stage = 'idle' | 'running' | 'complete' | 'error';

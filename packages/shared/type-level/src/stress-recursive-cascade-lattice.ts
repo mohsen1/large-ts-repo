@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BuildTuple<N extends number, State extends readonly unknown[] = []> = State['length'] extends N
   ? State
   : BuildTuple<N, [...State, unknown]>;

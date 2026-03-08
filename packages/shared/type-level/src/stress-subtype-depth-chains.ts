@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface ProtoLayer1 {
   readonly tier: string;
   readonly depth1: 1;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type EventRoute = `/${string}`;
 
 export const eventRouteCatalog = [

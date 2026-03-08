@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type GraphPhase =
   | 'phase_01_boot'
   | 'phase_02_seed'

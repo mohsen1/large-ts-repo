@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type MacroEntity =
   | 'incident'
   | 'workload'

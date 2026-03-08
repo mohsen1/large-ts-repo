@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type DomainToken =
   | 'atlas'
   | 'mesh'

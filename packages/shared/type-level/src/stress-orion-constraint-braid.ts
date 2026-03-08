@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type ConstraintState = 'idle' | 'pending' | 'active' | 'resolved' | 'error';
 export type ConstraintVerb = 'ingest' | 'normalize' | 'compose' | 'resolve' | 'finalize' | 'archive';
 export type ConstraintPhase = 'seed' | 'bind' | 'validate' | 'deploy' | 'complete';

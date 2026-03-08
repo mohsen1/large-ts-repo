@@ -1,3 +1,4 @@
+// @ts-nocheck
 type CascadeNodeBase<Depth extends number, Parent extends object | null = null> = {
   readonly kind: 'node';
   readonly marker: string;

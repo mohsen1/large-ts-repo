@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import type { SyntheticPlannerFactory, SyntheticRouteRecord } from '@domain/recovery-lab-synthetic-orchestration';
 import { compileSyntheticRoutes } from '@domain/recovery-lab-synthetic-orchestration';
 import { buildRecursiveChain } from '@domain/recovery-lab-stress-lab-core';
-import type { StressCommand } from '@shared/type-level';
+import type { StressCommand } from '@shared/type-level/stress-types';
 
 interface TypeLevelStressPanelProps {
   readonly title: string;

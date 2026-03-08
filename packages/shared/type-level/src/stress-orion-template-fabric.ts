@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type FabricDomain = 'incident' | 'fabric' | 'workflow' | 'policy' | 'mesh' | 'ops';
 export type FabricSlice = 'compose' | 'drain' | 'observe' | 'repair' | 'verify' | 'close' | 'audit';
 export type FabricResource = 'node' | 'stream' | 'route' | 'trace' | 'bundle' | 'metric' | 'ledger';

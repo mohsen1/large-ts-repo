@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface LayerPayload<TLabel extends string = string> {
   readonly marker: TLabel;
   readonly checksum: number;

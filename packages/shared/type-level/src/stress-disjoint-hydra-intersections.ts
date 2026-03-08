@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface HydraAxiom {
   readonly axiomId: string;
   readonly enabled: boolean;

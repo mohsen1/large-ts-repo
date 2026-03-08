@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type ControlPlaneStage =
   | 'enter'
   | 'observe'

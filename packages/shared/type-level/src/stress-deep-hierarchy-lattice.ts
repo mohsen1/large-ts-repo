@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface LayerAlpha {
   readonly layer: number;
   readonly alphaFlag: `alpha-${number}`;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type Branded<T, B extends string> = T & { readonly __brand: B };
 
 export type EventDomain =

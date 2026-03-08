@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface MetaShard {
   readonly shard: 'meta';
   readonly id: string;

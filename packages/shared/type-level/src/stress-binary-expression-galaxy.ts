@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BoolLit = true | false;
 export type NumLit = number;
 

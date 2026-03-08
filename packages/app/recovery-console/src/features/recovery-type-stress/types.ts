@@ -1,4 +1,5 @@
-import type { Brand, OrbitalRoute, RouteUnion, ResolveOrbitalRoute } from '@shared/type-level';
+import type { Brand, RouteUnion } from '@shared/type-level';
+import type { OrbitalRoute, ResolveOrbitalRoute } from '@shared/type-level/stress-orbital-conditional-lattice';
 
 export type TypeStressRoute = Brand<OrbitalRoute | RouteUnion[number], 'TypeStressRoute'>;
 

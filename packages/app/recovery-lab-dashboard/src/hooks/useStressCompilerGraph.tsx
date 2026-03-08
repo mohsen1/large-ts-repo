@@ -6,7 +6,9 @@ import {
   type StressCompilerManifest,
   type StressCompilerEnvelope,
 } from '../services/stressCompilerService';
-import { networkRouteCatalog, type NetworkRoutePattern, type FlowBranch } from '@shared/type-level';
+import { networkRouteCatalog } from '@shared/type-level/stress-route-network';
+import type { NetworkRoutePattern } from '@shared/type-level/stress-route-network';
+import type { FlowBranch } from '@shared/type-level/stress-controlflow-lab';
 
 export type StressGraphNode = {
   readonly id: string;

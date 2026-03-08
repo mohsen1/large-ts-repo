@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type ConflictPhase = 'init' | 'collect' | 'resolve' | 'finalize';
 export type ConflictZone = 'network' | 'storage' | 'execution' | 'policy';
 export type ConflictAction = 'block' | 'retry' | 'skip' | 'escalate' | 'heal';

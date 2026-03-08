@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import {
-  buildConstraintChain,
-  solveWithConstraint,
-} from '@shared/type-level';
+import { buildConstraintChain, solveWithConstraint } from '@shared/type-level/stress-recursive-constraint-net';
 import { compileTemplateCatalog, routePreviews, type RoutePipelinePreview } from '@shared/type-level/stress-conditional-depth-grid';
 import { controlFlowHarness } from '@domain/recovery-lab-synthetic-orchestration';
 

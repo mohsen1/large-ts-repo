@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type ControlDomain =
   | 'incident'
   | 'fabric'

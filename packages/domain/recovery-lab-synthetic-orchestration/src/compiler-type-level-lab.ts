@@ -1,5 +1,5 @@
 import { NoInfer } from '@shared/type-level';
-import { stressTsStressHarness as harness } from '@shared/type-level';
+import * as harness from '@shared/type-level/stress-ts-stress-harness';
 
 type RouteCatalog = typeof harness.routeCatalog;
 type StressRoute = harness.StressRoute;

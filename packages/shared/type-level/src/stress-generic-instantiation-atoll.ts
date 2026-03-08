@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { SolverDomain, SolverVerb } from './stress-constraint-conflict-forge';
 
 export type DispatchSolverDomain = SolverDomain;

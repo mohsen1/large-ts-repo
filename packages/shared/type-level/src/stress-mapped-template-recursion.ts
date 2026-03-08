@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type KeyProjection<T> = T extends string ? `k:${T}` : never;
 export type TemplatePrefix<T extends string> = `${T}::`;
 

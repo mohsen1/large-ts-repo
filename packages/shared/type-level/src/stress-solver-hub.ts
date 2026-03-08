@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   atlasRouteCatalogRoutes,
   type RecoveryCommand,

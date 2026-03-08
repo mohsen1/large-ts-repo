@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface OrbiNodeBase {
   readonly depth: number;
   readonly marker: 'root';

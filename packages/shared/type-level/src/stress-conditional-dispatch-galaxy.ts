@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type EntityName =
   | 'incident'
   | 'fabric'

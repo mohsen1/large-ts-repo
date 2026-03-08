@@ -1,5 +1,7 @@
-import { NoInfer, type Brand } from '@shared/type-level';
-import { stressTsStressHarness } from '@shared/type-level';
+import { NoInfer } from '@shared/type-level';
+import type { Brand } from '@shared/type-level';
+import * as stressTsStressHarness from '@shared/type-level/stress-ts-stress-harness';
+
 import { resolvePayload, type ResolverOutput } from './compiler-generic-lab';
 import {
   runControlFlow,

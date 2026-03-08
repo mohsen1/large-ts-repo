@@ -10,10 +10,8 @@ import {
   type StressWorkbenchInput,
   type StressResolvedPlan,
 } from '../services/recoveryCockpitStressWorkloadService';
-import type { NestedMap } from '@shared/type-level';
-import type {
-  OrbitRoute,
-} from '@shared/type-level';
+import type { OrbitRoute } from '@shared/type-level/stress-conditional-orbit';
+import type { NestedMap } from '@shared/type-level/stress-mapped-recursion-workbench';
 
 export type StressScenarioState = 'idle' | 'warming' | 'active' | 'exhausted';
 export type StressEvent =

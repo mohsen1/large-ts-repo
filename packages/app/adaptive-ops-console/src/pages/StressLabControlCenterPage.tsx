@@ -4,7 +4,7 @@ import { TypeLevelStressPanel } from '../components/stress-lab/TypeLevelStressPa
 import { StressLabSolverInspector } from '../components/stress-lab/StressLabSolverInspector';
 import { StressLabRouteDashboard } from '../components/stress-lab/StressLabRouteDashboard';
 import { defaultSyntheticPlannerFactory, synthesizePlan } from '@domain/recovery-lab-synthetic-orchestration';
-import type { StressCommand } from '@shared/type-level';
+import type { StressCommand } from '@shared/type-level/stress-types';
 import { useRecoveryStressLab } from '../hooks/useRecoveryStressLab';
 
 const availableCommands = [

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import type { SyntheticRouteRecord, SyntheticTopology } from '@domain/recovery-lab-synthetic-orchestration';
-import type { StressCommand, StressDomainUnion, StressVerb } from '@shared/type-level';
+import type { StressCommand, StressDomainUnion, StressVerb } from '@shared/type-level/stress-types';
 import { compileSyntheticRoutes, synthesizePlan } from '@domain/recovery-lab-synthetic-orchestration';
 
 interface RouteDashboardProps {

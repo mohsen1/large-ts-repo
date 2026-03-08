@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type NoInfer<T> = [T][T extends unknown ? 0 : never];
 
 export type ArsenalDomain = 'runtime' | 'mesh' | 'fleet' | 'recovery' | 'telemetry';

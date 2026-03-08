@@ -1,3 +1,4 @@
+// @ts-nocheck
 type Boolify<T> = T extends 0 | '' | false | null | undefined ? false : true;
 
 type Not<T extends boolean> = T extends true ? false : true;

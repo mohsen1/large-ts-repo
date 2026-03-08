@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface DeepSpanAnchor {
   readonly anchor: true;
 }

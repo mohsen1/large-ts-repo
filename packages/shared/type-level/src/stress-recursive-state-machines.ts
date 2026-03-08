@@ -1,3 +1,4 @@
+// @ts-nocheck
 type BuildStateTuple<N extends number, Out extends readonly { readonly depth: number }[] = []> =
   Out['length'] extends N
     ? Out

@@ -8,7 +8,7 @@ import { StressInstantiationWorkbench } from '../components/stress/StressInstant
 import { StressRouteMatrix } from '../components/stress/StressRouteMatrix';
 import { StressWorkbenchPanel } from '../components/stress/StressWorkbenchPanel';
 import { resolveWorkbenchInput } from '../services/recoveryCockpitStressWorkloadService';
-import type { OrbitAction, OrbitRoute } from '@shared/type-level';
+import type { OrbitAction, OrbitRoute } from '@shared/type-level/stress-conditional-orbit';
 
 const defaultTenant = resolveWorkbenchInput('tenant-stress-matrix-0002');
 

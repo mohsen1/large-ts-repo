@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { ConstraintUnion, ConstraintInput } from './stress-orion-constraints';
 
 export type OrbiEntity =

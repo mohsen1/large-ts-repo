@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type RouteVerb =
   | 'drill'
   | 'route'

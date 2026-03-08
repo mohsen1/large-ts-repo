@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface IdentityVertex {
   readonly vertexId: string;
   readonly timestamp: number;

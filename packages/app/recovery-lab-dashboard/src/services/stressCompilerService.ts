@@ -1,14 +1,7 @@
-import {
-  evaluateFlow,
-  parseRoute,
-  routeHandlers,
-  networkRouteCatalog,
-  type BranchContext,
-  type BranchEvent,
-  type FlowBranch,
-  type NetworkRouteParts,
-  type NetworkRoutePattern,
-} from '@shared/type-level';
+import { evaluateFlow } from '@shared/type-level/stress-controlflow-lab';
+import type { BranchContext, BranchEvent, FlowBranch } from '@shared/type-level/stress-controlflow-lab';
+import { parseRoute, routeHandlers, networkRouteCatalog } from '@shared/type-level/stress-route-network';
+import type { NetworkRouteParts, NetworkRoutePattern } from '@shared/type-level/stress-route-network';
 
 export type StressCompilerCommand = {
   readonly route: NetworkRoutePattern;
@@ -60,7 +53,7 @@ const runScope = async (): Promise<StressCompilerManifest> => {
   await using stack = new AsyncDisposableStack();
   stack.defer(() => Promise.resolve());
   const seeds = seedRoutes;
-  const parsed = seeds.map((route: NetworkRoutePattern) => parseRoute(route) as NetworkRouteParts<NetworkRoutePattern>);
+  const parsed: NetworkRouteParts<NetworkRoutePattern>[] = seeds.map((route: NetworkRoutePattern) => parseRoute(route));
 
   const envelopes = await Promise.all(
     seeds.map(async (route: NetworkRoutePattern, index: number) => {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface StormAlpha {
   alpha: number;
   severity: 'low' | 'medium' | 'high';

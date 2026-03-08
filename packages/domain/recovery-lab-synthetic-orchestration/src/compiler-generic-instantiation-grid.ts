@@ -1,8 +1,6 @@
 import type { NoInfer } from '@shared/type-level';
-import {
-  buildConstraintChain,
-  solveWithConstraint,
-} from '@shared/type-level';
+import { buildConstraintChain, solveWithConstraint } from '@shared/type-level/stress-recursive-constraint-net';
+
 import {
   routeDecisions,
   routeCatalog,

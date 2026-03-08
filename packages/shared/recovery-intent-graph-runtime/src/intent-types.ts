@@ -137,7 +137,7 @@ export type Guarded<T extends Record<string, unknown>, TFilter extends Record<st
 };
 
 export interface IntentGraphTask<I extends IntentInput = IntentInput, O = unknown> extends AsyncTask<I, O> {
-  readonly id: Brand<string, 'EntityId'>;
+  readonly id: Brand<string, 'task-id'>;
   readonly path: RecursivePathUnion<['graph', 'intention', 'route']>;
 }
 

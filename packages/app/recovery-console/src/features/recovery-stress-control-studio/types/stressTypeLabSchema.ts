@@ -1,4 +1,4 @@
-import type { DomainAction, DomainMetadata, DomainToken } from '@shared/type-level';
+import type { DomainAction, DomainMetadata, DomainToken } from '@shared/type-level/stress-conditional-lattice';
 
 export type StressTypeLabMode = 'explore' | 'simulate' | 'validate' | 'audit' | 'stress' | 'graph';
 

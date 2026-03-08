@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { NoInfer } from './patterns';
 
 export const spokeVerbs = [

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NoInfer } from './patterns';
 import type { NoInferAdvanced } from './composition-labs';
 

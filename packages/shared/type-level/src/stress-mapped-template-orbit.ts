@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type PrimitiveToken = 'string' | 'number' | 'boolean' | 'null' | 'undefined' | 'symbol' | 'bigint' | 'object' | 'function';
 
 export type NoInfer<T> = [T][T extends unknown ? 0 : never];

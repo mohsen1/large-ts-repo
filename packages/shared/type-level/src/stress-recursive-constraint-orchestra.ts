@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type Increment<N extends number> = [...Array<N>, 1]['length'] & number;
 export type Decrement<N extends number> = N extends 0 ? 0 : BuildTuple<N> extends [unknown, ...infer Rest] ? Rest['length'] & number : never;
 

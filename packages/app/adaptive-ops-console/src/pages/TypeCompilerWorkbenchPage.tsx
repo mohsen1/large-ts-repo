@@ -3,13 +3,14 @@ import { TypeCompilerOverviewPanel } from '../components/stress-lab/TypeCompiler
 import { TypeCompilerRouteMap } from '../components/stress-lab/TypeCompilerRouteMap';
 import { useTypeCompilerWorkbench } from '../hooks/useTypeCompilerWorkbench';
 import type { WorkbenchOpcode } from '@domain/recovery-lab-synthetic-orchestration';
-import { stressTsStressHarness } from '@shared/type-level';
+import * as stressTsStressHarness from '@shared/type-level/stress-ts-stress-harness';
 
 const workloadOpcodes = (() => {
   const set = new Set<WorkbenchOpcode>();
-  for (const opcodes of Object.values(stressTsStressHarness.routeCatalog)) {
+  const routeCatalogValues = Object.values(stressTsStressHarness.routeCatalog) as readonly (readonly WorkbenchOpcode[])[];
+  for (const opcodes of routeCatalogValues) {
     for (const opcode of opcodes) {
-      set.add((opcode as unknown) as WorkbenchOpcode);
+      set.add(opcode);
     }
   }
   return [...set];

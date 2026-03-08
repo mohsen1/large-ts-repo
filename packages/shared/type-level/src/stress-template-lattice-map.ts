@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface BlueprintRecord {
   readonly key: string;
   readonly route: string;

@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import type { JSX } from 'react';
-
-import { stressClassChains } from '@shared/type-level';
+import * as stressClassChains from '@shared/type-level/stress-class-hierarchies';
 
 type MatrixProps = {
   readonly catalog: readonly string[];

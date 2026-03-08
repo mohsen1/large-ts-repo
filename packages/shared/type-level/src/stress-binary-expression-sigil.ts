@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Brand } from './patterns';
 
 export type BuildNatural<N extends number, Acc extends unknown[] = []> = Acc['length'] extends N

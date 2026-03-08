@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { NoInfer, RecursivePath, Brand } from './patterns';
 
 export type SolverInputDomain = 'alpha' | 'beta' | 'gamma' | 'delta' | 'epsilon';

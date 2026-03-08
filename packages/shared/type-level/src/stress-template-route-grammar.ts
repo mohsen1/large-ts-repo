@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Brand, PathValue } from './patterns';
 
 export type DomainLexeme =

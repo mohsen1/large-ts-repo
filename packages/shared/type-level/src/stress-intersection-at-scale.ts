@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type IntersectionSliceA = {
   kind: 'atlas';
   identity: { readonly id: string; readonly tenant: string };

@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 import { useMemo } from 'react';
-import { stressConditionalGraph } from '@shared/type-level';
+import * as stressConditionalGraph from '@shared/type-level/stress-conditional-graph';
 
 type StressCatalog = typeof stressConditionalGraph.stressLabCatalog;
 type StressVerb = stressConditionalGraph.StressLabVerb;

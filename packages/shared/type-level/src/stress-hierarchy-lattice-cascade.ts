@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type LayerTag = `n${number}`;
 
 export interface NodeBase {

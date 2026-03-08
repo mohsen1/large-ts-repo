@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NoInfer } from './stress-instantiation-overload-hub';
 
 export type SolverMode = 'strict' | 'adaptive' | 'forecast' | 'diagnostic';

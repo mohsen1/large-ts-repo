@@ -7,7 +7,7 @@ import {
   summarizeMetrics,
   type StressWorkbenchInput,
 } from '../services/recoveryCockpitStressWorkloadService';
-import type { OrbitAction } from '@shared/type-level';
+import type { OrbitAction } from '@shared/type-level/stress-conditional-orbit';
 
 const defaultTenant = resolveWorkbenchInput('tenant-stress-0001');
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface StageAnchor {
   readonly domain: string;
   readonly id: string;

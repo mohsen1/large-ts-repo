@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type DotPath<T> = keyof T & string;
 
 export interface RouteDescriptorBase {

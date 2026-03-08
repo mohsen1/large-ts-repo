@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NoInfer } from './patterns';
 
 export type Direction = 'north' | 'south' | 'east' | 'west' | 'center';

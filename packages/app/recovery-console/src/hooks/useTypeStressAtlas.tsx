@@ -1,15 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
-import {
-  atlasCatalogLookup,
-  atlasRouteCatalog,
-  atlasRoutes,
-  routeValueProjection,
-  resolveAtlasRoute,
-  type AtlasCatalogLookup,
-  type AtlasRoute,
-  type AtlasRouteUnion,
-  hydrateAtlasChain,
-} from '@shared/type-level';
+import { atlasCatalogLookup, atlasRouteCatalog, atlasRoutes, routeValueProjection, resolveAtlasRoute, hydrateAtlasChain } from '@shared/type-level/stress-conditional-orchestration-atlas';
+import type { AtlasCatalogLookup, AtlasRoute, AtlasRouteUnion } from '@shared/type-level/stress-conditional-orchestration-atlas';
 
 export type StressAtlasRoute = AtlasRouteUnion;
 

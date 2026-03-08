@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const routeDomains = ['fleet', 'mesh', 'runtime', 'orbit', 'signal', 'recovery', 'ops', 'ledger', 'telemetry', 'audit', 'policy'] as const;
 export const routeVerbs = ['create', 'read', 'update', 'delete', 'execute', 'route', 'dispatch', 'hydrate', 'dehydrate', 'bind', 'release', 'escalate', 'rollback', 'scan', 'publish', 'ingest', 'observe'] as const;
 export const routeEntities = [

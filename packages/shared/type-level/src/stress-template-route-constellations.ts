@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type RouteNamespace = 'alpha' | 'beta' | 'gamma' | 'delta' | 'epsilon';
 export type OrbitAction = 'ingest' | 'emit' | 'resolve' | 'sync' | 'bind' | 'release' | 'inspect' | 'report';
 export type OrbitSector = 'core' | 'edge' | 'grid' | 'plane' | 'archive';

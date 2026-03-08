@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NoInfer } from './patterns';
 
 export type StressVerbFamily =

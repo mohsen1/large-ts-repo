@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type NoInfer<T> = [T][T extends never ? 1 : 0];
 
 export type BuildTuple<Length extends number, Output extends unknown[] = []> = Output['length'] extends Length

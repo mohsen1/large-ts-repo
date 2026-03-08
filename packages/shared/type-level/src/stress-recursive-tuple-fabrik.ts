@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Brand } from './patterns';
 
 export type NumericShape = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;

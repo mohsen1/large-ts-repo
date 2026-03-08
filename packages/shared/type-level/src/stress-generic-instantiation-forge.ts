@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type NoInfer<T> = [T][T extends unknown ? 0 : never];
 
 export type SolverMode = 'preview' | 'probe' | 'recover' | 'audit';

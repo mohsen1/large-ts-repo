@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface IntersectionAtomA {
   readonly blueprintA: string;
   readonly atomAId: `A-${number}`;

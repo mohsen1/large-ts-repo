@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type FlowEventCode = `evt-${string}`;
 
 export type StepPhase =

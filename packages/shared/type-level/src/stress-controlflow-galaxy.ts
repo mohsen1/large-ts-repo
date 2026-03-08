@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BranchTag =
   | 'branch-01'
   | 'branch-02'

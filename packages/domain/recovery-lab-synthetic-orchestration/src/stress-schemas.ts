@@ -1,17 +1,5 @@
-import type { Brand } from '@shared/type-level';
-import {
-  type ConstraintMesh,
-  type IntersectedCatalog,
-  type NestedTemplateMap,
-  type PathKeys,
-  type PathValue,
-  type PreservedMapped,
-  type TemplateMapped,
-  type ResolveCommand,
-  type StressCommand,
-  type StressDomainUnion,
-  type SolverDiscriminated,
-} from '@shared/type-level';
+import type { Brand, PathValue, ResolveCommand } from '@shared/type-level';
+import type { ConstraintMesh, IntersectedCatalog, NestedTemplateMap, PathKeys, PreservedMapped, TemplateMapped, StressCommand, StressDomainUnion, SolverDiscriminated } from '@shared/type-level/stress-types';
 
 type DeepGet<TValue, TPath extends string> = TPath extends `${infer Head}.${infer Rest}`
   ? Head extends keyof TValue

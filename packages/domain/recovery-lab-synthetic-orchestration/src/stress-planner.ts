@@ -1,19 +1,7 @@
 import type { Brand } from '@shared/type-level';
-import {
-  type RouteCatalog,
-  type StressCommand,
-  type StressDomainUnion,
-  type StressVerb,
-  type TemplateRoute,
-  type RouteProjection,
-  stressDomains,
-  type ChainedCommandInput,
-  type SolverTuple,
-  type ResolveCommandSet,
-  type DeepInterfaceChain,
-  type RecursiveOdd,
-  type RecursiveEven,
-} from '@shared/type-level';
+import type { RouteCatalog } from '@shared/type-level/stress-conditional-constellation';
+import { stressDomains } from '@shared/type-level/stress-types';
+import type { StressCommand, StressDomainUnion, StressVerb, TemplateRoute, RouteProjection, ChainedCommandInput, SolverTuple, ResolveCommandSet, DeepInterfaceChain, RecursiveOdd, RecursiveEven } from '@shared/type-level/stress-types';
 
 export type SyntheticTenant = Brand<string, 'SyntheticTenant'>;
 

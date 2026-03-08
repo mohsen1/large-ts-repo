@@ -1,5 +1,5 @@
-import type { SolverOutput } from '@shared/type-level';
-import type { StressCommand, StressDomain, StressSeverity, StressVerb, SolverInput } from '@shared/type-level';
+import type { SolverOutput, SolverInput } from '@shared/type-level/stress-runtime';
+import type { StressCommand, StressDomain, StressSeverity, StressVerb } from '@shared/type-level/stress-types';
 
 type Result<T, E = Error> = { ok: true; value: T } | { ok: false; error: E };
 

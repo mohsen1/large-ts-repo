@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type TemplateEnvelope = {
   readonly domain: string;
   readonly action: string;

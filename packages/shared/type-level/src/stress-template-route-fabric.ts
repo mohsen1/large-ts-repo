@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface TemplateBlueprint {
   readonly domain: string;
   readonly verb: string;

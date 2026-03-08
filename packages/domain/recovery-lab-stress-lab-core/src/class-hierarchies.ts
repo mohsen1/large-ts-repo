@@ -1,5 +1,6 @@
 import type { Brand, NoInfer } from '@shared/type-level';
-import type { DeepInterfaceChain, DeepNest, RecursiveOdd, RecursiveEven } from '@shared/type-level';
+import type { DeepInterfaceChain, DeepNest, RecursiveOdd, RecursiveEven } from '@shared/type-level/stress-types';
+
 import { type SyntheticPlannerInput, type SyntheticRouteRecord, synthesizePlan } from '@domain/recovery-lab-synthetic-orchestration';
 
 type Dec<N extends number> = N extends 0 ? 0 : number extends N ? N : [...Array<N>]['length'];

@@ -1,17 +1,6 @@
 import { type FC, useMemo } from 'react';
-import {
-  type RunPipeline,
-  type WorkDomain,
-  type WorkFactoryItem,
-  type WorkMode,
-  type WorkOutput,
-  type WorkPayload,
-  type WorkVerb,
-  buildFactoryMatrix,
-  createPipelineRunner,
-  defineWorkFactories,
-  registerWorkloadPipeline,
-} from '@shared/type-level';
+import { buildFactoryMatrix, createPipelineRunner, defineWorkFactories, registerWorkloadPipeline } from '@shared/type-level/stress-generic-instantiation-lab';
+import type { RunPipeline, WorkDomain, WorkFactoryItem, WorkMode, WorkOutput, WorkPayload, WorkVerb } from '@shared/type-level/stress-generic-instantiation-lab';
 import { warmRouteCatalog } from '../../services/recoveryCockpitStressWorkloadService';
 
 type WorkSpecPayload = WorkPayload<WorkDomain, WorkVerb, WorkMode>;

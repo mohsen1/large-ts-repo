@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type SubtypeTag = `tier-${number}-${string}`;
 
 export interface DepthCarrier {

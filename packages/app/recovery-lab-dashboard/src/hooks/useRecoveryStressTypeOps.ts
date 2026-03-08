@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { routeConstraintSet, commandCatalog, resolveRecoveryCommand, stressConditionalGraph } from '@shared/type-level';
-
-import { mapWithIteratorHelpers } from '@shared/type-level';
+import { routeConstraintSet, commandCatalog, resolveRecoveryCommand, mapWithIteratorHelpers } from '@shared/type-level';
+import * as stressConditionalGraph from '@shared/type-level/stress-conditional-graph';
 
 type StressVerb = stressConditionalGraph.StressLabVerb;
 type ResolvedCatalog = Readonly<Record<string, unknown>>;

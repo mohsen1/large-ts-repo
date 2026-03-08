@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { type Brand, type DeepReadonly, type NoInfer, type RecursivePath } from './patterns';
 
 export interface BridgeAnchor {

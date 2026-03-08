@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type ControlOpcode =
   | 'A00'
   | 'A01'

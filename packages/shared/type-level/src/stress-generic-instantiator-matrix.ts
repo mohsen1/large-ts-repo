@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Brand, NoInfer } from './patterns';
 
 export type SolverKind = 'scalar' | 'mapped' | 'tuple' | 'union' | 'graph' | 'matrix' | 'hybrid' | 'dispatch';

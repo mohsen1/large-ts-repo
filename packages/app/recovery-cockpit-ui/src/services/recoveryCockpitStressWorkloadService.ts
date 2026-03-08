@@ -1,11 +1,6 @@
 import { setTimeout as nodeSetTimeout } from 'node:timers/promises';
-import type {
-  Brand,
-  DeepReadonly,
-  Optionalize,
-  PathValue,
-} from '@shared/type-level';
-import type { OrbitRoute } from '@shared/type-level';
+import type { Brand, DeepReadonly, Optionalize, PathValue } from '@shared/type-level';
+import type { OrbitRoute } from '@shared/type-level/stress-conditional-orbit';
 
 export type StressDomainId = Brand<string, 'domain-id'>;
 export type StressRunId = Brand<string, 'run-id'>;

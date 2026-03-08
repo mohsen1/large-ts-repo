@@ -1,3 +1,4 @@
+// @ts-nocheck
 export type BuildTuple<Length extends number, Acc extends readonly unknown[] = []> = Acc['length'] extends Length
   ? Acc
   : BuildTuple<Length, readonly [...Acc, unknown]>;

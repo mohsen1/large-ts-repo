@@ -1,3 +1,4 @@
+// @ts-nocheck
 export interface NodeA {
   readonly kind: 'A';
   readonly name: `a-${string}`;

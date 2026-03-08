@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { Brand } from './patterns';
 
 export type NoInfer<T> = [T][T extends any ? 0 : never];

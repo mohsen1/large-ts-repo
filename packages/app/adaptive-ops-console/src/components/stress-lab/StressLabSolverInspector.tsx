@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
-import type { RouteProjection, SolverInput } from '@shared/type-level';
-import type { SolverOutput } from '@shared/type-level';
-import type { StressCommand } from '@shared/type-level';
+import type { RouteProjection, StressCommand } from '@shared/type-level/stress-types';
+import type { SolverInput, SolverOutput } from '@shared/type-level/stress-runtime';
 import {
   type DispatchSignalCode,
   dispatchOverloads,
