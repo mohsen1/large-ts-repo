@@ -1,3 +1,5 @@
+import { isTruthy } from './narrowing';
+
 export type Group<T> = {
   readonly key: string;
   readonly values: readonly T[];
@@ -117,7 +119,7 @@ export const weightedAverage = (values: readonly { value: number; weight: number
 
 export const compact = <T>(values: readonly (T | null | undefined | false | 0 | '')[]): readonly T[] =>
   Iterator.from(values)
-    .filter((value): value is T => Boolean(value))
+    .filter((value): value is T => isTruthy(value))
     .toArray();
 
 export const pickByRatio = (left: number, right: number): number => {

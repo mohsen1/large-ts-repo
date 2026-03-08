@@ -4,6 +4,7 @@ import { buildTopologySnapshot } from '@domain/recovery-cockpit-workloads';
 import { runPlannerPipeline, resolveExecutionOrder, summarizePlan } from './planner';
 import { OrchestratorConfig } from './ports';
 import { evaluatePlanPolicy } from './policyEngine';
+import { unionAll } from '@shared/util';
 
 export type ExecutionStrategy = 'fastest-first' | 'critical-first' | 'dependency-first' | 'balanced';
 
@@ -32,7 +33,7 @@ type MutableActionState = {
 };
 
 const stageConcurrency = (actions: readonly RecoveryAction[]): number => {
-  const tags = new Set(actions.flatMap((action) => action.tags));
+  const tags = unionAll(actions.map((action) => new Set(action.tags)));
   return Math.max(1, Math.min(4, tags.size));
 };
 
@@ -110,7 +111,7 @@ const buildStages = (actions: readonly RecoveryAction[]): ExecutionStage[] => {
       actionIds: bucket.map((action) => action.id),
       expectedMinutes: bucket.reduce((acc, action) => Math.max(acc, action.expectedDurationMinutes), 0),
       concurrency: stageConcurrency(bucket),
-      tags: [...new Set(bucket.flatMap((action) => action.tags))],
+      tags: Array.from(unionAll(bucket.map((action) => new Set(action.tags)))),
     }));
 };
 

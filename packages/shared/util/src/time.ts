@@ -25,8 +25,17 @@ export const isWithinWindow = (value: Date, window: TimeWindow): boolean => {
 };
 
 export const parseDate = (value: string | number | Date): Date => {
-  if (value instanceof Date) return new Date(value.getTime());
-  return new Date(value);
+  switch (true) {
+    case value instanceof Date:
+      return new Date(value.getTime());
+    case typeof value === 'string':
+    case typeof value === 'number':
+      return new Date(value);
+    default: {
+      const exhaustive: never = value;
+      return new Date(exhaustive);
+    }
+  }
 };
 
 export const toEpochMinutes = (value: Date): number => Math.floor(value.getTime() / msPerMinute);

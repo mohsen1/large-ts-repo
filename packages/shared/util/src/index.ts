@@ -6,5 +6,8 @@ export * from './collections';
 export * from './decorators';
 export * from './iterators';
 export * from './modern';
+export * from './narrowing';
+export * from './sets';
+export * from './specializations';
 export * from './time';
 export type * from './language-types';

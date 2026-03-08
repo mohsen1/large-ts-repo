@@ -1,3 +1,5 @@
+import { isPresent } from './narrowing';
+
 export const groupToMap = <T, const K>(
   values: Iterable<T>,
   selector: (value: T) => K,
@@ -20,4 +22,4 @@ export const removeAt = <T>(values: readonly T[], index: number): readonly T[] =
   Array.from(values).toSpliced(index, 1);
 
 export const uniqueBy = <T, const K>(values: readonly T[], selector: (value: T) => K): readonly T[] =>
-  Array.from(Map.groupBy(values, selector).values(), ([first]) => first!).filter((value) => value !== undefined);
+  Array.from(Map.groupBy(values, selector).values(), ([first]) => first).filter(isPresent);
