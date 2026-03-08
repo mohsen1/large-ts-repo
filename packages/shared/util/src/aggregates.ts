@@ -57,23 +57,14 @@ export const percentile = (values: readonly number[], ratio: number): number => 
   return normalizeNumber(left + (right - left) * weight);
 };
 
-export const groupBy = <T, K>(values: readonly T[], selector: (value: T) => K): readonly Group<T>[] => {
-  const groups = new Map<string, T[]>();
-  for (const value of values) {
-    const key = String(selector(value));
-    const current = groups.get(key);
-    if (current) {
-      current.push(value);
-    } else {
-      groups.set(key, [value]);
-    }
-  }
-
-  return [...groups.entries()].map(([key, list]) => ({ key, values: list }));
-};
+export const groupBy = <T, const K>(values: readonly T[], selector: (value: T) => K): readonly Group<T>[] =>
+  Array.from(
+    Map.groupBy(values, (value) => String(selector(value))),
+    ([key, list]) => ({ key, values: list }),
+  );
 
 export const rankByScore = <T>(values: readonly T[], score: (value: T) => number): readonly T[] =>
-  [...values].sort((left, right) => score(right) - score(left));
+  Array.from(values).toSorted((left, right) => score(right) - score(left));
 
 export const partition = <T>(items: readonly T[], predicate: (value: T) => boolean): [readonly T[], readonly T[]] => {
   const left: T[] = [];
@@ -90,20 +81,17 @@ export const partition = <T>(items: readonly T[], predicate: (value: T) => boole
 
 export const pairwiseDifferences = (values: readonly number[]): readonly number[] => {
   if (values.length === 0) return [];
-  const [first, ...rest] = values;
-  let previous = first;
-  const deltas: number[] = [];
-  for (const current of rest) {
-    deltas.push(normalizeNumber(current - previous));
-    previous = current;
-  }
-  return deltas;
+  return Array.from(values)
+    .toSpliced(0, 1)
+    .map((current, index) => normalizeNumber(current - (values[index] ?? current)));
 };
 
 export const mapToSeries = <T, K>(items: readonly T[], mapper: (item: T) => K): readonly K[] => items.map(mapper);
 
-export const zipByKey = <K extends string>(left: readonly { id: K }[], right: readonly { id: K }[]): readonly { id: K }[] =>
-  left.filter((candidate) => right.some((other) => other.id === candidate.id));
+export const zipByKey = <K extends string>(left: readonly { id: K }[], right: readonly { id: K }[]): readonly { id: K }[] => {
+  const sharedIds = new Set(left.map(({ id }) => id)).intersection(new Set(right.map(({ id }) => id)));
+  return left.filter((candidate) => sharedIds.has(candidate.id));
+};
 
 export const rollingWindow = <T>(items: readonly T[], size: number): readonly (readonly T[])[] => {
   if (size <= 0) return [];

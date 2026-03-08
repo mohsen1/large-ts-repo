@@ -61,7 +61,7 @@ export const fromPromise = async <T, E = Error>(promise: Promise<T>): Promise<Re
   }
 };
 
-export const combine = <A extends readonly Result<any, any>[]>(
+export const combine = <const A extends readonly Result<any, any>[]>(
   ...results: A
 ): Result<{ [K in keyof A]: A[K] extends Result<infer V, any> ? V : never }, A[number] extends Result<any, infer E> ? E : never> => {
   const output: unknown[] = [];

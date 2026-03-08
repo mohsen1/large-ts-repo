@@ -4,7 +4,20 @@ export interface RetryOptions {
   factor?: number;
 }
 
-export const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export const wait = (ms: number, signal?: AbortSignal): Promise<void> => {
+  const deferred = Promise.withResolvers<void>();
+  const onAbort = () => {
+    clearTimeout(timer);
+    deferred.reject(signal?.reason ?? new Error('Retry wait aborted'));
+  };
+  const timer = setTimeout(() => {
+    signal?.removeEventListener('abort', onAbort);
+    deferred.resolve();
+  }, ms);
+
+  signal?.addEventListener('abort', onAbort, { once: true });
+  return deferred.promise.finally(() => signal?.removeEventListener('abort', onAbort));
+};
 
 export const withRetry = async <T>(
   action: () => Promise<T>,

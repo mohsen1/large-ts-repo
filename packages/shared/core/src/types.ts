@@ -1,5 +1,11 @@
 export type Brand<T, B extends string> = T & { readonly __brand: B };
 
+const limitBounds = {
+  fallback: 50,
+  min: 1,
+  max: 5000,
+} as const satisfies Record<'fallback' | 'min' | 'max', number>;
+
 export type ReadonlyDeep<T> =
   T extends (...args: any[]) => any ? T :
   T extends Array<infer U> ? ReadonlyArray<ReadonlyDeep<U>> :
@@ -103,9 +109,9 @@ export function asReadonly<T>(value: T): ReadonlyDeep<T> {
 export type EnsureArray<T> = T extends readonly any[] ? T : T[];
 
 export function normalizeLimit(limit?: number): number {
-  if (typeof limit !== 'number' || !Number.isFinite(limit)) return 50;
-  if (limit <= 0) return 1;
-  if (limit > 5000) return 5000;
+  if (typeof limit !== 'number' || !Number.isFinite(limit)) return limitBounds.fallback;
+  if (limit <= 0) return limitBounds.min;
+  if (limit > limitBounds.max) return limitBounds.max;
   return Math.floor(limit);
 }
 
@@ -114,6 +120,10 @@ export function isNil(value: unknown): value is null | undefined {
 }
 
 export type PromiseResult<T> = Promise<ResultState<T, Error>>;
+
+export function tuple<const T extends readonly unknown[]>(...values: T): T {
+  return values;
+}
 
 export async function toResult<T>(work: () => Promise<T>): Promise<ResultState<T, Error>> {
   try {

@@ -78,23 +78,14 @@ export const sampleSeries = (points: readonly WindowPoint[], windows: readonly T
 };
 
 export const mergeSeries = (left: readonly WindowPoint[], right: readonly WindowPoint[]): readonly WindowPoint[] => {
-  const byTimestamp = new Map<number, WindowPoint>();
-  for (const item of [...left, ...right]) {
-    const key = item.at.getTime();
-    const prev = byTimestamp.get(key);
-    if (!prev) {
-      byTimestamp.set(key, item);
-      continue;
-    }
-    byTimestamp.set(key, {
-      at: new Date(key),
-      value: (prev.value + item.value) / 2,
+  return Array.from(
+    Map.groupBy([...left, ...right], (item) => item.at.getTime()).entries(),
+  )
+    .toSorted((leftEntry, rightEntry) => leftEntry[0] - rightEntry[0])
+    .map(([timestamp, points]) => {
+      const avg = points.reduce((total, point) => total + point.value, 0) / points.length;
+      return { at: new Date(timestamp), value: Number(avg.toFixed(4)) };
     });
-  }
-
-  return [...byTimestamp.entries()]
-    .sort((leftEntry, rightEntry) => leftEntry[0] - rightEntry[0])
-    .map((entry) => ({ at: new Date(entry[0]), value: Number(entry[1].value.toFixed(4)) }));
 };
 
 export const humanWindowLabel = (window: TimeWindow): string => {
