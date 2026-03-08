@@ -104,14 +104,21 @@ export const rollingWindow = <T>(items: readonly T[], size: number): readonly (r
 };
 
 export const weightedAverage = (values: readonly { value: number; weight: number }[]): number => {
-  const totalWeight = values.reduce((acc, value) => acc + value.weight, 0);
-  if (totalWeight === 0) return 0;
-  const weighted = values.reduce((acc, value) => acc + value.value * value.weight, 0);
-  return normalizeNumber(weighted / totalWeight);
+  const totals = Iterator.from(values).reduce(
+    (acc, value) => ({
+      totalWeight: acc.totalWeight + value.weight,
+      weighted: acc.weighted + value.value * value.weight,
+    }),
+    { totalWeight: 0, weighted: 0 },
+  );
+  if (totals.totalWeight === 0) return 0;
+  return normalizeNumber(totals.weighted / totals.totalWeight);
 };
 
 export const compact = <T>(values: readonly (T | null | undefined | false | 0 | '')[]): readonly T[] =>
-  values.filter((value) => Boolean(value)).map((value) => value as T);
+  Iterator.from(values)
+    .filter((value): value is T => Boolean(value))
+    .toArray();
 
 export const pickByRatio = (left: number, right: number): number => {
   if (right === 0) return 0;

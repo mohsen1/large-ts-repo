@@ -1,6 +1,6 @@
 import type { AccessEventName, AccessEventOperation } from './language-types';
+import { 'access:get' as accessGet, 'access:set' as accessSet } from './module-tokens';
 
-const accessorOperations = ['get', 'set'] as const satisfies readonly AccessEventOperation[];
 const historyKey: unique symbol = Symbol('observable-cell.history');
 
 export type AccessEvent<Field extends string, Value> = {
@@ -38,6 +38,7 @@ export function trackedAccessor<Field extends string, Value, This extends Tracka
   target: ClassAccessorDecoratorTarget<This, Value>,
   context: ClassAccessorDecoratorContext<This, Value>,
 ) {
+  const accessorOperations = [accessGet, accessSet] as const satisfies readonly AccessEventOperation[];
   const name = String(context.name) as Field;
   return {
     get(this: This): Value {
@@ -61,6 +62,16 @@ export function trackedAccessor<Field extends string, Value, This extends Tracka
 }
 
 export class ObservableCell<T> {
+  static operations: readonly AccessEventOperation[];
+  static eventNames: readonly AccessEventName<'current'>[];
+  static #eventNameSet = new Set<AccessEventName<'current'>>();
+
+  static {
+    this.operations = [accessGet, accessSet];
+    this.eventNames = this.operations.map((operation) => `current:${operation}` as AccessEventName<'current'>);
+    this.#eventNameSet = new Set(this.eventNames);
+  }
+
   readonly #history: AccessEvent<'current', T>[] = [];
   readonly [historyKey] = this.#history;
 
@@ -73,6 +84,14 @@ export class ObservableCell<T> {
 
   history(): readonly AccessEvent<'current', T>[] {
     return this.#history;
+  }
+
+  static isObservableCell(value: unknown): value is ObservableCell<unknown> {
+    return typeof value === 'object' && value !== null && #history in value;
+  }
+
+  static isEventName(value: string): value is AccessEventName<'current'> {
+    return this.#eventNameSet.has(value as AccessEventName<'current'>);
   }
 
   @bound

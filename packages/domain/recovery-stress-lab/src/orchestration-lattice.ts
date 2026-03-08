@@ -153,7 +153,7 @@ const toTopologyProfile = (tenantId: TenantId, topology: WorkloadTopology, targe
   };
 };
 
-const iteratorFrom = (globalThis as { readonly Iterator?: { from?: <T>(value: Iterable<T>) => { map<U>(transform: (value: T) => U): { toArray(): U[] }; toSorted(compare?: (left: unknown, right: unknown) => number): unknown[] } } }).Iterator?.from;
+const iteratorFrom = globalThis.Iterator?.from;
 
 const toArray = <T>(value: Iterable<T>): readonly T[] =>
   iteratorFrom?.(value)?.map((entry: T) => entry)?.toArray() ?? Array.from(value);

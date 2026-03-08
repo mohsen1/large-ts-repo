@@ -54,13 +54,12 @@ export const sortByDuration = (actions: readonly RecoveryAction[]): RecoveryActi
   [...actions].sort((left, right) => left.expectedDurationMinutes - right.expectedDurationMinutes);
 
 export const tagHistogram = (actions: readonly RecoveryAction[]): Record<string, number> => {
-  const values: Record<string, number> = {};
-  for (const action of actions) {
-    for (const tag of action.tags) {
+  return Iterator.from(actions)
+    .flatMap((action) => action.tags)
+    .reduce((values, tag) => {
       values[tag] = (values[tag] ?? 0) + 1;
-    }
-  }
-  return values;
+      return values;
+    }, {} as Record<string, number>);
 };
 
 export const runPlannerPipeline = (
@@ -76,6 +75,10 @@ export const runPlannerPipeline = (
 
 export const summarizePlan = (plan: RecoveryPlan): { plan: RecoveryPlan; tags: readonly string[]; actionCount: number } => ({
   plan,
-  tags: [...new Set(plan.actions.flatMap((action) => action.tags))],
+  tags: Array.from(
+    Iterator.from(plan.actions)
+      .flatMap((action) => action.tags)
+      .reduce((tags, tag) => tags.add(tag), new Set<string>()),
+  ),
   actionCount: plan.actions.length,
 });

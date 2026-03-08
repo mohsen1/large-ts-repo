@@ -1,3 +1,5 @@
+import { 'scope:enter' as scopeEnter, 'scope:exit' as scopeExit } from './module-tokens';
+
 export type Deferred<T> = {
   readonly promise: Promise<T>;
   readonly resolve: (value: T | PromiseLike<T>) => void;
@@ -17,20 +19,39 @@ export type ScopeResult<T> = {
   readonly timeline: readonly ScopeEvent[];
 };
 
-const scopePhases = ['enter', 'exit'] as const satisfies readonly ScopeEventPhase[];
+class ScopePhaseCatalog {
+  static phases: readonly ScopeEventPhase[];
+  static #phaseSet = new Set<ScopeEventPhase>();
+
+  static {
+    this.phases = [scopeEnter, scopeExit];
+    this.#phaseSet = new Set(this.phases);
+  }
+
+  static isPhase(value: string): value is ScopeEventPhase {
+    return this.#phaseSet.has(value as ScopeEventPhase);
+  }
+}
 
 const now = (): number => Date.now();
+
+const createScopeEvent = (label: string, phase: string): ScopeEvent => {
+  if (!ScopePhaseCatalog.isPhase(phase)) {
+    throw new Error(`Unknown scope phase: ${phase}`);
+  }
+  return { label, phase, at: now() };
+};
 
 class SyncScope implements Disposable {
   constructor(
     private readonly label: string,
     private readonly timeline: ScopeEvent[],
   ) {
-    this.timeline.push({ label, phase: scopePhases[0], at: now() });
+    this.timeline.push(createScopeEvent(label, ScopePhaseCatalog.phases[0]));
   }
 
   [Symbol.dispose](): void {
-    this.timeline.push({ label: this.label, phase: scopePhases[1], at: now() });
+    this.timeline.push(createScopeEvent(this.label, ScopePhaseCatalog.phases[1]));
   }
 }
 
@@ -39,11 +60,11 @@ class AsyncScope implements AsyncDisposable {
     private readonly label: string,
     private readonly timeline: ScopeEvent[],
   ) {
-    this.timeline.push({ label, phase: scopePhases[0], at: now() });
+    this.timeline.push(createScopeEvent(label, ScopePhaseCatalog.phases[0]));
   }
 
   async [Symbol.asyncDispose](): Promise<void> {
-    this.timeline.push({ label: this.label, phase: scopePhases[1], at: now() });
+    this.timeline.push(createScopeEvent(this.label, ScopePhaseCatalog.phases[1]));
   }
 }
 

@@ -5,6 +5,7 @@
       "ES2024",
       "ESNext.Collection",
       "ESNext.Disposable",
+      "ESNext.Iterator",
       "ESNext.Promise"
     ],
     "module": "NodeNext",
