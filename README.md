@@ -15,9 +15,7 @@ This is entirely AI-generated. The initial code was generated using `Codex-5.3-S
 
 See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generated from `tsconfig.json` by [`scripts/graph.sh`](./scripts/graph.sh).
 
-- **624 packages** across 7 tiers (`shared`, `domain`, `data`, `service`, `app`, `infrastructure`, `platform`)
-- **2,683 project references** with a max reference depth of **14**
-- Average reference depth: **5.2**
+Run `bash scripts/graph.sh` to regenerate. Run `bash scripts/count.sh` to update stats below.
 
 ## Lines of Code
 
@@ -31,6 +29,7 @@ See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generate
 | Packages | 624 |
 | Project references | 2,683 |
 | Max reference depth | 14 |
+| Avg reference depth | 5.2 |
 | Last updated | `2026-03-08` |
 
 <!-- LOC:END -->
