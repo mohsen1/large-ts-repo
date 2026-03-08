@@ -9,13 +9,15 @@ Most very large open source TypeScript monorepos have custom build systems (e.g.
 
 ## How was it generated?
 
-This is entirely AI-generated using `Codex-5.3-Spark` on a loop.
-
-See [`generate.sh`](./scripts/generate.sh) for the script that was used to generate this monorepo. 
+This is entirely AI-generated. The initial code was generated using `Codex-5.3-Spark` on a loop (see [`generate.sh`](./scripts/generate.sh)). Additional deep-chain packages were generated with [`gen-deep.cjs`](./scripts/gen-deep.cjs) to create richer cross-tier project reference graphs.
 
 ## Project Graph
 
 See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generated from `tsconfig.json` by [`scripts/graph.sh`](./scripts/graph.sh).
+
+- **624 packages** across 7 tiers (`shared`, `domain`, `data`, `service`, `app`, `infrastructure`, `platform`)
+- **2,683 project references** with a max reference depth of **14**
+- Average reference depth: **5.2**
 
 ## Lines of Code
 
@@ -23,11 +25,13 @@ See [`GRAPH.md`](./GRAPH.md) for the TypeScript project-reference graph generate
 
 | Metric | Value |
 | :-- | --: |
-| TypeScript files | **6,465** |
-| Code lines | **786,573** |
-| Blank lines | 89,869 |
-| Comment lines | 42 |
-| Last updated | `2026-02-26 22:13:08` |
+| TypeScript files | **4,883** |
+| Code lines | **1,194,919** |
+| Blank lines | 129,302 |
+| Packages | 624 |
+| Project references | 2,683 |
+| Max reference depth | 14 |
+| Last updated | `2026-03-08` |
 
 <!-- LOC:END -->
 
