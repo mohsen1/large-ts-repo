@@ -77,6 +77,14 @@ class AsyncCleanupStack implements AsyncDisposable {
 
 export const createDeferred = <T>(): Deferred<T> => Promise.withResolvers<T>();
 
+export const collectUsing = <T, R extends Disposable & { readonly value: T }>(resources: Iterable<R>): readonly T[] => {
+  const values: T[] = [];
+  for (using resource of resources) {
+    values.push(resource.value);
+  }
+  return values;
+};
+
 export const withScope = <T>(label: string, work: (timeline: readonly ScopeEvent[]) => T): ScopeResult<T> => {
   const timeline: ScopeEvent[] = [];
   let value!: T;
