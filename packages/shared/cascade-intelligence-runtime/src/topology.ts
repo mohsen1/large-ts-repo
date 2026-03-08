@@ -33,7 +33,7 @@ export type StagePathCursor = {
 
 export type StageTopologyManifest = readonly StageTopologyEdge[];
 
-const normalizeStage = (value: string): `stage.${string}` => (value.startsWith('stage.') ? value : (`stage.${value}` as `stage.${string}`));
+const normalizeStage = (value: string): `stage.${string}` => (value.startsWith('stage.') ? value as `stage.${string}` : `stage.${value}`);
 
 const edgeWeight = (value: number): StageTopologyWeight =>
   `${Math.max(1, Math.floor(value))}` as StageTopologyWeight;
@@ -162,13 +162,13 @@ export const buildTopologyPathFromOrder = <TStage extends readonly (string | `st
     to: normalizeStage(ordered[Math.min(index + 1, ordered.length - 1)] as string),
     weight: `${Math.max(1, index + 1)}` as StageTopologyWeight,
     channel: `topology.${label}` as const,
-  })).filter((entry): entry is StageTopologyEdge => entry.to !== (entry.from as string));
+  })).filter((entry) => entry.to !== (entry.from as string)) as StageTopologyManifest;
 
 export const runTopologyAsync = async <TValue extends { readonly at: string }>(
   manifest: StageTopologyManifest,
   source: AsyncLikeIterable<TValue>,
 ): Promise<readonly string[]> => {
-  const values = mapAsync(source, async (entry, index) => ({
+  const values = mapAsync(source, async (entry: TValue, index: number) => ({
     index,
     stage: (entry as TValue).at,
   }));

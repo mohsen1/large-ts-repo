@@ -6,6 +6,7 @@ import type {
   RuntimePlugin,
   RuntimePluginDefinition,
   RuntimePluginEnvelope,
+  RuntimeScope,
   StageAlias,
   RegistryMode,
   RegistryKey,
@@ -117,7 +118,7 @@ export interface PluginRegistry {
   readonly [Symbol.dispose]: () => void;
 }
 
-const assertModeMatch = <TRegistry extends PluginRegistry>(registry: TRegistry, mode: PluginMode): boolean => {
+const assertModeMatch = <TRegistry extends PluginRegistry>(registry: TRegistry, mode: PluginMode | RegistryMode): boolean => {
   const hasLayer = mode === 'actuate' || mode === 'observe' || mode === 'read' || mode === 'write';
   const snapshot = registry.snapshot();
   return hasLayer && snapshot.plugins ? true : false;
@@ -296,7 +297,7 @@ export const mapPluginKinds = (plugins: readonly RuntimePlugin[]) =>
   );
 
 export const summarizeRegistry = (registry: PluginRegistry) => {
-  const grouped = mapPluginKinds(registry.entries());
+  const grouped = mapPluginKinds(registry.entries().map((entry) => entry.plugin));
   return Object.fromEntries(
     Object.entries(grouped).map(([kind, list]) => [kind, list.length]),
   ) as Readonly<Record<PluginMode, number>>;
@@ -338,7 +339,7 @@ const pluginGraph = <TPlugin extends RuntimePlugin>(plugin: TPlugin): readonly s
 type PluginDependencyBucket<TDependency extends string = string> = Readonly<Record<TDependency, string[]>>;
 
 const analyzeDependencyLayers = <TPlugin extends RuntimePlugin>(dependencies: readonly string[], plugin: TPlugin): void => {
-  const buckets: PluginDependencyBucket<string> = {};
+  const buckets: Record<string, string[]> = {};
   for (const dependency of dependencies) {
     const normalized = normalizeDependencyName(dependency);
     const bucket = buckets[normalized] ?? [];
@@ -365,7 +366,7 @@ export const createPluginStack = <TPlugins extends readonly RuntimePlugin[]>(
   plugins: NoInfer<TPlugins>,
 ): PluginEnvelope<TPlugins[number]>[] =>
   plugins.flatMap((plugin) => ({
-    scope: `scope:${plugin.manifest.scope ?? 'default'}` as string,
+    scope: `scope:${plugin.manifest.scope ?? 'default'}` as RuntimeScope,
     plugin,
     aliases: plugin.plugin.tags.map((tag) => `alias:${tag.replace('tag:', '')}` as PluginEnvelope['aliases'][number]),
     mode: plugin.plugin.mode,

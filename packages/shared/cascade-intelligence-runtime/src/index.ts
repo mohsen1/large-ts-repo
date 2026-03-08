@@ -36,7 +36,6 @@ export type {
 } from './scope.js';
 
 export {
-  buildTopologyGraph,
   buildCatalogFingerprint,
   buildManifestFingerprint,
   buildRuntimeManifest,
@@ -69,6 +68,7 @@ export {
   withPlugins,
 } from './registry.js';
 export {
+  buildTopologyGraph,
   analyzeTopology,
   chunkTopology,
   ensureTopology,

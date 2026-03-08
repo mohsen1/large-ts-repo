@@ -139,9 +139,9 @@ export const buildRuntimeManifest = <
 ): RuntimeManifest<TScope, TName> => ({
   scope: normalizeManifestScope(input.scope),
   name: `catalog:${input.scope}:${input.name}` as RuntimeManifest<TScope, TName>['name'],
-  aliases: input.aliases.length === 0
-    ? ['alias:root'] as readonly [StageAlias]
-    : (input.aliases.map((alias) => toAlias(alias)) as readonly [...TAliases & string[]]),
+  aliases: (input.aliases.length === 0
+    ? [toAlias('root')]
+    : input.aliases.map((alias) => toAlias(alias))) as readonly StageAlias[],
   namespace: `namespace:${input.scope}` as RuntimeManifest<TScope, TName>['namespace'],
   source: input.source,
   schemaVersion: 'v1.0.0',
@@ -199,7 +199,7 @@ export const createPathVector = <
 export const buildStageAlias = (value: string): StageAlias => toAlias(value);
 
 export const buildStageAliases = <const TAliases extends readonly string[]>(values: TAliases): readonly [...TAliases] =>
-  values.map(toAlias) as readonly [...TAliases];
+  values.map(toAlias) as unknown as readonly [...TAliases];
 
 export const projectLayer = <TManifest extends RuntimeManifest>(
   manifest: TManifest,

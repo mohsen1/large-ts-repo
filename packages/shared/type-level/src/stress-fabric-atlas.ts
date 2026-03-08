@@ -64,7 +64,7 @@ export const atlasTokenMap = (tokens: readonly RouteToken<RouteSpec['verb'], Rou
 export const atlasPairCatalog: AtlasPairs = routePairs(
   ['incident', 'mesh', 'signal', 'policy', 'scheduler'] as const,
   ['recover', 'dispatch', 'observe', 'simulate', 'drill'] as const,
-) as AtlasPairs;
+) as unknown as AtlasPairs;
 
 export const atlasDispatchedPayload = (input: AtlasRouteTuple): RouteDispatchResult<RouteSpec> => {
   const spec = buildCatalogFromSpec({

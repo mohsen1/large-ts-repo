@@ -3,13 +3,13 @@
   "compilerOptions": {
     "paths": {
       "@shared/core": [
-        "packages/shared/core/src/index.ts"
+        "../../shared/core/src/index.ts"
       ],
       "@domain/recovery-incident-lab-core": [
-        "packages/domain/recovery-incident-lab-core/src/index.ts"
+        "../../domain/recovery-incident-lab-core/src/index.ts"
       ],
       "@domain/recovery-incident-lab-core/*": [
-        "packages/domain/recovery-incident-lab-core/src/*"
+        "../../domain/recovery-incident-lab-core/src/*"
       ]
     },
     "outDir": "./dist",
