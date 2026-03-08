@@ -74,9 +74,7 @@ export const timelineReport = <TOutput>(run: Omit<LabRunOutput<TOutput>, 'output
   ].join('|');
 
 export const timelineByKind = (timeline: ControlLabTimeline): Record<string, number> => {
-  const counts = new Map<string, number>();
-  for (const event of timeline.events) {
-    counts.set(event.kind, (counts.get(event.kind) ?? 0) + 1);
-  }
-  return Object.fromEntries(counts);
+  return Object.fromEntries(
+    Object.entries(Object.groupBy(timeline.events, (event) => event.kind)).map(([kind, events]) => [kind, events?.length ?? 0]),
+  );
 };

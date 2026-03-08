@@ -64,6 +64,9 @@ export function trackedAccessor<Field extends string, Value, This extends Tracka
 export class ObservableCell<T> {
   static operations: readonly AccessEventOperation[];
   static eventNames: readonly AccessEventName<'current'>[];
+  static accessor createdCount = 0;
+  static accessor snapshotCount = 0;
+  static accessor lastSnapshotAt: number | undefined;
   static #eventNameSet = new Set<AccessEventName<'current'>>();
 
   static {
@@ -79,6 +82,7 @@ export class ObservableCell<T> {
   accessor current: T;
 
   constructor(initial: T) {
+    ObservableCell.createdCount += 1;
     this.current = initial;
   }
 
@@ -96,6 +100,8 @@ export class ObservableCell<T> {
 
   @bound
   snapshot(): { readonly current: T; readonly history: readonly AccessEvent<'current', T>[] } {
+    ObservableCell.snapshotCount += 1;
+    ObservableCell.lastSnapshotAt = Date.now();
     return {
       current: this.current,
       history: this.#history,

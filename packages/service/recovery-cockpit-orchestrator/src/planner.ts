@@ -43,11 +43,9 @@ export const resolveExecutionOrder = (actions: readonly RecoveryAction[]): Recov
 };
 
 export const groupByRegion = (actions: readonly RecoveryAction[]): Record<string, RecoveryAction[]> => {
-  return actions.reduce((acc, action) => {
-    acc[action.region] = acc[action.region] ?? [];
-    acc[action.region].push(action);
-    return acc;
-  }, {} as Record<string, RecoveryAction[]>);
+  return Object.fromEntries(
+    Object.entries(Object.groupBy(actions, (action) => action.region)).map(([region, bucket]) => [region, bucket ?? []]),
+  ) as Record<string, RecoveryAction[]>;
 };
 
 export const sortByDuration = (actions: readonly RecoveryAction[]): RecoveryAction[] =>

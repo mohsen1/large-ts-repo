@@ -113,6 +113,34 @@ export const createAsyncCleanupStack = (register?: (stack: AsyncDisposableStack)
   return stack.move();
 };
 
+export const withAdoptedCleanup = <TResource, TResult>(
+  resource: TResource,
+  dispose: (resource: TResource) => void,
+  work: (resource: TResource) => TResult,
+): TResult => {
+  let value!: TResult;
+  {
+    using stack = new DisposableStack();
+    const adopted = stack.adopt(resource, dispose);
+    value = work(adopted);
+  }
+  return value;
+};
+
+export const withAsyncAdoptedCleanup = async <TResource, TResult>(
+  resource: TResource,
+  dispose: (resource: TResource) => PromiseLike<void> | void,
+  work: (resource: TResource) => Promise<TResult>,
+): Promise<TResult> => {
+  let value!: TResult;
+  {
+    await using stack = new AsyncDisposableStack();
+    const adopted = stack.adopt(resource, dispose);
+    value = await work(adopted);
+  }
+  return value;
+};
+
 export const withCleanup = <T>(work: (register: (callback: () => void) => void) => T): T => {
   let value!: T;
   {
