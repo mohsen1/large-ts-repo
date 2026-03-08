@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain0-0-index-flow-g3/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain0-0-compute-bridge-g4/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-cockpit-models/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-lab-adaptive-orchestration/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

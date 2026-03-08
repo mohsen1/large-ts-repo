@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../service/chain1-3-queue-flow-g1051/tsconfig.json"
+    },
+    {
+      "path": "../../service/chain1-3-rule-pulse-g1052/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-continuity-lens/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-horizon-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

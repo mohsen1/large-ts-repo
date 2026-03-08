@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain0-1-stream-bridge-g17/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain0-1-compute-fabric-g18/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-signal-orchestration-models/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-cadence-orchestration/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

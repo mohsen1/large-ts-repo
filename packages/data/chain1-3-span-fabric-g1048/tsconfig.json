@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain1-3-edge-pulse-g1045/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain1-3-trace-lens-g1046/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-continuity-planning/tsconfig.json"
+    },
+    {
+      "path": "../../domain/enterprise-facts/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

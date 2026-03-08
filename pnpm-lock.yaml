@@ -132,6 +132,52 @@ importers:
         specifier: ^5.0.0
         version: 5.7.4
 
+  packages/app/chain0-0-data-flow-g12: {}
+
+  packages/app/chain0-0-data-nexus-g14: {}
+
+  packages/app/chain0-0-state-flow-g13: {}
+
+  packages/app/chain0-1-cache-fabric-g28: {}
+
+  packages/app/chain0-1-model-nexus-g27: {}
+
+  packages/app/chain0-1-signal-nexus-g26: {}
+
+  packages/app/chain0-2-data-core-g42: {}
+
+  packages/app/chain0-2-model-core-g41: {}
+
+  packages/app/chain0-2-route-flow-g40: {}
+
+  packages/app/chain0-3-edge-hub-g55: {}
+
+  packages/app/chain0-3-model-bridge-g54: {}
+
+  packages/app/chain1-0-compute-bridge-g1014: {}
+
+  packages/app/chain1-0-rule-hub-g1012: {}
+
+  packages/app/chain1-0-schema-core-g1013: {}
+
+  packages/app/chain1-1-compute-nexus-g1027: {}
+
+  packages/app/chain1-1-event-engine-g1028: {}
+
+  packages/app/chain1-1-metric-pulse-g1026: {}
+
+  packages/app/chain1-2-compute-pulse-g1042: {}
+
+  packages/app/chain1-2-schema-fabric-g1041: {}
+
+  packages/app/chain1-2-state-core-g1040: {}
+
+  packages/app/chain1-3-event-core-g1054: {}
+
+  packages/app/chain1-3-policy-bridge-g1056: {}
+
+  packages/app/chain1-3-span-nexus-g1055: {}
+
   packages/app/cli:
     dependencies:
       '@platform/messaging':
@@ -1629,6 +1675,60 @@ importers:
         specifier: workspace:*
         version: link:../../domain/adaptive-ops
 
+  packages/data/chain0-0-compute-hub-g6: {}
+
+  packages/data/chain0-0-event-fabric-g7: {}
+
+  packages/data/chain0-0-metric-engine-g8: {}
+
+  packages/data/chain0-1-index-fabric-g22: {}
+
+  packages/data/chain0-1-signal-lens-g21: {}
+
+  packages/data/chain0-1-state-flow-g20: {}
+
+  packages/data/chain0-2-queue-nexus-g34: {}
+
+  packages/data/chain0-2-rule-mesh-g35: {}
+
+  packages/data/chain0-2-schema-fabric-g36: {}
+
+  packages/data/chain0-3-graph-mesh-g50: {}
+
+  packages/data/chain0-3-queue-engine-g48: {}
+
+  packages/data/chain0-3-stream-lens-g49: {}
+
+  packages/data/chain1-0-metric-core-g1006: {}
+
+  packages/data/chain1-0-schema-pulse-g1008: {}
+
+  packages/data/chain1-0-signal-engine-g1007: {}
+
+  packages/data/chain1-1-index-mesh-g1022: {}
+
+  packages/data/chain1-1-route-core-g1021: {}
+
+  packages/data/chain1-1-schema-nexus-g1020: {}
+
+  packages/data/chain1-2-graph-engine-g1036: {}
+
+  packages/data/chain1-2-node-engine-g1034: {}
+
+  packages/data/chain1-2-node-hub-g1035: {}
+
+  packages/data/chain1-3-cache-core-g1049: {}
+
+  packages/data/chain1-3-data-pulse-g1050: {}
+
+  packages/data/chain1-3-span-fabric-g1048: {}
+
+  packages/data/chain1-4-model-flow-g1062: {}
+
+  packages/data/chain1-4-model-nexus-g1063: {}
+
+  packages/data/chain1-4-state-hub-g1064: {}
+
   packages/data/continuity-journal:
     dependencies:
       '@data/repositories':
@@ -3119,6 +3219,60 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+
+  packages/domain/chain0-0-compute-bridge-g4: {}
+
+  packages/domain/chain0-0-event-fabric-g5: {}
+
+  packages/domain/chain0-0-index-flow-g3: {}
+
+  packages/domain/chain0-1-compute-fabric-g18: {}
+
+  packages/domain/chain0-1-stream-bridge-g17: {}
+
+  packages/domain/chain0-1-trace-nexus-g19: {}
+
+  packages/domain/chain0-2-compute-hub-g32: {}
+
+  packages/domain/chain0-2-event-hub-g31: {}
+
+  packages/domain/chain0-2-trace-flow-g33: {}
+
+  packages/domain/chain0-3-event-core-g45: {}
+
+  packages/domain/chain0-3-policy-fabric-g46: {}
+
+  packages/domain/chain0-3-schema-flow-g47: {}
+
+  packages/domain/chain1-0-data-flow-g1003: {}
+
+  packages/domain/chain1-0-signal-lens-g1005: {}
+
+  packages/domain/chain1-0-stream-lens-g1004: {}
+
+  packages/domain/chain1-1-edge-fabric-g1019: {}
+
+  packages/domain/chain1-1-metric-pulse-g1018: {}
+
+  packages/domain/chain1-1-state-engine-g1017: {}
+
+  packages/domain/chain1-2-graph-hub-g1032: {}
+
+  packages/domain/chain1-2-metric-core-g1031: {}
+
+  packages/domain/chain1-2-model-mesh-g1033: {}
+
+  packages/domain/chain1-3-edge-pulse-g1045: {}
+
+  packages/domain/chain1-3-graph-engine-g1047: {}
+
+  packages/domain/chain1-3-trace-lens-g1046: {}
+
+  packages/domain/chain1-4-data-engine-g1060: {}
+
+  packages/domain/chain1-4-schema-fabric-g1061: {}
+
+  packages/domain/chain1-4-stream-fabric-g1059: {}
 
   packages/domain/compliance: {}
 
@@ -5682,6 +5836,58 @@ importers:
       '@domain/orders':
         specifier: workspace:*
         version: link:../../domain/orders
+
+  packages/service/chain0-0-cache-hub-g10: {}
+
+  packages/service/chain0-0-policy-nexus-g11: {}
+
+  packages/service/chain0-0-route-mesh-g9: {}
+
+  packages/service/chain0-1-queue-bridge-g24: {}
+
+  packages/service/chain0-1-queue-mesh-g23: {}
+
+  packages/service/chain0-1-trace-nexus-g25: {}
+
+  packages/service/chain0-2-model-flow-g37: {}
+
+  packages/service/chain0-2-policy-bridge-g38: {}
+
+  packages/service/chain0-2-rule-mesh-g39: {}
+
+  packages/service/chain0-3-compute-lens-g51: {}
+
+  packages/service/chain0-3-queue-fabric-g52: {}
+
+  packages/service/chain0-3-rule-pulse-g53: {}
+
+  packages/service/chain1-0-compute-fabric-g1011: {}
+
+  packages/service/chain1-0-queue-mesh-g1009: {}
+
+  packages/service/chain1-0-route-hub-g1010: {}
+
+  packages/service/chain1-1-data-nexus-g1023: {}
+
+  packages/service/chain1-1-graph-hub-g1024: {}
+
+  packages/service/chain1-1-node-pulse-g1025: {}
+
+  packages/service/chain1-2-graph-flow-g1038: {}
+
+  packages/service/chain1-2-queue-core-g1039: {}
+
+  packages/service/chain1-2-state-hub-g1037: {}
+
+  packages/service/chain1-3-node-mesh-g1053: {}
+
+  packages/service/chain1-3-queue-flow-g1051: {}
+
+  packages/service/chain1-3-rule-pulse-g1052: {}
+
+  packages/service/chain1-4-index-mesh-g1065: {}
+
+  packages/service/chain1-4-rule-nexus-g1066: {}
 
   packages/service/checkout:
     dependencies:
@@ -8317,6 +8523,42 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/shared/chain0-0-compute-flow-g1: {}
+
+  packages/shared/chain0-0-edge-nexus-g2: {}
+
+  packages/shared/chain0-1-policy-engine-g15: {}
+
+  packages/shared/chain0-1-queue-flow-g16: {}
+
+  packages/shared/chain0-2-rule-fabric-g29: {}
+
+  packages/shared/chain0-2-stream-core-g30: {}
+
+  packages/shared/chain0-3-data-hub-g44: {}
+
+  packages/shared/chain0-3-stream-lens-g43: {}
+
+  packages/shared/chain1-0-data-lens-g1002: {}
+
+  packages/shared/chain1-0-stream-mesh-g1001: {}
+
+  packages/shared/chain1-1-metric-nexus-g1016: {}
+
+  packages/shared/chain1-1-policy-engine-g1015: {}
+
+  packages/shared/chain1-2-data-core-g1030: {}
+
+  packages/shared/chain1-2-rule-core-g1029: {}
+
+  packages/shared/chain1-3-cache-engine-g1043: {}
+
+  packages/shared/chain1-3-stream-fabric-g1044: {}
+
+  packages/shared/chain1-4-route-flow-g1058: {}
+
+  packages/shared/chain1-4-state-nexus-g1057: {}
 
   packages/shared/chaos-lab-console-kernel:
     dependencies:

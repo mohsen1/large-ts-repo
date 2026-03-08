@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain1-0-data-flow-g1003/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain1-0-stream-lens-g1004/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-playbook-lab/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-coordination/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

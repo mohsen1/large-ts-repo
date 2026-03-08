@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain1-1-state-engine-g1017/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain1-1-metric-pulse-g1018/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-playbook-studio-core/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-horizon-observability/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

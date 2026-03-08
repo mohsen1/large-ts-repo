@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../data/chain1-2-node-engine-g1034/tsconfig.json"
+    },
+    {
+      "path": "../../data/chain1-2-node-hub-g1035/tsconfig.json"
+    },
+    {
+      "path": "../../data/chain0-3-stream-lens-g49/tsconfig.json"
+    },
+    {
+      "path": "../../data/chain0-1-state-flow-g20/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

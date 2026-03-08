@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../service/chain0-1-queue-mesh-g23/tsconfig.json"
+    },
+    {
+      "path": "../../service/chain0-1-queue-bridge-g24/tsconfig.json"
+    },
+    {
+      "path": "../../service/finance/tsconfig.json"
+    },
+    {
+      "path": "../../service/fuzzy-router/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}
