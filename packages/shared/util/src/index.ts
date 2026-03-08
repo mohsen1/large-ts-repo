@@ -2,6 +2,7 @@ export * from './either';
 export * from './pipeline';
 export * from './retry';
 export * from './aggregates';
+export * from './async-arrays';
 export * from './collections';
 export * from './decorators';
 export * from './iterators';

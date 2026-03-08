@@ -1,17 +1,10 @@
 import type { MeshExecutionPhase, MeshPlan, MeshTopology, MeshRunId, MeshPlanId } from '@domain/recovery-cockpit-signal-mesh';
 
 export const iteratorToArray = async <T>(iterator: AsyncIterable<T> | Iterable<T>): Promise<T[]> => {
-  const out: T[] = [];
   if (typeof (iterator as AsyncIterable<T>)[Symbol.asyncIterator] === 'function') {
-    for await (const item of iterator as AsyncIterable<T>) {
-      out.push(item);
-    }
-    return out;
+    return Array.fromAsync(iterator as AsyncIterable<T>);
   }
-  for (const item of iterator as Iterable<T>) {
-    out.push(item);
-  }
-  return out;
+  return Array.from(iterator as Iterable<T>);
 };
 
 export const toDictionary = <K extends string | number | symbol, V>(entries: readonly (readonly [K, V])[]): Record<K, V> =>

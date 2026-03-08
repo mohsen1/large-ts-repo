@@ -1,3 +1,5 @@
+type MaybePromise<T> = T | PromiseLike<T>;
+
 export interface RetryOptions {
   times: number;
   delayMs: number;
@@ -20,7 +22,7 @@ export const wait = (ms: number, signal?: AbortSignal): Promise<void> => {
 };
 
 export const withRetry = async <T>(
-  action: () => Promise<T>,
+  action: () => MaybePromise<T>,
   options: RetryOptions,
 ): Promise<T> => {
   let attempt = 0;
@@ -28,7 +30,7 @@ export const withRetry = async <T>(
   let delay = options.delayMs;
   while (attempt < options.times) {
     try {
-      return await action();
+      return await Promise.try(action);
     } catch (error) {
       last = error;
       attempt += 1;
@@ -40,9 +42,9 @@ export const withRetry = async <T>(
   throw last;
 };
 
-export const neverFail = async <T>(action: () => Promise<T>, fallback: T): Promise<T> => {
+export const neverFail = async <T>(action: () => MaybePromise<T>, fallback: T): Promise<T> => {
   try {
-    return await action();
+    return await Promise.try(action);
   } catch {
     return fallback;
   }

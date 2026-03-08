@@ -68,34 +68,6 @@ class AsyncScope implements AsyncDisposable {
   }
 }
 
-class CleanupStack implements Disposable {
-  readonly #callbacks: Array<() => void> = [];
-
-  defer(callback: () => void): void {
-    this.#callbacks.push(callback);
-  }
-
-  [Symbol.dispose](): void {
-    for (const callback of this.#callbacks.toReversed()) {
-      callback();
-    }
-  }
-}
-
-class AsyncCleanupStack implements AsyncDisposable {
-  readonly #callbacks: Array<() => Promise<void> | void> = [];
-
-  defer(callback: () => Promise<void> | void): void {
-    this.#callbacks.push(callback);
-  }
-
-  async [Symbol.asyncDispose](): Promise<void> {
-    for (const callback of this.#callbacks.toReversed()) {
-      await callback();
-    }
-  }
-}
-
 export const createDeferred = <T>(): Deferred<T> => Promise.withResolvers<T>();
 
 export const collectUsing = <T, R extends Disposable & { readonly value: T }>(resources: Iterable<R>): readonly T[] => {
@@ -129,10 +101,22 @@ export const withAsyncScope = async <T>(
   return { value, timeline };
 };
 
+export const createCleanupStack = (register?: (stack: DisposableStack) => void): DisposableStack => {
+  const stack = new DisposableStack();
+  register?.(stack);
+  return stack.move();
+};
+
+export const createAsyncCleanupStack = (register?: (stack: AsyncDisposableStack) => void): AsyncDisposableStack => {
+  const stack = new AsyncDisposableStack();
+  register?.(stack);
+  return stack.move();
+};
+
 export const withCleanup = <T>(work: (register: (callback: () => void) => void) => T): T => {
   let value!: T;
   {
-    using cleanup = new CleanupStack();
+    using cleanup = new DisposableStack();
     value = work((callback) => cleanup.defer(callback));
   }
   return value;
@@ -143,7 +127,7 @@ export const withAsyncCleanup = async <T>(
 ): Promise<T> => {
   let value!: T;
   {
-    await using cleanup = new AsyncCleanupStack();
+    await using cleanup = new AsyncDisposableStack();
     value = await work((callback) => cleanup.defer(callback));
   }
   return value;

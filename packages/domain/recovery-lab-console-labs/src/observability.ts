@@ -1,13 +1,6 @@
 import { type ControlLabRuntimeEvent, type LabRunOutput, type ControlLabTimeline } from './types';
 
-const toArray = <T>(value: Iterable<T> | AsyncIterable<T>): Promise<readonly T[]> =>
-  (async () => {
-    const out: T[] = [];
-    for await (const item of value) {
-      out.push(item);
-    }
-    return out;
-  })();
+const toArray = <T>(value: Iterable<T> | AsyncIterable<T>): Promise<readonly T[]> => Array.fromAsync(value);
 
 export interface TimelineWindow {
   readonly id: string;
