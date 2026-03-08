@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain0-3-event-core-g45/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain0-3-policy-fabric-g46/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-incident-orchestration/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-lab-console-labs/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

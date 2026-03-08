@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../shared/chain0-1-policy-engine-g15/tsconfig.json"
+    },
+    {
+      "path": "../../shared/chain0-1-queue-flow-g16/tsconfig.json"
+    },
+    {
+      "path": "../../shared/orchestration-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../shared/orchestration-lab-core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

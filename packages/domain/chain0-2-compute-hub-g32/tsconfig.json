@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../shared/chain0-2-rule-fabric-g29/tsconfig.json"
+    },
+    {
+      "path": "../../shared/chain0-2-stream-core-g30/tsconfig.json"
+    },
+    {
+      "path": "../../shared/recovery-intent-graph-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../shared/fault-intel-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

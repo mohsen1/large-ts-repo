@@ -1458,6 +1458,171 @@
     },
     {
       "path": "./packages/shared/zod-adapters"
+    },
+    {
+      "path": "./packages/shared/chain0-0-compute-flow-g1"
+    },
+    {
+      "path": "./packages/shared/chain0-0-edge-nexus-g2"
+    },
+    {
+      "path": "./packages/domain/chain0-0-index-flow-g3"
+    },
+    {
+      "path": "./packages/domain/chain0-0-compute-bridge-g4"
+    },
+    {
+      "path": "./packages/domain/chain0-0-event-fabric-g5"
+    },
+    {
+      "path": "./packages/data/chain0-0-compute-hub-g6"
+    },
+    {
+      "path": "./packages/data/chain0-0-event-fabric-g7"
+    },
+    {
+      "path": "./packages/data/chain0-0-metric-engine-g8"
+    },
+    {
+      "path": "./packages/service/chain0-0-route-mesh-g9"
+    },
+    {
+      "path": "./packages/service/chain0-0-cache-hub-g10"
+    },
+    {
+      "path": "./packages/service/chain0-0-policy-nexus-g11"
+    },
+    {
+      "path": "./packages/app/chain0-0-data-flow-g12"
+    },
+    {
+      "path": "./packages/app/chain0-0-state-flow-g13"
+    },
+    {
+      "path": "./packages/app/chain0-0-data-nexus-g14"
+    },
+    {
+      "path": "./packages/shared/chain0-1-policy-engine-g15"
+    },
+    {
+      "path": "./packages/shared/chain0-1-queue-flow-g16"
+    },
+    {
+      "path": "./packages/domain/chain0-1-stream-bridge-g17"
+    },
+    {
+      "path": "./packages/domain/chain0-1-compute-fabric-g18"
+    },
+    {
+      "path": "./packages/domain/chain0-1-trace-nexus-g19"
+    },
+    {
+      "path": "./packages/data/chain0-1-state-flow-g20"
+    },
+    {
+      "path": "./packages/data/chain0-1-signal-lens-g21"
+    },
+    {
+      "path": "./packages/data/chain0-1-index-fabric-g22"
+    },
+    {
+      "path": "./packages/service/chain0-1-queue-mesh-g23"
+    },
+    {
+      "path": "./packages/service/chain0-1-queue-bridge-g24"
+    },
+    {
+      "path": "./packages/service/chain0-1-trace-nexus-g25"
+    },
+    {
+      "path": "./packages/app/chain0-1-signal-nexus-g26"
+    },
+    {
+      "path": "./packages/app/chain0-1-model-nexus-g27"
+    },
+    {
+      "path": "./packages/app/chain0-1-cache-fabric-g28"
+    },
+    {
+      "path": "./packages/shared/chain0-2-rule-fabric-g29"
+    },
+    {
+      "path": "./packages/shared/chain0-2-stream-core-g30"
+    },
+    {
+      "path": "./packages/domain/chain0-2-event-hub-g31"
+    },
+    {
+      "path": "./packages/domain/chain0-2-compute-hub-g32"
+    },
+    {
+      "path": "./packages/domain/chain0-2-trace-flow-g33"
+    },
+    {
+      "path": "./packages/data/chain0-2-queue-nexus-g34"
+    },
+    {
+      "path": "./packages/data/chain0-2-rule-mesh-g35"
+    },
+    {
+      "path": "./packages/data/chain0-2-schema-fabric-g36"
+    },
+    {
+      "path": "./packages/service/chain0-2-model-flow-g37"
+    },
+    {
+      "path": "./packages/service/chain0-2-policy-bridge-g38"
+    },
+    {
+      "path": "./packages/service/chain0-2-rule-mesh-g39"
+    },
+    {
+      "path": "./packages/app/chain0-2-route-flow-g40"
+    },
+    {
+      "path": "./packages/app/chain0-2-model-core-g41"
+    },
+    {
+      "path": "./packages/app/chain0-2-data-core-g42"
+    },
+    {
+      "path": "./packages/shared/chain0-3-stream-lens-g43"
+    },
+    {
+      "path": "./packages/shared/chain0-3-data-hub-g44"
+    },
+    {
+      "path": "./packages/domain/chain0-3-event-core-g45"
+    },
+    {
+      "path": "./packages/domain/chain0-3-policy-fabric-g46"
+    },
+    {
+      "path": "./packages/domain/chain0-3-schema-flow-g47"
+    },
+    {
+      "path": "./packages/data/chain0-3-queue-engine-g48"
+    },
+    {
+      "path": "./packages/data/chain0-3-stream-lens-g49"
+    },
+    {
+      "path": "./packages/data/chain0-3-graph-mesh-g50"
+    },
+    {
+      "path": "./packages/service/chain0-3-compute-lens-g51"
+    },
+    {
+      "path": "./packages/service/chain0-3-queue-fabric-g52"
+    },
+    {
+      "path": "./packages/service/chain0-3-rule-pulse-g53"
+    },
+    {
+      "path": "./packages/app/chain0-3-model-bridge-g54"
+    },
+    {
+      "path": "./packages/app/chain0-3-edge-hub-g55"
     }
   ]
 }

@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../shared/chain0-3-stream-lens-g43/tsconfig.json"
+    },
+    {
+      "path": "../../shared/chain0-3-data-hub-g44/tsconfig.json"
+    },
+    {
+      "path": "../../shared/recovery-lab-kernel/tsconfig.json"
+    },
+    {
+      "path": "../../shared/util/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

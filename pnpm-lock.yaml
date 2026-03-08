@@ -132,6 +132,28 @@ importers:
         specifier: ^5.0.0
         version: 5.7.4
 
+  packages/app/chain0-0-data-flow-g12: {}
+
+  packages/app/chain0-0-data-nexus-g14: {}
+
+  packages/app/chain0-0-state-flow-g13: {}
+
+  packages/app/chain0-1-cache-fabric-g28: {}
+
+  packages/app/chain0-1-model-nexus-g27: {}
+
+  packages/app/chain0-1-signal-nexus-g26: {}
+
+  packages/app/chain0-2-data-core-g42: {}
+
+  packages/app/chain0-2-model-core-g41: {}
+
+  packages/app/chain0-2-route-flow-g40: {}
+
+  packages/app/chain0-3-edge-hub-g55: {}
+
+  packages/app/chain0-3-model-bridge-g54: {}
+
   packages/app/cli:
     dependencies:
       '@platform/messaging':
@@ -1629,6 +1651,30 @@ importers:
         specifier: workspace:*
         version: link:../../domain/adaptive-ops
 
+  packages/data/chain0-0-compute-hub-g6: {}
+
+  packages/data/chain0-0-event-fabric-g7: {}
+
+  packages/data/chain0-0-metric-engine-g8: {}
+
+  packages/data/chain0-1-index-fabric-g22: {}
+
+  packages/data/chain0-1-signal-lens-g21: {}
+
+  packages/data/chain0-1-state-flow-g20: {}
+
+  packages/data/chain0-2-queue-nexus-g34: {}
+
+  packages/data/chain0-2-rule-mesh-g35: {}
+
+  packages/data/chain0-2-schema-fabric-g36: {}
+
+  packages/data/chain0-3-graph-mesh-g50: {}
+
+  packages/data/chain0-3-queue-engine-g48: {}
+
+  packages/data/chain0-3-stream-lens-g49: {}
+
   packages/data/continuity-journal:
     dependencies:
       '@data/repositories':
@@ -3119,6 +3165,30 @@ importers:
       '@shared/core':
         specifier: workspace:*
         version: link:../../shared/core
+
+  packages/domain/chain0-0-compute-bridge-g4: {}
+
+  packages/domain/chain0-0-event-fabric-g5: {}
+
+  packages/domain/chain0-0-index-flow-g3: {}
+
+  packages/domain/chain0-1-compute-fabric-g18: {}
+
+  packages/domain/chain0-1-stream-bridge-g17: {}
+
+  packages/domain/chain0-1-trace-nexus-g19: {}
+
+  packages/domain/chain0-2-compute-hub-g32: {}
+
+  packages/domain/chain0-2-event-hub-g31: {}
+
+  packages/domain/chain0-2-trace-flow-g33: {}
+
+  packages/domain/chain0-3-event-core-g45: {}
+
+  packages/domain/chain0-3-policy-fabric-g46: {}
+
+  packages/domain/chain0-3-schema-flow-g47: {}
 
   packages/domain/compliance: {}
 
@@ -5682,6 +5752,30 @@ importers:
       '@domain/orders':
         specifier: workspace:*
         version: link:../../domain/orders
+
+  packages/service/chain0-0-cache-hub-g10: {}
+
+  packages/service/chain0-0-policy-nexus-g11: {}
+
+  packages/service/chain0-0-route-mesh-g9: {}
+
+  packages/service/chain0-1-queue-bridge-g24: {}
+
+  packages/service/chain0-1-queue-mesh-g23: {}
+
+  packages/service/chain0-1-trace-nexus-g25: {}
+
+  packages/service/chain0-2-model-flow-g37: {}
+
+  packages/service/chain0-2-policy-bridge-g38: {}
+
+  packages/service/chain0-2-rule-mesh-g39: {}
+
+  packages/service/chain0-3-compute-lens-g51: {}
+
+  packages/service/chain0-3-queue-fabric-g52: {}
+
+  packages/service/chain0-3-rule-pulse-g53: {}
 
   packages/service/checkout:
     dependencies:
@@ -8317,6 +8411,22 @@ importers:
       zod:
         specifier: ^3.24.0
         version: 3.25.76
+
+  packages/shared/chain0-0-compute-flow-g1: {}
+
+  packages/shared/chain0-0-edge-nexus-g2: {}
+
+  packages/shared/chain0-1-policy-engine-g15: {}
+
+  packages/shared/chain0-1-queue-flow-g16: {}
+
+  packages/shared/chain0-2-rule-fabric-g29: {}
+
+  packages/shared/chain0-2-stream-core-g30: {}
+
+  packages/shared/chain0-3-data-hub-g44: {}
+
+  packages/shared/chain0-3-stream-lens-g43: {}
 
   packages/shared/chaos-lab-console-kernel:
     dependencies:

@@ -35,19 +35,19 @@
       "@infrastructure/incident-connectors": [
         "packages/infrastructure/incident-connectors/src/index.ts"
       ],
-    "@infrastructure/incident-forecasting-connectors": [
-      "packages/infrastructure/incident-forecasting-connectors/src/index.ts"
-    ],
-    "@infrastructure/incident-notifications": [
-      "packages/infrastructure/incident-notifications/src/index.ts"
-    ],
-    "@infrastructure/*": [
-      "packages/infrastructure/*",
-      "packages/infrastructure/*/src"
-    ],
-    "@service/adaptive-ops-runner": [
-      "packages/service/adaptive-ops-runner/src/index.ts"
-    ],
+      "@infrastructure/incident-forecasting-connectors": [
+        "packages/infrastructure/incident-forecasting-connectors/src/index.ts"
+      ],
+      "@infrastructure/incident-notifications": [
+        "packages/infrastructure/incident-notifications/src/index.ts"
+      ],
+      "@infrastructure/*": [
+        "packages/infrastructure/*",
+        "packages/infrastructure/*/src"
+      ],
+      "@service/adaptive-ops-runner": [
+        "packages/service/adaptive-ops-runner/src/index.ts"
+      ],
       "@app/adaptive-ops-console": [
         "packages/app/adaptive-ops-console/src/index.ts"
       ],
@@ -73,48 +73,48 @@
       "@shared/type-level": [
         "packages/shared/type-level/src/index.ts"
       ],
-    "@shared/type-level/*": [
-      "packages/shared/type-level/src/*"
-    ],
-    "@domain/recovery-ecosystem-core": [
-      "packages/domain/recovery-ecosystem-core/src/index.ts"
-    ],
-    "@domain/recovery-ecosystem-core/*": [
-      "packages/domain/recovery-ecosystem-core/src/*"
-    ],
-    "@domain/recovery-orchestration-lab-models": [
-      "packages/domain/recovery-orchestration-lab-models/src/index.ts"
-    ],
-    "@domain/recovery-orchestration-lab-models/*": [
-      "packages/domain/recovery-orchestration-lab-models/src/*"
-    ],
-    "@data/recovery-ecosystem-store": [
-      "packages/data/recovery-ecosystem-store/src/index.ts"
-    ],
-    "@data/recovery-ecosystem-store/*": [
-      "packages/data/recovery-ecosystem-store/src/*"
-    ],
-    "@service/recovery-ecosystem-orchestrator": [
-      "packages/service/recovery-ecosystem-orchestrator/src/index.ts"
-    ],
-    "@service/recovery-ecosystem-orchestrator/*": [
-      "packages/service/recovery-ecosystem-orchestrator/src/*"
-    ],
-    "@app/recovery-ecosystem-console": [
-      "packages/app/recovery-ecosystem-console/src/index.ts"
-    ],
-    "@app/recovery-ecosystem-console/*": [
-      "packages/app/recovery-ecosystem-console/src/*"
-    ],
-    "@shared/stress-lab-runtime": [
-      "packages/shared/stress-lab-runtime/src/index.ts"
-    ],
-    "@shared/stress-lab-runtime/*": [
-      "packages/shared/stress-lab-runtime/src/*"
-    ],
-    "@shared/result": [
-      "packages/shared/result/src/index.ts"
-    ],
+      "@shared/type-level/*": [
+        "packages/shared/type-level/src/*"
+      ],
+      "@domain/recovery-ecosystem-core": [
+        "packages/domain/recovery-ecosystem-core/src/index.ts"
+      ],
+      "@domain/recovery-ecosystem-core/*": [
+        "packages/domain/recovery-ecosystem-core/src/*"
+      ],
+      "@domain/recovery-orchestration-lab-models": [
+        "packages/domain/recovery-orchestration-lab-models/src/index.ts"
+      ],
+      "@domain/recovery-orchestration-lab-models/*": [
+        "packages/domain/recovery-orchestration-lab-models/src/*"
+      ],
+      "@data/recovery-ecosystem-store": [
+        "packages/data/recovery-ecosystem-store/src/index.ts"
+      ],
+      "@data/recovery-ecosystem-store/*": [
+        "packages/data/recovery-ecosystem-store/src/*"
+      ],
+      "@service/recovery-ecosystem-orchestrator": [
+        "packages/service/recovery-ecosystem-orchestrator/src/index.ts"
+      ],
+      "@service/recovery-ecosystem-orchestrator/*": [
+        "packages/service/recovery-ecosystem-orchestrator/src/*"
+      ],
+      "@app/recovery-ecosystem-console": [
+        "packages/app/recovery-ecosystem-console/src/index.ts"
+      ],
+      "@app/recovery-ecosystem-console/*": [
+        "packages/app/recovery-ecosystem-console/src/*"
+      ],
+      "@shared/stress-lab-runtime": [
+        "packages/shared/stress-lab-runtime/src/index.ts"
+      ],
+      "@shared/stress-lab-runtime/*": [
+        "packages/shared/stress-lab-runtime/src/*"
+      ],
+      "@shared/result": [
+        "packages/shared/result/src/index.ts"
+      ],
       "@shared/result/*": [
         "packages/shared/result/src/*"
       ],
@@ -362,6 +362,171 @@
       ],
       "@service/recovery-operations-policy-engine/*": [
         "packages/service/recovery-operations-policy-engine/src/*"
+      ],
+      "@shared/chain0-0-compute-flow-g1": [
+        "packages/shared/chain0-0-compute-flow-g1/src/index.ts"
+      ],
+      "@shared/chain0-0-edge-nexus-g2": [
+        "packages/shared/chain0-0-edge-nexus-g2/src/index.ts"
+      ],
+      "@domain/chain0-0-index-flow-g3": [
+        "packages/domain/chain0-0-index-flow-g3/src/index.ts"
+      ],
+      "@domain/chain0-0-compute-bridge-g4": [
+        "packages/domain/chain0-0-compute-bridge-g4/src/index.ts"
+      ],
+      "@domain/chain0-0-event-fabric-g5": [
+        "packages/domain/chain0-0-event-fabric-g5/src/index.ts"
+      ],
+      "@data/chain0-0-compute-hub-g6": [
+        "packages/data/chain0-0-compute-hub-g6/src/index.ts"
+      ],
+      "@data/chain0-0-event-fabric-g7": [
+        "packages/data/chain0-0-event-fabric-g7/src/index.ts"
+      ],
+      "@data/chain0-0-metric-engine-g8": [
+        "packages/data/chain0-0-metric-engine-g8/src/index.ts"
+      ],
+      "@service/chain0-0-route-mesh-g9": [
+        "packages/service/chain0-0-route-mesh-g9/src/index.ts"
+      ],
+      "@service/chain0-0-cache-hub-g10": [
+        "packages/service/chain0-0-cache-hub-g10/src/index.ts"
+      ],
+      "@service/chain0-0-policy-nexus-g11": [
+        "packages/service/chain0-0-policy-nexus-g11/src/index.ts"
+      ],
+      "@app/chain0-0-data-flow-g12": [
+        "packages/app/chain0-0-data-flow-g12/src/index.ts"
+      ],
+      "@app/chain0-0-state-flow-g13": [
+        "packages/app/chain0-0-state-flow-g13/src/index.ts"
+      ],
+      "@app/chain0-0-data-nexus-g14": [
+        "packages/app/chain0-0-data-nexus-g14/src/index.ts"
+      ],
+      "@shared/chain0-1-policy-engine-g15": [
+        "packages/shared/chain0-1-policy-engine-g15/src/index.ts"
+      ],
+      "@shared/chain0-1-queue-flow-g16": [
+        "packages/shared/chain0-1-queue-flow-g16/src/index.ts"
+      ],
+      "@domain/chain0-1-stream-bridge-g17": [
+        "packages/domain/chain0-1-stream-bridge-g17/src/index.ts"
+      ],
+      "@domain/chain0-1-compute-fabric-g18": [
+        "packages/domain/chain0-1-compute-fabric-g18/src/index.ts"
+      ],
+      "@domain/chain0-1-trace-nexus-g19": [
+        "packages/domain/chain0-1-trace-nexus-g19/src/index.ts"
+      ],
+      "@data/chain0-1-state-flow-g20": [
+        "packages/data/chain0-1-state-flow-g20/src/index.ts"
+      ],
+      "@data/chain0-1-signal-lens-g21": [
+        "packages/data/chain0-1-signal-lens-g21/src/index.ts"
+      ],
+      "@data/chain0-1-index-fabric-g22": [
+        "packages/data/chain0-1-index-fabric-g22/src/index.ts"
+      ],
+      "@service/chain0-1-queue-mesh-g23": [
+        "packages/service/chain0-1-queue-mesh-g23/src/index.ts"
+      ],
+      "@service/chain0-1-queue-bridge-g24": [
+        "packages/service/chain0-1-queue-bridge-g24/src/index.ts"
+      ],
+      "@service/chain0-1-trace-nexus-g25": [
+        "packages/service/chain0-1-trace-nexus-g25/src/index.ts"
+      ],
+      "@app/chain0-1-signal-nexus-g26": [
+        "packages/app/chain0-1-signal-nexus-g26/src/index.ts"
+      ],
+      "@app/chain0-1-model-nexus-g27": [
+        "packages/app/chain0-1-model-nexus-g27/src/index.ts"
+      ],
+      "@app/chain0-1-cache-fabric-g28": [
+        "packages/app/chain0-1-cache-fabric-g28/src/index.ts"
+      ],
+      "@shared/chain0-2-rule-fabric-g29": [
+        "packages/shared/chain0-2-rule-fabric-g29/src/index.ts"
+      ],
+      "@shared/chain0-2-stream-core-g30": [
+        "packages/shared/chain0-2-stream-core-g30/src/index.ts"
+      ],
+      "@domain/chain0-2-event-hub-g31": [
+        "packages/domain/chain0-2-event-hub-g31/src/index.ts"
+      ],
+      "@domain/chain0-2-compute-hub-g32": [
+        "packages/domain/chain0-2-compute-hub-g32/src/index.ts"
+      ],
+      "@domain/chain0-2-trace-flow-g33": [
+        "packages/domain/chain0-2-trace-flow-g33/src/index.ts"
+      ],
+      "@data/chain0-2-queue-nexus-g34": [
+        "packages/data/chain0-2-queue-nexus-g34/src/index.ts"
+      ],
+      "@data/chain0-2-rule-mesh-g35": [
+        "packages/data/chain0-2-rule-mesh-g35/src/index.ts"
+      ],
+      "@data/chain0-2-schema-fabric-g36": [
+        "packages/data/chain0-2-schema-fabric-g36/src/index.ts"
+      ],
+      "@service/chain0-2-model-flow-g37": [
+        "packages/service/chain0-2-model-flow-g37/src/index.ts"
+      ],
+      "@service/chain0-2-policy-bridge-g38": [
+        "packages/service/chain0-2-policy-bridge-g38/src/index.ts"
+      ],
+      "@service/chain0-2-rule-mesh-g39": [
+        "packages/service/chain0-2-rule-mesh-g39/src/index.ts"
+      ],
+      "@app/chain0-2-route-flow-g40": [
+        "packages/app/chain0-2-route-flow-g40/src/index.ts"
+      ],
+      "@app/chain0-2-model-core-g41": [
+        "packages/app/chain0-2-model-core-g41/src/index.ts"
+      ],
+      "@app/chain0-2-data-core-g42": [
+        "packages/app/chain0-2-data-core-g42/src/index.ts"
+      ],
+      "@shared/chain0-3-stream-lens-g43": [
+        "packages/shared/chain0-3-stream-lens-g43/src/index.ts"
+      ],
+      "@shared/chain0-3-data-hub-g44": [
+        "packages/shared/chain0-3-data-hub-g44/src/index.ts"
+      ],
+      "@domain/chain0-3-event-core-g45": [
+        "packages/domain/chain0-3-event-core-g45/src/index.ts"
+      ],
+      "@domain/chain0-3-policy-fabric-g46": [
+        "packages/domain/chain0-3-policy-fabric-g46/src/index.ts"
+      ],
+      "@domain/chain0-3-schema-flow-g47": [
+        "packages/domain/chain0-3-schema-flow-g47/src/index.ts"
+      ],
+      "@data/chain0-3-queue-engine-g48": [
+        "packages/data/chain0-3-queue-engine-g48/src/index.ts"
+      ],
+      "@data/chain0-3-stream-lens-g49": [
+        "packages/data/chain0-3-stream-lens-g49/src/index.ts"
+      ],
+      "@data/chain0-3-graph-mesh-g50": [
+        "packages/data/chain0-3-graph-mesh-g50/src/index.ts"
+      ],
+      "@service/chain0-3-compute-lens-g51": [
+        "packages/service/chain0-3-compute-lens-g51/src/index.ts"
+      ],
+      "@service/chain0-3-queue-fabric-g52": [
+        "packages/service/chain0-3-queue-fabric-g52/src/index.ts"
+      ],
+      "@service/chain0-3-rule-pulse-g53": [
+        "packages/service/chain0-3-rule-pulse-g53/src/index.ts"
+      ],
+      "@app/chain0-3-model-bridge-g54": [
+        "packages/app/chain0-3-model-bridge-g54/src/index.ts"
+      ],
+      "@app/chain0-3-edge-hub-g55": [
+        "packages/app/chain0-3-edge-hub-g55/src/index.ts"
       ]
     }
   }

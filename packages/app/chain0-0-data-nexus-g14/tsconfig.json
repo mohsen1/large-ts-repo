@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../service/chain0-0-route-mesh-g9/tsconfig.json"
+    },
+    {
+      "path": "../../service/chain0-0-cache-hub-g10/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-ops-orchestration-engine/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-synthesis-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

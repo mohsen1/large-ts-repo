@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain0-2-event-hub-g31/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain0-2-compute-hub-g32/tsconfig.json"
+    },
+    {
+      "path": "../../domain/billing-ledger/tsconfig.json"
+    },
+    {
+      "path": "../../domain/streaming-observability/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

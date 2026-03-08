@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../data/chain0-3-queue-engine-g48/tsconfig.json"
+    },
+    {
+      "path": "../../data/chain0-3-stream-lens-g49/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-timeline-store/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-ecosystem-analytics-store/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}
