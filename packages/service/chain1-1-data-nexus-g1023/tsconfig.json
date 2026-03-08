@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../data/chain1-1-schema-nexus-g1020/tsconfig.json"
+    },
+    {
+      "path": "../../data/chain1-1-route-core-g1021/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-incident-store/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-ops-mesh-observability-store/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

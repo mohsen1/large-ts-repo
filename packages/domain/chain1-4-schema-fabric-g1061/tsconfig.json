@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../shared/chain1-4-state-nexus-g1057/tsconfig.json"
+    },
+    {
+      "path": "../../shared/chain1-4-route-flow-g1058/tsconfig.json"
+    },
+    {
+      "path": "../../shared/validation/tsconfig.json"
+    },
+    {
+      "path": "../../shared/chain0-3-stream-lens-g43/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

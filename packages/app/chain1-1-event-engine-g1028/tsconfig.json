@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../service/chain1-1-data-nexus-g1023/tsconfig.json"
+    },
+    {
+      "path": "../../service/chain1-1-graph-hub-g1024/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-cadence-coordinator/tsconfig.json"
+    },
+    {
+      "path": "../../service/failover-runtime/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

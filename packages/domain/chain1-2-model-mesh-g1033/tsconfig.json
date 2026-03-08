@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../shared/chain1-2-rule-core-g1029/tsconfig.json"
+    },
+    {
+      "path": "../../shared/chain1-2-data-core-g1030/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/cockpit-studio-core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    }
+  ]
+}

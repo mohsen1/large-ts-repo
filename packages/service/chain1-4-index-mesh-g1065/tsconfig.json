@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../data/chain1-4-model-flow-g1062/tsconfig.json"
+    },
+    {
+      "path": "../../data/chain1-4-model-nexus-g1063/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-incident-insights-store/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-quantum-store/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

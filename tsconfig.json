@@ -1623,6 +1623,204 @@
     },
     {
       "path": "./packages/app/chain0-3-edge-hub-g55"
+    },
+    {
+      "path": "./packages/shared/chain1-0-stream-mesh-g1001"
+    },
+    {
+      "path": "./packages/shared/chain1-0-data-lens-g1002"
+    },
+    {
+      "path": "./packages/domain/chain1-0-data-flow-g1003"
+    },
+    {
+      "path": "./packages/domain/chain1-0-stream-lens-g1004"
+    },
+    {
+      "path": "./packages/domain/chain1-0-signal-lens-g1005"
+    },
+    {
+      "path": "./packages/data/chain1-0-metric-core-g1006"
+    },
+    {
+      "path": "./packages/data/chain1-0-signal-engine-g1007"
+    },
+    {
+      "path": "./packages/data/chain1-0-schema-pulse-g1008"
+    },
+    {
+      "path": "./packages/service/chain1-0-queue-mesh-g1009"
+    },
+    {
+      "path": "./packages/service/chain1-0-route-hub-g1010"
+    },
+    {
+      "path": "./packages/service/chain1-0-compute-fabric-g1011"
+    },
+    {
+      "path": "./packages/app/chain1-0-rule-hub-g1012"
+    },
+    {
+      "path": "./packages/app/chain1-0-schema-core-g1013"
+    },
+    {
+      "path": "./packages/app/chain1-0-compute-bridge-g1014"
+    },
+    {
+      "path": "./packages/shared/chain1-1-policy-engine-g1015"
+    },
+    {
+      "path": "./packages/shared/chain1-1-metric-nexus-g1016"
+    },
+    {
+      "path": "./packages/domain/chain1-1-state-engine-g1017"
+    },
+    {
+      "path": "./packages/domain/chain1-1-metric-pulse-g1018"
+    },
+    {
+      "path": "./packages/domain/chain1-1-edge-fabric-g1019"
+    },
+    {
+      "path": "./packages/data/chain1-1-schema-nexus-g1020"
+    },
+    {
+      "path": "./packages/data/chain1-1-route-core-g1021"
+    },
+    {
+      "path": "./packages/data/chain1-1-index-mesh-g1022"
+    },
+    {
+      "path": "./packages/service/chain1-1-data-nexus-g1023"
+    },
+    {
+      "path": "./packages/service/chain1-1-graph-hub-g1024"
+    },
+    {
+      "path": "./packages/service/chain1-1-node-pulse-g1025"
+    },
+    {
+      "path": "./packages/app/chain1-1-metric-pulse-g1026"
+    },
+    {
+      "path": "./packages/app/chain1-1-compute-nexus-g1027"
+    },
+    {
+      "path": "./packages/app/chain1-1-event-engine-g1028"
+    },
+    {
+      "path": "./packages/shared/chain1-2-rule-core-g1029"
+    },
+    {
+      "path": "./packages/shared/chain1-2-data-core-g1030"
+    },
+    {
+      "path": "./packages/domain/chain1-2-metric-core-g1031"
+    },
+    {
+      "path": "./packages/domain/chain1-2-graph-hub-g1032"
+    },
+    {
+      "path": "./packages/domain/chain1-2-model-mesh-g1033"
+    },
+    {
+      "path": "./packages/data/chain1-2-node-engine-g1034"
+    },
+    {
+      "path": "./packages/data/chain1-2-node-hub-g1035"
+    },
+    {
+      "path": "./packages/data/chain1-2-graph-engine-g1036"
+    },
+    {
+      "path": "./packages/service/chain1-2-state-hub-g1037"
+    },
+    {
+      "path": "./packages/service/chain1-2-graph-flow-g1038"
+    },
+    {
+      "path": "./packages/service/chain1-2-queue-core-g1039"
+    },
+    {
+      "path": "./packages/app/chain1-2-state-core-g1040"
+    },
+    {
+      "path": "./packages/app/chain1-2-schema-fabric-g1041"
+    },
+    {
+      "path": "./packages/app/chain1-2-compute-pulse-g1042"
+    },
+    {
+      "path": "./packages/shared/chain1-3-cache-engine-g1043"
+    },
+    {
+      "path": "./packages/shared/chain1-3-stream-fabric-g1044"
+    },
+    {
+      "path": "./packages/domain/chain1-3-edge-pulse-g1045"
+    },
+    {
+      "path": "./packages/domain/chain1-3-trace-lens-g1046"
+    },
+    {
+      "path": "./packages/domain/chain1-3-graph-engine-g1047"
+    },
+    {
+      "path": "./packages/data/chain1-3-span-fabric-g1048"
+    },
+    {
+      "path": "./packages/data/chain1-3-cache-core-g1049"
+    },
+    {
+      "path": "./packages/data/chain1-3-data-pulse-g1050"
+    },
+    {
+      "path": "./packages/service/chain1-3-queue-flow-g1051"
+    },
+    {
+      "path": "./packages/service/chain1-3-rule-pulse-g1052"
+    },
+    {
+      "path": "./packages/service/chain1-3-node-mesh-g1053"
+    },
+    {
+      "path": "./packages/app/chain1-3-event-core-g1054"
+    },
+    {
+      "path": "./packages/app/chain1-3-span-nexus-g1055"
+    },
+    {
+      "path": "./packages/app/chain1-3-policy-bridge-g1056"
+    },
+    {
+      "path": "./packages/shared/chain1-4-state-nexus-g1057"
+    },
+    {
+      "path": "./packages/shared/chain1-4-route-flow-g1058"
+    },
+    {
+      "path": "./packages/domain/chain1-4-stream-fabric-g1059"
+    },
+    {
+      "path": "./packages/domain/chain1-4-data-engine-g1060"
+    },
+    {
+      "path": "./packages/domain/chain1-4-schema-fabric-g1061"
+    },
+    {
+      "path": "./packages/data/chain1-4-model-flow-g1062"
+    },
+    {
+      "path": "./packages/data/chain1-4-model-nexus-g1063"
+    },
+    {
+      "path": "./packages/data/chain1-4-state-hub-g1064"
+    },
+    {
+      "path": "./packages/service/chain1-4-index-mesh-g1065"
+    },
+    {
+      "path": "./packages/service/chain1-4-rule-nexus-g1066"
     }
   ]
 }

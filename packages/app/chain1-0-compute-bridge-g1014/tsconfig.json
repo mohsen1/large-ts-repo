@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../service/chain1-0-queue-mesh-g1009/tsconfig.json"
+    },
+    {
+      "path": "../../service/chain1-0-route-hub-g1010/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-runner/tsconfig.json"
+    },
+    {
+      "path": "../../service/checkout/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../data/chain1-0-metric-core-g1006/tsconfig.json"
+    },
+    {
+      "path": "../../data/chain1-0-signal-engine-g1007/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-simulation-metrics/tsconfig.json"
+    },
+    {
+      "path": "../../data/recovery-coordination-store/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../domain/chain1-2-metric-core-g1031/tsconfig.json"
+    },
+    {
+      "path": "../../domain/chain1-2-graph-hub-g1032/tsconfig.json"
+    },
+    {
+      "path": "../../domain/recovery-ecosystem-core/tsconfig.json"
+    },
+    {
+      "path": "../../domain/risk/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}

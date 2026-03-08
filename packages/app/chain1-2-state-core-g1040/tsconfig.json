@@ -1,0 +1,34 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "composite": true,
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    {
+      "path": "../../service/chain1-2-state-hub-g1037/tsconfig.json"
+    },
+    {
+      "path": "../../service/chain1-2-graph-flow-g1038/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-strategy-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../service/recovery-cockpit-orchestrator/tsconfig.json"
+    },
+    {
+      "path": "../../shared/type-level/tsconfig.json"
+    },
+    {
+      "path": "../../shared/core/tsconfig.json"
+    },
+    {
+      "path": "../../shared/result/tsconfig.json"
+    }
+  ]
+}
