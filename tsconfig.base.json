@@ -2,21 +2,14 @@
   "compilerOptions": {
     "target": "ES2023",
     "lib": [
-      "ES2024",
-      "ESNext.Array",
-      "ESNext.Collection",
-      "ESNext.Disposable",
-      "ESNext.Iterator",
-      "ESNext.Promise"
+      "ESNext"
     ],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
+    "types": [],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noUnusedLocals": false,
