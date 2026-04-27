@@ -13,7 +13,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "jsx": "react-jsx"
   },
-  "include": ["packages/**/src/**/*.ts"]
+  "include": ["packages/**/src/**/*.ts", "packages/**/src/**/*.tsx"]
 }
