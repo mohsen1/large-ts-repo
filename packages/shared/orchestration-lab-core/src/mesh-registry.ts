@@ -43,7 +43,7 @@ export class MeshPluginRegistry<TCatalog extends readonly PluginDefinition[] = r
   readonly #namespace: string;
   readonly #records = new Map<PluginId, PluginDefinition>();
   readonly #events: MeshRegistryEvent[] = [];
-  readonly #telemetry: PluginTelemetryStore<'mesh-registry'>;
+  readonly #telemetry: PluginTelemetryStore<PluginKind>;
   readonly #seen = new Set<string>();
 
   constructor(options: MeshRegistryOptions) {

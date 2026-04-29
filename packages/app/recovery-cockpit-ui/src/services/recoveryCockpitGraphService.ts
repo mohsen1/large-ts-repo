@@ -56,7 +56,7 @@ export interface GraphServiceState {
 
 interface GraphServiceHandle {
   readonly config: GraphServiceConfig;
-  readonly workspace: CommandWorkspace<Record<string, CockpitPlugin>>;
+  readonly workspace: CommandWorkspace<CockpitPlugins>;
   readonly manifest: ReturnType<typeof getManifest>;
   readonly topology: ReturnType<typeof buildTopology>;
   readonly topologyNodes: readonly string[];

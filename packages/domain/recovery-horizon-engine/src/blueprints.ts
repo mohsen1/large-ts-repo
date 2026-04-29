@@ -48,7 +48,7 @@ type BlueprintContextMeta<TContext> = {
 type BlueprintQuery<TContext> = {
   readonly contracts: readonly BlueprintContract[];
   readonly context: BlueprintContextMeta<TContext>;
-  readonly registry: ReturnType<typeof createRegistry>;
+  readonly registry: unknown;
   readonly window: readonly PluginStage[];
   readonly labels: readonly StageLabel<PluginStage>[];
   readonly timeline: readonly TimelineSignal[];

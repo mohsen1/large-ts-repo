@@ -71998,3 +71998,26 @@ export interface Unit_6000 {
   };
 }
 
+export interface Unit_6001 {
+  readonly id: 'u-6001';
+  readonly slot: number;
+  readonly active: boolean;
+  readonly rank: number;
+  readonly tags: ReadonlyArray<string>;
+  readonly payload: {
+    readonly a: number;
+    readonly b: number;
+  };
+}
+
+export interface Unit_6002 {
+  readonly id: 'u-6002';
+  readonly slot: number;
+  readonly active: boolean;
+  readonly rank: number;
+  readonly tags: ReadonlyArray<string>;
+  readonly payload: {
+    readonly a: number;
+    readonly b: number;
+  };
+}
