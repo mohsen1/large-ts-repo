@@ -1,5 +1,5 @@
 import type { LabPlan, OrchestrationLab, OrchestrationPolicy } from './types';
-import type { PluginRegistry } from './plugin-registry';
+import type { LabPluginDescriptor, PluginRegistry } from './plugin-registry';
 import type { LabGraphSnapshot } from './lab-graph';
 import { buildLabGraph } from './lab-graph';
 import { randomUUID } from 'node:crypto';
@@ -157,7 +157,7 @@ export const runWithPluginScope = async <
 >(
   workspace: WorkbenchContext,
   policy: { readonly id: string },
-  registry: PluginRegistry<readonly []>,
+  registry: PluginRegistry<readonly LabPluginDescriptor<object, object, object, object>[]>,
   input: TInput,
   pluginRunner: (snapshot: WorkbenchContext, input: TInput) => Promise<TOutput>,
 ): Promise<TOutput> => {

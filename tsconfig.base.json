@@ -157,7 +157,7 @@
         "./packages/infrastructure/recovery-scenario-orchestration-adapters/src/index.ts"
       ],
       "@domain/recovery-intelligence": [
-        "./packages/domain/recovery-intelligence/dist/src/index.d.ts"
+        "./packages/domain/recovery-intelligence/src/index.ts"
       ],
       "@domain/recovery-drill-telemetry": [
         "./packages/domain/recovery-drill-telemetry/src"

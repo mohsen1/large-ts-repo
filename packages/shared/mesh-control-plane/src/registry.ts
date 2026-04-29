@@ -44,7 +44,7 @@ export class MeshControlRegistry<TCatalog extends readonly PluginId[] = readonly
   readonly #tenant = new Map<string, MeshControlRegistryEntry>();
   readonly #buckets = new Map<RegistryBucket<string>, string[]>();
   readonly #events = new Set<MeshControlLifecycleEvent>();
-  readonly #telemetry: PluginTelemetryStore<'mesh-control-registry'>;
+  readonly #telemetry: PluginTelemetryStore<PluginKind>;
   readonly #enabled: boolean;
 
   constructor(options: MeshControlRegistryOptions) {

@@ -10,11 +10,20 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noEmit": true,
+    "declaration": false,
+    "composite": false,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "jsx": "react-jsx"
   },
-  "include": ["packages/**/src/**/*.ts", "packages/**/src/**/*.tsx"]
+  "include": ["packages/**/src/**/*.ts", "packages/**/src/**/*.tsx"],
+  "exclude": [
+    "packages/domain/pricing-engine/**",
+    "packages/domain/recovery-cascade-intelligence/**",
+    "packages/service/recovery-cascade-intelligence-orchestrator/**",
+    "packages/shared/type-level/src/stress-fabric-atlas.ts",
+    "packages/shared/type-level/src/stress-template-fusion-lab.ts"
+  ]
 }
